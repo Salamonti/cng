@@ -1,0 +1,1038 @@
+<!-- C:\PCHost\web\qa.html -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Medical Q&A Assistant</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 1.5rem;
+        max-width: 1200px;
+        background-color: #f8f9fa;
+      }
+      .container {
+        background: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .auth-card {
+        border-left: 4px solid #667eea;
+        background: #fff;
+        padding: 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        transition: all 0.3s ease;
+      }
+      .auth-card.authenticated {
+        padding: 12px 16px;
+        background: #f8f9fa;
+        border-left-color: #28a745;
+      }
+      .auth-card h3 {
+        margin-bottom: 0.75rem;
+        color: #2c3e50;
+      }
+      .auth-status {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+        color: #495057;
+      }
+      .auth-status.success { color: #1f7a1f; }
+      .auth-status.warning { color: #c47f00; }
+      .auth-status.info { color: #0d6efd; }
+      .auth-card form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .auth-card input {
+        padding: 0.6rem;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 0.9rem;
+      }
+      .auth-card .inline-inputs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .auth-card .inline-inputs input {
+        flex: 1;
+        min-width: 180px;
+      }
+      .auth-card button {
+        padding: 0.6rem;
+        border-radius: 6px;
+        border: none;
+        background: #667eea;
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .auth-card button.secondary {
+        background: #6c757d;
+      }
+      .auth-card button.danger {
+        background: #dc3545;
+      }
+      .auth-card .small-text {
+        font-size: 0.8rem;
+        color: #6c757d;
+      }
+      .auth-card .hidden {
+        display: none;
+      }
+      .auth-toggle {
+        text-align: center;
+        margin: 0.75rem 0;
+      }
+      .auth-toggle a {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .auth-toggle a:hover {
+        text-decoration: underline;
+      }
+      .auth-actions-compact {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .auth-actions-compact .small-text {
+        flex: 0 0 auto;
+      }
+      .auth-actions-compact .inline-inputs {
+        flex: 0 0 auto;
+        gap: 8px;
+      }
+      #registerForm.hidden {
+        display: none;
+      }
+      .register-info {
+        font-size: 0.85rem;
+        color: #6c757d;
+      }
+      .register-info.success { color: #1f7a1f; }
+      .register-info.error { color: #c12c2c; }
+      .register-info.warning { color: #c47f00; }
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem 2rem;
+        border-radius: 8px 8px 0 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border: none;
+      }
+      .header h1 {
+        color: white;
+        margin: 0;
+        font-size: 1.5rem;
+      }
+      .nav-links a {
+        margin-left: 1rem;
+        color: white;
+        text-decoration: none;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+      }
+      .nav-links a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #333;
+      }
+      textarea, input, select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 14px;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .info-panel {
+        background: #eef2ff;
+        border: 1px solid #cbd5ff;
+        border-radius: 4px;
+        padding: 1rem;
+        margin-top: 1rem;
+        white-space: pre-wrap;
+      }
+      .info-panel.loading {
+        opacity: 0.7;
+      }
+      .updates-list {
+        max-height: 420px;
+        overflow-y: auto;
+        background: #ffffff;
+        border: 1px solid #d1d5f0;
+        border-radius: 4px;
+        padding: 0.75rem;
+      }
+      .updates-list details {
+        margin-bottom: 0.5rem;
+      }
+      .updates-list summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .row {
+        display: flex;
+        gap: 1rem;
+      }
+      .col {
+        flex: 1;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      button:disabled {
+        background: #6c757d;
+        cursor: not-allowed;
+      }
+      .btn-danger {
+        background: #dc3545;
+      }
+      .btn-danger:hover {
+        background: #c82333;
+      }
+      .btn-secondary {
+        background: #6c757d;
+      }
+      .btn-secondary:hover {
+        background: #545b62;
+      }
+      .output {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        padding: 1rem;
+        min-height: 200px;
+        white-space: pre-wrap;
+        font-family: 'Courier New', monospace;
+        overflow-y: auto;
+        max-height: 400px;
+      }
+      .error {
+        color: #dc3545;
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 0.75rem;
+        border-radius: 4px;
+        margin-top: 1rem;
+      }
+      .chat-history {
+        background: #e8f4f8;
+        border-left: 4px solid #007bff;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0 4px 4px 0;
+      }
+      .conversation-item {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+      }
+      .question {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .answer {
+        background: #f3e5f5;
+        color: #6a1b9a;
+      }
+      .hidden {
+        display: none;
+      }
+      .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem;
+        color: #6c757d;
+        font-size: 0.85rem;
+        border-top: 1px solid #e9ecef;
+      }
+      .char-count {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+      }
+    </style>
+  <!-- Only register PWA assets in production (guarded with HEAD checks) -->
+  <script>
+    const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+    if ('serviceWorker' in navigator && !isLocal) {
+      (async () => {
+        const swCandidates = ['/service_worker.js', '/static/service_worker.js'];
+        for (const p of swCandidates) {
+          try { const r = await fetch(p, { method: 'HEAD' }); if (r && r.ok) { await navigator.serviceWorker.register(p); break; } } catch {}
+        }
+      })();
+    }
+  </script>
+
+  <!-- Only include the manifest in prod if it exists -->
+  <script>
+    if (!isLocal) {
+      (async () => {
+        const mfCandidates = ['/manifest.json', '/static/manifest.json'];
+        for (const p of mfCandidates) {
+          try { const r = await fetch(p, { method: 'HEAD' }); if (r && r.ok) { const link = document.createElement('link'); link.rel = 'manifest'; link.href = p; document.head.appendChild(link); break; } } catch {}
+        }
+      })();
+    }
+  </script>
+</head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🩺 Medical Q&A Assistant</h1>
+        <div class="nav-links">
+          <a href="index.html">🏠 Home</a>
+        </div>
+      </div>
+
+      <div class="auth-card" id="authCard">
+        <div class="auth-status" id="authStatus">Checking session...</div>
+
+        <div class="auth-forms" id="authForms">
+          <form id="loginForm">
+            <h3>Sign In</h3>
+            <div class="inline-inputs">
+              <input type="email" name="email" placeholder="Email" required autocomplete="email">
+              <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
+            </div>
+            <button type="submit">Sign In</button>
+            <div class="register-info" id="loginError" style="display:none;"></div>
+          </form>
+
+          <div class="auth-toggle">
+            <a href="#" id="toggleRegisterLink">or Register Now</a>
+          </div>
+
+          <form id="registerForm" class="hidden">
+            <h3>Create Account</h3>
+            <div class="inline-inputs">
+              <input type="email" name="reg_email" placeholder="Email" required autocomplete="email">
+              <input type="password" name="reg_password" placeholder="Password" required autocomplete="new-password">
+            </div>
+            <button type="submit" class="secondary">Register</button>
+          </form>
+
+          <div class="auth-hidden-controls hidden-config">
+            <label class="small-text hidden-config" for="authApiBase">Workspace API Base</label>
+            <input type="hidden" id="authApiBase" value="/api">
+          </div>
+        </div>
+
+        <div class="register-info" id="registerInfo" style="display:none;"></div>
+        <div class="register-info" id="approvalNotice" style="display:none;"></div>
+
+        <div class="auth-actions hidden" id="authActions">
+          <div class="auth-actions-compact">
+            <div class="small-text" id="workspaceMeta">Workspace: not synced</div>
+            <div class="inline-inputs">
+              <button type="button" id="logoutBtn" class="secondary">Sign Out</button>
+              <button type="button" id="clearWorkspaceBtn" class="danger">Reset Workspace</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Response Style Selection -->
+      <div class="form-group" style="margin-bottom: 2rem;">
+        <label for="temperature">Response Style:</label>
+        <select id="temperature" name="temperature">
+          <option value="0.05">Very Conservative</option>
+          <option value="0.1" selected>Conservative</option>
+          <option value="0.2">Balanced</option>
+          <option value="0.3">Creative</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 2rem;">
+        <button type="button" id="recentUpdatesBtn" class="btn-secondary">Show Recent Updates</button>
+        <div id="recentUpdatesPanel" class="info-panel hidden">
+          <p>Press the button above to load the most recent Monday summaries.</p>
+        </div>
+      </div>
+
+      <!-- Q&A Form -->
+      <form id="qaForm">
+        <div class="form-group">
+          <label for="question">Medical Question:</label>
+          <textarea id="question" name="question" placeholder="Ask a medical question about patient care, diagnosis, treatment, etc..." required></textarea>
+          <div class="char-count">Characters remaining: <span id="charCount">1024</span> • Response max tokens: <span id="qaMaxTokens">512</span></div>
+        </div>
+      </form>
+
+      <div class="form-group" style="margin-top: 2rem;">
+        <label>AI Response:</label>
+        <div id="output" class="output">Ready for your medical question...</div>
+      </div>
+
+      <div class="form-group" id="refsSection" style="margin-top: 1rem; display:none;">
+        <label>References:</label>
+        <div id="refsPanel" class="output" style="max-height: 220px;"></div>
+      </div>
+
+      <div id="conversationHistory" style="display: none; margin-top: 2rem;">
+        <h3>Conversation History</h3>
+        <div id="historyItems"></div>
+        <div style="margin-top: 1rem; text-align: center;">
+          <button type="button" class="btn-danger" id="clearHistoryBtn" onclick="clearHistory()" style="display:none;">Clear Chat History</button>
+        </div>
+      </div>
+
+      <div id="error" class="error" style="display: none;"></div>
+
+      <div class="copyright">
+        &copy; 2025 Eissa Internal Medicine Inc. All rights reserved.
+      </div>
+    </div>
+
+    <script>
+      const STREAM_END_MARKER = '__STREAM_END__';
+      let conversationHistory = [];
+      let MAX_USER_CHARS = 1024; // Default, will be loaded from config
+      let MAX_RESPONSE_TOKENS = 512; // Will be overridden by config if available
+      const FIXED_API_BASE = '/api';
+      let API_BASE = FIXED_API_BASE;
+
+      function getAuthToken() {
+        if (window?.app?.settings?.apiKey) {
+          return window.app.settings.apiKey;
+        }
+        try {
+          const token = sessionStorage.getItem('auth_access_token');
+          if (token) return token;
+        } catch {
+        }
+        return '';
+      }
+
+      function getQaConfig() {
+        return { apiBase: FIXED_API_BASE };
+      }
+
+      function getApiBase() {
+        return FIXED_API_BASE;
+      }
+
+      function uniqueList(values) {
+        const seen = new Set();
+        const result = [];
+        for (const value of values) {
+          if (!value) continue;
+          const key = value.replace(/\/+$/, '');
+          if (seen.has(key)) continue;
+          seen.add(key);
+          result.push(value);
+        }
+        return result;
+      }
+
+      function resolveServerBases() {
+        const preferred = getApiBase();
+        const defaults = [
+          '/api',
+          'http://127.0.0.1:7860/api',
+          preferred,
+          'https://ieissa.com:3443/api'
+        ];
+        return uniqueList(defaults.filter(Boolean).map(base => base.replace(/\/+$/, '')));
+      }
+
+      function buildFromBase(base, path) {
+        const trimmedPath = path.startsWith('/') ? path : `/${path}`;
+        if (!base || base === '/') {
+          return trimmedPath;
+        }
+        const cleanedBase = base.replace(/\/+$/, '');
+        if (cleanedBase.startsWith('http://') || cleanedBase.startsWith('https://')) {
+          return `${cleanedBase}${trimmedPath}`
+            .replace(/(?<!:)\/{2,}/g, '/')
+            .replace(':/', '://');
+        }
+        return `${cleanedBase}${trimmedPath}`.replace(/\/{2,}/g, '/');
+      }
+
+      function buildEndpoint(path) {
+        const base = getApiBase();
+        const trimmedPath = path.startsWith('/') ? path : `/${path}`;
+        if (base.startsWith('http://') || base.startsWith('https://')) {
+          const cleaned = base.replace(/\/+$/, '');
+          return `${cleaned}${trimmedPath}`.replace(/(?<!:)\/{2,}/g, '/').replace(':/', '://');
+        }
+        const cleanedBase = base.replace(/\/+$/, '');
+        if (cleanedBase === '' || cleanedBase === '/') {
+          return trimmedPath;
+        }
+        return `${cleanedBase}${trimmedPath}`;
+      }
+
+      // Load configuration and update character limits
+      async function loadConfig() {
+        try {
+          const baseField = document.getElementById('apiBase');
+          if (baseField) baseField.value = FIXED_API_BASE;
+          API_BASE = FIXED_API_BASE;
+
+          const response = await fetch(buildEndpoint('/qa_config'));
+          if (response.ok) {
+            const config = await response.json();
+            MAX_USER_CHARS = config.qa_max_user_chars || 1024;
+            if (config.default_qa_max_tokens) {
+              MAX_RESPONSE_TOKENS = config.default_qa_max_tokens;
+            }
+
+            const questionElement = document.getElementById('question');
+            if (questionElement) {
+              questionElement.setAttribute('maxlength', MAX_USER_CHARS);
+              const currentLength = questionElement.value.length;
+              const remaining = MAX_USER_CHARS - currentLength;
+              document.getElementById('charCount').textContent = remaining;
+              const mkEl = document.getElementById('qaMaxTokens');
+              if (mkEl) mkEl.textContent = MAX_RESPONSE_TOKENS;
+            }
+          }
+        } catch (error) {
+          console.warn('Failed to load config, using defaults:', error);
+        }
+      }
+
+      // Helper function to safely convert values to strings
+      function safeStr(val) {
+        if (val === null || val === undefined) return '';
+        return String(val);
+      }
+
+      // Helper function to deduplicate and index references
+      function deduplicateReferences(refs) {
+        if (!refs || !Array.isArray(refs)) return [];
+
+        const seen = new Map();
+        const deduped = [];
+
+        for (const r of refs) {
+          // Create stable key from source + title + section
+          const key = [
+            safeStr(r.source).trim(),
+            safeStr(r.title).trim(),
+            safeStr(r.section).trim()
+          ].join('||').toLowerCase();
+
+          if (!seen.has(key)) {
+            seen.set(key, true);
+            deduped.push(r);
+          }
+        }
+
+        // Add client-side index
+        return deduped.map((r, idx) => ({
+          ...r,
+          index: idx + 1
+        }));
+      }
+
+      function escapeHtml(value) {
+        if (value === null || value === undefined) return '';
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderRecentUpdates(data) {
+        const generated = escapeHtml(data.generated_at || 'unknown');
+        const runStarted = escapeHtml(data.run_started || 'unknown');
+        const docs = data.documents || [];
+        const items = docs.map(doc => {
+          const title = escapeHtml(doc.title || 'Untitled document');
+          const source = escapeHtml(doc.source || 'unknown');
+          const summary = escapeHtml(doc.summary || 'No summary available.');
+          const link = doc.link ? `<p><a href="${escapeHtml(doc.link)}" target="_blank" rel="noopener">Open source</a></p>` : '';
+          return `<details><summary>[${source}] ${title}</summary><p>${summary}</p>${link}</details>`;
+        }).join('');
+        return `
+          <h4>Recent Updates Summary</h4>
+          <p><strong>Generated:</strong> ${generated}</p>
+          <p><strong>Docs summarised:</strong> ${docs.length}</p>
+          <p><em>Latest run start:</em> ${runStarted}</p>
+          <div class="updates-list">${items || '<p>No summaries available.</p>'}</div>
+        `;
+      }
+
+      const recentUpdatesState = { cache: null, visible: false };
+
+      async function fetchRecentUpdatesData() {
+        const apiKey = getAuthToken();
+        if (!apiKey) {
+          throw new Error('Missing authentication token');
+        }
+        const bases = resolveServerBases();
+        const ts = Date.now();
+        const serverUrls = uniqueList(
+          bases.map(base => {
+            const built = buildFromBase(base, '/rag/recent_updates');
+            return built.includes('?') ? `${built}&ts=${ts}` : `${built}?ts=${ts}`;
+          })
+        );
+        let response = null;
+        let lastError = null;
+        for (const url of serverUrls) {
+          try {
+            response = await fetch(url, {
+              headers: { 'Authorization': `Bearer ${apiKey}` },
+              cache: 'no-store'
+            });
+            if (response.ok) {
+              break;
+            }
+            if (response.status !== 0) {
+              lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+          } catch (err) {
+            lastError = err instanceof Error ? err : new Error(String(err));
+            continue;
+          }
+        }
+        if (!response || !response.ok) {
+          throw lastError || new Error('All server endpoints failed');
+        }
+        return await response.json();
+      }
+
+      async function toggleRecentUpdates() {
+        const apiKey = getAuthToken();
+        if (!apiKey) {
+          showError('Please sign in first.');
+          return;
+        }
+
+        const panel = document.getElementById('recentUpdatesPanel');
+        const button = document.getElementById('recentUpdatesBtn');
+        if (!panel || !button) return;
+
+        if (recentUpdatesState.visible) {
+          panel.classList.add('hidden');
+          panel.innerHTML = '';
+          button.textContent = 'Show Recent Updates';
+          recentUpdatesState.visible = false;
+          recentUpdatesState.cache = null;
+          return;
+        }
+
+        panel.classList.remove('hidden');
+        panel.classList.add('loading');
+        panel.textContent = 'Loading recent updates...';
+        button.disabled = true;
+
+        try {
+          const data = await fetchRecentUpdatesData();
+          recentUpdatesState.cache = data;
+          panel.innerHTML = renderRecentUpdates(data);
+          recentUpdatesState.visible = true;
+          button.textContent = 'Hide Recent Updates';
+        } catch (err) {
+          const message = err && err.message ? err.message : String(err);
+          panel.innerHTML = `<p style="color:#b91c1c;">Unable to load updates: ${escapeHtml(message)}</p>`;
+        } finally {
+          panel.classList.remove('loading');
+          button.disabled = false;
+        }
+      }
+
+      // Character counter
+      document.getElementById('question').addEventListener('input', function() {
+        const currentLength = this.value.length;
+        const remaining = MAX_USER_CHARS - currentLength;
+        document.getElementById('charCount').textContent = remaining;
+
+        if (remaining < 0) {
+          document.getElementById('charCount').style.color = '#dc3545';
+        } else if (remaining < 100) {
+          document.getElementById('charCount').style.color = '#ffc107';
+        } else {
+          document.getElementById('charCount').style.color = '#6c757d';
+        }
+      });
+
+      // Enter key support
+      document.getElementById('question').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          submitQuestion();
+        }
+      });
+
+      async function submitQuestion() {
+        const questionElement = document.getElementById('question');
+        const question = questionElement.value.trim();
+        const temperature = parseFloat(document.getElementById('temperature').value);
+        const apiKey = getAuthToken();
+
+        if (!question) {
+          showError('Please enter a medical question.');
+          return;
+        }
+
+        if (question.length > MAX_USER_CHARS) {
+          showError(`Question too long. Please limit to ${MAX_USER_CHARS} characters.`);
+          return;
+        }
+
+        if (!apiKey) {
+          showError('Please sign in to ask questions.');
+          return;
+        }
+
+        // Clear question immediately when user presses Enter
+        questionElement.value = '';
+        document.getElementById('charCount').textContent = MAX_USER_CHARS;
+        document.getElementById('charCount').style.color = '#6c757d';
+
+        const output = document.getElementById('output');
+        const error = document.getElementById('error');
+
+        // Clear previous errors and show the question being processed
+        error.style.display = 'none';
+        output.textContent = 'Generating response...';
+
+        try {
+          // Prepare request - send the current question only
+          const formData = new FormData();
+          formData.append('chart_data', '');
+          formData.append('transcription', question);
+          formData.append('note_type', 'qa');
+          formData.append('temperature', temperature.toString());
+          formData.append('max_tokens', MAX_RESPONSE_TOKENS.toString());
+
+          const primaryUrl = buildEndpoint('/generate_stream');
+          // Try different server endpoints (primary + sensible fallbacks)
+          const serverUrls = [
+            primaryUrl,
+            '/api/generate_stream',            // Proxy default
+            'http://127.0.0.1:7860/api/generate_stream'
+          ];
+
+          let response = null;
+          let lastError = null;
+
+          for (const url of serverUrls) {
+            try {
+              response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${apiKey}`
+                },
+                body: formData
+              });
+
+              if (response.ok) {
+                break; // Success, exit loop
+              } else if (response.status !== 0) {
+                lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
+              }
+            } catch (err) {
+              lastError = err;
+              continue; // Try next URL
+            }
+          }
+
+          if (!response || !response.ok) {
+            throw lastError || new Error('All server endpoints failed');
+          }
+
+          // Stream response
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let answer = '';
+          let hasReceivedContent = false;
+          let repetitionCount = 0;
+          let lastChunk = '';
+
+          // Capture generation id for downstream metadata polling
+          const genId = response.headers.get('X-Generation-Id');
+
+          let streamEnded = false;
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            let chunkRaw = decoder.decode(value, { stream: true });
+            if (!chunkRaw) continue;
+
+            if (chunkRaw.includes(STREAM_END_MARKER)) {
+              chunkRaw = chunkRaw.split(STREAM_END_MARKER).join('');
+              streamEnded = true;
+            }
+
+            if (!chunkRaw) {
+              if (streamEnded) break;
+              continue;
+            }
+
+            const paraPlaceholder = '__QA_PARAGRAPH_BREAK__';
+            let chunk = chunkRaw.replace(/\r?\n\r?\n/g, paraPlaceholder);
+            chunk = chunk.replace(/\r?\n/g, ' ');
+            chunk = chunk.replace(new RegExp(paraPlaceholder, 'g'), '\n\n');
+            const chunkTrimmed = chunk.trim();
+            if (chunkTrimmed) {
+              if (!hasReceivedContent) {
+                output.textContent = '';
+                hasReceivedContent = true;
+              }
+
+              if (
+                chunkTrimmed.includes('Final Answer:') ||
+                chunkTrimmed.includes('$\\boxed{') ||
+                chunkTrimmed.includes('\\boxed{')
+              ) {
+                console.log('Detected repetitive pattern, stopping...');
+                break;
+              }
+
+              if (chunkTrimmed === lastChunk.trim()) {
+                repetitionCount += 1;
+                if (repetitionCount > 2) {
+                  console.log('Detected repetition loop, stopping...');
+                  break;
+                }
+              } else {
+                repetitionCount = 0;
+              }
+              lastChunk = chunkTrimmed;
+            }
+
+            answer += chunk;
+            output.textContent = answer;
+            output.scrollTop = output.scrollHeight;
+
+            if (streamEnded) {
+              break;
+            }
+
+            if (repetitionCount > 2 || answer.includes('Final Answer:') || answer.includes('$\\boxed{')) {
+              break;
+            }
+          }
+
+          // Clean up any trailing repetitive content
+          if (answer.includes('Final Answer:')) {
+            const firstOccurrence = answer.indexOf('Final Answer:');
+            answer = answer.substring(0, firstOccurrence).trim();
+          }
+
+          output.textContent = answer.trim();
+
+          if (!answer.trim()) {
+            answer = 'Unable to generate response. Please try again.';
+            output.textContent = answer;
+          }
+
+          // Add to conversation history
+          conversationHistory.push({
+            question: question,
+            answer: answer.trim(),
+            timestamp: new Date().toLocaleString()
+          });
+
+          updateConversationHistory();
+
+          // Fetch references if we have a generation id
+          if (genId) {
+            fetchReferencesWithRetry(genId).catch(err => {
+              console.warn(`Reference polling failed: ${err.message || err}`);
+            });
+          }
+
+        } catch (err) {
+          console.error('Error:', err);
+          showError(`Failed to get response: ${err.message}`);
+        }
+      }
+
+      function updateConversationHistory() {
+        const historyDiv = document.getElementById('conversationHistory');
+        const historyItems = document.getElementById('historyItems');
+
+        if (conversationHistory.length === 0) {
+          historyDiv.style.display = 'none';
+          document.getElementById('clearHistoryBtn').style.display = 'none';
+          return;
+        }
+
+        historyDiv.style.display = 'block';
+        document.getElementById('clearHistoryBtn').style.display = 'inline-block';
+        historyItems.innerHTML = '';
+
+        conversationHistory.slice(-5).forEach((item, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'conversation-item';
+          itemDiv.innerHTML = `
+            <div class="question"><strong>Q:</strong> ${item.question}</div>
+            <div class="answer"><strong>A:</strong> ${item.answer}</div>
+            <small style="color: #666;">${item.timestamp}</small>
+          `;
+          historyItems.appendChild(itemDiv);
+        });
+      }
+
+      function clearHistory() {
+        if (conversationHistory.length === 0) {
+          showError('No chat history to clear.');
+          return;
+        }
+
+        if (confirm('Are you sure you want to clear the chat history?')) {
+          conversationHistory = [];
+          updateConversationHistory();
+          document.getElementById('output').textContent = 'Ready for your medical question...';
+          showSuccess('Chat history cleared successfully!');
+        }
+      }
+
+      function showError(message) {
+        const error = document.getElementById('error');
+        error.textContent = message;
+        error.style.display = 'block';
+      }
+
+      function showSuccess(message) {
+        // Create temporary success message
+        const successDiv = document.createElement('div');
+        successDiv.style.cssText = 'color: #28a745; background: #d4edda; border: 1px solid #c3e6cb; padding: 0.75rem; border-radius: 4px; margin-top: 1rem;';
+        successDiv.textContent = message;
+        document.querySelector('.container').appendChild(successDiv);
+
+        setTimeout(() => {
+          successDiv.remove();
+        }, 3000);
+      }
+
+      async function fetchReferencesWithRetry(genId, maxAttempts = 15, delayMs = 800) {
+        const refsSection = document.getElementById('refsSection');
+        const refsPanel = document.getElementById('refsPanel');
+        if (!refsSection || !refsPanel) return;
+
+        refsPanel.textContent = 'Gathering references...';
+        refsSection.style.display = 'block';
+
+        for (let attempt = 0; attempt < maxAttempts; attempt++) {
+          try {
+            if (attempt > 0) {
+              await new Promise(resolve => setTimeout(resolve, delayMs));
+            }
+            const apiKey = getAuthToken();
+            if (!apiKey) {
+              throw new Error('Missing authentication token');
+            }
+            const metaResp = await fetch(`/api/generation/${genId}/meta`, {
+              headers: { 'Authorization': `Bearer ${apiKey}` }
+            });
+            if (metaResp.ok) {
+              const meta = await metaResp.json();
+              if (!meta || typeof meta !== 'object') {
+                continue;
+              }
+
+              const rawRefs = Array.isArray(meta.refs) ? meta.refs : [];
+              const refs = deduplicateReferences(rawRefs);
+              if (refs.length) {
+                refsPanel.innerHTML = refs.map(r => {
+                  const year = safeStr(r.year).trim() ? ` (${r.year})` : '';
+                  const link = safeStr(r.link).trim() ? ` - <a href="${r.link}" target="_blank">link</a>` : '';
+                  const src = safeStr(r.source).trim() ? ` [${r.source}]` : '';
+                  const title = safeStr(r.title).trim() || 'Untitled';
+                  return `[${r.index}] ${title}${year}${src}${link}`;
+                }).join('\n');
+                return;
+              }
+
+              const qaMeta = meta.qa && typeof meta.qa === 'object' ? meta.qa : null;
+              if (
+                qaMeta &&
+                (qaMeta.status === 'done' || qaMeta.status === 'baseline_done') &&
+                rawRefs.length === 0
+              ) {
+                refsPanel.textContent = 'No evidence returned for this answer.';
+                return;
+              }
+            }
+          } catch (err) {
+            console.warn(`Reference fetch attempt ${attempt + 1} failed:`, err);
+          }
+        }
+
+        refsPanel.textContent = 'References unavailable';
+      }
+
+      // Add form submit handler
+      document.getElementById('qaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitQuestion();
+      });
+
+      // Initialize character count and load config
+      document.addEventListener('DOMContentLoaded', async function() {
+        await loadConfig(); // Load config first to get correct MAX_USER_CHARS
+        document.getElementById('charCount').textContent = MAX_USER_CHARS;
+        const mkEl = document.getElementById('qaMaxTokens');
+        if (mkEl) mkEl.textContent = MAX_RESPONSE_TOKENS;
+        const updatesBtn = document.getElementById('recentUpdatesBtn');
+        if (updatesBtn) {
+          updatesBtn.addEventListener('click', toggleRecentUpdates);
+        }
+
+        // Normalize header text/emojis
+        try {
+          const h1 = document.querySelector('.header h1');
+          if (h1) h1.textContent = 'Medical Q&A Assistant';
+          const nav = document.querySelector('.nav-links');
+          if (nav) {
+            nav.querySelectorAll('a').forEach(a => {
+              if (a.href.includes('index.html')) a.textContent = 'Home';
+            });
+          }
+        } catch {}
+      });
+    </script>
+    <script src="auth_workspace.js"></script>
+  </body>
+</html>

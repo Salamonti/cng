@@ -1,0 +1,10 @@
+{
+  "name": "Clinical Note Generator",
+  "short_name": "CNG",
+  "start_url": "/static/index.html",
+  "scope": "/static/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b5fff",
+  "icons": []
+}

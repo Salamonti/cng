@@ -1,0 +1,18 @@
+{
+  "host": "0.0.0.0",
+  "https_port": 3443,
+  "http_port": 3000,
+  "backend_url": "http://127.0.0.1:7860",
+  "backend_timeout": 300000,
+  "ssl_cert_path": "/etc/letsencrypt/live/ieissa/fullchain.pem",
+  "ssl_key_path": "/etc/letsencrypt/live/ieissa/privkey.pem",
+  "web_directory": "web",
+  "enable_gzip": true,
+  "log_level": "INFO",
+  "domain": "notes.ieissa.com",
+  "custom_ports": {
+    "http": 3000,
+    "https": 3443,
+    "reason": "Linux WSL - non-privileged ports"
+  }
+}

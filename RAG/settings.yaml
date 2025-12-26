@@ -1,0 +1,32 @@
+# C:\RAG\settings.yaml
+# where we persist the vector store
+persist_directory: "./chroma_store"
+
+
+corpus_version: 1
+# chunking
+chunk_size_chars: 1800         # ~500-900 tokens for guidelines ~ OK
+chunk_overlap_chars: 200
+
+# retrieval
+bm25_candidates: 50
+dense_top_k: 16
+final_top_k: 10
+
+# rerank (optional—enabled later)
+use_reranker: false
+use_rrf: true
+rrf_k: 60
+use_diversify_cap: true
+diversify_cap_limit: 3
+use_mmr: false
+mmr_lambda: 0.7
+use_windowing: false
+use_adaptive_lambda: false
+use_micro_retry: false
+
+# metadata freshness (informational only in Step 1)
+stale_days_threshold: 365
+
+# model
+embedding_model: "sentence-transformers/all-MiniLM-L6-v2"

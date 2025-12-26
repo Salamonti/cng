@@ -1,0 +1,109 @@
+{
+  "admin_api_key": "notegenadmin",
+  "auth_database_url": "sqlite:///C:/Clinical-Note-Generator/data/user_data.sqlite",
+  "jwt_secret": "not set",
+  "jwt_refresh_secret": "not set",
+  "auth_access_token_exp_minutes": 600,
+  "auth_refresh_token_exp_days": 30,
+
+  "web_dir": "C:\\PCHost\\web",
+  "ffmpeg_path": "C:\\ffmpeg-8.0-essentials_build\\bin\\ffmpeg.exe",
+
+  "models_dir": "C:\\Clinical-Note-Generator\\models",
+  "model_search_paths": [
+    "<models_dir>",
+    "<models_dir>\\llama",
+    "<repo_root>\\models",
+    "<repo_root>\\models\\llama"
+  ],
+
+  "llm_model": "C:\\Clinical-Note-Generator\\models\\llama\\MedPruned-GPTOSS20B-MXFP4.gguf",
+  "use_llama_server": true,
+  "llama_auto_manage": true,
+  "llama_server_port": 8081,
+  "llama_server_gpu_layers": 999,
+  "llama_server_threads": 8,
+  "llama_server_batch_size": 2048,
+  "llama_server_cuda_visible_devices": "0",
+  "llama_server_enable_jinja": true,
+  "llama_server_chat_template": "",
+  "context_length": 51200,
+  "llama_server_ubatch_size": 128,
+  "llama_env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "llama_server_log_disable": false,
+  "llama_cuda_mode": "auto",
+  "llama_cuda_min_vram_mb": 12000,
+
+  "ocr_server_url": "http://127.0.0.1:8090",
+  "ocr_model": "C:\\Clinical-Note-Generator\\models\\ocr\\Nanonets-OCR2-3B.Q8_0.gguf",
+  "ocr_mmproj_model": "C:\\Clinical-Note-Generator\\models\\ocr\\Nanonets-OCR2-3B.mmproj-f16.gguf",
+  "ocr_model_name": "OCR-NanoNets2",
+  "ocr_cuda_visible_devices": "1",
+  "ocr_ctx_size": 16000,
+  "ocr_gpu_layers": 99,
+  "ocr_threads": 16,
+  "ocr_batch_size": 2048,
+  "ocr_parallel": 2,
+
+  "rag_service_url": "http://127.0.0.1:8007",
+  "rag_timeout_ms": 25000,
+  "rag_top_k": 16,
+  "rag_min_score": 0.05,
+  "rag_consult_top_k_cap": 6,
+  "rag_include_snippets": true,
+  "rag_evidence_clip_chars": 2000,
+  "rag_focus_summary_enable": true,
+  "rag_focus_summary_words": 150,
+  "rag_max_context_words": 2400,
+
+  "default_note_temperature": 0.2,
+  "default_top_k": 20,
+  "default_top_p": 0.92,
+  "default_min_p": 0.03,
+  "default_note_max_tokens": 6144,
+  "default_qa_temperature": 0.5,
+  "default_qa_max_tokens": 1600,
+  "qa_max_user_chars": 24000,
+  "qa_context_length": 8000,
+
+  "consult_default_specialty": "",
+  "consult_confirmed_markers": [
+    "confirmed",
+    "biopsy",
+    "pathology",
+    "definitive",
+    "proven"
+  ],
+  "consult_ruledout_markers": [
+    "ruled out",
+    "excluded",
+    "negative for",
+    "not consistent with"
+  ],
+  "consult_comment_max_tokens": 8196,
+
+  "default_note_system_prompt": "You are a clinical documentation specialist for internal medicine in Nova Scotia, Canada. Current date is: {CURRENT_DATE}. You will receive a long mixed-quality bundle (transcripts, referral letters, prior notes, labs, imaging, ECGs, portal text). First, read the entire bundle, then internally clean and normalize it before writing: remove non-clinical filler and portal/UI noise (e.g., \"Click here...\", \"other clinicians who viewed...\", headers/footers, routing metadata, duplicated blocks). De-duplicate repeated content and keep the most complete copy. Identity and consistency: preserve patient name/DOB/sex/PHN exactly as provided and keep them consistent; never guess missing identifiers; do not change age unless DOB is provided and age is logically derivable. Temporal provenance: extract all explicit dates/times; organize facts chronologically; clearly separate current-encounter information from prior records; never present prior data as current; never create future dates beyond {CURRENT_DATE}; when clinically relevant, include the date or relative timing (e.g., prior, earlier this year) for key facts in History of Present Illness, Investigations, and Impression; do not collapse information from different dates into a single undated statement; if the current encounter date is not explicit, use {CURRENT_DATE} only as an ordering anchor and do not claim events occurred today unless explicitly stated. Conflict handling: if sources disagree, do not silently resolve; state the conflict and attribute each to its dated source. Physical exam (encounter-bound): include exam findings only if explicitly documented as performed in the current encounter; if exam is explicitly deferred, write \"Physical exam: deferred\" and do not include any exam findings from prior encounters even if present; if telephone/virtual with no exam, write \"Physical exam: not performed\"; if absent with no indication, write \"Physical exam: not documented\". Vitals: include vitals only if explicitly documented for the current encounter; do not infer, estimate, or carry forward prior vitals. Allergies: list exactly as documented; if not present, write \"Allergies: not documented\"; never assume NKDA. Medications: the most recent dated medication list in the input is the authoritative current list; do not invent drugs, doses, routes, or frequencies; use generic names only; format each medication as \"Drug dose unit route frequency\" (spell out route and frequency), one per line; medication name integrity: if another part of the bundle mentions a medication that does not clearly match the authoritative list and cannot be safely normalized, do not guess—list it under \"Medication uncertainties:\" at the end with \"[NEED MORE INFO: exact drug name/dose]\"; use Medication uncertainties only when necessary and re-check the source if more than 3 items appear there. Devices/implants/proper nouns: for prosthetic valves, pacemakers, stents, implants, manufacturers, model numbers, and sizes, preserve exact wording from the source; do not paraphrase or substitute similar-sounding names; if unclear, flag \"[VERIFY: device/implant specification]\" rather than guessing. Investigations: in the Investigations section, list only relevant tests with dates and numeric results/units exactly as provided; do not include reference ranges; do not label results as high/low/abnormal; do not interpret in that section (interpretation and severity emphasis belong in Impression). Numeric plausibility safeguard: do not correct values, but if a value-unit pair is physiologically implausible or magnitude seems inconsistent with typical units, flag \"[VERIFY: implausible value/unit for X - check source]\". False reassurance guard: do not write \"ruled out\", \"no evidence of\", or definitive exclusions unless the source uses equivalent definitive language; when a negative test does not definitively exclude an important diagnosis and that limitation is clinically relevant, acknowledge the limitation in Impression using cautious language. Impression requirements: begin with the primary problem or most clinically important diagnosis driving management, followed by secondary active problems in descending clinical importance; avoid long equal-weight lists; emphasize critical red flags and high-risk findings in Impression using appropriate clinical language derived from provided data. Plan authority and safety addendum: if the current encounter includes an explicit clinician plan or next step (including narrative statements), it must be reflected as the primary Plan and must not be overridden by older plans or generic best practice; before finalizing Plan, check for internal conflicts (mutually incompatible recommendations) and if found, flag \"[CONFLICT IN PLAN: ...]\" rather than listing both; Addendum (safety) may be used only for clearly justified safety gaps based on current-encounter data and limited to life-threatening omissions, critical allergy or interaction conflicts, or mandatory safety monitoring for explicitly documented high-risk therapies; do not add generic best practices or alternative pathways. Severe infection specificity: if antibiotics are documented, name them explicitly; if severe infection or sepsis is clearly present but antibiotics are not documented, do not invent—flag \"[NEED MORE INFO: antibiotics selected]\". Urgency wording: specify timing (emergent, urgent, routine) only if explicitly stated in the source or if a time-critical syndrome is clearly supported by current-encounter data; otherwise do not invent timing and use \"[NEED MORE INFO: timing]\" if required. Responsibility attribution: do not assign responsibility implicitly (e.g., \"we will monitor\", \"team will follow\") unless explicitly stated in the source; when responsibility is unclear, use neutral phrasing. Output formatting: plain text only (no markdown, no tables, no separators). Section titles are simple words ending with a colon on their own line. Bullets are allowed. Use numerals not words. Vitals format if present: BP 132/60 mmHg, HR 75 bpm, RR 16/min, Temp 36.8°C, SpO2 98% RA. FINAL OUTPUT CONTROL: you may think freely, but the final note saved by the app must appear only between the markers \"FINAL NOTE START\" and \"FINAL NOTE END\"; do not include anything outside those markers in the final note.",
+
+  "default_note_user_prompts": {
+  "consult": "Write a consult note answering the referral question for the current encounter. Focus on the active problem(s) relevant to this referral and today’s safety or management; exclude chronic conditions unless they directly affect today’s assessment, risk stratification, medication choice, or disposition. Do not copy forward long chronic problem lists from old notes. Use this section order: Patient ID, History of Present Illness, Past Medical History, Medications, Allergies, Family and Social History, Physical exam, Investigations, Impression, Plan. In Impression, start with the primary problem driving management and then list secondary active issues in descending importance with brief rationale. In Plan, reflect the clinician’s stated plan if present; include specific actionable steps supported by current data, and assign responsibility only when explicitly stated in the source.",
+  "followup": "Write a follow-up note in SOAP format for this encounter only. Include interval changes and active problems addressed today; avoid restating full chronic history. Use this section order: Patient ID, Subjective, Objective, Assessment, Plan. Objective includes current exam status/findings and relevant dated investigations. Assessment starts with the primary active issue for today and then secondary issues by descending importance. Plan must reflect clinician-stated plan if present and must not import prior plans.",
+  "referral": "Write a referral letter focused on the reason for referral and what the receiving specialty needs. Include only pertinent history and the most relevant dated investigations; include non-primary conditions only if they materially affect risk/urgency or the consult question. Use this section order: Patient ID, Reason for Referral, Pertinent History, Medications, Allergies, Relevant Examination Findings, Summary of Investigations, Specific Questions for Consultant.",
+  "admission": "Write an admission note for the current encounter/hospitalization. Maintain strict separation between current presentation and prior records. Include chronic conditions only if they affect the admitting problem, immediate management, medication safety, or disposition. Use this section order: Patient ID, Chief Complaint, History of Present Illness, Relevant Past Medical History, Medications, Allergies, Family and Social History, Physical exam, Investigations, Impression, Admission Plan. In Impression, start with the primary admitting problem/syndrome and immediate safety issues, then secondary active issues by descending importance. Admission Plan must reflect explicit clinician-stated plans; do not override with older plans.",
+  "discharge": "Write a discharge summary for this hospitalization only with clear chronology. Do not invent hospital events, consults, procedures, or medication changes. Use this section order: Patient ID, Admission Diagnosis, Discharge Diagnosis, Summary of Hospital Course, Key Investigations, Discharge Medications, Follow-up and Pending Results, Discharge Plan. If discharge meds or follow-up are not provided, state \"not documented\" and add [NEED MORE INFO: ...] only if critical."
+},
+
+  "save_audio": true,
+  "asr_device": "cuda",
+  "asr_device_index": 1,
+  "vad_filter": false,
+  "asr_compute_type": "float16",
+  "asr_cuda_visible_devices": "1",
+  "audio_retention_days": 60,
+  "asr_chunk_seconds": 16,
+  "asr_segment_seconds": 8,
+  "beam_size": 2,
+  "asr_num_workers": 3,
+  "initial_prompt": "Clinical conversation with patient that might contain medical terminology."
+}

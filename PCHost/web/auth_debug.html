@@ -1,0 +1,110 @@
+<!-- C:\PCHost\web\auth_debug.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Debug</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #00ff00;
+        }
+        .error { color: #ff4444; }
+        .success { color: #44ff44; }
+        .info { color: #4444ff; }
+        pre {
+            background: #000;
+            padding: 10px;
+            border: 1px solid #333;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Auth Workspace Diagnostic</h1>
+    <div id="log"></div>
+
+    <script>
+        const log = document.getElementById('log');
+        
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = type;
+            entry.textContent = `[${new Date().toISOString()}] ${message}`;
+            log.appendChild(entry);
+            console.log(message);
+        }
+
+        addLog('Starting diagnostic...', 'info');
+
+        // Test 1: Check if storage is available
+        try {
+            sessionStorage.setItem('test', 'test');
+            sessionStorage.removeItem('test');
+            addLog('✅ sessionStorage available', 'success');
+        } catch (e) {
+            addLog('❌ sessionStorage BLOCKED: ' + e.message, 'error');
+        }
+
+        try {
+            localStorage.setItem('test', 'test');
+            localStorage.removeItem('test');
+            addLog('✅ localStorage available', 'success');
+        } catch (e) {
+            addLog('❌ localStorage BLOCKED: ' + e.message, 'error');
+        }
+
+        // Test 2: Check if auth_workspace.js loads
+        addLog('Loading auth_workspace.js...', 'info');
+        
+        const script = document.createElement('script');
+        script.src = '/auth_workspace.js';
+        
+        script.onerror = function() {
+            addLog('❌ FAILED to load auth_workspace.js', 'error');
+            addLog('File might not exist or syntax error prevents loading', 'error');
+        };
+        
+        script.onload = function() {
+            addLog('✅ auth_workspace.js loaded', 'success');
+            
+            // Test 3: Check if AuthWorkspace exists
+            setTimeout(() => {
+                if (typeof window.AuthWorkspace !== 'undefined') {
+                    addLog('✅ window.AuthWorkspace exists', 'success');
+                    addLog('AuthWorkspace properties: ' + Object.keys(window.AuthWorkspace).join(', '), 'info');
+                } else {
+                    addLog('❌ window.AuthWorkspace NOT FOUND', 'error');
+                }
+            }, 100);
+        };
+        
+        document.head.appendChild(script);
+
+        // Test 4: Catch any errors
+        window.addEventListener('error', function(e) {
+            addLog('❌ ERROR: ' + e.message, 'error');
+            addLog('  File: ' + e.filename, 'error');
+            addLog('  Line: ' + e.lineno + ':' + e.colno, 'error');
+            if (e.error && e.error.stack) {
+                addLog('  Stack: ' + e.error.stack, 'error');
+            }
+        });
+
+        // Test 5: Check for authCard element
+        setTimeout(() => {
+            const authCard = document.getElementById('authCard');
+            if (authCard) {
+                addLog('✅ #authCard element exists', 'success');
+            } else {
+                addLog('⚠️ #authCard element NOT FOUND (expected if not on index.html)', 'info');
+            }
+        }, 500);
+
+        addLog('Diagnostic running... watching for errors...', 'info');
+    </script>
+</body>
+</html>

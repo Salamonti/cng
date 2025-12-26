@@ -1,0 +1,289 @@
+/* C:\PCHost\web\styles.css */
+/* Upload Area */
+.upload-area {
+    border: 3px dashed #ccc;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    background: #fafafa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.upload-area:hover {
+    border-color: #3498db;
+    background: #f0f8ff;
+}
+
+.upload-area.dragover {
+    border-color: #2980b9;
+    background: #e3f2fd;
+    transform: scale(1.02);
+}
+
+.upload-content {
+    pointer-events: none;
+}
+
+.upload-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.upload-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.upload-hint {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* OCR Options */
+.ocr-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.option-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.option-group select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Buttons */
+.process-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: 600;
+}
+
+.process-btn:hover:not(:disabled) {
+    background: #c0392b;
+}
+
+.process-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.action-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.action-btn:hover {
+    background: #2980b9;
+}
+
+.action-btn.secondary {
+    background: #95a5a6;
+}
+
+.action-btn.secondary:hover {
+    background: #7f8c8d;
+}
+
+/* Progress */
+.progress-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #ecf0f1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.progress-text {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Results Container */
+.results-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.results-header {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-header h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.results-info {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.results-content {
+    padding: 1.5rem;
+}
+
+.results-textarea {
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    resize: vertical;
+    background: #fafafa;
+}
+
+.results-actions {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Error Container */
+.error-container {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.error-content h3 {
+    color: #c53030;
+    margin-bottom: 1rem;
+}
+
+.error-content p {
+    color: #744d4d;
+    margin-bottom: 1.5rem;
+}
+
+/* OCR Engine Badges */
+.ocr-engine-list {
+    margin-top: 8px;
+    display: grid;
+    gap: 6px;
+}
+
+.ocr-engine-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.ocr-file {
+    font-weight: 600;
+    color: #333;
+}
+
+.ocr-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1;
+    color: #fff;
+}
+
+/* OCR Engine Types */
+.engine-handwritten { background: #2563eb; }
+.engine-printed { background: #0ea5a4; }
+.engine-mixed { background: #7c3aed; }
+.engine-unknown { background: #9ca3af; }
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.processing {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+    
+    .upload-icon {
+        font-size: 3rem;
+    }
+    
+    .ocr-options {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .results-actions {
+        justify-content: center;
+    }
+}
