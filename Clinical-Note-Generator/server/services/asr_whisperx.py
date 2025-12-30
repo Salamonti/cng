@@ -153,7 +153,7 @@ class WhisperXASREngine:
     RETAINED_AUDIO = 5
 
     # HF token: prefer env; fallback to provided token if needed
-    HF_TOKEN_FALLBACK = "HF Token Not Set"
+    HF_TOKEN_FALLBACK = "NONE"
 
     def __init__(self):
         self._cfg = self._load_config()

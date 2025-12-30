@@ -107,48 +107,45 @@
       }
 
       // Monitor these fields for ANY changes (typing, paste, programmatic updates)
-      // GUARD: Only monitor fields on main page to prevent unnecessary processing
-      if (window.WORKSPACE_PAGE_TYPE === 'main') {
-        const fields = [
-          'generatedNote',
-          'transcriptionData',
-          'chartData',
-        ];
-
-        // Store last known values
-        const lastValues = {};
-
+      const fields = [
+        'generatedNote',
+        'transcriptionData', 
+        'chartData',
+      ];
+      
+      // Store last known values
+      const lastValues = {};
+      
+      fields.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        
+        // Store initial value
+        lastValues[id] = el.value;
+        
+        // Listen to user input (typing, paste, etc.) - saves immediately
+        el.addEventListener('input', () => this.queueSave());
+      });
+      
+      // Poll for programmatic changes every 500ms
+      setInterval(() => {
+        if (!this.isWorkspaceReady()) return;
+        
+        let changed = false;
         fields.forEach((id) => {
           const el = document.getElementById(id);
           if (!el) return;
-
-          // Store initial value
-          lastValues[id] = el.value;
-
-          // Listen to user input (typing, paste, etc.) - saves immediately
-          el.addEventListener('input', () => this.queueSave());
-        });
-
-        // Poll for programmatic changes every 500ms
-        setInterval(() => {
-          if (!this.isWorkspaceReady()) return;
-
-          let changed = false;
-          fields.forEach((id) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-
-            if (el.value !== lastValues[id]) {
-              lastValues[id] = el.value;
-              changed = true;
-            }
-          });
-
-          if (changed) {
-            this.queueSave();
+          
+          if (el.value !== lastValues[id]) {
+            lastValues[id] = el.value;
+            changed = true;
           }
-        }, 500);
-      }
+        });
+        
+        if (changed) {
+          this.queueSave();
+        }
+      }, 500);
 
       if (window.saveCustomPrompt) {
         const original = window.saveCustomPrompt;
@@ -169,12 +166,6 @@
 
       // Save workspace before page unload (navigation, close tab, refresh)
       window.addEventListener('beforeunload', () => {
-        // GUARD: Only save workspace on main page to prevent data loss
-        if (window.WORKSPACE_PAGE_TYPE !== 'main') {
-          console.log('[Auth] Skipping workspace save on page unload (not on main page)');
-          return;
-        }
-
         clearTimeout(this.saveTimer);
         if (this.isWorkspaceReady()) {
           const payload = {
@@ -190,9 +181,6 @@
 
       // Save when tab becomes hidden (user switches tabs or minimizes browser)
       document.addEventListener('visibilitychange', () => {
-        // GUARD: Only save workspace on main page
-        if (window.WORKSPACE_PAGE_TYPE !== 'main') return;
-
         if (document.hidden && this.isWorkspaceReady()) {
           clearTimeout(this.saveTimer);
           this.saveWorkspace();
@@ -227,17 +215,7 @@
       if (this.card) this.card.classList.add('authenticated');
       const name = profile?.email || 'User';
       this.updateStatus(`Signed in as ${name}`, 'success');
-
-      // Hide clear workspace button on secondary pages
-      if (this.clearBtn) {
-        if (window.WORKSPACE_PAGE_TYPE === 'main') {
-          this.clearBtn.style.display = '';
-          this.clearBtn.disabled = false;
-        } else {
-          this.clearBtn.style.display = 'none';
-        }
-      }
-
+      if (this.clearBtn) this.clearBtn.disabled = false;
       const apiSection = document.getElementById('apiSection');
       if (apiSection) apiSection.classList.add('hidden');
       const apiKeyInput = document.getElementById('apiKey');
@@ -539,8 +517,6 @@
     },
 
     queueSave() {
-      // GUARD: Only save workspace on main page
-      if (window.WORKSPACE_PAGE_TYPE !== 'main') return;
       if (!this.isWorkspaceReady()) return;
       clearTimeout(this.saveTimer);
       this.saveTimer = setTimeout(() => this.saveWorkspace(), 1000);

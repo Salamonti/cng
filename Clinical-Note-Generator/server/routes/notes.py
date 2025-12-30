@@ -752,6 +752,32 @@ def _fill_template(tpl: str, values: dict) -> str:
         out = out.replace("{" + k + "}", str(v))
     return out
 
+def _cfg_text(val: Any) -> str:
+    """
+    Normalize config text fields that may be stored as:
+      - string
+      - list of strings (your new format)
+    Returns a single trimmed string.
+    """
+    if val is None:
+        return ""
+    if isinstance(val, str):
+        return val.strip()
+    if isinstance(val, list):
+        parts: List[str] = []
+        for x in val:
+            if x is None:
+                continue
+            if isinstance(x, str):
+                parts.append(x)
+            else:
+                parts.append(str(x))
+        # Join without adding extra newlines unless you want them.
+        # If you prefer each list item as a separate line, use "\n".join(parts)
+        return "".join(parts).strip()
+    return str(val).strip()
+
+
 
 def build_prompt(
     chart_data: str,
@@ -762,9 +788,6 @@ def build_prompt(
     cfg = load_config()
 
     if note_type == "qa":
-        # QA uses smaller context length
-        max_context = cfg.get("qa_context_length", 4096)
-
         header = (
             "You are an expert medical assistant with comprehensive knowledge of clinical medicine, diagnosis, and treatment.\n"
             "Provide accurate, clinically useful guidance (assessment, risks, options with dosing/route/timing, monitoring, contraindications).\n"
@@ -776,11 +799,9 @@ def build_prompt(
         context_section = f"Patient Context:\n{chart_data}\n\n" if chart_data.strip() else ""
 
         full_prompt = header + context_section + question_section + "Detailed Medical Response:\n"
-        return truncate_to_context_length_tokens(full_prompt, max_context)
+        return full_prompt
 
-    # Note generation: larger context length with system + user prompt composition
-    context_length = cfg.get("context_length", 32000)
-    max_context = min(context_length, 32000)
+    # Note generation: with system + user prompt composition
     today = date.today().strftime("%Y-%m-%d")
 
     chart_section = chart_data.strip()
@@ -794,17 +815,19 @@ def build_prompt(
         raw_parts.append("Transcription:\n" + trans_section)
     raw_data = "\n\n".join(raw_parts).strip()
 
-    # Global system prompt (new)
-    system_prompt = cfg.get("default_note_system_prompt", "").strip()
+    system_prompt = _cfg_text(cfg.get("default_note_system_prompt", ""))
 
-    # Global user templates (new), fallback to old default_prompts if needed
     user_templates = cfg.get("default_note_user_prompts", {}) or {}
-    user_tpl = (user_templates.get(note_type) or "").strip()
+    raw_user_tpl = ""
+    if isinstance(user_templates, dict):
+        raw_user_tpl = user_templates.get(note_type) or ""
+    user_tpl = _cfg_text(raw_user_tpl)
+
 
     if not user_tpl:
         # Backward-compatible fallback
         default_prompts = cfg.get("default_prompts", {}) or {}
-        legacy = (default_prompts.get(note_type) or "").strip()
+        legacy = _cfg_text(default_prompts.get(note_type) or "")
         if legacy:
             # Treat legacy text as the "user" prompt body
             user_tpl = (
@@ -834,13 +857,13 @@ def build_prompt(
         "DISCHARGE_DX": "Unknown (infer from raw data)",
         "RAW_DATA": raw_data or "[No chart/transcription provided]"
     }
-    
+
     # Fill template variables in BOTH system and user prompts
     system_prompt_filled = _fill_template(system_prompt, values).strip() if system_prompt else ""
-    
+
     # Fill the instruction part of user template
     user_instructions = _fill_template(user_tpl, values).strip()
-    
+
     # *** CRITICAL FIX: Always append RAW_DATA with clear demarcation ***
     # This ensures chart and transcription data ALWAYS reach the model,
     # regardless of whether {RAW_DATA} is in the user template
@@ -848,7 +871,7 @@ def build_prompt(
         data_section = "\n\n" + "=" * 80 + "\nPATIENT DATA\n" + "=" * 80 + "\n\n" + raw_data
     else:
         data_section = "\n\n[No chart or transcription data provided]"
-    
+
     user_prompt_filled = user_instructions + data_section
 
     # Compose final prompt with clear separation
@@ -863,7 +886,7 @@ def build_prompt(
 
     prompt_body += "ASSISTANT:\n"
 
-    return truncate_to_context_length_tokens(prompt_body, max_context)
+    return prompt_body
 
 # ---------------------------------------------------------------------------
 # Route: /generate_stream
@@ -1016,6 +1039,11 @@ async def generate_stream(request: Request):
         async def gen():
             nonlocal token_count
             try:
+                # Check approximate prompt size and provide early warning
+                prompt_size = len(prompt.split())
+                if prompt_size > 100000:  # ~100k words is very large
+                    logger.warning(f"[PROMPT_SIZE] Very large prompt: ~{prompt_size} words")
+
                 if is_qa:
                     # Always generate baseline first, but don't stream it yet; we may replace it with RAG rewrite
                     baseline_raw = await note_gen.collect_completion(
@@ -1152,6 +1180,27 @@ async def generate_stream(request: Request):
             except asyncio.CancelledError:
                 print("Client disconnected - streaming cancelled")
                 raise
+            except RuntimeError as e:
+                error_msg = str(e).lower()
+                # Check if this is a context length error from llama-server
+                if any(keyword in error_msg for keyword in [
+                    "context", "ctx", "kv", "slot", "too long", "too large",
+                    "exceeds", "limit", "overflow", "n_ctx"
+                ]):
+                    print(f"Context length error: {e}")
+                    yield (
+                        "ERROR: The input is too long for the model's context window.\n\n"
+                        "This note cannot be generated because the combined chart data and transcription "
+                        "exceed the model's maximum context length.\n\n"
+                        "Please try one of the following:\n"
+                        "- Reduce the amount of chart data\n"
+                        "- Shorten the transcription\n"
+                        "- Use a model with a larger context window\n\n"
+                        f"Technical details: {str(e)}\n"
+                    )
+                else:
+                    print(f"Runtime error during streaming: {e}")
+                    yield f"Error: {str(e)}\n"
             except Exception as e:
                 print(f"Error during streaming: {e}")
                 yield f"Error: {str(e)}\n"
@@ -1217,19 +1266,21 @@ async def get_consult_comment(gen_id: str) -> Dict[str, Any]:
 async def get_note_prompts() -> JSONResponse:
     try:
         cfg = load_config()
-        system_prompt = (cfg.get("default_note_system_prompt", "") or "").strip()
 
-        user_templates = cfg.get("default_note_user_prompts", {}) or {}
-        legacy = cfg.get("default_prompts", {}) or {}
+        system_prompt = _cfg_text(cfg.get("default_note_system_prompt", ""))
 
-        # If new templates exist, return them; otherwise return legacy prompts as "templates"
-        templates = user_templates if isinstance(user_templates, dict) and user_templates else legacy
+        raw_templates = cfg.get("default_note_user_prompts", {})
+        templates_out = {}
+
+        if isinstance(raw_templates, dict):
+            for k, v in raw_templates.items():
+                templates_out[k] = _cfg_text(v)
 
         return JSONResponse(
             content={
                 "success": True,
                 "system": system_prompt,
-                "templates": templates,
+                "templates": templates_out,
             }
         )
     except Exception as e:
@@ -1238,6 +1289,7 @@ async def get_note_prompts() -> JSONResponse:
             status_code=500,
             content={"success": False, "error": "Failed to fetch prompts"},
         )
+
 
 
 # ---------------------------------------------------------------------------
