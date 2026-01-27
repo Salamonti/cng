@@ -13,7 +13,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse, JSONResponse
 
-from services.note_generator_clean import get_simple_note_generator
+from services.note_generator_clean import get_simple_note_generator, SimpleNoteGenerator
 from services.rag_http_client import RAGHttpClient
 from metrics import metrics as global_metrics
 
@@ -30,6 +30,7 @@ _generation_cache: Dict[str, Dict[str, str]] = {}
 # RAG / metadata stores
 _generation_meta: Dict[str, Dict[str, Any]] = {}
 _consult_comment_store: Dict[str, Dict[str, Any]] = {}
+_rag_llm_client: Optional[SimpleNoteGenerator] = None
 
 def _feedback_csv_path() -> str:
     logs_dir = Path(__file__).resolve().parents[1] / "logs"
@@ -50,6 +51,8 @@ def _append_feedback_csv(prompt: str, output: str, rating: int) -> None:
 # Config loading
 # ---------------------------------------------------------------------------
 CONFIG_PATH = Path(__file__).resolve().parents[2] / "config" / "config.json"
+
+OTHER_NOTE_TYPES = {"referral", "summarize", "custom", "procedure"}
 
 
 def load_config() -> Dict:
@@ -72,6 +75,8 @@ NOTE_STOP_SEQUENCES = [
     "Thank you for accepting this referral.",
     "Sincerely,",
 ]
+NOTE_END_TOKEN = "END_OF_NOTE"
+NOTE_STOP_TOKENS = [NOTE_END_TOKEN, f"\n{NOTE_END_TOKEN}"]
 _CONTROL_CHARS_RE = re.compile(r"[\x00-\x09\x0b-\x1f\x7f]")
 _FORMAT_SYMBOLS_RE = re.compile(r"[#*=_+\-]{3,}")
 
@@ -101,6 +106,15 @@ def _sanitize_transcription_text(text: str) -> str:
     cleaned = re.sub(r"\s{3,}", "  ", cleaned)
     cleaned = cleaned.strip()
     return cleaned if _has_minimum_signal(cleaned, min_alnum=6) else text.strip()
+
+
+def _strip_note_end_marker(text: str) -> str:
+    if not text:
+        return ""
+    idx = text.find(NOTE_END_TOKEN)
+    if idx == -1:
+        return text
+    return text[:idx].rstrip()
 
 
 def _logs_dir() -> Path:
@@ -241,12 +255,59 @@ def _normalize_reference_items(
 
 def clean_model_output_chunk(chunk: str) -> str:
     """Minimal, stream-safe cleaner: preserves spaces/newlines exactly.
-    Only removes NUL characters which sometimes appear in streams.
+    Removes NUL characters and converts Unicode to ASCII for EMR compatibility.
+
+    CRITICAL: EMR systems don't support Unicode characters. This function converts
+    all special Unicode characters (subscripts, superscripts, special punctuation)
+    to ASCII equivalents to prevent them from appearing as question marks in EMRs.
     """
     if not chunk:
         return ""
     s = chunk.replace("\x00", "")
 
+    # ====== CRITICAL EMR COMPATIBILITY FIX ======
+    # Replace Unicode characters that EMRs replace with question marks
+
+    # 1. Replace subscript digits with normal digits (e.g., FEV₁ → FEV1)
+    subscript_map = str.maketrans('₀₁₂₃₄₅₆₇₈₉', '0123456789')
+    s = s.translate(subscript_map)
+
+    # 2. Replace superscript digits with normal digits (e.g., 10⁹ → 10^9)
+    superscript_map = str.maketrans('⁰¹²³⁴⁵⁶⁷⁸⁹', '0123456789')
+    s = s.translate(superscript_map)
+
+    # 3. Replace all Unicode hyphens/dashes with ASCII hyphen
+    s = s.replace('\u2010', '-')  # Hyphen
+    s = s.replace('\u2011', '-')  # Non-breaking hyphen (MAJOR CULPRIT)
+    s = s.replace('\u2012', '-')  # Figure dash
+    s = s.replace('\u2013', '-')  # En dash
+    s = s.replace('\u2014', '-')  # Em dash
+    s = s.replace('\u2015', '-')  # Horizontal bar
+    s = s.replace('\u2212', '-')  # Minus sign
+    s = s.replace('\u00AD', '')   # Soft hyphen (remove completely)
+
+    # 4. Replace special math symbols with ASCII equivalents
+    s = s.replace('\u00D7', 'x')   # Multiplication sign → x
+    s = s.replace('\u00F7', '/')   # Division sign → /
+    s = s.replace('\u2264', '<=')  # Less than or equal
+    s = s.replace('\u2265', '>=')  # Greater than or equal
+    s = s.replace('\u2260', '!=')  # Not equal
+    s = s.replace('\u2248', '~=')  # Approximately equal
+    s = s.replace('\u00B1', '+/-') # Plus-minus
+
+    # 5. Replace smart quotes with straight quotes
+    s = s.replace('\u2018', "'")   # Left single quote
+    s = s.replace('\u2019', "'")   # Right single quote
+    s = s.replace('\u201C', '"')   # Left double quote
+    s = s.replace('\u201D', '"')   # Right double quote
+
+    # 6. Replace special spaces with normal space
+    s = s.replace('\u00A0', ' ')   # Non-breaking space
+    s = s.replace('\u2009', ' ')   # Thin space
+    s = s.replace('\u200B', '')    # Zero-width space (remove)
+    s = s.replace('\u202F', ' ')   # Narrow no-break space
+    s = s.replace('\u2007', ' ')   # Figure space
+    s = s.replace('\u2008', ' ')   # Punctuation space
 
     # Post-processing for display: strip formatting markers and note tags
     # Keep whitespace as-is; do not trim newlines.
@@ -289,12 +350,16 @@ def clean_model_output_final(text: str) -> str:
     # Remove specific leaked XML-ish wrappers (case-insensitive)
     cleaned = re.sub(r"</?(?:transcription_data|chart_data)>", "", cleaned, flags=re.IGNORECASE)
 
+    # Remove any leaked think blocks
+    cleaned = re.sub(r"<think>.*?</think>", "", cleaned, flags=re.IGNORECASE | re.DOTALL)
+
     # Remove explicit note tags and simple formatting markers
     cleaned = cleaned.replace("<note>", "").replace("</note>", "")
     # Remove markdown bold/italic markers
     cleaned = re.sub(r'\*\*([^*]+)\*\*', r'\1', cleaned)  # Remove **bold**
     cleaned = re.sub(r'\*([^*]+)\*', r'\1', cleaned)  # Remove *italic*
     cleaned = cleaned.replace("__STREAM_END__", "")
+    cleaned = _strip_note_end_marker(cleaned)
 
     # Remove leaked chain-of-thought markers and meta-commentary
     # GUARD: Only match these patterns in the FIRST 300 chars to avoid removing legitimate clinical reasoning
@@ -467,6 +532,48 @@ def _weak_evidence(refs: List[Dict[str, Any]], context: str) -> bool:
         return False
 
 
+def _extract_rag_focus_sections(note_text: str) -> Tuple[str, List[str]]:
+    headings = [
+        "Impression",
+        "Assessment",
+        "Assessment and Plan",
+        "Assessment/Plan",
+        "Plan",
+        "History of Present Illness",
+        "HPI",
+        "Subjective",
+        "Objective",
+    ]
+    patterns = "|".join(re.escape(h) for h in headings)
+    matches = []
+    used = []
+    for m in re.finditer(
+        rf"(?im)^\s*({patterns})\s*:?\s*(.*?)(?=^\s*({patterns})\s*:?\s*|\Z)",
+        note_text,
+        flags=re.DOTALL | re.MULTILINE,
+    ):
+        title = m.group(1).strip()
+        body = m.group(2).strip()
+        if body:
+            matches.append(f"{title}: {body}")
+            used.append(title)
+    focus = "\n\n".join(matches).strip()
+    return focus, used
+
+
+def _rag_tail_window(text: str, *, max_tokens: int = 500, min_tokens: int = 300) -> str:
+    """Return a tail window of the note to keep RAG queries compact."""
+    tokens = text.split()
+    if not tokens:
+        return ""
+    total = len(tokens)
+    # Use up to 50% of the note, but clamp to [min_tokens, max_tokens].
+    target = min(max(min_tokens, int(total * 0.5)), max_tokens)
+    if total <= target:
+        return text.strip()
+    return " ".join(tokens[-target:]).strip()
+
+
 def _as_bool(value: Any, default: bool = False) -> bool:
     if value is None:
         return default
@@ -558,8 +665,14 @@ async def _gather_rag_for_qa(question: str, cfg: Dict) -> Dict[str, Any]:
     return result
 
 
-async def _generate_consult_comment(gen_id: str, note_text: str, cfg: Dict) -> None:
-    """Derive a brief evidence-backed comment from Impression/Plan."""
+async def _generate_consult_comment(
+    gen_id: str,
+    note_text: str,
+    cfg: Dict,
+    *,
+    strategy: str = "full_note",
+) -> None:
+    """Derive a brief evidence-backed comment from contextual sections."""
     try:
         _consult_comment_store[gen_id] = {"status": "pending"}
         # Extract Impression/Plan heuristically
@@ -571,41 +684,46 @@ async def _generate_consult_comment(gen_id: str, note_text: str, cfg: Dict) -> N
         m_plan = re.search(r"(?im)^\s*Plan\s*:\s*(.+?)(?:\n\S|\Z)", note_text, flags=re.DOTALL)
         if m_plan:
             plan = m_plan.group(1).strip()
-        focus = imp or plan or note_text[:800]
-        raw_focus_source = focus
+        focus = ""
+        used_sections: List[str] = []
+        raw_focus_source = ""
         confirmed_markers = cfg.get("consult_confirmed_markers", ["confirmed", "biopsy", "pathology", "definitive"])
         ruledout_markers = cfg.get("consult_ruledout_markers", ["ruled out", "excluded", "negative for", "not consistent with"])
         confirmed_statements = _extract_marker_sentences(f"{imp}\n{plan}", confirmed_markers)
         ruledout_statements = _extract_marker_sentences(f"{imp}\n{plan}", ruledout_markers)
+        if strategy == "full_note":
+            focus = _rag_tail_window(note_text, max_tokens=500, min_tokens=300)
+            used_sections = ["Tail Window"]
+        elif strategy == "llm_query":
+            rag_llm = _get_rag_comment_llm(cfg)
+            query_prompt = (
+                "Generate a short search query for clinical evidence retrieval.\n"
+                "Return a single line (8-20 words) capturing main diagnoses, key symptoms, and key tests.\n"
+                "Do not include quotes or extra text.\n\n"
+                f"NOTE:\n{note_text}\n\n"
+                "QUERY:\n"
+            )
+            query_text = await rag_llm.collect_completion(
+                query_prompt,
+                temperature=0.05,
+                max_tokens=80,
+                stop=[],
+            )
+            focus = clean_model_output_final(query_text).strip()
+            used_sections = ["LLM Query"]
+        else:
+            focus, used_sections = _extract_rag_focus_sections(note_text)
 
-        # Summarize focus to tighten RAG query (always when enabled)
-        # GUARD: Only summarize if we have substantial content to avoid hallucination
-        try:
-            if bool(cfg.get("rag_focus_summary_enable", True)) and len(focus.strip()) >= 100:
-                # Aim for ~100 words, clamp to 80–120 regardless of config
-                cfg_target = int(cfg.get("rag_focus_summary_words", 150))
-                target = max(80, min(120, cfg_target))
-                sum_prompt = (
-                    "You are extracting a retrieval focus from a clinical Impression/Plan.\n"
-                    "CRITICAL: Use ONLY information explicitly present in the TEXT below. Do NOT invent, assume, or add details.\n"
-                    "If the TEXT is too brief or unclear, respond with: 'Insufficient detail for reliable summary.'\n\n"
-                    "Format: one paragraph ~100 words (80–120 words), no citations, avoid hedging.\n"
-                    "Include ONLY: primary diagnoses; key differentials; key investigations with abnormal results; leading treatment decisions (drug, dose, route, frequency); and critical contraindications/comorbid flags.\n"
-                    f"Aim for about {target} words. Use concise, factual language in a single paragraph.\n\n"
-                    f"TEXT:\n{focus}\n\nFOCUS SUMMARY:\n"
-                )
-                summary_text = await note_gen.collect_completion(
-                    sum_prompt, temperature=0.05, max_tokens=target * 2, stop=[]
-                )
-                summarized = clean_model_output_final(summary_text).strip()
-                # Only use summarized version if it's not a refusal and is substantial
-                if summarized and len(summarized) >= 50 and "insufficient" not in summarized.lower():
-                    focus = summarized
-        except Exception:
-            pass
+        raw_focus_source = focus
+        if not focus:
+            _consult_comment_store[gen_id] = {
+                "status": "error",
+                "error": "Missing required headings for RAG focus extraction.",
+            }
+            return
         focus_summary = focus
 
-        # Query RAG for focused evidence with timeout; fallback to empty on error
+        # Query RAG for focused evidence with timeout; error on failure
         ctx = ""
         norm_refs: List[Dict[str, Any]] = []
         used: Dict[str, Any] = {}
@@ -641,27 +759,17 @@ async def _generate_consult_comment(gen_id: str, note_text: str, cfg: Dict) -> N
             )
         except Exception as e:
             print(f"[RAG] Consult comment evidence unavailable: {e}")
-            ctx, norm_refs, used = "", [], {"error": str(e)[:160]}
+            _consult_comment_store[gen_id] = {
+                "status": "error",
+                "error": str(e)[:160],
+            }
+            return
 
-        # GUARD: If evidence is absent, return a minimal template instead of hallucinating
         if not ctx.strip():
             _consult_comment_store[gen_id] = {
-                "status": "done",
-                "comment": "Insufficient evidence available to provide evidence-backed differential considerations or management guidance. Recommend consulting current clinical guidelines and specialist input.",
-                "refs": []
+                "status": "error",
+                "error": "No evidence returned for the RAG query.",
             }
-            _generation_meta[gen_id].update({
-                "consult_refs": [],
-                "consult_used": used,
-                "refs": [],
-                "context": "",
-                "consult_focus_raw": raw_focus_source,
-                "consult_focus_summary": focus_summary,
-                "consult_assertions": {
-                    "confirmed": confirmed_statements,
-                    "ruled_out": ruledout_statements,
-                },
-            })
             return
 
         # Build short comment prompt - only proceeds if we have substantial evidence
@@ -682,15 +790,16 @@ async def _generate_consult_comment(gen_id: str, note_text: str, cfg: Dict) -> N
         assertions_text = "\n".join(assertions_lines) if assertions_lines else "No explicit confirmed or ruled-out statements were identified in the note."
 
         prompt = (
-            "You are a senior consultant. Provide a concise, evidence-grounded comment to accompany this clinical note's Impression/Plan.\n"
+            "You are a senior consultant. Provide a concise, evidence-grounded critique to accompany this clinical note's Impression/Plan.\n"
             "CRITICAL:\n"
             "- Respect the statements from the original note below. If a diagnosis is confirmed, reinforce that certainty; if something is ruled out, do NOT suggest it as a differential.\n"
             "- Use ONLY the Evidence Context provided. If the evidence contradicts the note, flag the discrepancy without discarding the note's conclusion.\n"
+            "- Focus on deficiencies, missing items, or incorrect statements that should be corrected.\n"
             "- If evidence is insufficient, respond with: 'Insufficient evidence available for reliable commentary.'\n\n"
             "FORMAT (plain text, short paragraphs; brief bullets are acceptable if clearer):\n"
-            "1) Differential considerations (only if still clinically open; otherwise restate the confirmed diagnosis).\n"
-            "2) Impression/Plan alignment with evidence (highlight matches, gaps, or contraindications).\n"
-            "3) Key management guidance consistent with the evidence.\n\n"
+            "1) Gaps or missing items in the note vs evidence (tests, safety checks, key steps).\n"
+            "2) Potential errors or contradictions (what looks incorrect and why).\n"
+            "3) Evidence-backed corrections or next steps (only if directly supported).\n\n"
             f"Original Note Excerpt:\n{note_excerpt}\n\n"
             f"Confirmed / Ruled Statements:\n{assertions_text}\n\n"
             f"Evidence Context:\n{ctx}\n\n"
@@ -699,13 +808,39 @@ async def _generate_consult_comment(gen_id: str, note_text: str, cfg: Dict) -> N
         )
 
         # Generate via llama-server (collect in background)
-        comment_text = await note_gen.collect_completion(
+        rag_llm = _get_rag_comment_llm(cfg)
+        comment_text = await rag_llm.collect_completion(
             prompt,
             temperature=float(cfg.get("default_qa_temperature", 0.2)),
             max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
             stop=[],
         )
         comment = clean_model_output_final(comment_text).replace("'''", "").replace('"""', '').strip()
+
+        if ctx.strip() and "insufficient evidence available" in comment.lower():
+            retry_prompt = (
+                "You are a senior consultant. Evidence Context IS PROVIDED below.\n"
+                "Do NOT respond with 'Insufficient evidence'. You must identify at least one gap, risk, or correction.\n"
+                "If evidence is weak, state it briefly but still list the top 1-3 possible deficiencies.\n\n"
+                "FORMAT:\n"
+                "1) Gaps or missing items vs evidence.\n"
+                "2) Potential errors or contradictions.\n"
+                "3) Evidence-backed corrections or next steps.\n\n"
+                f"Original Note Excerpt:\n{note_excerpt}\n\n"
+                f"Confirmed / Ruled Statements:\n{assertions_text}\n\n"
+                f"Evidence Context:\n{ctx}\n\n"
+                f"Focus Summary:\n{focus_summary}\n\n"
+                "Comment:\n"
+            )
+            retry_text = await rag_llm.collect_completion(
+                retry_prompt,
+                temperature=float(cfg.get("default_qa_temperature", 0.2)),
+                max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
+                stop=[],
+            )
+            retry_clean = clean_model_output_final(retry_text).replace("'''", "").replace('"""', '').strip()
+            if retry_clean and "insufficient evidence available" not in retry_clean.lower():
+                comment = retry_clean
 
         # Store consult metadata for UI consumption
         m = _generation_meta.get(gen_id, {}).copy()
@@ -717,6 +852,7 @@ async def _generate_consult_comment(gen_id: str, note_text: str, cfg: Dict) -> N
             "context": ctx,
             "consult_focus_raw": raw_focus_source,
             "consult_focus_summary": focus_summary,
+            "consult_focus_sections": used_sections,
             "consult_assertions": {
                 "confirmed": confirmed_statements,
                 "ruled_out": ruledout_statements,
@@ -777,6 +913,213 @@ def _cfg_text(val: Any) -> str:
         return "".join(parts).strip()
     return str(val).strip()
 
+def _normalize_note_type(note_type: Optional[str]) -> str:
+    nt = (note_type or "").strip().lower()
+    mapping = {
+        "progress_note": "progress",
+        "progress note": "progress",
+        "follow-up": "followup",
+        "follow up": "followup",
+        "follow_up": "followup",
+        "consultation": "consult",
+    }
+    return mapping.get(nt, nt or "consult")
+
+def _get_rag_comment_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
+    global _rag_llm_client
+    url = (cfg.get("rag_comment_llm_url") or "").strip()
+    if _rag_llm_client is None:
+        _rag_llm_client = SimpleNoteGenerator()
+    if url:
+        _rag_llm_client.server_url = url.rstrip("/")
+    return _rag_llm_client
+
+
+def build_prompt_v8(
+    transcription_text: str,
+    old_visits_text: str,
+    mixed_other_text: str,
+    note_type: str,
+    custom_prompt: Optional[str] = None,
+    user_speciality: Optional[str] = None,
+) -> str:
+    """
+    Build a prompt from the 3-field input system WITHOUT extraction.
+
+    This is a simpler approach that organizes the raw data with clear tags
+    and passes it directly to the LLM for note generation.
+
+    The data is organized as:
+    - CURRENT ENCOUNTER: transcription from today's visit
+    - PRIOR VISITS: old visit notes (historical context)
+    - LABS/IMAGING/OTHER: mixed data that may include recent results
+    """
+    cfg = load_config()
+    today = date.today().strftime("%Y-%m-%d")
+
+    # Get system prompt from config
+    system_prompt = _cfg_text(cfg.get("default_note_system_prompt", ""))
+
+    # Get user template for the note type
+    user_templates = cfg.get("default_note_user_prompts", {}) or {}
+    raw_user_tpl = ""
+    if isinstance(user_templates, dict):
+        raw_user_tpl = user_templates.get(note_type) or ""
+    user_tpl = _cfg_text(raw_user_tpl)
+
+    if not user_tpl:
+        # Fallback for unknown note types
+        user_tpl = (
+            "Note type: {NOTE_TYPE}\n"
+            "Current date: {CURRENT_DATE}\n"
+            "Generate a clinical note based on the provided patient data.\n"
+        )
+
+    # Clean and organize the input data with clear section tags
+    sections = []
+
+    # Current encounter (transcription) - most important, always first
+    trans_clean = _sanitize_transcription_text(transcription_text).strip()
+    if trans_clean:
+        sections.append(
+            "<CURRENT_ENCOUNTER>\n"
+            "DATE: " + today + "\n"
+            "This is the transcription from today's clinical encounter.\n"
+            "Treat all information in this section as CURRENT.\n"
+            + trans_clean + "\n"
+            "</CURRENT_ENCOUNTER>"
+        )
+
+    # Prior visits (historical context)
+    old_clean = _sanitize_chart_text(old_visits_text).strip()
+    if old_clean:
+        sections.append(
+            "<PRIOR_VISITS>\n"
+            "These are notes from previous encounters.\n"
+            "Treat all information in this section as HISTORICAL unless explicitly dated as recent.\n"
+            + old_clean + "\n"
+            "</PRIOR_VISITS>"
+        )
+
+    # Mixed other data (labs, imaging, consults, etc.)
+    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
+    if mixed_clean:
+        sections.append(
+            "<LABS_IMAGING_OTHER>\n"
+            "This section contains laboratory results, imaging reports, and other clinical data.\n"
+            "Pay attention to dates on each item to determine recency.\n"
+            + mixed_clean + "\n"
+            "</LABS_IMAGING_OTHER>"
+        )
+
+    # Combine all sections
+    raw_data = "\n\n".join(sections) if sections else "[No patient data provided]"
+
+    speciality = (user_speciality or "").strip() or "internal medicine"
+    # Fill template variables
+    values = {
+        "CURRENT_DATE": today,
+        "NOTE_TYPE": note_type,
+        "USER_SPECIALITY": speciality,
+        "REASON_FOR_VISIT": "Unknown (infer from the current encounter data)",
+        "ADMISSION_DX": "Unknown (infer from the data)",
+        "DISCHARGE_DX": "Unknown (infer from the data)",
+        "RAW_DATA": raw_data,
+    }
+
+    # Fill system prompt template
+    system_prompt_filled = _fill_template(system_prompt, values).strip() if system_prompt else ""
+
+    # Fill user instructions template
+    user_instructions = _fill_template(user_tpl, values).strip()
+
+    # Build the final prompt
+    prompt_body = ""
+    if system_prompt_filled:
+        prompt_body += "SYSTEM:\n" + system_prompt_filled + "\n\n"
+
+    prompt_body += "USER:\n" + user_instructions + "\n\n"
+
+    # Add the organized patient data
+    prompt_body += "PATIENT DATA:\n" + raw_data + "\n\n"
+
+    # Add custom prompt if provided
+    if custom_prompt and custom_prompt.strip():
+        prompt_body += "ADDITIONAL INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
+
+    prompt_body += "When finished, output END_OF_NOTE on its own line and stop.\n\n"
+    prompt_body += "ASSISTANT:\n"
+
+    return prompt_body
+
+
+def build_prompt_other(
+    transcription_text: str,
+    old_visits_text: str,
+    mixed_other_text: str,
+    note_type: str,
+    custom_prompt: Optional[str] = None,
+    user_speciality: Optional[str] = None,
+) -> str:
+    """
+    Build a prompt for non-standard note types (referral, summarize, custom, procedure).
+
+    This uses a lighter system prompt and merges all inputs into a single patient data block
+    without section tags.
+    """
+    cfg = load_config()
+    today = date.today().strftime("%Y-%m-%d")
+
+    system_prompt = _cfg_text(cfg.get("default_note_system_prompt_other", ""))
+
+    user_templates_other = cfg.get("default_note_user_prompts_other", {}) or {}
+    raw_user_tpl = ""
+    if isinstance(user_templates_other, dict):
+        raw_user_tpl = user_templates_other.get(note_type) or ""
+    user_tpl = _cfg_text(raw_user_tpl)
+
+    if not user_tpl:
+        user_tpl = (
+            "Note type: {NOTE_TYPE}\n"
+            "Current date: {CURRENT_DATE}\n"
+            "Generate the requested clinical document based on the provided patient data.\n"
+        )
+
+    trans_clean = _sanitize_transcription_text(transcription_text).strip()
+    old_clean = _sanitize_chart_text(old_visits_text).strip()
+    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
+
+    data_blocks = [b for b in [trans_clean, old_clean, mixed_clean] if b]
+    raw_data = "\n\n".join(data_blocks) if data_blocks else "[No patient data provided]"
+
+    speciality = (user_speciality or "").strip() or "internal medicine"
+    values = {
+        "CURRENT_DATE": today,
+        "NOTE_TYPE": note_type,
+        "USER_SPECIALITY": speciality,
+        "REASON_FOR_VISIT": "Unknown (infer from the provided data)",
+        "ADMISSION_DX": "Unknown (infer from the provided data)",
+        "DISCHARGE_DX": "Unknown (infer from the provided data)",
+        "RAW_DATA": raw_data,
+    }
+
+    system_prompt_filled = _fill_template(system_prompt, values).strip() if system_prompt else ""
+    user_instructions = _fill_template(user_tpl, values).strip()
+
+    prompt_body = ""
+    if system_prompt_filled:
+        prompt_body += "SYSTEM:\n" + system_prompt_filled + "\n\n"
+
+    prompt_body += "USER:\n" + user_instructions + "\n\n"
+    prompt_body += "PATIENT DATA:\n" + raw_data + "\n\n"
+
+    if custom_prompt and custom_prompt.strip():
+        prompt_body += "ADDITIONAL INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
+
+    prompt_body += "When finished, output END_OF_NOTE on its own line and stop.\n\n"
+    prompt_body += "ASSISTANT:\n"
+
+    return prompt_body
 
 
 def build_prompt(
@@ -784,6 +1127,7 @@ def build_prompt(
     transcription: str,
     note_type: str,
     custom_prompt: Optional[str] = None,
+    user_speciality: Optional[str] = None,
 ) -> str:
     cfg = load_config()
 
@@ -849,9 +1193,11 @@ def build_prompt(
 # Reason fields: if you later add explicit reason in payload, wire it here.
     # For now, keep it unknown and let the model infer from RAW_DATA.
 # Prepare all template values
+    speciality = (user_speciality or "").strip() or "internal medicine"
     values = {
         "CURRENT_DATE": today,
         "NOTE_TYPE": note_type,
+        "USER_SPECIALITY": speciality,
         "REASON_FOR_VISIT": "Unknown (infer from raw data)",
         "ADMISSION_DX": "Unknown (infer from raw data)",
         "DISCHARGE_DX": "Unknown (infer from raw data)",
@@ -907,8 +1253,9 @@ async def generate_stream(request: Request):
             payload = await request.json()
             chart = payload.get("chart_data", "")
             trans = payload.get("transcription", "")
-            note_type = payload.get("note_type", "consult")
+            note_type = _normalize_note_type(payload.get("note_type", "consult"))
             custom_prompt = payload.get("custom_prompt", "")
+            user_speciality = payload.get("user_speciality", "")
             if "temperature" in payload and payload.get("temperature") is not None:
                 try:
                     temp = float(payload.get("temperature"))
@@ -919,8 +1266,9 @@ async def generate_stream(request: Request):
             form = await request.form()
             chart = str(form.get("chart_data", "") or "")
             trans = str(form.get("transcription", "") or "")
-            note_type = str(form.get("note_type", "consult") or "consult")
+            note_type = _normalize_note_type(str(form.get("note_type", "consult") or "consult"))
             custom_prompt = str(form.get("custom_prompt", "") or "")
+            user_speciality = str(form.get("user_speciality", "") or "")
             t_val = form.get("temperature")
             if t_val is not None and str(t_val).strip() != "":
                 try:
@@ -952,7 +1300,7 @@ async def generate_stream(request: Request):
         if note_type == "qa":
             chart = _sanitize_chart_text(chart)
             trans = _sanitize_transcription_text(trans)
-        prompt = build_prompt(chart, trans, note_type, custom_prompt)
+        prompt = build_prompt(chart, trans, note_type, custom_prompt, user_speciality)
         if note_type != "qa":
             print(f"[NOTE_PROMPT_DEBUG] prompt start: {prompt[:160]!r}")
             print(f"[NOTE_PROMPT_DEBUG] chart_len={len(chart)}, trans_len={len(trans)}")
@@ -1221,7 +1569,8 @@ async def generate_stream(request: Request):
                     if not is_qa:
                         _append_feedback_csv(prompt, raw_final_output or final_output, 1)
                         consult_source = clean_model_output_final(final_output)
-                        asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
+                        if note_type in {"consult", "followup", "progress", "admission"}:
+                            asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
                     with _cache_lock:
                         if generation_id in _generation_cache:
                             _generation_cache[generation_id]["output"] = final_output
@@ -1251,8 +1600,23 @@ async def generation_meta(gen_id: str) -> Dict[str, Any]:
 
 
 @router.get("/generation/{gen_id}/consult_comment")
-async def get_consult_comment(gen_id: str) -> Dict[str, Any]:
+async def get_consult_comment(gen_id: str, request: Request) -> Dict[str, Any]:
     st = _consult_comment_store.get(gen_id)
+    force = (request.query_params.get("force") or "").strip().lower() in {"1", "true", "yes"}
+    strategy = (request.query_params.get("strategy") or "sections").strip().lower()
+
+    if force:
+        note_text = ""
+        with _cache_lock:
+            entry = _generation_cache.get(gen_id) or {}
+            note_text = entry.get("output") or ""
+        if not note_text:
+            return {"status": "error", "error": "No note output available for retry."}
+        _consult_comment_store[gen_id] = {"status": "pending"}
+        cfg = load_config()
+        asyncio.create_task(_generate_consult_comment(gen_id, note_text, cfg, strategy=strategy))
+        return {"status": "pending"}
+
     if not st:
         return {"status": "unknown"}
     return st
@@ -1327,4 +1691,285 @@ async def record_feedback(payload: Dict):
         raise
     except Exception as e:
         return JSONResponse(status_code=500, content={"ok": False, "error": str(e)[:160]})
+# ---------------------------------------------------------------------------
+# Route: /generate_v8_stream - Simple Direct Note Generation (No Extraction)
+# ---------------------------------------------------------------------------
+
+@router.post("/generate_v8_stream")
+async def generate_v8_stream(request: Request):
+    """
+    Generate a clinical note using a SIMPLE DIRECT approach (v8).
+
+    This endpoint bypasses the complex extraction/merging pipeline and instead:
+    1. Takes the 3-field input (transcription_text, old_visits_text, mixed_other_text)
+    2. Organizes them with clear section tags
+    3. Passes directly to the LLM for note generation
+
+    This is faster and more reliable than v7 which uses extraction.
+    """
+    try:
+        ctype = (request.headers.get("content-type") or "").lower()
+        cfg = load_config()
+
+        if "application/json" in ctype:
+            payload = await request.json()
+        else:
+            form = await request.form()
+            payload = {k: str(v) for k, v in form.items()}
+
+        # Extract the 3-field input
+        transcription_text = payload.get("transcription_text", "")
+        old_visits_text = payload.get("old_visits_text", "")
+        mixed_other_text = payload.get("mixed_other_text", "")
+        note_type = _normalize_note_type(payload.get("note_type", "consult"))
+        custom_prompt = payload.get("custom_prompt", "")
+        user_speciality = payload.get("user_speciality", "")
+
+        # Get temperature and max_tokens
+        temp: Optional[float] = None
+        if payload.get("temperature") is not None:
+            try:
+                temp = float(payload.get("temperature"))
+            except Exception:
+                temp = None
+
+        if temp is None:
+            temp = float(cfg.get("default_note_temperature", 0.2))
+
+        max_tokens = None
+        if payload.get("max_tokens"):
+            try:
+                max_tokens = int(payload.get("max_tokens"))
+            except Exception:
+                max_tokens = None
+
+        if max_tokens is None:
+            max_tokens = cfg.get("default_note_max_tokens", 4096)
+
+        # Build the prompt using the simple direct approach
+        if note_type in OTHER_NOTE_TYPES:
+            prompt = build_prompt_other(
+                transcription_text=transcription_text,
+                old_visits_text=old_visits_text,
+                mixed_other_text=mixed_other_text,
+                note_type=note_type,
+                custom_prompt=custom_prompt,
+                user_speciality=user_speciality,
+            )
+        else:
+            prompt = build_prompt_v8(
+                transcription_text=transcription_text,
+                old_visits_text=old_visits_text,
+                mixed_other_text=mixed_other_text,
+                note_type=note_type,
+                custom_prompt=custom_prompt,
+                user_speciality=user_speciality,
+            )
+
+        print(f"[V8_DEBUG] Built prompt: {len(prompt)} chars")
+        print(f"[V8_DEBUG] Transcription: {len(transcription_text)} chars")
+        print(f"[V8_DEBUG] Old visits: {len(old_visits_text)} chars")
+        print(f"[V8_DEBUG] Mixed other: {len(mixed_other_text)} chars")
+
+        generation_id = uuid.uuid4().hex
+        t0 = time.perf_counter()
+        token_count = 0
+        output_buf: list[str] = []
+
+        # Seed cache entry for later feedback
+        with _cache_lock:
+            _generation_cache[generation_id] = {"prompt": prompt, "output": ""}
+
+        # Initialize metadata
+        _generation_meta[generation_id] = {
+            "refs": [],
+            "used_filters": {},
+            "context": "",
+            "full_evidence": "",
+            "pipeline": "v8_direct",
+            "qa": {
+                "status": "not_applicable",
+                "baseline": None,
+                "final": None,
+                "rewrite_used": False,
+                "rag_context_chars": 0,
+                "rag_error": None,
+            },
+        }
+
+        async def gen():
+            nonlocal token_count
+            try:
+                # Direct LLM call - no extraction, no merging, just generate
+                note_text = await note_gen.collect_completion(
+                    prompt,
+                    temperature=temp,
+                    max_tokens=max_tokens,
+                    stop=NOTE_STOP_TOKENS,
+                )
+
+                # Clean and yield the output
+                note_text = _strip_note_end_marker(note_text)
+                cleaned = clean_model_output_chunk(note_text)
+                if cleaned:
+                    output_buf.append(cleaned)
+                    token_count += len(cleaned.split())
+                    yield cleaned
+
+                yield END_MARKER + "\n"
+
+            except asyncio.CancelledError:
+                print("Client disconnected - streaming cancelled")
+                raise
+            except RuntimeError as e:
+                error_msg = str(e).lower()
+                if any(keyword in error_msg for keyword in [
+                    "context", "ctx", "kv", "slot", "too long", "too large",
+                    "exceeds", "limit", "overflow", "n_ctx"
+                ]):
+                    print(f"Context length error: {e}")
+                    yield (
+                        "ERROR: The input is too long for the model's context window.\n\n"
+                        "Please try reducing the amount of input data.\n\n"
+                        f"Technical details: {str(e)}\n"
+                    )
+                else:
+                    print(f"Runtime error during streaming: {e}")
+                    yield f"Error: {str(e)}\n"
+            except Exception as e:
+                print(f"Error during v8 streaming: {e}")
+                yield f"Error: {str(e)}\n"
+            finally:
+                duration = time.perf_counter() - t0
+                print(f"[V8_DEBUG] Generation completed in {duration:.2f}s, ~{token_count} tokens")
+
+                if global_metrics is not None:
+                    global_metrics.record_note(duration, token_count, getattr(note_gen, 'model_path', None))
+
+                try:
+                    combined_output = "".join(output_buf)
+                    _append_feedback_csv(prompt, combined_output, 1)
+
+                    # Generate evidence-backed comment in background (eligible note types)
+                    if note_type in {"consult", "followup", "progress", "admission"}:
+                        consult_source = clean_model_output_final(combined_output)
+                        cfg2 = load_config()
+                        asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
+
+                    with _cache_lock:
+                        if generation_id in _generation_cache:
+                            _generation_cache[generation_id]["output"] = combined_output
+                except Exception as e:
+                    print(f"Feedback CSV write failed: {e}")
+
+        return StreamingResponse(
+            gen(),
+            media_type="text/plain",
+            headers={"X-Generation-Id": generation_id}
+        )
+
+    except Exception as e:
+        import traceback
+        error_detail = f"Generation failed: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
+        print(f"Error in generate_v8_stream: {error_detail}")
+        raise HTTPException(status_code=503, detail=error_detail)
+
+
+@router.post("/generate_v8")
+async def generate_v8(request: Request):
+    """
+    Non-streaming version of the v8 direct note generation.
+    Returns JSON with the complete note.
+    """
+    try:
+        ctype = (request.headers.get("content-type") or "").lower()
+        cfg = load_config()
+
+        if "application/json" in ctype:
+            payload = await request.json()
+        else:
+            form = await request.form()
+            payload = {k: str(v) for k, v in form.items()}
+
+        # Extract the 3-field input
+        transcription_text = payload.get("transcription_text", "")
+        old_visits_text = payload.get("old_visits_text", "")
+        mixed_other_text = payload.get("mixed_other_text", "")
+        note_type = _normalize_note_type(payload.get("note_type", "consult"))
+        custom_prompt = payload.get("custom_prompt", "")
+
+        # Get temperature and max_tokens
+        temp: Optional[float] = None
+        if payload.get("temperature") is not None:
+            try:
+                temp = float(payload.get("temperature"))
+            except Exception:
+                temp = None
+
+        if temp is None:
+            temp = float(cfg.get("default_note_temperature", 0.2))
+
+        max_tokens = None
+        if payload.get("max_tokens"):
+            try:
+                max_tokens = int(payload.get("max_tokens"))
+            except Exception:
+                max_tokens = None
+
+        if max_tokens is None:
+            max_tokens = cfg.get("default_note_max_tokens", 4096)
+
+        # Build the prompt using the simple direct approach
+        if note_type in OTHER_NOTE_TYPES:
+            prompt = build_prompt_other(
+                transcription_text=transcription_text,
+                old_visits_text=old_visits_text,
+                mixed_other_text=mixed_other_text,
+                note_type=note_type,
+                custom_prompt=custom_prompt,
+                user_speciality=user_speciality,
+            )
+        else:
+            prompt = build_prompt_v8(
+                transcription_text=transcription_text,
+                old_visits_text=old_visits_text,
+                mixed_other_text=mixed_other_text,
+                note_type=note_type,
+                custom_prompt=custom_prompt,
+                user_speciality=user_speciality,
+            )
+
+        t0 = time.perf_counter()
+
+        # Direct LLM call
+        note_text = await note_gen.collect_completion(
+            prompt,
+            temperature=temp,
+            max_tokens=max_tokens,
+            stop=NOTE_STOP_TOKENS,
+        )
+
+        duration = time.perf_counter() - t0
+        cleaned = clean_model_output_final(_strip_note_end_marker(note_text))
+
+        return JSONResponse(content={
+            "note": cleaned,
+            "pipeline": "v8_direct",
+            "stats": {
+                "duration_seconds": round(duration, 2),
+                "input_chars": len(transcription_text) + len(old_visits_text) + len(mixed_other_text),
+                "output_chars": len(cleaned),
+            }
+        })
+
+    except Exception as e:
+        import traceback
+        error_detail = f"Generation failed: {str(e)}"
+        print(f"Error in generate_v8: {error_detail}\n{traceback.format_exc()}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)[:500], "type": "generation_error"}
+        )
+
+
 # trigger reload

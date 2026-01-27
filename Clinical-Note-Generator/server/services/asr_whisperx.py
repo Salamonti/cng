@@ -145,7 +145,7 @@ class WhisperXASREngine:
     ENGINE_NAME = "whisperx"
 
     # Hardcoded WhisperX settings per user request (can be moved to config later)
-    WHISPERX_MODEL_PATH = r"C:\Clinical-Note-Generator\models\whisper\large-v3-turbo-bin"
+    WHISPERX_MODEL_PATH = r"C:\Clinical-Note-Generator\models\whisper\medium.en"
     DEVICE = "cuda"          # Do not specify cuda:N; rely on launcher env
     COMPUTE_TYPE = "float16"
     LANGUAGE = "en"

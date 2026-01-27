@@ -517,15 +517,32 @@ class LlamaServerManager:
                     "--model", model_path,
                     "--port", str(self.server_port),
                     "--host", "0.0.0.0",
-                    "--ctx-size", str(self.config.get("context_length", 20480)),
+                    "--ctx-size", str(self.config.get("context_length", 64000)),
                     "--n-gpu-layers", n_gpu_layers,
                     "--ubatch-size", str(self.config.get("llama_server_ubatch_size", 128)),
                     "--threads", str(self.threads),
                     "--batch-size", str(self.batch_size),
+                    "--parallel", str(self.config.get("llama_server_parallel", 1)),
                 ]
                 # Enable parallel request processing
+                presence_penalty = self.config.get("llama_presence_penalty")
+                if presence_penalty is not None:
+                    args.extend(["--presence-penalty", str(presence_penalty)])
+                ctk_val = self.config.get("llama_ctk")
+                if ctk_val:
+                    args.extend(["-ctk", str(ctk_val)])
+                ctv_val = self.config.get("llama_ctv")
+                if ctv_val:
+                    args.extend(["-ctv", str(ctv_val)])
                 if self.log_disable:
                     args.append("--log-disable")
+                if bool(self.config.get("llama_no_context_shift", False)):
+                    args.append("--no-context-shift")
+                if bool(self.config.get("llama_cont_batching", False)):
+                    args.append("--cont-batching")
+                fa_mode = self.config.get("llama_fa")
+                if fa_mode is not None:
+                    args.extend(["-fa", str(fa_mode)])
                 if bool(self.config.get("llama_no_mmap", False)):
                     args.append("--no-mmap")
                 if chat_template_val and enable_jinja:

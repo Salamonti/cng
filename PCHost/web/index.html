@@ -22,6 +22,20 @@
             padding-left: 70px; /* Space for left sidebar - ALWAYS */
         }
 
+        body:not(.auth-ready) .requires-auth {
+            display: none !important;
+        }
+        body:not(.auth-ready) .left-sidebar {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(0.2);
+        }
+        body:not(.auth-ready) .floating-bar .bar-group-right {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(0.2);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-left: 55px; /* Narrower sidebar on mobile */
@@ -940,7 +954,7 @@
             <span class="icon">&#9881;</span>
             <span class="label">AI Prompts</span>
         </button>
-        <button class="sidebar-btn" onclick="generateNote()" title="Generate Note">
+        <button class="sidebar-btn requires-auth" onclick="generateNote()" title="Generate Note">
             <span class="icon">&#9998;</span>
             <span class="label">Generate Note</span>
         </button>
@@ -1025,11 +1039,16 @@
               <button type="button" id="clearWorkspaceBtn" class="danger">Reset Workspace</button>
             </div>
           </div>
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <label class="form-label" for="userSpeciality">Speciality Focus</label>
+            <input type="text" id="userSpeciality" placeholder="e.g., internal medicine, cardiology">
+            <div class="small-text">Used to personalize the system prompt.</div>
+          </div>
         </div>
       </div>
 
         <!-- Chart Data Card -->
-        <div class="card" id="chartCard">
+        <div class="card requires-auth" id="chartCard">
             <div class="card-header">
                 <div>
                     <div class="card-title">Chart Data & Patient Info</div>
@@ -1037,72 +1056,126 @@
                 </div>
             </div>
 
-            <!-- Live Transcription (editable) -->
-            <div class="form-group">
+            <!-- Section 1: Today's Dictation (CURRENT) -->
+            <div class="input-section form-group input-current">
                 <div style="text-align: center; margin-bottom: 16px;">
                     <button class="sidebar-btn recording-ready" id="recordBtnInline" onclick="toggleSpeechRecognition()" title="Audio Recording" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
                         <span class="icon" style="min-width: auto; font-size: 2rem;">&#127908;</span>
                     </button>
                     <div style="font-size: 0.85rem; color: #6c757d; margin-top: 8px;">Tap to record audio</div>
                 </div>
-                <label class="form-label" for="transcriptionData">Live Transcription</label>
-                <textarea id="transcriptionData" class="form-control" rows="4" placeholder="Voice transcription will appear here..." readonly></textarea>
+                <label class="form-label fw-semibold" for="transcriptionData">
+                    <span class="badge bg-success">CURRENT</span>
+                    Current Encounter
+                </label>
+                <textarea id="transcriptionData" class="form-control" rows="4" placeholder="Type current encounter notes or use speech transcription..."></textarea>
+                <div class="d-flex justify-content-between align-items-center" style="margin-top: 4px;">
+                    <small class="text-muted">Type here or use speech transcription</small>
+                    <small id="transcriptionCounter" class="text-muted">0 chars</small>
+                </div>
                 <div class="btn-group" style="margin-top: 8px;">
-                    <button class="btn btn-danger" onclick="clearTranscription()">Clear</button>
-                    <button class="btn btn-secondary" onclick="copyTranscription()">Copy</button>
+                    <button class="btn btn-danger btn-sm" onclick="clearTranscription()">Clear</button>
+                    <button class="btn btn-secondary btn-sm" onclick="copyTranscription()">Copy</button>
                 </div>
                 <div class="progress hidden" id="audioProgress">
                     <div class="progress-bar" id="audioProgressBar"></div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label" for="chartData">Patient Chart Data</label>
-                <textarea id="chartData" class="form-control" rows="8" placeholder="Enter patient chart data, history, medications, etc."
-    ondrop="event.preventDefault(); handleDrop(event);"
-    ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover');"
-    ondragleave="event.currentTarget.classList.remove('dragover');"
-></textarea>
-                <div class="drag-drop-hint" id="documentDrop" tabindex="0" role="button" aria-label="Click or drag to upload files">
-                    Paste or drag and drop audio, images, or PDFs here &#128070;
+            <!-- Section 2: Prior Visits (HISTORICAL) -->
+            <div class="input-section form-group input-historical">
+                <label class="form-label fw-semibold" for="oldVisitsData">
+                    <span class="badge bg-secondary">HISTORICAL</span>
+                    Prior Visits
+                </label>
+                <textarea id="oldVisitsData" class="form-control" rows="6"
+                    placeholder="Paste previous visit notes, history, prior encounters..."
+                    autocomplete="off"
+                    data-lpignore="true"
+                    ondrop="event.preventDefault(); handleDrop(event, 'oldVisitsData');"
+                    ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover');"
+                    ondragleave="event.currentTarget.classList.remove('dragover');"></textarea>
+                <div class="d-flex justify-content-between align-items-center" style="margin-top: 4px;">
+                    <small class="text-muted">Prior visits are always marked as historical</small>
+                    <small id="oldVisitsCounter" class="text-muted">0 / 75,000</small>
                 </div>
-                <div class="progress hidden" id="documentProgress">
-                    <div class="progress-bar" id="documentProgressBar"></div>
+                <div class="btn-group" style="margin-top: 8px;">
+                    <button class="btn btn-danger btn-sm" onclick="clearOldVisits()">Clear</button>
                 </div>
+            </div>
+
+            <!-- Section 3: Labs/Imaging/Consults (DATE-CLASSIFIED) -->
+            <div class="input-section form-group input-other">
+                <label class="form-label fw-semibold" for="mixedOtherData">
+                    <span class="badge bg-info">OTHER CHART DATA</span>
+                    Labs / Imaging / Consults
+                    <small class="text-muted">(AUTO-DATE)</small>
+                </label>
+                <textarea id="mixedOtherData" class="form-control" rows="7"
+                    placeholder="Paste lab results, imaging reports, consult notes..."
+                    autocomplete="off"
+                    data-lpignore="true"
+                    ondrop="event.preventDefault(); handleDrop(event, 'mixedOtherData');"
+                    ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover');"
+                    ondragleave="event.currentTarget.classList.remove('dragover');"></textarea>
+                <div class="d-flex justify-content-between align-items-center" style="margin-top: 4px;">
+                    <small class="text-muted">
+                        Dates are auto-detected in this section:
+                        <span class="text-success">recent = CURRENT</span>,
+                        <span class="text-secondary">old = HISTORICAL</span>,
+                        <span class="text-warning">unclear = DATE UNCLEAR</span>
+                    </small>
+                    <small id="mixedOtherCounter" class="text-muted">0 / 75,000</small>
+                </div>
+                <div class="btn-group" style="margin-top: 8px;">
+                    <button class="btn btn-danger btn-sm" onclick="clearMixedOther()">Clear</button>
+                </div>
+            </div>
+
+            <!-- Drag-drop hint for all fields -->
+            <div class="drag-drop-hint" id="documentDrop" tabindex="0" role="button" aria-label="Click or drag to upload files">
+                Paste or drag and drop audio, images, or PDFs here &#128070;
+            </div>
+            <div class="progress hidden" id="documentProgress">
+                <div class="progress-bar" id="documentProgressBar"></div>
             </div>
 
             <div class="btn-group" style="margin-bottom: 1rem;">
-                <button class="btn btn-danger" onclick="clearChartData()">Clear</button>
                 <button class="btn" onclick="saveDraft()">&#128190; Save Draft</button>
             </div>
 
-            <!-- Character Counter -->
-            <div class="mt-2">
-                <small id="characterCounter" class="text-muted">Characters remaining: 75,000 / 75,000</small>
+            <!-- Character Limit Warning -->
+            <div id="charLimitWarning" class="alert alert-warning hidden" role="alert">
+                &#9888; <span id="charLimitMessage">One or more fields exceed the character limit.</span>
             </div>
         </div>
 
         <!-- Note Type Selection -->
-        <div class="card">
+        <div class="card requires-auth">
             <div class="form-group" style="margin-bottom: 0;">
                 <label class="form-label" for="noteType">Note Type</label>
                 <select id="noteType" class="form-control">
-                    <option value="followup">Follow-up Note (SOAP)</option>
                     <option value="consult">Consultation Note</option>
+                    <option value="followup">Follow-up Note (SOAP)</option>
                     <option value="referral">Referral Letter</option>
                     <option value="admission">Admission Note</option>
+                    <option value="progress">Progress Note</option>
                     <option value="discharge">Discharge Summary</option>
+                    <option value="transfer">Transfer Note</option>
+                    <option value="procedure">Procedure Note</option>
+                    <option value="summarize">Summarize</option>
+                    <option value="custom">Custom (Free Form)</option>
                 </select>
             </div>
         </div>
 
         <!-- Full Width Generate Note Button -->
-        <button class="btn btn-success btn-full" style="margin-bottom: 20px; padding: 14px; font-size: 1rem;" onclick="generateNote()">
+        <button class="btn btn-success btn-full requires-auth" style="margin-bottom: 20px; padding: 14px; font-size: 1rem;" onclick="generateNote()">
             &#9998; Generate Note
         </button>
 
         <!-- Generated Note Card -->
-        <div class="card" id="noteCard">
+        <div class="card requires-auth" id="noteCard">
             <div class="card-header">
                 <div>
                     <div class="card-title">Generated Clinical Note</div>
@@ -1148,6 +1221,32 @@
                 <pre id="consultRefs" class="form-control"></pre>
             </div>
             <button class="btn btn-outline btn-full hidden" id="retryConsultComment" onclick="retryConsultComment()">&#128257; Retry Evidence Comment</button>
+        </div>
+
+        <!-- Uncertain Items Review Drawer (V7 API) -->
+        <div id="uncertainItemsCard" class="card hidden">
+            <div class="card-header" style="background: rgba(255, 193, 7, 0.25); display: flex; justify-content: space-between; align-items: center;">
+                <h6 style="margin: 0;">
+                    &#9888; Items Needing Date Verification
+                </h6>
+                <button type="button" class="btn btn-sm" onclick="toggleUncertainItems()" style="padding: 4px 8px;">
+                    <span id="uncertainToggleIcon">&#9660;</span>
+                </button>
+            </div>
+            <div id="uncertainItemsBody" class="card-body">
+                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+                    The following items were found in the Labs/Imaging/Consults section but their dates
+                    could not be determined. Please verify if they should be treated as current or historical.
+                </p>
+                <div id="uncertainItemsList" class="list-group list-group-flush">
+                    <!-- Dynamically populated -->
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <small class="text-muted">
+                        &#8505; These items are currently placed in the "Date Unclear" section of the note.
+                    </small>
+                </div>
+            </div>
         </div>
 
         <!-- Queue Status Card -->
@@ -1207,10 +1306,15 @@
                 <label class="form-label" for="noteTypeSelect">Note Type</label>
                 <select id="noteTypeSelect" class="form-control" onchange="updatePromptDisplay()">
                     <option value="consult">Consult Note</option>
-                    <option value="followup">Follow-up Note</option>
+                    <option value="followup">Follow-up Note (SOAP)</option>
                     <option value="referral">Referral Letter</option>
                     <option value="admission">Admission Note</option>
+                    <option value="progress">Progress Note</option>
                     <option value="discharge">Discharge Summary</option>
+                    <option value="transfer">Transfer Note</option>
+                    <option value="procedure">Procedure Note</option>
+                    <option value="summarize">Summarize</option>
+                    <option value="custom">Custom (Free Form)</option>
                 </select>
             </div>
 
@@ -1353,13 +1457,47 @@
 
         function finalizeNoteText(text) {
             if (!text) return '';
-            return text
+
+            let cleaned = text
                 .replace(/__STREAM_END__/g, '')
                 .replace(/```text/gi, '')
                 .replace(/```/g, '')
-                .replace(/#/g, '')
-                // Normalize dash variants to plain ASCII hyphen for EMR compatibility
-                .replace(/[\u2010-\u2015\u00AD\u2011\u2212]/g, '-')
+                .replace(/#/g, '');
+
+            // ====== COMPREHENSIVE EMR COMPATIBILITY SANITIZATION ======
+            // Defense-in-depth: Backend already sanitizes, but this provides extra safety
+
+            // 1. Replace subscript digits with normal digits (FEV₁ → FEV1)
+            cleaned = cleaned.replace(/[₀₁₂₃₄₅₆₇₈₉]/g, (match) => {
+                return '0123456789'['₀₁₂₃₄₅₆₇₈₉'.indexOf(match)];
+            });
+
+            // 2. Replace superscript digits with normal digits (10⁹ → 10^9)
+            cleaned = cleaned.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, (match) => {
+                return '0123456789'['⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(match)];
+            });
+
+            // 3. Replace all Unicode hyphens/dashes with ASCII hyphen
+            cleaned = cleaned.replace(/[\u2010-\u2015\u00AD\u2011\u2212]/g, '-');
+
+            // 4. Replace special math symbols with ASCII equivalents
+            cleaned = cleaned.replace(/\u00D7/g, 'x');   // Multiplication sign → x
+            cleaned = cleaned.replace(/\u00F7/g, '/');   // Division sign → /
+            cleaned = cleaned.replace(/\u2264/g, '<=');  // Less than or equal
+            cleaned = cleaned.replace(/\u2265/g, '>=');  // Greater than or equal
+            cleaned = cleaned.replace(/\u2260/g, '!=');  // Not equal
+            cleaned = cleaned.replace(/\u2248/g, '~=');  // Approximately equal
+            cleaned = cleaned.replace(/\u00B1/g, '+/-'); // Plus-minus
+
+            // 5. Replace smart quotes with straight quotes
+            cleaned = cleaned.replace(/[\u2018\u2019]/g, "'");  // Single quotes
+            cleaned = cleaned.replace(/[\u201C\u201D]/g, '"');  // Double quotes
+
+            // 6. Replace special spaces with normal space
+            cleaned = cleaned.replace(/[\u00A0\u2009\u202F\u2007\u2008]/g, ' ');
+            cleaned = cleaned.replace(/\u200B/g, ''); // Zero-width space (remove)
+
+            return cleaned
                 .replace(/\n{3,}/g, '\n\n')
                 .trim();
         }
@@ -1435,10 +1573,8 @@
 
             audioHandler.setTranscriptionCallback((transcript, type) => {
                 const tx = document.getElementById('transcriptionData');
-                const current = tx ? tx.value : '';
                 if (type === 'final') {
-                    const newVal = current + (current ? '\n' : '') + transcript;
-                    if (tx) tx.value = newVal;
+                    appendToTextarea(tx, transcript);
                     if (typeof updateCharacterCounter === 'function') {
                         updateCharacterCounter();
                     }
@@ -1563,6 +1699,10 @@
             const files = Array.from(input.files || []);
             if (!files.length) return;
 
+            if (!window.currentDropTargetField) {
+                window.currentDropTargetField = window.lastInputFieldId || 'oldVisitsData';
+            }
+
             const audioFiles = [];
             const documentFiles = [];
 
@@ -1665,8 +1805,27 @@
             return lines.join('\n').trim();
         }
 
-        function setChartDataValue(rawText, options = {}) {
-            const el = document.getElementById('chartData');
+        function appendToTextarea(el, text) {
+            if (!el || !text) return;
+            const current = el.value || '';
+            const separator = current ? '\n' : '';
+            const addition = separator + text;
+            if (document.activeElement === el && typeof el.selectionStart === 'number') {
+                const start = el.selectionStart;
+                const end = el.selectionEnd;
+                const atEnd = end === current.length;
+                el.value = current + addition;
+                if (!atEnd) {
+                    el.selectionStart = start;
+                    el.selectionEnd = end;
+                }
+            } else {
+                el.value = current + addition;
+            }
+        }
+
+        function setFieldValue(fieldId, rawText, options = {}) {
+            const el = document.getElementById(fieldId);
             if (!el) return '';
             const source = typeof rawText === 'string'
                 ? rawText
@@ -1693,24 +1852,66 @@
             return cleaned;
         }
 
+        function setChartDataValue(rawText, options = {}) {
+            return setFieldValue('chartData', rawText, options);
+        }
+
         // Drag and Drop - Global handler for inline ondrop
-        function handleDrop(e) {
+        // V7 API: Now supports targetField parameter for 3-field system
+        function handleDrop(e, targetField) {
             e.preventDefault();
             e.stopPropagation();
             const dt = e.dataTransfer;
+
+            const targetFieldId = targetField || window.lastInputFieldId || 'oldVisitsData';
+            // Store the target field for OCR result appending
+            window.currentDropTargetField = targetFieldId;
+
+            // Check for text data being dropped (e.g., text selection from another window)
+            const textData = dt.getData('text/plain');
+            if (textData && textData.trim()) {
+                const targetEl = document.getElementById(targetFieldId);
+                if (targetEl) {
+                    const currentValue = targetEl.value || '';
+                    const separator = currentValue.trim() ? '\n\n' : '';
+                    setFieldValue(targetFieldId, currentValue + separator + textData);
+                    saveToStorage();
+                    showToast('Pasted', `Text added to ${getFieldDisplayName(targetFieldId)}`, 'success');
+                }
+            }
+
+            // Handle dropped files
             const files = dt.files;
             if (files && files.length) {
                 handleSelectedFiles({ files });
             }
+
             // Remove dragover class from textarea if present
             if (e.currentTarget && e.currentTarget.classList) {
                 e.currentTarget.classList.remove('dragover');
             }
         }
 
+        // Helper to get user-friendly field names
+        function getFieldDisplayName(fieldId) {
+            const names = {
+                'transcriptionData': "Today's Dictation",
+                'oldVisitsData': 'Prior Visits',
+                'mixedOtherData': 'Labs/Imaging/Consults',
+                'chartData': 'Chart Data'
+            };
+            return names[fieldId] || fieldId;
+        }
+
         function initDragAndDrop() {
+            if (!window.lastInputFieldId) {
+                window.lastInputFieldId = 'oldVisitsData';
+            }
             const dropZone = document.getElementById('documentDrop');
             const chartTextarea = document.getElementById('chartData');
+            const oldVisitsTextarea = document.getElementById('oldVisitsData');
+            const mixedOtherTextarea = document.getElementById('mixedOtherData');
+            const transcriptionTextarea = document.getElementById('transcriptionData');
             const filePicker = document.getElementById('filePicker');
 
             function preventDefaults(e) {
@@ -1755,6 +1956,32 @@
                 chartTextarea.addEventListener('blur', () => setChartDataValue());
             }
 
+            if (transcriptionTextarea) {
+                transcriptionTextarea.addEventListener('focus', () => {
+                    window.lastInputFieldId = 'transcriptionData';
+                });
+            }
+
+            if (oldVisitsTextarea) {
+                oldVisitsTextarea.addEventListener('paste', () => {
+                    setTimeout(() => setFieldValue('oldVisitsData', undefined, { preserveCaret: true }), 0);
+                });
+                oldVisitsTextarea.addEventListener('blur', () => setFieldValue('oldVisitsData'));
+                oldVisitsTextarea.addEventListener('focus', () => {
+                    window.lastInputFieldId = 'oldVisitsData';
+                });
+            }
+
+            if (mixedOtherTextarea) {
+                mixedOtherTextarea.addEventListener('paste', () => {
+                    setTimeout(() => setFieldValue('mixedOtherData', undefined, { preserveCaret: true }), 0);
+                });
+                mixedOtherTextarea.addEventListener('blur', () => setFieldValue('mixedOtherData'));
+                mixedOtherTextarea.addEventListener('focus', () => {
+                    window.lastInputFieldId = 'mixedOtherData';
+                });
+            }
+
             // Body-level prevention
             document.body.addEventListener('dragover', preventDefaults, false);
             document.body.addEventListener('drop', preventDefaults, false);
@@ -1776,6 +2003,8 @@
             });
 
             setChartDataValue();
+            setFieldValue('oldVisitsData');
+            setFieldValue('mixedOtherData');
         }
 
         // API Functions
@@ -1810,9 +2039,7 @@
                 if (response.ok) {
                     const text = await response.text();
                     const tx = document.getElementById('transcriptionData');
-                    const currentText = tx ? tx.value : '';
-                    const newText = currentText + (currentText ? '\n' : '') + text;
-                    if (tx) tx.value = newText;
+                    appendToTextarea(tx, text);
                     if (typeof updateCharacterCounter === 'function') {
                         updateCharacterCounter();
                     }
@@ -1866,7 +2093,10 @@
         async function processDocuments(files) {
             showProgress('documentProgress', 'documentProgressBar');
 
-            const existing = setChartDataValue();
+            // V7 API: Determine target field from drop or default to oldVisitsData
+            const targetFieldId = window.currentDropTargetField || window.lastInputFieldId || 'oldVisitsData';
+            const targetEl = document.getElementById(targetFieldId);
+            const existing = targetEl ? targetEl.value : '';
             const results = [];
 
             try {
@@ -1910,9 +2140,16 @@
                 if (results.length) {
                     const block = 'Extracted Text:\n\n' + results.join('\n\n');
                     const newText = existing ? `${existing}\n\n${block}` : block;
-                    setChartDataValue(newText);
+
+                    // V7 API: Append to the correct target field
+                    if (targetEl) {
+                        setFieldValue(targetFieldId, newText);
+                    } else {
+                        // Fallback to legacy setChartDataValue
+                        setChartDataValue(newText);
+                    }
                     saveToStorage();
-                    showToast('Success', `Processed ${files.length} document(s)`, 'success');
+                    showToast('Success', `Processed ${files.length} document(s) to ${getFieldDisplayName(targetFieldId)}`, 'success');
                 } else {
                     showToast('Warning', 'No text extracted', 'warning');
                 }
@@ -1921,15 +2158,23 @@
                 showToast('Error', 'OCR processing failed', 'error');
             } finally {
                 hideProgress('documentProgress');
+                // Clear the drop target
+                window.currentDropTargetField = null;
             }
         }
 
         async function generateNote() {
-            const chartData = setChartDataValue().trim();
             const noteType = document.getElementById('noteType').value;
 
-            if (!chartData) {
-                showToast('Error', 'Please enter chart data before generating note', 'error');
+            // V7 API: Check if any of the 3 input fields has content
+            const transcriptionValue = document.getElementById('transcriptionData')?.value?.trim() || '';
+            const oldVisitsValue = document.getElementById('oldVisitsData')?.value?.trim() || '';
+            const mixedOtherValue = document.getElementById('mixedOtherData')?.value?.trim() || '';
+
+            const hasAnyContent = transcriptionValue || oldVisitsValue || mixedOtherValue;
+
+            if (!hasAnyContent) {
+                showToast('Error', 'Please enter content in at least one input field before generating note', 'error');
                 return;
             }
 
@@ -1946,7 +2191,7 @@
 
             try {
                 if (app.connection.status === 'connected') {
-                    await generateNoteOnline(chartData, noteType);
+                    await generateNoteOnline(null, noteType);
                 } else {
                     // Don't queue note generation - user can simply click again when online
                     showToast('Offline', 'Cannot generate note while offline. Please check your connection.', 'error');
@@ -1969,27 +2214,50 @@
             }
 
             try {
+                // Direct API note type mapping
                 const routeTypeMap = {
-                    consult: 'consult',
+                    progress: 'progress',
                     followup: 'followup',
+                    consult: 'consult',
+                    procedure: 'procedure',
                     referral: 'referral',
                     admission: 'admission',
-                    discharge: 'discharge'
+                    discharge: 'discharge',
+                    transfer: 'transfer',
+                    summarize: 'summarize',
+                    custom: 'custom'
                 };
 
-                const userPromptRaw = (app.customPrompts && app.customPrompts[noteType]) || '';
-                const customPrompt = userPromptRaw.trim();
-                const sanitizedChart = sanitizeUserText(chartData);
-                const sanitizedCustomPrompt = sanitizeUserText(customPrompt);
-                const tx = document.getElementById('transcriptionData');
-                const transcriptionValue = tx ? (tx.value || '') : '';
-                const sanitizedTranscription = sanitizeUserText(transcriptionValue);
+            // Collect inputs from 3 fields
+            const transcriptionValue = document.getElementById('transcriptionData')?.value || '';
+            const oldVisitsValue = document.getElementById('oldVisitsData')?.value || '';
+            const mixedOtherValue = document.getElementById('mixedOtherData')?.value || '';
+            const userSpeciality = document.getElementById('userSpeciality')?.value || '';
+            const userPromptRaw = (app.customPrompts && app.customPrompts[noteType]) || '';
+            const customPrompt = userPromptRaw.trim();
 
+                // Sanitize all inputs
+                const sanitizedTranscription = sanitizeUserText(transcriptionValue);
+                const sanitizedOldVisits = sanitizeUserText(oldVisitsValue);
+                const sanitizedMixedOther = sanitizeUserText(mixedOtherValue);
+                const sanitizedCustomPrompt = sanitizeUserText(customPrompt);
+
+                // Build direct payload
                 const formData = new FormData();
-                formData.append('note_type', routeTypeMap[noteType] || 'consult');
-                formData.append('chart_data', sanitizedChart);
+                formData.append('note_type', routeTypeMap[noteType] || 'progress_note');
+                formData.append('transcription_text', sanitizedTranscription);
+                formData.append('old_visits_text', sanitizedOldVisits);
+                formData.append('mixed_other_text', sanitizedMixedOther);
                 formData.append('custom_prompt', sanitizedCustomPrompt);
-                formData.append('transcription', sanitizedTranscription);
+                formData.append('user_speciality', sanitizeUserText(userSpeciality));
+
+                // Optional settings
+                if (window.app?.settings?.temperature) {
+                    formData.append('temperature', window.app.settings.temperature);
+                }
+                if (window.app?.settings?.maxTokens) {
+                    formData.append('max_tokens', window.app.settings.maxTokens);
+                }
 
                 const token = getAuthToken();
                 if (!token) {
@@ -1997,7 +2265,10 @@
                     return;
                 }
                 app.isStreaming = true;
-                const response = await fetch(`${getApiBase(app.settings.serverUrl || '/api')}/generate_stream`, {
+
+                // Use direct streaming endpoint
+                const apiBase = getApiBase(app.settings.serverUrl || '/api');
+                const response = await fetch(`${apiBase}/generate_v8_stream`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` },
                     body: formData
@@ -2027,13 +2298,49 @@
                 }
 
                 saveToStorage();
+                if (window.AuthWorkspace && typeof window.AuthWorkspace.queueSave === 'function') {
+                    window.AuthWorkspace.queueSave();
+                }
                 showToast('Success', 'Note generated successfully', 'success');
                 try { updateConnectionStatus('connected'); } catch {}
                 app.isStreaming = false;
                 setTimeout(() => { try { checkConnection(); } catch {} }, 1000);
 
+                // Fetch V7 metadata for uncertain items display
                 const genId = window.lastGenerationId;
                 if (genId) {
+                    try {
+                        const metaResponse = await fetch(
+                            `${apiBase}/generation/${genId}/meta`,
+                            { headers: { 'Authorization': `Bearer ${token}` } }
+                        );
+
+                        if (metaResponse.ok) {
+                            const meta = await metaResponse.json();
+
+                            // Log stats for debugging
+                            if (meta.stats) {
+                                console.log('[Map-Reduce Stats]', meta.stats);
+                            }
+
+                            // Display uncertain items for user review
+                            if (meta._internal) {
+                                displayUncertainItems(meta._internal);
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('Could not fetch generation metadata:', e);
+                    }
+
+                    const ragEligible = ['consult', 'followup', 'progress', 'admission'];
+                    if (!ragEligible.includes(noteType)) {
+                        const card = document.getElementById('consultCommentCard');
+                        if (card) card.classList.add('hidden');
+                        const ragHintCard = document.getElementById('ragHint');
+                        if (ragHintCard) ragHintCard.classList.add('hidden');
+                        return;
+                    }
+
                     showToast('Processing', 'Gathering evidence and references...', 'info');
 
                     const card = document.getElementById('consultCommentCard');
@@ -2682,10 +2989,120 @@
         }
 
         function clearChartData() {
-            if (confirm('Clear chart data only?')) {
-                setChartDataValue('');
+            // Legacy function - now clears oldVisitsData for backward compatibility
+            clearOldVisits();
+        }
+
+        function clearOldVisits() {
+            const el = document.getElementById('oldVisitsData');
+            if (!el || !el.value) return;
+            if (confirm('Clear Prior Visits data?')) {
+                el.value = '';
+                updateCharacterCounter();
                 saveToStorage();
-                showToast('Cleared', 'Chart data cleared', 'success');
+                showToast('Cleared', 'Prior visits cleared', 'success');
+            }
+        }
+
+        function clearMixedOther() {
+            const el = document.getElementById('mixedOtherData');
+            if (!el || !el.value) return;
+            if (confirm('Clear Other Chart Data?')) {
+                el.value = '';
+                updateCharacterCounter();
+                saveToStorage();
+                showToast('Cleared', 'Other chart data cleared', 'success');
+            }
+        }
+
+        // V7 API: Uncertain Items Display Functions
+        function displayUncertainItems(internalData) {
+            const card = document.getElementById('uncertainItemsCard');
+            const list = document.getElementById('uncertainItemsList');
+
+            if (!card || !list) return;
+
+            const items = internalData?.uncertain_items || [];
+
+            if (items.length === 0) {
+                card.classList.add('hidden');
+                return;
+            }
+
+            list.innerHTML = items.map((item) => {
+                const factType = item.fact_type || 'unknown';
+                const icon = getFactTypeIcon(factType);
+                const summary = formatFactSummary(item);
+                const quote = item.quote ? `"${item.quote}"` : '';
+
+                return `
+                    <div class="list-group-item list-group-item-warning">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <span class="badge bg-warning" style="color: #000;">${icon} ${factType}</span>
+                                <strong style="margin-left: 0.5rem;">${summary}</strong>
+                            </div>
+                        </div>
+                        ${quote ? `<small class="text-muted fst-italic d-block mt-1">${quote}</small>` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            card.classList.remove('hidden');
+        }
+
+        function getFactTypeIcon(factType) {
+            const icons = {
+                medication: '\uD83D\uDC8A',   // pill
+                lab: '\uD83D\uDD2C',          // microscope
+                vital: '\uD83D\uDCCA',        // chart
+                diagnosis: '\uD83E\uDE7A',    // stethoscope
+                procedure: '\u2702\uFE0F',    // scissors
+                allergy: '\u26A0\uFE0F',      // warning
+                imaging: '\uD83D\uDCF7',      // camera
+                symptom: '\uD83E\uDD12',      // sick face
+                social_history: '\uD83D\uDC65', // group
+                family_history: '\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67', // family
+                demographic: '\uD83D\uDCCB'   // clipboard
+            };
+            return icons[factType] || '\uD83D\uDCC4'; // document
+        }
+
+        function formatFactSummary(item) {
+            switch (item.fact_type) {
+                case 'medication':
+                    return `${item.name || 'Unknown'} ${item.dose || ''} ${item.frequency || ''}`.trim();
+                case 'lab':
+                    return `${item.test_name || 'Unknown'}: ${item.value || item.result_text || 'pending'}`;
+                case 'vital':
+                    return `${item.name || 'Unknown'}: ${item.value || ''} ${item.unit || ''}`.trim();
+                case 'diagnosis':
+                    return `${item.condition || 'Unknown'} (${item.status || 'unknown'})`;
+                case 'allergy':
+                    return `${item.allergen || 'Unknown'} - ${item.reaction || 'reaction unknown'}`;
+                case 'imaging':
+                    return `${item.study_type || 'Study'}: ${item.body_part || ''} - ${item.impression || item.findings || ''}`.trim();
+                case 'procedure':
+                    return `${item.name || 'Unknown procedure'}`;
+                case 'symptom':
+                    return `${item.symptom || 'Unknown'} ${item.duration ? `(${item.duration})` : ''}`.trim();
+                default:
+                    return Object.values(item).filter(v => typeof v === 'string' && v.length < 50).slice(0, 2).join(' - ') || 'Unknown item';
+            }
+        }
+
+        function toggleUncertainItems() {
+            const body = document.getElementById('uncertainItemsBody');
+            const icon = document.getElementById('uncertainToggleIcon');
+
+            if (!body || !icon) return;
+
+            if (body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                icon.innerHTML = '&#9660;'; // down arrow
+            } else {
+                body.classList.add('hidden');
+                icon.innerHTML = '&#9654;'; // right arrow
             }
         }
 
@@ -2708,6 +3125,10 @@
                 setChartDataValue('');
                 document.getElementById('generatedNote').value = '';
                 document.getElementById('transcriptionData').value = '';
+                const oldVisitsEl = document.getElementById('oldVisitsData');
+                if (oldVisitsEl) oldVisitsEl.value = '';
+                const mixedOtherEl = document.getElementById('mixedOtherData');
+                if (mixedOtherEl) mixedOtherEl.value = '';
                 updateGeneratedNoteEmptyState();
 
                 // Clear/hide evidence-based comment section
@@ -2717,6 +3138,8 @@
                 if (consultCard) consultCard.classList.add('hidden');
                 const retryConsultBtn = document.getElementById('retryConsultComment');
                 if (retryConsultBtn) retryConsultBtn.classList.add('hidden');
+                const ragHintCard = document.getElementById('ragHint');
+                if (ragHintCard) ragHintCard.classList.add('hidden');
 
                 if (app.isListening) {
                     stopSpeechRecognition();
@@ -2959,7 +3382,10 @@
                     if (!token) {
                         throw new Error('Missing auth token');
                     }
-                    const r = await fetch(`${apiBase}/generation/${genId}/consult_comment`, {
+                    const retryUrl = tries === 1
+                        ? `${apiBase}/generation/${genId}/consult_comment?force=1&strategy=full_note`
+                        : `${apiBase}/generation/${genId}/consult_comment`;
+                    const r = await fetch(retryUrl, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
 
@@ -3028,28 +3454,32 @@
         }
 
         function saveDraft() {
-            const transcription = document.getElementById('transcriptionData').value;
-            const chartData = setChartDataValue(undefined, { preserveCaret: true });
+            const transcription = document.getElementById('transcriptionData')?.value || '';
+            const oldVisits = document.getElementById('oldVisitsData')?.value || '';
+            const mixedOther = document.getElementById('mixedOtherData')?.value || '';
 
-            if (!transcription && !chartData) {
+            if (!transcription && !oldVisits && !mixedOther) {
                 showToast('Nothing to Save', 'No data to save', 'warning');
                 return;
             }
 
             const draft = {
                 transcription: transcription,
-                chartData: chartData,
+                oldVisits: oldVisits,
+                mixedOther: mixedOther,
+                noteType: document.getElementById('noteType')?.value || 'consult',
                 timestamp: new Date().toISOString()
             };
 
             localStorage.setItem('notegen_draft', JSON.stringify(draft));
-            showToast('Draft Saved', 'Chart data and transcription saved to browser localStorage (persists until cleared)', 'success');
+            showToast('Draft Saved', 'Draft saved to browser localStorage (persists until cleared)', 'success');
         }
 
         function saveToStorage() {
-            const chartData = setChartDataValue(undefined, { preserveCaret: true });
             const data = {
-                chartData: chartData,
+                transcription: document.getElementById('transcriptionData')?.value || '',
+                oldVisits: document.getElementById('oldVisitsData')?.value || '',
+                mixedOther: document.getElementById('mixedOtherData')?.value || '',
                 generatedNote: document.getElementById('generatedNote').value,
                 noteType: document.getElementById('noteType').value
             };
@@ -3061,10 +3491,16 @@
             if (stored) {
                 try {
                     const data = JSON.parse(stored);
-                    setChartDataValue(data.chartData || '');
+                    const oldVisits = data.oldVisits || data.chartData || '';
+                    setFieldValue('transcriptionData', data.transcription || '');
+                    setFieldValue('oldVisitsData', oldVisits);
+                    setFieldValue('mixedOtherData', data.mixedOther || '');
                     document.getElementById('generatedNote').value = data.generatedNote || '';
                     document.getElementById('noteType').value = data.noteType || 'followup';
                     updateGeneratedNoteEmptyState();
+                    if (typeof updateCharacterCounter === 'function') {
+                        updateCharacterCounter();
+                    }
                 } catch (error) {
                     console.error('Error loading from storage:', error);
                 }
@@ -3174,6 +3610,22 @@
             isListening: false,
             requestQueue: [],
             templates: {
+                progress: `History of Present Illness:
+
+Physical Exam:
+
+Investigations:
+
+Impression:
+
+Plan:`,
+                followup: `Subjective:
+
+Objective:
+
+Assessment:
+
+Plan:`,
                 consult: `Chief Complaint:
 
 History of Present Illness:
@@ -3193,13 +3645,19 @@ Physical Examination:
 Investigations:
 
 Impression and Plan:`,
-                followup: `Subjective:
+                procedure: `Procedure:
 
-Objective:
+Date:
 
-Assessment:
+Indication:
 
-Plan:`,
+Technique:
+
+Findings:
+
+Complications:
+
+Disposition:`,
                 referral: `Reason for Referral:
 
 Relevant History:
@@ -3240,7 +3698,26 @@ Medications at Discharge:
 
 Follow-Up:
 
-Discharge Instructions:`
+Discharge Instructions:`,
+                transfer: `Transfer Date:
+
+Transferring From:
+
+Transferring To:
+
+Reason for Transfer:
+
+Current Diagnoses:
+
+Hospital Course Summary:
+
+Current Medications:
+
+Pending Items:
+
+Contact Information:`,
+                summarize: `Summary of Records:`,
+                custom: ``
             },
             defaultPrompts: {},
             defaultPromptSystem: '',
@@ -3331,9 +3808,8 @@ Discharge Instructions:`
                 showToast('Warning', 'Default prompts not loaded yet. Check API connection.', 'warning');
             }
 
-            if (!select.value) {
-                select.value = 'consult';
-            }
+            const activeNoteType = document.getElementById('noteType')?.value || 'consult';
+            select.value = activeNoteType;
 
             updatePromptDisplay();
             modal.classList.add('show');
@@ -3429,9 +3905,19 @@ Discharge Instructions:`
             };
             app.workspace.version = data?.version || 1;
 
-            // Pull custom prompts from extras.customPrompts
+            // Pull custom prompts from extras.customPrompts (merge with any locally staged prompts)
             const wsCustom = app.workspace.state?.extras?.customPrompts;
-            app.customPrompts = (wsCustom && typeof wsCustom === 'object') ? { ...wsCustom } : {};
+            const localCustom = (app.customPrompts && typeof app.customPrompts === 'object') ? { ...app.customPrompts } : {};
+            const hasWsCustom = wsCustom && typeof wsCustom === 'object' && Object.keys(wsCustom).length > 0;
+            if (hasWsCustom) {
+                app.customPrompts = { ...wsCustom, ...localCustom };
+            } else {
+                app.customPrompts = localCustom;
+                if (Object.keys(localCustom).length > 0) {
+                    if (!app.workspace.state.extras) app.workspace.state.extras = {};
+                    app.workspace.state.extras.customPrompts = { ...localCustom };
+                }
+            }
 
             return true;
         }
@@ -3439,6 +3925,8 @@ Discharge Instructions:`
         async function saveWorkspaceCustomPrompts() {
             const auth = window.AuthWorkspace;
             if (!auth || typeof auth.request !== 'function') return false;
+
+            const pendingPrompts = { ...(app.customPrompts || {}) };
 
             // Load existing workspace state if not yet loaded
             if (!app.workspace.state) {
@@ -3452,6 +3940,7 @@ Discharge Instructions:`
                         extras: {}
                     };
                 }
+                app.customPrompts = { ...(app.customPrompts || {}), ...pendingPrompts };
             }
 
             // Store custom prompts in extras (not top-level)
@@ -3629,26 +4118,77 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
             }
         }
 
-        // Character Counter Logic
+        // Character Counter Logic (V7 API - 3 field system)
         function updateCharacterCounter() {
+            const MAX_OLD_VISITS = 75000;
+            const MAX_MIXED_OTHER = 75000;
+
             const transcriptionEl = document.getElementById('transcriptionData');
-            const chartDataEl = document.getElementById('chartData');
-            const counterEl = document.getElementById('characterCounter');
+            const oldVisitsEl = document.getElementById('oldVisitsData');
+            const mixedOtherEl = document.getElementById('mixedOtherData');
 
-            if (!transcriptionEl || !chartDataEl || !counterEl) return;
+            const transcriptionLen = transcriptionEl?.value.length || 0;
+            const oldVisitsLen = oldVisitsEl?.value.length || 0;
+            const mixedOtherLen = mixedOtherEl?.value.length || 0;
 
-            const transcriptionLength = transcriptionEl.value.length;
-            const chartDataLength = chartDataEl.value.length;
-            const totalUsed = transcriptionLength + chartDataLength;
-            const remaining = 75000 - totalUsed;
-
-            if (remaining < 0) {
-                counterEl.innerHTML = `Characters remaining: <span class="text-danger">${remaining.toLocaleString()} / 75000 ⚠️ Note will be truncated</span>`;
-                counterEl.className = 'text-danger';
-            } else {
-                counterEl.innerHTML = `Characters remaining: ${remaining.toLocaleString()} / 75000`;
-                counterEl.className = 'text-muted';
+            // Update transcription counter (unlimited)
+            const transcriptionCounter = document.getElementById('transcriptionCounter');
+            if (transcriptionCounter) {
+                transcriptionCounter.textContent = `${transcriptionLen.toLocaleString()} chars`;
             }
+
+            // Update old visits counter
+            const oldVisitsCounter = document.getElementById('oldVisitsCounter');
+            if (oldVisitsCounter) {
+                const oldVisitsRemaining = MAX_OLD_VISITS - oldVisitsLen;
+                oldVisitsCounter.textContent = `${oldVisitsLen.toLocaleString()} / ${MAX_OLD_VISITS.toLocaleString()}`;
+                oldVisitsCounter.className = oldVisitsRemaining < 0 ? 'text-danger' : 'text-muted';
+                if (oldVisitsEl) {
+                    oldVisitsEl.classList.toggle('is-invalid', oldVisitsRemaining < 0);
+                }
+            }
+
+            // Update mixed other counter
+            const mixedOtherCounter = document.getElementById('mixedOtherCounter');
+            if (mixedOtherCounter) {
+                const mixedOtherRemaining = MAX_MIXED_OTHER - mixedOtherLen;
+                mixedOtherCounter.textContent = `${mixedOtherLen.toLocaleString()} / ${MAX_MIXED_OTHER.toLocaleString()}`;
+                mixedOtherCounter.className = mixedOtherRemaining < 0 ? 'text-danger' : 'text-muted';
+                if (mixedOtherEl) {
+                    mixedOtherEl.classList.toggle('is-invalid', mixedOtherRemaining < 0);
+                }
+            }
+
+            // Show/hide global warning
+            const warningEl = document.getElementById('charLimitWarning');
+            const messageEl = document.getElementById('charLimitMessage');
+            if (warningEl && messageEl) {
+                const oldVisitsOver = oldVisitsLen > MAX_OLD_VISITS;
+                const mixedOtherOver = mixedOtherLen > MAX_MIXED_OTHER;
+
+                if (oldVisitsOver || mixedOtherOver) {
+                    warningEl.classList.remove('hidden');
+                    const overFields = [];
+                    if (oldVisitsOver) overFields.push('Prior Visits');
+                    if (mixedOtherOver) overFields.push('Labs/Imaging/Consults');
+                    messageEl.textContent = `${overFields.join(' and ')} exceed${overFields.length === 1 ? 's' : ''} the 75,000 character limit. Content will be truncated.`;
+                } else {
+                    warningEl.classList.add('hidden');
+                }
+            }
+        }
+
+        // Attach character counter listeners to all 3 fields
+        function initCharacterCounters() {
+            ['transcriptionData', 'oldVisitsData', 'mixedOtherData'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', updateCharacterCounter);
+                    el.addEventListener('paste', () => setTimeout(updateCharacterCounter, 10));
+                }
+            });
+            // Initial update
+            updateCharacterCounter();
         }
 
         // Initialize app
@@ -3670,14 +4210,47 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
                 markNoteDirty();
                 updateGeneratedNoteEmptyState();
             });
+
+            const noteTypeEl = document.getElementById('noteType');
+            if (noteTypeEl) {
+                noteTypeEl.addEventListener('change', () => {
+                    const promptSelect = document.getElementById('noteTypeSelect');
+                    if (promptSelect && promptSelect.value !== noteTypeEl.value) {
+                        promptSelect.value = noteTypeEl.value;
+                        const promptModal = document.getElementById('promptModal');
+                        if (promptModal && promptModal.classList.contains('show')) {
+                            updatePromptDisplay();
+                        }
+                    }
+                });
+            }
+
+            // Sanitize text when user copies from the generated note textarea
+            // This ensures clipboard content is EMR-compatible even if Unicode slips through
+            document.getElementById('generatedNote').addEventListener('copy', (event) => {
+                const textarea = event.target;
+                if (textarea.selectionStart !== textarea.selectionEnd) {
+                    // User is copying selected text
+                    const selectedText = textarea.value.substring(
+                        textarea.selectionStart,
+                        textarea.selectionEnd
+                    );
+                    const sanitized = finalizeNoteText(selectedText);
+
+                    // Put sanitized text in clipboard instead of original
+                    event.clipboardData.setData('text/plain', sanitized);
+                    event.preventDefault();
+
+                    console.log('[Copy] Sanitized clipboard text for EMR compatibility');
+                }
+            });
+
             const initial = currentNoteText();
             app.noteState.lastSavedHash = initial ? simpleHash(initial) : null;
             updateGeneratedNoteEmptyState();
 
-            updateCharacterCounter();
-
-            document.getElementById('transcriptionData').addEventListener('input', updateCharacterCounter);
-            document.getElementById('chartData').addEventListener('input', updateCharacterCounter);
+            // Initialize V7 character counters for all 3 input fields
+            initCharacterCounters();
 
             registerUnloadGuards();
 
@@ -3783,6 +4356,10 @@ window.addEventListener('workspace-auth-changed', (event) => {
       console.error('[Init] Failed to load workspace/prompts:', err);
     });
   } else {
+    // Clear all UI data when logged out
+    if (window.AuthWorkspace && typeof window.AuthWorkspace.clearUiState === 'function') {
+      window.AuthWorkspace.clearUiState();
+    }
     updateConnectionStatus('disconnected');
     const statusEl = document.getElementById('connectionStatus');
     if (statusEl) {

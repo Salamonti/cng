@@ -27,7 +27,9 @@ app.use(cors({
     'http://localhost:3000',
     'https://localhost:3443',
     'https://ieissa.com:3443',
-    'https://ieissa.com'
+    'https://ieissa.com',
+    'https://notes.ieissa.com:3443',
+    'https://notes.ieissa.com'
   ],
   credentials: true,
   allowedHeaders: ['Authorization', 'Content-Type', 'X-API-Key'],
@@ -68,8 +70,11 @@ if (sslOptions) {
 const FASTAPI_URL = (process.env.FASTAPI_URL || config.backend_url || 'http://127.0.0.1:7860');
 // Llama gateway (uvicorn) on Windows host, default 7871. Override with env if needed.
 const GATEWAY_URL = (process.env.LLAMA_GATEWAY_URL || 'http://127.0.0.1:7871');
+// Open WebUI (Docker container)
+const OPENWEBUI_URL = (process.env.OPENWEBUI_URL || 'http://127.0.0.1:8035');
 console.log('FASTAPI_URL target =', FASTAPI_URL);
 console.log('LLAMA_GATEWAY_URL target =', GATEWAY_URL);
+console.log('OPENWEBUI_URL target =', OPENWEBUI_URL);
 
 // Direct connectivity check (bypasses proxy middleware)
 app.get('/fastapi-check', (req, res) => {
@@ -106,6 +111,17 @@ const llamaProxyCommon = {
   timeout: (config.backend_timeout || 300000),
 };
 
+// Proxy to Open WebUI
+const openwebuiProxyCommon = {
+  target: OPENWEBUI_URL,
+  changeOrigin: true,
+  xfwd: true,
+  secure: false,
+  ws: true,  // Enable WebSocket support for real-time features
+  proxyTimeout: (config.backend_timeout || 300000),
+  timeout: (config.backend_timeout || 300000),
+};
+
 // New unique endpoints -> Llama Gateway on 7871
 app.use(
   '/llama/generate',
@@ -122,6 +138,27 @@ app.use(
     pathRewrite: () => '/api/check',
   })
 );
+
+// WhisperX transcription endpoint -> FastAPI on 7860
+app.use(
+  '/whisperx',
+  createProxyMiddleware({
+    ...proxyCommon,
+    pathRewrite: () => '/api/transcribe_diarized',
+  })
+);
+
+// OCR endpoint -> FastAPI on 7860
+app.use(
+  '/ocr',
+  createProxyMiddleware({
+    ...proxyCommon,
+    pathRewrite: () => '/api/ocr',
+  })
+);
+
+// Note: Open WebUI proxy moved to dedicated server (openwebui-proxy.js)
+// Running on port 8443 - access at https://ieissa.com:8443/
 
 // API namespace - preserve /api prefix and trailing slashes
 app.use(

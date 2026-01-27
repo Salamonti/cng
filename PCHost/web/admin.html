@@ -519,7 +519,8 @@
 
       function getWorkspaceToken() {
         try {
-          return sessionStorage.getItem('auth_access_token') || '';
+          // Use separate storage key to avoid conflict with main workspace (index.html)
+          return sessionStorage.getItem('admin_workspace_token') || '';
         } catch {
           // fall through
         }
@@ -1339,8 +1340,14 @@
             const adminBadge = user.is_admin ? 'Admin' : 'User';
             const approveDisabled = (user.is_approved || user.is_admin) ? 'disabled' : '';
             const rejectDisabled = user.is_admin ? 'disabled' : '';
-            const deleteDisabled = user.is_admin ? 'disabled' : '';
             const encodedEmailAttr = encodeURIComponent(user.email || 'user account');
+
+            // Hide delete button for admin users, show "Protected" label instead
+            const deleteButton = user.is_admin
+              ? '<span style="color:#6c757d;font-size:0.8rem;">Protected</span>'
+              : `<button class="btn-sm btn-warning"
+                   onclick="handleDeleteUser('${user.id}', decodeURIComponent('${encodedEmailAttr}'))">Delete</button>`;
+
             return `
               <tr>
                 <td>${escapeHtml(user.email || '')}</td>
@@ -1352,8 +1359,7 @@
                     onclick="handleUserAction('${user.id}', 'approve')">Approve</button>
                   <button class="btn-sm btn-danger" ${rejectDisabled}
                     onclick="handleUserAction('${user.id}', 'reject')">Reject</button>
-                  <button class="btn-sm btn-warning" ${deleteDisabled}
-                    onclick="handleDeleteUser('${user.id}', decodeURIComponent('${encodedEmailAttr}'))">Delete</button>
+                  ${deleteButton}
                 </td>
               </tr>
             `;
@@ -1457,7 +1463,14 @@
 
       async function handleDeleteUser(userId, emailLabel = 'this user') {
         if (!userId) return;
-        
+
+        // Double-check if user is an admin (defense in depth)
+        const user = userListState.users.find(u => u.id === userId);
+        if (user && user.is_admin) {
+          setUserStatus('Cannot delete admin users. Admin accounts are protected.', true);
+          return;
+        }
+
         const confirmed = window.confirm(
           `⚠️ DELETE USER ACCOUNT?\n\n` +
           `Email: ${emailLabel}\n\n` +
@@ -1485,7 +1498,13 @@
           
           if (!response.ok && response.status !== 204) {
             const errorText = await response.text();
-            throw new Error(`HTTP ${response.status}: ${errorText || response.statusText}`);
+            // Parse backend error message if JSON
+            let errorMsg = errorText || response.statusText;
+            try {
+              const json = JSON.parse(errorText);
+              errorMsg = json.detail || json.message || errorMsg;
+            } catch {}
+            throw new Error(errorMsg);
           }
           
           removeUserFromState(userId);

@@ -49,9 +49,11 @@
           })
           .catch(() => {
             this.clearSession();
+            this.clearUiState();
             this.showAuthForms();
           });
       } else {
+        this.clearUiState();
         this.showAuthForms();
       }
     },
@@ -112,6 +114,11 @@
         const fields = [
           'generatedNote',
           'transcriptionData',
+          // V7 API: New 3-field system
+          'oldVisitsData',
+          'mixedOtherData',
+          'userSpeciality',
+          // Legacy: Keep chartData for backward compatibility
           'chartData',
         ];
 
@@ -186,6 +193,8 @@
           const url = (!this.apiBase || this.apiBase === '/api') ? '/api/workspace/' : `${this.apiBase}/workspace/`;
           navigator.sendBeacon(url, blob);
         }
+
+        // NOTE: Do not clear UI fields here; it can overwrite persisted workspace data on unload.
       });
 
       // Save when tab becomes hidden (user switches tabs or minimizes browser)
@@ -216,15 +225,36 @@
       if (this.registerForm) this.registerForm.classList.add('hidden');
       if (this.toggleLink) this.toggleLink.textContent = 'or Register Now';
       if (this.card) this.card.classList.remove('authenticated');
+      document.body.classList.remove('auth-ready');
       const apiSection = document.getElementById('apiSection');
       if (apiSection) apiSection.classList.remove('hidden');
       this.disableIdleTracking();
+
+      // Clear sensitive note fields when not logged in.
+      try {
+        const transEl = document.getElementById('transcriptionData');
+        if (transEl) transEl.value = '';
+        const oldVisitsEl = document.getElementById('oldVisitsData');
+        if (oldVisitsEl) oldVisitsEl.value = '';
+        const mixedOtherEl = document.getElementById('mixedOtherData');
+        if (mixedOtherEl) mixedOtherEl.value = '';
+        const noteEl = document.getElementById('generatedNote');
+        if (noteEl) noteEl.value = '';
+        const chartEl = document.getElementById('chartData');
+        if (chartEl) chartEl.value = '';
+      } catch {}
+
+      try {
+        localStorage.removeItem('clinicalNoteData');
+        localStorage.removeItem('notegen_draft');
+      } catch {}
     },
 
     showAuthActions(profile) {
       if (this.formsWrapper) this.formsWrapper.classList.add('hidden');
       if (this.actionsWrapper) this.actionsWrapper.classList.remove('hidden');
       if (this.card) this.card.classList.add('authenticated');
+      document.body.classList.add('auth-ready');
       const name = profile?.email || 'User';
       this.updateStatus(`Signed in as ${name}`, 'success');
 
@@ -492,18 +522,66 @@
 
     applyWorkspaceState(state) {
       const noteEl = document.getElementById('generatedNote');
-      if (noteEl) {
-        noteEl.value = typeof state.draft === 'string' ? state.draft : '';
-      }
       const extras = state.extras || {};
+      if (noteEl) {
+        const draft = typeof state.draft === 'string' ? state.draft : '';
+        const fallbackNote = typeof extras.generatedNote === 'string' ? extras.generatedNote : '';
+        noteEl.value = draft || fallbackNote || noteEl.value || '';
+      }
       const transEl = document.getElementById('transcriptionData');
       if (transEl) {
-        transEl.value = typeof extras.transcription === 'string' ? extras.transcription : '';
+        const transcription = typeof extras.transcription === 'string' ? extras.transcription : '';
+        const currentEncounter = typeof extras.currentEncounter === 'string' ? extras.currentEncounter : '';
+        transEl.value = transcription || currentEncounter || transEl.value || '';
       }
+
+      // V7 API: Restore old visits field
+      const oldVisitsEl = document.getElementById('oldVisitsData');
+      if (oldVisitsEl) {
+        // Check for new format first, then fall back to legacy 'chart' field
+        if (typeof extras.oldVisits === 'string' && extras.oldVisits) {
+          oldVisitsEl.value = extras.oldVisits;
+        } else if (typeof extras.chart === 'string' && extras.chart) {
+          // Backward compatibility: migrate old 'chart' data to 'oldVisits'
+          oldVisitsEl.value = extras.chart;
+        } else {
+          oldVisitsEl.value = oldVisitsEl.value || '';
+        }
+      }
+
+      // V7 API: Restore mixed other field
+      const mixedOtherEl = document.getElementById('mixedOtherData');
+      const specialityEl = document.getElementById('userSpeciality');
+      if (mixedOtherEl) {
+        const mixedOther = typeof extras.mixedOther === 'string' ? extras.mixedOther : '';
+        mixedOtherEl.value = mixedOther || mixedOtherEl.value || '';
+      }
+      if (specialityEl) {
+        specialityEl.value = typeof extras.userSpeciality === 'string' ? extras.userSpeciality : '';
+      }
+
+      // Legacy: Also update chartData if it exists (for backward compatibility)
       const chartEl = document.getElementById('chartData');
       if (chartEl) {
         chartEl.value = typeof extras.chart === 'string' ? extras.chart : '';
       }
+
+      // Clear RAG consult comment UI elements
+      const consultCommentEl = document.getElementById('consultComment');
+      if (consultCommentEl) consultCommentEl.value = '';
+      const consultRefsEl = document.getElementById('consultRefs');
+      if (consultRefsEl) consultRefsEl.textContent = '';
+      const consultCard = document.getElementById('consultCommentCard');
+      if (consultCard) consultCard.classList.add('hidden');
+      const retryConsultBtn = document.getElementById('retryConsultComment');
+      if (retryConsultBtn) retryConsultBtn.classList.add('hidden');
+      const ragHintCard = document.getElementById('ragHint');
+      if (ragHintCard) ragHintCard.classList.add('hidden');
+
+      // Clear uncertain items card
+      const uncertainCard = document.getElementById('uncertainItemsCard');
+      if (uncertainCard) uncertainCard.classList.add('hidden');
+
       if (extras.customPrompts && window.app) {
         window.app.customPrompts = extras.customPrompts;
         if (typeof saveCustomPromptsToStorage === 'function') {
@@ -516,11 +594,19 @@
       if (typeof window.updateGeneratedNoteEmptyState === 'function') {
         window.updateGeneratedNoteEmptyState();
       }
+      // Update character counters after restoration
+      if (typeof window.updateCharacterCounter === 'function') {
+        window.updateCharacterCounter();
+      }
     },
 
     collectWorkspaceState() {
       const noteEl = document.getElementById('generatedNote');
       const transEl = document.getElementById('transcriptionData');
+      const oldVisitsEl = document.getElementById('oldVisitsData');
+      const mixedOtherEl = document.getElementById('mixedOtherData');
+      const specialityEl = document.getElementById('userSpeciality');
+      // Backward compatibility: also check old chartData element
       const chartEl = document.getElementById('chartData');
       return {
         settings: {
@@ -531,9 +617,16 @@
         draft: noteEl ? noteEl.value : '',
         extras: {
           transcription: transEl ? transEl.value : '',
-          chart: chartEl ? chartEl.value : '',
+          currentEncounter: transEl ? transEl.value : '',
+          // V7 API: 3-field system
+          oldVisits: oldVisitsEl ? oldVisitsEl.value : '',
+          mixedOther: mixedOtherEl ? mixedOtherEl.value : '',
+          userSpeciality: specialityEl ? specialityEl.value : '',
+          generatedNote: noteEl ? noteEl.value : '',
           customPrompts: window.app?.customPrompts || {},
           appSettings: window.app?.settings || {},
+          // Backward compatibility: keep chart field for migration
+          chart: oldVisitsEl ? oldVisitsEl.value : (chartEl ? chartEl.value : ''),
         },
       };
     },
@@ -825,6 +918,11 @@
       }
       const transEl = document.getElementById('transcriptionData');
       if (transEl) transEl.value = '';
+      // V7 API: Clear new fields
+      const oldVisitsEl = document.getElementById('oldVisitsData');
+      if (oldVisitsEl) oldVisitsEl.value = '';
+      const mixedOtherEl = document.getElementById('mixedOtherData');
+      if (mixedOtherEl) mixedOtherEl.value = '';
       const consultCommentEl = document.getElementById('consultComment');
       if (consultCommentEl) consultCommentEl.value = '';
       const consultRefsEl = document.getElementById('consultRefs');
@@ -833,6 +931,11 @@
       if (consultCard) consultCard.classList.add('hidden');
       const retryConsultBtn = document.getElementById('retryConsultComment');
       if (retryConsultBtn) retryConsultBtn.classList.add('hidden');
+      const ragHintCard = document.getElementById('ragHint');
+      if (ragHintCard) ragHintCard.classList.add('hidden');
+      // V7 API: Clear uncertain items
+      const uncertainCard = document.getElementById('uncertainItemsCard');
+      if (uncertainCard) uncertainCard.classList.add('hidden');
       if (window.app) {
         if (window.app.isListening && typeof window.stopSpeechRecognition === 'function') {
           try { window.stopSpeechRecognition(); } catch {}

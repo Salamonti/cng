@@ -300,23 +300,29 @@ class SimpleNoteGenerator:
 
     @staticmethod
     def _extract_stream_content(data: Dict) -> Optional[str]:
+        # Check for direct content fields
         if "content" in data:
             return data.get("content")
         if "text" in data:
             return data.get("text")
+
         if "choices" in data and isinstance(data["choices"], list):
             choice = data["choices"][0] if data["choices"] else None
             if isinstance(choice, dict):
                 delta = choice.get("delta")
-                if isinstance(delta, dict) and delta.get("content"):
-                    return delta.get("content")
+                if isinstance(delta, dict):
+                    # Check content first, then reasoning_content
+                    if delta.get("content"):
+                        return delta.get("content")
                 message = choice.get("message")
-                if isinstance(message, dict) and message.get("content"):
-                    return message.get("content")
+                if isinstance(message, dict):
+                    if message.get("content"):
+                        return message.get("content")
                 if "text" in choice:
                     return choice.get("text")
         if "message" in data and isinstance(data["message"], dict):
-            return data["message"].get("content")
+            msg = data["message"]
+            return msg.get("content")
         return None
 
 

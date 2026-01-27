@@ -282,7 +282,7 @@ class UniversalAudioHandler {
             });
 
             this.audioChunks = [];
-            
+
             // Use compatible audio format
             let options = { mimeType: 'audio/webm' };
             if (!MediaRecorder.isTypeSupported('audio/webm')) {
@@ -296,13 +296,13 @@ class UniversalAudioHandler {
             }
 
             this.mediaRecorder = new MediaRecorder(stream, options);
-            
+
             this.mediaRecorder.ondataavailable = (event) => {
                 if (event.data.size > 0) {
                     this.audioChunks.push(event.data);
                 }
             };
-            
+
             this.mediaRecorder.onstop = () => {
                 const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
                 const audioFile = new File([audioBlob], `recording_${Date.now()}.wav`, {

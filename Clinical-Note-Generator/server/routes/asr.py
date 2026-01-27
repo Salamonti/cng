@@ -2,15 +2,46 @@
 # asr.py - WhisperX ASR Service with Speaker Diarization
 from typing import Dict, Optional, Any, cast
 import asyncio
+import json
+import os
+from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 import traceback
 
-# Import WhisperX engine
-from services.asr_whisperx import WhisperXASREngine
+
+def _load_config() -> Dict[str, Any]:
+    cfg_path = Path(__file__).resolve().parents[2] / "config" / "config.json"
+    try:
+        if cfg_path.exists():
+            with cfg_path.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception:
+        pass
+    return {}
+
+
+def _apply_asr_cuda_env() -> None:
+    cfg = _load_config()
+    vis = cfg.get("asr_cuda_visible_devices")
+    if isinstance(vis, str) and vis.strip():
+        os.environ["CUDA_VISIBLE_DEVICES"] = vis.strip()
+        print(f"[ASR] Forcing CUDA_VISIBLE_DEVICES={vis.strip()} from config")
+        return
+    idx = cfg.get("asr_device_index")
+    if idx is not None:
+        try:
+            os.environ["CUDA_VISIBLE_DEVICES"] = str(int(idx))
+            print(f"[ASR] Forcing CUDA_VISIBLE_DEVICES={int(idx)} from config index")
+        except Exception:
+            pass
 
 router = APIRouter()
+
+# Apply CUDA visibility before importing WhisperX (torch loads at import time).
+_apply_asr_cuda_env()
+from services.asr_whisperx import WhisperXASREngine  # noqa: E402
 
 # Initialize WhisperX engine (models load lazily on first use)
 asr_engine = WhisperXASREngine()

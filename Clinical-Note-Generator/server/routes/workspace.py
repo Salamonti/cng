@@ -11,7 +11,7 @@ from server.models.user import User
 from server.models.workspace import UserWorkspace
 from server.schemas.workspace import WorkspacePayload, WorkspaceResponse
 
-MAX_WORKSPACE_BYTES = 256 * 1024
+MAX_WORKSPACE_BYTES = 2 * 1024 * 1024
 
 router = APIRouter(prefix="/api/workspace", tags=["workspace"])
 
