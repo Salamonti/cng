@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+import os
 
 from server.core.dependencies import get_current_admin
 from server.models.user import User
@@ -17,21 +18,21 @@ def get_services_status(_: User = Depends(get_current_admin)):
     Actual service monitoring would require additional logic to check process status.
     """
     import urllib.parse as _p
+    fastapi_port = int(os.environ.get("FASTAPI_PORT", 7860))
+    llama_port = 8081
     try:
-        from server.core.config import get_settings
-        cfg = get_settings()
+        llama_url = os.environ.get("NOTEGEN_URL_PRIMARY", "http://127.0.0.1:8081")
+        parsed_llama = _p.urlparse(llama_url if "://" in llama_url else f"http://{llama_url}")
+        llama_port = parsed_llama.port or 8081
     except Exception:
-        cfg = None
-
-    fastapi_port = int(os.environ.get("FASTAPI_PORT", getattr(cfg, "fastapi_port", 7860) if cfg else 7860))
-    llama_port = int(getattr(cfg, "llama_server_port", 8081)) if cfg else 8081
-    ocr_port = None
+        llama_port = 8081
+    ocr_port = 8090
     try:
-        ocr_url = str(getattr(cfg, "ocr_server_url", ""))
+        ocr_url = os.environ.get("OCR_URL_PRIMARY", "http://127.0.0.1:8090")
         parsed = _p.urlparse(ocr_url if "://" in ocr_url else f"http://{ocr_url}")
-        ocr_port = parsed.port or 80
+        ocr_port = parsed.port or 8090
     except Exception:
-        ocr_port = None
+        ocr_port = 8090
 
     return {
         "services": {

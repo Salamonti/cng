@@ -1,28 +1,28 @@
 # C:\Clinical-Note-Generator\server\services\ocr_llm_client.py
-import asyncio
 import base64
-import json
 import os
 import re
-from pathlib import Path
+import time
 from typing import Tuple, Any, Dict, Optional, List
 import requests
 from requests import Session
-import threading
 
 
 class OCRLLMEngine:
     """Client for llama-server OCR using the configured multimodal model."""
 
-    def __init__(self, url: str = "", timeout: int = 120, server_url: str | None = None):
+    def __init__(self, url: str = "", timeout: int = 90, server_url: str | None = None):
         # Accept either url= or server_url= for compatibility
         base = server_url or url
         self.url = base.rstrip("/")
         self.timeout = timeout
-        self._server_ready: bool = False
         self._session: Session = requests.Session()
         self._warmed: bool = False
         self.model_name = self._load_model_name()
+        self.primary_url = self._env_url("OCR_URL_PRIMARY") or self.url
+        self.fallback_url = self._env_url("OCR_URL_FALLBACK")
+        self._primary_down_until = 0.0
+        self._cooldown_sec = 20.0
 
     def _load_model_name(self) -> str:
         """Discover preferred model identifier."""
@@ -31,26 +31,12 @@ class OCRLLMEngine:
             name = env_name.strip()
             if name:
                 return name
-        try:
-            cfg_path = Path(__file__).resolve().parents[2] / "config" / "config.json"
-            if cfg_path.exists():
-                with open(cfg_path, "r", encoding="utf-8") as f:
-                    cfg = json.load(f)
-                    name = str(cfg.get("ocr_model_name") or "").strip()
-                    if not name:
-                        model_path = str(cfg.get("ocr_model") or "").strip()
-                        if model_path:
-                            name = os.path.basename(model_path)
-                    if name:
-                        return name
-        except Exception:
-            pass
         return "nanonets-ocr-s"
 
     def check_server(self) -> bool:
         """Check if model server is running"""
         try:
-            response = requests.get(f"{self.url}/health", timeout=5)
+            response = requests.get(f"{self.primary_url}/health", timeout=5)
             return response.status_code == 200
         except Exception:
             return False
@@ -58,7 +44,7 @@ class OCRLLMEngine:
     def _discover_vision_models(self) -> List[str]:
         """Query /v1/models and return IDs likely to be vision-capable."""
         try:
-            r = requests.get(f"{self.url}/v1/models", timeout=5)
+            r = requests.get(f"{self.primary_url}/v1/models", timeout=5)
             if not r.ok:
                 return []
             js = r.json()
@@ -99,57 +85,20 @@ class OCRLLMEngine:
 
         return candidates[0]
 
-    def _ensure_server_running(self) -> bool:
-        """Try to start the OCR llama-server via the internal manager."""
-        try:
-            from services.note_gen_server import get_ocr_server_manager
-
-            manager = get_ocr_server_manager()
-            try:
-                loop = asyncio.get_running_loop()
-            except RuntimeError:
-                loop = None
-
-            if loop and loop.is_running():
-                result_holder: Dict[str, bool] = {}
-                error_holder: Dict[str, Exception] = {}
-
-                def runner() -> None:
-                    try:
-                        result_holder["result"] = asyncio.run(manager.start_server())
-                    except Exception as exc:  # pragma: no cover - debug helper
-                        error_holder["exc"] = exc
-
-                thread = threading.Thread(target=runner, name="ocr-autostart", daemon=True)
-                thread.start()
-                thread.join(self.timeout)
-                if thread.is_alive():
-                    return False
-                if "exc" in error_holder:
-                    raise error_holder["exc"]
-                return result_holder.get("result", False)
-
-            return asyncio.run(manager.start_server())
-        except Exception as exc:
-            print(f"[DEBUG] Failed to auto-start OCR server: {exc}")
-            return False
-
     def _warmup(self) -> None:
         if self._warmed:
             return
         try:
             # cheap health check; ignore errors
-            self._session.get(f"{self.url}/health", timeout=3)
+            self._session.get(f"{self.primary_url}/health", timeout=3)
         except Exception:
             pass
         self._warmed = True
 
-    def _flush_server_context(self) -> None:
+    def _flush_server_context(self, base_url: str) -> None:
         """Ask the OCR server to release cached KV data (best-effort)."""
-        if not self._server_ready:
-            return
         try:
-            self._session.post(f"{self.url}/command", json={"cmd": "reset"}, timeout=3)
+            self._session.post(f"{base_url}/command", json={"cmd": "reset"}, timeout=3)
         except Exception:
             pass
 
@@ -162,20 +111,13 @@ class OCRLLMEngine:
         """Process image using pinned fast path by default; legacy fallback behind OCR_LEGACY_MODE."""
 
         print(f"[DEBUG] OCR request - Image size: {len(image_bytes)} bytes")
-        print(f"[DEBUG] OCR server URL: {self.url}")
-
-        if not self._server_ready:
-            if self._ensure_server_running():
-                self._server_ready = True
+        print(f"[DEBUG] OCR server URL: {self.primary_url}")
 
         # Convert image to base64
         image_b64 = base64.b64encode(image_bytes).decode('utf-8')
         mime = (mime_type or 'image/png').strip() or 'image/png'
         data_uri = f"data:{mime};base64,{image_b64}"
 
-        if not self._server_ready:
-            if self._ensure_server_running():
-                self._server_ready = True
         self._warmup()
 
         model_id = self._resolve_model_id()
@@ -203,28 +145,36 @@ class OCRLLMEngine:
         }
 
         text = ""
+        errors: List[str] = []
+        used_url = None
         try:
-            r = self._session.post(f"{self.url}/v1/chat/completions", json=chat_payload_primary, timeout=self.timeout)
-            if r.status_code != 200:
-                raise RuntimeError(f"OCR model HTTP {r.status_code}: {r.text[:200]}")
-            data = r.json()
+            for base_url in self._candidate_urls():
+                try:
+                    r = self._session.post(f"{base_url}/v1/chat/completions", json=chat_payload_primary, timeout=self.timeout)
+                    if r.status_code != 200:
+                        raise RuntimeError(f"OCR model HTTP {r.status_code}: {r.text[:200]}")
+                    data = r.json()
 
-            if isinstance(data, dict) and isinstance(data.get("choices"), list) and data["choices"]:
-                choice = data["choices"][0]
-                if isinstance(choice, dict) and isinstance(choice.get("message"), dict):
-                    mc = choice["message"].get("content")
-                    if isinstance(mc, str):
-                        text = mc.strip()
-        except requests.exceptions.ConnectionError as conn_err:
-            self._server_ready = False
-            if _attempt == 0 and self._ensure_server_running():
-                self._server_ready = True
-                return self.ocr_image_bytes(image_bytes, mime_type, _attempt=1)
-            raise RuntimeError(f"OCR processing failed: {conn_err}") from conn_err
-        except Exception as exc:
-            raise RuntimeError(f"OCR processing failed: {exc}") from exc
+                    if isinstance(data, dict) and isinstance(data.get("choices"), list) and data["choices"]:
+                        choice = data["choices"][0]
+                        if isinstance(choice, dict) and isinstance(choice.get("message"), dict):
+                            mc = choice["message"].get("content")
+                            if isinstance(mc, str):
+                                text = mc.strip()
+                    if text:
+                        used_url = base_url
+                        break
+                except Exception as exc:
+                    if base_url == self.primary_url:
+                        self._mark_primary_down()
+                    errors.append(f"{base_url}: {exc}")
+                    continue
         finally:
-            self._flush_server_context()
+            if used_url:
+                self._flush_server_context(used_url)
+
+        if not text:
+            raise ExternalServiceError("ocr", self.primary_url, self.fallback_url, errors or ["OCR model returned no text"])
 
         if not text:
             raise RuntimeError("OCR model returned no text")
@@ -242,6 +192,34 @@ class OCRLLMEngine:
         confidence = self._estimate_confidence(text)
 
         return text, confidence
+
+    @staticmethod
+    def _env_url(key: str) -> Optional[str]:
+        val = os.environ.get(key)
+        if not val:
+            return None
+        cleaned = val.strip().rstrip("/")
+        return cleaned or None
+
+    def _candidate_urls(self) -> List[str]:
+        urls: List[str] = []
+        now = time.time()
+        if self.primary_url and now >= self._primary_down_until:
+            urls.append(self.primary_url)
+        if self.fallback_url and self.fallback_url not in urls:
+            urls.append(self.fallback_url)
+        if not urls:
+            raise ExternalServiceError(
+                "ocr",
+                self.primary_url,
+                self.fallback_url,
+                ["OCR_URL_PRIMARY is not set (and no fallback configured)."],
+            )
+        return urls
+
+    def _mark_primary_down(self) -> None:
+        if self.primary_url:
+            self._primary_down_until = time.time() + self._cooldown_sec
 
     def _estimate_confidence(self, text: str) -> float:
         """Estimate OCR confidence based on output characteristics."""
@@ -280,3 +258,23 @@ class OCRLLMEngine:
         base_conf -= penalties
 
         return max(0.40, min(0.95, base_conf))
+
+
+class ExternalServiceError(RuntimeError):
+    def __init__(
+        self,
+        service: str,
+        primary_url: Optional[str],
+        fallback_url: Optional[str],
+        errors: List[str],
+    ) -> None:
+        msg = f"{service} unavailable; attempted: {primary_url or '<unset>'}"
+        if fallback_url:
+            msg += f", fallback: {fallback_url}"
+        if errors:
+            msg += f"; errors: {', '.join(errors)}"
+        super().__init__(msg)
+        self.service = service
+        self.primary_url = primary_url
+        self.fallback_url = fallback_url
+        self.errors = errors

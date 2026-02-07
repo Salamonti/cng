@@ -1,4 +1,5 @@
 # C:\Clinical-Note-Generator\server\services\asr_whisperx.py
+import gc
 import json
 import os
 import shutil
@@ -20,21 +21,6 @@ from whisperx.vads.vad import Vad
 # PyTorch 2.6+'s weights-only loader.
 add_safe_globals([ListConfig, DictConfig, ContainerMetadata, Any, list])
 
-# PATCH: Force weights_only=False for lightning_fabric (used by pyannote)
-# This is safe because we trust the pyannote model checkpoint sources
-try:
-    import lightning_fabric.utilities.cloud_io as lf_io
-    _original_load = torch.load
-    
-    def patched_torch_load(*args, **kwargs):
-        # Force weights_only=False for all torch.load calls
-        kwargs['weights_only'] = False
-        return _original_load(*args, **kwargs)
-    
-    torch.load = patched_torch_load
-except Exception:
-    pass
-
 
 class PassthroughVAD(Vad):
     """Minimal VAD that marks the whole audio as a single speech segment."""
@@ -54,33 +40,33 @@ class PassthroughVAD(Vad):
         """Return the entire audio split into manageable 30-second chunks"""
         waveform = None
         sample_rate = 16000  # WhisperX default
-        
+
         if isinstance(audio, dict):
             waveform = audio.get("waveform")
             sample_rate = float(audio.get("sample_rate") or 16000)
         else:
-            waveform = getattr(audio, "waveform", None) 
+            waveform = getattr(audio, "waveform", None)
             sample_rate = float(getattr(audio, "sample_rate", 16000))
-        
+
         if waveform is None:
             return []
-        
+
         sample_rate = max(1.0, sample_rate)
         duration = len(waveform) / sample_rate
-        
+
         if duration <= 0:
             return []
-        
+
         # Split into 30-second chunks to avoid input shape errors
         chunk_duration = 30.0
         segments = []
         start = 0.0
-        
+
         while start < duration:
             end = min(start + chunk_duration, duration)
             segments.append(SegmentX(start, end, "SPEECH"))
             start = end
-        
+
         return segments
 
 
@@ -99,6 +85,7 @@ try:
     whisperx_pyannote.Pyannote = _BypassPyannoteVAD  # type: ignore[attr-defined]
 except Exception:
     pass
+
 
 class ASRSession:
     def __init__(self, session_id: str, initial_prompt: Optional[str] = None, save_audio: bool = True, file_suffix: Optional[str] = None):
@@ -146,11 +133,14 @@ class WhisperXASREngine:
 
     # Hardcoded WhisperX settings per user request (can be moved to config later)
     WHISPERX_MODEL_PATH = r"C:\Clinical-Note-Generator\models\whisper\medium.en"
-    DEVICE = "cuda"          # Do not specify cuda:N; rely on launcher env
+    DEVICE = "cuda"  # Do not specify cuda:N; rely on launcher env
     COMPUTE_TYPE = "float16"
     LANGUAGE = "en"
-    SAVE_AUDIO = True         # keep a copy of last N wavs
+    SAVE_AUDIO = True
     RETAINED_AUDIO = 5
+
+    # Performance / memory knobs
+    TRANSCRIBE_BATCH_SIZE = 8  # D) lower peak VRAM vs 16
 
     # HF token: prefer env; fallback to provided token if needed
     HF_TOKEN_FALLBACK = "NONE"
@@ -162,6 +152,8 @@ class WhisperXASREngine:
         self.device = self.DEVICE
         self._compute_type = self._cfg.get("asr_compute_type", self.COMPUTE_TYPE)
         self._language = self.LANGUAGE
+        self._enable_diarization = str(os.environ.get("ASR_ENABLE_DIARIZATION", "1")).strip().lower() not in {"0", "false", "no", "off"}
+        self._enable_alignment = str(os.environ.get("ASR_ENABLE_ALIGNMENT", "1")).strip().lower() not in {"0", "false", "no", "off"}
         self._save_audio = bool(self.SAVE_AUDIO)
         self._retained_audio = int(self.RETAINED_AUDIO)
         self._temp_audio_dir = (Path(__file__).resolve().parents[1] / "temp-audio").resolve()
@@ -170,11 +162,13 @@ class WhisperXASREngine:
 
         # Optional diarization speaker count
         self._default_num_speakers: Optional[int] = None
+
         # Models are loaded lazily
         self._wx_model = None
         self._align_model = None
         self._align_meta = None
         self._diar_model = None
+
         self.sessions: Dict[str, ASRSession] = {}
         self._auto_flush = True
         self._configure_ffmpeg_path()
@@ -231,7 +225,6 @@ class WhisperXASREngine:
     def _ensure_models(self):
         # Prefer masking visible devices via env so WhisperX can use device='cuda'
         # IMPORTANT: Do NOT change CUDA visibility here; rely on launcher env
-        # Log what we see for troubleshooting
         try:
             print(f"[ASR] CUDA_VISIBLE_DEVICES (seen by ASR): {os.environ.get('CUDA_VISIBLE_DEVICES', '<unset>')}")
         except Exception:
@@ -247,7 +240,8 @@ class WhisperXASREngine:
             print(f"[ASR] Loading WhisperX: {model_id}")
             print(f"[ASR] Device: {self.device}, Compute type: {self._compute_type}, Language: {self._language}")
             print("[ASR] Voice activity detection disabled (passthrough mode)")
-            # Use device='cuda' and rely on CUDA_VISIBLE_DEVICES for selection
+
+            # Keep ASR model on configured device (often GPU for speed)
             self._wx_model = whisperx.load_model(
                 model_id,
                 device="cuda" if self.device == "cuda" else self.device,
@@ -257,14 +251,17 @@ class WhisperXASREngine:
                 vad_options={"chunk_size": 30},
             )
 
-        if self._align_model is None:
+        # B) Alignment on CPU to reduce GPU memory pressure and contention
+        if self._align_model is None and self._enable_alignment:
             import whisperx  # type: ignore
-            self._align_model, self._align_meta = whisperx.load_align_model(language_code=self._language, device=("cuda" if self.device == "cuda" else self.device))
+            self._align_model, self._align_meta = whisperx.load_align_model(
+                language_code=self._language,
+                device="cpu",
+            )
 
-        if self._diar_model is None:
-            # Diarization may require HF token for pyannote models; attempt and fallback gracefully
+        # B) Diarization on CPU (or disabled) to minimize GPU contention with llama.cpp
+        if self._diar_model is None and self._enable_diarization:
             try:
-                # Prefer module path import to match CLI tool behavior
                 try:
                     from whisperx.diarize import DiarizationPipeline  # type: ignore
                     pipeline_src = "whisperx.diarize.DiarizationPipeline"
@@ -277,35 +274,76 @@ class WhisperXASREngine:
 
                 hf_token = os.environ.get("HUGGINGFACE_TOKEN") or os.environ.get("HF_TOKEN") or self.HF_TOKEN_FALLBACK
                 print(f"[ASR] Initializing diarization pipeline from {pipeline_src}; token_present={'yes' if hf_token else 'no'}")
-                self._diar_model = DiarizationPipeline(use_auth_token=hf_token, device=("cuda" if self.device == "cuda" else self.device))
-                print("[ASR] Diarization pipeline initialized successfully")
+
+                # E) Scope the torch.load weights_only patch only to diarization init
+                original_torch_load = torch.load
+
+                def patched_torch_load(*args, **kwargs):
+                    kwargs["weights_only"] = False
+                    return original_torch_load(*args, **kwargs)
+
+                try:
+                    torch.load = patched_torch_load  # type: ignore[assignment]
+                    self._diar_model = DiarizationPipeline(
+                        use_auth_token=hf_token,
+                        device="cpu",
+                    )
+                    print("[ASR] Diarization pipeline initialized successfully")
+                finally:
+                    torch.load = original_torch_load  # restore no matter what
+
             except Exception as e:
                 print(f"[ASR] Diarization unavailable ({e}); proceeding without diarization")
                 self._diar_model = None
+        elif not self._enable_diarization:
+            self._diar_model = None
+
+    def warmup(self) -> None:
+        self._ensure_models()
 
     # Back-compat: some code expects _ensure_model (singular)
     def _ensure_model(self):
         self._ensure_models()
 
+    # C) stronger CUDA + Python cleanup after each job
     def _flush_cuda_cache(self) -> None:
         if not self._auto_flush:
             return
+
         try:
-            import torch  # type: ignore
             if torch.cuda.is_available():
-                torch.cuda.empty_cache()
+                # Ensure all kernels are complete before freeing caches
+                try:
+                    torch.cuda.synchronize()
+                except Exception:
+                    pass
+
+                try:
+                    torch.cuda.empty_cache()
+                except Exception:
+                    pass
+
+                # Helps release CUDA IPC resources in long-lived services
+                try:
+                    torch.cuda.ipc_collect()
+                except Exception:
+                    pass
         except Exception:
             pass
 
-    try:                                                                                                                                                                                                          
-        import torch                                                                                                                                                                                                  
+        # Ensure Python releases references promptly
+        try:
+            gc.collect()
+        except Exception:
+            pass
+
+    try:
         torch.backends.cuda.matmul.allow_tf32 = True
-        torch.backends.cudnn.allow_tf32 = True                                                                                                                                                                        
-    # Optional: favor perf for matmul                                                                                                                                                                             
-        if hasattr(torch, "set_float32_matmul_precision"):                                                                                                                                                            
-            torch.set_float32_matmul_precision("high")                                                                                                                                                                    
-    except Exception:                                                                                                                                                                                             
-        pass          
+        torch.backends.cudnn.allow_tf32 = True
+        if hasattr(torch, "set_float32_matmul_precision"):
+            torch.set_float32_matmul_precision("high")
+    except Exception:
+        pass
 
     # ---- Session API ----
     def new_session(self, initial_prompt: Optional[str] = None, file_suffix: Optional[str] = None) -> str:
@@ -347,26 +385,63 @@ class WhisperXASREngine:
         import whisperx  # type: ignore
 
         audio = whisperx.load_audio(wav_path)
+
+        result: Dict[str, Any] = {}
+        aligned: Optional[Dict[str, Any]] = None
+        diar = None
+
         try:
-            result = self._wx_model.transcribe(audio, batch_size=16, language=self._language)
+            # D) inference_mode reduces allocations and VRAM pressure
+            with torch.inference_mode():
+                result = self._wx_model.transcribe(
+                    audio,
+                    batch_size=int(self.TRANSCRIBE_BATCH_SIZE),
+                    language=self._language,
+                )
 
-            # Alignment
-            try:
-                aligned = whisperx.align(result["segments"], self._align_model, self._align_meta, audio, self.device)
-                result["segments"] = aligned["segments"]
-            except Exception as e:
-                print(f"[ASR] Alignment failed: {e}")
+                # B) Alignment on CPU: pass device="cpu" (your align model is CPU)
+                if self._enable_alignment and self._align_model is not None:
+                    try:
+                        aligned = whisperx.align(
+                            result.get("segments", []),
+                            self._align_model,
+                            self._align_meta,
+                            audio,
+                            device="cpu",
+                        )
+                        result["segments"] = aligned.get("segments", result.get("segments", []))
+                    except Exception as e:
+                        print(f"[ASR] Alignment failed: {e}")
 
-            # Diarization (optional)
-            if self._diar_model is not None:
-                try:
-                    diar = self._diar_model(audio)
-                    result = whisperx.assign_word_speakers(diar, result)
-                except Exception as e:
-                    print(f"[ASR] Diarization failed: {e}")
+                # Diarization (optional, CPU in this setup)
+                if self._diar_model is not None:
+                    try:
+                        diar = self._diar_model(audio)
+                        result = whisperx.assign_word_speakers(diar, result)
+                    except Exception as e:
+                        print(f"[ASR] Diarization failed: {e}")
 
             return result.get("segments", []), result
+
         finally:
+            # C) ensure large references are dropped before CUDA cache flush
+            try:
+                del diar
+            except Exception:
+                pass
+            try:
+                del aligned
+            except Exception:
+                pass
+            try:
+                del result
+            except Exception:
+                pass
+            try:
+                del audio
+            except Exception:
+                pass
+
             self._flush_cuda_cache()
 
     def _format_segments(self, segments: List[Dict[str, Any]]) -> List[str]:
@@ -377,7 +452,6 @@ class WhisperXASREngine:
                 continue
             spk = seg.get("speaker") or seg.get("speaker_id") or None
             if spk is None and isinstance(seg.get("words"), list):
-                # try to infer from words if present
                 for w in seg.get("words", []):
                     spk = w.get("speaker") or w.get("speaker_id")
                     if spk:
@@ -398,7 +472,6 @@ class WhisperXASREngine:
             if self._save_audio and os.path.exists(wav_path):
                 self._retain_audio_copy(wav_path)
         finally:
-            # Do not remove original temp; cleanup_session handles it
             pass
 
         for line in self._format_segments(segs):
@@ -415,6 +488,7 @@ class WhisperXASREngine:
         if self._save_audio and os.path.exists(wav_path):
             self._retain_audio_copy(wav_path)
         text = "\n".join(self._format_segments(segs)).strip()
+
         # Confidence proxy if available
         try:
             logs: List[float] = []
@@ -437,7 +511,6 @@ class WhisperXASREngine:
                     os.remove(sess.temp_path)  # type: ignore[arg-type]
                 except Exception:
                     pass
-            # Also remove any temporary conversion file
             tmp_wav = (sess.temp_path or "") + ".tmp.wav"
             if tmp_wav and os.path.exists(tmp_wav):
                 try:
@@ -451,7 +524,6 @@ class WhisperXASREngine:
             except Exception:
                 pass
 
-    # Introspection for diagnostics
     def get_info(self) -> Dict[str, str]:
         try:
             warmed = "yes" if self._wx_model is not None else "no"
@@ -462,8 +534,12 @@ class WhisperXASREngine:
                 "warmed": warmed,
                 "compute_type": str(self._compute_type),
                 "language": self._language,
-                "diarization": "on" if self._diar_model is not None else "off",
+                "diarization": "disabled" if not self._enable_diarization else ("on" if self._diar_model is not None else "off"),
+                "alignment": "disabled" if not self._enable_alignment else ("on" if self._align_model is not None else "off"),
                 "cuda_visible": os.environ.get("CUDA_VISIBLE_DEVICES", "<unset>"),
+                "align_device": "cpu",
+                "diar_device": "cpu" if self._enable_diarization else "disabled",
+                "transcribe_batch_size": str(self.TRANSCRIBE_BATCH_SIZE),
             }
         except Exception:
             return {"engine": self.ENGINE_NAME}

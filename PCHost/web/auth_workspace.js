@@ -688,7 +688,10 @@
       );
       
       if (!confirmed) return;
-      
+
+      // Clear all local data (audio, queue, UI fields) first
+      await clearAll(true);
+
       const resp = await this.request('/api/workspace/clear', { method: 'POST' });
       if (!resp.ok) {
         alert('Failed to clear workspace');

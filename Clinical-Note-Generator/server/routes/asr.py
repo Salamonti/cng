@@ -1,146 +1,155 @@
 # C:\Clinical-Note-Generator\server\routes\asr.py
-# asr.py - WhisperX ASR Service with Speaker Diarization
-from typing import Dict, Optional, Any, cast
+from typing import Dict, Optional, Any, cast, List
 import asyncio
-import json
 import os
-from pathlib import Path
+import time
 
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import PlainTextResponse
-import traceback
-
-
-def _load_config() -> Dict[str, Any]:
-    cfg_path = Path(__file__).resolve().parents[2] / "config" / "config.json"
-    try:
-        if cfg_path.exists():
-            with cfg_path.open("r", encoding="utf-8") as f:
-                return json.load(f)
-    except Exception:
-        pass
-    return {}
-
-
-def _apply_asr_cuda_env() -> None:
-    cfg = _load_config()
-    vis = cfg.get("asr_cuda_visible_devices")
-    if isinstance(vis, str) and vis.strip():
-        os.environ["CUDA_VISIBLE_DEVICES"] = vis.strip()
-        print(f"[ASR] Forcing CUDA_VISIBLE_DEVICES={vis.strip()} from config")
-        return
-    idx = cfg.get("asr_device_index")
-    if idx is not None:
-        try:
-            os.environ["CUDA_VISIBLE_DEVICES"] = str(int(idx))
-            print(f"[ASR] Forcing CUDA_VISIBLE_DEVICES={int(idx)} from config index")
-        except Exception:
-            pass
+from fastapi.responses import PlainTextResponse, JSONResponse
+import aiohttp
 
 router = APIRouter()
 
-# Apply CUDA visibility before importing WhisperX (torch loads at import time).
-_apply_asr_cuda_env()
-from services.asr_whisperx import WhisperXASREngine  # noqa: E402
 
-# Initialize WhisperX engine (models load lazily on first use)
-asr_engine = WhisperXASREngine()
+def _asr_url() -> Optional[str]:
+    val = os.environ.get("ASR_URL")
+    if not val:
+        return None
+    return val.strip().rstrip("/") or None
+
+def _asr_fallback_url() -> Optional[str]:
+    val = os.environ.get("ASR_URL_FALLBACK")
+    if not val:
+        return None
+    return val.strip().rstrip("/") or None
+
+def _asr_api_key() -> Optional[str]:
+    return os.environ.get("ASR_API_KEY") or "notegenadmin"
+
+_primary_down_until = 0.0
+_cooldown_sec = 20.0
+
+
+def _candidate_urls() -> List[str]:
+    urls: List[str] = []
+    now = time.time()
+    primary = _asr_url()
+    fallback = _asr_fallback_url()
+    if primary and now >= _primary_down_until:
+        urls.append(primary)
+    if fallback and fallback not in urls:
+        urls.append(fallback)
+    return urls
+
+
+def _mark_primary_down() -> None:
+    global _primary_down_until
+    if _asr_url():
+        _primary_down_until = time.time() + _cooldown_sec
+
+
+def _service_error_detail(primary: Optional[str], fallback: Optional[str], errors: List[str]) -> Dict[str, Any]:
+    return {
+        "service": "asr",
+        "primary": primary,
+        "fallback": fallback,
+        "errors": errors,
+    }
 
 
 @router.post("/transcribe_diarized")
 @router.post("/transcribe_diarized/")
 async def transcribe_diarized(request: Request):
     """
-    WhisperX transcription with speaker diarization.
+    Proxy WhisperX transcription to external ASR service.
     Accepts audio file via multipart/form-data with field 'audio'.
-    Returns plain text transcription with speaker labels (e.g., [SPEAKER_00]).
+    Returns plain text transcription with speaker labels.
     """
+    primary = _asr_url()
+    fallback = _asr_fallback_url()
+    candidates = _candidate_urls()
+    if not candidates:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "error": "service_unavailable",
+                "detail": _service_error_detail(primary, fallback, ["ASR_URL not set (and no fallback configured)."]),
+            },
+        )
+
     try:
-        # Parse multipart form data
         form = await request.form()
         audio = cast(Any, form.get('audio'))
         if not audio:
             raise HTTPException(status_code=400, detail="missing audio file")
 
-        # Read uploaded audio bytes
         data = await audio.read() if hasattr(audio, 'read') else audio.file.read()
-        
-        print(f"[ASR] Received audio file, size: {len(data)} bytes")
+        filename = getattr(audio, 'filename', 'audio') or 'audio'
+        content_type = getattr(audio, 'content_type', None) or 'application/octet-stream'
 
-        # Detect file format from content-type or filename
-        file_suffix = None
-        try:
-            ctype = getattr(audio, 'content_type', '') or ''
-            fname = getattr(audio, 'filename', '') or ''
-            low = (ctype + ' ' + fname).lower()
-            print(f"[ASR] Content-type: {ctype}, Filename: {fname}")
-            
-            if 'webm' in low:
-                file_suffix = '.webm'
-            elif 'ogg' in low or low.endswith('.oga'):
-                file_suffix = '.ogg'
-            elif 'wav' in low:
-                file_suffix = '.wav'
-            elif 'flac' in low:
-                file_suffix = '.flac'
-        except Exception:
-            file_suffix = None
-
-        print(f"[ASR] Detected file suffix: {file_suffix}")
-
-        # Create ASR session
-        try:
-            sid = asr_engine.new_session(file_suffix=file_suffix)
-        except TypeError:
-            # Fallback if file_suffix parameter not supported
-            sid = asr_engine.new_session()
-            
-        # Append audio data to session
-        asr_engine.append_chunk(sid, data)
-
-        # Run transcription with timeout (offload to thread to avoid blocking)
-        print(f"[ASR] Starting WhisperX transcription for session {sid}...")
-        try:
-            text, confidence = await asyncio.wait_for(
-                asyncio.to_thread(asr_engine.transcribe, sid),
-                timeout=120.0  # 2 minute timeout
-            )
-            print(f"[ASR] Transcription complete, text length: {len(text)}, confidence: {confidence}")
-        except asyncio.TimeoutError:
-            print(f"[ASR] Transcription timeout after 120 seconds")
-            try:
-                asr_engine.cleanup_session(sid)
-            except Exception:
-                pass
-            return PlainTextResponse(
-                "Transcription timeout - audio may be too long or WhisperX model not loaded", 
-                status_code=503
-            )
-
-        # Cleanup session resources
-        try:
-            asr_engine.cleanup_session(sid)
-        except Exception:
-            pass
-
-        # Return transcribed text with speaker labels
-        return PlainTextResponse(text)
+        errors: List[str] = []
+        timeout = aiohttp.ClientTimeout(total=90)
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            headers = {}
+            api_key = _asr_api_key()
+            if api_key:
+                headers["Authorization"] = f"Bearer {api_key}"
+            for base_url in candidates:
+                try:
+                    form_data = aiohttp.FormData()
+                    form_data.add_field('audio', data, filename=filename, content_type=content_type)
+                    async with session.post(f"{base_url}/transcribe_diarized", data=form_data, headers=headers) as resp:
+                        if resp.status != 200:
+                            txt = await resp.text()
+                            raise RuntimeError(f"HTTP {resp.status}: {txt[:200]}")
+                        text = await resp.text()
+                        return PlainTextResponse(text)
+                except Exception as e:
+                    if base_url == primary:
+                        _mark_primary_down()
+                    errors.append(f"{base_url}: {str(e)[:200]}")
+                    continue
+        return JSONResponse(
+            status_code=503,
+            content={
+                "error": "service_unavailable",
+                "detail": _service_error_detail(primary, fallback, errors or ["ASR service failed."]),
+            },
+        )
 
     except HTTPException:
         raise
     except Exception as e:
-        print(f"[ASR] transcribe_diarized failed: {e}")
-        print(traceback.format_exc())
-        return PlainTextResponse(
-            f"WhisperX transcription error: {str(e)}", 
-            status_code=503
+        return JSONResponse(
+            status_code=503,
+            content={"error": "service_unavailable", "detail": _service_error_detail(primary, fallback, [str(e)[:200]])},
         )
 
 
 @router.get("/asr_engine")
 async def asr_engine_info() -> Dict[str, Optional[str]]:
-    """Returns WhisperX engine information and status"""
+    primary = _asr_url()
+    fallback = _asr_fallback_url()
+    candidates = _candidate_urls()
+    if not candidates:
+        return {"engine": "whisperx", "error": "ASR_URL not set (and no fallback configured)."}
+
+    timeout = aiohttp.ClientTimeout(total=15)
     try:
-        return asr_engine.get_info()
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            errors: List[str] = []
+            for base_url in candidates:
+                try:
+                    async with session.get(f"{base_url}/asr_engine") as resp:
+                        if resp.status != 200:
+                            txt = await resp.text()
+                            raise RuntimeError(f"HTTP {resp.status}: {txt[:200]}")
+                        return await resp.json()
+                except Exception as e:
+                    if base_url == primary:
+                        _mark_primary_down()
+                    errors.append(f"{base_url}: {str(e)[:200]}")
+                    continue
+            return {"engine": "whisperx", "error": "; ".join(errors)[:200]}
     except Exception as e:
         return {"engine": "whisperx", "error": str(e)[:160]}

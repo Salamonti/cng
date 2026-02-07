@@ -15,7 +15,7 @@ except Exception:
     pass
 import fitz  # PyMuPDF
 
-from services.ocr_llm_client import OCRLLMEngine
+from services.ocr_llm_client import OCRLLMEngine, ExternalServiceError
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from metrics import metrics as global_metrics
 
@@ -29,32 +29,27 @@ OCR_IMAGE_MAX_DIM = int(os.environ.get("OCR_IMAGE_MAX_DIM", "3200"))
 OCR_ENABLE_TEXT_FIRST = os.environ.get("OCR_TEXT_FIRST", "0") == "1"
 OCR_ENABLE_PARALLEL_PAGES = os.environ.get("OCR_PARALLEL_PAGES", "0") == "1"
 
-# Dynamically resolve OCR server URL from config.json each time so Admin changes take effect
+# Dynamically resolve OCR server URL from env (single source of truth)
 _CACHED_OCR_URL: str | None = None
 _OCR_CLIENT: OCRLLMEngine | None = None
 
 
-def _load_cfg() -> dict:
-    try:
-        cfg_path = os.path.join(os.path.dirname(__file__), "..", "..", "config", "config.json")
-        cfg_path = os.path.normpath(cfg_path)
-        if os.path.exists(cfg_path):
-            import json as _json
-            with open(cfg_path, "r", encoding="utf-8") as f:
-                return _json.load(f)
-    except Exception:
-        pass
-    return {}
-
-
 def _get_ocr_client() -> OCRLLMEngine:
     global _CACHED_OCR_URL, _OCR_CLIENT
-    cfg = _load_cfg()
-    url = str(cfg.get("ocr_server_url") or os.environ.get("OCR_SERVER_URL") or "").strip().rstrip("/")
+    url = str(os.environ.get("OCR_URL_PRIMARY") or "").strip().rstrip("/")
     if _OCR_CLIENT is None or _CACHED_OCR_URL != url:
         _OCR_CLIENT = OCRLLMEngine(url=url)
         _CACHED_OCR_URL = url
     return _OCR_CLIENT
+
+
+def _service_error_detail(err: ExternalServiceError) -> Dict:
+    return {
+        "service": err.service,
+        "primary": err.primary_url,
+        "fallback": err.fallback_url,
+        "errors": err.errors,
+    }
 
 
 def _pdf_first_page_to_png_bytes(pdf_bytes: bytes, dpi: int = OCR_PDF_DPI) -> bytes:
@@ -254,6 +249,8 @@ def ocr(file: UploadFile = File(...)) -> Dict:
                     logger.info("OCR preflight /v1/models error: %s", _e)
 
             text, conf = _get_ocr_client().ocr_image_bytes(img_bytes, mime_type=content_type)
+        except ExternalServiceError as e:
+            raise HTTPException(status_code=503, detail=_service_error_detail(e))
         except Exception as e:
             # llama-server unreachable/timeout or other error
             if os.environ.get("DEBUG_OCR_ERRORS", "0") == "1":
@@ -281,6 +278,8 @@ def ocr(file: UploadFile = File(...)) -> Dict:
 
     except HTTPException:
         raise
+    except ExternalServiceError as e:
+        raise HTTPException(status_code=503, detail=_service_error_detail(e))
     except Exception as e:
         # Don't queue - tell client to fallback
         if os.environ.get("DEBUG_OCR_ERRORS", "0") == "1":

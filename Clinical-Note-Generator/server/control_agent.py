@@ -98,13 +98,22 @@ async def handle_services_status(request: web.Request):
         return web.json_response({'error': 'unauthorized'}, status=401)
     cfg = load_config()
     names = service_names(cfg)
-    # Derive ports from config when available
-    fastapi_port = int(os.environ.get("FASTAPI_PORT") or cfg.get("fastapi_port") or 7860)
-    llama_port = int(cfg.get('llama_server_port', 8081))
-    ocr_url = str(cfg.get('ocr_server_url', 'http://127.0.0.1:8090'))
+    # Derive ports from env (single source of truth)
+    fastapi_port = int(os.environ.get("FASTAPI_PORT") or 7860)
+    llama_port = 8081
     try:
-        import urllib.parse as _p
-        ocr_port = int(_p.urlparse(ocr_url).port or 8090)
+        llama_url = os.environ.get("NOTEGEN_URL_PRIMARY", "http://127.0.0.1:8081")
+        host_port = llama_url.split("://", 1)[1].split("/", 1)[0] if "://" in llama_url else llama_url.split("/", 1)[0]
+        if ":" in host_port:
+            llama_port = int(host_port.split(":", 1)[1])
+    except Exception:
+        llama_port = 8081
+    ocr_port = 8090
+    try:
+        ocr_url = os.environ.get("OCR_URL_PRIMARY", "http://127.0.0.1:8090")
+        host_port = ocr_url.split("://", 1)[1].split("/", 1)[0] if "://" in ocr_url else ocr_url.split("/", 1)[0]
+        if ":" in host_port:
+            ocr_port = int(host_port.split(":", 1)[1])
     except Exception:
         ocr_port = 8090
     ports = {

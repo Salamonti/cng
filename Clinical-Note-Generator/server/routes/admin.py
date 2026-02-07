@@ -160,29 +160,8 @@ async def select_models(payload: Dict = Body(...)) -> Dict:
     except Exception:
         pass
 
-    # Apply model change to the running llama-server according to management mode
-    llama_apply: Dict[str, Any] = {"ok": False, "note": "skipped"}
-    try:
-        auto_manage = bool(cfg.get("llama_auto_manage", False))
-        if auto_manage:
-            # Use internal manager to restart with new model
-            from services.note_gen_server import get_llama_server_manager
-            mgr = get_llama_server_manager()
-            mgr.reload_config()
-            await mgr.stop_server()
-            ok = await mgr.start_server()
-            llama_apply = {"ok": bool(ok), "mode": "internal_manager"}
-        else:
-            # External service (NSSM/SC). Restart Windows service if configured.
-            names = _service_names(cfg)
-            llama_name = names.get("llama")
-            if llama_name:
-                ok, out = _service_action_win(llama_name, "restart")
-                llama_apply = {"ok": bool(ok), "mode": "windows_service", "output": out}
-            else:
-                llama_apply = {"ok": False, "mode": "windows_service", "note": "service name not configured"}
-    except Exception as e:
-        llama_apply = {"ok": False, "error": str(e)[:200]}
+    # Llama-server is externally managed; no in-app restart
+    llama_apply: Dict[str, Any] = {"ok": False, "note": "externalized"}
 
     return {"ok": True, "config": cfg, "updated": updated, "llama_apply": llama_apply}
 
@@ -198,9 +177,8 @@ def _port_open(host: str, port: int, timeout: float = 1.0) -> bool:
 @router.get("/ocr/status")
 @router.get("/ocr/status/")
 def ocr_status(url: Optional[str] = None) -> Dict:
-    cfg = _load_cfg()
-    # Accept host:port in url or infer from config; default 127.0.0.1:8090
-    probe = (url or cfg.get("ocr_server_url") or "http://127.0.0.1:8090").strip()
+    # Accept host:port in url or infer from env; default 127.0.0.1:8090
+    probe = (url or os.environ.get("OCR_URL_PRIMARY") or "http://127.0.0.1:8090").strip()
     host = "127.0.0.1"
     port = 8090
     try:
@@ -265,10 +243,22 @@ def ocr_status(url: Optional[str] = None) -> Dict:
 @router.get("/llama/status")
 @router.get("/llama/status/")
 def llama_status() -> Dict:
-    cfg = _load_cfg()
-    # Get llama server port from config or default to 8081
-    port = cfg.get("llama_server_port", 8081)
+    # Get llama server port from env or default to 8081
+    url = os.environ.get("NOTEGEN_URL_PRIMARY", "http://127.0.0.1:8081")
     host = "127.0.0.1"
+    port = 8081
+    try:
+        if "://" in url:
+            host_port = url.split("://", 1)[1].split("/", 1)[0]
+        else:
+            host_port = url.split("/", 1)[0]
+        if ":" in host_port:
+            host, ps = host_port.split(":", 1)
+            port = int(ps)
+        else:
+            host = host_port
+    except Exception:
+        pass
 
     # Check if port is open
     port_open = _port_open(host, port)
@@ -300,16 +290,9 @@ def llama_status() -> Dict:
     import os as _os
     model_exists = _os.path.isabs(configured_model) and _os.path.exists(configured_model)
 
-    # Try to compute the resolved model path using the same logic as the server manager
-    resolved_path = None
+    # Externalized llama-server: no internal resolution
+    resolved_path = configured_model if model_exists else None
     last_error = None
-    try:
-        from services.note_gen_server import get_llama_server_manager
-        mgr = get_llama_server_manager()
-        resolved_path = mgr._get_model_path()  # type: ignore
-        last_error = mgr.last_error
-    except Exception:
-        pass
 
     # Normalize active model from llama-server response (unify view)
     active_model_id: Optional[str] = None
@@ -399,56 +382,29 @@ def llama_status() -> Dict:
 @router.get("/llama/health")
 @router.get("/llama/health/")
 async def llama_health() -> Dict[str, Any]:
-    """Internal manager health + last_error (does not query /health)."""
-    try:
-        from services.note_gen_server import get_llama_server_manager
-        mgr = get_llama_server_manager()
-        running = await mgr.is_server_running()
-        return {"running": bool(running), "last_error": getattr(mgr, "last_error", None)}
-    except Exception as e:
-        return {"running": False, "error": str(e)[:200]}
+    """Externalized llama-server (no internal manager)."""
+    return {"running": False, "note": "externalized"}
 
 
 @router.post("/llama/start")
 @router.post("/llama/start/")
 async def llama_start() -> Dict[str, Any]:
-    """Start llama-server via internal manager (Mode A)."""
-    try:
-        from services.note_gen_server import get_llama_server_manager
-        mgr = get_llama_server_manager()
-        mgr.reload_config()
-        ok = await mgr.start_server()
-        return {"ok": bool(ok), "last_error": getattr(mgr, "last_error", None)}
-    except Exception as e:
-        return {"ok": False, "error": str(e)[:200]}
+    """Start llama-server via internal manager (disabled)."""
+    return {"ok": False, "note": "externalized"}
 
 
 @router.post("/llama/stop")
 @router.post("/llama/stop/")
 async def llama_stop() -> Dict[str, Any]:
-    """Stop llama-server via internal manager (Mode A)."""
-    try:
-        from services.note_gen_server import get_llama_server_manager
-        mgr = get_llama_server_manager()
-        await mgr.stop_server()
-        return {"ok": True}
-    except Exception as e:
-        return {"ok": False, "error": str(e)[:200]}
+    """Stop llama-server via internal manager (disabled)."""
+    return {"ok": False, "note": "externalized"}
 
 
 @router.post("/llama/restart")
 @router.post("/llama/restart/")
 async def llama_restart() -> Dict[str, Any]:
-    """Restart llama-server via internal manager (Mode A)."""
-    try:
-        from services.note_gen_server import get_llama_server_manager
-        mgr = get_llama_server_manager()
-        mgr.reload_config()
-        await mgr.stop_server()
-        ok = await mgr.start_server()
-        return {"ok": bool(ok), "last_error": getattr(mgr, "last_error", None)}
-    except Exception as e:
-        return {"ok": False, "error": str(e)[:200]}
+    """Restart llama-server via internal manager (disabled)."""
+    return {"ok": False, "note": "externalized"}
 
 
 @router.get("/config")
@@ -556,7 +512,6 @@ def _load_cfg() -> Dict:
             pass
     # Defaults per plan
     return {
-        "ocr_server_url": "http://127.0.0.1:8090",
         "save_audio": True,
         "audio_retention_days": 60,
         "asr_chunk_seconds": 3,
@@ -723,10 +678,10 @@ def services_status() -> Dict:
     cfg = _load_cfg()
     names = _service_names(cfg)
     services: Dict[str, Dict] = {}
-    # Known ports (derive OCR port from ocr_server_url if set)
+    # Known ports from env
     ocr_port = 8090
     try:
-        ocr_url = str(cfg.get("ocr_server_url", "http://127.0.0.1:8090"))
+        ocr_url = str(os.environ.get("OCR_URL_PRIMARY", "http://127.0.0.1:8090"))
         if "://" in ocr_url:
             host_port = ocr_url.split("://", 1)[1].split("/", 1)[0]
         else:
@@ -735,10 +690,9 @@ def services_status() -> Dict:
             ocr_port = int(host_port.split(":", 1)[1])
     except Exception:
         pass
-    # Derive RAG port from config URL
     rag_port = None
     try:
-        rag_url = str(cfg.get("rag_service_url", "http://127.0.0.1:8007"))
+        rag_url = str(os.environ.get("RAG_URL", "http://127.0.0.1:8007"))
         host_port = rag_url.split("://", 1)[1].split("/", 1)[0]
         if ":" in host_port:
             rag_port = int(host_port.split(":", 1)[1])
@@ -749,18 +703,10 @@ def services_status() -> Dict:
 
     ports = {
         "fastapi": 7860,
-        "llama": int(cfg.get("llama_server_port", 8081)),
+        "llama": int(os.environ.get("NOTEGEN_URL_PRIMARY", "http://127.0.0.1:8081").split(":")[-1].split("/")[0]) if os.environ.get("NOTEGEN_URL_PRIMARY") else 8081,
         "ocr": ocr_port,
         "rag": rag_port,
     }
-    # Import internal managers for process info
-    try:
-        from services.note_gen_server import get_llama_server_manager, get_ocr_server_manager
-        _mgr_llama = get_llama_server_manager()
-        _mgr_ocr = get_ocr_server_manager()
-    except Exception:
-        _mgr_llama = None
-        _mgr_ocr = None
 
     for sid, name in names.items():
         st = _service_status_win(name)
@@ -774,25 +720,7 @@ def services_status() -> Dict:
             "port": ports.get(sid),
             "reachable": _port_status("127.0.0.1", ports.get(sid, 0)) if ports.get(sid) else None,
         })
-        # Attach internal manager process PID if available
-        try:
-            if sid == "llama" and _mgr_llama and getattr(_mgr_llama, "process", None):
-                if _mgr_llama.process and _mgr_llama.process.pid:
-                    st["process"] = {"pid": _mgr_llama.process.pid}
-            if sid == "ocr" and _mgr_ocr and getattr(_mgr_ocr, "process", None):
-                if _mgr_ocr.process and _mgr_ocr.process.pid:
-                    st["process"] = {"pid": _mgr_ocr.process.pid}
-        except Exception:
-            pass
-
-        # Include last_error from internal managers to aid debugging
-        try:
-            if sid == "llama" and _mgr_llama and getattr(_mgr_llama, "last_error", None):
-                st["last_error"] = _mgr_llama.last_error
-            if sid == "ocr" and _mgr_ocr and getattr(_mgr_ocr, "last_error", None):
-                st["last_error"] = _mgr_ocr.last_error
-        except Exception:
-            pass
+        # Externalized services: no internal manager process info
 
         # Prioritize port reachability: if reachable, treat as running even if service control says stopped
         try:
@@ -808,8 +736,7 @@ def services_status() -> Dict:
 @router.get("/rag/status")
 @router.get("/rag/status/")
 def rag_status() -> Dict[str, Any]:
-    cfg = _load_cfg()
-    url = str(cfg.get("rag_service_url", "http://127.0.0.1:8007")).rstrip("/")
+    url = str(os.environ.get("RAG_URL", "http://127.0.0.1:8007")).rstrip("/")
     # Parse port
     try:
         host = url.split("://", 1)[1].split("/", 1)[0].split(":")[0]

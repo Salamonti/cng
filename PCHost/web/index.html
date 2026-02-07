@@ -36,6 +36,48 @@
             filter: grayscale(0.2);
         }
 
+        .service-error-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 300;
+            background: #fff3cd;
+            color: #5a3f00;
+            border-bottom: 1px solid #f0c36d;
+            padding: 10px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 86px;
+        }
+        .service-error-banner.hidden {
+            display: none !important;
+        }
+        .service-error-banner .details {
+            font-size: 0.9rem;
+        }
+        .service-error-banner .actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .service-error-banner .btn-retry {
+            background: #ffcc66;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .service-error-banner .btn-close {
+            background: transparent;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: #5a3f00;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-left: 55px; /* Narrower sidebar on mobile */
@@ -658,6 +700,115 @@
             animation: slideIn 0.3s ease;
         }
 
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.hidden {
+            display: none !important;
+        }
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 820px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .modal-subtitle {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        .modal-body {
+            padding: 16px 20px;
+            overflow-y: auto;
+        }
+        .modal-footer {
+            padding: 12px 20px 16px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .request-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .request-item {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 14px;
+            background: #fdfdfd;
+        }
+        .request-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+        .request-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+        .request-category {
+            font-size: 0.75rem;
+            color: #0d6efd;
+            background: rgba(13, 110, 253, 0.1);
+            padding: 2px 8px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .request-text {
+            width: 100%;
+            min-height: 70px;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.9rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+        .request-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
         .toast.success {
             border-left-color: #28a745;
         }
@@ -932,6 +1083,16 @@
 </head>
 
 <body>
+    <div id="serviceErrorBanner" class="service-error-banner hidden">
+        <div class="details">
+            <strong id="serviceErrorTitle">Service error</strong>
+            <span id="serviceErrorDetails"></span>
+        </div>
+        <div class="actions">
+            <button class="btn-retry" id="serviceErrorRetry">Retry</button>
+            <button class="btn-close" id="serviceErrorClose" title="Dismiss">&times;</button>
+        </div>
+    </div>
     <!-- LEFT SIDEBAR - Always Visible -->
     <div class="left-sidebar" id="leftSidebar" onmouseenter="expandSidebar()" onmouseleave="collapseSidebar()">
         <button class="sidebar-btn recording-ready" id="recordBtnSidebar" onclick="toggleSpeechRecognition()" title="Audio Recording">
@@ -1156,10 +1317,10 @@
                 <label class="form-label" for="noteType">Note Type</label>
                 <select id="noteType" class="form-control">
                     <option value="consult">Consultation Note</option>
-                    <option value="followup">Follow-up Note (SOAP)</option>
+                    <option value="followup">Follow-up Note</option>
                     <option value="referral">Referral Letter</option>
                     <option value="admission">Admission Note</option>
-                    <option value="progress">Progress Note</option>
+                    <option value="progress">Progress Note/SOAP</option>
                     <option value="discharge">Discharge Summary</option>
                     <option value="transfer">Transfer Note</option>
                     <option value="procedure">Procedure Note</option>
@@ -1185,6 +1346,11 @@
 
             <div class="form-group">
                 <textarea id="generatedNote" class="form-control" rows="15" placeholder="Generated note will appear here..."></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="openOrderRequestsModal()">
+                    Order & Referral Requests
+                </button>
             </div>
 
             <div class="progress hidden" id="noteProgress">
@@ -1221,6 +1387,26 @@
                 <pre id="consultRefs" class="form-control"></pre>
             </div>
             <button class="btn btn-outline btn-full hidden" id="retryConsultComment" onclick="retryConsultComment()">&#128257; Retry Evidence Comment</button>
+        </div>
+
+        <!-- Order / Referral Requests Modal -->
+        <div id="orderRequestsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="orderRequestsTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <div class="modal-title" id="orderRequestsTitle">Order & Referral Requests</div>
+                        <div class="modal-subtitle">Review, edit, and copy each request</div>
+                    </div>
+                    <button class="modal-close" onclick="closeOrderRequestsModal()" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="orderRequestsEmpty" class="text-muted hidden">No requests were detected.</div>
+                    <div id="orderRequestsList" class="request-list"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeOrderRequestsModal()">Close</button>
+                </div>
+            </div>
         </div>
 
         <!-- Uncertain Items Review Drawer (V7 API) -->
@@ -1497,9 +1683,13 @@
             cleaned = cleaned.replace(/[\u00A0\u2009\u202F\u2007\u2008]/g, ' ');
             cleaned = cleaned.replace(/\u200B/g, ''); // Zero-width space (remove)
 
-            return cleaned
-                .replace(/\n{3,}/g, '\n\n')
-                .trim();
+            // Normalize CRLF to LF for consistent paragraph spacing rules.
+            cleaned = cleaned.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+            // If the model uses single newlines between paragraphs, add a blank line after sentence end.
+            cleaned = cleaned.replace(/([.!?])\s*\n(?!\s*\n)([A-Za-z0-9])/g, '$1\n\n$2');
+            // If there are 3+ blank lines, reduce to 2.
+            cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+            return cleaned.trim();
         }
 
         // Helper function to deduplicate and index references
@@ -2025,6 +2215,7 @@
                     showToast('Sign In Required', 'Please sign in to transcribe audio.', 'warning');
                     return;
                 }
+                lastServiceRetry = () => transcribeAudio(file, options);
                 const formData = new FormData();
                 formData.append('audio', file);
                 formData.append('language', 'en');
@@ -2044,8 +2235,14 @@
                         updateCharacterCounter();
                     }
                     saveToStorage();
+                    hideServiceErrorBanner();
                     showToast('Success', 'Audio transcribed with speaker labels', 'success');
                 } else {
+                    let detail = null;
+                    try { detail = await response.json(); } catch (e) {}
+                    if (detail) {
+                        showServiceErrorBanner(detail?.detail || detail, lastServiceRetry);
+                    }
                     throw new Error(`Server error: ${response.status}`);
                 }
             } catch (error) {
@@ -2064,6 +2261,7 @@
                 showToast('Sign In Required', 'Please sign in before running OCR.', 'warning');
                 throw new Error('Missing authentication token');
             }
+            lastServiceRetry = () => ocrOnServer(file);
             const apiBase = getApiBase(app.settings.serverUrl || '/api');
             const form = new FormData();
             form.append('file', file);
@@ -2075,6 +2273,11 @@
             });
 
             if (!resp.ok) {
+                let detail = null;
+                try { detail = await resp.json(); } catch (e) {}
+                if (detail) {
+                    showServiceErrorBanner(detail?.detail || detail, lastServiceRetry);
+                }
                 const err = new Error(`OCR server error ${resp.status}`);
                 err.status = resp.status;
                 throw err;
@@ -2083,6 +2286,7 @@
             if (!data?.success) {
                 throw new Error('Server OCR response missing success flag');
             }
+            hideServiceErrorBanner();
             return {
                 text: data.text || '',
                 confidence: data.confidence ?? null,
@@ -2265,6 +2469,7 @@
                     return;
                 }
                 app.isStreaming = true;
+                lastServiceRetry = () => generateNoteOnline(chartData, noteType);
 
                 // Use direct streaming endpoint
                 const apiBase = getApiBase(app.settings.serverUrl || '/api');
@@ -2274,7 +2479,14 @@
                     body: formData
                 });
 
-                if (!response.ok) throw new Error(`Server error: ${response.status}`);
+                if (!response.ok) {
+                    let detail = null;
+                    try { detail = await response.json(); } catch (e) {}
+                    if (detail) {
+                        showServiceErrorBanner(detail?.detail || detail, lastServiceRetry);
+                    }
+                    throw new Error(`Server error: ${response.status}`);
+                }
 
                 window.lastGenerationId = response.headers.get('X-Generation-Id');
 
@@ -2297,6 +2509,7 @@
                     noteTextarea.value = stripBracketArtifacts(finalText);
                 }
 
+                hideServiceErrorBanner();
                 saveToStorage();
                 if (window.AuthWorkspace && typeof window.AuthWorkspace.queueSave === 'function') {
                     window.AuthWorkspace.queueSave();
@@ -2330,6 +2543,13 @@
                         }
                     } catch (e) {
                         console.warn('Could not fetch generation metadata:', e);
+                    }
+
+                    // Poll for order/referral request helpers
+                    try {
+                        pollOrderRequests(genId);
+                    } catch (e) {
+                        console.warn('Could not start order requests polling:', e);
                     }
 
                     const ragEligible = ['consult', 'followup', 'progress', 'admission'];
@@ -3120,8 +3340,8 @@
             }
         }
 
-        async function clearAll() {
-            if (confirm('This will clear ALL data (chart, note, audio, queue). Continue?')) {
+        async function clearAll(skipConfirm = false) {
+            if (skipConfirm || confirm('This will clear ALL data (chart, note, audio, queue). Continue?')) {
                 setChartDataValue('');
                 document.getElementById('generatedNote').value = '';
                 document.getElementById('transcriptionData').value = '';
@@ -3140,6 +3360,9 @@
                 if (retryConsultBtn) retryConsultBtn.classList.add('hidden');
                 const ragHintCard = document.getElementById('ragHint');
                 if (ragHintCard) ragHintCard.classList.add('hidden');
+                setOrderRequestsButtonVisible(false);
+                window.orderRequestsState = { status: 'idle', items: [] };
+                closeOrderRequestsModal();
 
                 if (app.isListening) {
                     stopSpeechRecognition();
@@ -3209,6 +3432,168 @@
             } else {
                 fallbackCopy(cleanedText);
             }
+        }
+
+        window.openOrderRequestsModal = function() {
+            const modal = document.getElementById('orderRequestsModal');
+            if (!modal) return;
+            if (modal.parentElement !== document.body) {
+                document.body.appendChild(modal);
+            }
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            renderOrderRequestsModal();
+        }
+
+        window.closeOrderRequestsModal = function() {
+            const modal = document.getElementById('orderRequestsModal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+        }
+
+        function setOrderRequestsButtonVisible(visible) {
+            const btn = document.getElementById('openOrderRequestsBtn');
+            if (!btn) return;
+            if (visible) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        }
+
+        function renderOrderRequestsModal() {
+            const listEl = document.getElementById('orderRequestsList');
+            const emptyEl = document.getElementById('orderRequestsEmpty');
+            if (!listEl || !emptyEl) return;
+
+            const state = window.orderRequestsState || { status: 'idle', items: [] };
+            listEl.innerHTML = '';
+
+            if (state.status === 'pending') {
+                emptyEl.textContent = 'Generating requests...';
+                emptyEl.classList.remove('hidden');
+                return;
+            }
+
+            const items = Array.isArray(state.items) ? state.items : [];
+            if (!items.length) {
+                emptyEl.textContent = 'No requests were detected.';
+                emptyEl.classList.remove('hidden');
+                return;
+            }
+
+            emptyEl.classList.add('hidden');
+
+            items.forEach((item, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'request-item';
+
+                const header = document.createElement('div');
+                header.className = 'request-item-header';
+
+                const title = document.createElement('div');
+                title.className = 'request-title';
+                title.textContent = item.title || `Request ${idx + 1}`;
+
+                const category = document.createElement('div');
+                category.className = 'request-category';
+                category.textContent = item.category || 'Other';
+
+                header.appendChild(title);
+                header.appendChild(category);
+
+                const textarea = document.createElement('textarea');
+                textarea.className = 'request-text';
+                textarea.value = item.request || '';
+                textarea.rows = 3;
+
+                const actions = document.createElement('div');
+                actions.className = 'request-actions';
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'btn btn-outline';
+                copyBtn.textContent = 'Copy';
+                copyBtn.onclick = () => copyOrderRequest(textarea.value || '');
+
+                actions.appendChild(copyBtn);
+
+                wrapper.appendChild(header);
+                wrapper.appendChild(textarea);
+                wrapper.appendChild(actions);
+
+                listEl.appendChild(wrapper);
+            });
+        }
+
+        function copyOrderRequest(text) {
+            const value = (text || '').trim();
+            if (!value) {
+                showToast('Error', 'Nothing to copy', 'error');
+                return;
+            }
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(value)
+                    .then(() => showToast('Copied', 'Request copied to clipboard', 'success'))
+                    .catch(() => showToast('Error', 'Copy failed', 'error'));
+            } else {
+                const temp = document.createElement('textarea');
+                temp.value = value;
+                document.body.appendChild(temp);
+                temp.select();
+                try {
+                    const success = document.execCommand('copy');
+                    if (!success) throw new Error('execCommand copy failed');
+                    showToast('Copied', 'Request copied to clipboard', 'success');
+                } catch {
+                    showToast('Error', 'Copy failed', 'error');
+                } finally {
+                    document.body.removeChild(temp);
+                }
+            }
+        }
+
+        async function pollOrderRequests(genId) {
+            if (!genId) return;
+            const apiBase = getApiBase(app.settings.serverUrl || '/api');
+            const token = getAuthToken();
+            if (!token) return;
+
+            window.orderRequestsState = { status: 'pending', items: [] };
+            setOrderRequestsButtonVisible(true);
+
+            let tries = 0;
+            let maxRetries = 30; // ~90s at 3s interval
+            const poll = setInterval(async () => {
+                tries++;
+                try {
+                    const r = await fetch(`${apiBase}/generation/${genId}/order_requests`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (r.ok) {
+                        const data = await r.json();
+                        if (data.status === 'done' || data.status === 'error') {
+                            window.orderRequestsState = data;
+                            renderOrderRequestsModal();
+                            if (data.status === 'error') {
+                                showToast('Notice', 'Order requests not available', 'warning');
+                            }
+                            clearInterval(poll);
+                            return;
+                        }
+                        if (data.status === 'pending') {
+                            window.orderRequestsState = data;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[OrderRequests] polling error:', e);
+                }
+                if (tries >= maxRetries) {
+                    clearInterval(poll);
+                    window.orderRequestsState = { status: 'error', items: [] };
+                    renderOrderRequestsModal();
+                }
+            }, 3000);
         }
 
         function fallbackCopy(text) {
@@ -3886,6 +4271,50 @@ Contact Information:`,
             }
         }
 
+        let serviceErrorTimer = null;
+        let lastServiceRetry = null;
+
+        function showServiceErrorBanner(detail, retryFn) {
+            const banner = document.getElementById('serviceErrorBanner');
+            const titleEl = document.getElementById('serviceErrorTitle');
+            const detailsEl = document.getElementById('serviceErrorDetails');
+            const retryBtn = document.getElementById('serviceErrorRetry');
+            const closeBtn = document.getElementById('serviceErrorClose');
+            if (!banner || !titleEl || !detailsEl || !retryBtn || !closeBtn) return;
+
+            const svc = detail?.service || detail?.detail?.service || 'service';
+            const primary = detail?.primary || detail?.detail?.primary;
+            const fallback = detail?.fallback || detail?.detail?.fallback;
+            const errors = detail?.errors || detail?.detail?.errors || [];
+
+            titleEl.textContent = `${svc.toUpperCase()} unavailable`;
+            const parts = [];
+            if (primary) parts.push(`primary: ${primary}`);
+            if (fallback) parts.push(`fallback: ${fallback}`);
+            if (errors && errors.length) parts.push(`error: ${errors.join(' | ')}`);
+            detailsEl.textContent = parts.length ? ` — ${parts.join(' — ')}` : ' — please report this issue.';
+
+            if (serviceErrorTimer) clearTimeout(serviceErrorTimer);
+            serviceErrorTimer = setTimeout(() => hideServiceErrorBanner(), 120000);
+
+            lastServiceRetry = typeof retryFn === 'function' ? retryFn : null;
+            retryBtn.disabled = !lastServiceRetry;
+            retryBtn.onclick = () => {
+                if (lastServiceRetry) {
+                    lastServiceRetry();
+                }
+            };
+            closeBtn.onclick = () => hideServiceErrorBanner();
+
+            banner.classList.remove('hidden');
+        }
+
+        function hideServiceErrorBanner() {
+            const banner = document.getElementById('serviceErrorBanner');
+            if (!banner) return;
+            banner.classList.add('hidden');
+        }
+
 
         // Workspace load/save for per-user custom prompts
         async function loadWorkspaceState() {
@@ -4251,6 +4680,17 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
 
             // Initialize V7 character counters for all 3 input fields
             initCharacterCounters();
+
+            const orderBtn = document.getElementById('openOrderRequestsBtn');
+            if (orderBtn) {
+                orderBtn.addEventListener('click', () => {
+                    if (typeof window.openOrderRequestsModal === 'function') {
+                        window.openOrderRequestsModal();
+                    } else {
+                        console.warn('openOrderRequestsModal not available');
+                    }
+                });
+            }
 
             registerUnloadGuards();
 

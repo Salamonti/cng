@@ -13,7 +13,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse, JSONResponse
 
-from services.note_generator_clean import get_simple_note_generator, SimpleNoteGenerator
+from services.note_generator_clean import get_simple_note_generator, SimpleNoteGenerator, ExternalServiceError
 from services.rag_http_client import RAGHttpClient
 from metrics import metrics as global_metrics
 
@@ -31,6 +31,8 @@ _generation_cache: Dict[str, Dict[str, str]] = {}
 _generation_meta: Dict[str, Dict[str, Any]] = {}
 _consult_comment_store: Dict[str, Dict[str, Any]] = {}
 _rag_llm_client: Optional[SimpleNoteGenerator] = None
+_order_request_store: Dict[str, Dict[str, Any]] = {}
+_order_llm_client: Optional[SimpleNoteGenerator] = None
 
 def _feedback_csv_path() -> str:
     logs_dir = Path(__file__).resolve().parents[1] / "logs"
@@ -79,6 +81,15 @@ NOTE_END_TOKEN = "END_OF_NOTE"
 NOTE_STOP_TOKENS = [NOTE_END_TOKEN, f"\n{NOTE_END_TOKEN}"]
 _CONTROL_CHARS_RE = re.compile(r"[\x00-\x09\x0b-\x1f\x7f]")
 _FORMAT_SYMBOLS_RE = re.compile(r"[#*=_+\-]{3,}")
+
+
+def _service_error_detail(err: ExternalServiceError) -> Dict[str, Any]:
+    return {
+        "service": err.service,
+        "primary": err.primary_url,
+        "fallback": err.fallback_url,
+        "errors": err.errors,
+    }
 
 
 def _has_minimum_signal(text: str, *, min_alnum: int) -> bool:
@@ -384,7 +395,11 @@ def clean_model_output_final(text: str) -> str:
                 cleaned = cleaned[match_full.end():].lstrip()
                 break
 
-    # Tame excessive blank lines but keep paragraphing
+    # Normalize CRLF to LF for consistent paragraph spacing rules.
+    cleaned = cleaned.replace("\r\n", "\n").replace("\r", "\n")
+    # If the model uses single newlines between paragraphs, add extra spacing after sentence end.
+    cleaned = re.sub(r'([.!?])\s*\n(?!\s*\n)([A-Za-z0-9])', r'\1\n\n\2', cleaned)
+    # If there are 3+ newlines, reduce to 2.
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
 
     # Trim global ends only
@@ -453,6 +468,155 @@ def _extract_marker_sentences(text: str, markers: List[str]) -> List[str]:
             sentences.append(sentence.strip())
     return sentences
 
+
+def _extract_plan_section(note_text: str) -> str:
+    """Try to isolate the Plan (or Assessment & Plan) section for downstream helpers."""
+    if not note_text:
+        return ""
+
+    header_re = re.compile(
+        r"(?im)^\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*:?\s*$"
+    )
+    header_inline_re = re.compile(
+        r"(?im)^\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*:\s*"
+    )
+
+    # 1) Inline header with content on the same line
+    inline_match = header_inline_re.search(note_text)
+    if inline_match:
+        start = inline_match.end()
+        rest = note_text[start:]
+        next_header = header_re.search(rest)
+        end = start + (next_header.start() if next_header else len(rest))
+        return note_text[start:end].strip()
+
+    # 2) Standalone header line, then capture following block
+    header_match = header_re.search(note_text)
+    if header_match:
+        start = header_match.end()
+        rest = note_text[start:]
+        next_header = header_re.search(rest)
+        end = start + (next_header.start() if next_header else len(rest))
+        return note_text[start:end].strip()
+
+    return ""
+
+
+def _extract_json_payload(text: str) -> Optional[Dict[str, Any]]:
+    if not text:
+        return None
+    cleaned = text.strip()
+    cleaned = re.sub(r"^\s*```[a-zA-Z0-9_-]*\s*\n", "", cleaned)
+    cleaned = re.sub(r"\n```+\s*$", "", cleaned)
+    start = cleaned.find("{")
+    end = cleaned.rfind("}")
+    if start == -1 or end == -1 or end <= start:
+        return None
+    snippet = cleaned[start : end + 1]
+    try:
+        return json.loads(snippet)
+    except Exception:
+        return None
+
+
+def _normalize_request_items(items: Any) -> List[Dict[str, str]]:
+    if not isinstance(items, list):
+        return []
+    out: List[Dict[str, str]] = []
+    for raw in items:
+        if not isinstance(raw, dict):
+            continue
+        category = str(raw.get("category") or raw.get("type") or "Other").strip() or "Other"
+        title = str(raw.get("title") or raw.get("label") or raw.get("order") or "").strip()
+        request = str(raw.get("request") or raw.get("text") or raw.get("sentence") or "").strip()
+        if not request and title:
+            request = title
+        if not request:
+            continue
+        title = clean_model_output_chunk(title) if title else ""
+        request = clean_model_output_chunk(request)
+        if len(title) > 120:
+            title = title[:117].rstrip() + "..."
+        if len(request) > 800:
+            request = request[:797].rstrip() + "..."
+        out.append(
+            {
+                "category": category[:32],
+                "title": title,
+                "request": request,
+            }
+        )
+    return out
+
+
+def _format_imaging_request(text: str) -> str:
+    """Enforce 3-4 line imaging request with simple wrapping."""
+    if not text:
+        return ""
+    cleaned = clean_model_output_final(text).strip()
+    # Normalize whitespace and remove excessive blank lines
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    lines = [ln.strip() for ln in cleaned.splitlines() if ln.strip()]
+    if not lines:
+        return ""
+    # If already multi-line, cap to 4 lines
+    if len(lines) >= 4:
+        return "\n".join(lines[:4])
+    # Wrap single/short lines to max 90 chars into up to 4 lines
+    wrapped: List[str] = []
+    buffer = " ".join(lines)
+    while buffer and len(wrapped) < 4:
+        if len(buffer) <= 90:
+            wrapped.append(buffer)
+            buffer = ""
+            break
+        cut = buffer.rfind(" ", 0, 90)
+        if cut <= 20:
+            cut = 90
+        wrapped.append(buffer[:cut].strip())
+        buffer = buffer[cut:].strip()
+    if buffer and len(wrapped) < 4:
+        wrapped.append(buffer)
+    return "\n".join(wrapped[:4])
+
+
+def _merge_medication_items(items: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    meds: List[Dict[str, str]] = []
+    others: List[Dict[str, str]] = []
+    for item in items:
+        if (item.get("category") or "").lower() == "medication":
+            meds.append(item)
+        else:
+            others.append(item)
+
+    if not meds:
+        return items
+
+    # Build unique medication lines
+    lines: List[str] = []
+    seen: set[str] = set()
+    for item in meds:
+        req = (item.get("request") or "").strip()
+        for line in req.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            norm = re.sub(r"\s+", " ", line).strip().lower()
+            if norm in seen:
+                continue
+            seen.add(norm)
+            lines.append(line)
+
+    if not lines:
+        return others
+
+    merged = {
+        "category": "Medication",
+        "title": "Medications",
+        "request": "\n".join(lines),
+    }
+    return others + [merged]
+
 # Backward-compatible alias if other modules import this name
 clean_model_output = clean_model_output_chunk
 
@@ -462,10 +626,10 @@ clean_model_output = clean_model_output_chunk
 # ---------------------------------------------------------------------------
 
 def _rag_client_from_cfg(cfg: Dict) -> RAGHttpClient:
-    base = cfg.get("rag_service_url")
+    base = os.environ.get("RAG_URL")
     if not base:
-        raise HTTPException(status_code=500, detail="rag_service_url not set in config")
-    timeout_ms = int(cfg.get("rag_timeout_ms", 25000))
+        raise HTTPException(status_code=500, detail="RAG_URL not set in environment")
+    timeout_ms = 90_000
     return RAGHttpClient(base, timeout=timeout_ms)
 
 
@@ -926,13 +1090,198 @@ def _normalize_note_type(note_type: Optional[str]) -> str:
     return mapping.get(nt, nt or "consult")
 
 def _get_rag_comment_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
-    global _rag_llm_client
-    url = (cfg.get("rag_comment_llm_url") or "").strip()
-    if _rag_llm_client is None:
-        _rag_llm_client = SimpleNoteGenerator()
+    return get_simple_note_generator()
+
+
+def _get_order_request_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
+    """Dedicated client for order/request helper generation."""
+    global _order_llm_client
+    url = (cfg.get("order_request_llm_url") or cfg.get("rag_comment_llm_url") or "").strip()
+    if _order_llm_client is None:
+        _order_llm_client = SimpleNoteGenerator()
     if url:
-        _rag_llm_client.server_url = url.rstrip("/")
-    return _rag_llm_client
+        _order_llm_client.primary_url = url.rstrip("/")
+        _order_llm_client.fallback_url = None
+        _order_llm_client._primary_down_until = 0.0
+    return _order_llm_client
+
+
+async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> None:
+    """Derive short order/referral request sentences from the note plan."""
+    try:
+        _order_request_store[gen_id] = {"status": "pending"}
+
+        plan_text = _extract_plan_section(note_text)
+        focus_text = plan_text or ""
+
+        if not note_text.strip():
+            _order_request_store[gen_id] = {
+                "status": "error",
+                "error": "Missing note content.",
+                "items": [],
+            }
+            return
+
+        max_items = int(cfg.get("order_request_max_items", 8))
+        max_items = max(1, min(max_items, 16))
+
+        referral_prompt = ""
+        try:
+            other_prompts = cfg.get("default_note_user_prompts_other", {}) or {}
+            if isinstance(other_prompts, dict):
+                referral_prompt = _cfg_text(other_prompts.get("referral"))
+        except Exception:
+            referral_prompt = ""
+        system_prompt_other = _cfg_text(cfg.get("default_note_system_prompt_other", ""))
+
+        if not focus_text.strip():
+            _order_request_store[gen_id] = {"status": "done", "items": []}
+            return
+
+        # Stage 1: detect requested orders/referrals from the plan only
+        detect_prompt = (
+            "Extract orders/referrals explicitly mentioned in the PLAN section.\n"
+            "Return STRICT JSON only (no prose, no markdown):\n"
+            "{\n"
+            "  \"items\": [\n"
+            "    {\n"
+            "      \"category\": \"Imaging|Lab|Referral|Medication|Procedure|Other\",\n"
+            "      \"title\": \"Short label (e.g., PET-CT chest)\",\n"
+            "      \"need_full_note\": true|false,\n"
+            "      \"use_referral_prompt\": true|false\n"
+            "    }\n"
+            "  ]\n"
+            "}\n"
+            f"Rules:\n- Max {max_items} items.\n"
+            "- If none, return {\"items\": []}.\n"
+            "- Do not invent items. Only include orders explicitly stated or clearly planned.\n"
+            "- Imaging/Procedure (CT/MRI/PET/Echo/US/etc): category=Imaging or Procedure; need_full_note=true.\n"
+            "- Referral: ONLY if the plan explicitly says referral/consult to another service or specialist.\n"
+            "- Do NOT label tests/imaging as Referral.\n"
+            "- For actual Referral: use_referral_prompt=true and need_full_note=true.\n"
+            "- Lab/Medication: need_full_note=false.\n"
+            "- Keep titles short.\n\n"
+            "PLAN:\n"
+            f"{focus_text}\n\n"
+            "JSON:\n"
+        )
+
+        llm = _get_order_request_llm(cfg)
+        detect_raw = await llm.collect_completion(
+            detect_prompt,
+            temperature=0.05,
+            max_tokens=500,
+            stop=[],
+        )
+        detect_payload = _extract_json_payload(detect_raw) or {}
+        detected_items = detect_payload.get("items")
+        if not isinstance(detected_items, list) or not detected_items:
+            _order_request_store[gen_id] = {"status": "done", "items": []}
+            return
+
+        # Stage 2: generate request text for each detected item
+        final_items: List[Dict[str, str]] = []
+        for raw_item in detected_items[:max_items]:
+            if not isinstance(raw_item, dict):
+                continue
+            category = str(raw_item.get("category") or "Other").strip() or "Other"
+            title = str(raw_item.get("title") or "").strip()
+            need_full_note = bool(raw_item.get("need_full_note"))
+            use_referral_prompt = bool(raw_item.get("use_referral_prompt"))
+
+            if not title:
+                continue
+
+            if use_referral_prompt:
+                gen_prompt = (
+                    "You are writing a referral request letter. Use the system prompt + referral prompt exactly.\n"
+                    "Output plain text only.\n\n"
+                    "SYSTEM PROMPT:\n"
+                    f"{system_prompt_other or 'No system prompt provided.'}\n\n"
+                    "REFERRAL PROMPT:\n"
+                    f"{referral_prompt or 'No referral prompt provided.'}\n\n"
+                    "FULL NOTE:\n"
+                    f"{note_text}\n\n"
+                )
+            else:
+                context_block = f"{note_text}" if need_full_note else f"{focus_text}"
+                if category.lower() == "medication":
+                    gen_prompt = (
+                        "Write medication orders in plain text, one medication per line.\n"
+                        "Format each line as: Medication Dose Unit Route Frequency\n"
+                        "Do not add explanations, durations, or justifications.\n"
+                        "Do not include extra sentences.\n"
+                        "Use only medications explicitly documented in the plan.\n\n"
+                        f"ITEM: {title}\n"
+                        "CONTEXT:\n"
+                        f"{context_block}\n\n"
+                    )
+                elif category.lower() == "lab":
+                    gen_prompt = (
+                        "Write a concise lab order request in one line. No explanations.\n"
+                        "Use only labs explicitly documented in the plan.\n\n"
+                        f"ITEM: {title}\n"
+                        "CONTEXT:\n"
+                        f"{context_block}\n\n"
+                    )
+                elif category.lower() == "imaging":
+                    gen_prompt = (
+                        "Write a concise imaging requisition request. No directive phrasing (do not say 'Order').\n"
+                        "Use 3 to 4 short lines max.\n"
+                        "Include patient age/sex if available, key symptoms, relevant background, and the specific question.\n"
+                        "You may refine the modality name to the most appropriate study (e.g., HRCT chest).\n"
+                        "Output plain text only.\n\n"
+                        f"ITEM: {title}\n"
+                        "FULL NOTE:\n"
+                        f"{context_block}\n\n"
+                    )
+                else:
+                    gen_prompt = (
+                        "Write a copy-ready requisition request for the specified item.\n"
+                        "Do not use directive phrasing like 'Order a'.\n"
+                        "Use professional, neutral language and keep it concise.\n"
+                        "Output one paragraph only.\n\n"
+                        f"ITEM: {title}\n"
+                        f"CATEGORY: {category}\n\n"
+                        "CONTEXT:\n"
+                        f"{context_block}\n\n"
+                    )
+
+            max_tokens = 500
+            if use_referral_prompt:
+                max_tokens = 1200
+            elif category.lower() == "imaging":
+                max_tokens = 1200
+            gen_raw = await llm.collect_completion(
+                gen_prompt,
+                temperature=0.1,
+                max_tokens=max_tokens,
+                stop=[],
+            )
+            if category.lower() == "imaging":
+                request_text = _format_imaging_request(gen_raw)
+            else:
+                request_text = clean_model_output_final(gen_raw).strip()
+            if not request_text:
+                continue
+            final_items.append(
+                {
+                    "category": category[:32],
+                    "title": clean_model_output_chunk(title)[:120],
+                    "request": clean_model_output_chunk(request_text),
+                }
+            )
+
+        _order_request_store[gen_id] = {
+            "status": "done",
+            "items": _merge_medication_items(final_items),
+        }
+    except Exception as exc:
+        _order_request_store[gen_id] = {
+            "status": "error",
+            "error": str(exc)[:200],
+            "items": [],
+        }
 
 
 def build_prompt_v8(
@@ -1571,6 +1920,8 @@ async def generate_stream(request: Request):
                         consult_source = clean_model_output_final(final_output)
                         if note_type in {"consult", "followup", "progress", "admission"}:
                             asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
+                        # Generate order/referral request helpers in background
+                        asyncio.create_task(_generate_order_requests(generation_id, consult_source, cfg2))
                     with _cache_lock:
                         if generation_id in _generation_cache:
                             _generation_cache[generation_id]["output"] = final_output
@@ -1619,6 +1970,28 @@ async def get_consult_comment(gen_id: str, request: Request) -> Dict[str, Any]:
 
     if not st:
         return {"status": "unknown"}
+    return st
+
+
+@router.get("/generation/{gen_id}/order_requests")
+async def get_order_requests(gen_id: str, request: Request) -> Dict[str, Any]:
+    st = _order_request_store.get(gen_id)
+    force = (request.query_params.get("force") or "").strip().lower() in {"1", "true", "yes"}
+
+    if force:
+        note_text = ""
+        with _cache_lock:
+            entry = _generation_cache.get(gen_id) or {}
+            note_text = entry.get("output") or ""
+        if not note_text:
+            return {"status": "error", "error": "No note output available for retry.", "items": []}
+        _order_request_store[gen_id] = {"status": "pending", "items": []}
+        cfg = load_config()
+        asyncio.create_task(_generate_order_requests(gen_id, note_text, cfg))
+        return {"status": "pending", "items": []}
+
+    if not st:
+        return {"status": "unknown", "items": []}
     return st
 
 
@@ -1797,20 +2170,22 @@ async def generate_v8_stream(request: Request):
             },
         }
 
+        try:
+            note_text = await note_gen.collect_completion(
+                prompt,
+                temperature=temp,
+                max_tokens=max_tokens,
+                stop=NOTE_STOP_TOKENS,
+            )
+        except ExternalServiceError as e:
+            return JSONResponse(status_code=503, content={"error": "service_unavailable", "detail": _service_error_detail(e)})
+
         async def gen():
             nonlocal token_count
             try:
-                # Direct LLM call - no extraction, no merging, just generate
-                note_text = await note_gen.collect_completion(
-                    prompt,
-                    temperature=temp,
-                    max_tokens=max_tokens,
-                    stop=NOTE_STOP_TOKENS,
-                )
-
                 # Clean and yield the output
-                note_text = _strip_note_end_marker(note_text)
-                cleaned = clean_model_output_chunk(note_text)
+                cleaned_text = _strip_note_end_marker(note_text)
+                cleaned = clean_model_output_chunk(cleaned_text)
                 if cleaned:
                     output_buf.append(cleaned)
                     token_count += len(cleaned.split())
@@ -1855,6 +2230,11 @@ async def generate_v8_stream(request: Request):
                         consult_source = clean_model_output_final(combined_output)
                         cfg2 = load_config()
                         asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
+                        asyncio.create_task(_generate_order_requests(generation_id, consult_source, cfg2))
+                    else:
+                        consult_source = clean_model_output_final(combined_output)
+                        cfg2 = load_config()
+                        asyncio.create_task(_generate_order_requests(generation_id, consult_source, cfg2))
 
                     with _cache_lock:
                         if generation_id in _generation_cache:
@@ -1942,12 +2322,15 @@ async def generate_v8(request: Request):
         t0 = time.perf_counter()
 
         # Direct LLM call
-        note_text = await note_gen.collect_completion(
-            prompt,
-            temperature=temp,
-            max_tokens=max_tokens,
-            stop=NOTE_STOP_TOKENS,
-        )
+        try:
+            note_text = await note_gen.collect_completion(
+                prompt,
+                temperature=temp,
+                max_tokens=max_tokens,
+                stop=NOTE_STOP_TOKENS,
+            )
+        except ExternalServiceError as e:
+            return JSONResponse(status_code=503, content={"error": "service_unavailable", "detail": _service_error_detail(e)})
 
         duration = time.perf_counter() - t0
         cleaned = clean_model_output_final(_strip_note_end_marker(note_text))

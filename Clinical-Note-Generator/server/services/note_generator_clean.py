@@ -4,6 +4,7 @@ import aiohttp
 import json
 import logging
 import os
+import time
 from pathlib import Path
 from typing import AsyncIterator, Dict, Optional, List, Tuple
 
@@ -23,12 +24,13 @@ class SimpleNoteGenerator:
     def __init__(self) -> None:
         self.config_path = Path(__file__).resolve().parents[2] / "config" / "config.json"
         self.config = self._load_config()
-        self.server_port = int(self.config.get("llama_server_port", 8081))
-        self.server_host = str(self.config.get("llama_server_host", "127.0.0.1"))
-        self.server_url = f"http://{self.server_host}:{self.server_port}"
         self.model_path = str(self.config.get("llm_model", ""))
         self.use_chat_api = self._cfg_bool("llama_use_chat_api", True)
         self.chat_model_name = self._resolve_chat_model_name()
+        self.primary_url = self._env_url("NOTEGEN_URL_PRIMARY")
+        self.fallback_url = self._env_url("NOTEGEN_URL_FALLBACK")
+        self._primary_down_until = 0.0
+        self._cooldown_sec = 20.0
 
     def _load_config(self) -> Dict:
         if self.config_path.exists():
@@ -40,12 +42,11 @@ class SimpleNoteGenerator:
 
     def reload_config(self) -> None:
         self.config = self._load_config()
-        self.server_port = int(self.config.get("llama_server_port", 8081))
-        self.server_host = str(self.config.get("llama_server_host", "127.0.0.1"))
-        self.server_url = f"http://{self.server_host}:{self.server_port}"
         self.model_path = str(self.config.get("llm_model", ""))
         self.use_chat_api = self._cfg_bool("llama_use_chat_api", True)
         self.chat_model_name = self._resolve_chat_model_name()
+        self.primary_url = self._env_url("NOTEGEN_URL_PRIMARY")
+        self.fallback_url = self._env_url("NOTEGEN_URL_FALLBACK")
 
     def _cfg_bool(self, key: str, default: bool) -> bool:
         val = self.config.get(key, default)
@@ -69,13 +70,41 @@ class SimpleNoteGenerator:
             return Path(self.model_path).name
         return "local-model"
 
-    async def _reset_context(self) -> None:
+    @staticmethod
+    def _env_url(key: str) -> Optional[str]:
+        val = os.environ.get(key)
+        if not val:
+            return None
+        cleaned = val.strip().rstrip("/")
+        return cleaned or None
+
+    def _candidate_urls(self) -> List[str]:
+        urls: List[str] = []
+        now = time.time()
+        if self.primary_url and now >= self._primary_down_until:
+            urls.append(self.primary_url)
+        if self.fallback_url and self.fallback_url not in urls:
+            urls.append(self.fallback_url)
+        if not urls:
+            raise ExternalServiceError(
+                "note_gen",
+                self.primary_url,
+                self.fallback_url,
+                ["NOTEGEN_URL_PRIMARY is not set (and no fallback configured)."],
+            )
+        return urls
+
+    def _mark_primary_down(self) -> None:
+        if self.primary_url:
+            self._primary_down_until = time.time() + self._cooldown_sec
+
+    async def _reset_context(self, base_url: str) -> None:
         """Request llama-server to drop cached KV state after each call."""
         timeout = aiohttp.ClientTimeout(total=3)
         try:
             async with aiohttp.ClientSession(timeout=timeout) as session:
                 async with session.post(
-                    f"{self.server_url}/command",
+                    f"{base_url}/command",
                     json={"cmd": "reset"},
                     headers={"Content-Type": "application/json"},
                 ):
@@ -96,40 +125,53 @@ class SimpleNoteGenerator:
         )
         logger.info("[SMPL] streaming payload (%s): %s", endpoint, payload)
 
-        timeout = aiohttp.ClientTimeout(total=300)
-        try:
-            async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.post(
-                    f"{self.server_url}{endpoint}",
-                    json=payload,
-                    headers={"Content-Type": "application/json"},
-                ) as response:
-                    if response.status != 200:
-                        error_text = await response.text()
-                        raise RuntimeError(f"llama-server error {response.status}: {error_text[:200]}")
+        errors: List[str] = []
+        for base_url in self._candidate_urls():
+            had_output = False
+            timeout = aiohttp.ClientTimeout(total=90)
+            try:
+                async with aiohttp.ClientSession(timeout=timeout) as session:
+                    async with session.post(
+                        f"{base_url}{endpoint}",
+                        json=payload,
+                        headers={"Content-Type": "application/json"},
+                    ) as response:
+                        if response.status != 200:
+                            error_text = await response.text()
+                            raise RuntimeError(f"llama-server error {response.status}: {error_text[:200]}")
 
-                    async for line_bytes in response.content:
-                        if not line_bytes:
-                            continue
-                        for raw_line in line_bytes.decode("utf-8", errors="ignore").splitlines():
-                            if not raw_line.startswith("data: "):
+                        async for line_bytes in response.content:
+                            if not line_bytes:
                                 continue
-                            data_str = raw_line[6:].strip()
-                            if not data_str or data_str == "[DONE]":
-                                continue
-                            try:
-                                data = json.loads(data_str)
-                            except json.JSONDecodeError:
-                                logger.warning("Malformed SSE chunk: %s", data_str[:120])
-                                continue
+                            for raw_line in line_bytes.decode("utf-8", errors="ignore").splitlines():
+                                if not raw_line.startswith("data: "):
+                                    continue
+                                data_str = raw_line[6:].strip()
+                                if not data_str or data_str == "[DONE]":
+                                    continue
+                                try:
+                                    data = json.loads(data_str)
+                                except json.JSONDecodeError:
+                                    logger.warning("Malformed SSE chunk: %s", data_str[:120])
+                                    continue
 
-                            content = self._extract_stream_content(data)
-                            if content:
-                                yield content
-                            else:
-                                logger.info("[SMPL] empty stream chunk: %s", data)
-        finally:
-            await self._reset_context()
+                                content = self._extract_stream_content(data)
+                                if content:
+                                    had_output = True
+                                    yield content
+                                else:
+                                    logger.info("[SMPL] empty stream chunk: %s", data)
+                await self._reset_context(base_url)
+                return
+            except Exception as exc:
+                if base_url == self.primary_url:
+                    self._mark_primary_down()
+                errors.append(f"{base_url}: {exc}")
+                if had_output:
+                    raise
+                continue
+
+        raise ExternalServiceError("note_gen", self.primary_url, self.fallback_url, errors)
 
     async def collect_completion(
         self,
@@ -144,8 +186,9 @@ class SimpleNoteGenerator:
         )
         logger.info("[SMPL] collect payload (%s): %s", endpoint, payload)
 
+        used_url = None
         try:
-            response_data = await self._collect_json_response(payload, endpoint)
+            response_data, used_url = await self._collect_json_response(payload, endpoint)
             content = self._extract_stream_content(response_data)
 
             if content:
@@ -162,7 +205,7 @@ class SimpleNoteGenerator:
                     force_chat=False,
                 )
                 logger.info("[SMPL] fallback payload (%s): %s", fallback_endpoint, fallback_payload)
-                fallback_data = await self._collect_json_response(fallback_payload, fallback_endpoint)
+                fallback_data, used_url = await self._collect_json_response(fallback_payload, fallback_endpoint)
                 fallback_content = self._extract_stream_content(fallback_data)
                 if not fallback_content:
                     logger.info("[SMPL] fallback empty response: %s", fallback_data)
@@ -171,28 +214,38 @@ class SimpleNoteGenerator:
             logger.info("[SMPL] collect empty response: %s", response_data)
             return ""
         finally:
-            await self._reset_context()
+            if used_url:
+                await self._reset_context(used_url)
 
-    async def _collect_json_response(self, payload: Dict, endpoint: str) -> Dict:
-        timeout = aiohttp.ClientTimeout(total=300)
-        async with aiohttp.ClientSession(timeout=timeout) as session:
-            async with session.post(
-                f"{self.server_url}{endpoint}",
-                json=payload,
-                headers={"Content-Type": "application/json"},
-            ) as response:
-                if response.status != 200:
-                    error_text = await response.text()
-                    logger.info("[SMPL] collect error %s: %s", response.status, error_text[:200])
-                    raise RuntimeError(f"llama-server error {response.status}: {error_text[:200]}")
+    async def _collect_json_response(self, payload: Dict, endpoint: str) -> Tuple[Dict, str]:
+        errors: List[str] = []
+        for base_url in self._candidate_urls():
+            timeout = aiohttp.ClientTimeout(total=90)
+            try:
+                async with aiohttp.ClientSession(timeout=timeout) as session:
+                    async with session.post(
+                        f"{base_url}{endpoint}",
+                        json=payload,
+                        headers={"Content-Type": "application/json"},
+                    ) as response:
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.info("[SMPL] collect error %s: %s", response.status, error_text[:200])
+                            raise RuntimeError(f"llama-server error {response.status}: {error_text[:200]}")
 
-                raw_text = await response.text()
-                try:
-                    return json.loads(raw_text)
-                except json.JSONDecodeError as exc:
-                    logger.info("[SMPL] collect JSON error: %s", exc)
-                    logger.debug("Response snippet: %s", raw_text[:200])
-                    raise
+                        raw_text = await response.text()
+                        try:
+                            return json.loads(raw_text), base_url
+                        except json.JSONDecodeError as exc:
+                            logger.info("[SMPL] collect JSON error: %s", exc)
+                            logger.debug("Response snippet: %s", raw_text[:200])
+                            raise
+            except Exception as exc:
+                if base_url == self.primary_url:
+                    self._mark_primary_down()
+                errors.append(f"{base_url}: {exc}")
+                continue
+        raise ExternalServiceError("note_gen", self.primary_url, self.fallback_url, errors)
 
     def _build_payload(
         self,
@@ -324,6 +377,26 @@ class SimpleNoteGenerator:
             msg = data["message"]
             return msg.get("content")
         return None
+
+
+class ExternalServiceError(RuntimeError):
+    def __init__(
+        self,
+        service: str,
+        primary_url: Optional[str],
+        fallback_url: Optional[str],
+        errors: List[str],
+    ) -> None:
+        msg = f"{service} unavailable; attempted: {primary_url or '<unset>'}"
+        if fallback_url:
+            msg += f", fallback: {fallback_url}"
+        if errors:
+            msg += f"; errors: {', '.join(errors)}"
+        super().__init__(msg)
+        self.service = service
+        self.primary_url = primary_url
+        self.fallback_url = fallback_url
+        self.errors = errors
 
 
 _simple_client: Optional[SimpleNoteGenerator] = None

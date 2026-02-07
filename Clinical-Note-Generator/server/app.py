@@ -173,71 +173,11 @@ async def startup_event():
     # This allows admin.html to have full control over when servers start/stop
     # and prevents conflicting processes. Use admin.html to manually start servers.
     logger.info("Use admin.html to manually start llama/OCR servers when needed")
-    # Pre-warm ASR model to avoid first-request stall (30–120s on cold load)
-    try:
-        import asyncio as _asyncio  # late import
-        from routes.asr import asr_engine  # type: ignore
-        # Only pre-warm on CPU to avoid potential GPU init issues on Windows
-        dev = getattr(asr_engine, "device", "cpu")
-        ensure_model = getattr(asr_engine, "_ensure_model", None)
-        if callable(ensure_model):
-            _asyncio.create_task(_asyncio.to_thread(ensure_model))
-            logger.info("Scheduled ASR model pre-warm in background (device=%s)", dev)
-        else:
-            logger.info("ASR engine has no _ensure_model callable; skipping warm-up")
-    except Exception as _e:
-        logger.warning(f"ASR pre-warm skipped: {_e}")
-
-    # Optionally warm-start llama-server under internal manager control
-    try:
-        cfg_local = _load_cfg()
-        if bool(cfg_local.get("llama_auto_manage", False)) and bool(cfg_local.get("llama_warm_start", True)):
-            import asyncio as _asyncio
-            from services.note_gen_server import get_llama_server_manager  # type: ignore
-            _asyncio.create_task(get_llama_server_manager().start_server())
-            logger.info("Scheduled llama-server warm start (internal manager)")
-    except Exception as _e:
-        logger.warning(f"llama warm-start skipped: {_e}")
-
-    # Warm-start OCR server (non-blocking) while retaining lazy-start fallback
-    # Guarded by simple env toggle OCR_WARM_START (default: on)
-    # ALWAYS stop old OCR server first to ensure config changes take effect
-    try:
-        import asyncio as _asyncio
-        do_ocr_warm = os.environ.get("OCR_WARM_START", "1") != "0"
-        if do_ocr_warm:
-            from services.note_gen_server import get_ocr_server_manager  # type: ignore
-            async def restart_ocr():
-                manager = get_ocr_server_manager()
-                await manager.stop_server()  # Stop old server with old model
-                await manager.start_server()  # Start with new config
-            _asyncio.create_task(restart_ocr())
-            logger.info("Scheduled OCR server restart (internal manager)")
-        else:
-            logger.info("OCR warm start disabled by OCR_WARM_START=0")
-    except Exception as _e:
-        logger.warning(f"OCR warm-start skipped: {_e}")
+    # External services are managed outside this app (no auto-start here).
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    logger.info("Server shutting down - cleaning up processes...")
-    try:
-        from services.note_gen_server import get_llama_server_manager
-        # Also close OCR client session to free sockets
-        try:
-            from routes.ocr import ocr_client  # type: ignore
-            if hasattr(ocr_client, "close"):
-                ocr_client.close()  # type: ignore
-        except Exception:
-            pass
-
-        # Clean up llama-server
-        server_manager = get_llama_server_manager()
-        await server_manager.stop_server()
-
-        logger.info("Process cleanup completed")
-    except Exception as e:
-        logger.error(f"Error during process cleanup: {e}")
+    logger.info("Server shutting down")
 
 # Run server
 if __name__ == "__main__":
