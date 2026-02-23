@@ -20,13 +20,15 @@ if exist ".venv\Scripts\python.exe" (
 
 REM Required external service endpoints (edit as needed)
 if "%NOTEGEN_URL_PRIMARY%"=="" set "NOTEGEN_URL_PRIMARY=http://127.0.0.1:8081"
-if "%NOTEGEN_URL_FALLBACK%"=="" set "NOTEGEN_URL_FALLBACK=http://127.0.0.1:8036"
 if "%OCR_URL_PRIMARY%"=="" set "OCR_URL_PRIMARY=http://127.0.0.1:8090"
-if "%OCR_URL_FALLBACK%"=="" set "OCR_URL_FALLBACK=http://127.0.0.1:8091"
 if "%RAG_URL%"=="" set "RAG_URL=http://127.0.0.1:8007"
 if "%ASR_URL%"=="" set "ASR_URL=http://127.0.0.1:8095"
-if "%ASR_URL_FALLBACK%"=="" set "ASR_URL_FALLBACK=http://127.0.0.1:8096"
 if "%ASR_API_KEY%"=="" set "ASR_API_KEY=notegenadmin"
+
+REM Fallbacks are optional. Leave blank by default for single-GPU/single-service deployments.
+if "%NOTEGEN_URL_FALLBACK%"=="" set "NOTEGEN_URL_FALLBACK="
+if "%OCR_URL_FALLBACK%"=="" set "OCR_URL_FALLBACK="
+if "%ASR_URL_FALLBACK%"=="" set "ASR_URL_FALLBACK="
 
 REM Legacy env var kept for compatibility; not used by whisper.cpp inference proxy
 if "%ASR_ENABLE_DIARIZATION%"=="" set "ASR_ENABLE_DIARIZATION=0"
