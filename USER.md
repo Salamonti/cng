@@ -5,7 +5,7 @@ _Learn about the person you're helping. Update this as you go._
 - **Name:** Islam
 - **What to call them:** Islam
 - **Pronouns:** _(optional)_
-- **Timezone:**
+- **Timezone:** Atlantic Time (Yarmouth, NS, Canada)
 - **Notes:**
 
 ## Context
