@@ -7,6 +7,7 @@ _Learn about the person you're helping. Update this as you go._
 - **Pronouns:** _(optional)_
 - **Timezone:** Atlantic Time (Yarmouth, NS, Canada)
 - **Notes:**
+  - Prefers explicit completion updates after every requested task (always report back when done).
 
 ## Context
 
