@@ -2378,6 +2378,7 @@ async def generate_v8(request: Request):
         mixed_other_text = payload.get("mixed_other_text", "")
         note_type = _normalize_note_type(payload.get("note_type", "consult"))
         custom_prompt = payload.get("custom_prompt", "")
+        user_speciality = payload.get("user_speciality", "")
 
         # Get temperature and max_tokens
         temp: Optional[float] = None

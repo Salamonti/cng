@@ -268,18 +268,21 @@ async def asr_engine_info() -> Dict[str, Optional[str]]:
                     pass
                 try:
                     async with session.get(f"{base_url}/inference") as resp:
-                        # GET is not supported for inference, so 400/405 still indicates service is reachable.
-                        if resp.status in (200, 400, 401, 403, 405, 415):
+                        # Different whisper.cpp builds behave differently for GET /inference.
+                        # 400/405/415 are expected for a POST-only endpoint. Some builds return 404
+                        # on GET while still serving POST /inference correctly.
+                        if resp.status in (200, 400, 401, 403, 404, 405, 415):
                             return {
                                 "engine": "whisper.cpp",
                                 "base_url": base_url,
                                 "endpoint": "/inference",
+                                "probe_status": str(resp.status),
                             }
                         txt = await resp.text()
                         raise RuntimeError(f"HTTP {resp.status}: {txt[:200]}")
                 except Exception as e:
-                    if base_url == primary:
-                        _mark_primary_down()
+                    # Do not mark primary as down from this informational probe.
+                    # Primary cooldown should only be triggered by real transcription failures.
                     errors.append(f"{base_url}: {str(e)[:200]}")
                     continue
             return {"engine": "whisper.cpp", "error": "; ".join(errors)[:200]}
