@@ -30,9 +30,7 @@ _generation_cache: Dict[str, Dict[str, str]] = {}
 # RAG / metadata stores
 _generation_meta: Dict[str, Dict[str, Any]] = {}
 _consult_comment_store: Dict[str, Dict[str, Any]] = {}
-_rag_llm_client: Optional[SimpleNoteGenerator] = None
 _order_request_store: Dict[str, Dict[str, Any]] = {}
-_order_llm_client: Optional[SimpleNoteGenerator] = None
 
 def _feedback_csv_path() -> str:
     logs_dir = Path(__file__).resolve().parents[1] / "logs"
@@ -474,11 +472,12 @@ def _extract_plan_section(note_text: str) -> str:
     if not note_text:
         return ""
 
+    # Accept common variants: "Plan:", "Plan -", "PLAN", "A/P:", "Assessment & Plan"
     header_re = re.compile(
-        r"(?im)^\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*:?\s*$"
+        r"(?im)^\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*(?::|-)?\s*$"
     )
     header_inline_re = re.compile(
-        r"(?im)^\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*:\s*"
+        r"(?im)^\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*(?::|-)\s*"
     )
 
     # 1) Inline header with content on the same line
@@ -616,6 +615,55 @@ def _merge_medication_items(items: List[Dict[str, str]]) -> List[Dict[str, str]]
         "request": "\n".join(lines),
     }
     return others + [merged]
+
+
+def _dedupe_request_items(items: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    """Remove duplicate request items and collapse repeated Lab requests."""
+    if not items:
+        return items
+
+    seen: set[str] = set()
+    out: List[Dict[str, str]] = []
+    lab_lines: List[str] = []
+    lab_seen: set[str] = set()
+
+    def _norm(s: str) -> str:
+        s = re.sub(r"\s+", " ", (s or "").strip().lower())
+        return s
+
+    for item in items:
+        category = (item.get("category") or "").strip()
+        title = (item.get("title") or "").strip()
+        request = (item.get("request") or "").strip()
+        key = _norm(f"{category}|{title}|{request}")
+        if not key or key in seen:
+            continue
+        seen.add(key)
+
+        if category.lower() == "lab":
+            for line in request.splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                n = _norm(line)
+                if n in lab_seen:
+                    continue
+                lab_seen.add(n)
+                lab_lines.append(line)
+            continue
+
+        out.append(item)
+
+    if lab_lines:
+        out.append(
+            {
+                "category": "Lab",
+                "title": "Labs",
+                "request": "\n".join(lab_lines),
+            }
+        )
+
+    return out
 
 # Backward-compatible alias if other modules import this name
 clean_model_output = clean_model_output_chunk
@@ -1094,16 +1142,8 @@ def _get_rag_comment_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
 
 
 def _get_order_request_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
-    """Dedicated client for order/request helper generation."""
-    global _order_llm_client
-    url = (cfg.get("order_request_llm_url") or cfg.get("rag_comment_llm_url") or "").strip()
-    if _order_llm_client is None:
-        _order_llm_client = SimpleNoteGenerator()
-    if url:
-        _order_llm_client.primary_url = url.rstrip("/")
-        _order_llm_client.fallback_url = None
-        _order_llm_client._primary_down_until = 0.0
-    return _order_llm_client
+    """Use the same LLM client as main note generation."""
+    return get_simple_note_generator()
 
 
 async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> None:
@@ -1155,6 +1195,8 @@ async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> No
             f"Rules:\n- Max {max_items} items.\n"
             "- If none, return {\"items\": []}.\n"
             "- Do not invent items. Only include orders explicitly stated or clearly planned.\n"
+            "- Medication items: ONLY include meds that are planned to be started, changed, or discontinued.\n"
+            "- Exclude tentative language such as consider, may, might, could, if needed, or discuss.\n"
             "- Imaging/Procedure (CT/MRI/PET/Echo/US/etc): category=Imaging or Procedure; need_full_note=true.\n"
             "- Referral: ONLY if the plan explicitly says referral/consult to another service or specialist.\n"
             "- Do NOT label tests/imaging as Referral.\n"
@@ -1176,8 +1218,55 @@ async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> No
         detect_payload = _extract_json_payload(detect_raw) or {}
         detected_items = detect_payload.get("items")
         if not isinstance(detected_items, list) or not detected_items:
-            _order_request_store[gen_id] = {"status": "done", "items": []}
-            return
+            # Fallback: lightweight heuristics for explicit meds/labs in the plan
+            fallback_items: List[Dict[str, Any]] = []
+            med_unit_re = re.compile(r"\b\d+(?:\.\d+)?\s*(mg|mcg|g|kg|units|u|ml|mL)\b", re.IGNORECASE)
+            route_re = re.compile(r"\b(PO|IV|IM|SC|SQ|SUBQ|SL|PR|TOP|INH)\b", re.IGNORECASE)
+            freq_re = re.compile(r"\b(qd|bid|tid|qid|qhs|qod|q\d+h|daily|weekly|monthly|prn)\b", re.IGNORECASE)
+            lab_re = re.compile(
+                r"\b(ferritin|liver\s+panel|lft|cmp|bmp|cbc|a1c|hba1c|tsh|lipid|panel|labs?|testing)\b",
+                re.IGNORECASE,
+            )
+
+            tentative_re = re.compile(
+                r"\b(consider|considering|may|might|could|if needed|if indicated|discuss|discussion)\b",
+                re.IGNORECASE,
+            )
+
+            for raw_line in focus_text.splitlines():
+                line = raw_line.strip()
+                if not line:
+                    continue
+                line = re.sub(r"^\s*(?:[-*]|\d+[.)]|\(?[a-zA-Z]\)|[ivxlcdm]+[.)])\s+", "", line, flags=re.IGNORECASE)
+                if not line:
+                    continue
+                if tentative_re.search(line):
+                    continue
+                is_lab = bool(lab_re.search(line))
+                is_med = bool(med_unit_re.search(line) or route_re.search(line) or freq_re.search(line))
+                if is_med and not is_lab:
+                    fallback_items.append(
+                        {
+                            "category": "Medication",
+                            "title": line[:120],
+                            "need_full_note": False,
+                            "use_referral_prompt": False,
+                        }
+                    )
+                elif is_lab:
+                    fallback_items.append(
+                        {
+                            "category": "Lab",
+                            "title": line[:120],
+                            "need_full_note": False,
+                            "use_referral_prompt": False,
+                        }
+                    )
+
+            detected_items = fallback_items
+            if not detected_items:
+                _order_request_store[gen_id] = {"status": "done", "items": []}
+                return
 
         # Stage 2: generate request text for each detected item
         final_items: List[Dict[str, str]] = []
@@ -1208,10 +1297,11 @@ async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> No
                 if category.lower() == "medication":
                     gen_prompt = (
                         "Write medication orders in plain text, one medication per line.\n"
-                        "Format each line as: Medication Dose Unit Route Frequency\n"
+                        "Include only meds explicitly planned to be started, changed, or discontinued.\n"
+                        "Preferred format: Medication Dose Unit Route Frequency.\n"
+                        "If dose/route/frequency are missing, still include the medication name and any available details.\n"
                         "Do not add explanations, durations, or justifications.\n"
-                        "Do not include extra sentences.\n"
-                        "Use only medications explicitly documented in the plan.\n\n"
+                        "Do not include extra sentences.\n\n"
                         f"ITEM: {title}\n"
                         "CONTEXT:\n"
                         f"{context_block}\n\n"
@@ -1262,6 +1352,8 @@ async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> No
                 request_text = _format_imaging_request(gen_raw)
             else:
                 request_text = clean_model_output_final(gen_raw).strip()
+            if not request_text and category.lower() == "medication":
+                request_text = title
             if not request_text:
                 continue
             final_items.append(
@@ -1274,7 +1366,7 @@ async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> No
 
         _order_request_store[gen_id] = {
             "status": "done",
-            "items": _merge_medication_items(final_items),
+            "items": _dedupe_request_items(_merge_medication_items(final_items)),
         }
     except Exception as exc:
         _order_request_store[gen_id] = {
@@ -1918,10 +2010,6 @@ async def generate_stream(request: Request):
                     if not is_qa:
                         _append_feedback_csv(prompt, raw_final_output or final_output, 1)
                         consult_source = clean_model_output_final(final_output)
-                        if note_type in {"consult", "followup", "progress", "admission"}:
-                            asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
-                        # Generate order/referral request helpers in background
-                        asyncio.create_task(_generate_order_requests(generation_id, consult_source, cfg2))
                     with _cache_lock:
                         if generation_id in _generation_cache:
                             _generation_cache[generation_id]["output"] = final_output
@@ -1969,7 +2057,16 @@ async def get_consult_comment(gen_id: str, request: Request) -> Dict[str, Any]:
         return {"status": "pending"}
 
     if not st:
-        return {"status": "unknown"}
+        note_text = ""
+        with _cache_lock:
+            entry = _generation_cache.get(gen_id) or {}
+            note_text = entry.get("output") or ""
+        if not note_text:
+            return {"status": "error", "error": "No note output available."}
+        _consult_comment_store[gen_id] = {"status": "pending"}
+        cfg = load_config()
+        asyncio.create_task(_generate_consult_comment(gen_id, note_text, cfg, strategy=strategy))
+        return {"status": "pending"}
     return st
 
 
@@ -1991,7 +2088,16 @@ async def get_order_requests(gen_id: str, request: Request) -> Dict[str, Any]:
         return {"status": "pending", "items": []}
 
     if not st:
-        return {"status": "unknown", "items": []}
+        note_text = ""
+        with _cache_lock:
+            entry = _generation_cache.get(gen_id) or {}
+            note_text = entry.get("output") or ""
+        if not note_text:
+            return {"status": "error", "error": "No note output available.", "items": []}
+        _order_request_store[gen_id] = {"status": "pending", "items": []}
+        cfg = load_config()
+        asyncio.create_task(_generate_order_requests(gen_id, note_text, cfg))
+        return {"status": "pending", "items": []}
     return st
 
 
@@ -2005,18 +2111,24 @@ async def get_note_prompts() -> JSONResponse:
         cfg = load_config()
 
         system_prompt = _cfg_text(cfg.get("default_note_system_prompt", ""))
+        system_prompt_other = _cfg_text(cfg.get("default_note_system_prompt_other", ""))
 
         raw_templates = cfg.get("default_note_user_prompts", {})
+        raw_templates_other = cfg.get("default_note_user_prompts_other", {})
         templates_out = {}
 
         if isinstance(raw_templates, dict):
             for k, v in raw_templates.items():
+                templates_out[k] = _cfg_text(v)
+        if isinstance(raw_templates_other, dict):
+            for k, v in raw_templates_other.items():
                 templates_out[k] = _cfg_text(v)
 
         return JSONResponse(
             content={
                 "success": True,
                 "system": system_prompt,
+                "system_other": system_prompt_other,
                 "templates": templates_out,
             }
         )
@@ -2224,17 +2336,6 @@ async def generate_v8_stream(request: Request):
                 try:
                     combined_output = "".join(output_buf)
                     _append_feedback_csv(prompt, combined_output, 1)
-
-                    # Generate evidence-backed comment in background (eligible note types)
-                    if note_type in {"consult", "followup", "progress", "admission"}:
-                        consult_source = clean_model_output_final(combined_output)
-                        cfg2 = load_config()
-                        asyncio.create_task(_generate_consult_comment(generation_id, consult_source, cfg2))
-                        asyncio.create_task(_generate_order_requests(generation_id, consult_source, cfg2))
-                    else:
-                        consult_source = clean_model_output_final(combined_output)
-                        cfg2 = load_config()
-                        asyncio.create_task(_generate_order_requests(generation_id, consult_source, cfg2))
 
                     with _cache_lock:
                         if generation_id in _generation_cache:

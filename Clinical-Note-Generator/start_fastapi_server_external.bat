@@ -28,8 +28,8 @@ if "%ASR_URL%"=="" set "ASR_URL=http://127.0.0.1:8095"
 if "%ASR_URL_FALLBACK%"=="" set "ASR_URL_FALLBACK=http://127.0.0.1:8096"
 if "%ASR_API_KEY%"=="" set "ASR_API_KEY=notegenadmin"
 
-REM Optional: disable diarization (set to 0 to disable)
-if "%ASR_ENABLE_DIARIZATION%"=="" set "ASR_ENABLE_DIARIZATION=1"
+REM Legacy env var kept for compatibility; not used by whisper.cpp inference proxy
+if "%ASR_ENABLE_DIARIZATION%"=="" set "ASR_ENABLE_DIARIZATION=0"
 
 REM Check if required files exist
 if not exist "server\app.py" (

@@ -21,6 +21,15 @@ class UniversalAudioHandler {
         this.wakeLock = null; // screen wake lock handle
     }
 
+    _extensionFromMime(mimeType) {
+        const mt = (mimeType || '').toLowerCase();
+        if (mt.includes('webm')) return 'webm';
+        if (mt.includes('ogg')) return 'ogg';
+        if (mt.includes('mp4') || mt.includes('m4a')) return 'm4a';
+        if (mt.includes('wav')) return 'wav';
+        return 'webm';
+    }
+
     // Detect browser and platform capabilities
     detectBrowserCapabilities() {
         const userAgent = navigator.userAgent;
@@ -238,9 +247,11 @@ class UniversalAudioHandler {
             await new Promise(resolve => {
                 this.dictationRecorder.onstop = async () => {
                     if (this.dictationChunks.length > 0) {
-                        const audioBlob = new Blob(this.dictationChunks, { type: 'audio/wav' });
-                        const audioFile = new File([audioBlob], `dictation_${Date.now()}.wav`, {
-                            type: 'audio/wav'
+                        const outType = this.dictationRecorder.mimeType || this.dictationChunks[0]?.type || 'audio/webm';
+                        const ext = this._extensionFromMime(outType);
+                        const audioBlob = new Blob(this.dictationChunks, { type: outType });
+                        const audioFile = new File([audioBlob], `dictation_${Date.now()}.${ext}`, {
+                            type: outType
                         });
 
                         // Send to server for transcription
@@ -304,19 +315,22 @@ class UniversalAudioHandler {
             };
 
             this.mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
-                const audioFile = new File([audioBlob], `recording_${Date.now()}.wav`, {
-                    type: 'audio/wav'
+                const outType = this.mediaRecorder.mimeType || this.audioChunks[0]?.type || 'audio/webm';
+                const ext = this._extensionFromMime(outType);
+                const audioBlob = new Blob(this.audioChunks, { type: outType });
+                const audioFile = new File([audioBlob], `recording_${Date.now()}.${ext}`, {
+                    type: outType
                 });
-                
-                // Clean up stream
-                stream.getTracks().forEach(track => track.stop());
-                
+
                 // Call callback with recorded file
                 if (this.onAudioFileCallback) {
                     this.onAudioFileCallback(audioFile);
                 }
+
+                // Clean up stream
+                stream.getTracks().forEach(track => track.stop());
                 
+                this.isRecording = false;
                 this.onRecordingStop();
 
                 // If user intends to keep recording, immediately restart a new segment
@@ -329,6 +343,7 @@ class UniversalAudioHandler {
             // Attempt to recover on recorder errors
             if (this.mediaRecorder) {
                 this.mediaRecorder.onerror = () => {
+                    this.isRecording = false;
                     this.onRecordingError(new Error('Recorder error'));
                     if (this.shouldKeepRecording) {
                         setTimeout(() => { try { this.startAudioRecording(); } catch (e) {} }, 400);

@@ -74,7 +74,30 @@ def update_workspace(
                 "version": workspace.version,
             },
         )
-    workspace.state_json = payload.state.model_dump()
+    incoming_state = payload.state.model_dump()
+    incoming_extras = incoming_state.get("extras") or {}
+    existing_state = workspace.state_json or {}
+    existing_extras = existing_state.get("extras") or {}
+    cleared_flag = bool(incoming_extras.get("transcriptionCleared"))
+    if cleared_flag:
+        incoming_extras.pop("transcriptionCleared", None)
+    incoming_state["extras"] = incoming_extras
+
+    # Prevent stale client state from wiping ASR results unless explicitly cleared.
+    incoming_transcription = (incoming_extras.get("transcription") or "").strip()
+    incoming_current = (incoming_extras.get("currentEncounter") or "").strip()
+    existing_transcription = (existing_extras.get("transcription") or "").strip()
+    existing_current = (existing_extras.get("currentEncounter") or "").strip()
+    existing_last_asr = existing_extras.get("lastAsrJobId")
+    incoming_last_asr = incoming_extras.get("lastAsrJobId")
+    if not cleared_flag and not incoming_transcription and not incoming_current and (existing_transcription or existing_current):
+        incoming_extras["transcription"] = existing_extras.get("transcription") or ""
+        incoming_extras["currentEncounter"] = existing_extras.get("currentEncounter") or ""
+        if existing_last_asr and not incoming_last_asr:
+            incoming_extras["lastAsrJobId"] = existing_last_asr
+        incoming_state["extras"] = incoming_extras
+
+    workspace.state_json = incoming_state
     workspace.version += 1
     workspace.updated_at = datetime.utcnow()
     session.add(workspace)

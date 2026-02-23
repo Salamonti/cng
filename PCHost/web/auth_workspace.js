@@ -230,24 +230,7 @@
       if (apiSection) apiSection.classList.remove('hidden');
       this.disableIdleTracking();
 
-      // Clear sensitive note fields when not logged in.
-      try {
-        const transEl = document.getElementById('transcriptionData');
-        if (transEl) transEl.value = '';
-        const oldVisitsEl = document.getElementById('oldVisitsData');
-        if (oldVisitsEl) oldVisitsEl.value = '';
-        const mixedOtherEl = document.getElementById('mixedOtherData');
-        if (mixedOtherEl) mixedOtherEl.value = '';
-        const noteEl = document.getElementById('generatedNote');
-        if (noteEl) noteEl.value = '';
-        const chartEl = document.getElementById('chartData');
-        if (chartEl) chartEl.value = '';
-      } catch {}
-
-      try {
-        localStorage.removeItem('clinicalNoteData');
-        localStorage.removeItem('notegen_draft');
-      } catch {}
+      // Preserve UI state on sign-out; workspace data should persist until explicitly cleared.
     },
 
     showAuthActions(profile) {
@@ -529,10 +512,15 @@
         noteEl.value = draft || fallbackNote || noteEl.value || '';
       }
       const transEl = document.getElementById('transcriptionData');
+      const transDisplayEl = document.getElementById('transcriptionDisplay');
       if (transEl) {
         const transcription = typeof extras.transcription === 'string' ? extras.transcription : '';
         const currentEncounter = typeof extras.currentEncounter === 'string' ? extras.currentEncounter : '';
-        transEl.value = transcription || currentEncounter || transEl.value || '';
+        const notesValue = currentEncounter || transEl.value || '';
+        transEl.value = notesValue;
+        if (transDisplayEl) {
+          transDisplayEl.value = transcription || transDisplayEl.value || '';
+        }
       }
 
       // V7 API: Restore old visits field
@@ -578,6 +566,38 @@
       const ragHintCard = document.getElementById('ragHint');
       if (ragHintCard) ragHintCard.classList.add('hidden');
 
+      // Restore UI persistence for generation tools/buttons
+      const ui = extras.ui || {};
+      if (typeof window.applyUiStateFromWorkspace === 'function') {
+        try { window.applyUiStateFromWorkspace(ui); } catch {}
+      } else {
+        if (ui.lastGenerationId) window.lastGenerationId = ui.lastGenerationId;
+        if (ui.ragHasGenerated !== undefined || ui.ragContent) {
+          window.ragState = {
+            status: ui.ragHasGenerated ? 'ready' : 'idle',
+            content: ui.ragContent || null,
+            generationId: ui.lastGenerationId || window.lastGenerationId || null,
+            hasGenerated: !!ui.ragHasGenerated,
+            lastUpdated: ui.ragLastUpdated || null
+          };
+        }
+        if (ui.orderHasGenerated !== undefined || ui.orderItems) {
+          window.orderRequestsState = {
+            status: ui.orderHasGenerated ? 'ready' : 'idle',
+            items: Array.isArray(ui.orderItems) ? ui.orderItems : [],
+            generationId: ui.lastGenerationId || window.lastGenerationId || null,
+            hasGenerated: !!ui.orderHasGenerated,
+            lastUpdated: ui.orderLastUpdated || null
+          };
+        }
+        if (ui.showOrderRequestsButton && typeof window.setOrderRequestsButtonVisible === 'function') {
+          window.setOrderRequestsButtonVisible(true);
+        }
+        if (ui.showEvidenceButton && typeof window.setEvidenceButtonVisible === 'function') {
+          window.setEvidenceButtonVisible(true);
+        }
+      }
+
       // Clear uncertain items card
       const uncertainCard = document.getElementById('uncertainItemsCard');
       if (uncertainCard) uncertainCard.classList.add('hidden');
@@ -603,6 +623,7 @@
     collectWorkspaceState() {
       const noteEl = document.getElementById('generatedNote');
       const transEl = document.getElementById('transcriptionData');
+      const transDisplayEl = document.getElementById('transcriptionDisplay');
       const oldVisitsEl = document.getElementById('oldVisitsData');
       const mixedOtherEl = document.getElementById('mixedOtherData');
       const specialityEl = document.getElementById('userSpeciality');
@@ -616,7 +637,7 @@
         documents: [],
         draft: noteEl ? noteEl.value : '',
         extras: {
-          transcription: transEl ? transEl.value : '',
+          transcription: transDisplayEl ? transDisplayEl.value : '',
           currentEncounter: transEl ? transEl.value : '',
           // V7 API: 3-field system
           oldVisits: oldVisitsEl ? oldVisitsEl.value : '',
@@ -625,6 +646,7 @@
           generatedNote: noteEl ? noteEl.value : '',
           customPrompts: window.app?.customPrompts || {},
           appSettings: window.app?.settings || {},
+          ui: window.app?.uiState || {},
           // Backward compatibility: keep chart field for migration
           chart: oldVisitsEl ? oldVisitsEl.value : (chartEl ? chartEl.value : ''),
         },
@@ -652,9 +674,32 @@
       });
       if (resp.status === 409) {
         const data = await resp.json();
-        if (data.detail?.version) {
+        if (data.detail?.version && data.detail?.state) {
+          // Merge UI state into the latest server state and retry once.
           this.workspaceVersion = data.detail.version;
-          this.applyWorkspaceState(data.detail.state);
+          const nextState = data.detail.state || {};
+          if (!nextState.extras) nextState.extras = {};
+          if (window.app && window.app.uiState) {
+            nextState.extras.ui = { ...(nextState.extras.ui || {}), ...(window.app.uiState || {}) };
+          }
+          const retryPayload = {
+            state: nextState,
+            version: this.workspaceVersion,
+          };
+          const retryResp = await this.request('/api/workspace/', {
+            method: 'PUT',
+            body: JSON.stringify(retryPayload),
+          });
+          if (!retryResp.ok) {
+            // Fallback: apply server state, then re-apply UI locally
+            this.applyWorkspaceState(data.detail.state);
+            if (window.app && window.app.uiState && typeof window.applyUiStateFromWorkspace === 'function') {
+              try { window.applyUiStateFromWorkspace(window.app.uiState); } catch {}
+            }
+          } else {
+            const result = await retryResp.json();
+            this.workspaceVersion = result.version;
+          }
           this.updateWorkspaceMeta();
         }
         return;
@@ -911,66 +956,7 @@
     },
 
     clearUiState() {
-      const noteEl = document.getElementById('generatedNote');
-      if (noteEl) noteEl.value = '';
-      if (typeof window.setChartDataValue === 'function') {
-        try { window.setChartDataValue(''); } catch {}
-      } else {
-        const chartEl = document.getElementById('chartData');
-        if (chartEl) chartEl.value = '';
-      }
-      const transEl = document.getElementById('transcriptionData');
-      if (transEl) transEl.value = '';
-      // V7 API: Clear new fields
-      const oldVisitsEl = document.getElementById('oldVisitsData');
-      if (oldVisitsEl) oldVisitsEl.value = '';
-      const mixedOtherEl = document.getElementById('mixedOtherData');
-      if (mixedOtherEl) mixedOtherEl.value = '';
-      const consultCommentEl = document.getElementById('consultComment');
-      if (consultCommentEl) consultCommentEl.value = '';
-      const consultRefsEl = document.getElementById('consultRefs');
-      if (consultRefsEl) consultRefsEl.textContent = '';
-      const consultCard = document.getElementById('consultCommentCard');
-      if (consultCard) consultCard.classList.add('hidden');
-      const retryConsultBtn = document.getElementById('retryConsultComment');
-      if (retryConsultBtn) retryConsultBtn.classList.add('hidden');
-      const ragHintCard = document.getElementById('ragHint');
-      if (ragHintCard) ragHintCard.classList.add('hidden');
-      // V7 API: Clear uncertain items
-      const uncertainCard = document.getElementById('uncertainItemsCard');
-      if (uncertainCard) uncertainCard.classList.add('hidden');
-      if (window.app) {
-        if (window.app.isListening && typeof window.stopSpeechRecognition === 'function') {
-          try { window.stopSpeechRecognition(); } catch {}
-        }
-        if (Array.isArray(window.app.requestQueue)) {
-          window.app.requestQueue = [];
-        }
-        if (window.app.noteState) {
-          window.app.noteState.lastSavedHash = null;
-          window.app.noteState.edited = false;
-        }
-      }
-      if (typeof window.saveQueue === 'function') {
-        try { window.saveQueue(); } catch {}
-      }
-      if (typeof window.updateQueueDisplay === 'function') {
-        try { window.updateQueueDisplay(); } catch {}
-      }
-      if (window.queueStorage && typeof window.queueStorage.clearAll === 'function') {
-        window.queueStorage.clearAll().catch(err => console.warn('[Auth] Failed to clear queue storage:', err));
-      }
-      const queueCard = document.getElementById('queueCard');
-      if (queueCard) queueCard.classList.add('hidden');
-      if (typeof updateCharacterCounter === 'function') {
-        try { updateCharacterCounter(); } catch {}
-      }
-      if (typeof window.updateGeneratedNoteEmptyState === 'function') {
-        window.updateGeneratedNoteEmptyState();
-      }
-      try {
-        localStorage.removeItem('clinicalNoteData');
-      } catch {}
+      // Preserve UI data on sign-out; only reset auth UI chrome.
       const registerForm = document.getElementById('registerForm');
       if (registerForm && !registerForm.classList.contains('hidden')) {
         registerForm.classList.add('hidden');
@@ -982,7 +968,7 @@
       if (this.card) {
         this.card.classList.remove('authenticated');
       }
-      console.log('[Auth] UI state cleared without touching workspace storage');
+      console.log('[Auth] UI state preserved on sign-out');
     },
 
     updateApiBaseInput() {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Clinical Note Generator v5.1</title>
+    <title>Clinical Note Generator v6.0</title>
 
     <style>
         * {
@@ -225,6 +225,11 @@
             justify-content: flex-end;
         }
 
+        .bar-group-middle {
+            justify-content: center;
+            flex: 1;
+        }
+
         .floating-bar .connection-status {
             padding: 4px 10px;
             border-radius: 12px;
@@ -259,6 +264,45 @@
         }
         .floating-bar .server-config {
             position: relative;
+        }
+
+        .bar-input {
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            min-width: 220px;
+        }
+
+        .bar-select {
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            min-width: 200px;
+        }
+
+        .bar-action {
+            min-width: 180px;
+            min-height: 44px;
+            height: 44px;
+        }
+
+        .record-toggle {
+            border: 1px solid #6c757d;
+            color: #6c757d;
+            background: white;
+        }
+
+        .record-toggle.recording-ready {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .record-toggle.recording-active {
+            border-color: #28a745;
+            color: #28a745;
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
         }
         .server-config-content {
             display: none;
@@ -304,6 +348,9 @@
             .bar-group-left, .bar-group-right {
                 justify-content: center;
             }
+            .bar-group-middle {
+                justify-content: center;
+            }
             .floating-bar button, .floating-bar a {
                 padding: 4px 8px;
                 font-size: 0.7rem;
@@ -311,6 +358,35 @@
             .floating-bar .connection-status {
                 font-size: 0.7rem;
                 padding: 3px 8px;
+            }
+            .bar-input,
+            .bar-select {
+                width: 100%;
+                min-width: unset;
+            }
+            .bar-action {
+                width: 100%;
+                min-width: unset;
+                height: 40px;
+            }
+            .bar-group-middle {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .bar-group-middle .small-text {
+                text-align: left;
+                width: 100%;
+            }
+            .floating-bar {
+                padding: 6px 10px;
+            }
+            .bar-group-left {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .bar-group-right {
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
 
@@ -350,9 +426,26 @@
             margin-bottom: 0.75rem;
             color: #2c3e50;
         }
+        .auth-status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 0.75rem;
+        }
+        .auth-actions-left {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .auth-status-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
         .auth-status {
             font-size: 0.9rem;
-            margin-bottom: 0.75rem;
             color: #495057;
         }
         .auth-status.success { color: #1f7a1f; }
@@ -416,17 +509,10 @@
         }
         .auth-actions-compact {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
-        }
-        .auth-actions-compact .small-text {
-            flex: 0 0 auto;
-        }
-        .auth-actions-compact .inline-inputs {
-            flex: 0 0 auto;
-            gap: 8px;
         }
         #registerForm.hidden {
             display: none;
@@ -506,6 +592,9 @@
             font-size: 1rem;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+        .consult-comment {
+            white-space: pre-wrap;
+        }
         .form-control:focus {
             outline: none;
             border-color: #667eea;
@@ -533,8 +622,8 @@
             font-size: 0.95rem;
             color: #495057;
             font-weight: 500;
-            margin-top: -8px;
-            margin-bottom: 12px;
+            margin-top: 6px;
+            margin-bottom: 8px;
             text-align: center;
             background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
             padding: 14px;
@@ -634,10 +723,13 @@
 
         /* Character Counter */
         .char-counter {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: #6c757d;
             text-align: right;
             margin-top: 6px;
+        }
+        .small-hint {
+            font-size: 0.65rem;
         }
         .note-dimmed {
             opacity: 0.65;
@@ -651,6 +743,202 @@
         }
         .note-status.hidden {
             display: none;
+        }
+
+        .input-section {
+            margin-top: 8px;
+        }
+
+        .input-section.form-group {
+            margin-bottom: 10px;
+        }
+
+        .input-section + .input-section {
+            margin-top: 6px;
+        }
+
+        .input-section .form-control {
+            margin-top: 6px;
+        }
+
+        .stacked-box {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .stacked-box:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .stacked-box .form-control {
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .stacked-box .form-control:focus {
+            border: none;
+            box-shadow: none;
+        }
+
+        .stacked-divider {
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .transcription-display {
+            background: #f1f3f5;
+            color: #495057;
+            resize: none;
+            min-height: 70px;
+        }
+
+        .transcription-notes {
+            min-height: 135px;
+            background: #edf7ef;
+        }
+
+        #chartCard .form-label {
+            margin-bottom: 4px;
+        }
+
+        #chartCard .d-flex {
+            margin-top: 2px !important;
+        }
+
+        #chartCard .card-title,
+        #chartCard .card-subtitle,
+        #chartCard .form-label,
+        #chartCard .badge,
+        #chartCard .text-muted {
+            user-select: none;
+        }
+
+        .note-type-inline {
+            min-width: 200px;
+            border-color: #28a745;
+            background: #f2fff6;
+        }
+
+        .record-round-btn {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            border: none;
+            background: #f1f3f5;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .record-round-btn.recording-ready {
+            background: #dc3545;
+            color: #ffffff;
+        }
+
+        .record-round-btn.recording-active {
+            background: #28a745;
+            color: #ffffff;
+            box-shadow: 0 0 0 6px rgba(40, 167, 69, 0.15);
+        }
+
+        .chart-dropzone.dragover {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+        }
+
+        .note-layout {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .note-textarea {
+            flex: 1;
+            display: flex;
+        }
+
+        .note-textarea textarea {
+            height: 100%;
+            min-height: 320px;
+        }
+
+        .note-actions-vertical {
+            width: 140px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .note-actions-vertical .btn {
+            flex: 1;
+        }
+
+        .note-header-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .note-header-actions .btn {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            min-height: 40px;
+            min-width: 140px;
+        }
+
+        .input-historical .form-control {
+            background: #fff0f0;
+        }
+
+        .input-other .form-control {
+            background: #fffbe6;
+        }
+
+        @media (max-width: 900px) {
+            .note-layout {
+                flex-direction: column;
+            }
+            .note-actions-vertical {
+                width: 100%;
+                flex-direction: row;
+            }
+            .note-actions-vertical .btn {
+                flex: 1;
+            }
+            .note-header-actions {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                width: 100%;
+            }
+            .note-header-actions .btn,
+            .note-header-actions select {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .note-header-actions {
+                gap: 6px;
+                justify-content: space-between;
+            }
+            .note-header-actions .btn,
+            .note-header-actions select {
+                width: calc(50% - 6px);
+                min-width: unset;
+            }
+            .note-header-actions .btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+                min-height: 36px;
+            }
         }
 
         /* Progress Bar */
@@ -1107,10 +1395,6 @@
             <span class="icon">&#128193;</span>
             <span class="label">File Upload</span>
         </button>
-        <button class="sidebar-btn" onclick="loadTemplate()" title="Load Template">
-            <span class="icon">&#128203;</span>
-            <span class="label">Load Template</span>
-        </button>
         <button class="sidebar-btn" onclick="showPromptSettings()" title="Customize AI Prompts">
             <span class="icon">&#9881;</span>
             <span class="label">AI Prompts</span>
@@ -1132,21 +1416,39 @@
     <!-- Header -->
     <div class="header">
         <h1>Clinical Note Generator</h1>
-        <p>Version 5.1</p>
+        <p>Version 6.0</p>
     </div>
 
     <!-- Floating Top Bar - Sticky with Left/Right Alignment -->
     <div class="floating-bar">
-        <!-- GROUP 1 (LEFT): Debug, Connected, Server Config -->
+        <!-- GROUP 1 (LEFT): Connection + Speciality -->
         <div class="bar-group bar-group-left">
-            <button onclick="debugAudioCapabilities()">&#128027; Debug Audio</button>
             <span class="connection-status disconnected" id="connectionStatus">Disconnected</span>
-                <div class="server-config">
-                  <span class="small-text">Workspace login manages connectivity</span>
-                </div>
+            <input class="bar-input requires-auth" type="text" id="userSpeciality" placeholder="Speciality focus (e.g., cardiology)">
         </div>
 
-        <!-- GROUP 2 (RIGHT): Clear All, Clear Queue, Q&A -->
+        <!-- GROUP 2 (MIDDLE): Note Type + Actions -->
+        <div class="bar-group bar-group-middle requires-auth">
+            <span class="small-text">Note Type</span>
+            <select id="noteType" class="bar-select bar-action">
+                <option value="consult">Consultation Note</option>
+                <option value="followup">Follow-up Note</option>
+                <option value="referral">Referral Letter</option>
+                <option value="admission">Admission Note</option>
+                <option value="progress">Progress Note/SOAP</option>
+                <option value="discharge">Discharge Summary</option>
+                <option value="transfer">Transfer Note</option>
+                <option value="procedure">Procedure Note</option>
+                <option value="summarize">Summarize</option>
+                <option value="custom">Custom (Free Form)</option>
+            </select>
+            <button class="btn btn-success bar-action" onclick="generateNote()">&#9998; Generate Note</button>
+            <button class="btn record-toggle recording-ready bar-action" id="recordBtnInline" onclick="toggleSpeechRecognition()" title="Record/Stop">
+                &#127908; Record / Stop
+            </button>
+        </div>
+
+        <!-- GROUP 3 (RIGHT): Clear All, Clear Queue, Q&A -->
         <div class="bar-group bar-group-right">
             <button class="btn-danger" onclick="clearAll()">&#128465; Clear All</button>
             <button class="btn-danger" onclick="clearQueue()">&#128683; Clear Queue</button>
@@ -1157,7 +1459,16 @@
     <!-- Main Content -->
     <div class="container">
       <div class="auth-card" id="authCard">
-        <div class="auth-status" id="authStatus">Checking session...</div>
+        <div class="auth-status-row">
+          <div class="auth-actions-left">
+            <button type="button" id="logoutBtn" class="secondary">Sign Out</button>
+            <button type="button" id="clearWorkspaceBtn" class="danger">Reset Workspace</button>
+          </div>
+          <div class="auth-status-stack">
+            <div class="auth-status" id="authStatus">Checking session...</div>
+            <div class="small-text" id="workspaceMeta">Workspace: not synced</div>
+          </div>
+        </div>
 
         <div class="auth-forms" id="authForms">
           <form id="loginForm">
@@ -1192,51 +1503,36 @@
         <div class="register-info" id="registerInfo" style="display:none;"></div>
         <div class="register-info" id="approvalNotice" style="display:none;"></div>
 
-        <div class="auth-actions hidden" id="authActions">
-          <div class="auth-actions-compact">
-            <div class="small-text" id="workspaceMeta">Workspace: not synced</div>
-            <div class="inline-inputs">
-              <button type="button" id="logoutBtn" class="secondary">Sign Out</button>
-              <button type="button" id="clearWorkspaceBtn" class="danger">Reset Workspace</button>
-            </div>
-          </div>
-          <div class="form-group" style="margin-top: 0.75rem;">
-            <label class="form-label" for="userSpeciality">Speciality Focus</label>
-            <input type="text" id="userSpeciality" placeholder="e.g., internal medicine, cardiology">
-            <div class="small-text">Used to personalize the system prompt.</div>
-          </div>
-        </div>
+        <div class="auth-actions hidden" id="authActions"></div>
       </div>
 
         <!-- Chart Data Card -->
-        <div class="card requires-auth" id="chartCard">
+        <div class="card requires-auth chart-dropzone" id="chartCard"
+            ondrop="event.preventDefault(); handleDrop(event);"
+            ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover');"
+            ondragleave="event.currentTarget.classList.remove('dragover');">
             <div class="card-header">
                 <div>
                     <div class="card-title">Chart Data & Patient Info</div>
                     <div class="card-subtitle">Enter or review patient information</div>
                 </div>
+                <button class="record-round-btn recording-ready" id="recordBtnInlineRound" onclick="toggleSpeechRecognition()" title="Record/Stop">
+                    &#127908;
+                </button>
             </div>
 
             <!-- Section 1: Today's Dictation (CURRENT) -->
             <div class="input-section form-group input-current">
-                <div style="text-align: center; margin-bottom: 16px;">
-                    <button class="sidebar-btn recording-ready" id="recordBtnInline" onclick="toggleSpeechRecognition()" title="Audio Recording" style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
-                        <span class="icon" style="min-width: auto; font-size: 2rem;">&#127908;</span>
-                    </button>
-                    <div style="font-size: 0.85rem; color: #6c757d; margin-top: 8px;">Tap to record audio</div>
-                </div>
                 <label class="form-label fw-semibold" for="transcriptionData">
                     <span class="badge bg-success">CURRENT</span>
                     Current Encounter
                 </label>
-                <textarea id="transcriptionData" class="form-control" rows="4" placeholder="Type current encounter notes or use speech transcription..."></textarea>
-                <div class="d-flex justify-content-between align-items-center" style="margin-top: 4px;">
-                    <small class="text-muted">Type here or use speech transcription</small>
-                    <small id="transcriptionCounter" class="text-muted">0 chars</small>
-                </div>
-                <div class="btn-group" style="margin-top: 8px;">
-                    <button class="btn btn-danger btn-sm" onclick="clearTranscription()">Clear</button>
-                    <button class="btn btn-secondary btn-sm" onclick="copyTranscription()">Copy</button>
+                <div class="stacked-box">
+                    <textarea id="transcriptionDisplay" class="form-control transcription-display" rows="2" readonly
+                        placeholder="Transcription (read-only) will appear here..."></textarea>
+                    <div class="stacked-divider"></div>
+                    <textarea id="transcriptionData" class="form-control transcription-notes" rows="4"
+                        placeholder="Add current encounter notes here..."></textarea>
                 </div>
                 <div class="progress hidden" id="audioProgress">
                     <div class="progress-bar" id="audioProgressBar"></div>
@@ -1257,11 +1553,8 @@
                     ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover');"
                     ondragleave="event.currentTarget.classList.remove('dragover');"></textarea>
                 <div class="d-flex justify-content-between align-items-center" style="margin-top: 4px;">
-                    <small class="text-muted">Prior visits are always marked as historical</small>
-                    <small id="oldVisitsCounter" class="text-muted">0 / 75,000</small>
-                </div>
-                <div class="btn-group" style="margin-top: 8px;">
-                    <button class="btn btn-danger btn-sm" onclick="clearOldVisits()">Clear</button>
+                    <small class="text-muted small-hint">Prior visits are always marked as historical</small>
+                    <small id="oldVisitsCounter" class="text-muted char-counter">0 / 50,000</small>
                 </div>
             </div>
 
@@ -1280,29 +1573,22 @@
                     ondragover="event.preventDefault(); event.currentTarget.classList.add('dragover');"
                     ondragleave="event.currentTarget.classList.remove('dragover');"></textarea>
                 <div class="d-flex justify-content-between align-items-center" style="margin-top: 4px;">
-                    <small class="text-muted">
+                    <small class="text-muted small-hint">
                         Dates are auto-detected in this section:
                         <span class="text-success">recent = CURRENT</span>,
                         <span class="text-secondary">old = HISTORICAL</span>,
                         <span class="text-warning">unclear = DATE UNCLEAR</span>
                     </small>
-                    <small id="mixedOtherCounter" class="text-muted">0 / 75,000</small>
+                    <small id="mixedOtherCounter" class="text-muted char-counter">0 / 50,000</small>
                 </div>
-                <div class="btn-group" style="margin-top: 8px;">
-                    <button class="btn btn-danger btn-sm" onclick="clearMixedOther()">Clear</button>
-                </div>
-            </div>
 
-            <!-- Drag-drop hint for all fields -->
-            <div class="drag-drop-hint" id="documentDrop" tabindex="0" role="button" aria-label="Click or drag to upload files">
-                Paste or drag and drop audio, images, or PDFs here &#128070;
+                <!-- Drag-drop hint for all fields -->
+                <div class="drag-drop-hint" id="documentDrop" tabindex="0" role="button" aria-label="Click or drag to upload files">
+                    Paste or drag and drop audio, images, or PDFs here &#128070;
+                </div>
             </div>
             <div class="progress hidden" id="documentProgress">
                 <div class="progress-bar" id="documentProgressBar"></div>
-            </div>
-
-            <div class="btn-group" style="margin-bottom: 1rem;">
-                <button class="btn" onclick="saveDraft()">&#128190; Save Draft</button>
             </div>
 
             <!-- Character Limit Warning -->
@@ -1311,30 +1597,6 @@
             </div>
         </div>
 
-        <!-- Note Type Selection -->
-        <div class="card requires-auth">
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label" for="noteType">Note Type</label>
-                <select id="noteType" class="form-control">
-                    <option value="consult">Consultation Note</option>
-                    <option value="followup">Follow-up Note</option>
-                    <option value="referral">Referral Letter</option>
-                    <option value="admission">Admission Note</option>
-                    <option value="progress">Progress Note/SOAP</option>
-                    <option value="discharge">Discharge Summary</option>
-                    <option value="transfer">Transfer Note</option>
-                    <option value="procedure">Procedure Note</option>
-                    <option value="summarize">Summarize</option>
-                    <option value="custom">Custom (Free Form)</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Full Width Generate Note Button -->
-        <button class="btn btn-success btn-full requires-auth" style="margin-bottom: 20px; padding: 14px; font-size: 1rem;" onclick="generateNote()">
-            &#9998; Generate Note
-        </button>
-
         <!-- Generated Note Card -->
         <div class="card requires-auth" id="noteCard">
             <div class="card-header">
@@ -1342,27 +1604,49 @@
                     <div class="card-title">Generated Clinical Note</div>
                     <div class="card-subtitle">Review and edit your note</div>
                 </div>
+                <div class="note-header-actions">
+                    <span class="small-text">Note Type</span>
+                    <select id="noteTypeMirror" class="form-control note-type-inline">
+                        <option value="consult">Consultation Note</option>
+                        <option value="followup">Follow-up Note</option>
+                        <option value="referral">Referral Letter</option>
+                        <option value="admission">Admission Note</option>
+                        <option value="progress">Progress Note/SOAP</option>
+                        <option value="discharge">Discharge Summary</option>
+                        <option value="transfer">Transfer Note</option>
+                        <option value="procedure">Procedure Note</option>
+                        <option value="summarize">Summarize</option>
+                        <option value="custom">Custom (Free Form)</option>
+                    </select>
+                    <button class="btn btn-success" onclick="generateNote()">&#9998; Generate Note</button>
+                    <button class="btn" onclick="copyNote()">&#128203; Copy</button>
+                    <button class="btn" onclick="saveNote()">&#128190; Download</button>
+                </div>
             </div>
 
             <div class="form-group">
-                <textarea id="generatedNote" class="form-control" rows="15" placeholder="Generated note will appear here..."></textarea>
+                <div class="note-layout">
+                    <div class="note-textarea">
+                        <textarea id="generatedNote" class="form-control" rows="15" placeholder="Generated note will appear here..."></textarea>
+                    </div>
+                    <div class="note-actions-vertical">
+                        <button class="btn btn-secondary" onclick="sendFeedback(2)">&#128077; Good</button>
+                        <button class="btn btn-secondary" onclick="sendFeedback(0)">&#128078; Needs Work</button>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="openOrderRequestsModal()">
-                    Order & Referral Requests
-                </button>
-            </div>
-
             <div class="progress hidden" id="noteProgress">
                 <div class="progress-bar indeterminate" id="noteProgressBar"></div>
             </div>
             <div id="noteStatus" class="note-status hidden">Generating note...</div>
 
             <div class="btn-group">
-                <button class="btn" onclick="copyNote()">&#128203; Copy Note</button>
-                <button class="btn" onclick="saveNote()">&#128190; Download TXT</button>
-                <button class="btn btn-secondary" onclick="sendFeedback(2)">&#128077; Good</button>
-                <button class="btn btn-secondary" onclick="sendFeedback(0)">&#128078; Needs Work</button>
+                <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="handleOrderRequestsClick()">
+                    Order & Referral Requests
+                </button>
+                <button class="btn btn-outline btn-full hidden" id="openConsultCommentBtn">
+                    Evidence Based Comments
+                </button>
             </div>
         </div>
 
@@ -1380,7 +1664,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <textarea id="consultComment" class="form-control" rows="10" style="min-height: 220px; resize: vertical;" placeholder="Evidence-backed consult comment will appear here..." readonly></textarea>
+                <div id="consultComment" class="form-control consult-comment" style="min-height: 220px;" aria-live="polite"></div>
             </div>
             <div class="form-group">
                 <label class="form-label">References</label>
@@ -1404,6 +1688,7 @@
                     <div id="orderRequestsList" class="request-list"></div>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-outline" id="retryOrderRequests" onclick="retryOrderRequests()">Retry</button>
                     <button class="btn btn-secondary" onclick="closeOrderRequestsModal()">Close</button>
                 </div>
             </div>
@@ -1451,13 +1736,13 @@
 
     <!-- Footer -->
     <div class="footer">
-        <div class="version">Clinical Note Generator - Version 5.1</div>
-        <div class="copyright">&copy; 2025 Eissa Internal Medicine Inc. All rights reserved.</div>
-        <div class="acknowledgment">
-            This application utilizes open-source medical language models and tools including but not limited to:
-            Whisper ASR (OpenAI), LLaMA/llama.cpp (Meta/Apache 2.0), Nanonets-OCR-s (Nanonets),
-            ChromaDB (Apache 2.0), FastAPI (MIT), and various medical LLMs licensed under Apache 2.0.
-            We acknowledge and thank the open-source community for their invaluable contributions.
+        <div class="version">Clinical Note Generator - Version 6.0</div>
+        <div class="copyright">&copy; 2026 Eissa Internal Medicine Inc. All rights reserved.</div>
+        <div class="acknowledgment" style="font-size: 0.75rem; line-height: 1.4;">
+            This application utilizes open-source language models and tools including but not limited to:
+            Whisper / WhisperX (OpenAI), LLaMA / llama.cpp (Meta/Apache 2.0), Qwen (Alibaba),
+            GPT-OSS, OLMOCR, Nanonets OCR, ChromaDB (Apache 2.0), FastAPI (MIT), and other medical LLMs.
+            We acknowledge and thank the open-source community and contributors.
         </div>
     </div>
 
@@ -1853,14 +2138,17 @@
                 // Update both record buttons based on NEW state (opposite of wasRecording)
                 const sidebarBtn = document.getElementById('recordBtnSidebar');
                 const inlineBtn = document.getElementById('recordBtnInline');
+                const inlineRoundBtn = document.getElementById('recordBtnInlineRound');
                 const nowRecording = !wasRecording;
 
                 if (nowRecording) {
                     if (sidebarBtn) { sidebarBtn.classList.add('recording-active'); sidebarBtn.classList.remove('recording-ready'); }
                     if (inlineBtn) { inlineBtn.classList.add('recording-active'); inlineBtn.classList.remove('recording-ready'); }
+                    if (inlineRoundBtn) { inlineRoundBtn.classList.add('recording-active'); inlineRoundBtn.classList.remove('recording-ready'); }
                 } else {
                     if (sidebarBtn) { sidebarBtn.classList.remove('recording-active'); sidebarBtn.classList.add('recording-ready'); }
                     if (inlineBtn) { inlineBtn.classList.remove('recording-active'); inlineBtn.classList.add('recording-ready'); }
+                    if (inlineRoundBtn) { inlineRoundBtn.classList.remove('recording-active'); inlineRoundBtn.classList.add('recording-ready'); }
                 }
             } else {
                 const suggestions = guidance.recommendations.join('. ');
@@ -1881,6 +2169,11 @@
             if (inlineBtn) {
                 inlineBtn.classList.remove('recording-active');
                 inlineBtn.classList.add('recording-ready');
+            }
+            const inlineRoundBtn = document.getElementById('recordBtnInlineRound');
+            if (inlineRoundBtn) {
+                inlineRoundBtn.classList.remove('recording-active');
+                inlineRoundBtn.classList.add('recording-ready');
             }
         }
 
@@ -2229,7 +2522,7 @@
 
                 if (response.ok) {
                     const text = await response.text();
-                    const tx = document.getElementById('transcriptionData');
+                    const tx = document.getElementById('transcriptionDisplay');
                     appendToTextarea(tx, text);
                     if (typeof updateCharacterCounter === 'function') {
                         updateCharacterCounter();
@@ -2319,8 +2612,8 @@
                         try {
                             const out = await ocrOnServer(file);
                             text = sanitizeClinicalText(out.text || '');
-                            note = out.engine ? ` (${out.engine}${out.confidence != null ? `, conf ${out.confidence}` : ''})` : '';
-                            engine = out.engine || 'server';
+                            note = out.confidence != null ? ` (OCR, conf ${out.confidence})` : ' (OCR)';
+                            engine = 'ocr';
                             conf = out.confidence ?? null;
                         } catch (e) {
                             const code = e && (e.status || 0);
@@ -2371,11 +2664,12 @@
             const noteType = document.getElementById('noteType').value;
 
             // V7 API: Check if any of the 3 input fields has content
-            const transcriptionValue = document.getElementById('transcriptionData')?.value?.trim() || '';
+            const transcriptionDisplayValue = document.getElementById('transcriptionDisplay')?.value?.trim() || '';
+            const transcriptionNotesValue = document.getElementById('transcriptionData')?.value?.trim() || '';
             const oldVisitsValue = document.getElementById('oldVisitsData')?.value?.trim() || '';
             const mixedOtherValue = document.getElementById('mixedOtherData')?.value?.trim() || '';
 
-            const hasAnyContent = transcriptionValue || oldVisitsValue || mixedOtherValue;
+            const hasAnyContent = transcriptionDisplayValue || transcriptionNotesValue || oldVisitsValue || mixedOtherValue;
 
             if (!hasAnyContent) {
                 showToast('Error', 'Please enter content in at least one input field before generating note', 'error');
@@ -2433,7 +2727,8 @@
                 };
 
             // Collect inputs from 3 fields
-            const transcriptionValue = document.getElementById('transcriptionData')?.value || '';
+            const transcriptionOnly = document.getElementById('transcriptionDisplay')?.value || '';
+            const transcriptionNotes = document.getElementById('transcriptionData')?.value || '';
             const oldVisitsValue = document.getElementById('oldVisitsData')?.value || '';
             const mixedOtherValue = document.getElementById('mixedOtherData')?.value || '';
             const userSpeciality = document.getElementById('userSpeciality')?.value || '';
@@ -2441,7 +2736,16 @@
             const customPrompt = userPromptRaw.trim();
 
                 // Sanitize all inputs
-                const sanitizedTranscription = sanitizeUserText(transcriptionValue);
+                const sanitizedTranscriptOnly = sanitizeUserText(transcriptionOnly);
+                const sanitizedNotes = sanitizeUserText(transcriptionNotes);
+                const transcriptionSections = [];
+                if (sanitizedTranscriptOnly.trim()) {
+                    transcriptionSections.push(`TRANSCRIPTION:\n${sanitizedTranscriptOnly.trim()}`);
+                }
+                if (sanitizedNotes.trim()) {
+                    transcriptionSections.push(`CURRENT ENCOUNTER NOTES:\n${sanitizedNotes.trim()}`);
+                }
+                const sanitizedTranscription = transcriptionSections.join('\n\n');
                 const sanitizedOldVisits = sanitizeUserText(oldVisitsValue);
                 const sanitizedMixedOther = sanitizeUserText(mixedOtherValue);
                 const sanitizedCustomPrompt = sanitizeUserText(customPrompt);
@@ -2489,6 +2793,7 @@
                 }
 
                 window.lastGenerationId = response.headers.get('X-Generation-Id');
+                updateUiState({ lastGenerationId: window.lastGenerationId });
 
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
@@ -2545,111 +2850,29 @@
                         console.warn('Could not fetch generation metadata:', e);
                     }
 
-                    // Poll for order/referral request helpers
-                    try {
-                        pollOrderRequests(genId);
-                    } catch (e) {
-                        console.warn('Could not start order requests polling:', e);
-                    }
-
-                    const ragEligible = ['consult', 'followup', 'progress', 'admission'];
-                    if (!ragEligible.includes(noteType)) {
-                        const card = document.getElementById('consultCommentCard');
-                        if (card) card.classList.add('hidden');
-                        const ragHintCard = document.getElementById('ragHint');
-                        if (ragHintCard) ragHintCard.classList.add('hidden');
-                        return;
-                    }
-
-                    showToast('Processing', 'Gathering evidence and references...', 'info');
-
-                    const card = document.getElementById('consultCommentCard');
                     const commentEl = document.getElementById('consultComment');
                     const refsEl = document.getElementById('consultRefs');
                     const ragHintCard = document.getElementById('ragHint');
+                    const retryBtn = document.getElementById('retryConsultComment');
+                    const consultCard = document.getElementById('consultCommentCard');
+                    if (commentEl) setConsultComment('');
+                    if (refsEl) refsEl.textContent = '';
+                    if (consultCard) consultCard.classList.add('hidden');
+                    if (retryBtn) retryBtn.classList.add('hidden');
+                    if (ragHintCard) ragHintCard.classList.add('hidden');
 
-                    card.classList.remove('hidden');
-                    commentEl.value = 'Generating evidence-backed comment...';
-                    refsEl.textContent = '';
-
-                    let tries = 0;
-                    let maxRetries = 40; // 40 × 3s = 2 minutes
-                    let ragServiceUnavailable = false;
-
-                    const poll = setInterval(async () => {
-                        tries++;
-                        try {
-                            console.log(`[RAG] Polling consult comment (attempt ${tries}/${maxRetries})`);
-                            const apiBase = getApiBase(app.settings.serverUrl || '/api');
-                            const token = getAuthToken();
-                            if (!token) {
-                                throw new Error('Missing auth token');
-                            }
-                            const r = await fetch(`${apiBase}/generation/${genId}/consult_comment`, {
-                                headers: { 'Authorization': `Bearer ${token}` }
-                            });
-
-                            console.log(`[RAG] Response status: ${r.status}`);
-
-                            if (r.ok) {
-                                const data = await r.json();
-                                console.log(`[RAG] Response data:`, data);
-
-                                if (data.status === 'done') {
-                                    clearInterval(poll);
-                                    const comment = (data.comment || '').trim();
-
-                                    if (comment) {
-                                        commentEl.value = comment;
-                                        if (ragHintCard) ragHintCard.classList.add('hidden');
-                                    } else {
-                                        commentEl.value = 'No evidence-backed comment generated.';
-                                    }
-
-                                    const refs = deduplicateReferences(data.refs || []);
-                                    if (refs.length) {
-                                        refsEl.textContent = refs.map(r => {
-                                            const year = safeStr(r.year).trim() ? ` (${r.year})` : '';
-                                            const link = safeStr(r.link).trim() ? ` - ${r.link}` : '';
-                                            const src = safeStr(r.source).trim() ? ` [${r.source}]` : '';
-                                            const title = safeStr(r.title).trim() || 'Untitled';
-                                            return `[${r.index}] ${title}${year}${src}${link}`;
-                                        }).join('\n');
-                                    } else {
-                                        refsEl.textContent = 'No references available';
-                                    }
-                                } else if (data.status === 'error') {
-                                    clearInterval(poll);
-                                    ragServiceUnavailable = true;
-                                    commentEl.value = 'RAG service unavailable. Comment generation skipped.';
-                                    if (ragHintCard) ragHintCard.classList.remove('hidden');
-                                    const retryBtn = document.getElementById('retryConsultComment');
-                                    if (retryBtn) retryBtn.classList.remove('hidden');
-                                    console.warn('[RAG] Service returned error:', data.error || 'unknown');
-                                }
-                            } else if (r.status === 404) {
-                                console.log('[RAG] Generation not found yet, continuing...');
-                            } else {
-                                console.warn(`[RAG] Unexpected response: ${r.status}`);
-                            }
-                        } catch (err) {
-                            console.error('[RAG] Polling error:', err);
-                        }
-
-                        if (tries >= maxRetries) {
-                            clearInterval(poll);
-                            if (!ragServiceUnavailable) {
-                                commentEl.value = 'Timeout waiting for evidence-backed comment. RAG service may be offline.';
-                                if (ragHintCard) ragHintCard.classList.remove('hidden');
-                                const retryBtn = document.getElementById('retryConsultComment');
-                                if (retryBtn) retryBtn.classList.remove('hidden');
-                                console.warn('[RAG] Timeout after max retries');
-                            }
-                        }
-                    }, 3000); // Increased from 2s to 3s
-
-                    // Store poll ID for manual retry
-                    window.ragPollInterval = poll;
+                    window.ragState = {
+                        ...defaultRagState(),
+                        generationId: genId
+                    };
+                    window.orderRequestsState = {
+                        ...defaultOrderRequestsState(),
+                        generationId: genId
+                    };
+                    setEvidenceButtonVisible(true);
+                    setOrderRequestsButtonVisible(true);
+                    persistRagState();
+                    persistOrderRequestsState();
                 }
 
         } catch (error) {
@@ -2992,7 +3215,7 @@
                             const out = await ocrOnServer(file);
                             const existing = setChartDataValue();
                             const addition = sanitizeClinicalText(out.text || '');
-                            const suffix = out.engine ? ` (${out.engine}${out.confidence != null ? `, conf ${out.confidence}` : ''})` : '';
+                            const suffix = out.confidence != null ? ` (OCR, conf ${out.confidence})` : ' (OCR)';
                             const block = addition || '[No text detected]';
                             const newVal = existing
                                 ? `${existing}\n\nExtracted Text:\n\n${block}`
@@ -3093,8 +3316,10 @@
         }
 
         function clearTranscription() {
-            const tx = document.getElementById('transcriptionData');
-            if (tx) tx.value = '';
+            const transcriptEl = document.getElementById('transcriptionDisplay');
+            const notesEl = document.getElementById('transcriptionData');
+            if (transcriptEl) transcriptEl.value = '';
+            if (notesEl) notesEl.value = '';
             saveToStorage();
             if (typeof updateCharacterCounter === 'function') {
                 updateCharacterCounter();
@@ -3102,8 +3327,9 @@
         }
 
         function copyTranscription() {
-            const tx = document.getElementById('transcriptionData');
-            const text = tx ? (tx.value || '') : '';
+            const transcriptEl = document.getElementById('transcriptionDisplay');
+            const notesEl = document.getElementById('transcriptionData');
+            const text = [transcriptEl?.value || '', notesEl?.value || ''].filter(Boolean).join('\n\n');
             if (!text) {
                 showToast('Error', 'No transcription to copy', 'error');
                 return;
@@ -3211,6 +3437,94 @@
         function clearChartData() {
             // Legacy function - now clears oldVisitsData for backward compatibility
             clearOldVisits();
+        }
+
+        function defaultRagState() {
+            return {
+                status: 'idle',
+                content: null,
+                generationId: null,
+                hasGenerated: false,
+                lastUpdated: null
+            };
+        }
+
+        function defaultOrderRequestsState() {
+            return {
+                status: 'idle',
+                items: [],
+                generationId: null,
+                hasGenerated: false,
+                lastUpdated: null
+            };
+        }
+
+        function ensureRagState() {
+            if (!window.ragState || typeof window.ragState !== 'object') {
+                window.ragState = defaultRagState();
+            }
+            return window.ragState;
+        }
+
+        function ensureOrderRequestsState() {
+            if (!window.orderRequestsState || typeof window.orderRequestsState !== 'object') {
+                window.orderRequestsState = defaultOrderRequestsState();
+            }
+            return window.orderRequestsState;
+        }
+
+        function persistRagState() {
+            const st = ensureRagState();
+            updateUiState({
+                ragHasGenerated: !!st.hasGenerated,
+                ragContent: st.content || null,
+                ragLastUpdated: st.lastUpdated || null
+            });
+        }
+
+        function persistOrderRequestsState() {
+            const st = ensureOrderRequestsState();
+            updateUiState({
+                orderHasGenerated: !!st.hasGenerated,
+                orderItems: Array.isArray(st.items) ? st.items : [],
+                orderLastUpdated: st.lastUpdated || null
+            });
+        }
+
+        function updateUiState(patch) {
+            if (!app.uiState) app.uiState = {};
+            Object.assign(app.uiState, patch || {});
+            if (window.AuthWorkspace && typeof window.AuthWorkspace.queueSave === 'function') {
+                window.AuthWorkspace.queueSave();
+            }
+        }
+
+        function applyUiStateFromWorkspace(ui) {
+            const next = (ui && typeof ui === 'object') ? ui : {};
+            app.uiState = { ...(app.uiState || {}), ...next };
+            if (app.uiState.lastGenerationId) {
+                window.lastGenerationId = app.uiState.lastGenerationId;
+            }
+            const ragContent = (app.uiState.ragContent && typeof app.uiState.ragContent === 'object')
+                ? app.uiState.ragContent
+                : null;
+            const orderItems = Array.isArray(app.uiState.orderItems) ? app.uiState.orderItems : [];
+            window.ragState = {
+                status: app.uiState.ragHasGenerated ? 'ready' : 'idle',
+                content: ragContent,
+                generationId: app.uiState.lastGenerationId || window.lastGenerationId || null,
+                hasGenerated: !!app.uiState.ragHasGenerated,
+                lastUpdated: app.uiState.ragLastUpdated || null
+            };
+            window.orderRequestsState = {
+                status: app.uiState.orderHasGenerated ? 'ready' : 'idle',
+                items: orderItems,
+                generationId: app.uiState.lastGenerationId || window.lastGenerationId || null,
+                hasGenerated: !!app.uiState.orderHasGenerated,
+                lastUpdated: app.uiState.orderLastUpdated || null
+            };
+            setOrderRequestsButtonVisible(!!app.uiState.showOrderRequestsButton, false);
+            setEvidenceButtonVisible(!!app.uiState.showEvidenceButton, false);
         }
 
         function clearOldVisits() {
@@ -3345,6 +3659,8 @@
                 setChartDataValue('');
                 document.getElementById('generatedNote').value = '';
                 document.getElementById('transcriptionData').value = '';
+                const transcriptionDisplay = document.getElementById('transcriptionDisplay');
+                if (transcriptionDisplay) transcriptionDisplay.value = '';
                 const oldVisitsEl = document.getElementById('oldVisitsData');
                 if (oldVisitsEl) oldVisitsEl.value = '';
                 const mixedOtherEl = document.getElementById('mixedOtherData');
@@ -3352,7 +3668,7 @@
                 updateGeneratedNoteEmptyState();
 
                 // Clear/hide evidence-based comment section
-                document.getElementById('consultComment').value = '';
+                setConsultComment('');
                 document.getElementById('consultRefs').textContent = '';
                 const consultCard = document.getElementById('consultCommentCard');
                 if (consultCard) consultCard.classList.add('hidden');
@@ -3360,9 +3676,30 @@
                 if (retryConsultBtn) retryConsultBtn.classList.add('hidden');
                 const ragHintCard = document.getElementById('ragHint');
                 if (ragHintCard) ragHintCard.classList.add('hidden');
+                if (window.ragPollInterval) {
+                    clearInterval(window.ragPollInterval);
+                    window.ragPollInterval = null;
+                }
+                if (window.orderRequestsPollInterval) {
+                    clearInterval(window.orderRequestsPollInterval);
+                    window.orderRequestsPollInterval = null;
+                }
                 setOrderRequestsButtonVisible(false);
-                window.orderRequestsState = { status: 'idle', items: [] };
+                setEvidenceButtonVisible(false);
+                window.ragState = defaultRagState();
+                window.orderRequestsState = defaultOrderRequestsState();
                 closeOrderRequestsModal();
+                updateUiState({
+                    lastGenerationId: null,
+                    showOrderRequestsButton: false,
+                    showEvidenceButton: false,
+                    ragHasGenerated: false,
+                    orderHasGenerated: false,
+                    ragContent: null,
+                    orderItems: [],
+                    ragLastUpdated: null,
+                    orderLastUpdated: null
+                });
 
                 if (app.isListening) {
                     stopSpeechRecognition();
@@ -3452,7 +3789,7 @@
             modal.style.display = 'none';
         }
 
-        function setOrderRequestsButtonVisible(visible) {
+        function setOrderRequestsButtonVisible(visible, persist = true) {
             const btn = document.getElementById('openOrderRequestsBtn');
             if (!btn) return;
             if (visible) {
@@ -3460,6 +3797,236 @@
             } else {
                 btn.classList.add('hidden');
             }
+            if (persist) {
+                updateUiState({ showOrderRequestsButton: !!visible });
+            }
+        }
+
+        function setEvidenceButtonVisible(visible, persist = true) {
+            const btn = document.getElementById('openConsultCommentBtn');
+            if (!btn) return;
+            if (visible) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+            if (persist) {
+                updateUiState({ showEvidenceButton: !!visible });
+            }
+        }
+
+        function handleEvidenceBasedCommentsClick() {
+            const genId = window.lastGenerationId;
+            if (!genId) {
+                showToast('Error', 'Generate a note first.', 'error');
+                return;
+            }
+            const state = ensureRagState();
+            openConsultComment();
+
+            if (state.status === 'loading' || state.status === 'error' || state.hasGenerated) {
+                const retryBtn = document.getElementById('retryConsultComment');
+                if (retryBtn) retryBtn.classList.remove('hidden');
+                if (state.content) {
+                    renderRagContent(state.content);
+                } else if (state.status === 'error') {
+                    const commentEl = document.getElementById('consultComment');
+                    const refsEl = document.getElementById('consultRefs');
+                    if (commentEl) setConsultComment('Evidence-based comment failed. Click Retry to regenerate.');
+                    if (refsEl) refsEl.textContent = '';
+                } else if (state.hasGenerated) {
+                    const commentEl = document.getElementById('consultComment');
+                    const refsEl = document.getElementById('consultRefs');
+                    if (commentEl) setConsultComment('No cached evidence-based comment available. Click Retry to regenerate.');
+                    if (refsEl) refsEl.textContent = '';
+                }
+                return;
+            }
+
+            startRagGeneration(genId, { force: false });
+        }
+
+        function openConsultComment() {
+            const card = document.getElementById('consultCommentCard');
+            if (card) {
+                card.classList.remove('hidden');
+                try { card.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch {}
+            }
+        }
+
+        function renderRagContent(content) {
+            const commentEl = document.getElementById('consultComment');
+            const refsEl = document.getElementById('consultRefs');
+            const ragHintCard = document.getElementById('ragHint');
+            if (!commentEl || !refsEl) return;
+
+            const comment = (content && content.comment) ? String(content.comment).trim() : '';
+            setConsultComment(comment || 'No evidence-backed comment generated.');
+
+            const refs = deduplicateReferences((content && content.references) ? content.references : []);
+            if (refs.length) {
+                refsEl.textContent = refs.map(r => {
+                    const year = safeStr(r.year).trim() ? ` (${r.year})` : '';
+                    const link = safeStr(r.link).trim() ? ` - ${r.link}` : '';
+                    const src = safeStr(r.source).trim() ? ` [${r.source}]` : '';
+                    const title = safeStr(r.title).trim() || 'Untitled';
+                    return `[${r.index}] ${title}${year}${src}${link}`;
+                }).join('\n');
+            } else {
+                refsEl.textContent = 'No references available';
+            }
+            if (ragHintCard) ragHintCard.classList.add('hidden');
+        }
+
+        function renderMarkdownSimple(text) {
+            const raw = text == null ? '' : String(text);
+            const escaped = raw
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            const bolded = escaped.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            const italicized = bolded.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, '$1<em>$2</em>');
+            return italicized.replace(/\n/g, '<br>');
+        }
+
+        function setConsultComment(text) {
+            const el = document.getElementById('consultComment');
+            if (!el) return;
+            const raw = text == null ? '' : String(text);
+            el.dataset.raw = raw;
+            el.innerHTML = renderMarkdownSimple(raw);
+        }
+
+        function startRagGeneration(genId, options = {}) {
+            if (!genId) return;
+            const force = !!options.force;
+            const apiBase = getApiBase(app.settings.serverUrl || '/api');
+            const token = getAuthToken();
+            if (!token) {
+                showToast('Error', 'Missing auth token', 'error');
+                return;
+            }
+
+            if (window.ragPollInterval) {
+                clearInterval(window.ragPollInterval);
+                window.ragPollInterval = null;
+            }
+
+            const commentEl = document.getElementById('consultComment');
+            const refsEl = document.getElementById('consultRefs');
+            const retryBtn = document.getElementById('retryConsultComment');
+            const ragHintCard = document.getElementById('ragHint');
+            if (commentEl) {
+                setConsultComment(
+                    force
+                        ? 'Retrying evidence-backed comment generation...'
+                        : 'Generating evidence-backed comment...'
+                );
+            }
+            if (refsEl) refsEl.textContent = '';
+            if (retryBtn) retryBtn.classList.add('hidden');
+            if (ragHintCard) ragHintCard.classList.add('hidden');
+            openConsultComment();
+
+            window.ragState = {
+                ...ensureRagState(),
+                status: 'loading',
+                content: null,
+                generationId: genId,
+                hasGenerated: false,
+                lastUpdated: Date.now()
+            };
+            persistRagState();
+
+            let tries = 0;
+            let maxRetries = 40; // 40 × 3s = 2 minutes
+            let ragServiceUnavailable = false;
+
+            const poll = setInterval(async () => {
+                tries++;
+                try {
+                    console.log(`[RAG] Polling consult comment (attempt ${tries}/${maxRetries})`);
+                    const url = (force && tries === 1)
+                        ? `${apiBase}/generation/${genId}/consult_comment?force=1&strategy=full_note`
+                        : `${apiBase}/generation/${genId}/consult_comment`;
+                    const r = await fetch(url, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+
+                    if (r.ok) {
+                        const data = await r.json();
+                        if (data.status === 'done') {
+                            clearInterval(poll);
+                            const content = {
+                                comment: (data.comment || '').trim(),
+                                references: data.refs || []
+                            };
+                            window.ragState = {
+                                status: 'ready',
+                                content,
+                                generationId: genId,
+                                hasGenerated: true,
+                                lastUpdated: Date.now()
+                            };
+                            persistRagState();
+                            renderRagContent(content);
+                            if (retryBtn) retryBtn.classList.remove('hidden');
+                            showToast('Success', 'Evidence-backed comment generated!', 'success');
+                            return;
+                        }
+                        if (data.status === 'error') {
+                            clearInterval(poll);
+                            ragServiceUnavailable = true;
+                            window.ragState = {
+                                status: 'error',
+                                content: null,
+                                generationId: genId,
+                                hasGenerated: false,
+                                lastUpdated: Date.now()
+                            };
+                            persistRagState();
+                            if (commentEl) {
+                                setConsultComment(
+                                    data.error
+                                        ? `Evidence-based comment failed: ${data.error}`
+                                        : 'Evidence-based comment failed.'
+                                );
+                            }
+                            if (refsEl) refsEl.textContent = '';
+                            if (ragHintCard) ragHintCard.classList.remove('hidden');
+                            if (retryBtn) retryBtn.classList.remove('hidden');
+                            showToast('Error', 'Evidence-based comment failed', 'error');
+                            return;
+                        }
+                    } else if (r.status !== 404) {
+                        console.warn(`[RAG] Unexpected response: ${r.status}`);
+                    }
+                } catch (err) {
+                    console.error('[RAG] Polling error:', err);
+                }
+
+                if (tries >= maxRetries) {
+                    clearInterval(poll);
+                    if (!ragServiceUnavailable) {
+                        window.ragState = {
+                            status: 'error',
+                            content: null,
+                            generationId: genId,
+                            hasGenerated: false,
+                            lastUpdated: Date.now()
+                        };
+                        persistRagState();
+                        if (commentEl) setConsultComment('Timeout waiting for evidence-backed comment. You can retry.');
+                        if (ragHintCard) ragHintCard.classList.remove('hidden');
+                        if (retryBtn) retryBtn.classList.remove('hidden');
+                        showToast('Timeout', 'Evidence comment timeout. You can retry later.', 'warning');
+                        console.warn('[RAG] Timeout after max retries');
+                    }
+                }
+            }, 3000);
+
+            window.ragPollInterval = poll;
         }
 
         function renderOrderRequestsModal() {
@@ -3470,8 +4037,13 @@
             const state = window.orderRequestsState || { status: 'idle', items: [] };
             listEl.innerHTML = '';
 
-            if (state.status === 'pending') {
+            if (state.status === 'loading') {
                 emptyEl.textContent = 'Generating requests...';
+                emptyEl.classList.remove('hidden');
+                return;
+            }
+            if (state.status === 'error') {
+                emptyEl.textContent = 'Order requests unavailable. Click Retry to regenerate.';
                 emptyEl.classList.remove('hidden');
                 return;
             }
@@ -3553,36 +4125,88 @@
             }
         }
 
-        async function pollOrderRequests(genId) {
+        function handleOrderRequestsClick() {
+            const genId = window.lastGenerationId;
+            if (!genId) {
+                showToast('Error', 'Generate a note first.', 'error');
+                return;
+            }
+            const state = ensureOrderRequestsState();
+            window.openOrderRequestsModal();
+
+            if (state.status === 'loading' || state.status === 'error' || state.hasGenerated) {
+                renderOrderRequestsModal();
+                return;
+            }
+
+            startOrderRequestsGeneration(genId, { force: false });
+        }
+
+        function startOrderRequestsGeneration(genId, options = {}) {
             if (!genId) return;
+            const force = !!options.force;
             const apiBase = getApiBase(app.settings.serverUrl || '/api');
             const token = getAuthToken();
-            if (!token) return;
+            if (!token) {
+                showToast('Error', 'Missing auth token', 'error');
+                return;
+            }
 
-            window.orderRequestsState = { status: 'pending', items: [] };
-            setOrderRequestsButtonVisible(true);
+            if (window.orderRequestsPollInterval) {
+                clearInterval(window.orderRequestsPollInterval);
+                window.orderRequestsPollInterval = null;
+            }
+
+            window.orderRequestsState = {
+                ...ensureOrderRequestsState(),
+                status: 'loading',
+                items: [],
+                generationId: genId,
+                hasGenerated: false,
+                lastUpdated: Date.now()
+            };
+            persistOrderRequestsState();
+            renderOrderRequestsModal();
 
             let tries = 0;
             let maxRetries = 30; // ~90s at 3s interval
             const poll = setInterval(async () => {
                 tries++;
                 try {
-                    const r = await fetch(`${apiBase}/generation/${genId}/order_requests`, {
+                    const url = (force && tries === 1)
+                        ? `${apiBase}/generation/${genId}/order_requests?force=1`
+                        : `${apiBase}/generation/${genId}/order_requests`;
+                    const r = await fetch(url, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     if (r.ok) {
                         const data = await r.json();
-                        if (data.status === 'done' || data.status === 'error') {
-                            window.orderRequestsState = data;
-                            renderOrderRequestsModal();
-                            if (data.status === 'error') {
-                                showToast('Notice', 'Order requests not available', 'warning');
-                            }
+                        if (data.status === 'done') {
                             clearInterval(poll);
+                            window.orderRequestsState = {
+                                status: 'ready',
+                                items: Array.isArray(data.items) ? data.items : [],
+                                generationId: genId,
+                                hasGenerated: true,
+                                lastUpdated: Date.now()
+                            };
+                            persistOrderRequestsState();
+                            renderOrderRequestsModal();
                             return;
                         }
-                        if (data.status === 'pending') {
-                            window.orderRequestsState = data;
+                        if (data.status === 'error') {
+                            clearInterval(poll);
+                            window.orderRequestsState = {
+                                status: 'error',
+                                items: [],
+                                generationId: genId,
+                                hasGenerated: false,
+                                lastUpdated: Date.now()
+                            };
+                            persistOrderRequestsState();
+                            renderOrderRequestsModal();
+                            showToast('Notice', 'Order requests not available', 'warning');
+                            return;
                         }
                     }
                 } catch (e) {
@@ -3590,10 +4214,28 @@
                 }
                 if (tries >= maxRetries) {
                     clearInterval(poll);
-                    window.orderRequestsState = { status: 'error', items: [] };
+                    window.orderRequestsState = {
+                        status: 'error',
+                        items: [],
+                        generationId: genId,
+                        hasGenerated: false,
+                        lastUpdated: Date.now()
+                    };
+                    persistOrderRequestsState();
                     renderOrderRequestsModal();
                 }
             }, 3000);
+
+            window.orderRequestsPollInterval = poll;
+        }
+
+        function retryOrderRequests() {
+            const genId = window.lastGenerationId;
+            if (!genId) {
+                showToast('Error', 'Generate a note first.', 'error');
+                return;
+            }
+            startOrderRequestsGeneration(genId, { force: true });
         }
 
         function fallbackCopy(text) {
@@ -3734,112 +4376,15 @@
         function retryConsultComment() {
             const genId = window.lastGenerationId;
             if (!genId) {
-                showToast('Error', 'No generation ID found. Please generate a note first.', 'error');
+                showToast('Error', 'Generate a note first.', 'error');
                 return;
             }
-
-            if (window.ragPollInterval) {
-                clearInterval(window.ragPollInterval);
-                window.ragPollInterval = null;
-            }
-            const commentEl = document.getElementById('consultComment');
-            const refsEl = document.getElementById('consultRefs');
-            const retryBtn = document.getElementById('retryConsultComment');
-            const ragHintCard = document.getElementById('ragHint');
-
-            commentEl.value = 'Retrying evidence-backed comment generation...';
-            refsEl.textContent = '';
-            retryBtn.classList.add('hidden');
-
-            showToast('Retry', 'Retrying RAG consult comment generation...', 'info');
-            console.log('[RAG] Manual retry initiated for generation:', genId);
-
-            let tries = 0;
-            let maxRetries = 40; // 40 × 3s = 2 minutes
-            let ragServiceUnavailable = false;
-
-            const poll = setInterval(async () => {
-                tries++;
-                try {
-                    console.log(`[RAG RETRY] Polling consult comment (attempt ${tries}/${maxRetries})`);
-                    const apiBase = getApiBase(app.settings.serverUrl || '/api');
-                    const token = getAuthToken();
-                    if (!token) {
-                        throw new Error('Missing auth token');
-                    }
-                    const retryUrl = tries === 1
-                        ? `${apiBase}/generation/${genId}/consult_comment?force=1&strategy=full_note`
-                        : `${apiBase}/generation/${genId}/consult_comment`;
-                    const r = await fetch(retryUrl, {
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
-
-                    console.log(`[RAG RETRY] Response status: ${r.status}`);
-
-                    if (r.ok) {
-                        const data = await r.json();
-                        console.log(`[RAG RETRY] Response data:`, data);
-
-                        if (data.status === 'done') {
-                            clearInterval(poll);
-                            const comment = (data.comment || '').trim();
-
-                            if (comment) {
-                                commentEl.value = comment;
-                                if (ragHintCard) ragHintCard.classList.add('hidden');
-                                showToast('Success', 'Evidence-backed comment generated!', 'success');
-                            } else {
-                                commentEl.value = 'No evidence-backed comment generated.';
-                                retryBtn.classList.remove('hidden');
-                            }
-
-                            const refs = deduplicateReferences(data.refs || []);
-                            if (refs.length) {
-                                refsEl.textContent = refs.map(r => {
-                                    const year = safeStr(r.year).trim() ? ` (${r.year})` : '';
-                                    const link = safeStr(r.link).trim() ? ` - ${r.link}` : '';
-                                    const src = safeStr(r.source).trim() ? ` [${r.source}]` : '';
-                                    const title = safeStr(r.title).trim() || 'Untitled';
-                                    return `[${r.index}] ${title}${year}${src}${link}`;
-                                }).join('\n');
-                            } else {
-                                refsEl.textContent = 'No references available';
-                            }
-                        } else if (data.status === 'error') {
-                            clearInterval(poll);
-                            ragServiceUnavailable = true;
-                            commentEl.value = 'RAG service unavailable. Comment generation skipped.';
-                            retryBtn.classList.remove('hidden');
-                            if (ragHintCard) ragHintCard.classList.remove('hidden');
-                            showToast('Error', 'RAG service unavailable', 'error');
-                            console.warn('[RAG RETRY] Service returned error:', data.error || 'unknown');
-                        }
-                    } else if (r.status === 404) {
-                        console.log('[RAG RETRY] Generation not found yet, continuing...');
-                    } else {
-                        console.warn(`[RAG RETRY] Unexpected response: ${r.status}`);
-                    }
-                } catch (err) {
-                    console.error('[RAG RETRY] Polling error:', err);
-                }
-
-                if (tries >= maxRetries) {
-                    clearInterval(poll);
-                    if (!ragServiceUnavailable) {
-                        commentEl.value = 'Timeout waiting for evidence-backed comment. RAG service may be offline.';
-                        retryBtn.classList.remove('hidden');
-                        if (ragHintCard) ragHintCard.classList.remove('hidden');
-                        showToast('Timeout', 'RAG service timeout. You can retry later.', 'warning');
-                        console.warn('[RAG RETRY] Timeout after max retries');
-                    }
-                }
-            }, 3000); // 3 seconds interval for retry
-
-            window.ragPollInterval = poll;
+            startRagGeneration(genId, { force: true });
         }
 
         function saveDraft() {
-            const transcription = document.getElementById('transcriptionData')?.value || '';
+            const transcription = document.getElementById('transcriptionDisplay')?.value || '';
+            const transcriptionNotes = document.getElementById('transcriptionData')?.value || '';
             const oldVisits = document.getElementById('oldVisitsData')?.value || '';
             const mixedOther = document.getElementById('mixedOtherData')?.value || '';
 
@@ -3850,6 +4395,7 @@
 
             const draft = {
                 transcription: transcription,
+                transcriptionNotes: transcriptionNotes,
                 oldVisits: oldVisits,
                 mixedOther: mixedOther,
                 noteType: document.getElementById('noteType')?.value || 'consult',
@@ -3862,7 +4408,9 @@
 
         function saveToStorage() {
             const data = {
-                transcription: document.getElementById('transcriptionData')?.value || '',
+                transcription: document.getElementById('transcriptionDisplay')?.value || '',
+                transcriptionDisplay: document.getElementById('transcriptionDisplay')?.value || '',
+                transcriptionNotes: document.getElementById('transcriptionData')?.value || '',
                 oldVisits: document.getElementById('oldVisitsData')?.value || '',
                 mixedOther: document.getElementById('mixedOtherData')?.value || '',
                 generatedNote: document.getElementById('generatedNote').value,
@@ -3877,11 +4425,20 @@
                 try {
                     const data = JSON.parse(stored);
                     const oldVisits = data.oldVisits || data.chartData || '';
-                    setFieldValue('transcriptionData', data.transcription || '');
+                    const transcriptDisplay = data.transcriptionDisplay || data.transcription || '';
+                    const transcriptNotes = data.transcriptionNotes || '';
+                    const notesValue = transcriptNotes;
+                    setFieldValue('transcriptionData', notesValue);
+                    const displayEl = document.getElementById('transcriptionDisplay');
+                    if (displayEl) displayEl.value = transcriptDisplay;
                     setFieldValue('oldVisitsData', oldVisits);
                     setFieldValue('mixedOtherData', data.mixedOther || '');
                     document.getElementById('generatedNote').value = data.generatedNote || '';
-                    document.getElementById('noteType').value = data.noteType || 'followup';
+                    const nextType = data.noteType || 'followup';
+                    const noteTypeEl = document.getElementById('noteType');
+                    const noteTypeMirrorEl = document.getElementById('noteTypeMirror');
+                    if (noteTypeEl) noteTypeEl.value = nextType;
+                    if (noteTypeMirrorEl) noteTypeMirrorEl.value = nextType;
                     updateGeneratedNoteEmptyState();
                     if (typeof updateCharacterCounter === 'function') {
                         updateCharacterCounter();
@@ -3994,6 +4551,17 @@
             speechRecognition: null,
             isListening: false,
             requestQueue: [],
+            uiState: {
+                lastGenerationId: null,
+                showOrderRequestsButton: false,
+                showEvidenceButton: false,
+                ragHasGenerated: false,
+                orderHasGenerated: false,
+                ragContent: null,
+                orderItems: [],
+                ragLastUpdated: null,
+                orderLastUpdated: null
+            },
             templates: {
                 progress: `History of Present Illness:
 
@@ -4549,22 +5117,14 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
 
         // Character Counter Logic (V7 API - 3 field system)
         function updateCharacterCounter() {
-            const MAX_OLD_VISITS = 75000;
-            const MAX_MIXED_OTHER = 75000;
+            const MAX_OLD_VISITS = 50000;
+            const MAX_MIXED_OTHER = 50000;
 
-            const transcriptionEl = document.getElementById('transcriptionData');
             const oldVisitsEl = document.getElementById('oldVisitsData');
             const mixedOtherEl = document.getElementById('mixedOtherData');
 
-            const transcriptionLen = transcriptionEl?.value.length || 0;
             const oldVisitsLen = oldVisitsEl?.value.length || 0;
             const mixedOtherLen = mixedOtherEl?.value.length || 0;
-
-            // Update transcription counter (unlimited)
-            const transcriptionCounter = document.getElementById('transcriptionCounter');
-            if (transcriptionCounter) {
-                transcriptionCounter.textContent = `${transcriptionLen.toLocaleString()} chars`;
-            }
 
             // Update old visits counter
             const oldVisitsCounter = document.getElementById('oldVisitsCounter');
@@ -4600,7 +5160,7 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
                     const overFields = [];
                     if (oldVisitsOver) overFields.push('Prior Visits');
                     if (mixedOtherOver) overFields.push('Labs/Imaging/Consults');
-                    messageEl.textContent = `${overFields.join(' and ')} exceed${overFields.length === 1 ? 's' : ''} the 75,000 character limit. Content will be truncated.`;
+                    messageEl.textContent = `${overFields.join(' and ')} exceed${overFields.length === 1 ? 's' : ''} the 50,000 character limit. Content will be truncated.`;
                 } else {
                     warningEl.classList.add('hidden');
                 }
@@ -4609,7 +5169,7 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
 
         // Attach character counter listeners to all 3 fields
         function initCharacterCounters() {
-            ['transcriptionData', 'oldVisitsData', 'mixedOtherData'].forEach(id => {
+            ['oldVisitsData', 'mixedOtherData'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
                     el.addEventListener('input', updateCharacterCounter);
@@ -4634,6 +5194,13 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
             initSpeechRecognition();
             initDragAndDrop();
             loadFromStorage();
+            ensureRagState();
+            ensureOrderRequestsState();
+
+            const consultBtn = document.getElementById('openConsultCommentBtn');
+            if (consultBtn) {
+                consultBtn.addEventListener('click', () => handleEvidenceBasedCommentsClick());
+            }
 
             document.getElementById('generatedNote').addEventListener('input', () => {
                 markNoteDirty();
@@ -4641,17 +5208,27 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
             });
 
             const noteTypeEl = document.getElementById('noteType');
-            if (noteTypeEl) {
-                noteTypeEl.addEventListener('change', () => {
-                    const promptSelect = document.getElementById('noteTypeSelect');
-                    if (promptSelect && promptSelect.value !== noteTypeEl.value) {
-                        promptSelect.value = noteTypeEl.value;
-                        const promptModal = document.getElementById('promptModal');
-                        if (promptModal && promptModal.classList.contains('show')) {
-                            updatePromptDisplay();
-                        }
+            const noteTypeMirrorEl = document.getElementById('noteTypeMirror');
+            function syncNoteType(value, source) {
+                if (noteTypeEl && source !== 'main') noteTypeEl.value = value;
+                if (noteTypeMirrorEl && source !== 'mirror') noteTypeMirrorEl.value = value;
+                const promptSelect = document.getElementById('noteTypeSelect');
+                if (promptSelect && promptSelect.value !== value) {
+                    promptSelect.value = value;
+                    const promptModal = document.getElementById('promptModal');
+                    if (promptModal && promptModal.classList.contains('show')) {
+                        updatePromptDisplay();
                     }
-                });
+                }
+            }
+            if (noteTypeEl) {
+                noteTypeEl.addEventListener('change', () => syncNoteType(noteTypeEl.value, 'main'));
+            }
+            if (noteTypeMirrorEl) {
+                noteTypeMirrorEl.addEventListener('change', () => syncNoteType(noteTypeMirrorEl.value, 'mirror'));
+            }
+            if (noteTypeEl && noteTypeMirrorEl) {
+                noteTypeMirrorEl.value = noteTypeEl.value;
             }
 
             // Sanitize text when user copies from the generated note textarea
@@ -4680,17 +5257,6 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
 
             // Initialize V7 character counters for all 3 input fields
             initCharacterCounters();
-
-            const orderBtn = document.getElementById('openOrderRequestsBtn');
-            if (orderBtn) {
-                orderBtn.addEventListener('click', () => {
-                    if (typeof window.openOrderRequestsModal === 'function') {
-                        window.openOrderRequestsModal();
-                    } else {
-                        console.warn('openOrderRequestsModal not available');
-                    }
-                });
-            }
 
             registerUnloadGuards();
 
@@ -4796,10 +5362,11 @@ window.addEventListener('workspace-auth-changed', (event) => {
       console.error('[Init] Failed to load workspace/prompts:', err);
     });
   } else {
-    // Clear all UI data when logged out
-    if (window.AuthWorkspace && typeof window.AuthWorkspace.clearUiState === 'function') {
-      window.AuthWorkspace.clearUiState();
-    }
+    // Preserve UI data when logged out
+    const consultCard = document.getElementById('consultCommentCard');
+    if (consultCard) consultCard.classList.add('hidden');
+    const orderBtn = document.getElementById('openOrderRequestsBtn');
+    if (orderBtn) orderBtn.classList.add('hidden');
     updateConnectionStatus('disconnected');
     const statusEl = document.getElementById('connectionStatus');
     if (statusEl) {

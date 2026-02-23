@@ -7,6 +7,18 @@ import subprocess
 from typing import Dict, Tuple
 
 from aiohttp import web
+try:
+    from server.core.env import load_env_file
+except Exception:
+    def load_env_file():
+        try:
+            from pathlib import Path
+            from dotenv import load_dotenv
+            env_path = Path(__file__).resolve().parents[1] / ".env"
+            load_dotenv(dotenv_path=env_path, override=False)
+            return env_path
+        except Exception:
+            return None
 
 
 def load_config() -> Dict:
@@ -21,6 +33,7 @@ def load_config() -> Dict:
 
 def get_admin_token() -> str:
     # Prefer env var, then config
+    load_env_file()
     cfg = load_config()
     return os.environ.get('ADMIN_API_KEY') or cfg.get('admin_api_key', 'notegenadmin')
 

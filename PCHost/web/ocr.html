@@ -308,6 +308,7 @@
 
         <div class="button-group">
           <button type="submit" id="submitBtn">Extract Text</button>
+          <button type="button" id="cancelBtn" class="btn-danger">Cancel</button>
           <button type="button" id="clearBtn" class="btn-secondary" onclick="clearOutput()">Clear Output</button>
         </div>
       </form>
@@ -346,6 +347,66 @@
         return '';
       }
 
+      const LIMITS = {
+        pdfBytes: 150 * 1024 * 1024
+      };
+
+      function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function createJob(formData) {
+        const apiKey = getAuthToken();
+        if (!apiKey) throw new Error('Missing auth token');
+        const resp = await fetch('/api/jobs/ocr', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${apiKey}` },
+          body: formData
+        });
+        if (!resp.ok) {
+          const detail = await resp.json().catch(() => ({}));
+          throw new Error(detail.detail || `Server error ${resp.status}`);
+        }
+        return resp.json();
+      }
+
+      async function pollJob(jobId) {
+        const apiKey = getAuthToken();
+        for (let tries = 0; tries < 600; tries++) {
+          const resp = await fetch(`/api/jobs/${jobId}`, {
+            headers: { 'Authorization': `Bearer ${apiKey}` }
+          });
+          if (!resp.ok) throw new Error(`Job status error ${resp.status}`);
+          const data = await resp.json();
+          if (['done', 'error', 'canceled'].includes(data.status)) return data;
+          await delay(2000);
+        }
+        throw new Error('Job timeout');
+      }
+
+      let currentJobId = null;
+
+      document.getElementById('cancelBtn').addEventListener('click', async function() {
+        if (!currentJobId) return;
+        try {
+          const apiKey = getAuthToken();
+          await fetch(`/api/jobs/${currentJobId}/cancel`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${apiKey}` }
+          });
+          showSuccess('OCR job canceled.');
+        } catch (e) {
+          showError('Failed to cancel OCR job.');
+        } finally {
+          currentJobId = null;
+          const submitBtn = document.getElementById('submitBtn');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Extract Text';
+          }
+        }
+      });
+
       document.getElementById('ocrForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -376,65 +437,23 @@
         success.style.display = 'none';
 
         try {
+          if (file.size > LIMITS.pdfBytes) {
+            throw new Error('File exceeds 150MB limit');
+          }
           const formData = new FormData();
           formData.append('file', file);
-
-          // Try different server endpoints
-          const serverUrls = (() => {
-            const urls = ['/api/ocr']; // Prefer same-origin API
-            // Avoid mixed content: do not attempt http fallbacks from https pages
-            if (location.protocol === 'http:' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-              urls.push('http://localhost:7860/api/ocr', 'http://localhost:8080/api/ocr');
-            }
-            // If running on https, include an https fallback only
-            if (location.protocol === 'https:') {
-              // Add a known https fallback only if it differs from current origin
-              const origin = `${location.protocol}//${location.host}`;
-              const fallback = 'https://ieissa.com:3443';
-              if (origin !== fallback) urls.push(`${fallback}/api/ocr`);
-            }
-            return urls;
-          })();
-
-          let response = null;
-          let lastError = null;        // network/CORS errors
-          let lastHttpError = null;    // remember the most informative HTTP error
-
-          for (const url of serverUrls) {
-            try {
-              response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                  'Authorization': `Bearer ${apiKey}`
-                },
-                body: formData
-              });
-
-              if (response.ok) {
-                break; // Success, exit loop
-              } else if (response.status !== 0) {
-                lastHttpError = new Error(`HTTP ${response.status}: ${response.statusText}`);
-              }
-            } catch (err) {
-              lastError = err;
-              continue; // Try next URL
-            }
-          }
-
-          if (!response || !response.ok) {
-            // Prefer an HTTP error (e.g., 401/503) over a generic fetch error
-            throw lastHttpError || lastError || new Error('All server endpoints failed');
-          }
-
-          const result = await response.json();
-
-          if (response.ok && result.success) {
-            output.textContent = result.text;
-            showSuccess(`Text extracted successfully! Confidence: ${result.confidence || 'N/A'}, Processing time: ${result.processing_time || 'N/A'}s`);
+          const job = await createJob(formData);
+          currentJobId = job.job_id;
+          const result = await pollJob(job.job_id);
+          if (result.status === 'done') {
+            const text = result?.result?.text || '';
+            output.textContent = text;
+            showSuccess('Text extracted successfully.');
+          } else if (result.status === 'canceled') {
+            showError('OCR canceled.');
           } else {
-            throw new Error(result.detail || 'OCR processing failed');
+            throw new Error(result.error || 'OCR processing failed');
           }
-
         } catch (err) {
           console.error('Error:', err);
           showError(`Failed to extract text: ${err.message}`);
@@ -442,6 +461,7 @@
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Extract Text';
+          currentJobId = null;
         }
       });
 

@@ -1,0 +1,63 @@
+# --- Python & Environment Specifics ---
+# Ignores .venv and pycache in any folder
+**/.venv/
+**/__pycache__/
+**/*.pyc
+ragvenv/
+**/__init__.py
+.gitignore
+
+# --- Project Specific Ignores ---
+
+# Clinical-Note-Generator
+Clinical-Note-Generator/.venv/
+Clinical-Note-Generator/models/
+Clinical-Note-Generator/executables/
+Clinical-Note-Generator/server/temp-audio/
+Clinical-Note-Generator/docs
+
+# PCHost
+PCHost/node_modules/
+
+# RAG
+RAG/models/
+RAG/raw_docs/
+RAG/runs/
+RAG/snapshots/
+RAG/nul
+RAG/medical_corpus.jsonl
+RAG/chunks/
+RAG/clean_corpus/
+RAG/current_corpus/
+RAG/embeddings/
+RAG/logs/
+RAG/manual_ingest/
+RAG/ragvenv/
+RAG/runs/
+RAG/tmp_guidelines_chunk.txt/
+RAG/start_all.bat/
+RAG/start_fastapi.bat/
+RAG/start_llama.bat/
+RAG/scripts/weekly_run.sh/
+RAG/chroma_store/chroma.sqlite3
+
+
+# --- General System & Tools ---
+.env
+.vscode/
+*.log
+*.code-workspace
+*.wav
+*.png
+*.jsonl
+*.txt
+*.md
+*.csv
+Clinical-Note-Generator/server/logs/cases.json
+Clinical-Note-Generator/server/logs/cases_dedup.json
+Clinical-Note-Generator/server/logs/cases_ultimed.json
+
+# --- External Tools & Cache (if they exist inside your project folders) ---
+unsloth_compiled_cache/
+xformers/
+vcpkg/

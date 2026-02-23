@@ -10,6 +10,18 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlmodel import Session, select
 
 from server.core.db import get_session
+try:
+    from server.core.env import load_env_file
+except Exception:
+    def load_env_file():
+        try:
+            from pathlib import Path
+            from dotenv import load_dotenv
+            env_path = Path(__file__).resolve().parents[1] / ".env"
+            load_dotenv(dotenv_path=env_path, override=False)
+            return env_path
+        except Exception:
+            return None
 from server.core.security import decode_access_token
 from server.models.user import User
 
@@ -30,6 +42,7 @@ def _load_config() -> dict:
 
 
 def _get_token_from_env_or_cfg(env_name: str, cfg_key: str, default: Optional[str] = None) -> Optional[str]:
+    load_env_file()
     val = os.environ.get(env_name)
     if val:
         return val

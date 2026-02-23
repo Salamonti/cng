@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from pydantic import BaseModel, Field
+from server.core.env import load_env_file
 
 
 class Settings(BaseModel):
@@ -40,6 +41,7 @@ def _load_config() -> Dict[str, Any]:
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
+    load_env_file()
     cfg = _load_config()
     db_url = os.environ.get("DATABASE_URL") or cfg.get("auth_database_url") or _default_db_url()
     jwt_secret = os.environ.get("JWT_SECRET") or cfg.get("jwt_secret")

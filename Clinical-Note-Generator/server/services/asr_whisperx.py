@@ -133,14 +133,16 @@ class WhisperXASREngine:
 
     # Hardcoded WhisperX settings per user request (can be moved to config later)
     WHISPERX_MODEL_PATH = r"C:\Clinical-Note-Generator\models\whisper\medium.en"
-    DEVICE = "cuda"  # Do not specify cuda:N; rely on launcher env
+    DEVICE = "cuda"  # Default; can be overridden by env/config
+    ALIGN_DEVICE = "cpu"
+    DIAR_DEVICE = "cpu"
     COMPUTE_TYPE = "float16"
     LANGUAGE = "en"
     SAVE_AUDIO = True
     RETAINED_AUDIO = 5
 
     # Performance / memory knobs
-    TRANSCRIBE_BATCH_SIZE = 8  # D) lower peak VRAM vs 16
+    TRANSCRIBE_BATCH_SIZE = 5  # D) lower peak VRAM vs 16
 
     # HF token: prefer env; fallback to provided token if needed
     HF_TOKEN_FALLBACK = "NONE"
@@ -148,10 +150,14 @@ class WhisperXASREngine:
     def __init__(self):
         self._cfg = self._load_config()
         self._ffmpeg_bin: Optional[str] = None
-        self.model_size_or_path = self.WHISPERX_MODEL_PATH
-        self.device = self.DEVICE
-        self._compute_type = self._cfg.get("asr_compute_type", self.COMPUTE_TYPE)
+        self.model_size_or_path = self._resolve_model_path()
+        self.device = self._resolve_device("ASR_DEVICE", "asr_device", self.DEVICE)
+        self._align_device = self._resolve_device("ASR_ALIGN_DEVICE", "asr_align_device", self.ALIGN_DEVICE)
+        self._diar_device = self._resolve_device("ASR_DIAR_DEVICE", "asr_diar_device", self.DIAR_DEVICE)
+        self._compute_type = self._resolve_compute_type()
         self._language = self.LANGUAGE
+        self._initial_prompt = self._resolve_initial_prompt()
+        self._transcribe_batch_size = self._resolve_transcribe_batch_size()
         self._enable_diarization = str(os.environ.get("ASR_ENABLE_DIARIZATION", "1")).strip().lower() not in {"0", "false", "no", "off"}
         self._enable_alignment = str(os.environ.get("ASR_ENABLE_ALIGNMENT", "1")).strip().lower() not in {"0", "false", "no", "off"}
         self._save_audio = bool(self.SAVE_AUDIO)
@@ -183,6 +189,68 @@ class WhisperXASREngine:
         except Exception:
             pass
         return {}
+
+    def _resolve_device(self, env_key: str, cfg_key: str, default: str) -> str:
+        raw = (os.environ.get(env_key) or self._cfg.get(cfg_key) or default or "").strip().lower()
+        if not raw:
+            return "cpu"
+        if raw == "cpu":
+            return "cpu"
+        if raw == "cuda":
+            return "cuda"
+        if raw.startswith("cuda:"):
+            return raw
+        print(f"[ASR] Unsupported device '{raw}' for {env_key}/{cfg_key}; falling back to {default}")
+        return default
+
+    def _resolve_compute_type(self) -> str:
+        env = (os.environ.get("ASR_COMPUTE_TYPE") or "").strip()
+        if env:
+            return env
+        cfg = self._cfg.get("asr_compute_type")
+        if isinstance(cfg, str) and cfg.strip():
+            return cfg.strip()
+        return self.COMPUTE_TYPE
+
+    def _resolve_initial_prompt(self) -> Optional[str]:
+        env = os.environ.get("ASR_INITIAL_PROMPT")
+        if env is not None:
+            val = env.strip()
+            return val if val else None
+        cfg = self._cfg.get("initial_prompt")
+        if isinstance(cfg, str):
+            val = cfg.strip()
+            return val if val else None
+        return None
+
+    def _resolve_model_path(self) -> str:
+        env = os.environ.get("ASR_MODEL_PATH")
+        if env and env.strip():
+            return env.strip()
+        cfg = self._cfg.get("asr_model_path")
+        if isinstance(cfg, str) and cfg.strip():
+            return cfg.strip()
+        legacy = self._cfg.get("whisper_model")
+        if isinstance(legacy, str) and legacy.strip() and legacy.strip().lower() != "none":
+            return legacy.strip()
+        return self.WHISPERX_MODEL_PATH
+
+    def _resolve_transcribe_batch_size(self) -> int:
+        env = os.environ.get("ASR_TRANSCRIBE_BATCH_SIZE")
+        if env and env.strip():
+            try:
+                return max(1, int(env.strip()))
+            except Exception:
+                print(f"[ASR] Invalid ASR_TRANSCRIBE_BATCH_SIZE='{env}', using default")
+        cfg = self._cfg.get("asr_transcribe_batch_size")
+        if isinstance(cfg, int) and cfg > 0:
+            return cfg
+        if isinstance(cfg, str) and cfg.strip():
+            try:
+                return max(1, int(cfg.strip()))
+            except Exception:
+                pass
+        return int(self.TRANSCRIBE_BATCH_SIZE)
 
     def _configure_ffmpeg_path(self) -> None:
         """
@@ -244,7 +312,7 @@ class WhisperXASREngine:
             # Keep ASR model on configured device (often GPU for speed)
             self._wx_model = whisperx.load_model(
                 model_id,
-                device="cuda" if self.device == "cuda" else self.device,
+                device=self.device,
                 compute_type=self._compute_type,
                 vad_model=self._vad,
                 vad_method="silero",
@@ -256,7 +324,7 @@ class WhisperXASREngine:
             import whisperx  # type: ignore
             self._align_model, self._align_meta = whisperx.load_align_model(
                 language_code=self._language,
-                device="cpu",
+                device=self._align_device,
             )
 
         # B) Diarization on CPU (or disabled) to minimize GPU contention with llama.cpp
@@ -286,7 +354,7 @@ class WhisperXASREngine:
                     torch.load = patched_torch_load  # type: ignore[assignment]
                     self._diar_model = DiarizationPipeline(
                         use_auth_token=hf_token,
-                        device="cpu",
+                        device=self._diar_device,
                     )
                     print("[ASR] Diarization pipeline initialized successfully")
                 finally:
@@ -393,11 +461,19 @@ class WhisperXASREngine:
         try:
             # D) inference_mode reduces allocations and VRAM pressure
             with torch.inference_mode():
-                result = self._wx_model.transcribe(
-                    audio,
-                    batch_size=int(self.TRANSCRIBE_BATCH_SIZE),
-                    language=self._language,
-                )
+                try:
+                    result = self._wx_model.transcribe(
+                        audio,
+                        batch_size=int(self._transcribe_batch_size),
+                        language=self._language,
+                        initial_prompt=self._initial_prompt,
+                    )
+                except TypeError:
+                    result = self._wx_model.transcribe(
+                        audio,
+                        batch_size=int(self._transcribe_batch_size),
+                        language=self._language,
+                    )
 
                 # B) Alignment on CPU: pass device="cpu" (your align model is CPU)
                 if self._enable_alignment and self._align_model is not None:
@@ -407,7 +483,7 @@ class WhisperXASREngine:
                             self._align_model,
                             self._align_meta,
                             audio,
-                            device="cpu",
+                            device=self._align_device,
                         )
                         result["segments"] = aligned.get("segments", result.get("segments", []))
                     except Exception as e:
@@ -537,9 +613,9 @@ class WhisperXASREngine:
                 "diarization": "disabled" if not self._enable_diarization else ("on" if self._diar_model is not None else "off"),
                 "alignment": "disabled" if not self._enable_alignment else ("on" if self._align_model is not None else "off"),
                 "cuda_visible": os.environ.get("CUDA_VISIBLE_DEVICES", "<unset>"),
-                "align_device": "cpu",
-                "diar_device": "cpu" if self._enable_diarization else "disabled",
-                "transcribe_batch_size": str(self.TRANSCRIBE_BATCH_SIZE),
+                "align_device": str(self._align_device),
+                "diar_device": str(self._diar_device) if self._enable_diarization else "disabled",
+                "transcribe_batch_size": str(self._transcribe_batch_size),
             }
         except Exception:
             return {"engine": self.ENGINE_NAME}
