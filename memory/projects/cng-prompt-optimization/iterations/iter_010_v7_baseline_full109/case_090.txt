@@ -1,0 +1,48 @@
+Patient ID: Fu Sheng Wang, 85 years old, female
+
+History of Present Illness:
+The patient reports no chest pain or shortness of breath. She is tolerating her current medications well. The physical examination reveals clear lungs with adequate air entry bilaterally, normal heart sounds without murmurs or additional sounds, a soft abdomen without organomegaly, and an unremarkable neurological examination. There is no jugular venous distention or lower limb edema noted.
+
+Past Medical History: not documented
+
+Medications:
+- Atenolol 25 mg oral once daily
+- Fluvastatin 40 mg oral once daily
+- Spironolactone 25 mg oral once daily
+- Rabeprazole 20 mg oral once daily
+- Amlodipine 10 mg oral once daily
+- Ezetimibe 10 mg oral once daily (newly agreed)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+- Chest: clear, adequate air entry bilaterally
+- Heart: normal S1 and S2, no additional sounds or murmurs
+- Abdomen: soft, no palpable organomegaly
+- Neurological: unremarkable
+- Extremities: no jugular venous distention or lower limb edema
+
+Investigations:
+2026-02-13:
+- Glucose AC: 7.6 mmol/L
+- Urea: 7.5 mmol/L
+- eGFR: 68 mL/min/1.73m² (creatinine 79 umol/L)
+- Electrolytes: sodium 136 mmol/L, potassium 4.3 mmol/L, chloride 100 mmol/L
+- Lipids: cholesterol 5.1 mmol/L, triglycerides 1.39 mmol/L, LDL 2.9 mmol/L, HDL 1.61 mmol/L, cholesterol/HDL ratio 3.1
+- Liver enzymes: AST 25 U/L, ALT 16 U/L, alkaline phosphatase 134 U/L
+- Creatine phosphokinase: 46 U/L
+- Thyroid: TSH 3.860 mIU/L, free T4 14.4 pmol/L
+- Complete blood count: WBC 11.7 x10⁹/L (elevated), hemoglobin 128 g/L, platelets 421 x10⁹/L
+- Bilirubin total: 8.2 umol/L (mildly elevated)
+
+Impression:
+This patient is an 85-year-old female on multiple cardiovascular medications with no current symptoms of chest pain or dyspnea. Her recent investigations reveal mild elevations in glucose, urea, and total bilirubin, alongside an elevated white blood cell count. The lipid profile shows a borderline elevated cholesterol/HDL ratio, and her renal function appears to be moderately preserved with an eGFR of 68. The patient’s thyroid function tests are within the upper limits of normal. Overall, her clinical picture suggests stable chronic management needs with attention to lipid control and monitoring of renal and hepatic parameters.
+
+Plan:
+1. I will initiate ezetimibe 10 mg orally once daily for lipid management.
+2. We will monitor renal function with repeat eGFR and creatinine in 3 months.
+3. We will follow up in 3 months to review lipid profile, renal function, and overall clinical status.

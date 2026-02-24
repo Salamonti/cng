@@ -1,0 +1,33 @@
+Patient ID: This is a 65-year-old male presenting with severe chest pain.
+
+History of Present Illness:
+The patient presents today with severe chest pain. The onset and characteristics of the pain are not further documented, but it is described as severe. No additional details regarding duration, radiation, aggravating or relieving factors, or associated symptoms such as dyspnea, nausea, or diaphoresis are provided.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+not documented
+
+Impression:
+The patient presents with severe chest pain and a history of coronary artery disease, raising concern for acute coronary syndrome. The lack of documented physical examination findings and the unverified timing of the ECG showing ST-segment depression in the inferior leads limit the assessment. Further evaluation is required to clarify the diagnosis and guide management.
+
+Plan:
+1. I will arrange for an urgent ECG to be performed and reviewed by a cardiologist to confirm timing and assess for acute ischemic changes.
+2. I will initiate aspirin 325 mg orally once and consider loading dose of clopidogrel 600 mg orally once if no contraindications.
+3. We will admit the patient for cardiac monitoring and further evaluation, including troponin levels and possible coronary angiography, to rule out acute coronary syndrome.

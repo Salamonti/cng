@@ -1,0 +1,61 @@
+Patient ID: Joan Smith is an 85-year-old female.
+
+History of Present Illness:
+Joan Smith presents with a two-month history of chest tightness and shortness of breath. The chest tightness occurs intermittently, primarily when she feels anxious or upset, but is not a daily occurrence. She describes her shortness of breath as persistent, with a chronic cough and phlegm production. She also reports hoarseness of voice and dry throat upon waking, which she attributes to her long-standing reflux. The symptoms have prompted multiple doctor visits and extensive testing, including a thyroid ultrasound, which revealed benign nodules, and an echocardiogram showing mild concentric left ventricular hypertrophy and mild to moderate diastolic dysfunction. She denies any orthopnea or paroxysmal nocturnal dyspnea. Her symptoms have not improved despite multiple investigations and treatments.
+
+Joan mentions that her knee replacement surgery was planned to address her mobility issues, but her symptoms of swelling in the legs and shortness of breath have complicated this plan. She has been using a cane and experiences shortness of breath with exertion, which has limited her ability to undergo a stress test. She has a history of gout and has recently stopped taking allopurinol and another medication due to severe nausea, which she suspects was a side effect of the allopurinol.
+
+Past Medical History:
+Hypertension, fibromyalgia, gastroesophageal reflux disease (GERD), insomnia, gout, overactive bladder, incontinence, Baker cyst, cataracts, previous skin cancer (visceral cell carcinoma with skin grafts), multiple surgeries including appendectomy, three C-sections, hysterectomy, bladder repair, right total knee replacement with revision, carpal tunnel surgeries, and multiple colonoscopies.
+
+Medications:
+- Hydrochlorothiazide 25 mg oral twice daily (to be stopped)
+- Rosuvastatin 10 mg oral once daily
+- Mar-Allopurinol 100 mg oral once daily (patient stopped due to nausea)
+- Salbutamol HFA 100 mcg inhalation as needed (2 puffs every 3-4 hours)
+- Muro-128 5% ophthalmic ointment in each eye at bedtime
+- Myrbetriq 50 mg oral once daily
+- Monurol 3 g oral as needed (one sachet in 125 ml of cold water)
+- Zopiclone 7.5 mg oral half to one tablet at bedtime as needed
+- Pantoprazole 40 mg oral once daily in the morning
+- Sandoz fesoterodine fumarate 8 mg oral once daily
+- Telmisartan 40 mg oral once daily
+- Dapagliflozin 10 mg oral once daily (new prescription)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Joan Smith is an 85-year-old female who does not smoke, drink alcohol, or use marijuana. She spends her evenings watching TV. She has a history of multiple surgeries and chronic conditions, including fibromyalgia and GERD.
+
+Physical Examination:
+Chest is clear to auscultation with a mild systolic murmur noted, likely related to her history of hypertension. No signs of edema or jugular venous distension are noted. The remainder of the physical examination is not documented.
+
+Investigations:
+2026-01-07:
+- Echocardiogram: Mild concentric left ventricular hypertrophy, hyperdynamic left ventricle, mild to moderate diastolic dysfunction, normal right ventricular size and function, aortic valve sclerosis, mild mitral annular calcification.
+
+2026-01-06:
+- Complete Blood Count: Normal
+- Comprehensive Metabolic Panel: Normal liver enzymes, normal albumin, normal total protein, normal glucose, normal uric acid, eGFR 60 mL/min/1.73m², normal creatinine, normal lipid profile, normal thyroid stimulating hormone, normal iron studies, normal vitamin B12.
+- Urinalysis: Positive for nitrites, otherwise normal.
+
+2026-02-14:
+- Thyroid Ultrasound: Normal thyroid size and echogenicity, multiple small cysts and benign spongiform nodules, no suspicious nodules.
+
+2026-02-05:
+- NT-proBNP: 35.5 ng/L (normal in ambulatory care).
+
+2025-12-19:
+- Chest X-ray: Clear lungs, no evidence of pulmonary edema or pleural effusion.
+
+Impression:
+Joan Smith is an 85-year-old female with a complex medical history, including hypertension, fibromyalgia, GERD, and diastolic dysfunction. Her current symptoms of chest tightness and shortness of breath are likely multifactorial, involving her GERD, diastolic dysfunction, and possibly anxiety. The echocardiogram findings of mild concentric left ventricular hypertrophy and diastolic dysfunction suggest a potential cardiac contribution to her dyspnea. The NT-proBNP level is within normal limits, making acute heart failure less likely. Her thyroid ultrasound showed benign nodules, and her blood work was generally unremarkable.
+
+Plan:
+1. I will discontinue hydrochlorothiazide and initiate dapagliflozin 10 mg orally once daily in the morning.
+2. I will provide lifestyle modifications for her GERD, including stopping eating four hours before bedtime and elevating the head of her bed by 30 to 45 degrees using a wedge pillow.
+3. I will arrange for a chemical stress test or nuclear perfusion scan of the heart to evaluate for possible coronary artery disease.
+4. I will recommend resuming allopurinol 100 mg orally every other day for gout management, with close monitoring for side effects.
+5. We will follow up in 2-4 weeks after the results of the cardiac stress test and to assess her response to the new medications and lifestyle changes.

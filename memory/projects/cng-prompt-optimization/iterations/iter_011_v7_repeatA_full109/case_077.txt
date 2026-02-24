@@ -1,0 +1,44 @@
+Patient ID: Donald Carter, 69-year-old male
+
+History of Present Illness:
+Donald is a 69-year-old male who presented today with results from a recent CT scan showing a 35% increase in the size of a previously identified lung nodule in the right middle lobe. The nodule has grown from 1.3 cc to 1.8 cc over approximately 18 months. He denies any symptoms such as hemoptysis, cough, weight loss, bone pain, B symptoms, or shortness of breath. Donald reports that his cat has been unusually affectionate and attentive, which he finds concerning. He also mentioned a premonition about the scan results, though he acknowledges this may not be medically relevant.
+
+Donald has a past history of this nodule being identified during an admission for acute kidney injury secondary to rhabdomyolysis. A biopsy was performed in January 2025, but the adequacy of the sample was uncertain, and no definitive diagnosis was made. The nodule was initially thought to be a hamartoma, but the recent growth raises concerns about potential malignancy.
+
+Past Medical History:
+Type 2 Diabetes Mellitus (T2DM)
+Hypertension (HTN)
+Dyslipidemia (DLP)
+Psoriatic plaques
+Acute kidney injury (AKI) secondary to rhabdomyolysis (historical)
+
+Medications:
+not documented
+
+Allergies:
+No known drug allergies (NKDA)
+
+Family History:
+not documented
+
+Social History:
+Retired soldier, lives in Bridgewater. Quit smoking 9 years ago with a 50-pack-year history. Drinks alcohol on occasion.
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-16:
+CT chest without contrast:
+- Right middle lobe subpleural nodule measuring 14.8 mm x 14.8 mm x 15.5 mm, increased in volume by approximately 35% from previous scans.
+- No axillary or supraclavicular adenopathy.
+- No mediastinal lymph node enlargement.
+- Mild diffuse hepatic steatosis and suspected hepatomegaly.
+
+Impression:
+Donald is a 69-year-old male with a previously stable lung nodule in the right middle lobe that has recently demonstrated significant growth, increasing by approximately 35% in volume over 18 months. While the nodule was initially suspected to be a hamartoma, the recent growth raises concern for potential malignancy. Given the uncertain results of the previous biopsy and the nodule's growth, further characterization with a PET CT scan is warranted to assess metabolic activity and guide further management.
+
+Plan:
+1. I will arrange for Donald to undergo a PET CT scan in Halifax for further characterization of the lung nodule.
+2. I will inform Donald that the PET CT scan results will guide the next steps in management, which may include surgical consultation for potential resection if indicated.
+3. I will follow up with Donald after the PET CT scan results are available to discuss findings and next steps in care.

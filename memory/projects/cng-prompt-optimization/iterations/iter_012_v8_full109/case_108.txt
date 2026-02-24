@@ -1,0 +1,65 @@
+Patient ID: Leblanc, Sharon Pearl, 80 years old, female
+
+History of Present Illness:
+Sharon Pearl Leblanc is an 80-year-old female admitted to the hospital with severe ptosis, which was found to be secondary to brain metastases on ophthalmologic assessment and MRI. She is currently very sleepy with an ECOG level of 4, indicating poor performance status. The patient was consulted for a possible bronchoscopic lung biopsy to investigate a suspicious pulmonary nodule, but after discussion with the family regarding prognosis and potential interventions, including chemotherapy or radiation, they opted not to proceed. The family and patient preferred a more conservative approach. Dexamethasone was initially prescribed upon admission, and the decision was made to increase the dose to assess its effectiveness in managing symptoms.
+
+The patient has multiple brain metastases, with the largest lesion measuring 16 mm in the posterior midbrain causing obstructive hydrocephalus. The CT chest shows a lobulated nodule in the right upper lobe, suspicious for malignancy, and a right adrenal mass consistent with metastasis. The patient's overall condition and poor performance status make aggressive interventions like intubation and ICU admission less favorable according to her wishes.
+
+Past Medical History:
+Hypertension
+Type 2 diabetes mellitus
+Hyperlipidemia
+
+Medications:
+Dexamethasone (dose not documented)
+Eplerenone 20 mg PO daily
+Perindopril 8 mg PO daily
+Nifedipine ER 60 mg PO daily (2 tablets once daily)
+Hydrochlorothiazide 25 mg PO daily
+Gliclazide MR 30 mg PO daily
+Dapagliflozin 10 mg PO daily
+Alprazolam 0.5 mg PO PRN
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-17:
+- CT Chest/Abdomen/Pelvis with contrast: lobulated right upper lobe nodule suspicious for malignancy, right adrenal mass consistent with metastasis, porcelain gallbladder, fusiform infrarenal abdominal aortic aneurysm.
+
+2026-02-13:
+- Portable chest X-ray: 1.8 cm nodular density adjacent to the right hilum, unclear if primary malignancy or metastatic disease.
+- Magnesium level: 0.66 mmol/L (low)
+- Albumin: 42 g/L (normal)
+- Aspartate aminotransferase: 23 U/L (normal)
+- Alanine aminotransferase: 13 U/L (normal)
+- Alkaline phosphatase: 117 U/L (normal)
+- Lactate dehydrogenase: 186 U/L (normal)
+- Thyroid stimulating hormone: 3.550 mIU/L (normal)
+- Hemoglobin A1C: 7.1% (elevated)
+- Phosphorous level: 1.11 mmol/L (normal)
+- Calcium, total: 2.49 mmol/L (normal)
+- Sodium level: 138 mmol/L (normal)
+- Potassium level: 3.3 mmol/L (low)
+- Chloride: 98 mmol/L (normal)
+- Creatinine: 81 umol/L (normal)
+- Glucose random: 7.4 mmol/L (elevated)
+- Complete blood count: elevated white blood cell count (11.5 x 10^9/L), normal hemoglobin, hematocrit, and platelet count.
+- Prothrombin time/INR: 1.0 (normal)
+
+2026-02-09:
+- MRI Brain with contrast: multiple enhancing intraaxial lesions, most compatible with metastatic disease, dominant 16 mm lesion in the posterior midbrain causing obstructive hydrocephalus.
+
+Impression:
+Sharon Pearl Leblanc is an 80-year-old female with multiple brain metastases and a suspicious pulmonary nodule in the right upper lobe, likely representing metastatic disease. Her poor performance status (ECOG 4) and the presence of obstructive hydrocephalus due to brainstem involvement have significantly impacted her functional capacity. The patient and family have chosen a conservative approach, declining further invasive interventions such as bronchoscopic biopsy or aggressive chemotherapy/radiation.
+
+Plan:
+1. I will increase the dose of dexamethasone to assess for symptomatic improvement.
+2. I will monitor the patient closely for any changes in her neurological status, particularly related to hydrocephalus and brainstem involvement.
+3. I will arrange for a follow-up consultation with palliative care to discuss supportive care options and goals of care.
+4. I will ensure that the patient's current medications are continued as prescribed, with close monitoring for any adverse effects or interactions.

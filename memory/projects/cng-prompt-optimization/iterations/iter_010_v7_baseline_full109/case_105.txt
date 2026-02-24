@@ -1,0 +1,60 @@
+Patient ID: Carolyn TomkinsWhite, 65-year-old female
+
+History of Present Illness:
+Carolyn is a 65-year-old female with a history of obstructive lung disease who presents with ongoing respiratory symptoms despite recent treatment changes. She reports feeling much better since starting Breztri, though she has only been taking it twice daily instead of three times as prescribed. She still experiences shortness of breath, though significantly improved from her previous state, and has been affected by environmental scents, particularly fabric softeners and air fresheners, which trigger severe respiratory distress. She describes a thick mucus in the back of her throat that is difficult to cough up, which she manages by drinking water. Carolyn also notes that her cough has improved significantly since September, though her overall respiratory symptoms have worsened over the past year.
+
+Recently, Carolyn and her husband traveled, which was challenging due to exposure to strong scents in hotels and on planes. She had a CT scan of her lungs on February 11, 2026, which revealed multiple nodules, including one large nodule on the left side that may be a benign tumor. Carolyn has no prior history of CT scans, only chest X-rays. She is concerned about the findings and the need for follow-up imaging.
+
+Past Medical History:
+Obstructive lung disease (diagnosed 2025)
+Bronchial issues since childhood
+History of pneumonia and sinus infections as a child
+Previous Hartmann's procedure and reversal for a perforated diverticulum
+Severe obstructive airway disease on pulmonary function testing (2025)
+Possible emphysema or bronchiectasis (considering common variable immunodeficiency or prior exposure-induced emphysema)
+
+Medications:
+Breztri (glycopyrronium/indacaterol/mometasone) 2 puffs BID (patient reports taking twice daily instead of three times)
+Salbutamol (rescue inhaler) prn
+Flonase (fluticasone nasal spray) prn
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker, off and on over the years
+No current smokers in the household
+Occasional alcohol consumption
+Lives with husband and son
+Has seniors Pharmacare drug coverage
+
+Physical Examination:
+Chest: clear with adequate air entry bilaterally
+Cardiac: normal S1 and S2 with no additional sounds or murmurs
+Abdomen: soft with no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2025-11-09:
+CBC: WBC 10.6, Hgb 153, Plts 305
+VBG: pH 7.40, pCO2 46.6, pO2 28.8, HCO3 1.4
+Chemistry: Na 134, K 3.8, Cl 97, Cr 56
+Alpha1-antitrypsin level: normal
+Ferritin: 298 (elevated)
+% saturation: 57% (high)
+2025-10-27:
+Pulmonary function tests: severe obstructive airway disease with hyperinflation and reduction in DLCO
+2026-02-11:
+CT chest: multiple pulmonary nodules, including a large nodule on the left side (potentially benign tumor)
+
+Impression:
+Carolyn TomkinsWhite is a 65-year-old female with a long-standing history of obstructive lung disease, likely COPD with possible emphysema, given her pulmonary function tests and recent imaging findings. Her symptoms, including shortness of breath and sensitivity to environmental scents, suggest a possible asthmatic component to her respiratory disease. The CT scan findings of multiple pulmonary nodules, including a large nodule, warrant further investigation and follow-up. Given her elevated ferritin and iron levels, hemochromatosis testing should be pursued.
+
+Plan:
+1. I will prescribe N-acetylcysteine (NAC) 600 mg three times daily for mucus clearance and to reduce flare-ups.
+2. I will arrange for follow-up imaging of the pulmonary nodules identified on the CT scan, pending the official radiology report.
+3. We will review the results of the hemochromatosis testing and adjust management as needed.
+4. I will counsel Carolyn on the importance of adhering to her prescribed inhaler regimen and avoiding environmental triggers.
+5. We will schedule a follow-up appointment in 3 months to reassess her respiratory symptoms and review the results of her investigations.

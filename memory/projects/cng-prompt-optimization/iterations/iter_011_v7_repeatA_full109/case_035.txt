@@ -1,0 +1,49 @@
+Patient ID
+Mr. Arnold Jordan is a 66-year-old male.
+
+History of Present Illness
+Mr. Jordan reports feeling generally well with no current chest pain or significant shortness of breath, though he occasionally experiences mild dyspnea when going outside. He denies any recent exacerbations of his COPD. His medications remain unchanged, and he continues to use his inhalers as previously prescribed. He specifically requests a refill for his once-daily inhaler and his blue puffer (ventolin).
+
+Past Medical History
+Severe COPD
+Gout
+History of alcohol abuse
+
+Medications
+fluticasone furoate/umeclidinium bromide/vilanterol trifenat 100 mcg/62.5 mcg/25 mcg 1 puff daily
+VENTOLIN HFA 100 mcg inhaler 2 puffs QID PRN
+APODOXY 100 mg 1 capsule BID
+APOPREDNISONE 5 mg 8 tablets daily
+
+Allergies
+not documented
+
+Family History
+Mother: lung cancer
+Father: chronic kidney disease
+
+Social History
+Current smoker (5 cigarettes/day)
+Works in a factory with dust exposure
+History of alcohol abuse, currently abstinent
+No recreational drug use
+
+Physical Examination
+not documented
+
+Investigations
+2025-03-21: CT chest - findings consistent with smoking-related lung disease, centrilobular emphysema, and central bronchial wall thickening. No suspicious pulmonary nodules or acute abnormalities.
+
+Impression
+Mr. Jordan is a 66-year-old male with stable severe COPD on current maintenance therapy. He reports no recent exacerbations and denies significant symptoms, though he continues to smoke and is exposed to occupational dust. His imaging from 2025 demonstrates chronic changes consistent with his COPD and smoking history, with no acute abnormalities. Continued monitoring and smoking cessation support remain essential.
+
+Plan
+1. I will renew the following medications:
+   - fluticasone furoate/umeclidinium bromide/vilanterol trifenat 100 mcg/62.5 mcg/25 mcg 90-day supply
+   - VENTOLIN HFA 100 mcg inhaler 90-day supply
+   - APODOXY 100 mg 7-day supply
+   - APOPREDNISONE 5 mg 5-day supply
+
+2. I will schedule a routine follow-up in 6 months to reassess COPD symptoms, inhaler technique, and smoking status.
+
+3. I will reinforce smoking cessation counseling and encourage minimizing dust exposure at work.

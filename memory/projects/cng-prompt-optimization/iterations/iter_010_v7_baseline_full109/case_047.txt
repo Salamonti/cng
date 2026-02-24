@@ -1,0 +1,42 @@
+Patient ID: Everett Titus, 73-year-old male
+
+History of Present Illness:
+Mr. Titus is a 73-year-old male who presents today for routine follow-up regarding his allergic bronchopulmonary aspergillosis (ABPA). He reports no current symptoms, including no cough, shortness of breath, or phlegm production. He denies any recent exacerbations or changes in his condition. He continues to perform his daily activities without difficulty. Mr. Titus mentions he received blood work in December 2025, but no recent symptoms prompted this visit.
+
+Mr. Titus is adhering to his current treatment regimen, including Xolair injections every two weeks, which he self-administers. He has no concerns about his heart rate, which remains stable at 56 beats per minute, and his oxygen saturation is excellent at 98% on room air. He confirms he is up to date with vaccinations, including flu, COVID, and RSV, and received his pneumonia vaccine within the last five years.
+
+Past Medical History:
+Allergic bronchopulmonary aspergillosis (ABPA)
+
+Medications:
+Xolair 300 mg, subcutaneous, every two weeks
+Symbicort, inhaled, as prescribed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Vital signs: Heart rate 56 bpm, Oxygen saturation 98% on room air.
+Lungs: Clear to auscultation bilaterally.
+Cardiac: Normal S1 and S2, no additional sounds or murmurs.
+No jugular venous distention or lower limb edema.
+
+Investigations:
+2025-12-11:
+- Lytes: Sodium 142 mmol/L, Potassium 4.2 mmol/L, Chloride 105 mmol/L
+- Complete Blood Count: WBC 5.9 x10^9/L, Hemoglobin 140 g/L, Platelets 146 x10^9/L
+- eGFR: 67 mL/min/1.73m^2, Creatinine 102 umol/L
+- Lipids: Cholesterol 4.1 mmol/L, Triglycerides 0.78 mmol/L, LDL 2.1 mmol/L, HDL 1.67 mmol/L
+- Vitamin B12: 453 pmol/L
+- Fecal Immunochemical Occult Blood Test: Negative (collected 2025-07-23)
+
+Impression:
+Mr. Titus is a 73-year-old male with a history of allergic bronchopulmonary aspergillosis (ABPA) who continues to do well on his current regimen of Xolair and Symbicort. He remains asymptomatic with stable vital signs and normal oxygen saturation. Recent blood work shows no abnormalities, and his lung examination remains clear. Given his stable clinical status and adherence to treatment, his ABPA appears well controlled.
+
+Plan:
+1. I will continue Xolair 300 mg subcutaneous every two weeks and Symbicort as prescribed.
+2. I will arrange for follow-up in six months to reassess symptoms and overall clinical status.
+3. I will send a referral to Dr. Arsenault for administration of the RSV vaccine, as Mr. Titus is eligible due to his high-risk status related to ABPA and asthma.

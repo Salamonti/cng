@@ -1,0 +1,45 @@
+Patient ID
+Sharon E. Harvie is a 66-year-old female presenting for follow-up of asthma.
+
+History of Present Illness
+Mrs. Harvie reports a recent severe influenza infection complicated by an asthma exacerbation over the New Year period. She initially presented with cough, congestion, and difficulty keeping fluids down, requiring self-initiated prednisone 50 mg for three days as per her action plan. She described significant respiratory distress, including audible wheezing and oxygen saturations dropping to the low 80s, prompting her to start the steroids. She lost nine pounds over a week and a half but has since improved, though she continues to experience evening cough and congestion. She denies fever, chest pain, or nocturnal symptoms. Her current symptoms are primarily upper airway congestion, and she remains concerned about her ability to participate in planned athletic activities.
+
+She is currently using Zenhale (beclometasone/formoterol) 200/5 mcg inhaler two puffs twice daily, which she finds effective. She has not resumed running due to ongoing fatigue and weight loss but is otherwise stable with normal vital signs and clear lung fields on examination.
+
+Past Medical History
+Adult-onset asthma, gastroesophageal reflux disease (GERD), possible alpha-1 antitrypsin deficiency (A1ATD) under evaluation, history of tonsillectomy, and right ovarian cyst removal.
+
+Medications
+Zenhale 200/5 mcg inhaler 2 puffs BID
+Prednisone 40 mg tablets as needed (standing order for exacerbations)
+Avamys 27.5 mcg nasal spray 1 sniff BID
+
+Allergies
+Penicillin (anaphylaxis), ciprofloxacin (anaphylaxis), morphine (hypersensitivity), benzodiazepines (hypersensitivity)
+
+Family History
+Mother died of cardiomyopathy at age 72, paternal family history of COPD/emphysema
+
+Social History
+Nonsmoker, nondrinker, active runner (currently limited by illness), works as a nurse, lives with husband, allergic to cats, scales, molds, dust
+
+Physical Examination
+Vital signs: BP 120/80, PR 68 bpm, SpO2 100% on room air
+General: Well-appearing, no acute distress
+Respiratory: Clear to auscultation bilaterally, no wheezes or crackles
+Cardiovascular: Normal S1 and S2, no murmurs, no JVD, no peripheral edema
+Neurological: Unremarkable
+
+Investigations
+2025-05-09: Echocardiogram - normal biventricular size and function, no valvular abnormalities, normal left ventricular diastolic function
+2025-05-13: Bone density scan - normal bone mineral density, low 10-year fracture risk
+2025-04-07: CT chest - incidental pulmonary nodules (largest 4 mm), no interstitial lung disease or emphysema
+
+Impression
+Mrs. Harvie has a history of poorly controlled adult-onset asthma with recurrent exacerbations, including recent severe illness complicated by influenza and respiratory distress requiring systemic corticosteroids. Despite ongoing symptoms, her current therapy with Zenhale appears effective, and she remains stable with normal oxygenation and clear lung fields. Her recent weight loss and fatigue suggest a need for gradual reintroduction of physical activity. Investigations have ruled out significant cardiac or bony pathology, though her asthma remains a concern for future exacerbations, particularly with respiratory infections.
+
+Plan
+1. I will provide a letter for Mrs. Harvie stating her asthma is currently stable but may limit her ability to participate in high-intensity activities like a half marathon, pending her recovery.
+2. I will continue her current asthma regimen with Zenhale 200/5 mcg inhaler 2 puffs twice daily and provide a prescription for prednisone 40 mg as needed for future exacerbations.
+3. I will reinforce her asthma action plan, including instructions for when to use prednisone and when to seek medical attention.
+4. We will follow up in three months to reassess her symptoms, weight recovery, and readiness to resume running.

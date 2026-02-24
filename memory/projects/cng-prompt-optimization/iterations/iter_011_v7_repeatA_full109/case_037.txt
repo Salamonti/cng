@@ -1,0 +1,56 @@
+Patient ID: Miller, Janet Marie, 73-year-old female
+
+History of Present Illness:
+Ms. Miller is a 73-year-old female with a complex medical history presenting for preoperative cardiac risk assessment prior to planned breast surgery for invasive ductal carcinoma. She has a history of multiple non-ST elevation myocardial infarctions (NSTEMIs) in July 2023, May 2025, and most recently in December 2025. She reports persistent bilateral lower extremity pain, limiting her mobility, and recurrent episodes of lightheadedness. She denies recent chest pain or shortness of breath but continues to experience intermittent anginal symptoms with activity. Her current symptoms are primarily related to her cardiac history and mobility limitations rather than acute cardiac events.
+
+Ms. Miller’s breast cancer diagnosis involves an invasive ductal carcinoma in the left breast, confirmed by biopsy in December 2025. She prefers a lumpectomy over a mastectomy and is aware of the potential need for a second operation if margins are positive. She has a history of radiation therapy for prior breast cancer and anal cancer, and she is concerned about the cardiac risks associated with general anesthesia, particularly given her recent MI and ICD placement in May 2025.
+
+Past Medical History:
+Chronic coronary artery disease status post multiple NSTEMIs (2019, July 2023, May 2025, December 2025), coronary artery bypass graft (CABG) in 2014, implantable cardioverter-defibrillator (ICD) placement in May 2025, type 2 diabetes mellitus, hypertension, dyslipidemia, macrosteatosis, breast cancer (right mastectomy in 2014, left lumpectomy in 2015), anal cancer treated with chemo and radiation, depression/anxiety, gastroesophageal reflux disease (GERD), osteoarthritis, osteoporosis, pneumonia, mental illness, seizures, bleeding disorders, stomach ulcers, liver disease, thyroid disease, and cancer.
+
+Medications:
+Aspirin 81 mg PO daily
+Ticagrelor 90 mg PO b.i.d.
+Carvedilol 6.5 mg PO daily
+Amiodarone (dose not documented)
+Jardiance (empagliflozin) 10 mg PO daily
+Atorvastatin 80 mg PO daily
+Metformin 1000 mg PO b.i.d.
+Spironolactone (dose not documented)
+Furosemide (dose not documented)
+Rabeprazole 20 mg PO daily
+Perindopril 4 mg PO daily
+Nifedipine 60 mg PO daily
+Ferrous fumarate 300 mg PO daily
+Ezetimibe 10 mg PO daily
+Isosorbide dinitrate (dose not documented)
+Novolin NPH (dose not documented)
+Vitamin C, B12, and D (doses not documented)
+
+Allergies:
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History: not documented
+
+Social History:
+Lives alone, no smoking or recreational drug use, occasional alcohol consumption (approximately two drinks per month), new gentleman friend, not interested in physiotherapy rehabilitation program.
+
+Physical Examination: not documented
+
+Investigations:
+2025-11-XX: Echocardiogram revealed EF 34% with high LV filling pressure, moderately reduced right ventricular systolic function, and mild mitral regurgitation.
+2025-12-04: Ultrasound-guided core needle biopsy confirmed invasive ductal carcinoma (ER/PR positive, equivocal for Her2neu).
+2025-12-18: Stereotactic core needle biopsy showed benign breast tissue with sclerotic fibroadenoma and early intraductal papilloma.
+2025-10-XX: Laboratory results showed HbA1c 7.6%, total cholesterol 3.7 mmol/L, triglycerides 1.9 mmol/L, LDL 2.0 mmol/L, HDL 1.16 mmol/L, creatinine 56 umol/L, eGFR 83, troponin 100 pg/mL, D-dimer positive.
+
+Impression:
+Ms. Miller is a high-risk surgical candidate due to her recent myocardial infarction in December 2025, reduced ejection fraction of 34%, and history of multiple cardiovascular events including CABG and ICD placement. Her preference for lumpectomy over mastectomy adds complexity to her surgical plan, given the potential need for a second operation and the associated cardiac risks. The presence of bilateral lower extremity pain and recurrent lightheadedness suggests possible peripheral arterial disease or other systemic issues that require further evaluation. Her diabetes remains suboptimally controlled, which further complicates her perioperative risk profile.
+
+Plan:
+1. I will confirm the timing and confirmation of the most recent MI in December 2025. If it occurred within the last 3 months, I will recommend delaying elective surgery for at least 6 months to reduce perioperative cardiac risk.
+2. I will coordinate with cardiology to schedule an ICD interrogation prior to surgery and ensure safe management of the ICD during anesthesia, including temporary reprogramming to asynchronous mode.
+3. I will arrange for a preoperative stress test (e.g., stress echocardiogram or nuclear imaging) to assess myocardial viability and ischemic burden, particularly given her recent MI and reduced ejection fraction.
+4. I will consult with cardiology to determine the safe timing for discontinuation of ticagrelor, if needed, while continuing aspirin unless there is a high bleeding risk.
+5. I will optimize her heart failure and diabetes management preoperatively, including discontinuation of metformin and close monitoring of electrolytes and renal function.
+6. I will arrange for a vascular surgery consultation to evaluate the source of her bilateral lower extremity pain and assess for peripheral arterial disease.
+7. I will follow up with Ms. Miller within 2 weeks to review results of investigations and finalize the perioperative plan.

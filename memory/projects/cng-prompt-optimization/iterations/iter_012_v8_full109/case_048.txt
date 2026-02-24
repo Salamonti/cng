@@ -1,0 +1,75 @@
+Patient ID: Mrs. Gertrude Elizabeth Conrod, 76-year-old female
+
+History of Present Illness:
+Mrs. Conrod presents today with mild shortness of breath, described as "so-so," which has not worsened since her last visit. She reports occasional left-sided chest tightness, similar to what she experienced during her prior stress test, occurring both while sitting and standing. There is no associated cough, phlegm, or exacerbation of respiratory symptoms. On examination, the chest tightness is localized to the costochondral junction, consistent with costochondritis. Her vital signs are stable with a heart rate of 74 bpm and oxygen saturation of 96% on room air. She denies any recent changes in her respiratory medications, though she notes she has only one puffer left.
+
+Physical examination reveals clear lungs with adequate air entry, normal heart sounds, and no lower extremity edema. The chest tightness is localized to the costochondral junction, and she reports no tenderness elsewhere. Her overall condition appears stable with no acute cardiopulmonary concerns.
+
+Past Medical History:
+Chronic Obstructive Pulmonary Disease (COPD), stable
+History of questionable myocardial ischemia (MIBI scan findings)
+Hypothyroidism
+Hypertension
+Heart failure with preserved ejection fraction
+Anemia (mild)
+History of drug reaction to dapagliflozin
+
+Medications:
+Breztri 2 puffs twice daily
+Empagliflozin 10 mg orally once daily
+Carvedilol 12.5 mg orally twice daily
+Bisoprolol 5 mg orally once daily
+Furosemide 40 mg orally once daily
+Levothyroxine 12.5 mcg orally once daily
+Nortriptyline 10 mg orally once daily
+Perindopril 2 mg orally once daily
+Potassium chloride 1500 mg orally twice daily
+Rosuvastatin 10 mg orally once daily
+Spironolactone 25 mg orally once daily
+Topiramate 50 mg orally in the morning, 100 mg orally at night
+Trazodone 100 mg orally once daily
+
+Allergies:
+Dapagliflozin
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+Chest: Clear lungs with adequate bilateral air entry. Chest tightness localized to costochondral junction, consistent with costochondritis. No tenderness elsewhere.
+Cardiac: Normal S1 and S2, no murmurs or gallops.
+Extremities: No lower extremity edema.
+
+Investigations:
+2025-11-17:
+Complete Blood Count: White blood count 12.6 x10^9/L (elevated), hemoglobin 117 g/L, hematocrit 0.370 L/L, platelets 274 x10^9/L.
+Creatinine: 132 umol/L (elevated).
+D-Dimer: 2473 ng/mL (elevated).
+Doppler Ultrasound Left Leg: No evidence of deep vein thrombosis.
+
+2025-11-07:
+Prothrombin Time/INR: 1.1 (normal).
+Partial Thromoplastin Time: 31 seconds (normal).
+
+2025-11-06:
+Troponin T: 21 ng/L (normal).
+
+2025-11-05:
+Troponin T: 24 ng/L (normal).
+ECG: Normal sinus rhythm with left bundle branch block, no significant change from prior ECG.
+
+2025-10-30:
+NT-proBNP: 434 ng/L (elevated).
+
+Impression:
+Mrs. Conrod has stable COPD with no recent exacerbations, though she continues to experience mild shortness of breath on exertion. Her chest tightness is likely due to costochondritis, which is a benign and self-limiting condition. Her cardiac evaluation, including recent troponin levels and ECG, shows no acute changes, though her NT-proBNP remains elevated, suggesting ongoing cardiac monitoring is warranted. Her elevated white blood count, creatinine, and D-dimer should be investigated further to rule out underlying causes.
+
+Plan:
+1. I will prescribe acetaminophen as needed for costochondritis-related chest tightness.
+2. I will arrange for a repeat complete blood count and creatinine in 2 weeks to reassess the elevated values.
+3. I will continue current medications as they are well tolerated and effective.
+4. I will schedule a follow-up appointment in 6 months to reassess her COPD and overall condition.
+5. I will ensure her rescue inhaler is refilled through Spears on McLean Pharmacy.

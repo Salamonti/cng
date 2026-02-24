@@ -1,0 +1,51 @@
+Patient ID: Joanne Louise Comeau, 56-year-old female
+
+History of Present Illness:
+Joanne Comeau presents with a chief concern of new-onset cough triggered by deep breaths, which she attributes to recent sinus congestion and nasal obstruction. She reports occasional shortness of breath but denies significant limitations in daily activities, attributing her reduced exercise to recent surgery and a busy recovery period. She has been using azelastine-fluticasone nasal spray (prescribed by her ENT) without improvement in her cough. Additionally, she describes recent right-sided hearing loss, prompting an ENT evaluation and ear irrigation. Her ACE level has risen slightly compared to prior readings, raising concern for possible sarcoidosis activity or another pulmonary process. She denies reflux symptoms but was provided with dietary guidance as a precaution.
+
+Joanne also mentions difficulty initiating a previously scheduled breathing test, suggesting potential pulmonary involvement. Her physical examination today revealed a pulse rate of 55 bpm, SpO2 of 99% on room air, clear lungs with adequate bilateral air entry, and no jugular venous distension or edema.
+
+Past Medical History:
+Sarcoidosis (stable)
+Post-hysterectomy (uterus surgically absent)
+Complex multicystic right adnexal mass (awaiting gynecology follow-up)
+Night sweats (2-3 times per week)
+Daytime fatigue
+
+Medications:
+Azelastine-fluticasone 137 mcg/50 mcg nasal spray, 1 spray in each nostril twice daily (prescribed by ENT)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+PR 55 bpm, SpO2 99% on room air
+Chest: clear, adequate bilateral air entry
+Cardiac: normal S1 and S2, no murmurs or additional sounds
+Neurological: unremarkable
+No jugular venous distension or lower limb edema
+
+Investigations:
+2025-11-21:
+- ACE: elevated (reported as "a little bit higher than readings before")
+- LFTs: ALT 51, AST 36, ALP 106, GGT 59, bilirubin (direct 7.1, total 20.4), LDH 179, albumin 47
+- CBC: WBC 5.5, Hb 132, platelets 262
+- eGFR: 90
+- ECG: normal sinus rhythm with sinus arrhythmia, T wave abnormality (consider anterior ischemia)
+
+2025-06-09:
+- ACE: elevated (reported as "within normal limits" in prior note, but referred for analysis)
+- LFTs: ALT 48, AST 39, ALP 84
+- Estradiol: 18.4 (postmenopausal range)
+
+Impression:
+Joanne Comeau presents with new-onset cough and sinus congestion, raising concern for possible sarcoidosis activity given her elevated ACE levels and history of the disease. While her sarcoidosis has been stable in recent follow-ups, the recent rise in ACE and new pulmonary symptoms warrant further evaluation. The complex adnexal mass and post-hysterectomy status require ongoing gynecological monitoring. Her recent ENT-related symptoms and hearing loss suggest concurrent sinus or ear pathology, though no active infection is evident.
+
+Plan:
+1. I will arrange for a chest CT scan and pulmonary function tests to evaluate for sarcoidosis activity or other pulmonary pathology.
+2. I will provide Joanne with a reflux information sheet and review dietary modifications to address potential reflux as a contributor to her cough.
+3. We will follow up after the chest CT and pulmonary function tests are completed to review results and adjust management as needed.
+4. I will ensure ongoing coordination with her ENT for follow-up regarding her sinus and hearing concerns.

@@ -1,0 +1,38 @@
+Patient ID: Mr. Roger Bruce Belliveau, 77-year-old male
+
+History of Present Illness:
+Mr. Belliveau reports a slight weight gain, which he attributes to difficulty with weight loss. He denies any significant breathing issues, though he notes minimal phlegm production in his chest without associated cough. His oxygen saturation is stable at 97% on room air, consistent with prior measurements. He is up to date with vaccinations and has an upcoming blood work appointment scheduled for March 11, 2026, as part of his regular three-month monitoring. He denies any recent changes in symptoms related to his eosinophilic granulomatosis with polyangiitis (EGPA), though physical examination reveals mild phlegm in his chest.
+
+On review of systems, he remains asymptomatic aside from mild weight gain and minimal phlegm production. He continues to feel generally well and has no concerns regarding his current medications or EGPA management.
+
+Past Medical History:
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+
+Medications:
+azathioprine 100 mg tablet once daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+- Vital signs: oxygen saturation 97% on room air
+- Chest: mild phlegm noted on auscultation, otherwise clear
+- No lower limb edema noted today
+
+Investigations:
+2025-11-25:
+- Complete blood count: WBC 10.4 x10^9/L, eosinophils 0.3 x10^9/L
+- Renal function: eGFR 69 mL/min, creatinine 98 umol/L
+- Liver function: AST 34 U/L, ALT 50 U/L, alkaline phosphatase 57 U/L
+- Bilirubin: 8.9 umol/L
+
+Impression:
+Mr. Belliveau remains asymptomatic from EGPA, with stable laboratory parameters and no evidence of disease flare. His recent weight gain and mild phlegm production are not concerning for active EGPA, though the phlegm may warrant further attention to prevent chest infections. His current medication regimen appears to be effective in controlling his disease, and his renal and liver function remain stable.
+
+Plan:
+1. I will prescribe an Aerobika device for use three to four times daily to assist with phlegm clearance and reduce the risk of chest infections.
+2. I will continue azathioprine 100 mg tablet once daily.
+3. We will follow up in six months for routine monitoring of EGPA and to reassess symptoms.

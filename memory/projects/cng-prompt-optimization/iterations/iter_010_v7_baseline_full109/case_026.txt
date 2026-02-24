@@ -1,0 +1,52 @@
+Patient ID
+Arthur Belliveau, 62-year-old male
+
+History of Present Illness
+Mr. Belliveau presented with acute confusion and hemodynamic instability requiring transfer to ICU. On the same day, blood cultures confirmed gram-negative bacteremia. He has a history of aortic valve replacement in 2020 for severe aortic regurgitation and dilated cardiomyopathy. Current symptoms include fever, elevated inflammatory markers (CRP 298), and positive urine culture for Staphylococcus aureus. He has also reported increased cough and acute back pain.
+
+Past Medical History
+Hypertension, dyslipidemia, ex-smoker (60 pack-years, quit 11 years ago), vapes marijuana 3g/day, history of alcohol use disorder (abstinent for 12 years), bronchial asthma, chronic right chest/neck/spine pain from traumatic injury, severe dilated cardiomyopathy with LVEF 40% and LV size 6.5 cm, severe aortic regurgitation, aortic root dilation (5.1 cm), NSTEMI, aortic valve replacement (2020), cholelithiasis
+
+Medications
+Lisinopril 20 mg PO daily
+Metoprolol 25 mg PO twice daily
+Spironolactone 25 mg PO daily
+Not documented
+
+Allergies
+No known allergies
+
+Family History
+Not documented
+
+Social History
+Lives alone with his dog, on disability and work compensation for injury
+
+Physical Examination
+Not documented
+
+Investigations
+2025-10-26
+- Urinalysis: Positive nitrites, moderate bacteria, 25-50 RBC/hpf, 5-10 WBC/hpf
+- CBC: WBC 11.1 x10^9/L, Hb 133 g/L, Plt 12 x10^9/L, immature granulocytes 0.86 x10^9/L
+- CRP: 298 mg/L
+- Blood cultures: Gram-negative bacteremia (positive)
+- ECG: Sinus tachycardia, premature atrial complexes, bifascicular block, T wave abnormalities
+- Chest X-ray: Clear lungs, no acute abnormality detected
+
+2025-10-30
+- CBC: WBC 33.0 x10^9/L, Hb 96 g/L, Plt 31 x10^9/L, immature granulocytes 0.92 x10^9/L
+- CRP: 215 mg/L
+- MRI Cervicothoracic Spine: No discitis/osteomyelitis, C5-C6 disc bulge with moderate spinal canal stenosis
+- MRI Lumbar Spine: No spondylodiscitis, mild to moderate degenerative changes, bilateral facet joint effusions
+- Portable Chest X-ray: No radiographic evidence of pneumonia
+
+Impression
+Mr. Belliveau is a 62-year-old male with a complex medical history, including severe aortic regurgitation status post aortic valve replacement and dilated cardiomyopathy, presenting with acute confusion, hemodynamic instability, and gram-negative bacteremia. His clinical picture is further complicated by elevated inflammatory markers, positive urine culture for Staphylococcus aureus, and evidence of systemic infection. The current presentation suggests a severe infectious process, likely contributing to his acute confusion and hemodynamic instability.
+
+Plan
+1. I will initiate broad-spectrum intravenous antibiotics targeting gram-negative bacteremia and Staphylococcus aureus, pending final culture and sensitivity results.
+2. I will consult Infectious Diseases for further management of bacteremia and source control.
+3. I will arrange for a transesophageal echocardiogram to assess for endocarditis or prosthetic valve dysfunction.
+4. We will monitor for signs of sepsis and adjust supportive care as needed in the ICU setting.
+5. I will review the need for further imaging to identify potential sources of infection, such as CT abdomen/pelvis to evaluate for intra-abdominal pathology.

@@ -1,0 +1,46 @@
+Patient ID: Mr. Landon Ross, 54-year-old male
+
+History of Present Illness:
+Mr. Ross presents today with a history of bilateral leg cramping that prompted him to skip his last scheduled phlebotomy in June. He denies any shortness of breath, chest pain, or cough. He reports feeling well otherwise, with no unintended weight gain, and continues to use insulin for his diabetes. On examination, his chest is clear with adequate bilateral air entry, and his cardiac exam reveals normal S1 and S2 without murmurs or additional sounds. The abdomen is soft with no organomegaly, and the neurological exam is unremarkable. There is no jugular venous distention or lower limb edema.
+
+The patient expresses concern about his iron burden and the potential contribution of iron overload or fatty liver to his elevated liver enzymes. He is considering future management options, including monitoring trends, potential liver biopsy, or starting ozempic, but remains open to continuing current management.
+
+Past Medical History:
+Hemochromatosis with hepatic steatosis, type 2 diabetes mellitus
+
+Medications:
+Fluvastatin 40 mg oral daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Smokes marijuana 1 gram daily, no alcohol use, no cigarette smoking
+
+Physical Examination:
+Chest: clear with adequate bilateral air entry
+Cardiovascular: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2026-01-27
+- Complete Blood Count: Hgb 162 g/L, MCV 85.5 fL, platelets 410 x10^9/L
+- eGFR: 90 mL/min/1.73m^2, creatinine 78 umol/L
+- Lytes: sodium 138 mmol/L, potassium 4.1 mmol/L, chloride 102 mmol/L
+- Bilirubin: total 20.7 umol/L, direct 6.9 umol/L
+- Gamma Glutamyl Transferase: 112 U/L
+- Aspartate Aminotransferase: 46 U/L
+- Alanine Aminotransferase: 72 U/L
+- Alkaline Phosphatase: 134 U/L
+- Ferritin: 106.0 ug/L
+
+Impression:
+Mr. Ross has hemochromatosis with hepatic steatosis and type 2 diabetes mellitus. His recent bloodwork shows persistent mild elevations in liver enzymes, including GGT, ALT, and ALP, alongside a ferritin level of 106 ug/L. The patient’s leg cramping, previously attributed to fluvastatin, has led to a skipped phlebotomy, and he remains asymptomatic otherwise. The ongoing elevation in liver enzymes raises questions about whether his iron burden or hepatic steatosis is the primary driver, necessitating further monitoring and potential intervention.
+
+Plan:
+1. I will reduce phlebotomy frequency to every three months given improved ferritin levels and patient-reported leg cramping.
+2. We will continue monthly monitoring of ferritin and CBC to assess iron burden and trends in liver enzymes.
+3. I will arrange follow-up in three months to reassess liver enzyme trends, iron burden, and patient symptoms, with consideration for liver biopsy or further management strategies if indicated.

@@ -1,0 +1,56 @@
+Patient ID
+Susan Boudreau, 74-year-old female
+
+History of Present Illness
+Ms. Boudreau presents with persistent symptoms of congestive heart failure (CHF) and new medication-related adverse effects. She reports ongoing loose stools occurring every few days, which she attributes to her recent medications, specifically the four new heart failure drugs initiated. Additionally, she describes recurrent mouth sores since starting these medications. Her dyspnea remains exertion-limited, particularly with stairs, and she notes this has not improved since her last visit. She denies cough or phlegm but confirms stable symptoms otherwise, acknowledging her heart function has declined over time. She inquires about potential interventions, including a nitro patch for symptom relief and further diagnostic testing.
+
+Past Medical History
+Asthma
+Glaucoma
+Breast cancer (2004, treated with surgery, chemotherapy, radiation)
+Ischemic stroke (remote)
+Congestive Heart Failure (newly diagnosed, LVEF 38%)
+Prediabetes (HbA1c 6.0%)
+Mild proteinuria
+
+Medications
+Dapagliflozin 10 mg tablet, 1 tablet daily
+Spironolactone 12.5 mg tablet, 0.5 tablet daily
+Bisoprolol fumarate 5 mg tablet, 1 tablet at bedtime
+Perindopril 2 mg tablet, 1 tablet daily
+Voriconazole 10 mg tablet, 1 tablet daily
+Montelukast 10 mg tablet, 1 tablet daily
+Zenhale 2 puffs, twice daily
+Spiriva Respimat 2 puffs, once daily
+Antidepressant (unspecified)
+
+Allergies
+Not documented
+
+Family History
+Emphysema (mother)
+
+Social History
+Never smoker
+No alcohol use
+Remote occupational smoke exposure
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-03
+CBC: WBC 6.8 x 10^9/L, RBC 4.09 x 10^12/L, Hemoglobin 119 g/L, eGFR 62 mL/min/1.73m^2
+Liver enzymes: ALP 79 U/L, AST 23 U/L, ALT 14 U/L
+Echocardiogram: LVEF 38%, moderate global hypokinesis, no valvular abnormalities
+Myocardial Perfusion Study (sestamibi): No reversible perfusion defect, small fixed defect in apical anteroseptal wall, LVEF 33-41%
+
+Impression
+Ms. Boudreau has persistent symptoms of congestive heart failure with exertional dyspnea and reduced left ventricular ejection fraction (LVEF 38%), consistent with systolic dysfunction. Her symptoms remain stable but are limiting, particularly with activities such as climbing stairs. New medication-related adverse effects, including loose stools and mouth sores, suggest potential intolerance to her current heart failure regimen. The absence of reversible ischemia on myocardial perfusion imaging supports a primarily non-ischemic etiology for her heart failure. Her prediabetes and mild proteinuria require ongoing monitoring.
+
+Plan
+1. I will reduce Dapagliflozin to 5 mg daily for two weeks to assess for improvement in bowel symptoms.
+2. I will initiate a nitroglycerin transdermal patch (0.4 mg/hour) for symptom relief of exertional dyspnea.
+3. I will order a BNP level to evaluate the contribution of heart failure to her current symptoms.
+4. I will arrange follow-up laboratory investigations, including CBC, electrolytes, creatinine, and cholesterol, for early March.
+5. We will reassess symptoms and medication tolerability at the next visit in approximately six weeks.

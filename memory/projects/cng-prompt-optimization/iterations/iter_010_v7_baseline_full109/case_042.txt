@@ -1,0 +1,59 @@
+Patient ID
+James Douglas Dulong is an 82-year-old male.
+
+History of Present Illness
+Mr. Dulong presents with progressive shortness of breath on minimal exertion and worsening lower extremity weakness, limiting his mobility. He reports using home oxygen at 2 L/min continuously and 3 L/min during ambulation, with oxygen saturation maintaining in the low 90s. His legs feel weaker, and he uses ankle weights for limited exercise. He denies recent chest infections but continues to experience a chronic cough with clear phlegm. He has not noticed any changes in weight or appetite. His current medications include nintedanib, which he is unsure if it is providing benefit. He has been advised to increase oxygen flow during activity but struggles with the fixed flow settings of his current equipment.
+
+Mr. Dulong’s functional status has declined further, with difficulty walking more than short distances and limited ability to perform activities of daily living. He is considering rehabilitation to improve strength but is concerned about the timing due to winter conditions. He denies any recent diarrhea or gastrointestinal symptoms despite being on nintedanib. His wife assists with monitoring his oxygen saturation, which drops into the mid-80s during ambulation but recovers quickly upon rest.
+
+Past Medical History
+Rheumatoid arthritis-associated interstitial lung disease with usual interstitial pneumonia pattern, chronic obstructive pulmonary disease, mild aortic stenosis, left diaphragmatic weakness, asbestos exposure, benign prostatic hyperplasia, hypertension, dyslipidemia, gastroesophageal reflux disease, rheumatoid arthritis, benign paroxysmal positional vertigo, insomnia, obesity, anxiety, prostate cancer (treated), encephalitis in viral disease exacerbation, heart murmur, rheumatic fever.
+
+Medications
+nintedanib 150 mg oral daily
+morphine syrup 2 mg/mL 2 mL TID PRN
+oxygen 2 L/min continuous, 3 L/min during activity
+Breo Ellipta 100/25 mcg inhaler daily
+Incruse Ellipta 62.5 mcg inhaler daily
+salbutamol inhaler PRN (minimal use)
+loperamide 2 mg oral PRN (new instruction to use as needed for diarrhea)
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Vital signs: Blood pressure not documented, pulse not documented, SpO2 90% on 3 L/min oxygen.
+Lungs: Clear air entry bilaterally with bibasilar crackles.
+Cardiovascular: Normal S1 and S2, no murmurs or gallops.
+Extremities: Mild lower limb edema, decreased strength in lower extremities.
+Neurological: Unremarkable.
+
+Investigations
+2025-12-03
+Complete blood count: Hemoglobin 122 g/L, platelets 223 x10^9/L, white blood cells 7.1 x10^9/L.
+Chemistry: Creatinine 73 umol/L, eGFR 88 mL/min/1.73m^2, C-reactive protein 15.7 mg/L.
+Urinalysis: Protein 0.3 g/L, RBC 13/hpf, WBC 13/hpf.
+Autoimmune panel: ANA negative, vasculitis panel negative.
+
+2025-03-12
+Pulmonary function tests: FEV1 73% predicted, diffusion capacity 38% predicted (restrictive pattern).
+Chest CT: Bilateral subpleural reticulations, bibasilar honeycombing, traction bronchiectasis, pleural plaques, enlarged main pulmonary artery (3.2 cm).
+
+2025-05-15
+Transthoracic echocardiogram: Mild aortic stenosis, normal biventricular function.
+
+Impression
+Mr. Dulong’s clinical course is characterized by progressive rheumatoid-associated interstitial lung disease with a usual interstitial pneumonia pattern, leading to worsening respiratory failure and functional decline. His current symptoms of shortness of breath, lower extremity weakness, and oxygen dependency reflect advanced pulmonary fibrosis with secondary pulmonary hypertension and diaphragmatic weakness. Despite ongoing antifibrotic therapy with nintedanib, his functional status continues to deteriorate, and he requires optimization of supportive care measures, including oxygen therapy and rehabilitation. The recent laboratory findings show stable renal function and mild inflammatory elevation, with no evidence of autoimmune flare.
+
+Plan
+1. I will initiate prophylactic loperamide 2 mg orally as needed for diarrhea given his nintedanib therapy.
+2. I will refer Mr. Dulong to the hospital-based pulmonary rehabilitation program for twice-weekly sessions over 10 weeks, with a focus on respiratory muscle training and functional strength.
+3. I will arrange for a follow-up appointment in six months to reassess his clinical status, pulmonary function, and oxygen requirements.
+4. I will ensure his oxygen equipment is optimized for activity, with clear instructions to increase flow to 4-5 L/min during ambulation to maintain SpO2 above 90%.
+5. I will review his current oxygen prescription with Veterans Affairs Canada to explore options for adjustable flow equipment if his fixed-flow device remains suboptimal.

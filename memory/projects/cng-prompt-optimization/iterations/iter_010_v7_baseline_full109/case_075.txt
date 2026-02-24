@@ -1,0 +1,75 @@
+Patient ID: Lloyd Francis, 85-year-old male
+
+History of Present Illness:
+Lloyd Francis is an 85-year-old male who presents with a persistent cough of at least 10 months duration. The cough is productive of mostly clear phlegm, with occasional dark streaks, and is associated with a tickle in the throat. He reports deep coughing that brings up significant mucus, which is mostly clear but occasionally contains dark streaks. The cough is worse upon waking and during driving, but he does not experience shortness of breath, chest pain, or hemoptysis. He has tried using a short-acting bronchodilator (salbutamol) with transient relief. He also reports unintentional weight loss, fatigue, and no history of smoking or occupational exposures.
+
+Lloyd describes his cough as aggravating, particularly in the mornings, and it takes time to break up the phlegm. He denies any nasal secretions, runny nose, or increased work of breathing. He has a history of open heart surgery for coronary artery disease but no recent cardiac symptoms. He uses a lozenge for throat relief but notes it does not help with the cough.
+
+Past Medical History:
+Coronary artery disease with prior open heart surgery
+Type 2 diabetes mellitus
+Hypertension
+Chronic kidney injury
+Decreased red blood cell count and hemoglobin
+Gastroesophageal reflux disease
+Gout
+Hypercholesterolemia
+Benign prostatic hypertrophy
+Neck mass
+
+Medications:
+Atorvastatin 40 mg PO daily
+Aspirin 81 mg PO daily
+Ferrous sulfate 300 mg (60 mg iron) PO daily
+Hydrochlorothiazide 25 mg PO daily
+Metoprolol tartrate 50 mg PO 3 tablets twice daily
+Telmisartan 80 mg PO daily
+Empagliflozin (Jardiance) 25 mg PO daily
+Tiotropium (Spiriva RespiMat) 2.5 mcg/actuation INH 2 inhalations once daily
+Nitroglycerin transdermal patch 0.4 mg/hour apply once daily in the morning, remove at bedtime
+Salbutamol HFA 100 mcg INH 2 puffs 4 times daily as needed
+Nitroglycerin spray 1 spray 3 times daily as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Lloyd Francis is an 85-year-old male in no apparent respiratory distress. Lungs are clear to auscultation with no crackles or rhonchi. No further details of physical examination are documented.
+
+Investigations:
+2025-10-01:
+- Hemoglobin A1C: 6.6%
+- Uric acid: 186 umol/L
+- Complete Blood Count: Hemoglobin 128 g/L, Hematocrit 0.393 L/L, White Blood Count 8.1 x10^9/L
+- Electrolytes: Sodium 138 mmol/L, Potassium 3.6 mmol/L, Chloride 99 mmol/L
+- eGFR: 54 L
+- Creatinine: 114 umol/L
+- Urine Albumin/Creatinine Ratio: 2.58 mg/mmol
+- Thyroid Stimulating Hormone: 1.470 mIU/L
+- Prostate Specific Antigen: 0.565 ug/L
+- Ferritin: 363.00 ug/L
+- Alanine Aminotransferase: 20 U/L
+- Magnesium Level: 0.77 mmol/L
+- Phosphorous Level: 0.98 mmol/L
+- Total Iron Binding Capacity: Iron 17.0 umol/L, TIBC 44 umol/L, % Saturation 0.38
+- Urinalysis: Normal findings except for specific gravity 1.015, pH 7.5
+
+2025-10-22:
+- CT Chest with contrast: Findings include reticular densities at the right lung base, slightly more pronounced compared to previous imaging, raising the possibility of mild interstitial lung disease. No suspicious pulmonary nodules or masses.
+
+2026-01-20:
+- POC Glucose: 10.7 mmol/L
+
+Impression:
+Lloyd Francis is an 85-year-old male with a chronic cough productive of mostly clear phlegm, associated with mild interstitial lung disease on imaging. His symptoms are persistent despite the use of bronchodilators and are accompanied by fatigue and unintentional weight loss. The cough is likely exacerbated by the underlying interstitial lung disease, and further evaluation is warranted to rule out autoimmune or other underlying causes.
+
+Plan:
+1. I will prescribe N-acetylcysteine 600 mg PO twice daily for thinning of phlegm.
+2. I will arrange for a high-resolution CT scan of the chest to further evaluate the interstitial lung disease.
+3. I will order the following blood work for autoimmune evaluation: ANA, RF, anti-CCP, and anti-SSA/SSB antibodies.
+4. I will refer Lloyd Francis to a pulmonary specialist for further evaluation and management of his interstitial lung disease.
+5. I will provide a prescription for an Aerobika oscillating positive expiratory pressure (OPEP) device for airway clearance therapy, to be obtained from a health store or online.
+6. We will follow up in one month to review the results of the investigations and assess the effectiveness of the new treatments.

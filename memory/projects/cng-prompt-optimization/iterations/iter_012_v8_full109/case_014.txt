@@ -1,0 +1,39 @@
+Patient ID: Cornelia Nickerson, 83-year-old female
+
+History of Present Illness:
+Cornelia Nickerson is a 83-year-old female who was seen today for follow-up regarding previously identified pulmonary nodules. The patient has been experiencing fatigue and unintentional weight loss of approximately 20 lbs over the past few months. She denies shortness of breath, cough, fever, chills, hemoptysis, wheezing, palpitations, syncope, lightheadedness, edema, leg pain, or calf tenderness. Notably, she has reported recent onset nocturnal sweats, which began last week. Appetite remains unchanged. The patient was reassured today, and a CT chest was arranged for follow-up in five months, with a plan to review results at that time. The physical examination was deferred.
+
+The patient’s history includes a significant smoking history of 40 pack-years, having quit approximately 25 years ago. She has no current alcohol or illicit substance use. The patient’s symptoms and imaging findings have raised concerns about the possibility of malignancy, given her extensive past medical history.
+
+Past Medical History:
+Breast cancer (diagnosed 1970, treated surgically), chronic kidney disease (CKD), chronic lymphocytic leukemia (CLL) currently managed by a hematologist, basal cell carcinoma, hypertension, hyperlipidemia, thyroid disease, type 2 diabetes mellitus (DM2)
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+Former smoker (40 pack-years, quit 25 years ago), no alcohol or illicit substance use
+
+Physical Examination:
+not documented
+
+Investigations:
+2025-12-05
+PET/CT findings: Multiple pulmonary nodules, including a 2.1 x 1.9 cm lesion in the right middle lobe with low FDG avidity (SUV max 3.5), and multiple smaller nodules in both lungs with varying FDG avidity. No abnormal uptake in the head/neck, abdomen/pelvis, or bones. Chronic inflammatory or post-inflammatory changes cannot be excluded, but malignancy cannot be ruled out without biopsy.
+
+2026-01-19
+Bronchial wash cytology: Benign bronchial cells and histiocytes with rare groups of crushed cells that are challenging to qualify; tissue biopsy recommended for definitive diagnosis.
+
+Impression:
+Cornelia Nickerson is an 83-year-old female with a history of breast cancer, CLL, and significant smoking history who presents with fatigue, unintentional weight loss, and nocturnal sweats. Recent imaging reveals multiple pulmonary nodules, including a prominent lesion in the right middle lobe that has grown since 2007. While the differential includes chronic inflammatory changes, the possibility of malignancy—either primary lung cancer or metastatic disease—cannot be excluded. Given her extensive oncologic history and the presence of concerning symptoms, further evaluation is required to determine the etiology of these nodules.
+
+Plan:
+1. I will arrange a CT chest in five months for follow-up imaging of the pulmonary nodules.
+2. I will review the results of the CT chest and any additional investigations at the follow-up appointment.
+3. I will ensure the patient’s hematology team remains involved in her care, particularly given her history of CLL.

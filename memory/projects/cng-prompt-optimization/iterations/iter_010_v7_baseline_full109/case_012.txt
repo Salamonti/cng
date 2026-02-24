@@ -1,0 +1,33 @@
+Patient ID
+Mrs. Nora Christina Gray is a 56-year-old female.
+
+History of Present Illness
+Mrs. Gray reports a worsening of her chronic cough and phlegm production over the past two weeks, with the phlegm becoming darker green in color. She denies any fever or chest tightness but notes increased dyspnea with exertion. She has been using her rescue inhaler more frequently and is concerned about her symptoms. She also mentions occasional nighttime reflux symptoms and has not been adherent to her GERD medications at times. She reports smoking approximately 5 cigarettes per day, though she has attempted to reduce her intake.
+
+She denies any recent weight loss, hemoptysis, or changes in sleep patterns due to shortness of breath. Her symptoms have been moderately limiting, particularly with activities such as climbing stairs. She has not had a recent chest CT scan and is unsure of the last time she had one.
+
+Physical Examination
+Vital signs: blood pressure not documented, pulse 80 beats per minute, respiratory rate not documented, oxygen saturation 98% on room air.
+Chest: clear to auscultation bilaterally with adequate air entry.
+Cardiovascular: normal S1 and S2, no murmurs or additional sounds.
+General: no jugular venous distention or lower limb edema.
+
+Investigations
+2025-08-06
+Complete Blood Count: WBC 9.2 x10^9/L, hemoglobin 129 g/L, platelets 300 x10^9/L, eosinophils 0.2 x10^9/L.
+eGFR: 90 mL/min/1.73m^2, creatinine 61 umol/L.
+Lytes: sodium 141 mmol/L, potassium 4.3 mmol/L, chloride 104 mmol/L, calcium 2.30 mmol/L.
+Liver function: total bilirubin 3.9 umol/L, AST 25 U/L, ALT 22 U/L, alkaline phosphatase 74 U/L.
+IgE: 38 IU/mL.
+CRP: 0.6 mg/L.
+
+Impression
+Mrs. Gray presents with an acute exacerbation of her chronic obstructive pulmonary disease (COPD), evidenced by increased sputum production with a change in color to darker green, increased dyspnea, and more frequent use of her rescue inhaler. Her symptoms are likely exacerbated by ongoing smoking and suboptimal adherence to GERD medications. Her recent laboratory results show no acute abnormalities, and her pulmonary function remains stable based on the clear lung examination. The change in sputum color suggests a possible infectious component to her exacerbation.
+
+Plan
+1. I will prescribe a course of oral prednisone 5 mg daily for 5 days to treat her COPD exacerbation.
+2. I will prescribe a 10-day course of azithromycin 500 mg daily for the suspected infectious component of her exacerbation.
+3. I will renew her fluticasone furoate/umeclidinium bromide/vilanterol trifenat inhaler for 90 days.
+4. I will arrange for a chest CT scan to assess for any underlying structural changes or complications related to her COPD.
+5. I will reinforce smoking cessation counseling and provide nicotine replacement therapy if she is willing to try it.
+6. I will follow up with Mrs. Gray in one month to assess her response to treatment and adjust her medications as needed.

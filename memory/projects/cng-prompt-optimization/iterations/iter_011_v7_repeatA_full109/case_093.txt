@@ -1,0 +1,58 @@
+Patient ID
+Brenda Hall is a 63-year-old woman presenting for assessment of a newly identified FDG-avid pulmonary and colonic lesion.
+
+History of Present Illness
+Brenda Hall, a 63-year-old woman with chronic obstructive pulmonary disease (COPD) and a history of heavy smoking, presented with persistent shortness of breath on exertion following multiple COVID-19 infections. A chest CT in January 2026 revealed a right apical cavitary mass measuring 3.5 x 2.6 x 5.4 cm, highly suspicious for malignancy. Subsequent PET-CT on February 9, 2026, demonstrated intense FDG uptake in this lesion (SUV max 26), confirming high metabolic activity consistent with primary lung malignancy. Additionally, the PET-CT identified a focal FDG-avid lesion in the distal sigmoid colon (SUV max 10), raising concern for a secondary neoplastic process. Brenda reports no new gastrointestinal symptoms but remains symptomatic with exertional dyspnea despite inhaled bronchodilators.
+
+The patient underwent bronchoscopy on January 21, 2026, which revealed no endobronchial lesions but yielded cytology showing atypical squamous cells of uncertain significance. Given the PET-CT findings, further invasive staging is now indicated to guide management. Brenda is currently on antibiotics for suspected infection but remains concerned about the malignant potential of these lesions.
+
+Past Medical History
+Chronic obstructive pulmonary disease/emphysema
+Prior cervical cancer (treated with colposcopy/LEEP in 1986)
+Dyslipidemia
+
+Medications
+Clobazepam 10 mg tablet TID PRN
+Clindamycin 300 mg capsule TID
+Epinephrine autoinjector 0.3 mg once
+Salbutamol HFA 100 mcg inhaler 2 puffs Q4H PRN
+Symbicort 200/6 mcg Turbuhaler 2 puffs BID
+Budesonide 200 mcg aerosol powder 2 sprays BID
+
+Allergies
+Penicillin (other reaction)
+Seafood/fish (anaphylaxis)
+
+Family History
+Not documented
+
+Social History
+Current smoker (70 cigarettes/day)
+Former heavy smoker (12 packs/day x 45 years)
+No alcohol or illicit drug use documented
+
+Physical Examination
+Not documented
+
+Investigations
+2026-01-09
+Chest CT with contrast: Right upper lobe cavitary mass 3.5 x 2.6 x 5.4 cm with spiculated margins, suggestive of malignancy. Moderate centrilobular emphysema and hyperinflated lungs consistent with COPD.
+
+2026-01-21
+Bronchoscopy: No endobronchial lesions visualized. Bronchial washing cytology revealed atypical squamous cells of uncertain significance.
+Sputum culture: Very light growth of *Staphylococcus aureus* (susceptible to erythromycin, levofloxacin, oxacillin, trimethoprim/sulfamethoxazole, vancomycin).
+Complete blood count: Mild leukopenia (WBC 5.8 x10^9/L), normocytic anemia (Hb 117 g/L), normal platelets.
+Baseline labs (2025-12-30): eGFR 90 mL/min/1.73m², creatinine 51 µmol/L, sodium 139 mmol/L, potassium 3.8 mmol/L, chloride 103 mmol/L, hemoglobin 124 g/L, CRP 5.3 mg/L, ESR 52 mm/hr.
+
+2026-02-09
+PET-CT: Very intense FDG uptake in right upper lobe cavitary mass (SUV max 26), consistent with primary lung malignancy. Mild asymmetric uptake in right hilar lymph nodes. Focal moderate uptake in distal sigmoid colon (SUV max 10), concerning for neoplastic process.
+
+Impression
+Brenda Hall has a highly suspicious right apical cavitary lung lesion with intense FDG uptake on PET-CT, strongly suggestive of primary bronchogenic carcinoma, likely squamous cell given her smoking history and cytologic atypia. The presence of a metabolically active colonic lesion raises concern for a synchronous neoplastic process, requiring urgent endoscopic evaluation. Her underlying COPD and emphysema contribute to her exertional dyspnea, though malignancy remains the primary diagnostic focus.
+
+Plan
+1. I will refer Brenda Hall to thoracic surgery for consideration of invasive staging and potential resection of the right apical lung lesion, with discussion of risks and benefits.
+2. I will ensure the previously scheduled MRI brain is completed in the next few days to assess for metastatic disease.
+3. I will refer Brenda Hall to Dr. Macdonald for urgent colonoscopy to investigate the FDG-avid lesion in the distal sigmoid colon.
+4. I will review the results of the bronchoscopy cytology with pathology to determine if further tissue sampling (e.g., transthoracic needle aspiration) is required for definitive diagnosis.
+5. We will arrange follow-up in clinic within 2 weeks to review results of the MRI brain, colonoscopy, and surgical consultation.

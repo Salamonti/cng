@@ -1,0 +1,51 @@
+Patient ID: James Rose, 81 years old, male
+
+History of Present Illness:
+Mr. Rose is an 81-year-old male who reports persistent shortness of breath despite using CPAP during the day for approximately 6 hours. He describes improved oxygenation with CPAP use but continues to experience nocturnal dyspnea and difficulty sleeping when using it at night due to discomfort and disrupted sleep. He notes occasional central apneas on current CPAP settings (pressure 12.6 cm H2O) and has been prescribed a BiPAP with a backup rate of 16 breaths per minute to address this. He also reports intermittent epistaxis and hemoptysis, which he attributes to chronic sinus issues and idiopathic thrombocytopenic purpura (ITP). He denies worsening chest pain or leg swelling but continues to experience crackles on lung auscultation.
+
+Mr. Rose mentions recent evaluation of pancreatic cysts, including a 2.9 cm lesion, with no further follow-up from the referring physician. He remains concerned about these findings and the potential need for specialist referral. He reports adherence to his current heart failure medications and denies recent changes in appetite or weight.
+
+Past Medical History:
+Congestive heart failure
+Idiopathic thrombocytopenic purpura (ITP)
+Chronic sinusitis
+Pancreatic cysts (including 2.9 cm lesion)
+Paralyzed right diaphragm
+Atrial fibrillation
+Mildly decreased renal function
+
+Medications:
+Pantoprazole 40 mg swallow, oral once daily
+Bisoprolol 2.5 mg swallow, oral once daily
+Spironolactone 25 mg swallow, oral half tablet once daily
+Dapagliflozin 10 mg swallow, oral once daily
+Cyclomen 200 mg swallow, oral one capsule twice daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (briefly in teenage years)
+Former fireman
+No pets or exposure to birds
+Grew up on a farm
+
+Physical Examination:
+Lung auscultation reveals persistent crackles bilaterally
+No peripheral edema
+Heart rate regular, no murmurs
+No significant sinus tenderness or epistaxis on examination
+
+Investigations:
+2026-02-04: Echocardiogram - Normal biventricular size and systolic function, mild aortic root dilatation, no significant valvular abnormalities
+2026-02-02: Labs - eGFR 67 mL/min/1.73m², potassium 5.2 mmol/L, platelets 96 x 10⁹/L, otherwise unremarkable
+
+Impression:
+Mr. Rose continues to experience symptomatic congestive heart failure with persistent dyspnea despite optimized medical therapy and CPAP use. His echocardiogram demonstrates normal ventricular function but confirms mild aortic root dilatation. The persistent thrombocytopenia secondary to ITP remains stable, and his recent epistaxis and hemoptysis are likely related to chronic sinus issues rather than a significant bleeding diathesis. The pancreatic cysts, including the 2.9 cm lesion, require further evaluation by the referring specialist, though no immediate intervention appears necessary at this time.
+
+Plan:
+1. We will prescribe BiPAP with backup rate of 16 breaths per minute and maintain current CPAP pressure settings for nocturnal respiratory support.
+2. We will monitor potassium levels closely given current mild hyperkalemia (5.2 mmol/L) and consider dietary counseling if persistent.
+3. We will arrange follow-up with the referring specialist (Dr. Murphy) regarding pancreatic cysts and request an update on the renal lesion evaluation.
+4. We will schedule a follow-up appointment in four months to reassess symptoms, review investigations, and monitor for any changes in his condition.

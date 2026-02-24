@@ -1,0 +1,57 @@
+Patient ID: James Richard Wallace, 75-year-old male
+
+History of Present Illness:
+Mr. Wallace presents today for ongoing management of his chronic conditions. He reports that his CPAP machine for sleep apnea is working well, and he has adjusted to its use. He denies any current chest pain, palpitations, or shortness of breath, noting his apnea-hypopnea index has improved from 20 to 1-2 events per hour. He is unsure about his bisoprolol medication but understands it is for heart rate control. On review of his medication list, he confirms adherence to his current regimen, including metformin (500 mg twice daily), which was recently reduced from 1000 mg once daily due to intolerance.
+
+His physical examination today is notable for clear lung fields, a regular heart rate of 82 beats per minute, and an oxygen saturation of 96% on room air. He endorses no recent changes in weight, edema, or functional decline. He remains adherent to his CPAP therapy and reports no symptoms of heart failure exacerbation.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Hypertension
+Dyslipidemia
+Hypothyroidism
+Benign prostatic hyperplasia
+Gastroesophageal reflux disease
+Chronic kidney disease
+History of tobacco use
+Atrial fibrillation
+
+Medications:
+- Bisoprolol 10 mg PO once daily
+- Candesartan 32 mg PO once daily
+- Indapamide 2.5 mg PO once daily
+- Furosemide (Lasix) 40 mg PO once daily
+- Rabeprazole 20 mg PO once daily
+- Potassium chloride 20 mEq PO once daily
+- Levothyroxine (Synthroid) 170 mcg PO once daily
+- Rivaroxaban 20 mg PO once daily
+- Tamsulosin hydrochloride 0.4 mg PO once daily
+- Rosuvastatin 10 mg PO once daily
+- Metformin 500 mg PO twice daily
+
+Allergies: not documented
+
+Family History: Positive for coronary artery disease
+
+Social History:
+Ex-smoker
+Social alcohol use
+
+Physical Examination:
+- Vital signs: Regular heart rate 82 bpm, oxygen saturation 96% on room air
+- Cardiovascular: Regular rhythm, no murmurs, S1 and S2 normal
+- Respiratory: Clear to auscultation bilaterally
+- Extremities: No edema
+
+Investigations:
+2025-12-15:
+- Transthoracic echocardiogram: Mild concentric left ventricular hypertrophy, Grade I diastolic dysfunction, mildly dilated left atrium, normal systolic function (EF 55-60%), mild aortic valve sclerosis, trace mitral regurgitation, mild tricuspid regurgitation, mildly dilated ascending aorta (3.9 cm)
+- Pulmonary function tests: Normal
+
+Impression:
+Mr. Wallace is a 75-year-old male with a history of atrial fibrillation, hypertension, diabetes, and diastolic dysfunction, who presents today for ongoing management. His symptoms are well-controlled with current therapies, including CPAP for sleep apnea and optimized heart failure medications. The recent echocardiogram confirms mild diastolic dysfunction and left ventricular hypertrophy, consistent with his known cardiovascular risk profile. There are no new concerning findings on examination or investigations, and his functional status remains stable.
+
+Plan:
+1. I will maintain current medication regimen, including bisoprolol 10 mg daily, rivaroxaban 20 mg daily, and metformin 500 mg twice daily, given his stable clinical status and echocardiographic findings.
+2. We will continue to monitor for signs of heart failure exacerbation, including weight gain, edema, or dyspnea, with follow-up in primary care as per usual.
+3. I will arrange for routine bloodwork (CBC, electrolytes, creatinine, TSH, HbA1c) in three months to assess metabolic and renal parameters.

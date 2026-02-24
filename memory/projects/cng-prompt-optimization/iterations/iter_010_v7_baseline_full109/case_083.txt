@@ -1,0 +1,65 @@
+Patient ID: Cindy Hazel, 62-year-old female
+
+History of Present Illness:
+Cindy Hazel is a 62-year-old female presenting with recurrent neck pain that began approximately two months ago, initially triggered by stress. She reports that the pain worsened over time and led to an emergency department visit in December 2025, where she underwent blood work and received aspirin. The pain was associated with significant stress related to family issues and has since improved with avoidance of stressors. She also describes a history of similar symptoms prior to a cardiac stent procedure in 2016, where she experienced severe chest pain, throat discomfort, and immobility.
+
+She has been attempting to quit smoking using nicotine patches and is motivated to improve her overall health. Cindy reports no current symptoms of dyspnea or chest pain but has a history of COPD and occasional cough with white sputum. She has not had any recent exacerbations of her COPD symptoms.
+
+Past Medical History:
+Myocardial infarction 2016 with PCI and stent placement
+Coronary artery disease
+Hypertension
+Dyslipidemia
+Gastroesophageal reflux disease
+Anxiety
+Depression
+Chronic obstructive pulmonary disease (COPD)
+Colonic polyps (40 removed ~3 years ago)
+
+Medications:
+Doxycycline 100 mg oral twice daily
+Escitalopram 20 mg oral once daily
+Pantoprazole 40 mg oral once daily
+Amlodipine 5 mg oral once daily (1.5 tablets)
+Rosuvastatin 20 mg oral once daily
+Aspirin 81 mg oral once daily
+
+Allergies:
+Shellfish (anaphylactic)
+
+Family History:
+Not documented
+
+Social History:
+Smoking history: previously smoked half a pack per day, currently attempting to quit with nicotine patches
+No recreational drug use
+No alcohol use currently (history of binge drinking in young adulthood)
+Retired, worked in maintenance in older buildings
+
+Physical Examination:
+Chest: clear, adequate air entry bilaterally
+Heart: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2025-12-10:
+- Chest X-ray: hyperinflated lungs, mild diffuse coarsening of bronchovascular markings, no acute intrathoracic disease
+- ECG: normal sinus rhythm, nonspecific T wave abnormalities, anterior infarct age undetermined
+- Troponin T: 10 ng/L (normal <14 ng/L)
+- Venous Blood Gas: pH 7.44, pCO2 41.3 mmHg, HCO3 27.7 mmol/L, lactate 1.0 mmol/L
+- Complete Blood Count: WBC 13.8 x10^9/L, hemoglobin 138 g/L, platelets 248 x10^9/L
+- Lytes: sodium 138 mmol/L, potassium 3.9 mmol/L, chloride 102 mmol/L
+- eGFR: 80 mL/min/1.73m^2
+- Lipids: LDL 2.5 mmol/L, HDL 1.35 mmol/L, total cholesterol 4.4 mmol/L
+
+Impression:
+Cindy Hazel is a 62-year-old female with a history of myocardial infarction, coronary artery disease, hypertension, dyslipidemia, GERD, anxiety, depression, and COPD. She presents with recurrent neck pain likely exacerbated by stress and a history of similar symptoms associated with her cardiac event. Her recent investigations, including troponin levels and ECG, do not show acute cardiac ischemia. The chest X-ray findings are consistent with mild COPD. The elevated white blood cell count should be monitored for potential infection or inflammatory processes.
+
+Plan:
+1. I will arrange for a stress test to further evaluate Cindy’s symptoms and rule out cardiac ischemia.
+2. I will review the results of the stress test and consider additional cardiac investigations if necessary.
+3. I will reinforce smoking cessation strategies, including the use of nicotine replacement therapy, and provide resources for support.
+4. I will monitor her white blood cell count with a complete blood count in one month to assess for any underlying infection or inflammatory conditions.
+5. I will follow up in four weeks to review the stress test results and adjust the plan as needed.

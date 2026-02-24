@@ -1,0 +1,35 @@
+Patient ID: Richard Wade Kennedy, 69-year-old male
+
+History of Present Illness:
+Mr. Kennedy is a 69-year-old male who presented for assessment of a newly identified lung mass. He quit smoking in 2009 after a 30-pack-year history and has no current symptoms related to the mass, as it was detected incidentally on screening CT imaging. The patient reports mild exertional dyspnea but denies any chest pain, cough, or weight loss. He has a history of severe asthma in his youth and worked in asbestos-exposed environments in his younger years, though no pleural plaques were noted on imaging. Recent CT imaging shows a 14 x 8 mm nodule in the superior segment of the left lower lobe, which has increased in size compared to prior imaging from February 2025. The patient has a history of multiple colonic polyps removed in 2025 and an incidental left femoral neck enchondroma, both of which are stable.
+
+Past Medical History:
+Hypertension, gastroesophageal reflux disease (GERD), asthma (childhood), ex-smoker (quit 2009), enchondroma of the left proximal femur, multiple colonic polyps (2025), cholelithiasis
+
+Medications:
+Irbesartan 150 mg PO daily
+Pantoprazole 40 mg PO daily
+
+Allergies: not documented
+
+Family History:
+Two sisters and a niece with breast cancer
+
+Social History:
+Ex-smoker (quit 2009), former Canadian Navy boiler room worker (asbestos exposure), no alcohol or illicit drug use
+
+Physical Examination:
+Vital signs: PR 78 bpm, SpO2 96% on room air. Chest clear with adequate bilateral air entry. Normal S1 and S2 with no murmurs or additional sounds. Abdomen soft with no organomegaly. Neurological exam unremarkable. No jugular venous distention or lower limb edema.
+
+Investigations:
+2026-01-09:
+- CT chest/abdomen/pelvis with contrast: 14 x 8 mm nodule in left lower lobe (previously 12 x 8 mm), modest interval growth; no pleural effusion or lymphadenopathy; cholelithiasis, stable mesenteric findings, no new worrisome lesions
+
+Impression:
+Mr. Kennedy has a growing pulmonary nodule in the left lower lobe, now measuring 14 x 8 mm, which raises concern for a neoplastic process given its interval growth. His history of asbestos exposure and smoking, though remote, along with mild exertional dyspnea, further warrants investigation. The differential includes primary lung malignancy, metastatic disease, or an inflammatory/infectious etiology, though the latter is less likely given the imaging characteristics. Further diagnostic workup is essential to determine the nature of this lesion.
+
+Plan:
+1. I will arrange for a PET-CT scan in Halifax for further characterization of the pulmonary nodule.
+2. I will order a pulmonary function test (spirometry) to evaluate the patient's exertional dyspnea and baseline lung function.
+3. I will refer Mr. Kennedy to respirology (Dr. Eissa) for consultation and further management planning, including consideration of biopsy if indicated.
+4. We will follow up in clinic after the PET-CT results are available to discuss next steps, which may include surgical consultation for wedge resection or biopsy if malignancy is suspected.

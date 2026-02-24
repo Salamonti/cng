@@ -1,0 +1,28 @@
+Patient ID: [Name] is a [age/sex not documented] patient presenting today.
+
+History of Present Illness:
+The patient presents with severe chest pain of acute onset, occurring today. No further details regarding duration, radiation, aggravating factors, or associated symptoms (e.g., dyspnea, nausea) are documented.
+
+Past Medical History:
+Coronary artery disease
+
+Medications: not documented
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-21: ECG demonstrates ST-segment depression in the inferior leads.
+
+Impression:
+The patient’s severe chest pain in the context of known coronary artery disease raises concern for acute coronary syndrome. The ECG findings of inferior ST-segment depression further support this impression. However, the absence of documented physical examination findings and the unverified timing of the ECG limit a complete assessment.
+
+Plan:
+1. I will initiate aspirin 325 mg orally immediately.
+2. I will consult cardiology for urgent evaluation and consideration of cardiac catheterization.
+3. We will arrange a follow-up ECG within 24 hours to reassess for evolving ischemic changes.

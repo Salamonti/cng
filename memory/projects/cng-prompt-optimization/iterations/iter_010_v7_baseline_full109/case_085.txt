@@ -1,0 +1,58 @@
+Patient ID
+Sheldon Robbie O'Connell is a 58-year-old male.
+
+History of Present Illness
+This 58-year-old male presents with persistent post-sternotomy pain, described as a daily, continuous ache rated 6-7/10, with exacerbations to 8-9/10 at specific points of tenderness along the lateral chest wall and sternum. The pain is attributed to post-sternotomy syndrome following open-heart surgery in May 2024, complicated by CPR, thoracotomy, and pneumonia. He reports minimal relief from acetaminophen with codeine (Tylenol-3) and hydromorphone, which he uses only during severe episodes. Current pain management strategies are inadequate, and he seeks alternative therapies. The patient also describes a numbing sensation along the left chest, consistent with nerve damage from prior surgeries.
+
+Physical examination reveals normal vital signs, clear lungs, and no jugular venous distention or lower limb edema. Cardiac examination shows normal S1 and S2 without murmurs. Abdominal examination is unremarkable. Neurological examination is unremarkable except for tenderness over the lateral chest wall around the 5th ribs bilaterally, correlating with his reported pain.
+
+Past Medical History
+Coronary artery bypass graft (CABG) x3, May 2024
+Postoperative atrial fibrillation (resolved)
+Left thoracotomy and decortication, March 2025
+Type 2 diabetes mellitus
+Hypertension
+Dyslipidemia
+Iron deficiency anemia (treated with transfusion)
+Post-sternotomy syndrome
+History of pneumonia following cardiac surgery
+
+Medications
+Gabapentin 300 mg once daily (new prescription)
+Perindopril/indapamide 2 mg/0.625 mg once daily
+Jamp-asa EC 81 mg once daily
+Sandoz-pantoprazole 40 mg once daily
+Pms-rosuvastatin 40 mg once daily
+Humalog KwikPen 100 units/mL subcutaneous (dosing per chart)
+Basaglar KwikPen 100 units/mL subcutaneous at bedtime
+Synjardy 12.5 mg/1000 mg twice daily
+Symbicort 200/6 mcg inhalation twice daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Not documented
+
+Physical Examination
+Normal vital signs. Lungs clear with adequate air entry bilaterally. Cardiac examination reveals normal S1 and S2 without murmurs. Abdomen is soft with no organomegaly. Neurological examination is unremarkable except for tenderness over the lateral chest wall around the 5th ribs bilaterally.
+
+Investigations
+2026-01-30: Chest CT without contrast - No focal abnormalities seen in relation to the sternum or medial right ribs. Chronic volume loss and scarring in the lingula. No interstitial lung disease.
+2026-01-09: Complete blood count - Hemoglobin 155 g/L, platelets 212 x 10^9/L.
+2026-01-09: Ferritin - 187.00 ug/L.
+2026-01-09: Vitamin B12 - 255 pmol/L.
+2026-01-09: Serum folate - 21.40 nmol/L.
+2025-12-31: Troponin T - Elevated at 44 ng/L (peak), later results within normal range.
+2025-12-31: ECG - Normal sinus rhythm with nonspecific T wave abnormalities.
+
+Impression
+This patient has persistent post-sternotomy syndrome characterized by chronic, debilitating pain along the sternum and lateral chest wall, likely due to nerve damage from prior surgeries. His history of multiple cardiac surgeries, including CABG and thoracotomy, along with the current pain pattern and physical examination findings, supports this diagnosis. The patient's inadequate response to current pain management strategies, including acetaminophen with codeine and hydromorphone, necessitates a trial of gabapentin for neuropathic pain control. Further evaluation for potential local steroid injections may be considered if gabapentin proves ineffective.
+
+Plan
+1. I will prescribe gabapentin 300 mg once daily, with plans to titrate up to 900 mg daily as tolerated for neuropathic pain management.
+2. I will arrange a follow-up appointment in two months to reassess pain control and gabapentin tolerability.
+3. If gabapentin does not provide adequate pain relief, I will consider local steroid injections for targeted pain management.

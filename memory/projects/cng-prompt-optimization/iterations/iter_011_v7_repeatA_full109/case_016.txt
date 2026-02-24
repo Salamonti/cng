@@ -1,0 +1,86 @@
+Patient ID: Douglas Thistle, 78-year-old male
+
+History of Present Illness:
+Mr. Thistle reports feeling well overall with no acute issues at this time. He denies any new symptoms of lightheadedness or dizziness. On examination, his chest is clear to auscultation, and his abdomen is soft with no palpable masses or tenderness. He has been reassured regarding his chronic iron deficiency anemia and understands that he may continue oral iron supplementation only. He has been informed that further follow-up will be managed by Dr. Prabhu, and no additional follow-up is required from the current consulting physician.
+
+Past Medical History:
+Benign prostatic hyperplasia
+Hypertension
+Type 2 Diabetes Mellitus
+Constipation
+Ventral hernia
+Anemia (chronic iron deficiency)
+Chest pain
+Onychia and paronychia of finger
+GERD
+Hypothyroidism
+Neuropathy (multifocal motor neuropathy)
+Erectile dysfunction
+Esophageal stricture/stenosis
+Vitamin B12 deficiency anemia
+Peptic ulcer disease
+Osteoporosis
+Bursitis
+Carpal tunnel syndrome
+History of gastric surgery (gastrectomy and vagotomy in 1968 and 1970)
+
+Medications:
+Apo-Tamsulosin CR 0.4 mg orally at bedtime
+Atacand 0.5 tablet orally once daily
+DepoMedrol 40 mg/mL intramuscularly as needed daily
+Flomax CR 0.4 mg orally once daily
+Metformin 500 mg orally twice daily
+Proscar orally once daily
+Rhinocort Aqua 64 mcg intranasally as needed daily
+Serc 16 mg orally three times daily as needed
+Synthroid 100 mcg orally once daily
+Ranitidine 150 mg orally at bedtime
+Vitamin C, Vitamin D, multivitamins, omega-3
+
+Allergies:
+ACE inhibitors
+
+Family History: not documented
+
+Social History:
+Diet: Healthy, with plenty of fruits and vegetables, avoids junk food and processed meats
+Alcohol: Occasional beer, no hard liquor for 20 years
+Smoking: Never smoked
+Exercise: Engages in yoga and other exercises
+
+Physical Examination:
+Chest: Clear to auscultation
+Abdomen: Soft, no tenderness or masses
+General: Appears well, no signs of acute distress
+
+Investigations:
+2025-12-18:
+Iron 19.6 umol/L (low)
+TIBC 59 umol/L
+% Saturation 0.33 (low)
+Ferritin 455.0 ug/L (elevated)
+Vitamin B12 319 pmol/L
+Thyroid Stimulating Hormone 3.790 mIU/L
+Alanine Aminotransferase 34 U/L
+Aspartate Aminotransferase 37 U/L
+Cholesterol 4.4 mmol/L
+Triglycerides 1.81 mmol/L
+LDL Cholesterol 2.1 mmol/L
+HDL Cholesterol 1.46 mmol/L
+Hemoglobin A1C 6.2%
+Glucose AC 6.7 mmol/L
+eGFR 88
+Creatinine 75 umol/L
+Complete Blood Count: Hemoglobin 124 g/L, Hematocrit 0.383, MCV 96.2 fL
+Lytes: Sodium 137 mmol/L, Potassium 4.2 mmol/L, Chloride 103 mmol/L
+
+2025-08-25:
+Chest X-ray: Clear lungs, heart and mediastinum unremarkable, surgical clips at gastroesophageal junction
+
+Impression:
+Mr. Thistle is a 78-year-old male with chronic iron deficiency anemia of unclear etiology despite previous endoscopic evaluations and negative stool tests. His recent bloodwork shows persistently low iron levels and elevated ferritin, suggesting possible iron overload or inflammation. Given his history of gastric surgery and chronic acid suppression therapy, malabsorption remains the most plausible explanation for his anemia. His current stable clinical status and reassurance suggest no acute concerns at this time.
+
+Plan:
+1. I will continue oral iron supplementation as tolerated and monitor for any adverse effects.
+2. I will refer Mr. Thistle back to Dr. Prabhu for ongoing management of his chronic iron deficiency anemia.
+3. I will document that no further follow-up is required from the current consulting physician.

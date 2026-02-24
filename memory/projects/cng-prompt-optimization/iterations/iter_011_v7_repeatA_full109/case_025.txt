@@ -1,0 +1,52 @@
+Patient ID: Arthur Belliveau, 62-year-old male
+
+History of Present Illness:
+Mr. Belliveau is a 62-year-old male with a history of severe aortic regurgitation and aortic root dilation who presented with worsening confusion, hypotension, and a positive blood culture for Staphylococcus aureus. He was transferred to ICU for management of sepsis with possible endocarditis. The patient has been febrile for five days with elevated inflammatory markers, including a CRP of 298 mg/L and WBC count of 34.3 x10^9/L. He has also reported acute back pain and urinary symptoms, including hematuria and positive nitrites on urinalysis. The patient has been experiencing increased cough and possible delirium.
+
+Past Medical History:
+Hypertension, dyslipidemia, ex-smoker (60 pack-year history, quit 11 years ago), history of alcohol use disorder (no use for 12 years), bronchial asthma, chronic right chest, neck, and spine pain secondary to traumatic injury, dilated cardiomyopathy with LVEF 40%, severe aortic regurgitation, aortic root dilation (5.1 cm), history of NSTEMI, and aortic valve replacement (AVR) with tissue valve in 2020.
+
+Medications:
+Lisinopril 20 mg PO OD
+Metoprolol 25 mg PO BID
+Spironolactone 25 mg PO OD
+Not documented
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3g/day.
+
+Physical Examination: Not documented
+
+Investigations:
+2025-10-30:
+- Complete Blood Count: WBC 33.0 x10^9/L, Hemoglobin 96 g/L, Platelets 31 x10^9/L
+- C-Reactive Protein: 215 mg/L
+- Creatinine: 79 umol/L
+- Urinalysis: Positive nitrites, moderate bacteria, 25 RBC/hpf, 5 WBC/hpf
+- Venous Blood Gas: pH 7.44, Lactate 1.2 mmol/L
+- Echocardiogram: Moderate aortic root dilation, prosthetic aortic valve gradients elevated, no vegetation seen
+
+2025-10-31:
+- Complete Blood Count: WBC 34.3 x10^9/L, Hemoglobin 97 g/L, Platelets 42 x10^9/L
+- C-Reactive Protein: 204 mg/L
+- Cervicothoracic Spine MRI: No discitis/osteomyelitis, no abscess, C5-C6 disc bulge with moderate spinal canal stenosis
+- Lumbosacral Spine MRI: No evidence of spondylodiscitis, mild degenerative changes, bilateral renal hypoenhancement suggestive of pyelonephritis
+
+2026-01-26:
+- Blood Culture: Staphylococcus aureus
+
+Impression:
+Mr. Belliveau is a 62-year-old male with a history of severe aortic regurgitation and aortic root dilation who has developed sepsis secondary to Staphylococcus aureus bacteremia. The patient’s presentation includes hypotension, confusion, and elevated inflammatory markers, raising concern for possible endocarditis. The recent imaging studies have not shown evidence of discitis or osteomyelitis but suggest the possibility of pyelonephritis. The patient’s chronic conditions, including his history of aortic valve replacement and dilated cardiomyopathy, place him at increased risk for infectious complications.
+
+Plan:
+1. I will admit to ICU for management of sepsis with possible endocarditis.
+2. I will initiate empiric antibiotic therapy targeting Staphylococcus aureus, including vancomycin and possibly a beta-lactam such as ceftriaxone, pending susceptibility results.
+3. I will arrange for transesophageal echocardiogram (TEE) to evaluate for endocarditis and assess prosthetic valve function.
+4. I will monitor inflammatory markers (CRP, WBC) and renal function closely.
+5. I will consult Infectious Diseases for further management of Staphylococcus aureus bacteremia.
+6. We will reassess the patient’s hemodynamic status and adjust vasopressor support as needed.
+7. We will monitor for signs of complications, including heart failure and renal impairment.

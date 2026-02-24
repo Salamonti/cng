@@ -1,0 +1,48 @@
+Patient ID: Jennifer Crowell, 50-year-old female
+
+History of Present Illness:
+Jennifer is a 50-year-old female with known pulmonary sarcoidosis who presents today for follow-up. She reports being off methotrexate for two months with no issues, but she has noticed raised bumps on her tattooed left arm and forearm, which she associates with her sarcoidosis scar. These bumps are intermittent and not bothersome. She also describes a persistent cough, which she attributes to her current blood pressure medication, specifically the hydrochlorothiazide component of her regimen. The cough is intermittent, with fits lasting six to eight hours before resolving. She denies any shortness of breath, chest pain, or wheezing at rest, though she notes some increased wheezing and use of her inhaler since her recent breast reduction surgery three weeks ago. Her breathing has since improved, though she remains tender from the surgery. She has intentionally lost weight and feels generally well otherwise.
+
+Jennifer’s breathing was previously excellent before her surgery, but she experienced increased wheezing postoperatively, which has now settled. She is concerned about the cough and wonders if switching her blood pressure medication could alleviate it. She mentions her ACE level is currently 1, which she has reviewed, and her blood work remains otherwise stable. She is unsure if the bumps are related to sarcoidosis but is not particularly bothered by them. She denies any new joint pains, lumps, or systemic symptoms.
+
+Past Medical History:
+Pulmonary sarcoidosis
+Hypertension
+Diastolic dysfunction (stable, no recent changes)
+
+Medications:
+Telmisartan 80 mg po daily
+Hydrochlorothiazide 12.5 mg po daily
+Methotrexate: stopped (last dose two months ago)
+Folic acid: stopped (last dose two months ago)
+Symbicort inhaler (budesonide/formoterol) prn
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Vital signs: not documented
+General: Well-appearing female in no acute distress
+Chest: Clear to auscultation bilaterally, adequate air entry
+Cardiac: Normal S1 and S2, no additional sounds or murmurs
+Abdomen: Soft, no palpable organomegaly
+Neurological: Unremarkable
+Skin: Multiple nodules on the left arm and forearm at the site of tattoos
+
+Investigations:
+2025-12-31:
+- Complete Blood Count: WBC 5.8 x10^9/L, Hemoglobin 131 g/L, Platelets 329 x10^9/L
+- eGFR: 90 mL/min/1.73m^2, Creatinine 69 umol/L
+- Lytes: Sodium 139 mmol/L, Potassium 3.8 mmol/L, Chloride 100 mmol/L
+- Liver enzymes: AST 38 U/L, ALT 34 U/L, GGT 28 U/L, Alkaline Phosphatase 91 U/L
+- Bilirubin: 16.8 umol/L
+- ACE: 1 U/L
+- Hemoglobin A1C: 5.3%
+
+Plan:
+1. I will discontinue hydrochlorothiazide and switch Jennifer to an alternative antihypertensive regimen, such as amlodipine 5 mg po daily, to address her cough.
+2. I will monitor her for any signs of sarcoidosis flare, particularly given her new skin nodules, and counsel her on the benign nature of these findings if they remain asymptomatic.
+3. We will follow up in three months to reassess her blood pressure control, cough resolution, and overall sarcoidosis stability, with plans to repeat ACE levels and liver function tests at that time.

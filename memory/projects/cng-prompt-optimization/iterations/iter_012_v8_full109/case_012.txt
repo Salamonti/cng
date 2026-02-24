@@ -1,0 +1,50 @@
+Patient ID: Mrs. Nora Christina Gray, 56-year-old female
+
+History of Present Illness:
+Mrs. Gray presents with worsening phlegm production over the past two weeks, noting a darker green coloration compared to her usual white or light-colored phlegm. She reports this change occurred abruptly, suggesting a flare-up of her chronic obstructive pulmonary disease (COPD). She denies any associated chest tightness or exertional chest pain but continues to experience mild shortness of breath, particularly with exertion such as climbing stairs. She has been using her rescue inhaler more frequently, approximately twice daily, and is concerned about running out of her maintenance medications. She also mentions occasional nocturnal reflux symptoms, though these have improved with her current proton pump inhibitor therapy. Her smoking habits remain inconsistent, with occasional use of nicotine patches and minimal cigarette consumption.
+
+On examination, vital signs are stable with a heart rate of 80 beats per minute and oxygen saturation of 98% on room air. Chest auscultation reveals clear lung fields bilaterally, with no additional sounds or murmurs. She denies any recent weight changes or hemoptysis.
+
+---
+
+Past Medical History:
+Chronic Obstructive Pulmonary Disease (COPD), Gastroesophageal Reflux Disease (GERD), Allergies
+
+Medications:
+fluticasone furoate/umeclidinium bromide/vilanterol 100 mcg/62.5 mcg/25 mcg inhalation QD
+salbutamol 100 mcg inhalation PRN
+montelukast 10 mg PO QD
+pantoprazole 40 mg PO QHS
+domperidone 10 mg PO TID
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Current smoker with inconsistent reduction (approximately 5 cigarettes/day, occasional nicotine patch use)
+
+Physical Examination:
+Vital signs: BP 113/67 mmHg, HR 80 bpm, SpO2 98% on room air
+General: No acute distress
+Chest: Clear to auscultation bilaterally, no wheezes or crackles
+Cardiovascular: Normal S1 and S2, no murmurs or gallops
+Neurological: Unremarkable
+
+Investigations:
+2025-08-06:
+Complete Blood Count: WBC 9.2 x10^9/L, Hb 129 g/L, Platelets 300 x10^9/L
+eGFR: 90 mL/min/1.73m^2
+Lytes: Na 141 mmol/L, K 4.3 mmol/L, Cl 104 mmol/L
+Liver Function: AST 25 U/L, ALT 22 U/L, ALP 74 U/L, Total Bilirubin 3.9 umol/L
+CRP: 0.6 mg/L
+IgE: 38 IU/mL
+
+Impression:
+Mrs. Gray is experiencing an acute exacerbation of her COPD, evidenced by increased phlegm production with a darker green coloration and more frequent use of her rescue inhaler. Her symptoms, though mild, suggest worsening of her underlying disease process, potentially exacerbated by her continued smoking despite previous attempts at cessation. Her stable vital signs and clear lung fields on examination suggest no immediate respiratory compromise, but her recent laboratory results, including a normal complete blood count and liver function tests, provide a baseline for ongoing monitoring. The absence of significant eosinophilia on her IgE levels and CRP suggests no immediate evidence of an allergic or inflammatory exacerbation.
+
+Plan:
+1. I will prescribe a 5-day course of prednisone 5 mg PO daily for her COPD exacerbation.
+2. I will arrange for a chest CT scan to assess for any structural changes or complications related to her COPD.
+3. I will renew her prescriptions for fluticasone furoate/umeclidinium bromide/vilanterol, salbutamol, montelukast, pantoprazole, and domperidone for continued management of her COPD, GERD, and allergies.
+4. I will reinforce smoking cessation strategies, including nicotine replacement therapy and lifestyle modifications, and schedule a follow-up appointment in 4 weeks to reassess her symptoms and response to treatment.

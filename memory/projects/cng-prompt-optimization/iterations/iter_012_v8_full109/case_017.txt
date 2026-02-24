@@ -1,0 +1,52 @@
+Patient ID: Crystal Coughlin, a 62-year-old female
+
+History of Present Illness:
+Crystal is a 62-year-old female with a known right lower lobe lung mass, now confirmed as poorly differentiated adenocarcinoma on recent biopsy. She has been under evaluation by thoracic surgery for invasive staging to determine surgical candidacy. During today’s phone follow-up, she expressed confusion about the staging process, which was clarified in detail, and she was reassured about the next steps. Her ongoing symptoms of dyspnea and chronic cough with gray sputum remain unchanged, and she continues to experience bilateral lower extremity swelling and occasional palpitations.
+
+The patient’s prior workup included a PET-CT showing an intensely FDG-avid right lower lobe lesion with mild uptake in regional lymph nodes but no clear evidence of distant metastasis. A recent head CT ruled out intracranial metastases. She underwent a bronchoscopy, which was nondiagnostic due to inability to visualize the lesion, followed by a lung biopsy confirming adenocarcinoma. She is currently awaiting further ancillary testing to complete staging.
+
+Past Medical History:
+Asthma, chronic back issues with three lumbar surgeries (L3-L4, L4-L5), right foot drop, history of alcohol abuse (abstinent since 2003), long-term smoking history
+
+Medications:
+Breztri 2 inhalations BID
+Ventolin PRN
+Respiclick PRN
+Fluticasone inhaler
+Diclofenac 50 mg PO BID
+Pantoprazole 40 mg PO daily
+Hydromorphone (long-acting and short-acting) for pain
+
+Allergies:
+Nexium
+
+Family History:
+Not documented
+
+Social History:
+Smokes one pack per day (since age 7), quit alcohol in 2003, former personal care worker
+
+Physical Examination:
+Not documented
+
+Investigations:
+2026-01-07
+- Complete Blood Count: WBC 5.9 x10^9/L, Hb 132 g/L, platelets 261 x10^9/L
+- Electrolytes: Na 136 mmol/L, K 3.9 mmol/L, Cl 99 mmol/L
+- Prothrombin Time/INR: INR 1.0
+- Lung Biopsy: Poorly differentiated adenocarcinoma, TTF1 and CK7 positive, p63 negative
+
+2025-11-17
+- PET-CT: Right lower lobe mass (SUV max 16.8), mild uptake in right hilar/paratracheal/subcarinal nodes, no distant metastasis, asymmetric uptake in left palatine tonsil
+
+2025-11-24
+- Head CT: No evidence of metastatic disease
+
+Impression:
+Crystal has a confirmed diagnosis of right lower lobe lung adenocarcinoma, staged as likely localized with regional nodal involvement but no distant metastasis. Her symptoms of dyspnea, chronic cough, and lower extremity swelling are likely multifactorial, including mass effect, underlying asthma, and possible cardiac or venous insufficiency. The tonsillar uptake on PET-CT remains unexplained and requires further evaluation. She is currently being assessed by thoracic surgery for invasive staging and potential surgical candidacy.
+
+Plan:
+1. We will confirm the patient’s understanding of the staging process and surgical evaluation plan, ensuring she is aware of potential next steps.
+2. We will await the final ancillary testing results (e.g., molecular profiling) to complete staging and guide definitive management.
+3. We will arrange a follow-up appointment with thoracic surgery to review staging results and discuss surgical options or alternative treatments.
+4. We will continue to monitor symptoms and adjust asthma/COPD management as needed, with ongoing smoking cessation support.

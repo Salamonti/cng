@@ -1,0 +1,53 @@
+Patient ID: James Herbert Theriault is an 81-year-old male.
+
+History of Present Illness:
+Mr. Theriault reports persistent shortness of breath on exertion, which has worsened over the winter months. He describes minimal exertional capacity, stating he can no longer climb stairs or perform activities of daily living without significant fatigue. He denies chest pain, fevers, infections, or bleeding symptoms. Recent blood work (February 2026) shows stable thrombocytopenia (platelets 78 x 10^9/L) with no evidence of bleeding or anemia. An echocardiogram from January 2026 revealed severe biatrial enlargement, moderate to severe tricuspid regurgitation, and estimated pulmonary hypertension (PASP 54.5 mmHg or higher). He is scheduled for a CT scan on February 17, 2026, though the indication is unclear.
+
+Mr. Theriault has been managing his symptoms by slowing his pace and avoiding exertion. He denies recent changes in diet, particularly no increased salt intake. His current medications include a nitro patch, inhalers (Incruse Ellipta, Ventolin), rivaroxaban, metoprolol, and atorvastatin. He has an indwelling Foley catheter due to urinary retention and reports no recent urinary tract infections.
+
+Past Medical History:
+1. Coronary artery disease (status post bypass surgery in his 40s)
+2. Moderate COPD
+3. Cholecystectomy
+4. Urinary retention with indwelling Foley catheter
+5. Chronic thrombocytopenia (platelets 60–100 x 10^9/L)
+6. Macrocytosis
+7. Atrial fibrillation
+8. Pulmonary hypertension
+
+Medications:
+- Mylan-nitroglycerin 0.2 mg transdermal patch, apply 1 patch topically for 14 hours daily
+- Incruse Ellipta 62.5 mcg inhalation, inhale 1 puff daily
+- Ventolin HFA 100 mcg inhalation, inhale 2 puffs as needed
+- Teva-rivaroxaban 20 mg oral, take 1 tablet daily
+- PMS-metoprolol 50 mg oral, take 1 tablet twice daily
+- Taro-atorvastatin 10 mg oral, take 1 tablet daily after supper
+
+Allergies: Intolerance to codeine
+
+Family History: not documented
+
+Social History: Lifelong nonsmoker, denies alcohol use
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-02:
+- Complete Blood Count: Platelets 78 x 10^9/L, hemoglobin 133 g/L, white blood cells 5.6 x 10^9/L, MCV 106.1 fL
+- Peripheral Blood Morphology: Normal RBC morphology, manual platelet estimate correlates with automated count
+- Prothrombin Time/INR/PTT: INR 3.4 (elevated), PTT 47 seconds
+
+2026-01-20:
+- Echocardiogram: Severe biatrial enlargement, moderate to severe tricuspid regurgitation, estimated pulmonary hypertension (PASP ≥54.5 mmHg), mild to moderate RV dilation and systolic dysfunction
+
+2025-12-17:
+- eGFR: 76 mL/min/1.73m², creatinine 88 µmol/L
+
+Impression:
+Mr. Theriault is an 81-year-old male with worsening dyspnea on exertion in the context of chronic moderate COPD and newly diagnosed pulmonary hypertension (PASP ≥54.5 mmHg) with right ventricular dysfunction. His thrombocytopenia remains stable without evidence of bleeding, and his atrial fibrillation is managed with rivaroxaban. The elevated INR (3.4) suggests subtherapeutic anticoagulation control, which may require adjustment. His echocardiogram findings of severe biatrial enlargement and tricuspid regurgitation correlate with his symptomatic pulmonary hypertension.
+
+Plan:
+1. I will initiate furosemide 40 mg oral once daily for symptomatic pulmonary hypertension and volume management, with instructions to monitor for excessive diuresis or electrolyte disturbances.
+2. I will order repeat blood work in two weeks to reassess kidney function (eGFR, creatinine, electrolytes) and anticoagulation control (INR) after starting furosemide.
+3. I will coordinate with Dr. Jean-Luc Dugas to review the upcoming CT scan results (February 17, 2026) and assess for further evaluation of pulmonary hypertension etiology (e.g., connective tissue disease, chronic lung disease, or left heart disease).
+4. I will schedule a follow-up appointment in six months to reassess symptoms, medication tolerability, and need for further diagnostic testing.

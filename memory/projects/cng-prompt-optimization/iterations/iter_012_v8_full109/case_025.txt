@@ -1,0 +1,63 @@
+Patient ID: Arthur Belliveau, 62-year-old male
+
+History of Present Illness:
+Mr. Belliveau presented with a recent decline in mental status, characterized by confusion, and a drop in blood pressure. He was found to have Staphylococcus aureus bacteremia, as evidenced by positive blood cultures. This clinical deterioration has prompted consideration of infectious endocarditis, given his history of aortic valve replacement and underlying valvular disease. The patient was subsequently transferred to the ICU for further management of sepsis and potential endocarditis.
+
+Past Medical History:
+Hypertension, dyslipidemia, severe dilated cardiomyopathy with LVEF 40%, severe aortic regurgitation, aortic root dilation, history of NSTEMI, history of alcohol use disorder in remission, bronchial asthma, chronic right chest, neck, and spine pain secondary to traumatic injury, and history of aortic valve replacement (AVR) with tissue valve in 2020.
+
+Medications:
+Lisinopril 20 mg PO daily
+Metoprolol 25 mg PO twice daily
+Spironolactone 25 mg PO daily
+Not documented
+
+Allergies:
+No known allergies
+
+Family History:
+Not documented
+
+Social History:
+Lives alone with his dog, on disability and work compensation for injury, ex-smoker (60 pack-year history, quit 11 years ago), vapes marijuana 3g/day.
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-10-31:
+- CBC: WBC 34.3 x10^9/L, Hb 97 g/L, Hct 0.273, Platelets 42 x10^9/L
+- CRP: 204 mg/L
+- Venous blood gas: pH 7.44, lactate 1.2 mmol/L
+- Cervicothoracic spine MRI: No discitis/osteomyelitis, no abscess, C5-C6 disc bulge with moderate spinal canal stenosis
+- Portable chest X-ray: No radiographic evidence of pneumonia
+
+2025-10-30:
+- CBC: WBC 33.0 x10^9/L, Hb 96 g/L, Hct 0.270, Platelets 31 x10^9/L
+- CRP: 215 mg/L
+- Lytes: Na 141 mmol/L, K 3.4 mmol/L, Cl 110 mmol/L
+- Lumbar spine MRI: No evidence of spondylodiscitis, mild to moderate degenerative changes
+- Echocardiogram: Moderate aortic root dilation, elevated prosthetic aortic valve gradients, no vegetation seen
+
+2025-10-28:
+- CBC: WBC 20.0 x10^9/L, Hb 115 g/L, Hct 0.331, Platelets 11 x10^9/L
+- CRP: 225 mg/L
+- Echocardiogram: Moderate aortic root dilation, prosthetic valve gradients elevated, no vegetation seen
+- Abdominal ultrasound: Cholelithiasis, no definite cholecystitis, no ascites
+
+2025-10-26:
+- CBC: WBC 11.1 x10^9/L, Hb 133 g/L, Hct 0.383, Platelets 12 x10^9/L
+- CRP: 298 mg/L
+- Urinalysis: Positive nitrites, moderate bacteria, no significant RBC/WBC
+- Chest X-ray: No acute abnormality detected
+- ECG: Sinus tachycardia, premature atrial complexes, bifascicular block, T wave abnormality
+
+Impression:
+Mr. Belliveau is a 62-year-old male with a history of severe aortic regurgitation, aortic root dilation, and aortic valve replacement who has presented with Staphylococcus aureus bacteremia and clinical signs of sepsis. The elevated CRP and leukocytosis suggest an ongoing infectious process. Given his history of valvular disease and prosthetic valve, infectious endocarditis remains a strong consideration. Further evaluation in the ICU is warranted to manage sepsis and investigate potential endocarditis.
+
+Plan:
+1. I will ensure the patient is admitted to the ICU for close monitoring and management of sepsis.
+2. I will consult Infectious Diseases for guidance on antibiotic therapy and further evaluation for endocarditis.
+3. I will arrange for transesophageal echocardiogram to evaluate for vegetations or other evidence of endocarditis.
+4. We will monitor blood cultures and CRP levels closely to assess response to treatment.
+5. I will review the need for further imaging or diagnostic tests based on the patient's clinical course and response to therapy.

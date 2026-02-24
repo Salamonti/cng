@@ -1,0 +1,58 @@
+Patient ID: Miller, Janet Marie, 73-year-old female
+
+History of Present Illness:
+Janet Marie Miller, a 73-year-old female, presents for follow-up of chronic coronary artery disease and new-onset bilateral lower extremity pain. She reports intermittent anginal symptoms exacerbated by physical activity, such as grocery shopping, which have worsened over the past few months. She describes sharp, bilateral lower extremity pain localized around the hip bones, extending into the shins and calves, limiting her mobility significantly. Previously able to walk several miles daily, she now struggles beyond brief distances and requires a shopping cart for support. Additionally, she experiences occasional episodes of dizziness unrelated to postural changes. She denies shortness of breath, headaches, vision changes, nausea, or recent chest discomfort.
+
+Her symptoms have persisted despite adherence to dietary recommendations and prescribed medications. She continues to experience lightheadedness, which she attributes to multifactorial causes, potentially related to medication side effects or orthostatic hypotension. She remains compliant with her medication regimen and has not required nitroglycerin spray or patches since her ICD placement in May 2025.
+
+Past Medical History:
+Chronic coronary artery disease with prior CABG in 2014, NSTEMI events in 2019, August 2023, and May 2025, hypertension, type 2 diabetes mellitus, dyslipidemia, macrosteatosis, breast cancer (right mastectomy in 2014, left breast lumpectomy in 2015, and recent diagnosis of left breast infiltrating ductal carcinoma), anal cancer treated with chemo and radiation, depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, mental illness, seizures, bleeding disorders, liver disease, thyroid disease, and fatty liver.
+
+Medications:
+Aspirin 81 mg PO daily
+Ticagrelor 75 mg PO daily
+Carvedilol 6.5 mg PO daily
+Rabeprazole 20 mg PO daily
+Ezetimibe 10 mg PO daily
+Perindopril 4 mg PO daily
+Nifedipine 60 mg PO daily
+Ferrous fumarate 300 mg PO daily
+Jardiance 10 mg PO daily
+Atorvastatin 80 mg PO daily
+Metformin 1000 mg PO b.i.d.
+Novolin NPH (insulin) as prescribed
+Amiodarone as prescribed
+Spironolactone as prescribed
+Furosemide as prescribed
+Isosorbide dinitrate as prescribed
+Vitamin C 500 mcg PO daily
+Vitamin B12 1000 mcg PO daily
+Folic acid 400 mcg PO daily
+Probiotic 500 mg PO daily
+Echinacea 1000 mg PO daily
+
+Allergies:
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History: not documented
+
+Social History:
+Lives alone, does not smoke cigarettes or use recreational drugs, occasional alcohol consumption (approximately two drinks per month), new gentleman friend, not interested in participating in a physiotherapy rehabilitation program.
+
+Physical Examination:
+Vitals stable. Patient appears pleasant and cooperative. Lower extremities demonstrate tenderness upon palpation over the hips bilaterally. Peripheral pulses are palpable and equal bilaterally. Mild bibasilar rales noted on auscultation.
+
+Investigations:
+2025-05-27: Echocardiogram revealed EF 34% with Doppler studies suggesting high LV filling pressure, moderately reduced right ventricular systolic function, and mild mitral regurgitation.
+2025-05-27: ECG showed possible mild ST elevation in V1 and V2.
+2026-02-02: Laboratory results show total cholesterol 3.7 mmol/L, triglycerides 1.9 mmol/L, LDL 2.0 mmol/L, HDL 1.16 mmol/L, ALT 3.1 U/L, AST 19 U/L, CK 16 U/L, creatinine 56 µmol/L, eGFR 83 mL/min/1.73m², sodium 140 mmol/L, potassium 4.0 mmol/L, random AC glucose 4.7 mmol/L, HbA1c 7.6%, hemoglobin 121 g/L, platelets 185 x10^9/L, troponin 100 pg/mL, D-dimer positive.
+
+Impression:
+Janet Marie Miller is a 73-year-old female with a complex medical history, including chronic coronary artery disease with multiple NSTEMI events, poorly controlled type 2 diabetes mellitus, and new-onset severe bilateral lower extremity pain limiting mobility. Her recent echocardiogram demonstrates a reduced ejection fraction of 34%, and her current symptoms suggest possible peripheral arterial disease or other vascular complications. The persistent lightheadedness and elevated HbA1c indicate suboptimal glycemic control and potential medication-related side effects. The recent diagnosis of left breast infiltrating ductal carcinoma adds another layer of complexity, given her high cardiac risk and previous surgical history.
+
+Plan:
+1. I will arrange a referral to vascular surgery for evaluation of bilateral lower extremity pain and assessment for peripheral arterial disease via noninvasive testing (ankle-brachial index and ultrasound).
+2. I will order repeat fasting lipid panel and hemoglobin A1C to reassess metabolic control and treatment response.
+3. I will review current medications with the patient to optimize management of angina, diabetes, and heart failure, considering potential medication-related side effects contributing to lightheadedness.
+4. I will consult with the oncology team to discuss the surgical risks and options for managing her newly diagnosed breast cancer, given her extensive cardiac history.
+5. I will schedule a follow-up appointment within 2 months to reassess her overall status and address any concerns regarding her cardiac, metabolic, and oncologic management.

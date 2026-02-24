@@ -1,0 +1,64 @@
+Patient ID: Carmen Phinney is a 79-year-old female.
+
+History of Present Illness:
+Carmen Phinney, a 79-year-old female, presents with a progressive decline in respiratory function over the past seven days. She reports finishing a second course of prednisone today, following which her blood pressure has dropped significantly and her heart rate has increased to 100 beats per minute. She also describes severe dyspnea and low oxygen saturation, measured at 85% on examination. Symptoms began around Christmas 2025, with normal breathing prior to that time. She has noticed additional symptoms including morning headaches, ear fullness, jaw soreness, and a raspy voice, all of which have developed over the last few weeks.
+
+Carmen reports a history of aspiration of lime juice at the end of December 2025, which led to imaging studies revealing interstitial fibrotic lung disease. She describes the disease as progressive and irreversible according to her previous physician. She also mentions dry eyes and mouth, which she attributes to her current condition. She has experienced cold intolerance with daytime chills and nighttime sweating. She denies chest pain, reflux, or Raynaud's phenomenon.
+
+Past Medical History:
+Hypertension, hyperlipidemia, atrial fibrillation, and a history of urinary tract infections many years ago. She had a dental procedure involving a temporary filling around Christmas Eve 2025.
+
+Medications:
+- Prednisone (dose and frequency not documented)
+- Cymbicort (inhaled corticosteroid)
+- One other inhaler (name not documented)
+- Vitamin D (prescribed today, dose not documented)
+- Calcium (prescribed today)
+- Medications for hypertension, hyperlipidemia, and atrial fibrillation (specific drugs not documented)
+
+Allergies: not documented
+
+Family History: no known family history of lung problems
+
+Social History:
+Former smoker with a 30-year history of smoking approximately one and a half packs per day, quit 30 years ago. No current partner. No known exposure to asbestos or silica except for limited exposure to asbestos tiles in her home two years ago, which she removed herself without breaking them. No mold in the house.
+
+Physical Examination:
+Oxygen saturation: 85% on room air
+Heart rate: 100 beats per minute
+Lung auscultation: findings not documented
+Cardiac examination: findings not documented
+
+Investigations:
+2026-01-09:
+- Chest X-ray: Streaky opacities at the right lower zone and left mid zone suggesting an infectious/inflammatory process.
+
+2026-01-27:
+- CT Chest: Subpleural reticulation increasing towards lung bases with early honeycombing at the right base and bilateral lower lobe traction bronchiectasis consistent with UIP pattern.
+
+2025-11-07:
+- Urinalysis: Clear urine with specific gravity 1.020, pH 6.0, negative for protein, ketones, bilirubin, occult blood, nitrite, and glucose. Leukocyte esterase positive, 13 WBC/hpf.
+- Albumin/Creatinine Ratio: 0.87 mg/mmol
+- Lipids: Cholesterol 4.9 mmol/L, Triglycerides 0.97 mmol/L, LDL 2.5 mmol/L, HDL 2.00 mmol/L
+- Liver enzymes: AST 26 U/L, ALT 14 U/L
+- Creatine Phosphokinase: 94 U/L
+- Thyroid Stimulating Hormone: 3.270 mIU/L
+- Iron Studies: Iron 18.2 umol/L, TIBC 69 umol/L, % Saturation 0.26
+- eGFR: 89 mL/min/1.73m^2
+- Vitamin B12: 175 pmol/L
+- Complete Blood Count: WBC 6.2 x10^9/L, RBC 4.52 x10^12/L, Hemoglobin 131 g/L, Hematocrit 0.401 L/L, Platelets 299 x10^9/L
+- C-Reactive Protein: 2.6 mg/L
+- Glucose: 5.5 mmol/L
+- Uric Acid: 445 umol/L
+- Ferritin: 89.80 ug/L
+
+Impression:
+Carmen Phinney is a 79-year-old female with a progressive interstitial lung disease consistent with a UIP pattern on imaging, likely contributing to her severe dyspnea, hypoxemia, and other systemic symptoms. The disease appears to have an autoimmune component given the clinical presentation and response to prednisone. The possibility of Churg-Strauss syndrome is also raised, though further investigation is required. Her symptoms of dry eyes and mouth may suggest an associated autoimmune process such as Sjogren's syndrome.
+
+Plan:
+1. I will initiate high-dose prednisone therapy with a slow taper over at least three months, and I will prescribe vitamin D 2000 units daily and calcium supplementation.
+2. I will order an urgent extensive autoimmune panel to evaluate for underlying autoimmune conditions contributing to her lung disease.
+3. I will arrange for home oxygen therapy to maintain oxygen saturation at or above 90% continuously, and I will provide instructions on its use.
+4. We will monitor her response to prednisone and reassess her oxygen requirements in one month.
+5. We will consider further diagnostic procedures, such as bronchoscopy with biopsy, if the autoimmune panel does not provide a clear diagnosis.
+6. I will discontinue her current inhalers as they are not providing symptomatic relief.

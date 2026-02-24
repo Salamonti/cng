@@ -1,0 +1,68 @@
+Patient ID: Arthur Belliveau, 62 years old, male
+
+History of Present Illness:
+Mr. Belliveau is a 62-year-old male presenting with Staphylococcus aureus bacteremia, as confirmed by recent blood culture results. He is currently experiencing hemodynamic instability with a soft blood pressure and significant confusion, necessitating urgent transfer to the Intensive Care Unit (ICU). The patient has been febrile for five days, with elevated inflammatory markers including a white blood cell count of 34.3 x10^9/L and a C-reactive protein level of 204 mg/L. He has also reported acute back pain and hematuria with positive urine cultures for Staphylococcus aureus. The clinical picture suggests a severe systemic infection with potential metastatic complications.
+
+Past Medical History:
+Hypertension, dyslipidemia, history of ethanol use disorder (in remission for 12 years), bronchial asthma, chronic right chest, neck, and spine pain secondary to traumatic injury, dilated cardiomyopathy with LVEF 40%, severe aortic regurgitation, aortic root dilation, history of aortic valve replacement (AVR tissue valve in 2020), non-ST elevation myocardial infarction (NSTEMI), and history of smoking (60 pack-year history, quit 11 years ago).
+
+Medications:
+Lisinopril 20 mg PO daily
+Metoprolol 25 mg PO twice daily
+Spironolactone 25 mg PO daily
+Vapes marijuana 3 g/day (not documented as a medication but noted in social history)
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3 g/day, history of smoking (quit 11 years ago), history of ethanol use disorder (in remission for 12 years).
+
+Physical Examination: Not documented
+
+Investigations:
+2026-01-26:
+- Staphylococcus aureus bacteremia confirmed by blood cultures
+- Elevated white blood cell count: 34.3 x10^9/L
+- Elevated C-reactive protein: 204 mg/L
+- Confusion and hemodynamic instability
+
+2025-10-31:
+- White blood cell count: 34.3 x10^9/L
+- Hemoglobin: 97 g/L
+- Platelets: 42 x10^9/L
+- C-reactive protein: 204 mg/L
+- Sodium: 142 mmol/L
+- Potassium: 3.4 mmol/L
+- Chloride: 109 mmol/L
+- Phosphorus: 1.41 mmol/L
+- Magnesium: 0.90 mmol/L
+- Creatinine: 86 µmol/L
+- Calcium: 2.00 mmol/L (low)
+- Venous blood gas: pH 7.44, pCO2 31.1 mmHg, HCO3 21.0 mmol/L, lactate 1.20 mmol/L
+
+2025-10-30:
+- White blood cell count: 33.0 x10^9/L
+- Hemoglobin: 96 g/L
+- Platelets: 31 x10^9/L
+- C-reactive protein: 215 mg/L
+- Echocardiogram: Moderate aortic root dilation, elevated prosthetic valve gradients, no vegetation seen
+
+2025-10-28:
+- Echocardiogram: Normal left ventricular function, moderate right ventricular dilation, elevated prosthetic aortic valve gradients
+- Abdominal ultrasound: Cholelithiasis, no definite cholecystitis or ascites
+- Urinalysis: Positive nitrites, moderate bacteria, no occult blood
+
+Impression:
+Mr. Belliveau presents with Staphylococcus aureus bacteremia complicated by hemodynamic instability and confusion, necessitating ICU admission. His history of aortic valve replacement and chronic conditions such as dilated cardiomyopathy and hypertension adds complexity to his management. The elevated inflammatory markers and positive urine cultures suggest a systemic infection with potential renal involvement. The patient's clinical status requires urgent intervention to stabilize his condition and address the source of infection.
+
+Plan:
+1. I will arrange for immediate transfer to the Intensive Care Unit (ICU) for close monitoring and management of hemodynamic instability and confusion.
+2. I will initiate broad-spectrum intravenous antibiotics targeting Staphylococcus aureus, including consideration of vancomycin or daptomycin pending susceptibility results.
+3. I will order blood cultures to be repeated and sent for susceptibility testing.
+4. I will request a transthoracic or transesophageal echocardiogram to assess for endocarditis or other cardiac complications.
+5. I will obtain a CT scan of the chest, abdomen, and pelvis to identify potential metastatic sites of infection.
+6. I will consult Infectious Diseases for further management and guidance on antibiotic therapy.
+7. I will monitor renal function closely given the history of hematuria and potential renal involvement.
+8. We will reassess the patient’s hemodynamic status and adjust supportive care as needed in the ICU.

@@ -1,0 +1,59 @@
+Patient ID: Arthur Belliveau, 62-year-old male
+
+History of Present Illness:
+Mr. Belliveau is a 62-year-old male presenting with Staphylococcus aureus bacteremia, as confirmed by recent blood culture results. He is currently hemodynamically unstable with soft blood pressure and significant confusion, necessitating urgent transfer to the Intensive Care Unit (ICU). The clinical picture suggests a severe systemic infection with potential complications, including sepsis and possible endocarditis given his history of aortic valve replacement.
+
+Past Medical History:
+- Hypertension
+- Dyslipidemia
+- Severe dilated cardiomyopathy with LVEF 40% and LV size 6.5 cm secondary to valvular disease
+- Severe aortic regurgitation due to flail right coronary cusp and severe aortic root dilation (5.1 cm)
+- History of NSTEMI
+- History of ETOH overuse disorder (no use for 12 years)
+- Bronchial asthma
+- Chronic right chest, neck, and spine pain secondary to traumatic injury
+- Aortic valve replacement (AVR) with tissue valve in 2020
+
+Medications:
+- Lisinopril 20 mg PO daily
+- Metoprolol 25 mg PO BID
+- Spironolactone 25 mg PO daily
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+- Lives alone with his dog
+- On disability and work compensation for injury
+- Ex-smoker (60 pack-year history, quit 11 years ago)
+- Vapes marijuana 3g/day
+
+Physical Examination: Not documented
+
+Investigations:
+2025-10-31:
+- Complete Blood Count: WBC 34.3 x10^9/L, Hemoglobin 97 g/L, Platelets 42 x10^9/L
+- C-Reactive Protein: 204 mg/L
+- Creatinine: 86 umol/L
+- Urinalysis: Positive nitrites, moderate bacteria, 25-50 RBC/hpf, 5-10 WBC/hpf
+
+2025-10-30:
+- Complete Blood Count: WBC 33.0 x10^9/L, Hemoglobin 96 g/L, Platelets 31 x10^9/L
+- C-Reactive Protein: 215 mg/L
+- Echocardiogram: Moderate aortic root dilation, prosthetic aortic valve gradients moderately elevated
+
+2025-10-28:
+- Echocardiogram: Moderate aortic root dilation, prosthetic valve gradients elevated
+- Urinalysis: Positive nitrites, moderate bacteria, 25-50 RBC/hpf, 5-10 WBC/hpf
+- Blood Cultures: Pending, Staphylococcus aureus bacteremia confirmed
+
+Impression:
+Mr. Belliveau presents with Staphylococcus aureus bacteremia and significant hemodynamic instability, including hypotension and confusion. Given his history of aortic valve replacement and the presence of bacteremia, there is concern for possible infective endocarditis. His elevated inflammatory markers and leukocytosis further support the severity of his systemic infection.
+
+Plan:
+1. I will arrange for immediate transfer to the Intensive Care Unit (ICU) for close monitoring and management of sepsis and hemodynamic instability.
+2. I will initiate broad-spectrum intravenous antibiotics targeting Staphylococcus aureus, including consideration of vancomycin or daptomycin pending susceptibility results.
+3. I will order a transesophageal echocardiogram (TEE) to evaluate for infective endocarditis.
+4. I will ensure blood cultures are completed and pending results are reviewed promptly.
+5. I will monitor for signs of organ dysfunction and adjust supportive care as needed.

@@ -1,0 +1,56 @@
+Patient ID: Norbert Robicheau, 85-year-old male
+
+History of Present Illness:
+Norbert Robicheau is an 85-year-old male who has been managing myelodysplastic syndrome (MDS) for the past 1.5 years. He has been experiencing persistent anemia, with hemoglobin levels in the 90s, requiring regular blood transfusions approximately every three to four weeks. He has also been receiving monthly intravenous iron infusions. His symptoms include fatigue and weakness, which have been ongoing and are exacerbated by his role as a caregiver for his mother who has dementia. He denies any night sweats or melena. Recently, he has noticed increased tiredness, which he attributes to the demands of caregiving. He is currently being monitored closely with blood work every two weeks to assess his need for transfusions and iron therapy.
+
+The patient has been informed of his diagnosis of MDS, which involves a failure of the bone marrow to function properly, leading to the need for transfusions. He is aware that this condition is borderline cancerous and is considering referral to a hematologist for further evaluation and potential treatment options. He is currently managing his condition with supportive care, including transfusions and iron therapy, and is inquiring about the possibility of more definitive treatment.
+
+Past Medical History:
+GERD/Gastritis (positive H. pylori in the past)
+Hyperlipidemia
+Hypertension
+Colon cancer (ascending colon, status post resection in 2012)
+
+Medications:
+Ramipril 10 mg once daily
+Rosuvastatin 10 mg once daily
+Metoprolol 50 mg twice daily
+Rabeprazole 20 mg once daily
+Latanoprost eye drops
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Nonsmoker, does not drink alcohol, does not use recreational drugs
+Actively involved as a caregiver for his mother with dementia
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-08:
+Hb 96 g/L, Platelets 182 x10^9/L, WBC 5.4 x10^9/L
+MCV 92.7 fL, Ferritin 36.10 ug/L
+SPEEP unremarkable, ANA negative, Occult positive
+
+2026-01-15:
+CBC: WBC 5.2 x10^9/L, RBC 3.18 x10^12/L, Hb 92 g/L, Hct 0.294 L/L, MCV 92.5 fL, Platelets 165 x10^9/L
+Bone marrow biopsy: Borderline hypercellular bone marrow with megakaryocyte dysplasia and anemia
+Flow cytometry: No abnormal hematologic population detected, blasts not increased
+
+2025-12-22:
+CBC: WBC 6.4 x10^9/L, RBC 3.14 x10^12/L, Hb 90 g/L, Hct 0.288 L/L, MCV 91.7 fL, Platelets 188 x10^9/L
+Ferritin 524.00 ug/L, Vitamin B12 352 pmol/L
+Reticulocyte count: 0.040 (H), Absolute reticulocyte count 0.1256 x10^12/L (H)
+Liver function tests: AST 30 U/L, ALT 16 U/L, Alkaline phosphatase 106 U/L, LDH 228 U/L (H)
+Iron studies: Iron 29.0 umol/L, TIBC 87 umol/L, % Saturation 0.33 (H)
+
+Impression:
+Norbert Robicheau is an 85-year-old male with a diagnosis of myelodysplastic syndrome (MDS), characterized by persistent anemia and megakaryocyte dysplasia on bone marrow biopsy. His condition has been managed with regular blood transfusions and iron infusions, but his hemoglobin levels remain low, necessitating ongoing monitoring and intervention. The patient's role as a caregiver for his mother with dementia has contributed to increased fatigue. The bone marrow biopsy results indicate borderline hypercellularity with dysplasia, raising the possibility of a low-grade myelodysplastic neoplasm, though further genetic testing is required to confirm this diagnosis.
+
+Plan:
+1. I will refer Norbert Robicheau to a hematologist for further evaluation and consideration of treatment options for his myelodysplastic syndrome.
+2. I will continue to monitor his hemoglobin levels with blood work every two weeks and administer blood transfusions and iron infusions as needed.
+3. We will arrange for pending cytogenetic studies to further refine the diagnosis of MDS.
+4. I will reassess the patient’s overall condition and treatment plan at the next follow-up visit, considering his role as a caregiver and potential future placement of his mother.

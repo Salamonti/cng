@@ -1,0 +1,46 @@
+Patient ID: Adrianne Nickerson, 75-year-old female
+
+History of Present Illness:
+Adrianne Nickerson is a 75-year-old female who was referred for evaluation of incidental findings on her chest CT scan. She reports no significant shortness of breath, chest pain, or other respiratory symptoms, though she acknowledges mild dyspnea with exertion typical for her age. She is aware of a spot on her lung from previous imaging and is scheduled for a follow-up CT scan in April or May 2026. She denies any recent changes in her health status, and her symptoms remain stable. Adrianne is a former smoker with a history of approximately 30 years of smoking, having quit decades ago. She has no known exposure to asbestos or other occupational hazards. She mentions a history of two episodes of what she describes as "spells" in her youth, possibly related to scar tissue formation in her lungs. She also reports having GERD, which she manages with medication.
+
+Adrianne is a housewife and lives with her husband, who is currently outside weeding. She denies any recent changes in her social or living conditions. She has no known allergies and has no current complaints of joint inflammation, Raynaud’s phenomenon, or other systemic symptoms. Her physical examination reveals clear lungs with adequate air entry bilaterally, normal heart sounds without murmurs, and an unremarkable abdominal and neurological examination.
+
+Past Medical History:
+Osteoarthritis, varicose veins, hypothyroidism, dyslipidemia, cataract, cervical dysplasia, benign paroxysmal positional vertigo (BPPV), venous insufficiency with edema, Eustachian dysfunction, gastroesophageal reflux disease (GERD), non-alcoholic fatty liver disease (NAFLD), and pulmonary nodules (micro).
+
+Medications:
+Amlodipine 30 mg tablet, once daily
+Apraclonidine 500 mg tablet, as needed twice daily
+Omeprazole 20 mg tablet, once daily
+Ramipril 8 mg tablet, once daily
+Levothyroxine 88 mcg tablet, once daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker with approximately 30 pack-years (quit decades ago), no current exposure to asbestos or occupational hazards. Lives with husband, no recent changes in living conditions.
+
+Physical Examination:
+Chest: clear bilaterally with adequate air entry
+Heart: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no organomegaly or tenderness
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2025-11-12: Chest CT with contrast – mild cardiomegaly, new right upper lobe subpleural ground-glass opacity measuring 2.2 x 1.5 cm, subpleural reticulation and cyst formation, mild traction bronchiectasis at medial basal right lower lobe. No significant lymphadenopathy or pleural effusion.
+2024-11-05: Chest CT with contrast – new focal ground-glass opacity in right upper lobe, stable reticular changes, worsening bibasal atelectasis.
+2023-11-20: Chest CT with contrast – mild diffuse interstitial lung disease potentially NSIP, small pulmonary nodules likely benign.
+2023-03-10: Chest X-ray – subtle focal reticular nodularity at lateral right upper lobe.
+2020-02-20: Pulmonary Function Tests – normal spirometry (FEV1 94% predicted, FVC 102% predicted).
+
+Impression:
+Adrianne Nickerson is a 75-year-old female with a history of mild interstitial lung disease, potentially NSIP, identified on multiple imaging studies over the past few years. Despite the presence of waxing and waning ground-glass opacities and reticular changes on her CT scans, she remains asymptomatic with normal pulmonary function tests. Her symptoms are limited to mild dyspnea on exertion, which is age-appropriate. The findings on imaging are indeterminate for usual interstitial pneumonia (UIP) and require correlation with clinical evidence of restrictive lung disease. Given her stable clinical status and normal spirometry, the current findings are likely not clinically significant at this time.
+
+Plan:
+1. I will continue current medications as prescribed, with particular attention to GERD management given its potential contribution to reflux-related symptoms.
+2. We will schedule a follow-up chest CT scan in June 2026 to reassess the right upper lobe subpleural ground-glass opacity and compare with prior imaging.
+3. I will monitor Adrianne’s symptoms closely and arrange for repeat pulmonary function testing if she develops any new respiratory symptoms or if there are concerning changes on follow-up imaging.
+4. We will maintain annual surveillance for interstitial lung disease and pulmonary nodules as indicated.

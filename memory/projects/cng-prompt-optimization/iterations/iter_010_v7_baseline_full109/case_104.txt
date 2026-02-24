@@ -1,0 +1,52 @@
+Patient ID
+Irving Randolph Woodworth, 76-year-old male.
+
+History of Present Illness
+For the past year and a half, Irving has been experiencing thick green phlegm in his throat, which has worsened recently to the point where it causes nocturnal choking and panic attacks. He describes this phlegm as thick and difficult to dislodge, often requiring him to cough or use his inhalers to bring it up. He has been treated with antibiotics and prednisone in the past, which temporarily relieved symptoms, but they recur shortly after stopping. He also reports progressive shortness of breath, limiting his mobility and causing fatigue, particularly when walking around his seniors village. He has noticed hoarseness of voice and bad breath in the mornings. His symptoms are exacerbated indoors, with better breathing when outside. Irving has no recent weight gain but notes worsening acid reflux and heartburn, which he manages with excelsior (likely esomeprazole).
+
+Past Medical History
+Hypertension, low-grade prostate cancer (Gleason 6), degenerative cervical intervertebral disc disease, gout, impaired fasting glucose, subclinical hyperthyroidism, anxiety, possible statin-induced myopathy, and history of asbestos exposure.
+
+Medications
+Nexium 20 mg once daily
+Teva-dutasteride 0.5 mg once daily
+Sandoz-tamsulosin CR 0.4 mg once daily
+Sandoz-amlodipine 10 mg once daily
+Lorazepam 1 mg sublingual twice daily as needed
+Jamp-nystatin 100,000 units/ml swish and swallow 5 ml four times daily for 2 weeks (new prescription)
+Inhale 200/5 mcg inhalation 2 puffs twice daily (new prescription)
+
+Allergies
+Morphine (visual hallucinations), mirtazapine 15 mg (unknown reaction), sertraline HCl 25 mg (unknown reaction)
+
+Family History
+Breast cancer with metastases
+
+Social History
+Non-smoker, lives in seniors village, active with shoveling and yard work, no recent weight gain
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-30: CT Chest without contrast - No evidence of asbestosis or malignancy. Scattered benign pulmonary nodules noted.
+2025-08-20: Lipid panel - Cholesterol 5.7 mmol/L, Triglycerides 2.90 mmol/L, LDL 3.5 mmol/L, HDL 0.94 mmol/L, Chol/HDL ratio 6.0
+2025-08-20: Liver function tests - Normal
+2025-08-20: Thyroid stimulating hormone - 1.340 mIU/L
+2025-08-20: Complete blood count - Normal
+2025-08-20: Urinalysis - Normal
+2025-08-20: Prostate-specific antigen - 4.670 ug/L
+2025-05-15: Chest X-ray - No focal collapse or consolidation
+2025-05-15: Spirometry - Restrictive pattern with obstructive component, FEV1 58% predicted, FVC 59% predicted, FEV1/FVC ratio 74%, 12% increase post-bronchodilator
+
+Impression
+Irving’s symptoms of thick green phlegm, nocturnal choking, and shortness of breath are most consistent with reflux-induced bronchial asthma. His chronic acid reflux, exacerbated by poor dietary habits and lack of bed elevation, is likely contributing to airway irritation, inflammation, and recurrent infections. The presence of hoarseness and morning bad breath further supports this diagnosis. While his pulmonary function tests show a restrictive and obstructive pattern, the primary driver of his symptoms appears to be gastroesophageal reflux disease (GERD) rather than a primary pulmonary process.
+
+Plan
+1. I will discontinue Anoro Ellipta and Teva-salbutamol HFA inhalers.
+2. I will prescribe Inhale 200/5 mcg inhalation 2 puffs twice daily for maintenance, with instructions to use additional puffs as needed for symptom relief.
+3. I will prescribe Jamp-nystatin 100,000 units/ml swish and swallow 5 ml four times daily for 2 weeks for oral candidiasis prophylaxis.
+4. I will provide Irving with an anti-reflux diet sheet and instruct him to adhere to it strictly.
+5. I will instruct Irving to elevate the head of his bed by at least 6 inches using a wedge pillow or similar device.
+6. I will advise Irving to avoid eating or drinking for at least 3 hours before bedtime.
+7. I will schedule a follow-up appointment in four months to reassess symptoms and response to treatment.

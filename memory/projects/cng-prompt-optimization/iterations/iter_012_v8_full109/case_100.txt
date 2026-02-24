@@ -1,0 +1,31 @@
+Patient ID: Joan Smith, 85-year-old female
+
+History of Present Illness:
+Joan Smith is an 85-year-old female presenting with a two-month history of intermittent chest tightness and shortness of breath. The chest tightness is primarily associated with anxiety or emotional distress and is not a daily occurrence. She describes a persistent shortness of breath, which is exacerbated by exertion but not positional. She also reports a chronic cough with phlegm production, morning hoarseness, and occasional loss of voice. These symptoms have been ongoing despite multiple prior evaluations and tests, including a thyroid ultrasound, which identified benign nodules. She denies orthopnea, paroxysmal nocturnal dyspnea, or lower extremity swelling at rest. Her symptoms have been attributed to multiple factors, including diastolic dysfunction on echocardiogram, GERD, and possible anxiety-related chest tightness.
+
+Joan has undergone extensive prior investigations, including a thyroid ultrasound, echocardiogram showing mild concentric left ventricular hypertrophy and mild to moderate diastolic dysfunction, and a normal NT-proBNP level. She has a history of multiple surgeries and chronic conditions, including fibromyalgia, hypertension, gout, and insomnia. She uses a salbutamol inhaler for her cough and reports that it provides some relief. She has also experienced gastrointestinal side effects from allopurinol and colchicine, which were recently discontinued due to nausea.
+
+Physical Examination:
+Vital signs: Not documented
+General: Alert and oriented, in no acute distress.
+Cardiovascular: Regular rate and rhythm, normal heart sounds, a mild systolic murmur noted, no S3 or S4 gallop, no rubs.
+Respiratory: Clear to auscultation bilaterally, no wheezes or crackles.
+Abdomen: Soft, non-tender, no hepatosplenomegaly.
+Extremities: No edema, normal peripheral pulses.
+Neurological: Alert and oriented, normal speech, no focal deficits.
+
+Investigations:
+2026-01-07: Echocardiogram - Mild concentric left ventricular hypertrophy, mild to moderate diastolic dysfunction, normal ejection fraction.
+2026-01-06: Blood work - Normal liver enzymes, normal kidney function (eGFR 60), normal uric acid (507 umol/L), normal glucose (6.1 mmol/L), normal thyroid stimulating hormone (2.66 mIU/L), normal complete blood count.
+2026-02-14: Thyroid ultrasound - Normal thyroid size, scattered benign cysts and spongiform nodules, no suspicious nodules.
+2026-02-05: NT-proBNP - 35.5 ng/L (normal for ambulatory care, excludes acute congestive heart failure).
+
+Impression:
+Joan Smith is an 85-year-old female with a complex medical history, including chronic widespread pain from fibromyalgia, hypertension, and multiple prior surgeries. Her current symptoms of shortness of breath and chest tightness are likely multifactorial, involving diastolic dysfunction, GERD, and possibly anxiety. The echocardiogram findings of mild concentric left ventricular hypertrophy and mild to moderate diastolic dysfunction are consistent with her exertional dyspnea. The normal NT-proBNP level suggests that acute congestive heart failure is unlikely. Her chronic cough and morning hoarseness are likely related to GERD, which is contributing to her symptoms.
+
+Plan:
+1. I will discontinue hydrochlorothiazide and initiate dapagliflozin 10 mg once daily in the morning to address diastolic dysfunction and potential fluid overload.
+2. I will arrange for a chemical stress test or nuclear perfusion scan of the heart to evaluate for coronary artery disease contributing to her symptoms.
+3. I will provide dietary and lifestyle modifications for her GERD, including stopping eating four hours before bedtime and elevating the head of her bed to 30-45 degrees using a wedge pillow.
+4. I will restart allopurinol 100 mg every other day for gout management, given her intolerance to daily dosing.
+5. I will follow up in 2-4 weeks to review the results of the stress test and assess her response to the new medications and lifestyle changes.

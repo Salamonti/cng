@@ -1,0 +1,54 @@
+Patient ID
+Arthur Belliveau, 62-year-old male
+
+History of Present Illness
+Mr. Belliveau is a 62-year-old male presenting with Staphylococcus aureus bacteremia and significant clinical decline. He is currently confused and hypotensive, necessitating transfer to the ICU for closer monitoring and management. The bacteremia is confirmed by recent blood culture results, and his clinical status suggests a severe systemic infection with potential end-organ involvement.
+
+Past Medical History
+Hypertension, dyslipidemia, history of ethanol use disorder in remission, ex-smoker (60 pack-year history, quit 11 years ago), vaping marijuana 3 grams daily, bronchial asthma, chronic right chest, neck, and spine pain secondary to traumatic injury, severe dilated cardiomyopathy with LVEF 40%, severe aortic regurgitation due to flail right coronary cusp, aortic root dilation (5.1 cm), history of NSTEMI, aortic valve replacement with bioprosthetic valve (2020), iron deficiency anemia, and history of empyema
+
+Medications
+Lisinopril 20 mg PO daily
+Metoprolol 25 mg PO twice daily
+Spironolactone 25 mg PO daily
+Not documented
+
+Allergies
+No known allergies
+
+Family History
+Not documented
+
+Social History
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3 grams daily
+
+Physical Examination
+Not documented
+
+Investigations
+2026-01-26
+- Staphylococcus aureus bacteremia confirmed by blood cultures
+- Hypotension and confusion noted
+
+2025-10-31 to 2025-10-26
+- Elevated white blood cell count (up to 34.3 x 10^9/L)
+- Elevated CRP (up to 298 mg/L)
+- Elevated liver enzymes (ALT up to 47 U/L, AST up to 69 U/L)
+- Elevated bilirubin (direct up to 29.5 umol/L, total up to 36.6 umol/L)
+- Elevated alkaline phosphatase (up to 483 U/L)
+- Positive nitrites and leukocyte esterase on urinalysis
+- Echocardiogram showing moderately elevated prosthetic aortic valve gradients and moderate aortic root dilation
+- MRI cervical/thoracic spine: no discitis/osteomyelitis or abscess
+- MRI lumbar spine: no convincing evidence of spondylodiscitis or abscess; bilateral kidney regions suggestive of pyelonephritis
+- Abdominal ultrasound: cholelithiasis without definite cholecystitis
+- Portable chest X-ray: no radiographic evidence of pneumonia
+
+Impression
+Mr. Belliveau is a 62-year-old male with a history of severe cardiac disease, including aortic valve replacement and dilated cardiomyopathy, who now presents with Staphylococcus aureus bacteremia and significant clinical deterioration. His current confusion and hypotension suggest severe sepsis with potential end-organ involvement. The elevated inflammatory markers, abnormal liver function tests, and imaging findings of possible pyelonephritis further support the severity of his systemic infection. Immediate ICU admission is required for close monitoring and management of his condition.
+
+Plan
+1. I will arrange for immediate transfer to the ICU for close monitoring and management of Staphylococcus aureus bacteremia and sepsis.
+2. I will initiate broad-spectrum intravenous antibiotics targeting Staphylococcus aureus, considering the patient's clinical status and potential sources of infection.
+3. I will order a transesophageal echocardiogram to assess for endocarditis or prosthetic valve dysfunction.
+4. I will monitor for and manage any signs of end-organ dysfunction, including renal, hepatic, and cardiac involvement.
+5. We will reassess the need for further imaging or interventions based on the patient's clinical response and additional diagnostic findings.

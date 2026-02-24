@@ -1,0 +1,54 @@
+Patient ID: Crowell, Marsden Mason Scott; 61-year-old male
+
+History of Present Illness:
+The patient presents with a history of recent medication changes that led to significant dizziness and functional impairment. He was switched from telmisartan to telmisartan hydrochlorothiazide and from furosemide 60mg to 80mg, which caused severe dizziness requiring him to discontinue these medications temporarily. He has since returned to his previous regimen of telmisartan 40mg daily and furosemide 60mg daily, with one and a half tablets of furosemide taken daily, which has alleviated his symptoms. He reports mild foot swelling but overall feels stable. The patient also describes a recent attempt at smoking cessation, switching from cigarettes to nicotine gum, which has been effective in managing cravings. He denies ongoing smoking.
+
+The patient has severe COPD with persistent symptoms despite previous smoking cessation attempts. He reports using a combination of inhalers, including Trelegy and Ventolin, with improved control of symptoms since starting Trelegy. He has not undergone a sleep study for obstructive sleep apnea due to technical difficulties with previous attempts. The patient expresses concern about his sleep quality and recent improvement in sleep duration, which he attributes to better overall health. He also mentions plans to follow up with a family doctor to clarify his care team.
+
+Past Medical History:
+- Chronic Obstructive Pulmonary Disease (COPD), severe
+- Obesity (BMI ~40)
+- Right Ventricular Dysfunction/Dilatation secondary to Pulmonary Hypertension
+- Cor Pulmonale
+- Polycythemia secondary to chronic hypoxia
+- Former Alcohol Use
+
+Medications:
+- Telmisartan 40mg PO daily
+- Furosemide 60mg PO daily (1.5 tablets)
+- Spironolactone 12.5mg PO daily
+- Digoxin 0.0625mg PO daily
+- Jardiance 10mg PO daily
+- Trelegy Ellipta (inhaler)
+- Ventolin (as needed)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+- Former smoker (40 pack-years), currently using nicotine gum for cessation
+- Former alcohol use, abstinent for several years
+- Obesity (BMI ~40)
+
+Physical Examination: not documented
+
+Investigations:
+2025-11-14:
+- Venous Blood Gas: pH 7.33, pCO2 65.2 mmHg, pO2 26 mmHg, HCO3 34.7 mmol/L, Base Excess 6.0 mmol/L, O2 Saturation 41%
+- Complete Blood Count: Elevated RBC, Hgb 169 g/L, Hct 0.553, RDW elevated, Neutrophils elevated
+- eGFR 90, Creatinine 69 umol/L
+- Electrolytes: Sodium 140 mmol/L, Potassium 4.9 mmol/L, Chloride 101 mmol/L
+- Arterial Blood Gas (10Nov25): pH 7.40, pCO2 46.6 mmHg, pO2 62.6 mmHg, HCO3 29.0 mmol/L, O2 Saturation 92.8%
+- Pulmonary Function Tests: Severe obstructive airway disease (FEV1 42% predicted, FVC 74% predicted, FEV1/FVC 45%)
+- Ventilation/Perfusion Scan: No definite scintigraphic evidence of chronic thromboembolic pulmonary hypertension
+
+Impression:
+This patient has severe COPD with persistent pulmonary hypertension and right ventricular dysfunction, contributing to his chronic symptoms of dyspnea and peripheral edema. Recent medication adjustments led to adverse effects, including dizziness, which resolved upon returning to his previous regimen. His polycythemia and obesity further complicate his clinical picture, and there is a strong suspicion for obstructive sleep apnea given his symptoms and recent improvement in sleep duration. Close monitoring of renal function and electrolytes is essential due to his diuretic therapy and history of pulmonary hypertension.
+
+Plan:
+1. I will continue Telmisartan 40mg PO daily, Furosemide 60mg PO daily (1.5 tablets), Spironolactone 12.5mg PO daily, Digoxin 0.0625mg PO daily, Jardiance 10mg PO daily, and Trelegy Ellipta as previously prescribed.
+2. I will order a digoxin level and renal function tests to monitor for toxicity and kidney function.
+3. I will arrange for an overnight polysomnography (sleep study) to evaluate for obstructive sleep apnea.
+4. I will refer the patient for a mask fitting appointment to assess for appropriate CPAP/BiPAP therapy if obstructive sleep apnea is confirmed.
+5. We will schedule a follow-up appointment in 3 months to review laboratory results, assess symptoms, and adjust management as needed.

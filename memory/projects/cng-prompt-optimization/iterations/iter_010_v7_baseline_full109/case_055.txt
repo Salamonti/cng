@@ -1,0 +1,44 @@
+Patient ID: Alice Mae Whitehouse, 72-year-old female
+
+History of Present Illness:
+Ms. Whitehouse presents with ongoing concerns following a recent PET/CT scan that revealed two metabolically active pulmonary lesions, highly suspicious for malignancy. She reports a two-week-old right-sided injury from a car accident involving black ice, with persistent healing issues in her thumb and wrist. She expresses significant anxiety about her treatment options, particularly regarding chemotherapy, radiation, and surgery, due to her husband's prior cancer-related death and her own history of complications from colostomy and abdominal hernia. She has been using topical cannabis oil for skin issues like purpura but is uncertain about its efficacy for her pulmonary lesions. Ms. Whitehouse is hesitant about invasive procedures such as biopsy or surgery, though she acknowledges the progressive growth of the lesions on imaging. She is seeking guidance on next steps and plans to discuss options with her son in Montreal.
+
+Past Medical History:
+Diverticulitis, dyslipidemia, heart murmur, ovarian cyst, duodenal ulcer, abdominal hernia, aortic sclerosis, bowel perforation with colostomy in 2014, osteoarthritis, L1 compression fracture, hypertrophic cardiomyopathy, diastolic dysfunction, aortic regurgitation, elevated right atrial pressures, reactive airway disease
+
+Medications:
+Lyrica 75 mg orally once daily
+Dilaudid 2 mg tablets as needed for acute severe spinal pain
+
+Allergies:
+Statins, perfumes, sulfonamides, Macrobid
+
+Family History:
+Not documented
+
+Social History:
+Lifelong heavy smoker, currently attempting to cut back
+Lives independently despite colostomy and abdominal hernia
+Socially active, enjoys music
+Uses marijuana
+Resides two hours away
+
+Physical Examination:
+Not documented
+
+Investigations:
+2026-01-14:
+PET/CT scan shows two metabolically active pulmonary lesions:
+- Left upper lobe lesion: 14.5 x 12.5 mm, SUV max 8.7, highly concerning for slow-growing carcinoma
+- Right lower lobe lesion: 15.5 x 14 mm, SUV max 18.2, concerning for bronchogenic carcinoma or chronic inflammatory process
+No evidence of nodal or distant metastases
+CT head (2025-10-16): No evidence of intracranial metastatic disease
+
+Impression:
+Ms. Whitehouse has two pulmonary lesions with concerning imaging characteristics and metabolic activity consistent with malignancy. The lesions appear to be growing and are likely separate primaries given their distinct imaging features. Her extensive past medical history, including cardiac comorbidities and prior surgical complications, complicates treatment planning. She is currently undecided about pursuing biopsy, surgery, or radiation due to personal and emotional factors, and requires further discussion with family and careful consideration of her preferences.
+
+Plan:
+1. I will document the patient's refusal of biopsy at this time and her preference to delay decision-making while discussing options with her son.
+2. We will arrange a referral to thoracic surgery in Halifax for further evaluation of the lesions, including the possibility of surgical excision if the patient remains open to this option after further discussion.
+3. I will coordinate with radiation oncology to assess the patient for potential radiation therapy targeting the identified lesions, should she choose this route after consulting with her family.
+4. We will schedule a follow-up appointment in two weeks to reassess her decision and address any further questions or concerns she may have.

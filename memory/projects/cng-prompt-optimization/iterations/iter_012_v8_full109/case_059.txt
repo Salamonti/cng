@@ -1,0 +1,38 @@
+Patient ID: Donna Marie Comeau, 54-year-old female
+
+History of Present Illness:
+This is a 54-year-old female presenting for follow-up of an incidental finding on a recent chest x-ray, which revealed a left apical opacity. The patient had no symptoms prompting the initial imaging, as it was part of a routine check-up. She reports a mild, intermittent cough and occasional left upper chest ache, described as a dull ache rather than sharp pain. The patient has a significant smoking history of one pack per day for 17 years and consumes alcohol occasionally (one to two drinks of hard liquor every other night). She denies any recent weight loss, hemoptysis, or shortness of breath. On examination, her oxygen saturation is 98%, but her heart rate is elevated at 111 beats per minute. The patient is motivated to quit smoking and has not previously attempted nicotine replacement therapy.
+
+The patient underwent a CT chest with contrast on January 14, 2026, which revealed new left apical scarring with a nodular component measuring 10 x 5 mm and an additional 8 x 4 mm nodule, both requiring follow-up to monitor for stability or change. The patient is aware of the findings and the need for follow-up imaging in three months, which has been scheduled for April 2026. She expresses concern about the possibility of malignancy but understands the need for monitoring rather than immediate intervention.
+
+Past Medical History: not documented
+
+Medications: not documented
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+- Smoking: 1 pack per day for 17 years
+- Alcohol: occasional hard liquor, 1-2 drinks every other night
+- No marijuana use
+- No non-prescribed medication use
+
+Physical Examination:
+- Vital signs: elevated heart rate (111 bpm), oxygen saturation 98%
+- Lungs: previously noted apical opacity on imaging; no acute abnormalities on auscultation
+- Heart: normal sounds, no murmurs
+- Peripheral pulses: good and equal bilaterally
+
+Investigations:
+2026-01-14:
+- CT Chest with Contrast: New left apical scarring with nodular components (10 x 5 mm and 8 x 4 mm), no mediastinal mass or enlarged lymph nodes. Follow-up recommended in 3 months.
+
+Impression:
+This 54-year-old female presents with incidental left apical lung scarring and nodular components identified on imaging, in the context of a long-standing smoking history. While the findings are concerning for malignancy, the appearance is more consistent with scarring and inflammation, likely related to her smoking history. The patient is asymptomatic aside from mild cough and occasional chest ache, and her physical examination is otherwise unremarkable except for an elevated heart rate. Follow-up imaging in three months is essential to monitor for stability or progression of the nodules.
+
+Plan:
+1. We will initiate nicotine replacement therapy (NRT) with a combination of patch and gum/spray to support smoking cessation, with referral to the provincial smoking cessation line (811) for additional support.
+2. We will monitor the left apical lung nodules with a follow-up CT chest in April 2026 (as scheduled) to assess for stability or change.
+3. We will schedule a follow-up appointment in April 2026 to review the CT results, assess smoking cessation progress, and address any concerns or symptoms that may arise.

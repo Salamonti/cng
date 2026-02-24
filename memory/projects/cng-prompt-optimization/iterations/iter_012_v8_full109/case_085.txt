@@ -1,0 +1,71 @@
+Patient ID: Sheldon Robbie O'Connell, 57-year-old male
+
+History of Present Illness:
+Sheldon Robbie O'Connell is a 57-year-old male who presents with chronic, persistent chest wall pain, primarily localized around the sternotomy site. He describes the pain as continuous, with a baseline level of 6-7/10, occasionally worsening to 8-9/10, particularly when palpated over the lateral chest wall around the 5th ribs bilaterally. The pain is associated with a numbing sensation and is attributed to post-sternotomy syndrome, likely due to nerve damage from his prior open-heart surgery and left thoracotomy. He has been managing the pain with acetaminophen with codeine (Tylenol-3) as needed, but this has been insufficient for severe episodes. He reports no relief from physical therapy exercises, and his pain has persisted despite multiple investigations, including recent imaging studies that ruled out cardiac or pulmonary causes.
+
+Sheldon underwent open-heart surgery with coronary artery bypass grafting (CABG) in May 2024 following a cardiac arrest with polymorphic ventricular tachycardia. He also had a left thoracotomy for decortication in March 2025 due to a trapped lung. Since then, he has experienced recurrent chest pain, which has been evaluated extensively, including a recent CT chest without contrast on January 30, 2026, which showed no focal abnormalities related to his sternum or ribs. He developed pneumonia during his hospitalization in Halifax, which he believes contributed to his current symptoms. He has also reported episodes of desaturation during exercise in cardiac rehabilitation, though he remains asymptomatic during these events.
+
+Past Medical History:
+Hypertension
+Type 2 diabetes mellitus
+Dyslipidemia
+Coronary artery disease with CABG x3 (May 2024)
+Postoperative atrial fibrillation (resolved)
+Left thoracotomy and decortication (March 2025)
+Post-sternotomy syndrome
+Iron deficiency anemia (treated with iron transfusion)
+History of smoking (ex-smoker, 40 years)
+
+Medications:
+Gabapentin 300 mg daily (new prescription)
+Perindopril/indapamide 2 mg/0.625 mg daily
+Aspirin EC 81 mg daily
+Pantoprazole 40 mg daily
+Rosuvastatin 40 mg daily
+Humalog KwikPen 100 units/ml (subcutaneous, dosing as directed)
+Basaglar KwikPen 100 units/ml (subcutaneous, 22 units at bedtime)
+Synjardy 12.5 mg/1000 mg daily
+Symbicort 200/6 mcg (inhalation, 2 puffs twice daily)
+Acetaminophen with codeine (Tylenol-3) as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (40 pack-year history)
+Occupation: Fishing (prepares for the season)
+No other significant social history documented
+
+Physical Examination:
+General: Well-developed male in no acute distress.
+Cardiovascular: Normal S1 and S2, no murmurs or additional sounds. No jugular venous distention or lower limb edema.
+Respiratory: Clear chest bilaterally, adequate air entry.
+Abdominal: Soft, no organomegaly.
+Neurological: Unremarkable.
+Chest wall: Maximal point of tenderness over the lateral chest wall around the 5th ribs bilaterally, consistent with post-sternotomy syndrome.
+
+Investigations:
+2026-01-30:
+CT Chest without contrast: No focal abnormalities seen in relation to the sternum or medial right ribs. Chronic pleural reaction at the left base. No evidence of interstitial lung disease.
+
+2026-01-09:
+Complete Blood Count: Normal hemoglobin and hematocrit.
+Ferritin: 187.00 ug/L (normal range: 30-400)
+Serum Folate: 21.40 nmol/L (normal range: 8.8)
+Vitamin B12: 255 pmol/L (normal range: 145-569)
+
+2025-12-31:
+Troponin T: Elevated at 44 ng/L (normal <14), with subsequent values ranging from 28-35 ng/L.
+ECG: Normal sinus rhythm with nonspecific T wave abnormalities.
+Chest X-ray: Small bilateral pleural effusions, stable linear pulmonary scarring in the left lower lung zone, no acute congestive cardiac failure.
+
+Impression:
+Sheldon Robbie O'Connell is a 57-year-old male with chronic post-sternotomy syndrome characterized by persistent, debilitating chest wall pain localized around the sternotomy site. His pain is likely due to nerve damage from prior cardiac surgery and thoracotomy, contributing to his significant functional impairment. Despite extensive investigations, including recent imaging studies, no alternative cause for his pain has been identified. His medical history is notable for coronary artery disease, type 2 diabetes, and hypertension, which are well-controlled on current medications. The chronic nature of his pain and its refractory response to acetaminophen with codeine suggest the need for a more targeted approach to pain management.
+
+Plan:
+1. I will initiate gabapentin 300 mg daily and titrate up to 900 mg daily as needed for pain management of post-sternotomy syndrome.
+2. I will arrange for a follow-up appointment in two months to reassess the effectiveness of gabapentin and adjust the dose as needed.
+3. If gabapentin does not provide adequate pain relief, I will consider local steroid injections for targeted pain management.
+4. I will continue to monitor Sheldon's chronic conditions, including diabetes and hypertension, with routine follow-up visits.
+5. I will provide education on pain management strategies, including physical therapy techniques that may complement medical management.

@@ -1,0 +1,62 @@
+Patient ID: Arlice Stuart is a 60-year-old female.
+
+History of Present Illness:
+Arlice Stuart, a 60-year-old female, presents with a history of progressive shortness of breath over the past year, which has significantly impacted her daily activities. She describes difficulty carrying groceries upstairs and performing tasks requiring sustained breathing, such as cardio exercises. She reports a recurrence of symptoms similar to those experienced 10 years ago, including fluid accumulation in her lungs. Her symptoms have been managed with diuretics, which she self-adjusts based on her condition, taking half doses on good days and full doses on rough days. She has noticed that discontinuing diuretics for more than a few weeks leads to a rapid decline in her condition, necessitating reinitiation of the medication.
+
+She has a history of childhood asthma, though recent methacholine challenge testing was negative, and she currently uses Trelegy and Ventolin as needed. She has experienced episodes of wheezing and breathlessness with exercise but denies any coughing. Arlice also reports a history of anxiety and depression, which she manages without current pharmacologic treatment. She mentions occasional palpitations and fluttering sensations in her heart, which she attributes to anxiety but notes have been less frequent recently. She denies chest pain, smoking, and a personal history of coronary artery disease.
+
+Physical Examination:
+Vital signs show a pulse rate of 70 beats per minute and oxygen saturation of 99% on room air. The chest examination reveals clear lung fields with adequate air entry bilaterally. Cardiac examination shows normal S1 and S2 with no additional sounds or murmurs. The abdomen is soft with no palpable organomegaly. There is no jugular venous distention or lower limb edema. The neurological examination is unremarkable.
+
+Investigations:
+2025-10-30:
+- Sodium: 140 mmol/L
+- Potassium: 4.7 mmol/L
+- Chloride: 105 mmol/L
+- Aspartate Aminotransferase: 43 U/L
+- Alanine Aminotransferase: 39 U/L
+- Thyroid Stimulating Hormone: 1.820 mIU/L
+- Hemoglobin A1C: 5.2%
+- eGFR: 61 mL/min/1.73m²
+- Glucose: 5.6 mmol/L
+- D-Dimer: 5132 ng/mL
+- Complete Blood Count: Normal with slight eosinophilia (0.4 x 10^9/L)
+- Lipids: Cholesterol 4.1 mmol/L, Triglycerides 1.08 mmol/L, LDL 2.3 mmol/L, HDL 1.30 mmol/L
+
+2025-11-04:
+- Chest X-ray: Moderate cardiomegaly, bilateral pleural effusions, interstitial pulmonary edema, and mild bronchovascular coarsening.
+
+2026-02-09:
+- Chest CT with contrast: Mild cardiomegaly, biapical pleural scarring, mild apical fissural thickening, subpleural nodules in the apical segment of the right lower lobe, and multiple liver cysts.
+
+Past Medical History:
+Asthma (childhood), anxiety, depression, cardiomegaly, pleural effusions, interstitial pulmonary edema, liver cysts.
+
+Medications:
+- Avamys nasal spray 27.5 mcg, 4 sprays once daily
+- Seasonale 0.15 mg/30 mcg tablet, 1 tablet once daily
+- Cyclobenzaprine HCl 10 mg tablet, 0.5 tablet at bedtime as needed
+- Mometasone furoate/formoterol fumarate 100/5 mcg HFA aerosol, 2 puffs twice daily
+- Furosemide (self-adjusted dose)
+
+Allergies:
+Tree nuts, pet dander (angioedema, congestion)
+
+Family History:
+Not documented
+
+Social History:
+Non-smoker, works for the government feeding children in a school, reports high stress related to her job.
+
+Physical Examination:
+Noted above.
+
+Impression:
+Arlice Stuart presents with a complex clinical picture characterized by recurrent dyspnea, cardiomegaly, and evidence of interstitial pulmonary edema and pleural effusions. Despite negative methacholine challenge testing, her history of childhood asthma and current use of inhalers suggest ongoing airway sensitivity. The presence of cardiomegaly and pulmonary edema raises concern for chronic heart failure, potentially exacerbated by her history of recurrent fluid overload. The liver cysts are noted but are not directly related to her current symptoms. The recent imaging findings of cardiomegaly and pulmonary edema support the need for further cardiac evaluation.
+
+Plan:
+1. I will arrange for an echocardiogram to be performed at an earlier time suitable for the patient, ensuring she can attend without significant disruption to her work schedule.
+2. I will optimize her heart failure management by reviewing her diuretic regimen and considering further cardiac assessment, including BNP levels and potential referral to cardiology for further evaluation.
+3. We will follow up in two weeks to review the results of the echocardiogram and adjust her management plan accordingly.
+4. I will request a repeat chest X-ray in three months to monitor the status of her pleural effusions and pulmonary edema.
+5. We will continue to monitor her symptoms and adjust her inhaler therapy as needed based on her respiratory symptoms and further pulmonary function testing if indicated.

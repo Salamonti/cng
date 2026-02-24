@@ -1,0 +1,49 @@
+Patient ID: Roy Taylor, 73-year-old male
+
+History of Present Illness:
+Mr. Taylor is a 73-year-old male presenting for follow-up of multiple ongoing concerns. He reports no recent blood in stool, though he notes occasional night sweats that have improved since prior visits. His weight has stabilized between 140-142 lbs, and he denies significant shortness of breath or chest pain. He recently underwent an MRI and bone scan for evaluation of a thyroid nodule and rib lesion, respectively, with the thyroid nodule requiring further assessment via biopsy. The rib lesion appears to be a healing fracture, though the possibility of a sclerotic osseous lesion remains under consideration. He also notes an elevated prostate-specific antigen (PSA) level, which requires further evaluation by urology. His short-term memory remains a concern, though no acute neurological deficits are reported.
+
+Mr. Taylor’s blood work indicates possible new diabetes, though this requires confirmation with repeat testing. His thyroid nodule, visible on physical exam, is suspicious and requires biopsy for further characterization. He denies any recent trauma to his ribs beyond a minor fall a few days prior, though he reports no prior rib issues. His night sweats, while improved, persist occasionally and are attributed to anxiety rather than a clear medical cause. He remains stable from a cardiac standpoint, though his diabetes control has worsened slightly based on recent hemoglobin A1c results.
+
+Past Medical History:
+Type 2 Diabetes Mellitus
+Dyslipidemia
+Coronary artery disease status post Percutaneous Coronary Intervention (PCI) to Right Coronary Artery (RCA) and its Posterior Left Ventricular (PLV) branch
+
+Medications:
+Aspirin 81 mg QD
+Metformin 750 mg BID
+Jardiance 10 mg QD
+Fluvastatin 40 mg BID
+Amlodipine 5 mg QD
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (quit 2 years ago after smoking a pipe for 45 years)
+Occasional marijuana use (2-3 times per week)
+No alcohol use
+
+Physical Examination: not documented
+
+Investigations:
+2025-10-17:
+- Hemoglobin A1c: 7.1%
+- Prostate Specific Antigen: 6.410 ug/L (elevated)
+- Complete Blood Count: WBC 9.0 x10e9/L, Hb 137 g/L, Hct 0.402 L/L, Plt 217 x10e9/L
+- Erythrocyte Sedimentation Rate: 13 mm/Hr
+- C-Reactive Protein: 0.6 mg/L
+- Iron Studies: Ferritin 103.00 ug/L, Iron 19.5 umol/L, TIBC 63 umol/L, Saturation 0.30
+- Occult Blood Stool: Negative x3
+
+Impression:
+Mr. Taylor is a 73-year-old male with a history of coronary artery disease, type 2 diabetes mellitus, and dyslipidemia presenting for ongoing evaluation of multiple concerns. His elevated PSA level and thyroid nodule require further investigation, with a biopsy of the thyroid nodule and urology referral planned. The sclerotic rib lesion remains indeterminate but is favored to represent a healing fracture, with follow-up bone scan recommended in six months. His diabetes control has worsened slightly, necessitating monitoring and potential adjustment of his antidiabetic regimen. Night sweats persist but are attributed to anxiety, though other causes remain under consideration.
+
+Plan:
+1. I will arrange for a fine-needle aspiration biopsy of the thyroid nodule for further characterization.
+2. I will refer Mr. Taylor to urology for evaluation of his elevated PSA level and potential prostate issues.
+3. I will schedule a follow-up bone scan in six months to reassess the sclerotic rib lesion.
+4. I will repeat hemoglobin A1c testing to confirm diabetes diagnosis and monitor glycemic control.
+5. We will follow up in three months to review biopsy results, PSA evaluation findings, and bone scan follow-up planning.

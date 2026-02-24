@@ -1,0 +1,55 @@
+Patient ID: Roy G Ethier, 61-year-old male
+
+History of Present Illness:
+Mr. Ethier is a 61-year-old male presenting with worsening respiratory symptoms over the past two to three months. He reports increased coughing, predominantly at night, with white phlegm production. His breathing has become more laboured, particularly with exertion such as chores or carrying wood, and he finds it difficult to stop and rest during these activities. He notes that his symptoms have progressively worsened despite adherence to his current medication regimen, which includes antibiotics for Mycobacterium avium complex (MAC) infection and inhaled corticosteroids. He denies hemoptysis, fevers, or significant weight changes. His wife reports that he has been less active and more breathless indoors during the winter months, contributing to boredom and reduced mobility.
+
+Mr. Ethier has been on thrice-weekly MAC therapy with rifabutin, azithromycin, and ethambutol since late 2025. He previously experienced mild abdominal discomfort and GI bleeding, but this resolved without frank hematochezia or melena. He has not had any recent flare-ups requiring prednisone use. He also mentions an upcoming echocardiogram in March to assess his aortic valve, which was previously considered for replacement but deferred at this time.
+
+Past Medical History:
+Chronic Mycobacterium avium complex (MAC) infection
+Left upper lobe pulmonary mass (stable, low suspicion for malignancy)
+Aortic valve disease (pending evaluation for replacement)
+Hypertension (not currently treated)
+Hyperlipidemia (not currently treated)
+Smoking history
+
+Medications:
+Rifabutin 150 mg PO Mon/Wed/Fri
+Azithromycin 250 mg PO Mon/Wed/Fri
+Ethambutol 400 mg PO Mon/Wed/Fri
+Trelagy Ellipta 100/62.5/25 mcg inhalation daily
+Ventolin (albuterol) as needed
+Nicotine transdermal patch daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Smoker (currently using nicotine patch)
+Occupational disability due to respiratory symptoms
+Limited mobility and activity due to breathlessness
+
+Physical Examination:
+Vital signs: Oxygen saturation 95-96%, heart rate 95-96 bpm
+Lungs: Clear to auscultation bilaterally, no wheezing or crackles
+Fingers: Mild clubbing noted
+Cardiac: Regular rate and rhythm, no murmurs appreciated
+
+Investigations:
+2026-01-05:
+Complete Blood Count: WBC 7.3 x10^9/L, Hemoglobin 151 g/L, Platelets 367 x10^9/L
+eGFR: 84 mL/min/1.73m^2, Creatinine 90 umol/L
+C-Reactive Protein: 33.2 mg/L
+Liver Function Tests: ALT 5 U/L, Alkaline Phosphatase 114 U/L, Total Bilirubin 4.7 umol/L
+
+Impression:
+Mr. Ethier is a 61-year-old male with chronic MAC infection and stable pulmonary nodules, currently on appropriate antimicrobial therapy. His respiratory symptoms have worsened over the past few months, with increased cough and breathlessness, despite adherence to his medication regimen. The physical examination reveals mild clubbing and stable vital signs, while recent laboratory investigations show no significant abnormalities aside from an elevated C-reactive protein, which may reflect ongoing inflammation. The aortic valve disease remains under evaluation, with an upcoming echocardiogram planned.
+
+Plan:
+1. I will continue rifabutin 150 mg, azithromycin 250 mg, and ethambutol 400 mg orally on Monday, Wednesday, and Friday as current therapy for MAC infection.
+2. I will continue Trelagy Ellipta 100/62.5/25 mcg inhalation daily and Ventolin as needed for respiratory symptom management.
+3. I will order a chest X-ray to assess for any acute changes in his pulmonary status given his worsening symptoms.
+4. I will arrange follow-up with the thoracic surgery team to review the upcoming echocardiogram results and reassess the need for aortic valve intervention.
+5. I will refer Mr. Ethier to a smoking cessation program via 811 for continued support in quitting smoking.
+6. We will schedule a follow-up appointment in six months to reassess his respiratory symptoms and overall clinical status.

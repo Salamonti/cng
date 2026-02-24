@@ -1,0 +1,57 @@
+Patient ID
+Sally Belding, 73-year-old female
+
+History of Present Illness
+Sally Belding, a 73-year-old female with a history of eosinophilic granulomatosis with polyangiitis (EGPA), presents with persistent respiratory symptoms following a recent influenza A infection. She reports ongoing productive cough with thick green phlegm for nearly two weeks, despite prior treatment with doxycycline and prednisone. She denies fever but notes significant sinus congestion and worsening cough, which has led to abdominal discomfort from persistent coughing. She has been using her emergency inhaler frequently and has had two recent hospital visits, including a confirmed influenza A diagnosis via nasopharyngeal swab on February 6, 2026. She remains concerned about her lungs, reporting bilateral wheezing on examination, though her oxygen saturation remains stable at 99% on room air. She has not been able to access her regular physician, Dr. Ovi, for follow-up.
+
+Sally describes feeling overwhelmed by the persistent phlegm, which she feels is drowning her, and expresses fear that this could progress to pneumonia if untreated. She has been using her CPAP machine with mist but has since stopped due to irritation. She also notes that her family has been vaccinated to prevent further spread of infection. She has not improved despite multiple courses of antibiotics and steroids, and she is seeking further guidance on management.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+Asthma
+Sinusitis
+
+Medications
+Nucala 100mg subcutaneous injection monthly
+Prednisone 40mg oral daily (new, tapering over 30 days)
+Moxifloxacin 400mg oral daily for 10 days (new)
+Breo Ellipta 100/25mcg inhaled once daily
+Spiriva Respimat 2.5mcg inhaled twice daily
+Aerobika nebulizer solution 15 minutes four times daily
+Emergency puffer (albuterol/salbutamol) as needed
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Lives with family, all of whom have been vaccinated against influenza. Uses CPAP nightly but reports poor sleep quality. No current smoking or alcohol use.
+
+Physical Examination
+Vital signs: Heart rate 75 bpm, oxygen saturation 99% on room air.
+Chest: Bilateral wheezing, no crackles or rhonchi.
+Cardiovascular: Normal S1 and S2, no murmurs or gallops.
+No jugular venous distension or lower limb edema noted.
+
+Investigations
+2026-02-06
+Respiratory panel: Positive for influenza A, negative for COVID-19, respiratory syncytial virus.
+Complete blood count: WBC 7.1 x10^9/L, hemoglobin 126 g/L, platelets 352 x10^9/L.
+Lytes: Sodium 140 mmol/L, potassium 4.0 mmol/L, chloride 101 mmol/L.
+Creatinine: 56 umol/L.
+ECG: Normal sinus rhythm, no significant changes from prior.
+
+2026-01-29
+Chest X-ray: Clear lungs, no acute abnormalities detected.
+
+Impression
+Sally Belding presents with persistent respiratory symptoms and productive cough following a confirmed influenza A infection. Despite prior treatment with antibiotics and steroids, she continues to experience thick green phlegm and wheezing, raising concern for possible secondary bacterial infection, such as Staphylococcus aureus. Her stable vital signs and oxygen saturation suggest no immediate respiratory compromise, but her ongoing symptoms warrant targeted antibiotic therapy and a steroid taper to address inflammation. Further follow-up is needed to ensure resolution of symptoms and to monitor for any progression to pneumonia.
+
+Plan
+1. We will initiate moxifloxacin 400mg orally once daily for 10 days to treat suspected Staphylococcus aureus infection.
+2. We will continue prednisone 40mg orally daily with a taper over 30 days to address inflammation from influenza and EGPA flare.
+3. We will arrange follow-up with Dr. Eissa in two weeks to reassess symptoms, ensure resolution of infection, and adjust medications as needed.
+4. We will counsel on continued use of inhalers (Breo Ellipta, Spiriva Respimat) and Aerobika nebulizer as prescribed, with temporary discontinuation of CPAP mist therapy.
+5. We will review vaccination status and ensure influenza vaccination is updated for the upcoming season.

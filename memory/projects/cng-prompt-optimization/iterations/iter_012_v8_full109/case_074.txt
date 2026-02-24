@@ -1,0 +1,63 @@
+Patient ID: Milford Buchanan, 69-year-old male
+
+History of Present Illness:
+This 69-year-old male presents with chronic shortness of breath that has persisted for a long time without recent change. He denies chest pain but reports orthopnea that resolves when he lies on his sides. The patient has a history of obstructive sleep apnea (OSA) diagnosed 15 years ago, though he discontinued CPAP use due to discomfort. He attributes his dyspnea partly to occupational dust exposure, though this exposure occurred years ago. On examination, he has a Mallampati class IV view with very narrow air passages, obesity with a weight of 260 lbs and height of 5'7", a clear chest, and a large abdomen with normal heart sounds.
+
+The patient’s dyspnea has been progressive, with recent worsening of cough and sputum production over the past month, thought to be related to a recent upper respiratory tract infection or chronic lung disease. Despite treatment with Symbicort and antibiotics, his symptoms have not significantly improved. He continues to experience exertional dyspnea and minimal activity intolerance. The patient’s orthopnea and lack of improvement with standard therapies raise concerns about underlying cardiac or pulmonary pathology, though his echocardiogram showed normal biventricular function and no evidence of heart failure.
+
+Past Medical History:
+Type 2 diabetes mellitus, hypertension, gastroesophageal reflux disease (GERD), obesity, moderate obstructive sleep apnea, osteoarthritis of the knees, depression/anxiety, and history of total knee replacements (left 2011, right 2012).
+
+Medications:
+APO-Dapagliflozin 10 mg PO daily
+APO-Gliclazide MR 30 mg PO daily
+JAMP-Metformin 500 mg PO QID
+Mar-Diltiazem 240 mg PO daily
+Sandoz-Irbesartan 300 mg PO daily
+Sandoz-Pantoprazole 40 mg PO daily
+Symbicort 100/100/6 mcg INH BID maintenance; 1-2 inhalations PRN rescue
+Teva-Hydrochlorothiazide 25 mg PO daily
+Teva-Salbutamol HFA 100 mcg INH 1-2 puffs QID PRN
+Tresiba FlexTouch 200 units/mL SC 70 units daily
+Trurapi Solostar 100 units/mL SC adjust as directed, before meals
+
+Allergies:
+Anafranil 50 mg tablet (rash), Surmontil and Ludiomil (rash), Altace 5 mg capsule (cough), Vibramycin 100 mg oral capsule (blurred vision and gastrointestinal upset)
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Mallampati class IV view with very narrow air passages, obese (260 lbs, 5'7"), clear chest, large abdomen, normal heart sounds, no orthopnea on examination today.
+
+Investigations:
+2025-11-04:
+Pulmonary Function Test: Moderate restrictive lung disease with normal diffusion capacity.
+
+2025-10-08:
+Pulmonary Function Test: Moderate restrictive lung disease with normal diffusion capacity.
+
+2025-05-11:
+Chest X-ray: Clear lungs and pleural surfaces, cardiac silhouette at upper limit of normal size, healed anterior left rib fractures, minor degenerative changes in thoracic spine.
+
+2024-06-21:
+Echocardiogram: Normal biventricular size and systolic function, aortic valve sclerosis, mildly dilated ascending aorta.
+
+2026-02-24:
+Lipids: Cholesterol 2.9 mmol/L, Triglycerides 1.35 mmol/L, LDL 1.2 mmol/L, HDL 1.1 mmol/L
+Lytes: Sodium 136 mmol/L, Potassium 4.3 mmol/L, Chloride 99 mmol/L
+Hemoglobin A1C: 6.8%
+Glucose AC: 8.5 mmol/L
+eGFR: 90 mL/min/1.73m2
+Urinalysis: Clear urine, specific gravity 1.030, negative for protein, occult blood, nitrite, leukocyte esterase, trace ketones
+Albumin/Creatinine Ratio: 6.74 mg/mmol
+
+Impression:
+This patient’s chronic dyspnea and orthopnea are likely multifactorial, primarily driven by obesity and untreated obstructive sleep apnea. The moderate restrictive lung disease on pulmonary function testing, combined with normal diffusion capacity, suggests that his lung restriction is secondary to his obesity and possibly chest wall mechanics rather than interstitial lung disease. The echocardiogram shows normal cardiac function, ruling out heart failure as a primary cause of his symptoms. His recent worsening of cough and sputum production may be related to chronic lung disease or a recent upper respiratory tract infection, though further evaluation is needed to rule out other causes.
+
+Plan:
+1. I will arrange for a formal polysomnography study to reassess for obstructive sleep apnea, given his history and symptoms, and will coordinate with social work and the Lung Association to assist with CPAP acquisition if indicated.
+2. I will recommend a stress test to rule out cardiac ischemia as a contributing factor to his dyspnea.
+3. I will discuss weight loss strategies with the patient, including dietary modifications and exercise, and will consider a trial of semaglutide (Ozempic) with prophylactic laxatives if he is willing, given his prior adverse reaction.
+4. I will follow up after the results of the polysomnography and stress test to adjust management as needed.

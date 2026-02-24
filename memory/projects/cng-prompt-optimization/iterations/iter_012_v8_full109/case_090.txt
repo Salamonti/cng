@@ -1,0 +1,59 @@
+Patient ID: Fu Sheng Wang, 60s, male
+
+History of Present Illness:
+The patient presents today for a routine follow-up visit. He reports feeling well overall, with no complaints of chest pain or shortness of breath. The patient has been adhering to his current medications, and there have been no recent changes in his symptoms. On examination, the chest was clear with adequate bilateral air entry, and cardiac auscultation revealed normal S1 and S2 without additional sounds or murmurs. The abdomen was soft with no palpable organomegaly, and the neurological examination was unremarkable. There was no jugular venous distention or lower limb edema noted.
+
+The patient has agreed to initiate ezetimibe 10 mg orally daily for further management of his lipid profile. The patient’s current regimen includes atenolol, amlodipine, spironolactone, and rabeprazole, which he has been taking without issue. The patient’s recent laboratory results show a glucose level of 7.6 mmol/L, urea of 7.5 mmol/L, and an eGFR of 68 mL/min/1.73m², indicating mild renal impairment. Lipid panel reveals elevated cholesterol (5.1 mmol/L) and LDL (2.9 mmol/L), with a borderline HDL (1.61 mmol/L), prompting the addition of ezetimibe.
+
+Past Medical History: not documented
+
+Medications:
+atenolol 25 mg PO daily
+amlodipine 10 mg PO daily
+spironolactone 25 mg PO daily
+rabeprazole 20 mg PO daily
+ezetimibe 10 mg PO daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Chest: clear, adequate bilateral air entry
+Cardiac: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no palpable organomegaly
+Neurological: unremarkable
+Extremities: no jugular venous distention or lower limb edema
+
+Investigations:
+2026-02-13:
+- Glucose: 7.6 mmol/L (3.8–6.0)
+- Urea: 7.5 mmol/L (0.0–8.3)
+- eGFR: 68 mL/min/1.73m² (reference ≥60)
+- Creatinine: 79 µmol/L (44–106)
+- Sodium: 136 mmol/L (136–145)
+- Potassium: 4.3 mmol/L (3.6–5.2)
+- Cholesterol: 5.1 mmol/L (3.0–5.2)
+- Triglycerides: 1.39 mmol/L (0.00–1.70)
+- LDL cholesterol: 2.9 mmol/L (target <2.0 for high risk)
+- HDL cholesterol: 1.61 mmol/L (1.03–5.17)
+- AST: 25 U/L (10–35)
+- ALT: 16 U/L (10–35)
+- Alkaline phosphatase: 134 U/L (40–129)
+- CPK: 46 U/L (21–215)
+- TSH: 3.860 mIU/L (0.270–4.200)
+- Free T4: 14.4 pmol/L (12.0–22.0)
+- CBC: WBC 11.7 x10⁹/L (4.0–10.0), RBC 4.52 x10¹²/L (4.20–5.40), Hb 128 g/L (115–155), Hct 0.399 L/L (0.37–0.47)
+- Bilirubin, total: 8.2 µmol/L (0–20)
+
+Impression:
+The patient is a middle-aged male with controlled blood pressure and no active cardiovascular symptoms. His lipid profile remains suboptimal with elevated LDL cholesterol, despite current therapy with fluvastatin. Mild renal impairment is present, as evidenced by an eGFR of 68 mL/min/1.73m², which may influence medication selection and dosing. The patient’s glucose level is slightly elevated at 7.6 mmol/L, warranting monitoring for prediabetes or early diabetes. No acute abnormalities were detected on physical examination.
+
+Plan:
+1. I will initiate ezetimibe 10 mg orally daily to further optimize lipid management.
+2. I will monitor renal function with repeat eGFR in 6 months given current mild impairment.
+3. I will repeat fasting lipid panel in 3 months to assess response to ezetimibe.
+4. I will schedule a follow-up visit in 3 months to review symptoms, medication adherence, and laboratory results.
+5. I will counsel the patient on lifestyle modifications, including diet and exercise, to support cardiovascular health.

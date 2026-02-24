@@ -1,0 +1,52 @@
+Patient ID
+Joanne Comeau, 56-year-old female
+
+History of Present Illness
+Joanne Comeau presents with a 2-month history of progressive symptoms including a new cough triggered by deep breaths, nasal congestion, and occasional shortness of breath. She reports that the cough is not relieved by her current nasal spray (azelastine-fluticasone), which was prescribed by her ENT for sinus congestion. She also describes intermittent right ear hearing loss, which prompted an ENT evaluation and recent ear irrigation. Joanne denies reflux symptoms but acknowledges recent lifestyle stressors, including surgery in September and returning to work in November, which have limited her physical activity.
+
+She notes that her ACE level has risen slightly on recent bloodwork compared to prior readings, raising concern for possible sarcoidosis activity. She denies fever, night sweats, or other systemic symptoms, though she reports persistent daytime fatigue. Physical examination today reveals a pulse rate of 55 bpm, SpO2 99% on room air, clear lungs with adequate bilateral air entry, and no jugular venous distention or edema.
+
+Past Medical History
+Sarcoidosis
+History of abdominal surgery (uterus surgically absent)
+Complex multicystic right adnexal mass (awaiting gynecology follow-up)
+
+Medications
+Mylan-Azelastine-Fluticasone 137 mcg-50 mcg/spray, nasal, 1 spray in each nostril twice daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+No current smoking or alcohol use
+Recent surgery in September with return to work in November
+Limited exercise due to lifestyle demands
+
+Physical Examination
+PR 55 bpm, SpO2 99% on room air
+Chest clear with adequate bilateral air entry
+Normal S1 and S2 with no additional sounds or murmurs
+No jugular venous distention or lower limb edema
+Neurological exam unremarkable
+
+Investigations
+2025-11-21
+Complete Blood Count: WBC 5.5 x10^9/L, Hb 132 g/L, Plts 262 x10^9/L
+eGFR 90 mL/min/1.73m^2, Cr 66 umol/L
+Lytes: Na 141 mmol/L, K 4.3 mmol/L, Cl 104 mmol/L
+Liver enzymes: ALT 51 U/L, AST 36 U/L, GGT 59 U/L, Alk Phos 106 U/L
+Bilirubin: Total 20.4 umol/L, Direct 7.1 umol/L
+2025-11-24
+Angiotensin Converting Enzyme: 61 U/L (elevated)
+
+Impression
+Joanne Comeau presents with new-onset cough and sinus congestion in the context of stable sarcoidosis, now complicated by a rising ACE level suggestive of possible disease activity. The absence of systemic symptoms and normal physical exam findings make alternative diagnoses such as infection or reflux less likely, though reflux precautions have been provided. The right ear symptoms and adnexal mass require ongoing ENT and gynecology follow-up, respectively. Further evaluation with a chest CT and pulmonary function testing is warranted to assess for sarcoidosis involvement or other pulmonary pathology.
+
+Plan
+1. I will order a chest CT scan to evaluate for sarcoidosis involvement or alternative pulmonary pathology.
+2. I will arrange pulmonary function testing, including spirometry, to assess for obstructive or restrictive lung disease.
+3. I will provide Joanne Comeau with an information sheet on reflux precautions and review dietary modifications.
+4. We will follow up in clinic after the results of the chest CT and pulmonary function testing are available, with a target date of 3 months from today unless symptoms worsen or urgent findings are identified.

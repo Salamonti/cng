@@ -1,0 +1,42 @@
+Patient ID
+Mark Gerald Pottier, 56-year-old male
+
+History of Present Illness
+Mr. Pottier presents with a 4-5 year history of chronic, progressive coughing triggered primarily by fluid ingestion. He describes episodes so severe that they induce near-syncope, particularly when driving, and require him to pull over. The cough is also triggered by eating, saliva, and occasionally spontaneously, though not consistently. He reports no chest pain, dyspnea, or voice changes. The cough produces copious saliva rather than phlegm. Mr. Pottier initially sought evaluation for a suspected foreign body in his throat, but imaging was unrevealing. He has tried doxepin and bisoprolol without relief. His symptoms have worsened significantly over time, now interfering with daily activities.
+
+Physical examination reveals no acute distress, normal vital signs, and clear lung fields without wheezing or crackles. No lymphadenopathy, thyromegaly, or oral cavity abnormalities are noted. Cardiac examination is unremarkable aside from prior findings of hypertrophic cardiomyopathy.
+
+Investigations
+2026-02-12:
+- CT neck and chest with contrast: No evidence of aspiration pneumonia, no mass or lymphadenopathy. Mild atelectasis/scarring and stable benign pulmonary nodules noted.
+
+Past Medical History
+Hypertrophic cardiomyopathy, hypertension, obstructive sleep apnea (noncompliant with CPAP), anxiety, prior alcohol misuse, obesity, diverticulosis, and a 2 mm polyp in the ascending colon.
+
+Medications
+Irbisartan 300 mg orally once daily
+Bisoprolol 5 mg orally once daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Former smoker (quit 20 years ago after 10 years of smoking). No current alcohol use. Works as an insurance adjuster. No asbestos exposure. Reports three tick bites this year, treated with antibiotics.
+
+Physical Examination
+Lungs: Clear to auscultation bilaterally, no wheezing or crackles
+Cardiac: Regular rate and rhythm, no murmurs, normal S1 and S2
+Abdominal: Soft, non-tender, no hepatosplenomegaly
+Neurological: Normal mental status, no focal deficits
+
+Impression
+Mr. Pottier’s chronic, fluid-triggered coughing—now severe enough to cause near-syncope—suggests an esophageal motility disorder, likely achalasia or another esophageal dysmotility syndrome, given his symptoms and prior negative imaging. His history of progressive symptoms, absence of respiratory or cardiac causes, and normal CT findings support this. Hypertrophic cardiomyopathy and hypertension are well-controlled on current therapy, and his sleep apnea remains untreated due to CPAP noncompliance.
+
+Plan
+1. I will prescribe Pantoprazole 40 mg orally once daily in the morning, to be taken 30 minutes before breakfast.
+2. I will provide dietary instructions to follow an anti-reflux diet and elevate the head of the bed to 45 degrees at nighttime.
+3. I will refer Mr. Pottier for upper endoscopy with esophageal manometry to evaluate for esophageal motility disorders.
+4. I will arrange follow-up in three months to assess response to therapy and review endoscopy results.

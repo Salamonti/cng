@@ -1,0 +1,53 @@
+Patient ID: Crowell, Marsden Mason Scott, 61-year-old male
+
+History of Present Illness:
+The patient presents with a history of medication changes that led to significant dizziness and instability. He was recently switched from telmisartan to telmisartan/hydrochlorothiazide and from furosemide 60mg to 80mg, which caused severe dizziness and impaired ability to drive. He reverted to his prior regimen of telmisartan 40mg daily, furosemide 60mg daily (one and a half tablets), and spironolactone 12.5mg daily, with resolution of symptoms. He reports mild foot swelling but otherwise feels stable. The patient also describes a recent attempt at smoking cessation using nicotine gum, which has been effective in managing cravings. He denies current smoking.
+
+The patient has severe COPD with persistent symptoms despite prior interventions. He reports using Trelegy inhaler daily and albuterol (blue puffer) as needed, with improved control compared to before. He has not undergone a sleep study for obstructive sleep apnea due to technical difficulties with prior equipment. He reports improved sleep quality recently but remains concerned about potential underlying sleep-disordered breathing.
+
+Past Medical History:
+- Severe Chronic Obstructive Pulmonary Disease (COPD)
+- Obesity (BMI ~40)
+- Right Ventricular Dysfunction/Dilatation secondary to Severe Pulmonary Hypertension
+- Cor Pulmonale
+- Polycythemia secondary to chronic hypoxia
+- Former alcohol use, abstinent for several years
+
+Medications:
+- Telmisartan 40mg orally daily
+- Furosemide 60mg orally daily (one and a half tablets)
+- Spironolactone 12.5mg orally daily
+- Digoxin 0.0625mg orally daily
+- Trelegy Ellipta (fluticasone/vilanterol/umeclidinium) one inhalation daily
+- Albuterol (blue puffer) as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+- Former smoker (40 pack-years), currently using nicotine gum for cessation
+- Former alcohol use, abstinent for several years
+- Obesity (BMI ~40)
+
+Physical Examination: not documented
+
+Investigations:
+2025-11-14:
+- Venous Blood Gas: pH 7.33, pCO2 65.2 mmHg, pO2 26 mmHg, HCO3 34.7 mmol/L, Base Excess 6.0 mmol/L, O2 Saturation 41%
+- Complete Blood Count: Elevated RBC, Hgb 169 g/L, Hct 0.553, Neutrophils 5.0 x10^9/L, Platelets 208 x10^9/L
+- Chemistry: eGFR 90, Creatinine 69 umol/L, Sodium 140 mmol/L, Potassium 4.9 mmol/L, Chloride 101 mmol/L
+- Arterial Blood Gas: pH 7.40, pCO2 46.6 mmHg, pO2 62.6 mmHg, HCO3 29.0 mmol/L, O2 Saturation 92.8%
+- Pulmonary Function Tests: Severe obstructive airway disease (FEV1 42% predicted, FVC 74% predicted, FEV1/FVC 45%), increased residual volume (164% predicted)
+- Ventilation/Perfusion Scan: No definite scintigraphic evidence of chronic thromboembolic pulmonary hypertension
+
+Impression:
+This 61-year-old male with severe COPD and pulmonary hypertension presents with a history of medication-related dizziness that resolved upon reverting to prior regimens. His COPD remains severe with persistent symptoms despite optimal medical therapy. He has evidence of right ventricular dysfunction, likely secondary to chronic lung disease and possible obstructive sleep apnea. Recent attempts at smoking cessation have been successful with nicotine gum. Further evaluation for sleep-disordered breathing is warranted given his clinical picture and laboratory findings.
+
+Plan:
+1. I will discontinue telmisartan/hydrochlorothiazide and continue telmisartan 40mg orally daily.
+2. I will continue furosemide 60mg orally daily (one and a half tablets) and spironolactone 12.5mg orally daily.
+3. I will arrange for a polysomnography (sleep study) to evaluate for obstructive sleep apnea.
+4. I will order a digoxin level and renal function tests to monitor therapy.
+5. I will refer the patient for mask fitting for potential CPAP/BiPAP therapy if obstructive sleep apnea is confirmed.
+6. We will schedule a follow-up appointment in 4 weeks to review investigation results and assess response to therapy.

@@ -1,0 +1,47 @@
+Patient ID
+Katelyn Newell, 27-year-old female
+
+History of Present Illness
+The patient reports persistent fatigue and low energy despite recent investigations, including blood work two weeks ago, a sleep study on January 8, and a thyroid ultrasound in early January. She describes ongoing symptoms consistent with Hashimoto’s thyroiditis, including fatigue and general malaise, though her thyroid function appears to be in the normal range with a TSH of 0.299 mIU/L. She denies recent kidney stone symptoms but notes a history of frequent stones in her late teens and early twenties. The patient also mentions mild urinary calcium excretion (24-hour urine calcium 10.87 mmol/d) and has been advised to increase fluid intake.
+
+The patient’s fatigue persists despite normal thyroid function and a normal sleep study, with an apnea-hypopnea index of 4.4/h and minimal desaturation. She has tried dietary modifications, including reducing gluten, without notable improvement. She remains concerned about the chronic nature of her symptoms and the potential for underlying inflammation contributing to her fatigue.
+
+Past Medical History
+Hashimoto’s thyroiditis, history of recurrent kidney stones (remission in recent years)
+
+Medications
+levothyroxine 75 mcg oral daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Thyroid not enlarged, chest clear; remainder not documented
+
+Investigations
+2026-02-02
+- Thyroid stimulating hormone: 0.299 mIU/L
+- Free T3: 4.16 pmol/L
+- Free T4: 15.7 pmol/L (from 2025-11-17)
+- Complete blood count: unremarkable (WBC 11.8 x10^9/L, Hb 135 g/L)
+- C-reactive protein: 6.5 mg/L
+- Rheumatoid factor: 10 IU/mL
+- Angiotensin-converting enzyme: 41 U/L
+- 24-hour urine calcium: 10.87 mmol/d
+- Sleep study (2026-01-08): normal (AHI 4.4/h, nadir SpO2 89%)
+
+Impression
+This 27-year-old female with Hashimoto’s thyroiditis presents with persistent fatigue and low energy despite normal thyroid function and a normal sleep study. Her symptoms may reflect chronic inflammation from Hashimoto’s, as evidenced by elevated CRP and a history of inflammatory markers. The mild hypercalciuria suggests a need for increased fluid intake to reduce stone risk, though no active stones are present. Further evaluation for dietary triggers or alternative causes of fatigue is warranted.
+
+Plan
+1. I will continue levothyroxine 75 mcg oral daily and monitor thyroid function clinically.
+2. I will repeat thyroid function tests (TSH, Free T3, Free T4) in three months.
+3. I will recommend a trial of gluten reduction and review dietary triggers at follow-up.
+4. I will order an extended inflammatory panel (e.g., ENA, ANA titer) to further assess for autoimmune contributions to fatigue.
+5. We will schedule a follow-up appointment in three months to reassess symptoms and laboratory results.

@@ -1,0 +1,45 @@
+Patient ID: Mr. Landon Ross, 54-year-old male
+
+History of Present Illness:
+Mr. Ross presents today reporting bilateral leg cramping that led him to skip his last scheduled phlebotomy in June. He denies any associated shortness of breath, chest pain, or cough. Otherwise, he reports feeling well, with no unintentional weight gain, and continues to manage his diabetes with insulin. On examination, his chest remains clear with adequate bilateral air entry, and cardiac assessment reveals normal S1 and S2 without murmurs or additional sounds. The abdomen is soft with no organomegaly, and the neurological exam is unremarkable. There is no jugular venous distention or lower limb edema.
+
+The patient expresses concern about his iron burden and the potential contribution of iron overload or fatty liver to his elevated liver enzymes. He is open to ongoing monitoring to assess trends over the next few months, which may guide decisions regarding liver biopsy, initiation of ozempic, or continuation of current management.
+
+Past Medical History:
+Hemochromatosis with hepatic steatosis
+Type 2 diabetes mellitus
+
+Medications:
+Fluvastatin 40 mg PO daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Smokes marijuana 1 gram daily
+No alcohol use
+No cigarette smoking
+
+Physical Examination:
+Chest: clear with adequate bilateral air entry
+Cardiovascular: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2026-01-27:
+Complete Blood Count: Hemoglobin 162 g/L, Hematocrit 0.489 L/L, MCV 85.5 fL, Platelets 410 x10^9/L
+eGFR: 90 mL/min/1.73m^2, Creatinine 78 umol/L
+Lytes: Sodium 138 mmol/L, Potassium 4.1 mmol/L, Chloride 102 mmol/L
+Liver Function Tests: Total Bilirubin 20.7 umol/L, Direct Bilirubin 6.9 umol/L, GGT 112 U/L, AST 46 U/L, ALT 72 U/L, Alkaline Phosphatase 134 U/L
+Ferritin: 106.0 ug/L
+
+Impression:
+Mr. Ross has hemochromatosis with hepatic steatosis and well-controlled type 2 diabetes mellitus. His recent leg cramping, attributed to prior statin use, has led to a missed phlebotomy, though his ferritin remains elevated at 106 ug/L. Current liver enzymes show persistent elevation, raising concern for ongoing iron overload or fatty liver disease. Given the patient’s stability and lack of acute symptoms, ongoing monitoring of liver function and ferritin trends is warranted to guide future management decisions.
+
+Plan:
+1. I will reduce phlebotomy frequency to every 3 months given improved ferritin levels and patient-reported leg cramping.
+2. I will continue monthly monitoring of ferritin and complete blood count to assess iron burden and trends.
+3. I will arrange follow-up in 3 months to reassess liver enzymes, ferritin levels, and patient symptoms to guide further management, including potential liver biopsy or therapeutic interventions if indicated.

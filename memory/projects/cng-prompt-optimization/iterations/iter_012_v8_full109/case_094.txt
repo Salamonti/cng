@@ -1,0 +1,62 @@
+Patient ID: Rexford Perry, 89-year-old male
+
+History of Present Illness:
+Rexford Perry is an 89-year-old male presenting with persistent progressive shortness of breath, unchanged from his prior visit. His symptoms remain more pronounced in the mornings and improve with activity throughout the day, though his daughter reports he becomes breathless after walking approximately 100 yards if hurried. He continues to experience blurry vision in both eyes, which remains his only additional complaint. A recent CT scan demonstrates worsening reticulation predominantly in the right lower lobe, suggesting progression of his underlying interstitial lung disease.
+
+On examination, findings remain consistent with prior assessments, including fine inspiratory crackles at the lung bases bilaterally and a systolic murmur heard loudest at the lower left sternal border. There is no evidence of jugular venous distension or peripheral edema. The patient remains functionally independent despite his symptoms.
+
+Past Medical History:
+High-grade non-Hodgkin's lymphoma (2021), in remission following Mini RCHOP x6 cycles
+Glaucoma and cataracts
+Gastroesophageal reflux disease (GERD)
+Shoulder pain (managed with gabapentin)
+
+Medications:
+Gabapentin 100mg PO bid
+Pantoprazole 20mg PO qd
+Artificial tears qid
+Lumigan eye drops
+Azopt eye drops
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Occasional smoking as a teenager, no current alcohol use
+Retired fisherman, currently lives with wife; daughter Joy lives nearby
+Engages in woodworking (whirlygig construction) in a dusty workshop for ~30 years
+
+Physical Examination:
+Vitals: BP 134/79, HR 72, O2 sat 97%
+Cardiac: S1 S2 throughout, I/VI systolic murmur loudest at lower left sternal border
+Pulmonary: Fine inspiratory crackles at bases bilaterally
+Abdomen: Soft, nontender, bowel sounds present x4
+No jugular venous distension or peripheral edema
+
+Investigations:
+2026-02-13:
+CT chest: Worsening reticulation predominantly in the right lower lobe
+
+2025-06-26:
+Bloodwork:
+- WBC 4.5 x10^9/L, Hb 144 g/L, Plt 218 x10^9/L
+- Na 142 mmol/L, K 4.3 mmol/L, Cl 109 mmol/L
+- Urea 8.3 mmol/L, Cr 120 µmol/L, eGFR 50 mL/min
+- ACE 852 U/L (elevated)
+- ANA negative, vasculitis panel negative
+- CRP 1.3 mg/L, RF 10 IU/mL
+- LFTs: AST 22 U/L, ALT 9 U/L, ALP 103 U/L
+- Urinalysis: Clear yellow urine, no protein/ketones/bilirubin/occult blood, trace leukocytes
+
+2025-03-14:
+PFTs: Moderate to severe restrictive lung disease (TLC 54%, RV 44%, DLCO 60%)
+
+Impression:
+Rexford Perry has progressive interstitial lung disease with worsening radiographic findings on CT chest, consistent with his persistent symptoms of dyspnea and restrictive physiology on prior pulmonary function testing. Given his occupational dust exposure history and elevated ACE levels, potential etiologies include chronic hypersensitivity pneumonitis and sarcoidosis. Autoimmune causes remain less likely given negative serologies, though further evaluation is warranted given his concurrent ocular symptoms and exposure history.
+
+Plan:
+1. I will arrange for an extended autoimmune panel including anti-Ro/La, anti-Jo1, and anti-Scl70 antibodies.
+2. I will schedule a bronchoscopy with transbronchial biopsy to further evaluate the interstitial lung disease.
+3. I will arrange for an echocardiogram to assess for potential cardiac contributions to his dyspnea.
+4. I will follow up in clinic after these investigations are completed to reassess findings and determine next steps in management.

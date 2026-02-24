@@ -1,0 +1,34 @@
+Patient ID: [Name] 58-year-old male
+
+History of Present Illness:
+The patient presents today with severe chest pain of acute onset. The nature, timing, and aggravating factors of the pain are not further specified, but the severity prompted this clinical evaluation. Associated symptoms such as dyspnea, nausea, or diaphoresis are not documented.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-21:
+ECG demonstrates ST-segment depression in the inferior leads
+
+Impression:
+This patient with a history of coronary artery disease presents with severe chest pain concerning for acute coronary syndrome. The ECG findings of inferior ST-segment depression further support this suspicion. However, the absence of documented physical examination details limits the full assessment of his clinical status.
+
+Plan:
+1. I will initiate aspirin 325 mg orally once and clopidogrel 600 mg orally once for antiplatelet therapy.
+2. I will consult cardiology for urgent evaluation and consideration of coronary angiography.
+3. We will monitor the patient in the emergency department for ongoing cardiac assessment and management.

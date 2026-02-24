@@ -1,0 +1,54 @@
+Patient ID
+Sharon Pearl Leblanc, 80 years old, female
+
+History of Present Illness
+Sharon Pearl Leblanc is an 80-year-old female admitted to hospital with severe ptosis, which was found to be secondary to brain metastases on ophthalmologic assessment and MRI. She is currently very sleepy with an ECOG performance status of 4, limiting her candidacy for aggressive interventions such as chemotherapy or radiation. The patient and family opted not to proceed with a planned bronchoscopic lung biopsy after discussion of prognosis and potential risks. Dexamethasone was initiated during admission to address symptoms, and the dose was increased to assess for symptom improvement. The patient’s clinical condition and goals of care were discussed, and she does not wish to pursue ICU-level interventions or intubation.
+
+Past Medical History
+Hypertension, type 2 diabetes mellitus, chronic obstructive pulmonary disease (COPD) with mild upper zone emphysema, porcelain gallbladder, fusiform infrarenal abdominal aortic aneurysm, metastatic brain disease, and suspected malignancy with brainstem involvement
+
+Medications
+- Dexamethasone (dose increased as per family request)
+- Perindopril 8 mg swallow, oral once daily
+- Amlodipine 30 mg swallow, oral once daily (extended-release)
+- Hydrochlorothiazide 25 mg swallow, oral once daily in the morning
+- Metformin 30 mg swallow, oral once daily (extended-release)
+- Dapagliflozin 10 mg swallow, oral once daily
+- Alprazolam 0.5 mg swallow, oral as needed
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+not documented
+
+Investigations
+2026-02-17
+- Chest, abdomen, and pelvis CT with contrast: lobulated right upper lobe nodule suspicious for malignancy, right adrenal mass consistent with metastasis, porcelain gallbladder, fusiform infrarenal abdominal aortic aneurysm
+
+2026-02-13
+- Portable chest X-ray: 1.8 cm nodular density adjacent to the right hilum, unclear if primary or metastatic; otherwise clear lungs
+- Complete blood count: white blood count elevated at 11.5 x 10^9/L, hemoglobin 151 g/L, platelets 277 x 10^9/L
+- Comprehensive metabolic panel: magnesium 0.66 mmol/L (low), albumin 42 g/L, creatinine 81 umol/L, glucose 7.4 mmol/L, potassium 3.3 mmol/L (low)
+- Liver function tests: AST 23 U/L, ALT 13 U/L, alkaline phosphatase 117 U/L, lactate dehydrogenase 186 U/L
+- Thyroid stimulating hormone: 3.550 mIU/L
+- Hemoglobin A1c: 7.1%
+- Prothrombin time/INR: 1.0
+
+2026-02-09
+- Brain MRI with contrast: multiple enhancing intraaxial lesions compatible with metastatic disease, dominant 16 mm lesion in the posterior midbrain causing obstructive hydrocephalus, ptosis secondary to brainstem involvement
+
+Impression
+Sharon Pearl Leblanc is an 80-year-old female with a known history of brain metastases and suspected primary malignancy, given the presence of a suspicious right upper lobe nodule and adrenal metastasis on imaging. Her current clinical status is significantly impacted by her ECOG performance status of 4, and she is not a candidate for aggressive interventions such as chemotherapy or radiation. The patient and family have opted for a conservative approach, focusing on symptom management with increased dexamethasone. The presence of obstructive hydrocephalus and brainstem involvement further complicates her prognosis and limits treatment options.
+
+Plan
+1. I will continue the increased dose of dexamethasone and reassess symptom improvement in 3-5 days.
+2. I will monitor for signs of worsening hydrocephalus or increased intracranial pressure and consult neurosurgery if clinically indicated.
+3. I will arrange follow-up with palliative care for ongoing symptom management and goals-of-care discussion.
+4. I will discontinue further invasive diagnostic procedures such as bronchoscopic biopsy at this time.

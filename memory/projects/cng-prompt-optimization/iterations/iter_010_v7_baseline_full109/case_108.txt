@@ -1,0 +1,58 @@
+Patient ID: Leblanc, Sharon Pearl, 80-year-old female
+
+History of Present Illness:
+Sharon Pearl Leblanc is an 80-year-old female admitted to hospital with severe ptosis, which was found to be secondary to brain metastases upon ophthalmologic assessment and MRI. She is currently very sleepy with an ECOG level of 4, indicating significant functional impairment. The patient and her family were consulted regarding a bronchoscopic lung biopsy to investigate a suspicious pulmonary nodule, but they opted not to proceed with the biopsy after discussing prognosis and potential interventions. Instead, they agreed to a trial of increased dexamethasone to assess for symptomatic improvement. The patient’s current clinical status and poor performance make her a poor candidate for aggressive interventions such as chemotherapy or radiation unless small cell lung cancer is confirmed and the patient/family are willing to pursue intensive care measures, including ICU admission and intubation, which is not aligned with her expressed wishes.
+
+Past Medical History:
+Hypertension, diabetes mellitus, chronic kidney disease, cerebrovascular disease (brain metastases), porcelain gallbladder, fusiform infrarenal abdominal aortic aneurysm
+
+Medications:
+- Dexamethasone (dose not specified, increased as per family decision)
+- Perindopril 8 mg swallow, oral once daily
+- Amlodipine 30 mg swallow, oral once daily (Mylan-Nifedipine ER)
+- Hydrochlorothiazide 25 mg swallow, oral once daily
+- Metformin 30 mg swallow, oral once daily (Mylan-Gliclazide MR)
+- Dapagliflozin 10 mg swallow, oral once daily
+- Atorvastatin 20 mg swallow, oral once daily
+- Alprazolam 0.5 mg swallow, oral as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-17:
+- CT Chest/Abdomen/Pelvis with contrast: lobulated right upper lobe nodule suspicious for malignancy, right adrenal mass consistent with metastasis, porcelain gallbladder, fusiform infrarenal abdominal aortic aneurysm
+
+2026-02-13:
+- Portable chest X-ray: 1.8 cm nodular density adjacent to right hilum, unclear if primary malignancy or metastatic disease
+- Magnesium level: 0.66 mmol/L (low)
+- Albumin: 42 g/L
+- Aspartate aminotransferase: 23 U/L
+- Alanine aminotransferase: 13 U/L
+- Alkaline phosphatase: 117 U/L
+- Lactate dehydrogenase: 186 U/L
+- Thyroid stimulating hormone: 3.550 mIU/L
+- Hemoglobin A1C: 7.1%
+- Phosphorous level: 1.11 mmol/L
+- Calcium, total: 2.49 mmol/L
+- Electrolytes: sodium 138 mmol/L, potassium 3.3 mmol/L (low), chloride 98 mmol/L
+- Creatinine: 81 umol/L
+- Glucose random: 7.4 mmol/L
+- Complete blood count: leukocytosis, normocytic anemia, thrombocytosis
+- Prothrombin time/INR: 1.0
+
+2026-02-09:
+- MRI Brain with contrast: multiple enhancing intraaxial lesions consistent with metastatic disease, dominant 16 mm lesion in posterior midbrain causing obstructive hydrocephalus, ptosis secondary to brainstem involvement
+
+Impression:
+Sharon Pearl Leblanc is an 80-year-old female with known brain metastases and a suspicious pulmonary nodule on imaging. Her current clinical status is significantly impaired, with severe functional decline (ECOG 4) and poor performance status. The decision was made by the patient and family to forgo further invasive investigations such as a bronchoscopic lung biopsy in favor of a trial of increased dexamethasone to assess for symptomatic improvement. The presence of multiple brain metastases and a suspicious pulmonary nodule raises concern for metastatic disease, likely from a primary lung malignancy. Her overall prognosis is guarded given her advanced age, poor performance status, and extensive metastatic disease.
+
+Plan:
+1. I will increase the dose of dexamethasone and reassess the patient’s clinical status and response to therapy in 3-5 days.
+2. I will monitor for any signs of clinical deterioration or improvement in neurological symptoms, particularly ptosis and level of consciousness.
+3. I will arrange for a follow-up consultation with palliative care to discuss goals of care, symptom management, and advance care planning in light of the patient’s poor prognosis and current clinical status.

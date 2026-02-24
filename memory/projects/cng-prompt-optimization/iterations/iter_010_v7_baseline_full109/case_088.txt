@@ -1,0 +1,70 @@
+**Patient ID**
+Norbert Robicheau, 85-year-old male.
+
+**History of Present Illness**
+This 85-year-old male presents with a history of progressive anemia and leukopenia over the past 1.5 years. He reports ongoing fatigue, weakness, and pallor, prompting frequent blood transfusions (approximately every 3–4 weeks) and iron infusions. Recent investigations, including bone marrow biopsy on January 15, 2026, revealed borderline hypercellular marrow with megakaryocyte dysplasia and anemia, raising suspicion for myelodysplastic syndrome (MDS). The patient denies night sweats, melena, or significant weight loss but endorses caregiver burden due to his mother’s dementia, contributing to his fatigue. He remains ambulatory and functionally independent despite his condition.
+
+The patient expresses concern about the diagnosis of MDS, asking whether it is cancerous and what treatment options exist. He is currently managing symptoms with transfusions and iron therapy but is open to referral for hematology consultation to explore further management.
+
+**Past Medical History**
+- GERD/Gastritis (H. pylori positive in the past)
+- Hyperlipidemia
+- Hypertension
+- Colon cancer (ascending colon resection in 2012)
+
+**Medications**
+- Ramipril 10 mg once daily
+- Rosuvastatin 10 mg once daily
+- Metoprolol 50 mg twice daily
+- Rabeprazole 20 mg once daily
+- Latanoprost eye drops
+
+**Allergies**
+Not documented
+
+**Family History**
+Not documented
+
+**Social History**
+- Nonsmoker
+- No alcohol or recreational drug use
+- Caregiver for mother with dementia
+
+**Physical Examination**
+Not documented
+
+**Investigations**
+2025-12-08:
+- Hemoglobin 96 g/L
+- Platelets 182 x10^9/L
+- WBC 5.4 x10^9/L
+- MCV 92.7 fL (previously elevated)
+- Ferritin 36.10 µg/L
+- SPEP unremarkable
+- ANA negative
+- Occult blood positive
+
+2026-01-15:
+- Hemoglobin 92 g/L
+- WBC 5.2 x10^9/L
+- Platelets 165 x10^9/L
+- MCV 92.5 fL
+- Bone marrow biopsy: Borderline hypercellular marrow with megakaryocyte dysplasia and anemia
+- Flow cytometry: No abnormal hematologic population detected
+
+2025-12-22:
+- Hemoglobin 90 g/L
+- WBC 6.4 x10^9/L
+- Platelets 188 x10^9/L
+- MCV 91.7 fL
+- Ferritin 524.00 µg/L
+- Vitamin B12 352 pmol/L
+- Reticulocyte count 0.040 (absolute 0.1256 x10^12/L)
+
+**Impression**
+This 85-year-old male has a diagnosis of suspected myelodysplastic syndrome (MDS) based on persistent anemia, leukopenia, and bone marrow findings of megakaryocyte dysplasia. His clinical course is complicated by ongoing transfusion dependence and iron deficiency, despite iron therapy. While the bone marrow biopsy did not show overt malignancy, the dysplasia and anemia raise concern for a low-grade myeloproliferative disorder. Further evaluation by hematology is warranted to assess for clonal hematopoiesis and potential therapeutic options.
+
+**Plan**
+1. I will refer the patient to hematology for further evaluation and management of suspected MDS.
+2. I will continue monitoring hemoglobin and iron levels every 2 weeks, with transfusions as needed.
+3. I will arrange follow-up in 4 weeks to reassess clinical status and review hematology consultation findings.

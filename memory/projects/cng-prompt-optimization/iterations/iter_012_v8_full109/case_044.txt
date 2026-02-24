@@ -1,0 +1,76 @@
+Patient ID: Catherine Lynn Deveau, 63-year-old female
+
+History of Present Illness:
+Mrs. Deveau presents with worsening dyspnea and wheezing, particularly at night and in the afternoon, which has significantly impacted her quality of life. She reports that her current inhalers, including Ventolin and Atrovent, are not providing adequate relief. She has a history of chronic anxiety, which has been exacerbated by panic attacks triggered by previous inhaler use, specifically a medication that caused severe anxiety and panic symptoms resembling a heart attack. She denies any hemoptysis or weight loss but reports recent weight gain. She also describes transient episodes of facial numbness and freezing on the right side, which began with a headache sensation and have been ongoing since July 2025. These episodes are severe enough to require her to sit down but do not involve vision changes or weakness. She has been smoking approximately five to six cigarettes daily and has been unable to quit despite previous attempts. Her facial numbness symptoms have been evaluated with a CT scan of the head and carotid ultrasound, which showed small vessel ischemic changes and no significant carotid atherosclerosis, respectively.
+
+She denies any current orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. Her chest examination reveals diminished air entry bilaterally without wheezing, consistent with possible chronic obstructive pulmonary disease (COPD) or other obstructive lung pathology. She has been referred to primary care in Yarmouth due to her inability to travel to Halifax for follow-up.
+
+---
+
+Past Medical History:
+Hypertension, dyslipidemia, myocardial infarction (2011, treated with drug-eluting stent), chronic obstructive pulmonary disease (COPD), chronic anxiety, history of substance abuse (opioids, benzodiazepines), small vessel ischemic changes on CT head, and transient ischemic attacks (TIA) under investigation.
+
+---
+
+Medications:
+- APO-metoprolol 25 mg PO BID
+- MYLAN-pantoprazole 40 mg PO daily
+- TARO-atorvastatin 80 mg PO daily at bedtime
+- PMS-sertraline 25 mg PO daily (2 capsules)
+- APO-perindopril 8 mg PO daily
+- SANDOZ-amlodipine 5 mg PO daily (half tablet)
+- SANDOZ-mirtazapine 15 mg PO at bedtime (half tablet)
+- Ventolin (albuterol) 100 mcg/puff PRN
+- Atrovent (ipratropium) 20 mcg/puff PRN
+- Spiriva (tiotropium) 18 mcg daily via HandiHaler
+
+---
+
+Allergies: not documented
+
+---
+
+Family History: not documented
+
+---
+
+Social History:
+Current smoker (5-6 cigarettes daily), history of substance abuse (opioids, benzodiazepines), no alcohol use currently, chronic anxiety.
+
+---
+
+Physical Examination:
+Vital signs: not documented
+General: Appears anxious but in no acute distress.
+Lungs: Diminished air entry bilaterally, no wheezing.
+Cardiovascular: Regular rate and rhythm, no murmurs or gallops.
+Neurological: No focal deficits, facial sensation intact except for transient right-sided numbness/freezing episodes.
+Extremities: No edema.
+
+---
+
+Investigations:
+2025-11-18:
+- Carotid ultrasound: No cervical carotid atherosclerosis, mildly elevated peak systolic velocity in the mid left cervical ICA without vascular narrowing.
+- CT head: Small vessel ischemic changes, normal brain volume for age, no acute intracranial hemorrhage.
+
+2023-06-26:
+- MIBI scan: Fixed perfusion defects in septal regions, normal global LV systolic function (EF 73%), borderline TID index.
+
+2024-06-11:
+- Echocardiogram: Preserved LV systolic function, mild tricuspid regurgitation, no pericardial effusion.
+
+---
+
+Impression:
+Mrs. Deveau is a 63-year-old female with a complex medical history, including COPD, chronic anxiety, and a history of myocardial infarction with stent placement. Her current symptoms of dyspnea and wheezing, along with diminished air entry on examination, are consistent with worsening COPD. The transient facial numbness and freezing episodes suggest possible small vessel ischemic changes, though no significant carotid disease was identified. Her smoking history remains a critical risk factor for both cardiovascular and pulmonary disease. The lack of response to current inhalers and her history of panic attacks with previous inhaler use complicate her management.
+
+---
+
+Plan:
+1. I will discontinue the current inhaler regimen (Ventolin and Atrovent) due to inadequate relief and patient sensitivity.
+2. I will order a chest CT scan to further evaluate the lung parenchyma and rule out alternative diagnoses such as lung cancer or other structural abnormalities.
+3. I will arrange for a pulmonary function test (PFT) to assess the severity of COPD and guide further management.
+4. I will refer Mrs. Deveau to a smoking cessation program, emphasizing the importance of quitting smoking to improve her pulmonary and cardiovascular health.
+5. I will review her current medications for potential adjustments, particularly her antihypertensive and anxiolytic regimens, in collaboration with her primary care provider.
+6. I will follow up with Mrs. Deveau in two weeks to review the results of the chest CT and PFT, and to reassess her symptoms and inhaler needs.

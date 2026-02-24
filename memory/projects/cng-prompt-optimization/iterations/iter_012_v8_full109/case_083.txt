@@ -1,0 +1,64 @@
+Patient ID: Cindy Hazel, 62-year-old female
+
+History of Present Illness:
+Cindy Hazel is a 62-year-old female presenting with recurrent neck pain that has been exacerbated by stress over the past few months. She initially sought medical attention in December 2025 for chest pain triggered by stress and dyspnea on exertion, which led to a visit to the emergency department. At that time, investigations including troponin levels, ECG, and chest X-ray were performed, revealing no acute myocardial infarction but showing mild COPD on imaging. She was treated with aspirin and other supportive measures.
+
+Currently, Cindy reports that her symptoms have improved since she has been avoiding stressful situations. She describes her neck pain as severe and related to stress, with a history of similar symptoms leading to a PCI with stent placement in 2016. She has been trying to quit smoking using nicotine patches and is motivated to improve her overall health. She mentions that her symptoms have not been as severe since she has been avoiding stress, but she still experiences occasional discomfort. She has a history of COPD and has been using inhalers and oral medications as prescribed.
+
+Past Medical History:
+Myocardial infarction 2016 with PCI and stent placement
+Chronic obstructive pulmonary disease (COPD)
+Hypertension
+Dyslipidemia
+Gastroesophageal reflux disease (GERD)
+Anxiety
+Depression
+Colonic polyps (40 removed ~3 years ago)
+History of smoking (20 pack-years)
+
+Medications:
+Doxycycline 100 mg oral twice daily
+Escitalopram 20 mg oral daily (1.5 tablets)
+Pantoprazole 40 mg oral daily
+Amlodipine 5 mg oral daily (1.5 tablets)
+Rosuvastatin 20 mg oral daily
+Aspirin 81 mg oral daily
+
+Allergies:
+Shellfish (anaphylactic)
+
+Family History:
+Not documented
+
+Social History:
+Smoking history: previously smoked half a pack per day, currently attempting to quit with nicotine patches
+No recreational drugs or marijuana use
+Period of binge drinking in young adulthood, currently abstinent
+Retired, previously worked in maintenance
+
+Physical Examination:
+Chest: clear, adequate air entry bilaterally
+Cardiovascular: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2025-12-10:
+- Troponin T: 10 ng/L (normal <14 ng/L)
+- ECG: normal sinus rhythm, nonspecific T wave abnormality, no significant change from prior ECG
+- Chest X-ray: hyperinflated lungs, mild diffuse coarsening of bronchovascular markings, no acute intrathoracic disease
+- Complete blood count: WBC 13.8 x10^9/L, hemoglobin 138 g/L, platelets 248 x10^9/L
+- Venous blood gas: pH 7.44, pCO2 41.3 mmHg, HCO3 27.7 mmol/L, lactate 1.00 mmol/L
+- Lytes: sodium 138 mmol/L, potassium 3.9 mmol/L, chloride 102 mmol/L
+- eGFR: 80 mL/min/1.73m^2
+
+Impression:
+Cindy Hazel is a 62-year-old female with a history of myocardial infarction, COPD, hypertension, and anxiety who presents with recurrent neck pain exacerbated by stress. Her symptoms have been partially relieved by avoiding stress, but she continues to experience discomfort. Investigations have not shown any acute cardiac events, but her COPD remains a concern. The recurrent nature of her symptoms and their relation to stress suggest a possible psychosomatic component, though further evaluation is necessary to rule out other causes.
+
+Plan:
+1. I will arrange for a formal stress test to evaluate for any underlying cardiac issues that may be contributing to her symptoms.
+2. I will review the results of the stress test and, if necessary, arrange for further cardiac investigations such as a nuclear stress test.
+3. I will provide counseling on stress management techniques and smoking cessation strategies, including the use of nicotine replacement therapies.
+4. I will continue her current medications as they are appropriate for her conditions.
+5. We will schedule a follow-up appointment in 4 weeks to review the results of the stress test and discuss further management.

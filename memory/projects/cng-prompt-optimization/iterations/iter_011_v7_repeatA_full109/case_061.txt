@@ -1,0 +1,61 @@
+Patient ID: Brian Germain, 75-year-old male
+
+History of Present Illness:
+Brian Germain is a 75-year-old male with a history of p16-positive carcinoma of the right oropharynx treated with chemoradiation five years ago. He presents with recurrent symptoms suggestive of aspiration pneumonia, likely secondary to chronic dysphagia from radiation-induced fibrosis. He describes a chronic cough with phlegm production, intermittent choking, and difficulty swallowing, which has led to significant weight loss. These symptoms have persisted despite previous antibiotic treatments for pneumonia. He has not undergone a swallowing assessment in many years and relies on slow, cautious eating due to his dysphagia. His current symptoms include rattling in the chest, coughing fits, and occasional aspiration events. He has not been scheduled for a recent CT scan, and his last imaging showed consolidation in the right middle lobe and base, suggestive of atelectasis, scarring, or organizing pneumonia.
+
+Brian’s functional status has declined due to his inability to maintain adequate nutrition, contributing to his weight loss. He reports frequent mouth hygiene but only rinses once or twice daily, which is insufficient. His oxygen saturation remains stable at 97-104% on room air, and his physical examination reveals clear lungs without acute distress, though there is concern for possible foreign body obstruction or scar tissue contributing to his symptoms.
+
+Past Medical History:
+- p16-positive carcinoma right oropharynx (T4 N1), chemoradiation completed February 2020
+- Carcinoma of the prostate (pT2c, Gleason score 8), postoperative PSA undetectable
+- Atrial fibrillation (not anticoagulated)
+- Coronary artery disease with stent placement
+- Diverticulosis with bowel resection
+- Total hip replacement
+- Possible vascular dementia
+
+Medications:
+- Rosuvastatin 10 mg daily
+- Pantoprazole 40 mg daily
+- Aspirin 81 mg daily
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History: Not documented
+
+Physical Examination:
+- Chest: Clear to auscultation, oxygen saturation 97-104% on room air
+- Oral cavity: Reasonable dentition, food particles noted, dry mouth
+- Neurological: No focal deficits noted, cognitive function appears stable
+- Other: No acute distress, stable vital signs
+
+Investigations:
+2025-12-23:
+- CT Chest: Consolidation in the right middle lobe and medial right lung base, mild volume loss in the right middle lobe. Findings suggestive of atelectasis, scarring, and/or organizing pneumonia. New 5 mm pulmonary nodule in the left lung base.
+
+2025-11-26:
+- Chest X-ray: Persistent triangular airspace opacification in the right infrahilar region, favoring involvement of the right middle lobe.
+
+2025-11-06:
+- Complete Blood Count: WBC 6.4 x10^9/L, Hemoglobin 130 g/L, Platelets 227 x10^9/L
+- C-Reactive Protein: 3.3 mg/L
+- Thyroid Stimulating Hormone: 6.750 mIU/L
+- Free T4: 14.8 pmol/L
+- Iron Studies: Iron 14.7 umol/L, Ferritin 130.00 ug/L, TIBC 48 umol/L
+- Liver Function Tests: ALT 10 U/L, AST 25 U/L, Alkaline Phosphatase 68 U/L
+- Kidney Function: eGFR 90 mL/min/1.73m^2, Creatinine 78 umol/L
+- Electrolytes: Sodium 139 mmol/L, Potassium 3.6 mmol/L, Chloride 99 mmol/L
+- Glucose: Random 7.3 mmol/L
+- Hemoglobin A1C: 6.1%
+
+Impression:
+Brian Germain presents with chronic symptoms of aspiration pneumonia secondary to radiation-induced dysphagia from his history of oropharyngeal carcinoma. His recurrent pneumonia episodes and persistent consolidation on imaging suggest ongoing aspiration risk. The differential diagnosis includes organizing pneumonia, atelectasis, and possible foreign body obstruction or scar tissue contributing to his symptoms. His nutritional status is compromised due to chronic dysphagia, and his oral hygiene practices are inadequate.
+
+Plan:
+1. I will arrange for a swallowing assessment (videofluoroscopic swallowing study) to evaluate the degree of aspiration risk and guide management.
+2. I will schedule a follow-up CT chest in March 2026 to reassess the consolidation in the right middle lobe and base, and to evaluate the new pulmonary nodule in the left lung base.
+3. I will counsel Brian on improving oral hygiene with rinsing before and after each meal, and at least four times daily, emphasizing the importance of spitting rather than gargling to reduce aspiration risk.
+4. I will review the potential benefits and risks of medications for aspiration pneumonia with Jean-Luc Dugas, and consider further interventions if symptoms persist or worsen.
+5. We will follow up after the results of the swallowing assessment and CT chest to determine next steps, which may include further endoscopic evaluation or nutritional support.

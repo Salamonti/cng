@@ -1,0 +1,53 @@
+Patient ID: Sally Belding, 74-year-old female
+
+History of Present Illness:
+Sally Belding, a 74-year-old female, presents with persistent respiratory symptoms despite recent treatments. She reports worsening bronchitis with asthma exacerbation, initially managed by a virtual physician who prescribed doxycycline for presumed bronchitis. Her symptoms deteriorated, prompting a visit to outpatient services where she received prednisone 50 mg for five days due to worsening asthma. Despite this, she remains symptomatic with persistent green phlegm, sinus congestion, and abdominal discomfort from chronic coughing. She denies fever but reports ongoing sinus infection symptoms. Her current inhaler regimen includes Breo Ellipta 200/25, Spiriva Respimat 2.5 mcg, and as-needed salbutamol.
+
+Sally expresses concern about steroid use, as she has not required prednisone in six years. She is frustrated with the lack of improvement and seeks alternative management options, including a potential change in antibiotic therapy. She emphasizes her long-standing relationship with Dr. Eissa, who has managed her eosinophilic granulomatosis with polyangiitis (EGPA) and respiratory conditions for years.
+
+Past Medical History:
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+Asthma with eosinophilic features
+Chronic sinusitis
+Gastroesophageal reflux disease (GERD)
+History of gastric banding surgery
+
+Medications:
+Breo Ellipta 200/25 mcg inhaled daily
+Spiriva Respimat 2.5 mcg inhaled twice daily
+Nucala (mepolizumab) subcutaneous injection monthly
+Montelukast 10 mg orally daily
+Pantoprazole 40 mg orally twice daily
+Famotidine 20 mg orally twice daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-02:
+Complete Blood Count: WBC 7.1 x10^9/L, Hemoglobin 126 g/L, Platelets 352 x10^9/L, Eosinophils 0.1 x10^9/L
+Lytes: Sodium 140 mmol/L, Potassium 4.0 mmol/L, Chloride 101 mmol/L
+Creatinine: 56 umol/L, eGFR 90 mL/min/1.73m^2
+Ferritin: 57.30 ug/L
+Respiratory Panel: Positive for Influenza A, Negative for COVID-19, RSV
+ECG: Normal sinus rhythm, no significant changes from prior
+
+2026-01-29:
+Chest X-ray: No acute abnormality detected
+Venous Blood Gas: pH 7.37, pCO2 50.5 mmHg, HCO3 29.1 mmol/L
+
+Impression:
+Sally Belding presents with an acute exacerbation of her chronic respiratory symptoms, characterized by persistent bronchitis, asthma, and sinusitis despite recent steroid and antibiotic therapy. Her current symptoms, including green phlegm and sinus congestion, suggest a possible bacterial sinusitis component, though viral causes such as influenza A cannot be ruled out entirely. The absence of fever and the presence of eosinophilia in her past history raise considerations for allergic or eosinophilic contributions to her symptoms. Given her history of EGPA and chronic steroid use, careful consideration must be given to minimizing steroid exposure while managing her respiratory symptoms effectively.
+
+Plan:
+1. We will discontinue prednisone and reassess symptoms in 3-5 days to monitor for steroid withdrawal effects.
+2. We will initiate amoxicillin-clavulanate 875/125 mg orally twice daily for 10 days to treat suspected bacterial sinusitis.
+3. We will arrange for a sinus-focused CT scan to evaluate for sinusitis and potential anatomical abnormalities contributing to her symptoms.
+4. We will review her inhaler technique and adherence to ensure optimal use of Breo Ellipta and Spiriva Respimat.
+5. We will schedule a follow-up appointment in one week to reassess her respiratory status and adjust her treatment plan as needed.
+6. We will consider adding a nasal saline irrigation regimen to help manage sinus congestion and phlegm production.

@@ -1,0 +1,43 @@
+Patient ID: Cornelia Nickerson, 83-year-old female
+
+History of Present Illness:
+The patient is a 83-year-old female who was reassured during today’s encounter regarding ongoing evaluation of pulmonary nodules identified on prior imaging. She remains under investigation for a 1.2 cm nodule in the lower lobe of the left lung, with no acute respiratory symptoms reported. The patient continues to experience fatigue and unintentional weight loss of approximately 20 lbs, along with recent-onset nocturnal sweats. She denies shortness of breath, cough, fever, hemoptysis, or other systemic symptoms. On examination, her oxygen saturation is 95% on room air, and her chest is clear to auscultation.
+
+The patient’s history of breast cancer, chronic lymphocytic leukemia (CLL), and chronic kidney disease (CKD) remains relevant to her current evaluation. Her smoking history, though quit 25 years ago, contributes to ongoing malignancy risk. The patient has been counseled on the importance of follow-up imaging and potential tissue diagnosis to clarify the nature of the pulmonary findings.
+
+Past Medical History:
+Breast cancer (1970, surgically treated), chronic kidney disease (CKD), chronic lymphocytic leukemia (CLL), basal cell carcinoma, hypertension, hyperlipidemia, type 2 diabetes mellitus, thyroid disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+Former smoker (40 pack-year history, quit ~25 years ago), no alcohol or illicit substance use
+
+Physical Examination:
+Vital signs: PSO2 95% on room air, chest clear to auscultation; no further details documented
+
+Investigations:
+2026-01-22:
+- Chest examination: PSO2 95%, chest clear
+
+2025-12-12:
+- Cytology: negative
+- Bronchoscopy: no lesions identified
+
+2025-10-20:
+- PET-CT: no endobronchial lesions detected
+
+Impression:
+This patient has a pulmonary nodule in the left lower lobe measuring 1.2 cm, identified on prior imaging, with no acute respiratory symptoms at this time. Given her extensive oncologic history—including breast cancer, CLL, and basal cell carcinoma—metastatic disease remains a concern, though primary lung malignancy cannot be excluded. The presence of fatigue, weight loss, and nocturnal sweats warrants further investigation to rule out systemic malignancy or other underlying causes. Chronic kidney disease and her age also necessitate careful consideration in any diagnostic or therapeutic approach.
+
+Plan:
+1. I will arrange for a follow-up CT scan of the chest in six months to monitor the pulmonary nodule for interval changes.
+2. I will review the patient’s renal function and overall clinical status with her primary care provider to ensure ongoing monitoring of CKD and systemic health.
+3. I will document the patient’s current symptoms, including fatigue, weight loss, and nocturnal sweats, and recommend further hematologic and oncologic consultation if these persist or worsen.

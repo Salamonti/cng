@@ -1,0 +1,50 @@
+Patient ID
+Sally Belding is a 73-year-old female presenting for evaluation of persistent respiratory symptoms.
+
+History of Present Illness
+Sally Belding, a 73-year-old female, presents with persistent respiratory symptoms despite recent treatments. She reports worsening cough productive of green phlegm, sinus congestion, and abdominal discomfort from coughing over the past week. Initially, she was diagnosed with bronchitis and asthma by a virtual physician, who prescribed doxycycline 100 mg twice daily for seven days. By January 29, her symptoms worsened, leading to outpatient evaluation where a chest X-ray and blood work were performed. She was diagnosed with asthma exacerbation and prescribed prednisone 50 mg for five days. Despite this treatment, her symptoms have not improved significantly. She continues to use her Breo Ellipta 200/25, Spiriva Respimat 2.5 mcg, and as-needed emergency puffer. She denies fever but suspects sinus infection. She expresses concern about the recent use of steroids, which she has not used in six years.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA), asthma, gastroesophageal reflux disease (GERD), sinusitis.
+
+Medications
+- Nucala (mepolizumab) injection as prescribed
+- Aerobika nebulizer therapy 15 minutes four times daily
+- Spiriva Respimat 2.5 mcg inhaled twice daily
+- Breo Ellipta 200/25 mcg inhaled once daily
+- Pantoprazole 40 mg orally twice daily
+- Famotidine 20 mg orally twice daily
+- Montelukast 10 mg orally once daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+not documented
+
+Investigations
+2026-01-29
+- Chest X-ray: No acute abnormality detected.
+- Complete Blood Count: WBC 4.5 x10^9/L, eosinophils 0.0 x10^9/L.
+- Venous Blood Gas: pH 7.37, pCO2 50.5 mmHg, HCO3 29.1 mmol/L.
+- Respiratory Panel: Positive for Influenza A, negative for COVID-19, RSV.
+
+2025-07-03
+- Pulmonary Function Testing: Normal post bronchodilator spirometry and diffusion capacity.
+
+Impression
+Sally Belding presents with persistent respiratory symptoms and productive cough despite recent treatment with antibiotics and steroids. The presence of green phlegm and sinus congestion suggests a possible bacterial sinusitis or lower respiratory tract infection. The recent positive Influenza A test indicates a viral component to her symptoms. Her history of EGPA and asthma complicates the clinical picture, and the lack of improvement with current treatments raises concern for possible bacterial superinfection or inadequate control of her underlying conditions.
+
+Plan
+1. I will discontinue prednisone and reassess the need for further steroid use.
+2. I will prescribe amoxicillin-clavulanate 875 mg/125 mg orally twice daily for 10 days to cover possible bacterial sinusitis or secondary infection.
+3. I will arrange for a sinus X-ray or CT scan of the sinuses to evaluate for sinusitis.
+4. I will review the patient’s inhaler technique and adherence to her current asthma regimen, including Spiriva Respimat and Breo Ellipta.
+5. I will schedule a follow-up appointment in one week to reassess her symptoms and response to treatment.
+6. I will ensure her Nucala injections are up to date and continue her current EGPA maintenance regimen.

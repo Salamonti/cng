@@ -1,0 +1,68 @@
+**Patient ID**
+Aubrey Hillyard is a 54-year-old male.
+
+**History of Present Illness**
+The patient reports feeling well overall with no significant changes in his baseline symptoms. He denies any new systemic complaints aside from mild right shoulder impingement and occasional red lesions on his chest and tongue, which he describes as "blood blisters." His blood glucose levels remain stable, and he attributes his well-being to recent recovery from vacation. He notes that his chronic pancytopenia, present for over a decade, has not worsened symptomatically, though he acknowledges ongoing mild fatigue. He has no concerns about his current blood count abnormalities and is not seeking further invasive investigations such as a bone marrow biopsy at this time.
+
+The patient’s pancytopenia remains stable without red flag symptoms such as unintentional weight loss, fever, or night sweats. His fatty liver disease, confirmed on recent ultrasound, is considered the likely contributor to his splenic sequestration of blood cells. He expresses interest in exploring potential treatments for his fatty liver, including semaglutide (Wegovy 2.4 mg weekly), which may improve liver function and spleen size, thereby addressing his pancytopenia.
+
+**Past Medical History**
+Type 2 diabetes mellitus (A1c 7.3)
+Asthma (controlled on Symbicort)
+Myocardial infarction at age 34
+Obstructive sleep apnea on CPAP
+Fatty liver with cirrhosis and mild splenomegaly
+Colonoscopy findings: one polyp (removed), small internal hemorrhoid
+Tongue lesions
+Recurrent pneumonia and candida infections
+Previous pulmonary nodules (resolved)
+Iron deficiency (treated with IV iron)
+Dental issues requiring full dentures
+
+**Medications**
+symbicort 200 mcg 2 puffs twice daily
+dapagliflozin 5 mg once daily
+ramipril 10 mg once daily
+sitagliptin 100 mg once daily
+atorvastatin 40 mg twice daily
+bisoprolol 5 mg once daily
+aspirin 81 mg once daily
+metformin 500 mg twice daily
+omnaris 50 mcg 2 sprays in each nostril prn
+furosemide 20 mg once daily
+pantoprazole 40 mg once daily
+
+**Allergies**
+not documented
+
+**Family History**
+Grandfathers both had esophageal cancer
+No history of cancer in primary family members
+
+**Social History**
+Occasional alcohol use (once monthly)
+20 pack-year smoking history, quit 17 years ago
+Works at Tusket Ford
+Lives with wife and daughter
+Diet limited, rarely eats vegetables
+
+**Physical Examination**
+not documented
+
+**Investigations**
+2025-12-13
+Abdominal ultrasound: cirrhosis with fatty infiltration of liver, hepatomegaly (liver span 20.7 cm), geographic hypoechoic area adjacent to gallbladder fossa (likely focal fatty sparing or hemangioma), mild splenomegaly (spleen span 17.3 cm on follow-up study).
+
+2025-06-30
+Complete blood count: WBC 3.2 x10^9/L, RBC 4.63 x10^12/L, hemoglobin 142 g/L, hematocrit 0.421, MCV 90.9 fL, platelets 111 x10^9/L.
+Reticulocyte count: 0.022 (absolute 0.1014 x10^12/L), haptoglobin 0.68 g/L.
+Liver function tests: AST 39 U/L, ALT 59 U/L, GGT 158 U/L, alkaline phosphatase 75 U/L, bilirubin 8.9 umol/L.
+Viral serology: hepatitis B surface antigen/antibody nonreactive, hepatitis C antibody nonreactive, HIV nonreactive.
+
+**Impression**
+This 54-year-old male has a long-standing history of chronic pancytopenia, likely secondary to splenic sequestration due to fatty liver disease with cirrhosis and mild splenomegaly. His current blood counts remain stable without symptomatic deterioration, and he denies red flag symptoms for alternative etiologies such as malignancy or severe hemolysis. The patient is interested in exploring potential therapeutic options for his fatty liver, including semaglutide (Wegovy), which may improve liver function and spleen size, thereby addressing his pancytopenia. Follow-up will focus on monitoring his blood counts and liver function.
+
+**Plan**
+1. I will prescribe semaglutide (Wegovy) 2.4 mg subcutaneous injection once weekly for fatty liver disease and potential improvement in pancytopenia.
+2. I will arrange repeat complete blood count and liver function tests in six months to monitor response.
+3. I will follow up with the patient in six months to assess his progress and adjust management as needed.

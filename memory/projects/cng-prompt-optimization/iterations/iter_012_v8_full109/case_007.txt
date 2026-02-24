@@ -1,0 +1,64 @@
+Patient ID: Lane Owen Shaw, 52-year-old male
+
+History of Present Illness:
+Mr. Shaw is a 52-year-old male who presents with persistent symptoms of dyspnea and throat discomfort. He reports losing his breath when talking for prolonged periods and after eating certain foods, particularly bread, which triggers coughing and lightheadedness. These symptoms have been ongoing and are not relieved by his current medication, Symbicort. He denies heartburn or reflux symptoms but notes discomfort in his throat after eating certain foods. His symptoms have led to significant functional impairment, including difficulty speaking and performing daily activities. He has not undergone prior pulmonary function testing or endoscopic evaluation of his throat.
+
+Mr. Shaw describes a sensation of something lodged in his throat, which has worsened over recent months, causing shortness of breath, choking, and coughing. These symptoms prompted an emergency department visit, where heart failure and asthma were considered but ultimately ruled out due to a negative BNP level and sinus tachycardia on EKG. He has had no issues with swallowing foods of varying consistencies. His symptoms have persisted despite a trial of Symbicort, which he finds minimally helpful. He has a history of inconsistent primary care, which has impacted medication compliance.
+
+Past Medical History:
+Hypertension, anxiety
+
+Medications:
+candesartan cilexetil/hydrochlorothiazide 16 mg/12.5 mg tablet QD
+paroxetine HCl 20 mg tablet QD
+bisoprolol 5 mg tablet QD
+Symbicort 200/6 mcg turbuhaler BID
+ASA 81 mg tablet QD
+
+Allergies:
+pineapple (causes difficulty breathing)
+
+Family History:
+Family history of hypertension and heart attacks on both sides of the family; father had a heart attack at age 60
+
+Social History:
+Never smoked, no alcohol use, lives in Digby, NS
+
+Physical Examination:
+Vital signs: HR 88 bpm, SpO2 95% on room air
+General: No acute distress
+HEENT: No JVD, throat exam not documented
+Cardiovascular: Normal S1 and S2, no murmurs or additional sounds
+Respiratory: Clear lungs, adequate air entry bilaterally
+Abdomen: Soft, no organomegaly
+Neurological: Unremarkable
+Extremities: No edema
+
+Investigations:
+2025-11-18:
+ECHO 2D: Normal biventricular size and systolic function, no valvular abnormalities, normal left ventricular diastolic function
+
+2025-10-23:
+CBC: WBC 15.1 x 10^9/L (elevated), hemoglobin 158 g/L, platelets 297 x 10^9/L
+Lytes: Sodium 134 mmol/L, potassium 3.9 mmol/L, chloride 98 mmol/L
+eGFR: 90 mL/min/1.73m^2
+Lipids: Cholesterol 4.9 mmol/L, triglycerides 2.73 mmol/L, LDL 2.8 mmol/L, HDL 0.88 mmol/L
+Liver function: Normal AST, ALT, alkaline phosphatase, bilirubin
+Thyroid: TSH 2.860 mIU/L
+Iron studies: Low iron saturation (22%), ferritin 126 ug/L
+Hemoglobin A1C: 5.0%
+Urinalysis: Protein 1.0 g/L (caution due to sperm presence), RBC 5-10/hpf, WBC 2-5/hpf
+
+2025-03-26:
+Chest X-ray: Nonspecific coarsening of central conducting airways, no consolidation or pleural effusion
+
+Impression:
+Mr. Shaw presents with chronic symptoms of dyspnea, throat discomfort, and coughing that are exacerbated by eating certain foods and prolonged talking. His symptoms suggest a possible reflux-related etiology, given the temporal association with eating and the lack of improvement with inhaled corticosteroids. The elevated white blood cell count and nonspecific chest X-ray findings raise the possibility of a mild inflammatory or infectious process, though no clear etiology has been identified. The normal echocardiogram rules out significant cardiac pathology as a contributor to his symptoms.
+
+Plan:
+1. I will initiate a trial of reflux management with dietary modifications, including elevation of the head of the bed to 45 degrees, avoidance of trigger foods, and cessation of eating four hours before bedtime.
+2. I will arrange for a pulmonary function test to evaluate for obstructive or restrictive lung disease.
+3. I will refer Mr. Shaw to Dr. Broderick for an endoscopic evaluation of his throat to assess for structural abnormalities or inflammation.
+4. I will order a repeat chest X-ray to reassess the nonspecific findings noted previously.
+5. I will request fasting blood work to evaluate for diabetes, including glucose and hemoglobin A1C levels.
+6. We will follow up in one month to reassess symptoms and the results of the above investigations.

@@ -1,0 +1,57 @@
+Patient ID: Amanda Doucette, 45-year-old female
+
+History of Present Illness:
+Mrs. Doucette presents with worsening shortness of breath over the past several weeks. She reports discontinuing all medications, which led to acute worsening of her diabetic control and subsequent ICU admission for IV insulin. On discharge, her sarcoidosis medications were not prescribed. Since then, she has noted progressive dyspnea despite her chest being clear to auscultation and normal oxygen saturation on room air. She resumed hydroxychloroquine and azathioprine, but her symptoms persist. She denies fever, chest pain, or palpitations but reports night sweats and right-sided flank pain that has been ongoing.
+
+She has a history of pulmonary sarcoidosis diagnosed in 2024, initially managed with azathioprine and hydroxychloroquine. Her disease was previously well-controlled with stable imaging and no active inflammation on CT chest. She also has a history of type 2 diabetes, obesity, and a remote embolic myocardial infarction with normal coronary arteries.
+
+Past Medical History:
+- Pulmonary sarcoidosis
+- Type 2 diabetes mellitus
+- Obesity
+- Congenital right atrophic kidney
+- Hepatic steatosis
+- Cholecystectomy
+- Motorcycle accident with sacral and right foot fractures (July 2023)
+- Previous smoker (10 pack-years)
+- Embolic myocardial infarction (normal coronary arteries)
+
+Medications:
+- Azathioprine 75 mg PO BID
+- Hydroxychloroquine 200 mg PO daily
+- Fluticasone furoate/umeclidinium/vilanterol 100/62.5/25 mcg inhalation daily
+- Pantoprazole 40 mg PO daily
+- Forxiga 10 mg PO daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+- Vital signs: BP 109/86, PR 72, SPO2 98% on room air
+- Chest: Clear to auscultation bilaterally, no wheezing or rales
+- Cardiovascular: Normal S1 and S2, no murmurs or additional sounds
+- Neurological: Unremarkable
+- No lower limb edema
+
+Investigations:
+2026-02-03:
+- Complete Blood Count: WBC 10.5 x10^9/L (elevated), RBC 4.59 x10^12/L, Hb 124 g/L, Hct 0.398, MCV 86.7 fL, Platelets 289 x10^9/L
+- Electrolytes: Sodium 143 mmol/L, Potassium 3.7 mmol/L, Chloride 106 mmol/L
+- C-Reactive Protein: 9.1 mg/L (elevated)
+- ESR: 27 mm/hr (elevated)
+- eGFR: 85 mL/min/1.73m^2, Creatinine 76 umol/L
+
+2026-02-03:
+- Chest X-ray: Clear lungs, no pleural effusion, stable borderline cardiomegaly
+
+Impression:
+Mrs. Doucette presents with persistent dyspnea and worsening sarcoidosis symptoms despite resumption of immunosuppressive therapy. Her elevated inflammatory markers (CRP and ESR) suggest ongoing disease activity or possible infection. The recent discontinuation of medications and subsequent ICU admission for diabetic decompensation highlight the importance of adherence to her regimen. Given her history of pulmonary sarcoidosis with prior imaging showing ground-glass opacities and lymphadenopathy, we must consider disease progression or relapse, particularly in the context of her elevated white blood cell count and inflammatory markers.
+
+Plan:
+1. I will optimize her sarcoidosis treatment by confirming adherence to azathioprine 75 mg PO BID and hydroxychloroquine 200 mg PO daily.
+2. We will order a CT chest to reassess for sarcoidosis activity or alternative causes of her symptoms.
+3. I will arrange for repeat pulmonary function tests to evaluate for progression of obstructive or restrictive lung disease.
+4. We will follow up in one month to review results and adjust therapy as needed.

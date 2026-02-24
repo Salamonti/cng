@@ -1,0 +1,55 @@
+Patient ID: Susan Boudreau, 74-year-old female
+
+History of Present Illness:
+Ms. Boudreau presents with persistent symptoms of chronic diarrhea, occurring every few days, which she attributes to her recent medication regimen. She also reports recurrent mouth sores, which she similarly suspects are medication-related. Her dyspnea on exertion, specifically with stair climbing, remains unchanged and is described as stable but limiting. She denies cough or phlegm production. The patient expresses concern about her current functional status, noting that her heart failure symptoms have not improved and are consistent with her baseline. She reports adherence to her current medications, including vorziga (dapagliflozin), bisoprolol, and spironolactone.
+
+Ms. Boudreau’s bowel and oral symptoms began after initiation of four new medications, including dapagliflozin, which she suspects is the culprit. She has never experienced these issues before and attributes them directly to her current treatment. She is seeking guidance on managing these side effects while maintaining her heart failure therapy.
+
+Past Medical History:
+Asthma
+Glaucoma
+Breast cancer (2004, treated with surgery, chemotherapy, radiation)
+Ischemic stroke (remote)
+Congestive heart failure (newly diagnosed, EF 38%)
+Prediabetes (HbA1c 6.0%)
+Mild proteinuria
+
+Medications:
+Dapagliflozin 10 mg daily
+Bisoprolol 5 mg at bedtime
+Spironolactone 12.5 mg daily
+Perindopril 2 mg daily
+Montelukast 10 mg daily
+Zenhale 2 puffs BID
+Spiriva Respimat 2 puffs daily
+Antidepressant (unspecified)
+
+Allergies: not documented
+
+Family History:
+Emphysema (mother)
+
+Social History:
+Never smoker
+No alcohol use
+Remote occupational smoke exposure
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-03:
+CBC: WBC 6.8 x 10^9/L, RBC 4.09 x 10^12/L, Hemoglobin 119 g/L, Hematocrit 0.382 L/L, MCV 93.4 fL, Platelets 289 x 10^9/L
+eGFR 62 mL/min/1.73m^2, Creatinine 84 umol/L
+Liver enzymes: Alkaline Phosphatase 79 U/L, Bilirubin 8.5 umol/L, GGT 11 U/L, AST 23 U/L, ALT 14 U/L, LDH 215 U/L, CPK 120 U/L
+Echocardiogram: LVEF 38%, moderate global hypokinesis, no valvular abnormalities
+Myocardial Perfusion Study (sestamibi): No reversible perfusion defect, small fixed defect in apical anteroseptal wall, LVEF 33-41%, mild coronary artery calcification
+
+Impression:
+Ms. Boudreau’s symptoms of persistent diarrhea and oral ulcers are likely medication-related, with dapagliflozin being the most probable culprit. Her congestive heart failure remains stable with an ejection fraction of 38% and no evidence of reversible ischemia on recent imaging. The mild coronary artery calcification and fixed perfusion defect suggest atherosclerotic changes but no acute intervention is indicated at this time. Her exertional dyspnea is consistent with her known heart failure and functional limitations.
+
+Plan:
+1. I will reduce dapagliflozin dose to 5 mg daily for two weeks and reassess for improvement in bowel and oral symptoms.
+2. I will prescribe a nitroglycerin transdermal patch 0.4 mg/hour for symptomatic relief of dyspnea on exertion.
+3. I will order B-type natriuretic peptide (BNP) testing to further evaluate the contribution of heart failure to her dyspnea.
+4. I will arrange follow-up in four weeks to reassess symptoms, medication tolerability, and BNP results.
+5. I will ensure her primary care provider is aware of the medication adjustment and the plan for follow-up.

@@ -1,0 +1,63 @@
+Patient ID
+Robyn Dawn Goodick is a 53-year-old female.
+
+History of Present Illness
+Mrs. Goodick presents today for ongoing cardiovascular follow-up after her anterior ST-elevation myocardial infarction in May 2024. She reports persistent fatigue, noting that she requires several days of recovery after even a single day of work. She denies shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, lower limb swelling, exertional chest pain, palpitations, or dizziness. She has gained 9 lbs over the past six months but denies abdominal distension, nausea, or appetite changes. Her heart rate occasionally reaches 130 bpm, with a usual resting rate in the 50s–80s. She remains asymptomatic for cardiac symptoms otherwise.
+
+She describes occasional wheezing during physical activity, raising concern for possible asthma or chronic obstructive pulmonary disease. Recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia. She has no recent chest pain episodes, though she acknowledges rare, non-specific discomfort.
+
+Past Medical History
+Anterior ST-elevation myocardial infarction (May 2024), type 2 diabetes mellitus, hypertension, dyslipidemia, atrial fibrillation, depression (possible), apical thrombus post-MI, segmental left ventricular dysfunction with ejection fraction 30–35%, grade I diastolic dysfunction.
+
+Medications
+- Ezetimibe 10 mg PO daily
+- Sacubitril/valsartan (Entresto) 24/26 mg PO b.i.d.
+- Spironolactone 12.5 mg PO daily
+- Metformin 1000 mg PO b.i.d.
+- Dapagliflozin 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Atorvastatin 40 mg PO daily
+- Apixaban 5 mg PO b.i.d.
+- Basaglar insulin 35 units PO daily
+- Bisoprolol 10 mg PO daily
+- Tiotropium (Spiriva Respimat) 2.5 mcg inhalation QD
+- Albuterol (Ventolin HFA) 100 mcg inhalation PRN
+
+Allergies
+not documented
+
+Family History
+Strong family history of premature coronary artery disease.
+
+Social History
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs.
+
+Physical Examination
+Vital signs: BP 112/79 mmHg, PR 82 bpm (regular), SpO2 97% on room air.
+General: No distress. Weight gain of 9 lbs over 6 months.
+Cardiovascular: Normal S1/S2, no murmurs, JVD, or lower limb edema.
+Respiratory: Clear lungs, bilateral equal air entry, audible wheezing.
+Neurological: Unremarkable.
+
+Investigations
+2025-03-XX:
+- HbA1c 7.6 (previously 7.3)
+- LDL 1.0 mmol/L
+- BNP 159 pg/mL
+
+2024-05-XX (post-MI admission):
+- LDL 4.38 mmol/L
+- Ejection fraction 30–35% (with segmental wall abnormalities and apical thrombus)
+- Holter monitoring: Infrequent ectopic beats, intermittent tachycardia
+
+Impression
+Mrs. Goodick is a 53-year-old woman with a history of anterior ST-elevation myocardial infarction, type 2 diabetes, and heart failure with reduced ejection fraction (30–35%). Despite optimized medical therapy—including Entresto, beta-blockade, and guideline-directed secondary prevention—she reports persistent fatigue, likely multifactorial in origin. Her recent HbA1c of 7.6 suggests suboptimal glycemic control, and her BNP of 159 pg/mL raises concern for ongoing volume or diastolic dysfunction. The presence of wheezing and a history of smoking warrant evaluation for obstructive airway disease. Her cardiovascular risk factors are otherwise well managed, with target LDL and blood pressure achieved.
+
+Plan
+1. I will order iron studies and ferritin to evaluate for anemia as a contributor to fatigue.
+2. I will arrange a sleep study to assess for obstructive sleep apnea, given her weight gain and persistent fatigue.
+3. I will schedule a formal pulmonary function test to evaluate for asthma or chronic obstructive pulmonary disease.
+4. I will review her HbA1c trend and adjust diabetes management at her next visit, with dietary counseling to target glycemic control.
+5. I will monitor her BNP and renal function at her 6-month follow-up, with consideration for further echocardiographic assessment of ejection fraction and diastolic function.
+6. We will continue Entresto, bisoprolol, and apixaban as prescribed, with close monitoring for side effects.
+7. We will follow up in 6 months to reassess symptoms, test results, and therapeutic response.

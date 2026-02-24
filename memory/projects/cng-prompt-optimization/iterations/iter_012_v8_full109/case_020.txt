@@ -1,0 +1,64 @@
+Patient ID: Robyn Dawn Goodick, 53-year-old female
+
+History of Present Illness:
+Robyn Goodick is a 53-year-old female presenting for follow-up of cardiovascular risk factors and ongoing fatigue following an anterior ST-elevation myocardial infarction (STEMI) in May 2024. She reports feeling well overall but describes persistent fatigue that limits her ability to return to work without several days of recovery. She denies shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, lower limb swelling, exertional chest pain, palpitations, or dizziness. She has gained 9 lbs over the past six months but denies abdominal distension, nausea, or loss of appetite. She notes occasional wheezing during physical activity, raising concern for possible asthma or chronic obstructive pulmonary disease (COPD). Recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia.
+
+She has been adherent to her cardiac medications and reports no recent changes in symptoms except for fatigue. Her blood pressure remains stable, and she denies any episodes of chest pain or irregular heart rhythms since her last visit. She remains compliant with her diabetes management, though her HbA1c has trended upward to 7.6 from a prior 7.3. She has no concerns regarding her anticoagulation or antiplatelet therapy.
+
+Past Medical History:
+Hypertension, type 2 diabetes mellitus, dyslipidemia, anterior STEMI (May 2024), atrial fibrillation, left ventricular dysfunction with apical thrombus, segmental wall motion abnormalities, grade I diastolic dysfunction, depression (possible)
+
+Medications:
+- Apixaban 5 mg PO b.i.d.
+- Atorvastatin 40 mg PO daily
+- Basaglar insulin 35 units PO daily
+- Bisoprolol 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Dapagliflozin 10 mg PO daily
+- Ezetimibe 10 mg PO daily
+- Entresto 24/26 mg PO b.i.d.
+- Metformin 1000 mg PO b.i.d.
+- Spironolactone 12.5 mg PO daily
+- Spiriva Respimat 2.5 mcg inhalation b.i.d.
+- Ventolin HFA 100 mcg inhalation PRN
+
+Allergies: not documented
+
+Family History: Strong family history of premature coronary artery disease
+
+Social History:
+- Former smoker (quit post-MI)
+- No alcohol use
+- Income assistance for medication costs
+- Fatigue limits work capacity
+
+Physical Examination:
+- Blood pressure: 112/79 mmHg
+- Pulse: 82 bpm, regular
+- Oxygen saturation: 97% on room air
+- Chest: Clear, adequate air entry bilaterally
+- Heart: Normal S1 and S2, no murmurs or additional sounds
+- Neurological exam: Unremarkable
+- No jugular venous distention or lower limb edema
+
+Investigations:
+2025-03-XX:
+- HbA1c: 7.6 (prior 7.3)
+- LDL: 1.0 mmol/L
+- BNP: 159 pg/mL
+
+2024-05-XX:
+- Ejection fraction: 30-35%
+- Segmental left ventricular dysfunction with akinetic regions
+- Grade I diastolic dysfunction
+
+Impression:
+Robyn Goodick is a 53-year-old female with a history of anterior STEMI, left ventricular dysfunction, and atrial fibrillation who presents with persistent fatigue and possible respiratory symptoms. Her cardiac function remains stable with an ejection fraction of 30-35%, though she continues to experience limitations in functional capacity. Recent Holter monitoring has shown intermittent tachycardia and ectopy, and her respiratory symptoms raise concern for underlying asthma or COPD. Her diabetes control has declined slightly, with an HbA1c of 7.6, and her lipid profile remains well-managed with an LDL of 1.0 mmol/L. The differential for her fatigue includes cardiac, respiratory, and metabolic contributions, as well as potential sleep-related causes.
+
+Plan:
+1. I will order iron studies and ferritin levels to evaluate for anemia as a potential contributor to fatigue.
+2. I will arrange a sleep study to assess for sleep-related causes of fatigue.
+3. I will schedule a cardiac magnetic resonance imaging (CMR) or wall motion study (WMS) to further evaluate left ventricular function and remodeling.
+4. I will continue Entresto 24/26 mg b.i.d., atorvastatin 40 mg daily, and bisoprolol 10 mg daily for heart failure and secondary prevention.
+5. I will optimize diabetes management with dietary counseling and consider adjusting metformin or insulin dosing at the next visit.
+6. I will follow up in six months to reassess fatigue, review test results, and adjust management as needed.

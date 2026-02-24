@@ -1,0 +1,37 @@
+Patient ID: 56-year-old female
+
+History of Present Illness:
+The patient presents with severe chest pain of acute onset, described as pressure-like and radiating to the left arm. The pain is associated with shortness of breath and mild diaphoresis, lasting for approximately 2 hours. There is no clear precipitating factor, and the pain has not responded to rest or nitroglycerin. The patient denies any associated nausea, vomiting, or palpitations.
+
+The chest pain is described as the most severe she has ever experienced, prompting her to seek urgent medical attention. She reports no recent trauma, fever, or respiratory symptoms, and her pain is not positional or pleuritic in nature.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-21:
+ECG: ST depression in inferior leads
+
+Impression:
+This patient presents with severe chest pain concerning for acute coronary syndrome, particularly given her history of coronary artery disease and the ECG findings of ST depression in the inferior leads. The clinical presentation and ECG changes are highly suggestive of an ongoing ischemic event, likely an acute myocardial infarction. Further evaluation is warranted to assess for complications and guide management.
+
+Plan:
+1. I will admit the patient to the cardiac care unit for monitoring and further evaluation.
+2. I will initiate aspirin 325 mg orally and start a heparin infusion pending cardiac catheterization.
+3. We will obtain troponin levels, complete blood count, and electrolytes for ongoing assessment.
+4. We will arrange for urgent cardiac catheterization to evaluate for revascularization options.

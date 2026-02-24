@@ -1,0 +1,72 @@
+Patient ID: Neil Ray Purdy is a 60-year-old male.
+
+History of Present Illness:
+Neil Ray Purdy is a 60-year-old male with newly identified leukocytosis (WBC 15.9 x 10^9/L, up from 14.7 x 10^9/L) and lymphocytosis (6.5 x 10^9/L). The peripheral blood smear shows moderate burr cells and Pappenheimer bodies. He has no symptoms of fever, night sweats, weight loss, or chills. He was recently diagnosed with type 2 diabetes (A1C 13.6) and has a history of hepatic steatosis. He also sustained trauma in a motor vehicle accident in July 2025, with no abdominal injury reported.
+
+The leukocytosis and lymphocytosis, along with the abnormal red and white blood cell morphology, raise concern for a myeloproliferative or myelodysplastic disorder. The presence of burr cells and Pappenheimer bodies suggests potential splenic dysfunction, hematologic disorders, or metabolic conditions. The patient denies any symptoms of chronic inflammatory or infectious states.
+
+Past Medical History:
+Type 2 diabetes mellitus, hypercholesterolemia, obesity, lumbar spine osteoarthritis, hepatic steatosis, partial thickness tear of the right extensor carpi radialis (2015), and history of left zygoma depression post-trauma (2016).
+
+Medications:
+Atorvastatin 20 mg tablet, once daily
+Dapagliflozin 10 mg tablet, once daily
+Metformin HCl 500 mg tablet, twice daily (titrated to 1000 mg twice daily)
+
+Allergies:
+Codeine, hay fever
+
+Family History:
+Family history of diabetes mellitus
+
+Social History:
+Quit drinking in 1996, ex-smoker (quit in 2001/2002 after smoking 1 pack per day for 20 years), no recreational drug use including cannabis.
+
+Physical Examination:
+not documented
+
+Investigations:
+2025-12-15:
+- Complete Blood Count: WBC 15.9 x 10^9/L (high), RBC 4.98 x 10^12/L, Hemoglobin 146 g/L, Hematocrit 0.451 L/L, Platelets 373 x 10^9/L, Lymphocytes 6.5 x 10^9/L (high), Monocytes 1.4 x 10^9/L (high)
+- Peripheral Blood Morphology: Moderate burr cells, present Pappenheimer bodies
+- Glucose AC: 8.7 mmol/L (high)
+- eGFR: 83 mL/min/1.73m^2
+- Creatinine: 91 µmol/L
+- Sodium: 141 mmol/L
+- Potassium: 4.2 mmol/L
+- AST: 49 U/L
+- ALT: 66 U/L
+- ALP: 84 U/L
+- Urinalysis: 13 granular casts, 1.5 ketones, trace protein, specific gravity 1.030
+- Albumin/Creatinine Ratio: 4.46 mg/mmol (high)
+
+2025-11-13:
+- Complete Blood Count: WBC 14.7 x 10^9/L (high), RBC 5.33 x 10^12/L, Hemoglobin 156 g/L, Hematocrit 0.475 L/L, Platelets 432 x 10^9/L, Lymphocytes 7.1 x 10^9/L (high), Monocytes 0.9 x 10^9/L
+- Peripheral Blood Morphology: Moderate burr cells, present Howell-Jolly bodies, present Pappenheimer bodies
+- Hemoglobin A1C: 13.6%
+- Glucose AC: 22.7 mmol/L (high)
+- eGFR: 90 mL/min/1.73m^2
+- Creatinine: 81 µmol/L
+- Iron: 15.2 µmol/L
+- Total Iron Binding Capacity: 46 µmol/L
+- Ferritin: 590.00 µg/L (high)
+- Vitamin B12: 380 pmol/L
+- Thyroid Stimulating Hormone: 11.000 mIU/L (high)
+- Free T4: 12.3 pmol/L
+- Lipids: Cholesterol 5.8 mmol/L (high), Triglycerides 3.37 mmol/L (high), LDL 3.4 mmol/L, HDL 0.90 mmol/L (low)
+- ALP: 174 U/L (high)
+- ALT: 97 U/L (high)
+- AST: 46 U/L
+
+2025-10-15:
+- Abdominal Ultrasound: Hepatic steatosis, no evidence of cirrhosis or HCC
+
+Impression:
+Neil Ray Purdy presents with persistent leukocytosis and lymphocytosis, along with abnormal red blood cell morphology including burr cells and Pappenheimer bodies. These findings raise concern for an underlying myeloproliferative or myelodysplastic disorder. The presence of Howell-Jolly bodies on prior smear suggests potential splenic dysfunction or functional asplenia. Chronic conditions such as type 2 diabetes and hepatic steatosis may contribute to or mimic hematologic abnormalities, but the persistent leukocytosis and abnormal blood smear findings warrant further investigation.
+
+Plan:
+1. I will order a bone marrow biopsy for further evaluation of the leukocytosis and abnormal blood smear findings.
+2. I will request molecular testing for JAK2, CALR, and MPL mutations to assess for myeloproliferative neoplasm.
+3. I will arrange for a repeat CBC with differential, reticulocyte count, iron studies, and vitamin B12/folate levels within the next two weeks.
+4. I will refer the patient to a hematologist for further assessment and management of the suspected hematologic disorder.
+5. We will review the patient's diabetes management and optimize glycemic control with an endocrinologist.

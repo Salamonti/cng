@@ -1,0 +1,57 @@
+Patient ID: Mark Gerald Pottier, 56-year-old male
+
+History of Present Illness:
+Mark is a 56-year-old male presenting with a long-standing history of severe, paroxysmal coughing triggered predominantly by fluid ingestion. This has been progressive over the past four to five years, initially suspected to be due to a foreign body ingestion (e.g., bristle) but no structural cause was identified on prior imaging. The coughing is now so severe that it causes near-syncopal episodes, particularly when drinking water or other fluids, and sometimes even with saliva or eating. He describes the sensation as if the fluid is triggering a reflexive cough that feels like it could cause him to lose consciousness. The cough is not associated with pain, chest discomfort, or respiratory distress, and there is no history of fever, weight loss, or other systemic symptoms. He has tried multiple interventions in the past, including medication adjustments for blood pressure, without relief. Notably, he has no history of smoking (quit 20 years ago after 10 years of smoking), no recent travel, and no occupational exposures to irritants or asbestos. He denies any changes in voice, nasal discharge, or joint inflammation, though he reports occasional tick bites with associated joint soreness in the past year.
+
+Physical examination reveals no acute distress, normal vital signs, and clear lung fields without wheezing or crackles. No lymphadenopathy or thyroid abnormalities are appreciated. The clinician noted a characteristic coughing pattern suggestive of a possible esophageal motility disorder, such as achalasia, though the recent CT scan did not show esophageal dilation or food retention.
+
+Past Medical History:
+Hypertrophic cardiomyopathy (diagnosed 2021)
+Hypertension
+Obstructive sleep apnea (noncompliant with CPAP)
+Anxiety
+Prior alcohol misuse
+Obesity
+Diverticulosis (sigmoid colon, with inflammation)
+Polyp in ascending colon (2 mm, not removed)
+
+Medications:
+Iberisartan 300 mg PO once daily
+Bisoprolol 5 mg PO once daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (quit 20 years ago after 10 years of smoking)
+Occupation: Insurance adjuster (desk job)
+No asbestos exposure
+Occasional tick bites (three this year, treated with antibiotics)
+Prior alcohol misuse (up to 1 pint of vodka per day)
+
+Physical Examination:
+Lung fields clear to auscultation, no wheezing or crackles
+No lymphadenopathy or thyroid abnormalities
+No evidence of joint inflammation or synovitis
+Cardiac examination deferred due to telemedicine in prior notes; no acute distress noted today
+
+Investigations:
+2026-02-12:
+CT Neck and Chest with contrast: No mass, lymphadenopathy, or evidence of aspiration pneumonia. Mild atelectasis/scarring and stable benign pulmonary nodules noted. No esophageal dilation or food retention.
+
+2025-09-18:
+Colonoscopy: Diverticulosis with inflammation in sigmoid/descending colon. Small polyp in ascending colon (2 mm, not removed). No active bleeding or malignancy.
+
+2025-07-17:
+Echocardiogram: Normal left ventricular size and function. Peak LVOT gradient of 11 mmHg with Valsalva. No midcavitary gradient visualized. Trace to mild mitral regurgitation.
+
+Impression:
+Mark presents with a chronic, progressive cough triggered by fluid ingestion, suggestive of an esophageal motility disorder such as achalasia or another form of esophageal dysmotility. The absence of esophageal dilation on CT does not rule out motility disorders, as some cases may not show classic findings. His past medical history is notable for hypertrophic cardiomyopathy, hypertension, and obstructive sleep apnea, though these are less likely to explain his symptoms. The lack of response to prior interventions, including blood pressure medication adjustments, further supports the need for a focused evaluation of esophageal function. Given the severity of his symptoms and the potential for aspiration risk, further diagnostic workup is warranted.
+
+Plan:
+1. I will initiate Pantoprazole 40 mg PO once daily in the morning, to be taken 30 minutes before breakfast, and provide dietary counseling for acid reflux management.
+2. I will prescribe a wedge pillow to elevate the head of the bed to 45 degrees at nighttime and instruct the patient to avoid eating or drinking for four hours before bedtime.
+3. I will refer Mark for upper endoscopy with esophageal manometry to evaluate for esophageal motility disorders, such as achalasia or gastroesophageal reflux disease (GERD).
+4. I will schedule a follow-up appointment in three months to reassess symptoms and the effectiveness of the above interventions.
+5. I will continue current medications: Iberisartan 300 mg PO once daily and Bisoprolol 5 mg PO once daily.

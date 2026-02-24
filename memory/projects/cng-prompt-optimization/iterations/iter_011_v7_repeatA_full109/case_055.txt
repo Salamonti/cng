@@ -1,0 +1,39 @@
+Patient ID
+Alice Whitehouse, 72-year-old female
+
+History of Present Illness
+Ms. Whitehouse presents with ongoing concerns following a recent PET/CT scan that revealed two metabolically active pulmonary lesions. She describes a car accident two weeks ago resulting in right-sided soft tissue injuries, including a healing thumb injury and wrist scars from burns. She remains anxious about her pulmonary findings, particularly the growth of a 14.5 x 12.5 mm left upper lobe lesion (SUV max 8.7) and a 15.5 x 14 mm right lower lobe lesion (SUV max 18.2). She expresses strong aversion to chemotherapy, radiation, and surgery due to her husband’s cancer history and personal fears, though she remains open to discussion with her son. She has been using topical cannabis oil for skin issues (e.g., purpura) but reports no systemic benefit for her pulmonary lesions. She denies constitutional symptoms but acknowledges ongoing smoking despite attempts to reduce.
+
+Past Medical History
+Diverticulitis, dyslipidemia, heart murmur, ovarian cyst, duodenal ulcer, abdominal hernia, aortic sclerosis, bowel perforation with colostomy (2014), osteoarthritis, L1 compression fracture, hypertrophic cardiomyopathy, diastolic dysfunction, aortic regurgitation, reactive airway disease
+
+Medications
+Lyrica 75 mg PO daily
+Dilaudid 2 mg tablets PRN
+
+Allergies
+Statins, perfumes, sulfonamides, Macrobid
+
+Family History
+Not documented
+
+Social History
+Lifelong heavy smoker, lives independently with colostomy and abdominal hernia, socially active (enjoys music), uses marijuana, resides two hours away
+
+Physical Examination
+Not documented
+
+Investigations
+2026-01-14
+- PET/CT: Left upper lobe lesion 14.5 x 12.5 mm (SUV max 8.7), right lower lobe lesion 15.5 x 14 mm (SUV max 18.2), no nodal/distant metastases, pelvic mass non-FDG avid
+2025-10-16
+- CT head: No intracranial metastatic disease, scattered small vessel ischemic changes
+
+Impression
+Ms. Whitehouse has two metabolically active pulmonary lesions highly suspicious for primary bronchogenic carcinoma, given their growth on PET/CT and smoking history. The lesions appear distinct, suggesting separate primaries. Her extensive comorbidities (cardiac, pulmonary, and surgical history) and personal preferences limit conventional treatment options. The pelvic mass is unrelated to pulmonary pathology and requires GI surgical assessment.
+
+Plan
+1. I will document the patient’s refusal of biopsy and discuss the risks of observation versus proceeding with surgical resection of the pulmonary lesions.
+2. I will arrange referral to thoracic surgery in Halifax for evaluation of minimally invasive resection options, emphasizing the potential for curative intent with a single procedure.
+3. I will coordinate a follow-up appointment in one week to review her discussions with family and explore radiation oncology consultation if surgery is declined.
+4. I will request GI surgical consultation for the pelvic mass noted on imaging.

@@ -1,0 +1,37 @@
+Patient ID: Dianne Elaine Young Lewis, 63-year-old female
+
+History of Present Illness:
+The patient reports feeling well overall today with no acute complaints. She denies chest pain, dyspnea, syncope, or palpitations. Her CPAP therapy is currently well-tolerated, and she has noted improved daytime energy and reduced morning symptoms since resuming consistent use. The most recent CPAP data demonstrates excellent adherence with an average daily use of 7 hours and 52 minutes, an AHI of 3.5, and a mean oxygen saturation of 93.4% while on therapy. She remains asymptomatic and states her chest is clear to auscultation, with a soft abdomen on examination.
+
+Past Medical History:
+Anxiety disorder, obesity, insomnia associated with sleep apnea, migraine headaches, iron metabolism disorder, back pain, urinary incontinence, transient global amnesia, and pelvic organ prolapse.
+
+Medications:
+paroxetine 30 mg tablet once daily
+
+Allergies:
+not documented
+
+Family History:
+Mother deceased due to amyloid amyloidosis (nonhereditary), father died of bladder cancer, grandmother and maternal grandmother had cerebrovascular accidents, mother had migraine history, aunt diagnosed with ulcerative colitis.
+
+Social History:
+Lives independently, no smoking status documented, weight management discussed as adjunct to therapy.
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-02-04:
+- Complete Blood Count: WBC 4.4 x10^9/L, RBC 4.09 x10^12/L, Hemoglobin 122 g/L, Hematocrit 0.386 L/L, MCV 94.4 fL, MCH 29.8 pg, MCHC 316 g/L, RDW 0.133, Platelets 296 x10^9/L, Neutrophils 2.6 x10^9/L, Lymphocytes 1.3 x10^9/L, Ferritin 63.20 ug/L, Iron 16.7 umol/L, Total Iron Binding Capacity 43 umol/L, % Saturation 0.38.
+2026-01-22:
+- Wall Motion Resting Cardiac Scan: Left ventricular ejection fraction 57%, preserved resting left ventricular systolic function.
+
+Impression:
+The patient has well-controlled obstructive sleep apnea on current CPAP therapy, as evidenced by improved adherence, reduced AHI, and stable oxygen saturation levels. Her recent investigations demonstrate preserved left ventricular function and mild iron deficiency anemia, which may warrant further evaluation. The patient’s overall clinical status remains stable with no acute concerns at this time.
+
+Plan:
+1. I will continue paroxetine 30 mg tablet once daily.
+2. I will review recent complete blood count and iron studies with the patient, and follow up in 3 months to reassess iron metabolism disorder and consider further evaluation if symptoms persist.
+3. I will continue current CPAP therapy at 8-15 cmH2O with close monitoring of adherence and symptoms.
+4. We will schedule a follow-up appointment in 6 months to review ongoing CPAP data, assess for any changes in symptoms, and address weight management as needed.

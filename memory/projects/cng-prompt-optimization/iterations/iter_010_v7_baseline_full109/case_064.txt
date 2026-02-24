@@ -1,0 +1,73 @@
+**Patient ID**
+Mr. James Herbert Theriault, an 81-year-old male.
+
+---
+
+**History of Present Illness**
+Mr. Theriault presents for follow-up of known pulmonary hypertension and worsening dyspnea on exertion. He reports persistent shortness of breath, particularly with minimal activity, and describes a marked decline in functional capacity over the past winter. He denies chest pain, orthopnea, or paroxysmal nocturnal dyspnea but notes fatigue and reduced endurance. Recent bloodwork (February 2026) shows stable thrombocytopenia (platelets 78 ×10⁹/L) and macrocytosis, with no evidence of bleeding or anemia. An echocardiogram (January 2026) confirmed severe biatrial enlargement, moderate-to-severe tricuspid regurgitation, and estimated pulmonary artery systolic pressure ≥54.5 mmHg, consistent with worsening pulmonary hypertension.
+
+Mr. Theriault’s symptoms are attributed to pulmonary hypertension, likely contributing to his exertional dyspnea. He has no recent changes in bleeding tendencies, and his kidney function remains stable (eGFR 76 mL/min/1.73m²). He lives with his son, who assists with daily activities, and reports no significant dietary changes (e.g., salt intake). A CT scan of the chest is pending (scheduled for February 17, 2026) to further evaluate his pulmonary hypertension etiology.
+
+---
+
+**Past Medical History**
+1. Coronary artery disease (status post CABG in his 40s)
+2. Moderate COPD
+3. Chronic thrombocytopenia (platelets 60–100 ×10⁹/L)
+4. Macrocytosis (MCV 106 fL)
+5. Pulmonary hypertension (new diagnosis, echocardiogram January 2026)
+6. Atrial fibrillation
+7. Urinary retention with indwelling Foley catheter
+8. Cholecystectomy
+
+---
+
+**Medications**
+1. Mylan-nitroglycerin 0.2 mg/hr transdermal patch applied topically for 14 hours daily
+2. Incruse Ellipta 62.5 mcg inhaled daily
+3. Ventolin HFA 100 mcg inhaled 2 puffs four times daily as needed
+4. Teva-rivaroxaban 20 mg orally once daily
+5. PMS-metoprolol 50 mg orally twice daily
+6. Taro-atorvastatin 10 mg orally daily after supper
+
+**Stopped Medications**
+1. Sandoz-rabeprazole 20 mg orally as needed (discontinued)
+
+---
+
+**Allergies**
+Intolerance to codeine
+
+---
+
+**Family History**
+Not documented
+
+---
+**Social History**
+Lifelong nonsmoker, denies alcohol use. Lives with son who provides care. No recent dietary changes noted.
+
+---
+**Physical Examination**
+Not documented
+
+---
+**Investigations**
+**2026-02-02**
+- Complete Blood Count: Platelets 78 ×10⁹/L, hemoglobin 133 g/L, MCV 106.1 fL, eGFR 76 mL/min/1.73m² (creatinine 88 µmol/L).
+- Peripheral Blood Morphology: Normal RBC morphology, manual platelet estimate correlates with automated count.
+- Prothrombin Time/INR: INR 3.4 (on rivaroxaban).
+
+**2026-01-20**
+- Echocardiogram: Severe biatrial enlargement, moderate-to-severe tricuspid regurgitation, estimated PASP ≥54.5 mmHg, RV dilation/systolic dysfunction.
+
+---
+**Impression**
+Mr. Theriault is an 81-year-old male with known chronic thrombocytopenia and macrocytosis, now presenting with symptomatic pulmonary hypertension and worsening dyspnea on exertion. His echocardiogram demonstrates severe right heart strain, including RV dilation and moderate-to-severe tricuspid regurgitation, consistent with pulmonary arterial hypertension. While his kidney function remains stable, initiation of diuretic therapy is warranted to optimize volume status and symptom control. Further evaluation of his pulmonary hypertension etiology is pending CT imaging (February 17, 2026), and coordination with cardiology may be required for specialized management.
+
+---
+**Plan**
+1. I will initiate furosemide 40 mg orally once daily for volume management and symptom relief.
+2. I will order repeat kidney function testing (creatinine/eGFR) in 2 weeks to monitor for diuretic-induced changes.
+3. I will review pending CT chest results (February 17, 2026) and coordinate with cardiology for pulmonary hypertension assessment if indicated.
+4. We will follow up in 6 months unless symptoms worsen or further diagnostic workup is required.

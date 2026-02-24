@@ -1,0 +1,37 @@
+Patient ID: Cornelia Nickerson, 83-year-old female
+
+History of Present Illness:
+Cornelia Nickerson is a 83-year-old female who was reassured today regarding her ongoing evaluation of pulmonary nodules identified on prior imaging. She has been monitored for fatigue and unintentional weight loss of approximately 20 lbs over time, though she denies shortness of breath, cough, fever, or hemoptysis. Notably, she reports new-onset nocturnal sweats beginning last week. Her chest examination today reveals clear lung fields with a peripheral oxygen saturation of 95% on room air.
+
+The patient’s history includes a known pulmonary nodule measuring 1.2 cm in the lower lobe of the left lung, identified on a prior CT scan. She remains asymptomatic aside from fatigue and weight loss, with no recent changes in appetite. Her social history includes a significant smoking history of 40 pack-years, though she quit approximately 25 years ago.
+
+Past Medical History:
+Breast cancer (diagnosed 1970, surgically treated), chronic kidney disease (CKD), chronic lymphocytic leukemia (CLL) under hematology care, basal cell carcinoma, hypertension, hyperlipidemia, type 2 diabetes mellitus (DM2), thyroid disease
+
+Medications:
+Not documented
+
+Allergies:
+Not documented
+
+Family History:
+Not documented
+
+Social History:
+Former smoker (40 pack-years, quit ~25 years ago), no alcohol or illicit substance use
+
+Physical Examination:
+Alert and oriented. Vital signs: BP 120/60 mmHg, pulse 61 bpm, SpO2 95% on room air. Chest clear to auscultation bilaterally, no wheezing or crackles. Cardiovascular exam normal with regular rate and rhythm. Abdomen soft, nontender, no costovertebral angle tenderness. Extremities without edema or tenderness.
+
+Investigations:
+2025-12-12: Cytology result – negative; bronchoscopy – no lesions identified
+2025-10-20: Chest, abdominal, and pelvic CT scans – multiple pulmonary nodules/masses, including a 1.2 cm lesion in the lower lobe of the left lung
+2026-01-22: PET-CT – no endobronchial lesions identified
+
+Impression:
+Cornelia Nickerson has persistent pulmonary nodules on imaging, with the largest lesion measuring 1.2 cm in the left lower lobe. Given her extensive oncologic history—including breast cancer, basal cell carcinoma, and chronic lymphocytic leukemia—metastatic disease remains a concern, though primary lung malignancy cannot be excluded. Her symptoms of fatigue, weight loss, and nocturnal sweats warrant further evaluation, particularly in the context of her known malignancies and CKD. The negative cytology and bronchoscopy findings do not rule out malignancy, and further characterization of the pulmonary nodules is required.
+
+Plan:
+1. We will arrange a follow-up CT scan of the chest in 6 months to assess for interval changes in the pulmonary nodules.
+2. We will review the PET-CT results with the patient and discuss the next steps in evaluation, including potential biopsy if indicated.
+3. We will ensure ongoing monitoring of renal function and overall health status in collaboration with her primary care provider and hematology team.

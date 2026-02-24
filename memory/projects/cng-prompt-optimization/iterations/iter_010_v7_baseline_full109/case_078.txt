@@ -1,0 +1,54 @@
+Patient ID: Dianne Gayle Williams is an 80-year-old female.
+
+History of Present Illness:
+Ms. Williams presents for medication review and general follow-up. She reports feeling well overall but has questions regarding her current medications, particularly the necessity of her multivitamin, omega-3, magnesium, and pantoprazole. She notes that she has been asymptomatic from a cardiac standpoint, with no chest pain or jaw discomfort in recent months. She mentions that her previous physician suggested discontinuing pantoprazole if she remains asymptomatic and adheres to dietary modifications, such as elevating the head of her bed and avoiding late-night meals. She also mentions a history of gastroesophageal reflux disease (GERD) and a prior endoscopic procedure that identified inflammation at the gastroesophageal junction. Ms. Williams has not had a repeat endoscopy since that time and is due for a colonoscopy, which she has not yet completed. She is also reflecting on turning 80 and inquiring about any additional health recommendations for this new decade.
+
+Ms. Williams reports engaging in regular physical activity, including weekly yoga classes and home exercises. She has noted improvements in her mobility and overall well-being. She denies any recent changes in her weight, appetite, or symptoms of heart failure, such as shortness of breath, orthopnea, or peripheral edema. She is adherent to her aspirin, metoprolol, and metformin, which she understands are lifelong medications for her cardiovascular health and diabetes management, respectively.
+
+Physical Examination:
+The chest is clear with adequate air entry bilaterally. Heart sounds are normal with a regular rhythm and no murmurs. The abdomen is soft with no organomegaly. Neurological examination is unremarkable. There is no jugular venous distention or lower limb edema. Vital signs include a heart rate of 63 beats per minute and an oxygen saturation of 97% on room air.
+
+Past Medical History:
+Type 2 diabetes mellitus, gastroesophageal reflux disease (GERD), depression, treated ductal carcinoma in situ of the left breast, remote cholecystectomy, aortic valve sclerosis, and single vessel coronary artery disease (RCA stent placement).
+
+Medications:
+- Aspirin 81 mg orally daily (lifelong)
+- Metoprolol 25 mg orally twice daily
+- Metformin 500 mg orally twice daily
+- Pantoprazole 40 mg orally daily (consider discontinuation if asymptomatic and adherent to lifestyle modifications)
+- Sertraline 25 mg orally daily
+- Ciclesonide nasal spray as needed
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+Ex-smoker, no alcohol or recreational drug use. Engages in weekly yoga classes and home exercises. Lives in a community with improved sidewalks for winter walking.
+
+Physical Examination:
+Chest clear, heart sounds normal with no murmurs, abdomen soft with no organomegaly, neurological exam unremarkable, no jugular venous distention or lower limb edema. Vital signs: heart rate 63 bpm, oxygen saturation 97%.
+
+Investigations:
+2025-11-10:
+- Hemoglobin A1C: 6.9%
+- Urinalysis: Normal with trace leukocytes, no occult blood
+- ECG: Sinus bradycardia, moderate voltage criteria for LVH
+- Complete Blood Count: Hemoglobin 107 g/L, normal white blood cell count
+- eGFR: 78 mL/min/1.73m²
+- Glucose Random: 7.8 mmol/L
+- Troponin T: 28 ng/L (normal)
+- Lytes: Normal sodium, potassium, chloride levels
+
+2025-07-18:
+- ECHO: Normal biventricular size and function, aortic valve sclerosis, mild mitral annular calcification
+
+Impression:
+Ms. Williams is an 80-year-old female with a history of type 2 diabetes mellitus, GERD, depression, and treated breast cancer who presents for medication review and general follow-up. She has a background of coronary artery disease, having undergone PCI with stent placement in the right coronary artery. Her current symptoms are well-controlled with no recent chest pain or shortness of breath. Her recent investigations show stable glycemic control and normal cardiac function. The patient is adherent to her cardiac and diabetic medications and remains physically active.
+
+Plan:
+1. I will discontinue pantoprazole if the patient remains asymptomatic and adheres to lifestyle modifications such as elevating the head of her bed and avoiding late-night meals.
+2. I will refer Ms. Williams for a repeat colonoscopy given her overdue screening.
+3. I will recommend continuing aspirin, metoprolol, and metformin as they are essential for her cardiovascular health and diabetes management.
+4. I will advise Ms. Williams to continue her current regimen of physical activity, including yoga and home exercises, and encourage regular follow-up with her family doctor for ongoing management and monitoring of her chronic conditions.
+5. We will arrange for routine blood work, including lipid profile and hemoglobin A1C, in March as planned with her family physician.

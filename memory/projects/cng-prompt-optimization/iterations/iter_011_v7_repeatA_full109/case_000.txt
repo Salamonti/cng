@@ -1,0 +1,28 @@
+Patient ID: This is a 65-year-old male patient presenting for evaluation of chest pain.
+
+History of Present Illness:
+The patient presents today with severe chest pain, which is the primary symptom of concern. The pain is described as acute in onset and significant in intensity, prompting this clinical encounter. There are no additional details provided regarding the nature, location, radiation, aggravating factors, or relieving factors of the pain at this time.
+
+Past Medical History:
+The patient has a history of coronary artery disease (CAD).
+
+Medications: not documented
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-21: ECG shows ST depression in inferior leads
+
+Impression:
+This patient presents with severe chest pain in the context of known coronary artery disease. The ECG findings of ST depression in the inferior leads are concerning for possible acute ischemic changes. Further evaluation is required to determine the underlying cause and guide appropriate management.
+
+Plan:
+1. I will review the patient's cardiac enzymes and troponin levels to assess for acute myocardial infarction.
+2. I will consult cardiology for further evaluation and management of the patient's chest pain and ECG findings.
+3. We will arrange for a stress test or coronary angiography, as indicated by the cardiology team, to further evaluate the coronary anatomy and ischemia.

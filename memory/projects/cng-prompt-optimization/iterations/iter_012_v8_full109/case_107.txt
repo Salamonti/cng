@@ -1,0 +1,39 @@
+Patient ID: Dianne Elaine Young Lewis, 63-year-old female
+
+History of Present Illness:
+The patient reports feeling well overall and remains asymptomatic at this time. She is adherent to her continuous positive airway pressure (CPAP) therapy, with no recent upper respiratory infections affecting her treatment. Her CPAP data demonstrates excellent compliance and effective management of obstructive sleep apnea, with an apnea-hypopnea index (AHI) of 3.5 and consistent nightly usage. Physical examination reveals clear lung fields and a soft abdomen, with no acute abnormalities detected.
+
+Past Medical History:
+Anxiety disorder, obesity, insomnia associated with sleep apnea, migraine headaches, iron metabolism disorder, back pain, urinary incontinence, transient global amnesia, and prolapse conditions.
+
+Medications:
+paroxetine 30 mg tablet once daily
+
+Allergies:
+not documented
+
+Family History:
+Mother deceased due to nonhereditary amyloid amyloidosis, father died of bladder cancer, maternal grandmother and grandmother suffered cerebrovascular accidents, mother had migraine history, aunt diagnosed with ulcerative colitis.
+
+Social History:
+Lives independently; no smoking status documented; weight management discussed as adjunct to therapy.
+
+Physical Examination:
+Chest clear to auscultation. Abdomen soft and non-tender. No acute abnormalities noted.
+
+Investigations:
+2026-01-22:
+Wall Motion Resting (MUGA): Preserved resting left ventricular systolic function with ejection fraction of 57%.
+
+2026-02-04:
+Complete Blood Count: Mild normocytic anemia (hemoglobin 122 g/L, MCV 94.4 fL), otherwise unremarkable.
+Ferritin: 63.2 ug/L (low-normal).
+Total Iron Binding Capacity: Iron 16.7 umol/L, TIBC 43 umol/L, % saturation 38% (low).
+
+Impression:
+This patient has well-controlled obstructive sleep apnea on CPAP therapy, with recent data confirming effective treatment and improved oxygenation. Mild normocytic anemia and low iron studies suggest an ongoing iron metabolism disorder requiring further evaluation. Her preserved left ventricular function is reassuring, though long-term monitoring of cardiovascular sequelae related to prior hypoxemia remains prudent.
+
+Plan:
+1. I will review iron studies with the patient and arrange follow-up testing (e.g., hemoglobin electrophoresis or further iron panel) to clarify the underlying etiology of her iron metabolism disorder.
+2. We will continue current CPAP therapy with ongoing monitoring of adherence and oximetry data through the Maritime Sleep Clinic.
+3. I will schedule a follow-up appointment in 6 months to reassess symptoms, review laboratory results, and address any concerns related to her iron metabolism disorder.

@@ -1,0 +1,62 @@
+Patient ID: Carmen Phinney, 79-year-old female
+
+History of Present Illness:
+Carmen, a 79-year-old female, presents with worsening dyspnea and fatigue over the past seven days, culminating in a recent episode of acute respiratory distress. She describes her oxygen saturation as persistently low (85% on exam) and reports a significant decline in functional status, including morning headaches, ear fullness, jaw soreness, and a hoarse voice. Symptoms began around Christmas 2025, with progressive dyspnea and new-onset systemic complaints. She has completed two courses of prednisone (most recently finishing the second course today) with minimal symptomatic relief. Her baseline oxygen saturation was previously in the high 80s to low 90s, but she now requires supplemental oxygen to maintain saturations above 90%. She denies chest pain, fever, or recent trauma but reports cold intolerance, night sweats, and dry mouth/eyes. She has a history of remote asbestos exposure from renovating her home two years ago but denies ongoing environmental exposures or occupational hazards.
+
+Carmen’s prior imaging (chest X-ray and CT) revealed a pattern consistent with interstitial lung disease, specifically a UIP (usual interstitial pneumonia) pattern with subpleural reticulation, honeycombing, and traction bronchiectasis. Dr. Marais previously attributed her symptoms to progressive fibrotic lung disease, though Carmen remains uncertain about the etiology. She denies asthma or smoking in recent decades but has a 30-year history of former smoking (1.5 packs/day). Her medications include a beta-agonist inhaler (likely albuterol/salmeterol) and other chronic medications for hypertension, hyperlipidemia, and atrial fibrillation. She reports no improvement with her current inhalers and has been avoiding oral intake due to nausea.
+
+Past Medical History:
+Hypertension, hyperlipidemia, atrial fibrillation, interstitial lung disease (UIP pattern), remote urinary tract infections, dry eyes, dry mouth, and remote asbestos exposure.
+
+Medications:
+- Prednisone (dose/frequency not specified)
+- Vitamin D 2000 units daily
+- Calcium supplement (dose not specified)
+- Antihypertensive (not specified)
+- Antihyperlipidemic (not specified)
+- Antiarrhythmic (likely for atrial fibrillation, not specified)
+- Albuterol/salmeterol inhaler (Cymbicord)
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+Former smoker (30 years, 1.5 packs/day), quit 30 years ago. No current partner. No recent travel or occupational exposures. Lives independently in Yarmouth, NS.
+
+Physical Examination:
+Vital signs: Oxygen saturation 85% on room air, heart rate 100 bpm.
+Lungs: Bilateral basal crackles, decreased breath sounds at bases.
+Cardiac: Tachycardic, regular rhythm, no murmurs.
+General: Cachectic, dry mucous membranes, no peripheral edema.
+No cyanosis or clubbing noted.
+
+Investigations:
+2026-01-27:
+- CT Chest: Subpleural reticulation with honeycombing at right base, bilateral lower lobe traction bronchiectasis, and scattered pulmonary micronodules. Impression: UIP pattern consistent with interstitial lung disease.
+
+2026-01-09:
+- Chest X-ray: Streaky opacities in right lower and left mid zones, suggestive of inflammatory/infectious process.
+
+2025-11-07:
+- Urinalysis: Leukocyte esterase 70 (elevated), 13 WBC/hpf, otherwise unremarkable.
+- Lipids: Cholesterol 4.9 mmol/L, LDL 2.5 mmol/L, HDL 2.0 mmol/L, triglycerides 0.97 mmol/L.
+- Liver enzymes: AST 26 U/L, ALT 14 U/L.
+- Thyroid: TSH 3.27 mIU/L.
+- Iron studies: Low iron saturation (26%), ferritin 89.8 ug/L.
+- CBC: Mild leukocytosis (WBC 6.2), normocytic anemia (Hb 131 g/L), normal platelets.
+- CRP: 2.6 mg/L (normal).
+- Glucose: 5.5 mmol/L.
+- Uric acid: 445 umol/L (elevated).
+- eGFR: 89 mL/min/1.73m².
+
+Impression:
+Carmen’s presentation is consistent with progressive interstitial lung disease, most likely idiopathic pulmonary fibrosis (IPF) given the UIP pattern on imaging and lack of alternative exposures. Her acute decompensation with hypoxia, tachycardia, and systemic symptoms suggests an exacerbation, potentially inflammatory or infectious in nature. The elevated leukocyte esterase and WBC count on urinalysis may indicate a subclinical urinary tract process, though this is unlikely to explain her respiratory decline. Her history of asbestos exposure raises the possibility of occupational-related fibrosis, though the timeline is unclear. Autoimmune etiologies remain under investigation given the consideration of Churg-Strauss syndrome or other vasculitides, though no definitive evidence supports this yet. Her chronic symptoms of dry eyes/mouth and recent prednisone courses suggest a possible underlying autoimmune process, though further workup is required.
+
+Plan:
+1. We will initiate high-dose prednisone (dose/frequency to be confirmed) for a minimum of three months with slow tapering, and I will prescribe vitamin D 2000 units daily and calcium supplementation to mitigate steroid-related bone loss.
+2. I will order urgent autoimmune panel bloodwork (including ANA, ANCA, RF, anti-Jo-1, and other relevant antibodies) to evaluate for connective tissue disease or vasculitis as the etiology of her interstitial lung disease.
+3. We will arrange home oxygen therapy with a target saturation of ≥90% at all times, starting with 2 L/min via nasal cannula, with reassessment as clinically indicated.
+4. I will refer Carmen for a comprehensive pulmonary function test and consideration of bronchoscopy with biopsy if the autoimmune workup is unrevealing or if her clinical course suggests a need for further diagnostic evaluation.
+5. We will discontinue her current inhalers (albuterol/salmeterol) given lack of symptomatic benefit and consider alternative therapies if her respiratory symptoms persist or worsen.
+6. I will follow up with Carmen in one week to review bloodwork results, reassess her oxygen requirements, and adjust her prednisone regimen as needed.

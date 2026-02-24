@@ -1,0 +1,53 @@
+Patient ID: Dianne Gayle Williams, 80-year-old female
+
+History of Present Illness:
+This 80-year-old female presents for review of her current medications and follow-up of her chronic conditions. She reports no current chest pain, shortness of breath, or other cardiac symptoms, though she notes she has been managing well with her current regimen. She expresses concern about the necessity of her current medications, particularly magnesium, omega-3, multivitamin, and pantoprazole. She mentions that her previous physician suggested she could discontinue pantoprazole if she adheres to dietary modifications and avoids eating before bedtime. She also notes that her aspirin, metoprolol, and metformin are considered essential for her ongoing management of cardiovascular health and diabetes. She has not had a recent scope for her GERD-like symptoms and is due for a colonoscopy, which she has not completed in the past five years. She is otherwise active, participating in yoga and home exercises, and is adjusting to turning 80 years old.
+
+The patient reports that she completed a seniors health screening package last year with no issues identified. She also mentions that her cholesterol medication was recently discontinued by her family doctor pending further blood work, which is due in March. She is otherwise feeling well and has no new complaints.
+
+Physical Examination:
+The chest is clear with adequate air entry bilaterally. Heart sounds are normal with S1 and S2 present and no additional sounds or murmurs. The abdomen is soft with no palpable organomegaly. The neurological exam is unremarkable. There is no jugular venous distention or lower limb edema. Vital signs include a heart rate of 63 beats per minute and an oxygen saturation of 97% on room air.
+
+Past Medical History:
+Type 2 diabetes mellitus, gastroesophageal reflux disease (GERD), depression, treated ductal carcinoma in situ of the left breast, remote cholecystectomy, aortic valve sclerosis, and history of coronary artery disease with prior percutaneous coronary intervention (PCI) to the right coronary artery (RCA).
+
+Medications:
+aspirin 81 mg OD
+metoprolol 25 mg BID
+metformin 500 mg BID
+pantoprazole 40 mg OD
+sertraline 25 mg OD
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Ex-smoker, no alcohol or recreational drug use. Engages in yoga once weekly and home exercises. Lives in a community with accessible sidewalks for winter walking.
+
+Physical Examination:
+Chest clear, heart sounds normal, abdomen soft, no organomegaly, no jugular venous distention or lower limb edema. HR 63 bpm, SpO2 97%.
+
+Investigations:
+2025-11-10:
+- Hemoglobin A1C: 6.9%
+- Urinalysis: Clear urine, specific gravity 1.020, negative for protein, ketones, bilirubin, occult blood, nitrite; glucose negative; RBC 13/hpf, WBC 510/hpf
+- ECG: Sinus bradycardia, moderate voltage criteria for LVH, borderline ECG
+- Lytes: Sodium 139 mmol/L, Potassium 4.4 mmol/L, Chloride 102 mmol/L
+- eGFR: 78 mL/min/1.73m², Creatinine 68 µmol/L
+- Glucose Random: 7.8 mmol/L
+- Complete Blood Count: Hemoglobin 107 g/L, Platelets 144 x10^9/L
+- Troponin T: 28 ng/L
+- INR: 1.0
+
+Impression:
+This 80-year-old female with a history of type 2 diabetes mellitus, coronary artery disease, GERD, and prior PCI to the RCA presents for medication review and chronic disease management. She is currently asymptomatic with stable vital signs and no evidence of acute cardiac or metabolic decompensation. Her recent investigations show controlled diabetes with an A1C of 6.9%, normal renal function, and no active signs of ischemia or electrolyte abnormalities. The patient’s stable clinical status and adherence to her current regimen suggest effective management of her chronic conditions.
+
+Plan:
+1. I will continue aspirin 81 mg daily indefinitely for secondary cardiovascular prevention.
+2. I will continue metoprolol 25 mg twice daily for management of coronary artery disease and rate control.
+3. I will continue metformin 500 mg twice daily for type 2 diabetes mellitus.
+4. I will discontinue pantoprazole 40 mg daily if the patient remains asymptomatic and adheres to dietary modifications and lifestyle changes, with follow-up in 3 months to reassess.
+5. I will arrange for a follow-up colonoscopy given the patient's overdue screening.
+6. I will refer the patient back to a gastroenterologist for repeat upper endoscopy to reassess her GERD-like symptoms and prior findings of esophageal inflammation.
+7. We will follow up in 3 months to review blood work, including lipid profile, and reassess the need for cholesterol-lowering therapy.

@@ -1,0 +1,49 @@
+Patient ID
+Aziza Hussein, 60-year-old female
+
+History of Present Illness
+Aziza Hussein presents today with symptoms of nausea, anorexia, and urinary issues that began three days after starting dapagliflozin. She reports feeling unwell since initiating this new medication, which was prescribed by her family doctor for diabetes management. Blood sugar readings remain stable, though she experiences afternoon spikes around 2–3 PM, likely postprandial. She is currently taking Tresiba 22 units twice daily (8 AM and 8 PM) and reports no short-acting insulin use. The patient expresses dissatisfaction with dapagliflozin due to side effects, including urinary symptoms.
+
+Aziza’s diabetes has been poorly controlled, with an HbA1c of 11.0% noted in November 2025. She denies acute symptoms like polyuria or polydipsia but acknowledges persistent hyperglycemia despite current therapy. The patient’s renal function remains impaired (eGFR 41–42 mL/min), limiting medication options. She has no history of short-acting insulin use, and her current regimen appears insufficient for glycemic control.
+
+Past Medical History
+Type 2 diabetes mellitus
+Chronic kidney disease stage III
+Hypertension (status unknown)
+
+Medications
+- Metformin 500 mg swallow oral twice daily
+- Rosuvastatin 20 mg swallow oral once daily
+- Dapagliflozin 10 mg swallow oral once daily (to be discontinued)
+- Tresiba FlexTouch 100 units/mL subcutaneous injection 22 units twice daily (morning and bedtime)
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Lifelong non-smoker
+No alcohol consumption
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-29
+- Hemoglobin A1c: 11.0% (November 28, 2025)
+- Random plasma glucose: 9.3 mmol/L
+- eGFR: 42 mL/min (creatinine 126 µmol/L)
+- Urine analysis: protein 3.0 g/L, trace occult blood (November 28, 2025)
+- Complete blood count, electrolytes, coagulation, and venous blood gas: within normal limits
+
+Impression
+Aziza Hussein has poorly controlled type 2 diabetes mellitus, evidenced by an HbA1c of 11.0% and persistent hyperglycemia despite maximal oral and basal insulin therapy. The recent addition of dapagliflozin appears to have exacerbated urinary symptoms, prompting discontinuation. Her renal impairment (eGFR 42 mL/min) necessitates careful medication selection, and her current insulin regimen may be insufficient for glycemic control, particularly given postprandial spikes. Further optimization of her diabetes management is required.
+
+Plan
+1. I will discontinue dapagliflozin 10 mg swallow oral once daily due to intolerable side effects.
+2. I will adjust Tresiba FlexTouch to 15 units subcutaneous injection twice daily (morning and bedtime) and prescribe NovoRapid 5 units subcutaneous injection before each meal.
+3. I will order a hemoglobin A1c and renal panel (including eGFR) to reassess glycemic control and renal function.
+4. I will arrange a follow-up appointment in three months to review blood work results and adjust therapy as needed.
+5. I will provide education on carbohydrate counting and consistent meal timing to improve glycemic control.

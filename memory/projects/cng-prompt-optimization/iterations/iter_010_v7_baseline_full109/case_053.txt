@@ -1,0 +1,53 @@
+Patient ID: Lillian Sampson, a 70-year-old female.
+
+History of Present Illness:
+Lillian Sampson is a 70-year-old female who presented for follow-up regarding recent imaging findings. She reported a history of dysphagia, which was investigated with a CT scan and subsequent endoscopy. The endoscopy revealed a ring-like structure at the end of her esophagus, which was treated, and she now reports resolution of her swallowing difficulty. However, she continues to eat mostly soup due to lingering fear of choking, and she has not regained weight despite having a normal appetite. She also mentioned she is a heavy smoker and is concerned about her recent CT findings.
+
+On the CT scan from December 2025, there were findings of a wedge-shaped density in the right lower lobe and an irregular density in the left upper lobe. These findings are indeterminate and could be related to an infectious or inflammatory process, but malignancy cannot be excluded. Lillian is scheduled for a follow-up CT scan in April but was advised to expedite this to March due to the suspicious nature of the left upper lobe finding.
+
+Past Medical History:
+Coronary artery disease
+Chronic obstructive pulmonary disease
+Depressive disorder
+Dyslipidemia
+Generalized anxiety disorder
+Tobacco use disorder
+
+Medications:
+Ramipril 4 mg tablet, 1 tablet once daily
+Metoprolol 25 mg tablet, 1 tablet twice daily
+Aspirin 81 mg tablet, 1 tablet once daily
+Atorvastatin 40 mg tablet, 1 tablet once daily
+Bupropion XL 150 mg tablet, 1 tablet once daily
+Ipratropium 0.4 mg/dose spray, 1 spray three times daily as needed
+Tiotropium 2.5 mcg inhaler, 1 puff twice daily
+Albuterol 100 mcg inhaler, 2 puffs every 4 hours as needed
+Potassium 600 mg oral solution, as prescribed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: Lillian Sampson is a heavy smoker with a tobacco use disorder.
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-07:
+CT Chest, Abdomen, Pelvis:
+- Right lower lobe: wedge-shaped density measuring 3.6 x 1.8 x 3.1 cm, mucous plugging, and tree-in-bud nodularity.
+- Left upper lobe: irregular density measuring 2.2 x 2.2 x 0.8 cm.
+- Borderline enlarged right hilar lymph nodes measuring up to 10 mm.
+- Moderate centrilobular emphysema in the upper lobes.
+- No pleural or pericardial effusion.
+- No aggressive osseous lesion.
+- Abdomen/Pelvis: unremarkable except for a 3.5 cm cyst in the upper left kidney.
+
+Impression:
+Lillian Sampson is a 70-year-old female with a history of dysphagia that has been resolved following endoscopic intervention. However, she continues to experience anxiety related to choking and has not regained weight. The recent CT scan reveals indeterminate findings in the right lower lobe and left upper lobe, which could be due to an infectious or inflammatory process but also raise concern for malignancy. Given her history of heavy smoking and the suspicious nature of the left upper lobe finding, further evaluation is warranted.
+
+Plan:
+1. I will expedite the follow-up CT scan of the chest to March 2026 instead of April 2026.
+2. I will arrange for a PET/CT scan to further evaluate the indeterminate lung findings if the CT scan in March shows persistent or progressive abnormalities.
+3. I will provide Lillian Sampson with smoking cessation resources and materials to support her in quitting smoking.
+4. We will follow up after the results of the March CT scan to discuss further steps, including potential biopsy if indicated.

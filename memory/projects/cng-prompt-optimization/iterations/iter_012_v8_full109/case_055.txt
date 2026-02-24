@@ -1,0 +1,42 @@
+Patient ID: Alice Whitehouse, 72-year-old female
+
+History of Present Illness:
+Ms. Whitehouse presents with ongoing concerns following a recent PET-CT scan that revealed two metabolically active pulmonary lesions, highly suspicious for malignancy. She describes persistent discomfort and delayed healing from a motor vehicle accident two weeks prior, involving right-sided soft tissue trauma to her thumb and wrist. The patient expresses significant anxiety regarding her diagnosis, particularly given her history of her husband’s cancer-related death and her own reluctance toward pharmaceuticals, chemotherapy, radiation, and surgery. She has explored alternative treatments, including topical cannabis oil, which she believes has helped with purpura and minor wounds but acknowledges it has not addressed the pulmonary lesions. She is uncertain about next steps and requests time to discuss options with her son before making a decision.
+
+The patient’s lesions have grown since prior imaging: a left upper lobe lesion (14.5 x 12.5 mm, SUV max 8.7) and a right lower lobe lesion (15.5 x 14 mm, SUV max 18.2). She denies constitutional symptoms such as weight loss, night sweats, or cognitive decline, attributing any weight loss to her existing colostomy and abdominal hernia.
+
+Past Medical History:
+Diverticulitis, dyslipidemia, heart murmur, ovarian cyst, duodenal ulcer, abdominal hernia, aortic sclerosis, bowel perforation with colostomy (2014), osteoarthritis, L1 compression fracture, hypertrophic cardiomyopathy, diastolic dysfunction, aortic regurgitation, elevated right atrial pressures
+
+Medications:
+Lyrica 75 mg PO daily
+Dilaudid 2 mg tablets PRN for spinal pain
+
+Allergies:
+Statins, perfumes, sulfonamides, Macrobid
+
+Family History:
+Not documented
+
+Social History:
+Lifelong heavy smoker, currently attempting to cut back
+Lives independently with a colostomy and large abdominal hernia
+Socially active, enjoys music
+Uses marijuana
+Resides two hours away
+
+Physical Examination:
+Not documented
+
+Investigations:
+2026-01-14:
+- PET-CT scan: Left upper lobe lesion (14.5 x 12.5 mm, SUV max 8.7) and right lower lobe lesion (15.5 x 14 mm, SUV max 18.2), both growing and metabolically active. No evidence of nodal or distant metastases. Pelvic mass (5.3 x 5.7 x 4.8 cm) with no FDG avidity, likely unrelated to pulmonary pathology.
+
+Impression:
+Ms. Whitehouse has two metabolically active pulmonary lesions highly suspicious for primary bronchogenic carcinoma, given her smoking history and imaging characteristics. The lesions appear distinct and may represent separate primaries. While no metastatic disease is evident on current imaging, the growth of these lesions necessitates prompt diagnostic intervention to guide treatment planning. The patient’s reluctance toward invasive procedures and prior treatments complicates decision-making, and shared decision-making with her family is essential.
+
+Plan:
+1. I will arrange for a shared decision-making discussion with Ms. Whitehouse and her son to review all treatment options, including risks and benefits of biopsy, surgical resection, and radiation therapy.
+2. We will proceed with a percutaneous needle biopsy of the right lower lobe lesion if the patient consents, given its higher metabolic activity and potential accessibility.
+3. If the patient declines biopsy, I will refer her to thoracic surgery in Halifax for consideration of surgical resection of both lesions, with preoperative cardiac clearance given her comorbidities.
+4. We will schedule a follow-up appointment in two weeks to reassess her decision and next steps.

@@ -1,0 +1,64 @@
+Patient ID
+Paul Comeau is a 79-year-old male presenting for follow-up after quadruple CABG and recent cardiac assessment.
+
+History of Present Illness
+Mr. Comeau is a 79-year-old male who underwent quadruple CABG in September 2025 for acute coronary syndrome with critical left main 3-vessel disease. He presents today for routine follow-up approximately five months post-procedure. He reports no chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. He denies palpitations or syncope. His primary concern is persistent sternotomy wire irritation with movement, which is bothersome but otherwise does not limit his activities. He remains active and works without issues. Vital signs are stable with blood pressure 120/80, pulse 68, and SpO2 98% on room air. Cardiac examination reveals normal S1 and S2 without murmurs or additional sounds. Lungs are clear bilaterally, abdomen is soft without organomegaly, and there is no jugular venous distention or lower limb edema. Neurological examination is unremarkable.
+
+A stress test was performed today, which he tolerated well until the end due to rapid heart rate. No chest pain or ST changes were noted, though the target heart rate was not achieved, making the test nondiagnostic but reassuring. The main purpose of this visit is to ensure cardiovascular risk factors are controlled, assess the need for cardiac rehabilitation, and address the sternal wire irritation.
+
+Past Medical History
+Acute coronary syndrome, critical left main 3-vessel disease, myocardial infarction, hypertension, hypercholesterolemia, prior stable angina.
+
+Medications
+Aspirin 81 mg PO daily
+Atorvastatin 80 mg PO daily
+Clopidogrel 75 mg PO daily
+Metoprolol succinate 12.5 mg PO twice daily
+Perindopril 2 mg PO daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Nonsmoker, occasional alcohol use, lives with wife, independent in activities of daily living, retired mechanic, senior pharmacare coverage.
+
+Physical Examination
+Vital signs: BP 120/80, PR 68, SpO2 98% on room air.
+General: Alert and oriented, no acute distress.
+Cardiac: Normal S1 and S2, no murmurs or additional sounds.
+Respiratory: Clear to auscultation bilaterally.
+Abdomen: Soft, no organomegaly.
+Neurological: Unremarkable.
+Extremities: No jugular venous distention or lower limb edema.
+Sternal wires: Irritating with movement, no signs of infection or instability.
+
+Investigations
+2026-01-30
+Stress test: Nondiagnostic due to failure to achieve target heart rate, no chest pain or ST changes.
+
+2026-01-26
+CT chest with contrast: Multiple intact sternotomy wires, minimal osseous bridging at prior sternotomy site, 6.5 mm perifissural nodule in left upper lobe, mild left basal atelectasis/scarring, no evidence of malignancy, trivessel coronary artery calcification, 12 mm simple cyst in liver segment 6.
+
+2025-12-21
+ECG: Normal sinus rhythm, nonspecific ST segment changes in anterior leads.
+Troponin T: 17 ng/L (normal <14).
+Complete blood count: Normal.
+Electrolytes: Normal.
+Random glucose: 6.6 mmol/L.
+Creatinine: 68 umol/L.
+INR: 1.1.
+Chest X-ray: Intact sternotomy wires, no focal collapse or consolidation, no pneumothorax.
+
+Impression
+Mr. Comeau is a 79-year-old male with a history of acute coronary syndrome and quadruple CABG who presents for routine follow-up. He remains hemodynamically stable with no evidence of recurrent ischemia on recent testing. His primary concern is persistent sternal wire irritation, which is not associated with signs of infection or instability. The stress test was nondiagnostic due to failure to achieve target heart rate but was reassuring otherwise. Imaging reveals intact sternotomy wires, minimal osseous bridging, and a small perifissural nodule in the left upper lobe without evidence of malignancy. His cardiovascular risk factors should be optimized, and the sternal wire irritation should be addressed by the surgical team.
+
+Plan
+1. I will continue aspirin 81 mg daily, atorvastatin 80 mg daily, clopidogrel 75 mg daily, and perindopril 2 mg daily.
+2. I will discontinue metoprolol succinate 12.5 mg twice daily given stable blood pressure and heart rate.
+3. I will refer Mr. Comeau to the cardiac surgery team for assessment of sternal wire irritation.
+4. I will arrange routine blood work in three months for follow-up.
+5. I will counsel Mr. Comeau on the importance of cardiac rehabilitation and encourage participation.
+6. I will follow up in my office in three months after routine blood work.

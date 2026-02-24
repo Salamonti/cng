@@ -1,0 +1,67 @@
+**Patient ID**
+Michel Louis McCauley, 67-year-old male.
+
+**History of Present Illness**
+This 67-year-old male presents with a history of exertional dyspnea and rib fractures following a fall. He reports progressive shortness of breath over several months, which has worsened to the point where he becomes breathless after walking 50 feet or climbing 10 steps. He denies chest pain but notes orthopnea and paroxysmal nocturnal dyspnea. He was recently diagnosed with heart failure during an ER visit, though his echocardiogram showed preserved systolic function (EF 55-60%) with normal ventricular size and wall thickness. He has atrial fibrillation and is on CPAP for obstructive sleep apnea. His dyspnea persists despite these measures, and he seeks further evaluation for its cause.
+
+He describes intermittent nausea and occasional vomiting, particularly with exertion, which he attributes to gastroparesis given his long-standing diabetes. He also reports rib pain from recent fractures but denies pleuritic chest pain or hemoptysis. His symptoms have limited his mobility, and he uses a wheelchair for longer distances. He denies recent weight changes, fever, or cough.
+
+**Past Medical History**
+Hypertension, hyperlipidemia, type 2 diabetes mellitus, atrial fibrillation, obstructive sleep apnea, coronary artery disease with prior triple bypass surgery, pacemaker/defibrillator implantation, chronic kidney disease (eGFR 40 mL/min/1.73m²), gastroparesis, rib fractures.
+
+**Medications**
+- Gliclazide 120 mg once daily
+- Aspirin 81 mg once daily
+- Sotalol 80 mg twice daily
+- Terazosin 10 mg once daily
+- Rivaroxaban 20 mg once daily
+- Vildagliptin 37.5 mg once daily
+- Vorapaxar 10 mg once daily
+- Furosemide (discontinued per recent assessment)
+- Vitamin B12 (unknown indication, long-term)
+- Metformin (not listed in current encounter but inferred from diabetes management)
+- CPAP (for obstructive sleep apnea)
+
+**Allergies**
+Not documented.
+
+**Family History**
+Not documented.
+
+**Social History**
+Former smoker (quit 25 years ago, smoked 1 pack/week for 20 years). No recent alcohol use. Lives independently with support. No recent travel or occupational hazards.
+
+**Physical Examination**
+Vital signs: BP not documented, HR 62 bpm, SpO2 90% on room air.
+General: No acute distress.
+Cardiovascular: Regular rhythm, no murmurs, rubs, or gallops. No JVD. Heart sounds normal.
+Respiratory: Clear to auscultation bilaterally. No wheezes or crackles.
+Abdomen: Soft, no distension or tenderness. No hepatosplenomegaly.
+Extremities: No edema. Distal pulses intact.
+Neurological: Alert and oriented. No focal deficits.
+
+**Investigations**
+2026-02-03:
+- Echocardiogram: Normal LV size, preserved systolic function (EF 55-60%), normal wall thickness, biatrial enlargement, mild tricuspid regurgitation, no pericardial effusion.
+
+2026-01-12:
+- Hemoglobin A1c: 8.2% (diabetes poorly controlled).
+- Complete Blood Count: Normal except mild anemia (Hb 176 g/L).
+- eGFR: 40 mL/min/1.73m² (chronic kidney disease).
+- Lipids: Cholesterol 3.8 mmol/L, LDL 2.4 mmol/L, HDL 0.71 mmol/L, triglycerides 1.62 mmol/L.
+- Electrolytes: Sodium 139 mmol/L, potassium 5.0 mmol/L (mild hyperkalemia), chloride 99 mmol/L.
+
+2026-01-05:
+- Troponin T: 33-34 ng/L (normal).
+- Chest X-ray: No acute abnormalities. No pneumothorax or effusion.
+- ECG: Ventricular-paced rhythm, no acute ischemia.
+
+**Impression**
+This patient has long-standing exertional dyspnea, now attributed to diastolic dysfunction in the setting of atrial fibrillation and obstructive sleep apnea, despite preserved systolic function. His symptoms persist despite optimized CPAP therapy and medical management. Given his history of coronary artery disease and diabetes, gastroparesis remains a possible contributor to his nausea and dyspnea. His recent rib fractures and fall raise concerns for frailty, though no acute cardiac ischemia or pulmonary pathology is evident on current testing. Further evaluation is warranted to exclude reversible causes of dyspnea, such as obstructive lung disease or coronary ischemia.
+
+**Plan**
+1. I will arrange a pulmonary function test to evaluate for obstructive or restrictive lung disease as a potential contributor to dyspnea.
+2. I will request a recent CPAP compliance report from Family First to assess adherence and adjust settings if needed.
+3. I will order a stress test (exercise or pharmacologic) to rule out silent myocardial ischemia given his coronary artery disease history.
+4. We will continue current medications as no changes are indicated at this time, with close monitoring of potassium and renal function.
+5. We will follow up in 4-6 weeks to review test results and reassess symptoms.

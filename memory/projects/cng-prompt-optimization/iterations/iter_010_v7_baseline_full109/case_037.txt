@@ -1,0 +1,56 @@
+Patient ID
+Janet Marie Miller is a 73-year-old female.
+
+History of Present Illness
+Ms. Miller presents for preoperative cardiac risk assessment prior to planned breast surgery for invasive ductal carcinoma of the left breast. She reports no recent chest pain, dyspnea, or palpitations but continues to experience significant bilateral lower extremity pain limiting ambulation and recurrent episodes of lightheadedness. Her symptoms have persisted since October 2025, with no improvement despite ongoing medical management. She denies shortness of breath, syncope, or worsening angina but notes increased fatigue and reduced functional capacity. The patient expresses strong preference for lumpectomy over mastectomy, acknowledging the risks of multiple anesthetics given her complex cardiac history.
+
+Past Medical History
+Chronic coronary artery disease status post two-vessel CABG (2014), NSTEMIs (2019, July 2023, May 2025), implantable cardioverter-defibrillator (ICD) placement (May 2025), heart failure with reduced ejection fraction (EF 34%), hypertension, type 2 diabetes mellitus, dyslipidemia, macrosteatosis, invasive ductal carcinoma of the left breast (ER/PR positive, equivocal Her2neu), prior right mastectomy (2014) with radiation, left lumpectomy for DCIS (2015), anal cancer treated with chemo/radiation, depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, fatty liver, and history of seizures.
+
+Medications
+Aspirin 81 mg PO daily
+Ticagrelor 90 mg PO twice daily
+Carvedilol 6.5 mg PO daily
+Amiodarone 200 mg PO daily
+Atorvastatin 80 mg PO daily
+Jardiance (empagliflozin) 10 mg PO daily
+Spironolactone 25 mg PO daily
+Furosemide 40 mg PO daily
+Metformin 1000 mg PO twice daily
+Rabeprazole 20 mg PO daily
+Perindopril 4 mg PO daily
+Nifedipine 60 mg PO daily
+Ferrous fumarate 300 mg PO daily
+Isosorbide dinitrate SL PRN
+Novolin NPH insulin as needed
+
+Allergies
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History
+Not documented
+
+Social History
+Lives alone, no tobacco use, occasional alcohol (2 drinks/month), new male partner, not interested in physiotherapy
+
+Physical Examination
+Not documented
+
+Investigations
+2025-11-XX: Diagnostic mammogram (left breast) - irregular 14 mm mass (BIRADS 5), suspicious calcifications (BIRADS 4A)
+2025-12-04: Ultrasound-guided core biopsy - invasive ductal carcinoma (ER/PR positive)
+2025-12-18: Stereotactic core biopsy - benign breast tissue with fibroadenoma, papilloma
+2025-05-27: Echocardiogram - EF 34%, high LV filling pressure, moderate RV dysfunction, mild mitral regurgitation
+2025-10-XX: Labs - HbA1c 7.6%, creatinine 56, eGFR 83, troponin 100 pg/mL, D-dimer positive
+
+Impression
+Ms. Miller is a 73-year-old female with complex cardiovascular disease, including recent NSTEMIs, ICD placement, and heart failure with reduced ejection fraction, presenting for preoperative assessment prior to breast surgery. Her most recent MI in December 2025 places her within the high-risk perioperative window, compounded by bilateral lower extremity pain (likely vascular in origin) and poorly controlled diabetes. The presence of an ICD and multiple comorbidities further elevates her surgical risk, necessitating careful perioperative cardiac management and potential delay of elective surgery until at least 6 months post-MI if feasible.
+
+Plan
+1. We will confirm the timing of the December 2025 MI and, if within the last 3 months, delay elective breast surgery until at least 6 months post-MI to reduce perioperative cardiac risk.
+2. We will schedule preoperative ICD interrogation and coordinate with cardiology and anesthesia to reprogram the device to asynchronous mode during surgery, with reactivation planned postoperatively.
+3. We will arrange preoperative stress testing (e.g., stress echocardiogram) to assess myocardial viability and ischemic burden, with results guiding further management decisions.
+4. We will consult vascular surgery to evaluate the bilateral lower extremity pain and assess for peripheral arterial disease, given her extensive vascular risk profile.
+5. We will coordinate with cardiology to determine safe timing for discontinuation of ticagrelor (5-7 days preoperatively) while continuing aspirin, with consideration for bridging therapy if indicated.
+6. We will discontinue metformin preoperatively and optimize heart failure and diabetes management, with close monitoring of electrolytes and renal function.
+7. We will schedule follow-up within 2 months to reassess cardiac status, review stress test results, and finalize surgical planning.

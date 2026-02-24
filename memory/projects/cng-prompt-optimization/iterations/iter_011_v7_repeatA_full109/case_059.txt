@@ -1,0 +1,37 @@
+Patient ID: Donna Marie Comeau is a 54-year-old female.
+
+History of Present Illness:
+Donna Comeau presented for a routine check-up where a left apical opacity was incidentally noted on chest X-ray. She denies any current symptoms of cough, chest pain, shortness of breath, or weight loss, though she reports a mild, intermittent cough and occasional left upper chest ache. She has a significant smoking history of one pack per day for the past 17 years and consumes hard liquor occasionally (one to two drinks every other night). She has no known medical conditions and has not had a family doctor for a long time. A CT scan of the chest was performed, revealing new left apical scarring with a nodular component measuring 10 x 5 mm and an 8 x 4 mm nodule, both requiring follow-up.
+
+Past Medical History: not documented
+
+Medications: not documented
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+- Smoker: 1 pack per day for 17 years
+- Alcohol: occasional hard liquor (1-2 drinks every other night)
+- Marijuana: no
+- Non-prescribed medications: no
+
+Physical Examination:
+- Pulses: good and equal bilaterally
+- Heart sounds: normal
+- Lungs: clear to auscultation
+- Heart rate: 111 bpm (elevated)
+- Oxygen saturation: 98%
+
+Investigations:
+2026-01-14:
+- CT Chest Enhanced: New left apical scarring with nodular component (10 x 5 mm) and an 8 x 4 mm nodule; no mediastinal mass, no enlarged thoracic lymph nodes, no aggressive bone lesion.
+
+Impression:
+Donna Comeau is a 54-year-old female with a significant smoking history presenting with incidental findings of left apical scarring and nodular components on CT chest. The findings are concerning for possible benign scarring but require follow-up to monitor for stability or progression. The elevated heart rate noted on examination warrants further assessment, though no acute cardiac symptoms are reported.
+
+Plan:
+1. I will prescribe nicotine replacement therapy (patch and gum/spray) to aid in smoking cessation and provide resources including the provincial smoking cessation line (811).
+2. We will arrange for follow-up CT chest in three months (scheduled for April 2026) to monitor the left apical nodular components.
+3. I will recommend cardiac evaluation for the elevated heart rate (111 bpm) with consideration of Holter monitoring or further cardiac assessment if symptoms develop.

@@ -1,0 +1,73 @@
+Patient ID
+Carol Anne Nickerson is a 67-year-old female.
+
+History of Present Illness
+Carol Anne Nickerson presents today for follow-up regarding her known pulmonary hypertension and mild anemia. She reports no significant change in her symptoms, including shortness of breath on exertion, which she attributes to deconditioning and occasional fatigue. She denies orthopnea, paroxysmal nocturnal dyspnea, lower limb swelling, chest pain, or palpitations. She continues to walk daily and shovel snow, though she occasionally experiences brief episodes of breathlessness that resolve spontaneously. She has been compliant with her current medications and denies any recent changes in her diet, though she acknowledges occasional irregular eating habits.
+
+Carol Anne is concerned about her recent blood work, which showed mild anemia with hemoglobin of 108 g/L and low ferritin levels of 11.8 µg/L. She had an echocardiogram in December 2025 that demonstrated moderate to severe dilation of the right ventricle with moderately reduced systolic function, though her right atrial pressure was normal and there was no evidence of tricuspid regurgitation. She denies any gastrointestinal bleeding or other symptoms that might suggest an underlying cause for her anemia. She has a family history of cancer but denies any personal history of gastrointestinal issues or bleeding.
+
+Physical Examination
+not documented
+
+Investigations
+2026-01-12
+- Hemoglobin: 105 g/L
+- Ferritin: 11.8 µg/L
+- Iron: 6.5 µmol/L
+- Total Iron Binding Capacity: 69 µmol/L
+- % Saturation: 0.09
+- NT-proBNP: 178 ng/L
+- Complete Blood Count: Hemoglobin 105 g/L, MCV 83.4 fL, RDW 15.5%
+- Liver Function Tests: Normal
+- Renal Function: eGFR 72 mL/min/1.73m²
+
+2026-02-03
+- Hemoglobin: 108 g/L
+- Ferritin: 11.8 µg/L
+- Vitamin B12: 172 pmol/L
+- Serum Folate: 26.3 nmol/L
+- Complete Blood Count: Hemoglobin 108 g/L, MCV 82.9 fL, RDW 16.0%
+- Lactate Dehydrogenase: 259 U/L
+- Reticulocyte Count: 0.023 (low)
+
+2025-12-04
+- Echocardiogram: Moderate to severely dilated right ventricle with moderately reduced systolic function, normal right atrial pressure, no tricuspid regurgitation.
+
+Past Medical History
+- Precapillary pulmonary hypertension
+- Type 2 diabetes
+- Dyslipidemia
+- Meningioma
+- GERD
+
+Medications
+- Rosuvastatin 40 mg PO daily
+- Pantoprazole 40 mg PO daily
+- Metformin 500 mg/Sitagliptin 100 mg PO BID
+- Dapagliflozin 10 mg PO daily
+- Tadalafil 40 mg PO daily
+- Macitentan 10 mg PO daily
+- Furosemide 40 mg PO daily
+- Potassium chloride 20 mEq PO BID
+
+Allergies
+not documented
+
+Family History
+Family history of cancer.
+
+Social History
+- No smoking or alcohol use.
+- Engages in daily walking and occasional snow shoveling.
+- No recent changes in living situation or social support.
+
+Impression
+Carol Anne Nickerson is a 67-year-old female with known precapillary pulmonary hypertension, type 2 diabetes, and dyslipidemia. She presents with mild iron deficiency anemia, as evidenced by low hemoglobin, ferritin, and iron levels, along with an elevated total iron binding capacity and low saturation. The echocardiogram demonstrates persistent right ventricular dilation and moderately reduced systolic function, though her clinical status remains stable with no evidence of pulmonary hypertension or right heart failure. The anemia is likely contributing to her fatigue and may be impacting her functional capacity. Given the chronicity of her pulmonary hypertension and the lack of recent medication changes, it is unlikely that her anemia is medication-related. The low reticulocyte count suggests a hypoproliferative process, and the absence of gastrointestinal symptoms or bleeding makes occult bleeding less likely.
+
+Plan
+1. I will arrange for intravenous iron infusion (Monoferric 1 gram) to correct the iron deficiency anemia.
+2. I will order a colonoscopy and upper endoscopy to investigate the underlying cause of her iron deficiency anemia, given the persistent low hemoglobin and ferritin levels.
+3. I will continue her current medications for pulmonary hypertension, diabetes, and dyslipidemia without changes.
+4. I will follow up in three months to reassess her hemoglobin levels and overall clinical status.
+5. I will arrange for a local echocardiogram in six months to reassess right ventricular function.
+6. I will copy my letter to Dr. Simon Jackson and Dr. Emma Leblanc for continuity of care.

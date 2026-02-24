@@ -1,0 +1,52 @@
+Patient ID: Vernon Sabean is an 80-year-old male.
+
+History of Present Illness:
+Mr. Sabean reports progressive difficulty chewing and swallowing solids for approximately three months, requiring foods to be soft or liquid consistency. He describes jaw fatigue and prolonged chewing time, with associated mild jaw ache post-meals. Liquids and soft foods like ice cream are tolerated well. He denies dysphagia for liquids or choking episodes. Symptoms began around late November and have gradually worsened. No associated weight loss, nausea, vomiting, or respiratory symptoms are reported. He has a prior CT head (January 9, 2026) showing mild chronic microvascular ischemic changes and old lacunar infarcts but no acute abnormalities. A barium swallow is pending for further evaluation.
+
+Past Medical History:
+Smoldering myeloma, hypertension, dyslipidemia, GERD, asthma, atony of bladder, anxiety, history of urinary tract infections, renal colic and calculi, bilateral total knee replacements, hernia repair, and history of orthostatic hypotension.
+
+Medications:
+Rosuvastatin 10 mg, 1 tablet daily
+Lorazepam 0.5 mg, 1 tablet as needed
+Rabeprazole EC 10 mg, 1 tablet daily
+Budesonide/formoterol 200/6 mcg, 2 puffs BID
+Salbutamol HFA, 2 puffs every 4 hours as needed
+Betamethasone/salicylic acid lotion, BID
+Cyanocobalamin 1000 mcg, 1 tablet BID
+Duloxetine 60 mg, 1 capsule daily
+Levocarbidopa 25 mg/100 mg, 1 tablet TID (new)
+
+Allergies:
+Duloxetine HCl 30 mg capsule (tolerated better on lower doses)
+
+Family History:
+Anxiety (mother), stroke (mother and sister), father deceased at age 90 (natural causes)
+
+Social History:
+Not documented
+
+Physical Examination:
+Vital signs stable. Neurological exam reveals mild right-sided tremor, subtle resting tremor in hands, mild facial hypomimia, and reduced arm swing on the right side. Jaw clenching demonstrates no pain or resistance. No focal weakness, sensory deficits, or ataxia. Gait is steady with mild right arm swing reduction. No dysarthria or dysphonia.
+
+Investigations:
+2026-02-02:
+- CBC: Hb 125 g/L, WBC 8.1 x10^9/L, platelets 227 x10^9/L
+- Urea: 6.5 mmol/L
+- eGFR: 76 mL/min/1.73m^2
+- Creatinine: 88 umol/L
+- Electrolytes: Na 139 mmol/L, K 4.5 mmol/L, Cl 102 mmol/L
+- Calcium: 2.62 mmol/L
+- LDH: 160 U/L
+2026-01-09:
+- CT head: No acute intracranial findings; mild chronic microvascular ischemic changes and old lacunar infarcts
+
+Impression:
+Mr. Sabean presents with progressive dysphagia and jaw fatigue, likely related to a neurodegenerative process given the subtle parkinsonian features observed on exam. The differential includes Parkinson disease, giant cell arteritis, and less likely ALS or other neuromuscular disorders. His smoldering myeloma remains stable, and no evidence of end-organ damage or progression is noted. The CT head shows chronic changes without acute pathology.
+
+Plan:
+1. I will initiate levocarbidopa/benserazide 25/100 mg TID for suspected Parkinson disease and reassess symptoms in 2-3 weeks.
+2. I will order urgent inflammatory markers (ESR, CRP) to rule out giant cell arteritis.
+3. I will arrange a follow-up appointment in six weeks to evaluate response to levocarbidopa and review further investigations as needed.
+4. I will ensure the pending barium swallow is completed and results reviewed.
+5. I will maintain current monitoring for smoldering myeloma as per prior plan.

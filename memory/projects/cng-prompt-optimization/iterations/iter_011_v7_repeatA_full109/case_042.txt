@@ -1,0 +1,55 @@
+Patient ID
+James Douglas Dulong is an 82-year-old male.
+
+History of Present Illness
+Mr. Dulong reports progressive weakness in his legs, particularly with ambulation, despite using ankle weights for limited exercise. He remains indoors most of the time due to difficulty walking. His oxygen requirements are stable at 2 L/min at rest and 3 L/min with activity, though he experiences desaturation to the low 80s during exertion. He denies worsening dyspnea but notes fatigue and limited mobility. There is no change in cough or sputum production. Medication adherence to nintedanib is reported, though he questions its efficacy. He has not experienced diarrhea with nintedanib but has anti-diarrheal tablets available. The patient is considering rehabilitation to improve leg strength but is uncertain about timing due to winter conditions.
+
+Past Medical History
+Rheumatoid arthritis-associated interstitial lung disease with usual interstitial pneumonia pattern, chronic obstructive pulmonary disease, mild aortic stenosis, left diaphragmatic weakness, asbestos exposure, benign prostatic hyperplasia, dermatitis, dyslipidemia, gastroesophageal reflux disease, hypertension, insomnia, obesity, anxiety, benign paroxysmal positional vertigo, prostate cancer (treated), constipation, encephalitis in viral disease exacerbation, heart murmur, and rheumatic fever.
+
+Medications
+nintedanib 150 mg oral daily
+morphine sulfate 2 mg/mL syrup 2 mL TID PRN
+oxygen 2 L/min continuous at home, 3 L/min with activity
+Breo Ellipta 100/25 mcg inhaler daily
+Incruse Ellipta 62.5 mcg inhaler daily
+salbutamol inhaler PRN (minimal use)
+loperamide 2 mg oral PRN (not currently used)
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Retired veteran, lives with spouse, limited mobility due to dyspnea and weakness, no smoking history since 1983 (35 pack-years), no alcohol use.
+
+Physical Examination
+Vital signs: BP 125/73 mmHg, HR 85 bpm, SpO2 90% on 3 L/min oxygen.
+Lungs: Clear bilaterally with fine basal crackles.
+Cardiovascular: Normal S1/S2, no murmurs, no JVD.
+Extremities: 2+ peripheral pulses, mild lower limb edema, proximal muscle weakness in lower extremities.
+Neurological: Normal mental status, no focal deficits.
+
+Investigations
+2025-12-03
+CBC: Mild anemia (Hb 122 g/L), normal WBC, platelets.
+CMP: Normal electrolytes, mild hypoalbuminemia (44 g/L), normal LFTs, eGFR 88 mL/min.
+CRP: 15.7 mg/L.
+2025-03-12
+PFT: FEV1 73% predicted, DLCO 38% predicted (restrictive pattern).
+2025-05-15
+Echocardiogram: Mild aortic stenosis, preserved ventricular function.
+2024-07-13
+Chest CT: Bilateral subpleural reticulations, bibasilar honeycombing, traction bronchiectasis, pleural plaques, enlarged main pulmonary artery (3.2 cm).
+
+Impression
+Mr. Dulong has progressive rheumatoid-associated interstitial lung disease with usual interstitial pneumonia pattern and secondary pulmonary hypertension, contributing to his dyspnea and functional decline. His left diaphragmatic weakness and limited mobility further restrict his activities of daily living. Despite stable oxygen requirements and preserved cardiac function, his leg weakness and fatigue suggest potential deconditioning and possible respiratory muscle fatigue. The mild inflammatory marker elevation (CRP 15.7 mg/L) warrants monitoring for disease activity.
+
+Plan
+1. I will initiate loperamide 2 mg oral daily for primary prophylaxis of nintedanib-induced diarrhea.
+2. I will refer Mr. Dulong to the hospital-based pulmonary rehabilitation program for strength training and mobility assessment, with follow-up in 3 months to evaluate progress.
+3. I will arrange for a home oxygen assessment to ensure appropriate flow settings during exertion and confirm saturation targets (>90%).
+4. I will schedule a follow-up appointment in 6 months to reassess symptoms, pulmonary function, and medication tolerability, with interim monitoring of oxygen saturation and symptom diary.
+5. I will continue nintedanib 150 mg daily and morphine sulfate 2 mg/mL syrup 2 mL TID PRN for dyspnea, with instructions to increase oxygen flow to 4–5 L/min during ambulation.

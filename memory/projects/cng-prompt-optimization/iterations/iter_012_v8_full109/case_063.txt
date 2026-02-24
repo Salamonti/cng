@@ -1,0 +1,63 @@
+Patient ID: Morgan Bowman Macdonald, 73-year-old male
+
+History of Present Illness:
+This 73-year-old male was referred for assessment of pulmonary nodules identified on a recent CT scan performed by his neurologist during evaluation for myasthenia gravis. The patient reports no specific symptoms related to the nodules, such as weight loss, hemoptysis, or worsening dyspnea, though he has been experiencing mild shortness of breath and intermittent mucus production, which he attributes to his smoking history. He has a long-standing history of smoking, having quit multiple times but currently smoking half a pack per day. He also reports a history of COPD and recurrent bronchial infections, particularly in the winter months. The patient has had previous imaging, including a CT scan in the United States in 2021, which showed a nodule that was later determined to be non-cancerous and had shrunk over time. He has no history of cancer and denies any recent changes in his health status.
+
+The patient’s myasthenia gravis symptoms have improved significantly with Mestinon, though he continues to experience mild eye strain and tunnel vision. He has no recent changes in his neurological symptoms and remains functionally independent. His current concerns are primarily related to the pulmonary nodules and his ongoing smoking habit, which he acknowledges worsens his respiratory symptoms.
+
+Past Medical History:
+Myasthenia gravis, COPD, mild centrilobular emphysema, cervical spine degenerative changes, prior neck trauma, hypertension, prior pulmonary nodules (non-cancerous), mild atherosclerotic disease
+
+Medications:
+Lisinopril 40 mg once daily
+Mestinon 60 mg four times daily
+Aspirin 81 mg once daily
+Ipratropium bromide (Atrovent) 2 puffs three times daily (new prescription)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Current smoker (half pack per day), history of multiple quit attempts, no recent weight loss, no alcohol or illicit drug use, lives independently
+
+Physical Examination:
+Vital signs: PR 76 bpm, SpO2 97% on room air
+Lungs: clear bilaterally
+Cardiovascular: regular rate and rhythm, no murmurs
+Neurological: normal mental status, no focal deficits, mild tunnel vision and neck movement limitations due to prior trauma
+
+Investigations:
+2025-10-14:
+CT Chest with Contrast: multiple small pulmonary nodules (largest 9 mm in right middle lobe), mild centrilobular emphysema, no evidence of thymoma or malignancy, right thyroid nodule (2.7 cm), severe atherosclerotic disease
+
+2025-11-04:
+Thyroid Ultrasound: 4 cm right thyroid lobe nodule (TIRADS 3), FNA recommended based on size
+
+2025-11-21:
+Head CT Angiogram: incidental right thyroid nodule (26 mm), mild centrilobular emphysema, no acute infarction or significant stenosis
+
+2025-12-09:
+Barium Swallow: no evidence of aspiration
+
+2025-11-26:
+Holter Monitor: normal sinus rhythm, no significant arrhythmias
+
+2025-09-23:
+Immunoglobulins: IgG 9.9 g/L, IgA 1.65 g/L, IgM 0.49 g/L
+Hemoglobin A1C: 5.3%
+eGFR: 83 mL/min/1.73m2
+Lipid Panel: Cholesterol 4.7 mmol/L, Triglycerides 1.0 mmol/L, LDL 3.0 mmol/L, HDL 1.27 mmol/L
+CBC: WBC 6.9 x10^9/L, Hb 154 g/L, Plts 207 x10^9/L
+
+Impression:
+This 73-year-old male presents with multiple pulmonary nodules identified on recent imaging, likely related to his long-standing smoking history and underlying COPD. The nodules are stable in size and appearance, with the largest measuring 9 mm and showing characteristics suggestive of a hamartoma or smoking-related changes. The patient’s myasthenia gravis is well-controlled on Mestinon, with only mild residual symptoms. His COPD is stable, though his smoking habit continues to contribute to respiratory symptoms and likely the development of these nodules. The presence of a 4 cm right thyroid nodule on ultrasound raises concern for malignancy and warrants further evaluation with fine-needle aspiration. His overall cardiovascular risk is moderate, with evidence of atherosclerotic disease and mild emphysema.
+
+Plan:
+1. I will prescribe ipratropium bromide (Atrovent) 2 puffs three times daily for symptomatic relief of COPD.
+2. I will arrange for fine-needle aspiration of the right thyroid nodule for further characterization.
+3. I will refer the patient to a smoking cessation program, including nicotine replacement therapy (patch/gum/spray) as needed, and provide printed materials and the provincial smoking cessation line contact (811).
+4. I will schedule a follow-up CT chest in November 2026 to reassess the pulmonary nodules.
+5. I will arrange for a repeat thyroid ultrasound in 6 months to monitor the nodule size and characteristics.
+6. I will counsel the patient on the importance of smoking cessation to improve his respiratory symptoms and reduce the risk of progression of his pulmonary nodules.
+7. We will monitor his myasthenia gravis symptoms at follow-up visits and adjust Mestinon dosing as needed.

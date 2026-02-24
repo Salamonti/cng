@@ -1,0 +1,58 @@
+Patient ID: Sherrie Lynn Robinson, 75-year-old female
+
+History of Present Illness:
+Sherrie Lynn Robinson is a 75-year-old female presenting with ongoing intermittent chest pain and exertional shortness of breath for approximately two years. The chest pain has persisted despite doubling her pantoprazole dose to 40 mg daily, with occasional mild episodes but no severe bouts since her ER visit before Christmas. She reports improvement in her shortness of breath with the initiation of CPAP therapy for obstructive sleep apnea, though she is still adjusting to it. She denies current active angina but continues to experience mild chest discomfort. Sherrie has not had a significant exacerbation of symptoms recently and is hopeful for improvement before the summer.
+
+Sherrie’s symptoms have been evaluated extensively, including a recent echocardiogram showing normal left ventricular function and mildly reduced right ventricular systolic function. Her BNP level was mildly elevated in October, which was attributed to obstructive sleep apnea and chronic atrial fibrillation. She has been advised to continue her CPAP therapy and optimize management of her sleep apnea, as this is expected to improve her breathing and overall symptoms.
+
+Past Medical History:
+Arthritis, Atrial Fibrillation, GERD, Hearing Loss, Hypertension, Obstructive Sleep Apnea, Osteoporosis, Past History of Depression
+
+Medications:
+- AccelDuloxetine 30 mg QD
+- Atorvastatin 20 mg OD
+- Pantoprazole 40 mg DR QD
+- Alendronate Sodium 70 mg weekly
+- Apixaban BID
+- Lorazepam 0.5 mg PRN
+- Bisoprolol 5 mg QD (reduced from 7.5 mg)
+- Gabapentin (dose not documented)
+- Dapagliflozin (new)
+- Digoxin 0.0625 mg (new)
+
+Allergies:
+Dilaudid, Aloe Vera
+
+Family History: not documented
+
+Social History:
+Lives in Digby, NS. Resides there for 6 years. Occasional glass of wine. No smoking history. Uses CPAP for obstructive sleep apnea.
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-17:
+- ECHO 2D: Normal left ventricular size and systolic function. Mildly reduced right ventricular systolic function. Normal pulmonary artery pressure at rest.
+
+2025-12-21:
+- Chest X-ray: No acute intrathoracic disease.
+- ECG: Atrial fibrillation, no longer meeting criteria for inferior infarct.
+- Troponin T: 9 ng/L (normal).
+- Complete Blood Count, BMP, Lipids, TSH, BNP, and other labs: All within normal limits or consistent with chronic conditions.
+
+2025-11-27:
+- Stress Test: Atrial fibrillation at rest, no significant ST changes. Test terminated due to dyspnea.
+
+2025-10-14:
+- Wall Motion Study: Normal ventricular walls with normal motion, ejection fraction 55.6%.
+- BNP: 659 ng/L (elevated, likely secondary to chronic AFib or OSA).
+
+Impression:
+Sherrie Lynn Robinson is a 75-year-old female with a history of atrial fibrillation, obstructive sleep apnea, and hypertension who presents with ongoing intermittent chest pain and exertional dyspnea. Despite extensive cardiac evaluation, including a normal echocardiogram and stress test, her symptoms are likely multifactorial, involving her chronic atrial fibrillation, obstructive sleep apnea, and possible GERD. The mildly reduced right ventricular systolic function and elevated BNP level are consistent with her obstructive sleep apnea and chronic atrial fibrillation. The recent initiation of CPAP therapy and adjustments to her medication regimen are expected to improve her symptoms over time.
+
+Plan:
+1. I will continue Dapagliflozin 10 mg daily for heart failure with preserved ejection fraction and potential benefits in reducing dyspnea related to obstructive sleep apnea.
+2. I will initiate Digoxin 0.0625 mg daily for rate control in atrial fibrillation.
+3. I will discontinue Hydrochlorothiazide and adjust Bisoprolol to 5 mg daily to optimize heart rate and blood pressure control.
+4. I will arrange for a CPAP machine fitting and follow-up with Family First in Digby to ensure proper mask fit, machine maintenance, and data monitoring.
+5. We will follow up in three months to reassess symptoms, CPAP compliance, and response to medication changes.

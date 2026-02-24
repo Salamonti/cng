@@ -1,0 +1,65 @@
+Patient ID
+Jacqueline Valerie Yvonne Philippe, 35-year-old female
+
+History of Present Illness
+Jacqueline Philippe presents today with ongoing severe pain and functional impairment. She reports persistent mid-thoracic back pain, particularly around the T8-T9 region, which she describes as unrelenting and impacting her ability to continue daily activities. Despite trials of gabapentin 300 mg at bedtime, she has experienced no improvement in pain control or associated symptoms. She also describes worsening nausea and vomiting, with no retained meals for approximately three weeks, and recurrent episodes of throat tightness, hives, and visual disturbances, which have required multiple uses of her epinephrine auto-injector.
+
+She notes facial and upper body erythema consistent with rosacea, which has been exacerbated by dietary triggers such as spicy foods, wine, and chocolate. She remains concerned about the lack of resolution in her symptoms despite extensive prior investigations, including MRI of the thoracic spine, which revealed a small disc herniation at T8-T9 with disc material contacting the anterior thecal sac but no significant spinal stenosis or nerve impingement. She expresses frustration with the diagnosis of fibromyalgia and seeks alternative explanations for her symptoms.
+
+Past Medical History
+Complex PTSD, degenerative disc displacement, previous irregular heartbeats, multiple emergency department admissions for systemic symptoms, GERD, migraine without aura, thyroiditis, possible thyroid storm, rosacea, recurrent angioedema
+
+Medications
+Amlodipine besylate 5 mg oral daily
+Pantoprazole sodium 80 mg oral daily (patient self-adjusted from 40 mg)
+Prazosin 1 mg oral daily
+Ranitidine 150 mg oral daily
+Semaglutide 0.25 mg subcutaneous weekly
+Zopiclone 7.5 mg oral as needed
+Nortriptyline 25 mg oral daily
+Pregabalin 75 mg oral twice daily
+Naltrexone 1.5 mg oral twice daily (new)
+Cisapride 5 mg oral 30 minutes before meals (new)
+Gabapentin 300 mg oral at bedtime (ongoing, no benefit)
+Reactive 10 mg oral at bedtime (ongoing)
+Epinephrine auto-injector (ongoing)
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Therapist running own organization, adoptive parent, history of miscarriages, smoker (~5 cigarettes daily), denies recreational drug use
+
+Physical Examination
+Not documented
+
+Investigations
+2026-02-04
+- Anti-thyroid peroxidase antibody: Report pending (QE2)
+- Antinuclear antibody screen: Report pending (InCommon Laboratories)
+- C-reactive protein: 22.5 mg/L (elevated)
+- Hepatitis B surface antigen: Non-reactive
+- Hepatitis C antibody: Non-reactive
+- Complement C4: 0.16 g/L (low)
+- Complement C3: 1.54 g/L (normal)
+- Thyroid stimulating hormone: 1.700 mIU/L (normal)
+- Complete blood count: WBC 9.5 x10^9/L, RBC 4.51 x10^12/L, Hgb 135 g/L, Hct 0.400 L/L, platelets 313 x10^9/L
+
+2025-12-17
+- EBUS TBNA of mediastinal lymph nodes: Negative for malignancy, no granulomas identified
+
+2025-12-11
+- MRI thoracic spine: Small disc herniation at T6-T7 and T8-T9, disc material at T8-T9 contacts anterior thecal sac, no significant spinal stenosis or nerve impingement
+
+Impression
+Jacqueline Philippe presents with a complex and multifaceted clinical picture characterized by chronic pain, recurrent gastrointestinal symptoms, and severe allergic reactions. Her thoracic spine MRI confirms a small disc herniation at T8-T9, which may contribute to her persistent back pain, though it does not explain her widespread symptoms. The lack of improvement with gabapentin and the presence of nausea, vomiting, and recurrent angioedema episodes suggest a possible underlying autoimmune or inflammatory process, despite normal ACE levels and negative lymph node biopsies for granulomatous disease. The elevated CRP and low complement C4 levels warrant further investigation into potential autoimmune or inflammatory conditions. Her rosacea and recurrent angioedema episodes may be related to underlying mast cell activation or hereditary angioedema, which require specialized evaluation.
+
+Plan
+1. I will discontinue gabapentin 300 mg oral at bedtime due to lack of efficacy.
+2. I will initiate naltrexone 1.5 mg oral twice daily for fibromyalgia-related pain and assess for tolerability and efficacy in four weeks.
+3. I will initiate cisapride 5 mg oral 30 minutes before meals to improve esophageal motility and reduce nausea/vomiting.
+4. I will refer Jacqueline to Clinical Immunology and Allergy for evaluation of recurrent angioedema episodes, rosacea, and consideration of mast cell activation disorder or hereditary angioedema.
+5. I will arrange follow-up in three months to review the effectiveness of naltrexone and cisapride, and to discuss further management based on the Immunology/Allergy consultation.

@@ -1,0 +1,56 @@
+Patient ID: Sherrie Lynn Robinson, 75-year-old female
+
+History of Present Illness:
+Sherrie Lynn Robinson is a 75-year-old female who presents with ongoing intermittent chest pain and exertional shortness of breath. She reports that her chest pain has persisted despite doubling her pantoprazole dose to 40 mg daily, following an ER visit around Christmas where her symptoms were attributed to acid reflux. The chest pain is mild and intermittent, without the severity experienced during her ER visit. She also notes persistent shortness of breath, though it has improved slightly with the initiation of CPAP therapy for obstructive sleep apnea, which she has been using for one week. Her ability to walk has improved, as she was able to walk from her car to the office without significant lightheadedness or shortness of breath. She remains hopeful for improvement before the summer, aiming to return to walking to the beach daily.
+
+Sherrie describes her chest pain as not severe but persistent, and she remains concerned about its cause, especially given the reassurance from her echocardiogram two weeks ago, which showed normal left ventricular function and mild reduction in right ventricular function. She has been started on gabapentin and duloxetine by her family doctor for symptom management. Her CPAP use is ongoing, though she acknowledges it is still a new adjustment.
+
+Past Medical History:
+Arthritis, Atrial Fibrillation, GERD, Hearing Loss, Hypertension, Obstructive Sleep Apnea, Osteoporosis, Past History of Depression
+
+Medications:
+Pantoprazole 40 mg PO daily
+Duloxetine 30 mg PO daily
+Gabapentin 300 mg PO daily (dose not documented in transcript, assumed based on typical starting dose)
+Apixaban 5 mg PO twice daily
+Bisoprolol 7.5 mg PO daily
+Telmisartan 80 mg PO daily
+Alendronate Sodium 70 mg PO weekly
+Atorvastatin 20 mg PO daily
+Lorazepam 0.5 mg PO PRN
+
+Allergies:
+Dilaudid, Aloe Vera
+
+Family History: not documented
+
+Social History:
+Lives in Digby, NS. Occasionally drinks a glass of wine. No smoking history. Uses CPAP for obstructive sleep apnea.
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-17:
+ECHO 2D: Normal left ventricular size and systolic function. Mildly reduced right ventricular systolic function. Normal pulmonary artery pressure at rest.
+
+2025-12-21:
+Chest X-ray: No acute intrathoracic disease.
+Troponin T: 9 ng/L (normal)
+ECG: Atrial fibrillation, no significant ST changes.
+CBC, BMP, Lipids, TSH, BNP, Iron Studies, LDH: All within normal limits or consistent with prior results.
+
+2025-11-27:
+Stress Test: Atrial fibrillation at rest, no significant ST changes, terminated due to dyspnea.
+
+2025-10-16:
+Wall Motion Study: Normal ventricular walls with normal motion, ejection fraction 55.6%.
+
+Impression:
+Sherrie Lynn Robinson is a 75-year-old female with a history of atrial fibrillation, obstructive sleep apnea, and hypertension who presents with persistent exertional dyspnea and intermittent chest pain. Despite reassuring cardiac investigations, including a normal ejection fraction and no significant ST changes on stress testing, her symptoms are likely multifactorial. The mildly reduced right ventricular function on echocardiogram, combined with her obstructive sleep apnea and exertional dyspnea, suggests a contribution from chronic lung disease and possible right heart strain. Her chest pain may be related to GERD, musculoskeletal causes, or residual cardiac symptoms given her history of atrial fibrillation and prior ECG findings. The initiation of CPAP and optimization of her heart failure therapy with dapagliflozin and digoxin may help improve her symptoms.
+
+Plan:
+1. I will discontinue hydrochlorothiazide and start Dapagliflozin 10 mg PO daily.
+2. I will start Digoxin 0.0625 mg PO daily.
+3. I will reduce bisoprolol to 5 mg PO daily.
+4. I will arrange for a CPAP titration and mask fitting at Family First Clinic in Digby to ensure proper use and compliance.
+5. We will follow up in three months to reassess symptoms and CPAP compliance.

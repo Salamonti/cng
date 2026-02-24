@@ -1,0 +1,60 @@
+Patient ID
+Robyn Dawn Goodick is a 53-year-old woman.
+
+History of Present Illness
+Mrs. Goodick presents today with ongoing fatigue as her primary concern, which she describes as limiting her ability to return to work. She reports that after a single day of work, she requires two days to recover her strength, despite denying shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, lower limb swelling, exertional chest pain, palpitations, or dizziness. She has gained 9 lbs over the past six months but denies abdominal distension, nausea, or appetite changes. She remains asymptomatic from a cardiovascular standpoint, though she acknowledges persistent fatigue.
+
+Her recent Holter monitor revealed infrequent ectopic beats and intermittent tachycardia. She denies any recent changes in her cardiac medications or symptoms of heart failure. She reports occasional wheezing during physical activity, raising concern for possible asthma or chronic obstructive pulmonary disease (COPD), though she has no chronic cough or sputum production.
+
+Past Medical History
+Anterior ST-elevation myocardial infarction (May 2024), type 2 diabetes mellitus, hypertension, dyslipidemia, atrial fibrillation, depression (possible), left ventricular dysfunction with apical thrombus, segmental wall abnormalities, and grade I diastolic dysfunction.
+
+Medications
+- Ezetimibe 10 mg PO daily
+- Valsartan 20 mg PO b.i.d. (stopped)
+- Spironolactone 12.5 mg PO daily
+- Bisoprolol 10 mg PO daily (recently transitioned from metoprolol)
+- Metformin 1000 mg PO b.i.d.
+- Dapagliflozin 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Atorvastatin 40 mg PO daily (dose reduced)
+- Apixaban 5 mg PO b.i.d.
+- Basaglar insulin 35 units PO daily
+- Entresto 24/26 mg PO b.i.d. (recently initiated)
+- Spiriva Respimat 2.5 mcg inhalation 2 puffs QD
+- Ventolin HFA 100 mcg inhalation 2 puffs QID PRN
+
+Allergies
+not documented
+
+Family History
+Strong family history of premature coronary artery disease.
+
+Social History
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs.
+
+Physical Examination
+Blood pressure 112/79 mmHg, pulse 82 bpm and regular, oxygen saturation 97% on room air. Chest clear with adequate bilateral air entry and no wheezing noted today. Normal S1 and S2 with no additional sounds or murmurs. No jugular venous distention or lower limb edema. Neurological examination unremarkable.
+
+Investigations
+2025-03-XX:
+- BNP: 159 pg/mL
+- HbA1c: 7.6% (previously 7.3%)
+- LDL: 1.0 mmol/L
+
+2024-05-XX (admission):
+- LDL: 4.38 mmol/L
+- HbA1c: not documented
+
+2024-07-XX (post-MI):
+- Echocardiogram: EF 31-35%, apical thrombus, segmental wall abnormalities, grade I diastolic dysfunction
+
+Impression
+Mrs. Goodick is a 53-year-old woman with a history of anterior ST-elevation myocardial infarction, left ventricular dysfunction, and type 2 diabetes mellitus who presents with persistent fatigue limiting her functional capacity. Despite optimized medical therapy for heart failure and cardiovascular risk reduction, her fatigue persists, raising considerations for underlying respiratory involvement (e.g., asthma/COPD) and potential sleep-disordered breathing. Her recent Holter monitor findings of intermittent tachycardia and ectopic beats require ongoing monitoring, though she remains asymptomatic from a cardiac standpoint. Her HbA1c remains suboptimally controlled at 7.6%, necessitating further glycemic management.
+
+Plan
+1. I will order iron studies and ferritin to evaluate for potential anemia as a contributor to fatigue.
+2. I will arrange a sleep study to assess for sleep-disordered breathing as a possible cause of fatigue.
+3. I will schedule a follow-up echocardiogram via the WMS clinic to reassess left ventricular function and remodeling.
+4. I will review dietary modifications with Mrs. Goodick to address her suboptimal HbA1c (7.6%) and provide additional support for glycemic control.
+5. We will follow up in six months to reassess fatigue, review test results, and adjust management as needed.

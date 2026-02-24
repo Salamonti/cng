@@ -1,0 +1,68 @@
+Patient ID
+Cindy Hazel, 62-year-old female
+
+History of Present Illness
+Cindy Hazel presents with recurrent neck pain that began approximately two months ago, initially triggered by stress. She reports that the pain worsened over time and was severe enough to prompt an ED visit in December 2025, where she underwent blood work and received aspirin. The pain was associated with stress-related family issues and has since improved with avoidance of stressors. She also describes a history of similar symptoms prior to a cardiac stent procedure in 2016, which were also stress-related and resulted in severe limitations in mobility, including inability to walk or move. She has been trying to quit smoking using nicotine patches and is motivated to improve her overall health.
+
+Cindy notes that her symptoms have been stable since her last visit in December, with no recent exacerbations. She has been adhering to her medications and has been avoiding stressful situations. She expresses a strong desire to regain her previous level of fitness and health.
+
+Past Medical History
+Myocardial infarction 2016 with PCI stent placement to LAD
+Coronary artery disease
+Hypertension
+Dyslipidemia
+Gastroesophageal reflux disease
+Chronic obstructive pulmonary disease (COPD) with asthma-COPD overlap
+Anxiety
+Depression
+Colonic polyps (40 removed ~3 years ago)
+Type 2 diabetes (A1c 5.7-5.8)
+
+Medications
+Doxycycline 100 mg oral twice daily
+Escitalopram 20 mg oral once daily
+Pantoprazole 40 mg oral once daily
+Amlodipine 5 mg oral 1.5 tablets once daily
+Rosuvastatin 20 mg oral once daily
+Aspirin 81 mg oral once daily
+
+Allergies
+Shellfish (anaphylactic)
+
+Family History
+Not documented
+
+Social History
+Smoking: Attempting to quit with nicotine patches; previously smoked half a pack per day for 20 pack-years
+Alcohol: No current use; history of binge drinking as a young adult
+Occupation: Retired from maintenance work in an old building
+
+Physical Examination
+Chest: Clear, adequate air entry bilaterally
+Cardiovascular: Normal S1 and S2, no additional sounds or murmurs
+Abdominal: Soft, no palpable organomegaly
+Neurological: Unremarkable
+Extremities: No jugular venous distention or lower limb edema
+
+Investigations
+2025-12-10
+- Chest X-ray: Hyperinflated lungs, mild diffuse coarsening of bronchovascular markings, no acute intrathoracic disease
+- ECG: Normal sinus rhythm, nonspecific T wave abnormality, anterior infarct age undetermined
+- Troponin T: 10 ng/L (normal <14)
+- Venous blood gas: pH 7.44, pCO2 41.3 mmHg, HCO3 27.7 mmol/L, lactate 1.0 mmol/L
+- Complete blood count: WBC 13.8 x10^9/L, hemoglobin 138 g/L, platelets 248 x10^9/L
+- Lytes: Sodium 138 mmol/L, potassium 3.9 mmol/L, chloride 102 mmol/L
+- eGFR: 80 mL/min/1.73m^2
+- Lipids: LDL 2.5 mmol/L, HDL 1.35 mmol/L, triglycerides 1.16 mmol/L
+
+2022-06-07
+- PFTs: FEV1 67% (1.79L), FVC 91% (3.09L), FEV1/FVC ratio 58%; post-bronchodilator FEV1 83% (2.23L), FVC 116% (3.92L), FEV1/FVC ratio 57%; mild obstructive changes with significant reversibility
+
+Impression
+Cindy Hazel is a 62-year-old female with a history of myocardial infarction, coronary artery disease, COPD with asthma-COPD overlap, hypertension, dyslipidemia, and anxiety. She presents with recurrent neck pain that appears to be stress-related and has improved with avoidance of stressors. Her recent investigations show no acute cardiac or pulmonary decompensation, though her COPD and cardiovascular risk factors remain significant. The stress-induced nature of her symptoms, combined with her history of anxiety and depression, suggests a strong psychophysiological component to her presentation.
+
+Plan
+1. I will arrange for a stress test to further evaluate Cindy's cardiac status and rule out any ischemic changes.
+2. I will review her current inhaler use and ensure she is utilizing her prescribed Seebri and Ventolin appropriately for COPD management.
+3. I will reinforce smoking cessation strategies, including the use of nicotine replacement therapy, and discuss alternative methods such as nicotine spray if she is open to trying them.
+4. I will schedule follow-up in 4-6 weeks to review the results of the stress test and assess her overall progress with symptom management and smoking cessation.

@@ -1,0 +1,61 @@
+Patient ID: Sasha Boudreau, 47-year-old female
+
+History of Present Illness:
+Ms. Boudreau is a 47-year-old female presenting with persistent hypersomnia and fatigue despite ongoing CPAP use for obstructive sleep apnea. She reports that switching venlafaxine to once-daily dosing did not improve her fatigue. She continues to experience significant daytime drowsiness, requiring afternoon naps despite feeling rested upon waking. She denies episodes of nodding off while driving or working but struggles with maintaining alertness throughout the day. Her CPAP compliance remains consistent, and she denies any new symptoms of chest pain, palpitations, or shortness of breath.
+
+On examination, her chest is clear with adequate bilateral air entry. Cardiac examination reveals normal S1 and S2 without additional sounds or murmurs. The abdomen is soft without organomegaly, and there is no jugular venous distention or lower limb edema. Neurological examination is unremarkable.
+
+Past Medical History:
+ADHD
+Diabetes Mellitus Type 2
+Dyslipidemia
+Hypertension
+Hypersomnia
+Obstructive Sleep Apnea
+Possible Primary Hyperaldosteronism / Conn Syndrome
+
+Medications:
+Venlafaxine 75 mg orally once daily
+Bisoprolol 5 mg orally once daily
+CPAP for obstructive sleep apnea
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Nonsmoker, no alcohol or recreational drug use. Consumes one Coca-Cola and one cup of tea daily (previously advised to switch to decaffeinated beverages).
+
+Physical Examination:
+Chest: clear, adequate bilateral air entry
+Cardiac: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no palpable organomegaly
+Neurological: unremarkable
+Extremities: no jugular venous distention or lower limb edema
+
+Investigations:
+2025-11-03:
+Hemoglobin 107 g/L, MCV 101.9 fL, Ferritin 6.86 ug/L
+Glucose 11.8 mmol/L, HbA1C 6.6%, Creatinine 65 umol/L, eGFR 90 mL/min/1.73m2
+Sodium 140 mmol/L, Potassium 3.7 mmol/L
+Triglycerides 2.14 mmol/L, HDL 0.85 mmol/L
+
+2025-12-24:
+Complete Blood Count: Hemoglobin 116 g/L, MCV 92.4 fL, Ferritin 207.00 ug/L
+Thyroid Stimulating Hormone 2.300 mIU/L, Free T4 11.7 pmol/L
+eGFR 90, Creatinine 57 umol/L
+Sodium 137 mmol/L, Potassium 3.6 mmol/L, Chloride 102 mmol/L
+NTproBNP 28.7 ng/L
+ACTH 1.7 pmol/L
+Aldosterone/Renin Ratio: not documented (reported as ICL, pending review)
+
+2026-01-19 to 2026-01-20:
+24-hour urine metanephrines and catecholamines: normal
+
+Impression:
+Ms. Boudreau continues to experience persistent hypersomnia and fatigue despite adherence to CPAP therapy for obstructive sleep apnea and ongoing medical management. Her symptoms may be multifactorial, potentially related to residual effects of sleep apnea, underlying ADHD, or chronic fatigue syndrome. Previous investigations have ruled out significant cardiac or endocrine causes, though her fatigue persists. The possibility of chronic fatigue syndrome remains a consideration given the lack of improvement with current therapies and the absence of other identifiable causes.
+
+Plan:
+1. I will discontinue bupropion and reassess its impact on her ADHD symptoms and fatigue.
+2. I will arrange for a referral to a psychiatrist to discuss the initiation of methylphenidate for ADHD management, if deemed appropriate.
+3. I will refer Ms. Boudreau to the Chronic Disease Clinic in Halifax for further evaluation and management of chronic fatigue syndrome if her symptoms persist despite current interventions.

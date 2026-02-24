@@ -1,0 +1,40 @@
+Patient ID
+Roy Ethier, 61-year-old male
+
+History of Present Illness
+The patient reports worsening respiratory symptoms over the past two to three months, characterized by increased coughing—particularly at night—and shortness of breath with exertion such as carrying wood or performing chores. He describes the phlegm as white. His wife notes that his condition has become significantly more challenging, limiting his ability to engage in daily activities. He has been adhering to his current medications for Mycobacterium avium complex (MAC) infection, including Mycobutin, azithromycin, and ethambutol, but reports no recent flare-ups despite persistent cough. He is not currently taking his antihypertensive or cholesterol medications, though he uses a nicotine patch for smoking cessation. The patient also mentions an upcoming echocardiogram in March to reassess his aortic valve condition, with a history of hospitalization for consideration of valve replacement.
+
+Past Medical History
+Chronic Mycobacterium avium complex (MAC) infection, pulmonary nodules with low suspicion for malignancy, aortic valve disease, hypertension, hyperlipidemia, and chronic obstructive pulmonary disease (COPD)
+
+Medications
+Mycobutin 150 mg oral, 2 capsules Monday, Wednesday, Friday
+Azithromycin 250 mg oral, 2 tablets Monday, Wednesday, Friday
+Ethambutol 400 mg oral, 4 tablets Monday, Wednesday, Friday
+Trelagy Ellipta 100/62.5/25 mcg inhalation, 1 puff daily
+Nicotine transdermal patch, once daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Smoking history with current nicotine patch use; recently applied for disability due to limited functional capacity; reports boredom and difficulty finding alternative activities while at home
+
+Physical Examination
+Finger clubbing noted; lungs clear to auscultation; oxygen saturation 95-96%, heart rate 95-96 bpm
+
+Investigations
+2026-01-05: CBC (WBC 7.3 x10^9/L, Hb 151 g/L, Plts 367 x10^9/L), eGFR 84 mL/min/1.73m^2, CRP 33.2 mg/L, ALT 5 U/L, ALP 114 U/L, total bilirubin 4.7 umol/L
+
+Impression
+This 61-year-old male with chronic MAC infection and pulmonary nodules presents with progressive dyspnea and cough, likely related to both his underlying lung disease and ongoing MAC treatment. Despite current therapy, his symptoms have worsened, and his functional capacity is declining. The recent CT scan showed stable pulmonary nodules with low suspicion for malignancy, but his respiratory symptoms and physical findings of clubbing suggest ongoing pulmonary involvement. His aortic valve disease remains a concern, with an upcoming echocardiogram planned.
+
+Plan
+1. I will continue Mycobutin 150 mg oral, 2 capsules Monday, Wednesday, Friday; Azithromycin 250 mg oral, 2 tablets Monday, Wednesday, Friday; and Ethambutol 400 mg oral, 4 tablets Monday, Wednesday, Friday for MAC infection.
+2. I will continue Trelagy Ellipta 100/62.5/25 mcg inhalation, 1 puff daily, and nicotine transdermal patch once daily as prescribed.
+3. I will recommend follow-up with cardiology for echocardiogram in March as planned to reassess aortic valve disease.
+4. I will refer the patient to smoking cessation services via 811 for additional support.
+5. I will arrange follow-up in six months to reassess respiratory symptoms and treatment response.

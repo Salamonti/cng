@@ -1,0 +1,54 @@
+Patient ID
+Gregory Leblanc, 52-year-old male
+
+History of Present Illness
+Gregory Leblanc is a 52-year-old male with a history of biopsy-proven sarcoidosis diagnosed in 2016 who presents with worsening dyspnea and fatigue over the past several weeks. He reports his breathing has deteriorated to approximately 40-50% of his baseline, particularly since stopping prednisone one week ago. He describes severe insomnia, stating he has not had a good night's sleep in the last three weeks, and is experiencing significant hunger at night. He also notes generalized aches and pains attributed to coming off prednisone. Previously, he was on 10 mg of prednisone daily, which was tapered down to 5 mg weekly methotrexate by Dr. Howe, but he feels this dose is insufficient. He denies any recent weight gain or loss despite being on ozempic and dieting, and he is concerned about his inability to lose weight despite his efforts.
+
+Gregory has been on prednisone intermittently for the past decade, with the most recent course starting in 2022. He was previously on 20 mg of prednisone, which was reduced to 10 mg due to better symptom control. He stopped prednisone completely one week ago after finishing a 1 mg taper. He has never been on methotrexate before this recent trial. His ACE level was last checked in October and was within normal limits. He is also concerned about his long-term dependency on prednisone and its impact on his adrenal function.
+
+Past Medical History
+Sarcoidosis (diagnosed 2016), asthma since childhood, first-degree AV block on ECG
+
+Medications
+Methotrexate 5 mg po weekly
+Ozempic 0.25 mg pen subcutaneously weekly
+Folic acid (dose not documented)
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Former concrete and oil field worker with potential chemical exposure. Lives in Smith's Cove, NS. Denies smoking, alcohol use, or recreational drug use. Currently on ozempic for weight management and dieting.
+
+Physical Examination
+Not documented
+
+Investigations
+2026-01-12: CT chest with contrast
+- Mild reticular scarring at the lingula
+- Mild bandlike reticular consolidation at the posteromedial left lower lobe
+- Prominent pulmonary trunk measuring 3.3 cm (suggestive of pulmonary artery hypertension)
+- Few scattered tiny pulmonary nodules, likely benign
+- No pleural effusion
+
+2025-11-25: Labs
+- ACE level: 36 (normal)
+- CBC: WBC 12.5 (elevated), Hgb 142, Plts 242
+- Chemistry: Na 135, K 4.6, Cr 106 (eGFR 73), Ca 2.35
+- Ferritin: 144
+- HIV, HBV, HCV: Non-reactive
+- Hemoglobin A1c: 5.3%
+
+Impression
+Gregory Leblanc is a 52-year-old male with chronic, refractory sarcoidosis complicated by long-term prednisone dependency and recent worsening of respiratory symptoms. His current presentation suggests a flare of sarcoidosis activity, likely exacerbated by the abrupt discontinuation of prednisone. The CT chest findings of reticular scarring and mild fibrosis, along with persistent dyspnea and fatigue, support ongoing pulmonary involvement. His inability to taper prednisone without symptom recurrence highlights the need for a steroid-sparing agent, and the current dose of methotrexate appears insufficient. Additionally, his insomnia and nighttime hunger may be related to underlying sleep-disordered breathing, which warrants further evaluation.
+
+Plan
+1. I will restart prednisone 10 mg po daily, with a plan to taper by 1 mg every six weeks once symptoms improve.
+2. I will increase methotrexate to 25 mg po weekly and continue folic acid supplementation.
+3. I will arrange for a sleep study to evaluate for obstructive sleep apnea given his insomnia and nighttime hunger.
+4. I will order a repeat ACE level and CBC in three months to monitor sarcoidosis activity and methotrexate safety.
+5. I will review his weight management plan, including adjusting ozempic dosing to a higher dose (e.g., 2.4 mg weekly) and reassessing in three months.
+6. We will follow up in two months to reassess symptoms and adjust medications as needed.

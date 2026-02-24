@@ -1,0 +1,58 @@
+Patient ID
+Robyn Dawn Goodick is a 53-year-old female.
+
+History of Present Illness
+Mrs. Goodick presents today for ongoing cardiovascular follow-up after her anterior ST-elevation myocardial infarction in May 2024. She reports feeling generally well but describes persistent fatigue, particularly after returning to work, requiring several days of recovery. She denies chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, palpitations, or lower limb swelling. She notes a 9 lb weight gain over the past six months without abdominal distension or changes in appetite. She has no symptoms of dizziness or exertional limitations. Her heart rate varies between 50 and 130 bpm, though she has not experienced recent palpitations or dyspnea. She reports occasional wheezing during physical activity, raising concern for underlying respiratory conditions such as asthma or COPD.
+
+Her recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia. She remains adherent to her cardiac medications and has not experienced any adverse effects from her current regimen. She reports no recent changes in her diabetes management or symptoms of hypoglycemia. She continues to avoid smoking and alcohol, per her post-MI lifestyle modifications.
+
+Past Medical History
+Hypertension, type 2 diabetes mellitus, dyslipidemia, anterior ST-elevation myocardial infarction (May 2024), atrial fibrillation, apical thrombus post-MI, segmental left ventricular dysfunction, grade I diastolic dysfunction, depression (possible).
+
+Medications
+- Ezetimibe 10 mg PO daily
+- Valsartan 20 mg PO b.i.d. (discontinued, replaced with Entresto)
+- Spironolactone 12.5 mg PO daily
+- Metformin 1000 mg PO b.i.d.
+- Dapagliflozin 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Apixaban 5 mg PO b.i.d.
+- Atorvastatin 40 mg PO daily (reduced from 80 mg)
+- Basaglar insulin 35 units PO daily
+- Entresto 24/26 mg PO b.i.d. (new)
+- Spiriva Respimat 2.5 mcg inhalation 2 puffs QD (new)
+- Ventolin HFA 100 mcg inhalation 2 puffs QID PRN (new)
+- Bisoprolol 10 mg PO daily (new, replacing metoprolol)
+
+Allergies
+not documented
+
+Family History
+Strong family history of premature coronary artery disease.
+
+Social History
+Former smoker, quit post-MI. No alcohol use. Lives independently. Works part-time. Receives income assistance for medication costs.
+
+Physical Examination
+Blood pressure 112/79 mmHg, pulse 82 bpm and regular, SpO2 97% on room air. Chest clear to auscultation with adequate bilateral air entry. No wheezing or crackles. Normal S1 and S2 with no murmurs or additional sounds. No jugular venous distention or lower limb edema. Neurological exam unremarkable.
+
+Investigations
+2025-03-XX:
+- HbA1c 7.6 (previously 7.3)
+- LDL 1.0 mmol/L
+- BNP 159 pg/mL
+
+2024-05-XX (post-MI admission):
+- LDL 4.38 mmol/L
+- Ejection fraction 31–35% with apical thrombus and segmental wall abnormalities
+
+2025-01-XX (Holter monitoring):
+- Infrequent ectopic beats
+- Intermittent tachycardia
+
+Plan
+1. I will transition Mrs. Goodick from metoprolol to bisoprolol 10 mg PO daily to optimize beta-blocker therapy for heart failure management and reduce potential bronchoconstriction risk.
+2. I will order comprehensive bloodwork, including iron studies, ferritin, and renal panel, to evaluate her fatigue and monitor therapeutic response to Entresto.
+3. I will arrange a sleep study to assess for potential sleep-disordered breathing contributing to her fatigue.
+4. I will schedule a wall motion stress test (WMS) to reassess her left ventricular function and remodeling.
+5. I will follow up in six months to review test results, reassess clinical status, and adjust management as needed.

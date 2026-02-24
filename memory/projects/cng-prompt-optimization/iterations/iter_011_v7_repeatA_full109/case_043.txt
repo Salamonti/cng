@@ -1,0 +1,46 @@
+Patient ID: Robert Jeffrey Doane, 69-year-old male
+
+History of Present Illness:
+Mr. Doane is a 69-year-old male who presented for follow-up regarding a recent CT chest with contrast, which revealed a subpleural mass in the right lower lobe measuring 16.5 x 46 x 68 mm with multiple foci of calcification and a small right pleural effusion. The radiologist described the mass as suspicious for malignancy, though the clinician noted it did not appear overtly malignant. The patient denies any significant change in symptoms, though he reports ongoing shortness of breath and intermittent wheezing, consistent with his known asthma. He has been using his Ventolin inhaler as needed and has been on a prednisone taper for recent exacerbation. He also reports some fluid retention concerns but is already on hydrochlorothiazide.
+
+The patient is generally stable with no acute changes in his respiratory status or lower limb swelling. He is compliant with his CPAP for obstructive sleep apnea and has no recent hospitalizations or emergency department visits. There is a plan to repeat the CT scan in approximately three months to monitor the subpleural mass. The patient is unsure about the need for further interventions at this time and is open to the proposed follow-up plan.
+
+Past Medical History:
+Asthma, obstructive sleep apnea, obesity hypoventilation syndrome, hypertension, type 2 diabetes, hyperlipidemia, pleural plaques (asbestos exposure), and possible interstitial lung disease
+
+Medications:
+- Symbicort 200/6 mcg inhalation, 2 puffs three times daily
+- Prednisone 5 mg, 8 tablets daily for 7 days, then 6 tablets daily for 7 days, then 4 tablets daily for 7 days, then 2 tablets daily for 7 days
+- Diltiazem XC 240 mg, one tablet once daily
+- Ramipril 10 mg, two capsules once daily
+- Metformin 500 mg, one and a half tablets twice daily
+- Hydrochlorothiazide 25 mg, one tablet once daily
+- Ezetimibe 10 mg, one tablet once daily
+- Atorvastatin calcium 40 mg, one tablet once daily
+- Ventolin HFA 100 mcg, 2 puffs every 4 hours as needed
+- Rhinocort Aqua 64 mcg, one spray intranasally in each nostril twice daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Ex-smoker, no current alcohol use, morbid obesity
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-27:
+- CT chest with contrast: subpleural mass in right lower lobe (16.5 x 46 x 68 mm) with calcification, small right pleural effusion, no suspicious pulmonary nodules or lymphadenopathy
+
+2026-01-19:
+- Echocardiogram: grossly normal biventricular size and systolic function, no evidence of pulmonary hypertension, estimated right atrial pressure 3 mmHg
+
+Impression:
+Mr. Doane is a 69-year-old male with a history of asthma, obstructive sleep apnea, and asbestos-related pleural plaques who presented for evaluation of a subpleural mass in the right lower lobe identified on recent CT chest. The mass is suspicious for malignancy but does not appear overtly aggressive, and the patient remains asymptomatic. Given the lack of acute symptoms and the stable clinical picture, the plan is to monitor the lesion with repeat imaging in approximately three months. His ongoing respiratory symptoms are consistent with his known asthma, and his medications are optimized accordingly.
+
+Plan:
+1. I will continue Symbicort 200/6 mcg inhalation, 2 puffs three times daily, and Ventolin HFA 100 mcg as needed for asthma management.
+2. I will continue prednisone taper as prescribed for recent exacerbation.
+3. I will arrange for a repeat CT chest with contrast in approximately three months to monitor the subpleural mass.
+4. We will follow up in clinic after the repeat imaging to reassess the findings and adjust the plan as needed.

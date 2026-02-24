@@ -1,0 +1,38 @@
+Patient ID: Donald Carter, 69-year-old male
+
+History of Present Illness:
+Donald is a 69-year-old male who presented today with a recent CT scan showing a 35% growth in a previously stable lung nodule in the right middle lobe, now measuring approximately 14.8 mm x 14.8 mm x 15.5 mm. He denies any symptoms such as hemoptysis, cough, weight loss, bone pain, B symptoms, or shortness of breath. Donald reports a recent change in his cat’s behavior, which he attributes to an intuitive sense of his own health concerns. He is otherwise doing well and has no acute complaints.
+
+Past Medical History:
+- Type 2 Diabetes Mellitus (T2DM)
+- Hypertension (HTN)
+- Dyslipidemia (DLP)
+- Psoriatic plaques
+- Acute Kidney Injury (AKI) secondary to rhabdomyolysis (2024)
+
+Medications:
+not documented
+
+Allergies:
+No known drug allergies (NKDA)
+
+Family History:
+not documented
+
+Social History:
+Retired soldier, lives in Bridgewater. Quit smoking 9 years ago with a 50-pack-year history. Drinks alcohol on occasion.
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-16:
+- CT chest without contrast: Right middle lobe nodule increased in volume by approximately 35% to 1.8 cc (previously 1.3 cc). No axillary or mediastinal lymphadenopathy. Mild hepatic steatosis and suspected hepatomegaly.
+
+Impression:
+Donald is a 69-year-old male with a previously stable lung nodule in the right middle lobe that has grown significantly in size over the past 18 months. Given the increase in volume and the uncertain adequacy of the previous biopsy, this raises concern for possible malignancy despite the nodule’s benign appearance on prior imaging. The patient’s smoking history and the nodule’s growth warrant further investigation to determine the next steps in management.
+
+Plan:
+1. I will arrange for a PET CT scan to further characterize the lung nodule and assess for metabolic activity.
+2. I will ensure the PET CT scan is scheduled in Halifax, and the patient will be contacted with the date and time.
+3. We will reassess the findings of the PET CT scan and determine the next appropriate steps, which may include surgical consultation for possible resection if indicated.

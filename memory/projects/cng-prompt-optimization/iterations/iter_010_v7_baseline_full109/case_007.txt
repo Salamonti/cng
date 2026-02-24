@@ -1,0 +1,54 @@
+Patient ID: Lane Owen Shaw is a 52-year-old male.
+
+History of Present Illness:
+Mr. Shaw presents with persistent dyspnea and throat discomfort for several months. He describes shortness of breath when talking for prolonged periods and after eating certain foods, particularly bread, which triggers coughing and lightheadedness. These symptoms are exacerbated by eating, leading to significant distress. He denies heartburn or regurgitation but notes discomfort in the throat region post-meals. His symptoms have prompted investigations, including a chest ultrasound and chest X-ray, which showed nonspecific findings of possible inflammation. He has not undergone pulmonary function testing or endoscopic evaluation. His current medications include Symbicort, which he finds minimally effective.
+
+Past Medical History:
+Hypertension, anxiety.
+
+Medications:
+- Candesartan cilexetil/hydrochlorothiazide 16 mg/12.5 mg tablet, once daily
+- Paroxetine HCl 20 mg tablet, once daily
+- Bisoprolol 0.5 tablet, once daily
+- Symbicort 200/6 mcg Turbuhaler, twice daily
+- Aspirin 81 mg tablet, once daily
+
+Allergies:
+Pineapple (causes difficulty breathing).
+
+Family History:
+Family history of hypertension and heart attacks on both sides of the family.
+
+Social History:
+Never smoked, no alcohol use. Works in lobster production. No recent weight gain.
+
+Physical Examination:
+Vital signs: SpO2 95%, HR 88 bpm.
+Lungs: Clear, adequate air entry bilaterally.
+Cardiac: Normal S1 and S2, no murmurs or additional sounds.
+Abdomen: Soft, no organomegaly.
+Neurological: Unremarkable.
+No jugular venous distention or lower limb edema.
+
+Investigations:
+2025-11-18:
+- ECHO 2D: Normal biventricular size and systolic function, no valvular abnormalities.
+
+2025-10-23:
+- Hemoglobin A1C: 5.0%
+- Lipids: Cholesterol 4.9 mmol/L, Triglycerides 2.73 mmol/L, LDL 2.8 mmol/L, HDL 0.88 mmol/L
+- Complete Blood Count: Elevated white blood count (15.1 x 10^9/L), normal hemoglobin and hematocrit
+- Urinalysis: Positive for leukocytes and RBCs, presence of sperm in urine
+
+2025-03-26:
+- Chest X-ray: Nonspecific coarsening of central conducting airways, no lobar consolidation
+
+Impression:
+Mr. Shaw presents with chronic dyspnea and throat discomfort that is likely multifactorial. Given his symptoms post-prandially and the lack of significant cardiac pathology on echocardiogram, gastroesophageal reflux disease (GERD) remains a strong consideration. The elevated white blood cell count and nonspecific chest X-ray findings suggest a possible inflammatory or infectious process, though no clear etiology has been identified. Further evaluation with pulmonary function testing, endoscopy, and additional imaging is warranted to elucidate the cause of his symptoms.
+
+Plan:
+1. I will arrange for a pulmonary function test to assess for obstructive or restrictive lung disease.
+2. I will refer Mr. Shaw to Dr. Broderick for an upper endoscopy to evaluate for GERD or other esophageal pathology.
+3. I will order a repeat chest X-ray to reassess the nonspecific findings of possible inflammation.
+4. I will ensure Mr. Shaw follows a reflux diet, elevates the head of his bed to 45 degrees at night, and stops eating four hours before bedtime.
+5. I will request fasting blood work to reassess for diabetes, including a fasting blood sugar and Hemoglobin A1C.

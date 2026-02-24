@@ -1,0 +1,43 @@
+Patient ID: David Victor Smith, 59-year-old male
+
+History of Present Illness:
+Mr. Smith reports significant improvement in his leg strength over the past week, stating he can now ascend stairs without shuffling. He attributes this improvement to a recent change in his statin medication, though he is unsure of the new drug’s name. He denies chest pain but notes persistent shortness of breath with exertion, particularly when carrying heavy objects or engaging in vigorous activity. He has returned to work daily and feels generally well, though his weight fluctuates by a few pounds. He continues to exercise regularly, including gym workouts and aqua fitness classes, and reports no new symptoms aside from mild dyspnea with exertion.
+
+Past Medical History:
+Hypertension, dyslipidemia, coronary artery disease (NSTEMI 2025), obstructive sleep apnea, obesity, obesity hypoventilation syndrome, mild COPD, osteoarthritis, iron deficiency anemia, vitamin B12 deficiency, depression
+
+Medications:
+Ticagrelor 90 mg PO b.i.d.
+Bisoprolol 5 mg PO daily
+Rosuvastatin 40 mg PO daily (recently switched, name unclear)
+Aspirin 81 mg PO daily
+Sertraline 100 mg PO daily
+Pantoprazole 40 mg PO daily
+Lisinopril/hydrochlorothiazide 20/25 mg PO daily
+Breztri 2 puffs b.i.d.
+Nitroglycerin spray p.r.n.
+Ferrous fumarate 300 mg PO daily
+
+Allergies: Not documented
+
+Family History:
+Mother: hypertension, diabetes
+Father: coronary artery disease (deceased at age 58)
+
+Social History:
+Current smoker (1 pack per day for 40 years), occasional alcohol use, no recreational drug use, previously worked as a truck driver, currently employed
+
+Physical Examination: Not documented
+
+Investigations:
+2025-12-02:
+- Ferritin: 14.1 µg/L (ref: 30.0–400.0)
+- Complete Blood Count: Hemoglobin 94 g/L (ref: 125–175), Hematocrit 0.320 (ref: 0.420–0.520), MCV 77.1 fL (ref: 80.0–100.0)
+
+Impression:
+Mr. Smith is a 59-year-old male with a history of coronary artery disease, obstructive sleep apnea, and obesity who presents with subjective improvement in leg strength and exertional dyspnea. His recent statin change appears to have improved his mobility, though his lipid profile requires monitoring given his history of dyslipidemia and NSTEMI. Persistent iron deficiency anemia and microcytic indices on recent CBC suggest ongoing need for iron supplementation and further evaluation for underlying causes. His weight fluctuations and exertional symptoms warrant continued focus on weight management and cardiovascular risk optimization.
+
+Plan:
+1. I will order a lipid panel to assess the efficacy of his current statin regimen and guide further management.
+2. I will arrange for an iron infusion (Monoferric) to address persistent iron deficiency anemia, given inadequate oral iron response and worsening microcytic indices.
+3. I will follow up in 3 months to review lipid results, iron studies, and overall symptom status, with particular attention to weight management and cardiovascular risk factors.

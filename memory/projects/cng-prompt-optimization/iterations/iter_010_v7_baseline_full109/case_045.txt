@@ -1,0 +1,49 @@
+Patient ID
+Gary Nickerson, 72-year-old male
+
+History of Present Illness
+Mr. Nickerson is a 72-year-old male presenting for follow-up regarding a concerning pulmonary nodule in the right lower lobe. He reports no acute changes in his chronic daily cough with white/clear sputum, and he denies any shortness of breath, hemoptysis, chest pain, weight loss, or night sweats. He continues smoking cessation efforts with Champix, though he still smokes half a pack per day. The patient remains fully functional and has no new constitutional symptoms.
+
+The PET CT scan performed on January 6, 2026, demonstrated a metabolically active pulmonary nodule in the right lower lobe with high FDG avidity (SUV max 8.2), raising concern for primary lung cancer. The head CT scan from December 11, 2025, showed no evidence of intracranial metastatic disease. The patient is awaiting further discussion of these results and potential next steps.
+
+Past Medical History
+Hypertension, dyslipidemia, moderate obstructive sleep apnea, prediabetes, neck pain, right shoulder pain, benign essential hypertension, benign Warthin's tumor (left side), cholecystectomy
+
+Medications
+Aspirin 81 mg orally daily
+Champix continuation pack orally twice daily
+Crestor 10 mg orally daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Smoker (42 pack-years, currently half a pack per day despite cessation efforts), no other details documented
+
+Physical Examination
+not documented
+
+Investigations
+2026-01-06
+PET CT Whole Body: Right lower lobe pulmonary nodule with high FDG avidity (SUV max 8.2), concerning for primary lung cancer. No evidence of local, regional, or distant metastatic disease.
+
+2025-12-11
+Head CT: No evidence of intracranial metastatic disease. Bilateral parotid lesions noted.
+
+2025-11-25
+Chest CT: Right lower lobe pulmonary nodule measuring 3.4 x 2.2 x 4.3 cm with internal cystic changes. Mildly prominent mediastinal lymph nodes. Incidental findings of hepatic steatosis, mild colonic diverticulosis, lumbar spine stenosis, atherosclerotic plaque, and vascular abnormalities.
+
+2025-04-30
+Spirometry: Normal FEV1 (90% predicted) and FVC (97% predicted), no significant changes post-bronchodilator.
+
+Impression
+Mr. Nickerson has a concerning pulmonary nodule in the right lower lobe with increased metabolic activity on PET CT, raising suspicion for primary lung cancer. While no evidence of metastatic disease is present, the nodule's size, morphology, and smoking history warrant further evaluation. The patient's past medical history of hypertension, dyslipidemia, and prediabetes, along with incidental vascular findings, should be considered in the context of his overall care.
+
+Plan
+1. I will arrange a multidisciplinary team discussion with thoracic surgery and pulmonology to review the PET CT findings and determine the next diagnostic steps, which may include tissue sampling via bronchoscopy or transthoracic needle aspiration.
+2. I will follow up with the patient within two weeks of the multidisciplinary discussion to review the proposed diagnostic plan and address any concerns.
+3. I will continue to support smoking cessation efforts and refer the patient to a smoking cessation program if he has not already been engaged.
+4. I will arrange a follow-up appointment in approximately two months to reassess the patient's clinical status and review any further diagnostic results.

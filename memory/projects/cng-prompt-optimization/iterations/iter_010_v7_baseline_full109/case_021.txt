@@ -1,0 +1,60 @@
+Patient ID
+Robyn Goodick is a 53-year-old female.
+
+History of Present Illness
+Mrs. Goodick presents today with ongoing concerns related to her cardiovascular health following an anterior ST-elevation myocardial infarction in May 2024. She remains largely asymptomatic but reports persistent fatigue, particularly after returning to work, requiring several days of recovery. She denies chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, lower limb swelling, palpitations, or dizziness. She has gained 9 lbs over the past six months but notes no abdominal distension or changes in appetite. Her heart rate varies between 50 and 130 beats per minute, though she feels well overall. She has no recent episodes of chest pain or respiratory distress.
+
+Mrs. Goodick’s fatigue is her primary concern, limiting her ability to sustain daily activities. She has no symptoms suggestive of obstructive sleep apnea or worsening heart failure, though she acknowledges reduced stamina. Recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia. She reports occasional wheezing during physical activity, raising concern for possible asthma or chronic obstructive pulmonary disease.
+
+Past Medical History
+Anterior ST-elevation myocardial infarction (May 2024), type 2 diabetes mellitus, hypertension, dyslipidemia, atrial fibrillation, depression (possible), apical thrombus post-MI, segmental left ventricular dysfunction with ejection fraction 30–35%, grade I diastolic dysfunction.
+
+Medications
+- Ezetimibe 10 mg PO daily
+- Valsartan 20 mg PO b.i.d. (stopped)
+- Spironolactone 12.5 mg PO daily
+- Metoprolol 25 mg PO b.i.d. (stopped)
+- Metformin 1000 mg PO b.i.d.
+- Dapagliflozin 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Apixaban 5 mg PO b.i.d.
+- Atorvastatin 40 mg PO daily
+- Basaglar insulin 35 units once daily
+- Entresto 24/26 mg PO b.i.d.
+- Spiriva Respimat 2.5 mcg inhalation 2 puffs once daily
+- Ventolin HFA 100 mcg inhalation 2 puffs as needed
+- Bisoprolol 10 mg PO daily
+
+Allergies
+not documented
+
+Family History
+Strong family history of premature coronary artery disease.
+
+Social History
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs.
+
+Physical Examination
+Blood pressure 112/79 mmHg, pulse 82 bpm and regular, oxygen saturation 97% on room air. Chest clear with adequate bilateral air entry. Normal S1 and S2 with no murmurs, rubs, or gallops. No jugular venous distention or lower limb edema. Neurological exam unremarkable.
+
+Investigations
+2025-03-XX:
+- BNP 159 pg/mL
+- HbA1c 7.6% (previously 7.3%)
+- LDL 1.0 mmol/L
+
+2024-05-XX:
+- HbA1c 7.3%
+- LDL 4.38 mmol/L
+- Echocardiogram: EF 30–35%, segmental LV dysfunction, akinetic regions, grade I diastolic dysfunction
+
+Impression
+Mrs. Goodick is a 53-year-old woman with a history of anterior ST-elevation myocardial infarction, type 2 diabetes, and heart failure with reduced ejection fraction (EF 30–35%). Despite optimal medical therapy, she remains symptomatic with persistent fatigue, likely multifactorial in origin, and requires further evaluation for potential respiratory contributions such as asthma or obstructive sleep apnea. Her cardiovascular parameters are stable, though her HbA1c has risen to 7.6%, indicating suboptimal glycemic control. The presence of occasional ectopy and tachycardia on Holter monitoring warrants ongoing monitoring.
+
+Plan
+1. I will initiate a sleep study to evaluate for obstructive sleep apnea as a potential contributor to fatigue.
+2. I will order pulmonary function testing to assess for asthma or chronic obstructive pulmonary disease given her wheezing and smoking history.
+3. I will arrange a cardiac magnetic resonance imaging (CMR) or repeat echocardiogram to reassess left ventricular function and remodeling.
+4. I will review iron studies and ferritin levels to evaluate for anemia as a potential cause of fatigue.
+5. I will optimize glycemic control with dietary counseling and consider adjusting her diabetes regimen if HbA1c remains elevated at follow-up.
+6. We will schedule a follow-up appointment in six months to reassess clinical status, review test results, and adjust management as needed.

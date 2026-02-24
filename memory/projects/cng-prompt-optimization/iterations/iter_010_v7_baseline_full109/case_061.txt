@@ -1,0 +1,67 @@
+Patient ID
+Brian Germain, 75-year-old male
+
+History of Present Illness
+Brian Germain presents with a history of recurrent pneumonia-like symptoms, likely related to chronic dysphagia secondary to radiation treatment for p16-positive oropharyngeal carcinoma five years ago. He reports persistent coughing, rattling sounds, and phlegm production, which he attributes to food not passing properly during swallowing. He has noticed these symptoms worsening intermittently and has experienced weight loss due to poor nutrition. Brian has not undergone a swallowing assessment in many years, and his current oral hygiene regimen is limited to rinsing once or twice daily. He denies recent changes in medication but mentions his primary care provider considered a medication for his symptoms, though concerns about side effects led to hesitation. On examination, his chest is clear with oxygen saturation at 97-104%, but there is concern for possible foreign body obstruction or scar tissue contributing to his symptoms.
+
+Brian’s symptoms began after radiation therapy for his oropharyngeal cancer, which significantly impacted his ability to eat and swallow. He has a history of recurrent pneumonia, which he believes is related to aspiration from dysphagia. He has not had a formal swallowing assessment in years and relies on slow eating and careful chewing to avoid choking. His current symptoms include coughing fits, phlegm production, and a persistent rattling sound in his chest. He has lost weight due to poor nutritional intake and is concerned about his ongoing decline in health. His primary care provider ordered a chest X-ray and CT scan, which showed consolidation in the right middle lobe and lung base, raising concerns about atelectasis, scarring, or organizing pneumonia. There is also a new pulmonary nodule in the left lower lobe, which requires follow-up.
+
+Past Medical History
+- p16-positive carcinoma right oropharynx (T4 N1), chemoradiation completed February 2020
+- Carcinoma of the prostate (pT2c), Gleason score 8, postoperative PSA undetectable
+- Atrial fibrillation (not anticoagulated)
+- Diverticulosis with bowel resection
+- Coronary artery disease with stent placement
+- Total hip replacement
+- Possible vascular dementia
+
+Medications
+- Rosuvastatin 10 mg daily
+- Pantoprazole 40 mg daily
+- Venlafaxine (dose not documented)
+- Aspirin 81 mg daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+- Chest: Clear to auscultation, oxygen saturation 97-104%
+- Oral cavity: Evidence of poor oral hygiene with food particles in teeth; no acute mucosal lesions
+- General: Thin appearance, consistent with weight loss
+
+Investigations
+2025-12-23
+- CT Chest: Consolidation in right middle lobe and medial right lung base, mild volume loss in right middle lobe. New 5 mm pulmonary nodule in left lower lobe.
+
+2025-11-26
+- Chest X-ray: Persistent triangular airspace opacification in right infrahilar region involving right upper and middle lobes.
+
+2025-11-06
+- Complete Blood Count: WBC 6.4 x10^9/L, Hemoglobin 130 g/L, Platelets 227 x10^9/L
+- C-Reactive Protein: 3.3 mg/L
+- Prostate-Specific Antigen: 0.498 ug/L
+- Thyroid Stimulating Hormone: 6.750 mIU/L
+- Free T4: 14.8 pmol/L
+- Iron Studies: Iron 14.7 umol/L, Ferritin 130 ug/L, TIBC 48 umol/L, % Saturation 30%
+- Liver Function Tests: ALT 10 U/L, AST 25 U/L, Alkaline Phosphatase 68 U/L, Bilirubin 8.2 umol/L
+- Kidney Function: eGFR 90 mL/min/1.73m^2, Creatinine 78 umol/L
+- Electrolytes: Sodium 139 mmol/L, Potassium 3.6 mmol/L, Chloride 99 mmol/L, Magnesium 0.86 mmol/L
+- Glucose: Random 7.3 mmol/L
+- Hemoglobin A1C: 6.1%
+- Lipids: Cholesterol 3.2 mmol/L, Triglycerides 0.70 mmol/L, LDL 1.7 mmol/L, HDL 1.18 mmol/L
+
+Impression
+Brian Germain is a 75-year-old male with a history of radiation-induced dysphagia following treatment for oropharyngeal carcinoma, leading to recurrent aspiration pneumonia and significant weight loss. His current symptoms of coughing, phlegm production, and chest congestion are likely secondary to chronic aspiration and poor oral hygiene. Imaging shows persistent consolidation in the right middle lobe and lung base, with a new pulmonary nodule requiring follow-up. The differential diagnosis includes organizing pneumonia, atelectasis, and possible foreign body obstruction or scar tissue contributing to his symptoms.
+
+Plan
+1. I will arrange for a swallowing assessment (videofluoroscopic swallow study) to evaluate the degree of aspiration risk and guide management.
+2. I will schedule a follow-up CT chest in March 2026 to reassess the consolidation and new pulmonary nodule.
+3. I will instruct Brian to improve oral hygiene with rinsing before and after each meal, as well as twice daily brushing, to reduce the risk of aspiration and infection.
+4. I will review the potential benefits and risks of medications for aspiration pneumonia with Brian and his primary care provider, with a focus on minimizing side effects.
+5. We will follow up after the results of the swallowing assessment and CT chest to determine further management, including possible endoscopic evaluation if symptoms persist or worsen.

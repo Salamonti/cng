@@ -1,0 +1,54 @@
+Patient ID
+Carmen Phinney, a 79-year-old female, is seen today for worsening dyspnea and fatigue.
+
+History of Present Illness
+Carmen reports a two-month history of progressive dyspnea, initially following an episode of aspiration of lime juice at the end of December 2025. She completed two rounds of prednisone, with the second finishing today, but her symptoms have not improved. She describes worsening shortness of breath, with oxygen saturation in the low 80s on room air, and a resting heart rate of 100 beats per minute. She also notes new-onset morning headaches, ear fullness, jaw soreness, and hoarseness over the past few weeks. She denies chest pain, fever, or recent weight changes. Her symptoms began after a period of stable breathing prior to the aspiration event.
+
+Carmen reports feeling cold during the day and sweating at night. She has dry eyes and mouth, which she attributes to her current medications. She denies joint pain, Raynaud’s phenomenon, or gastrointestinal reflux. She has a history of high cholesterol, hypertension, and atrial fibrillation but no recent changes in her medications. She has not had a urinary tract infection requiring antibiotics in many years and denies any recent exposure to asbestos dust or mold. She has a temporary dental filling and denies any recent dental infections or extractions.
+
+Past Medical History
+Hypertension, hyperlipidemia, atrial fibrillation, interstitial fibrotic lung disease (UIP pattern), dry eyes, dry mouth.
+
+Medications
+- Prednisone (dose and frequency not documented)
+- Cymbicort (inhaled corticosteroid)
+- Unknown second inhaler (patient unsure of name)
+- Vitamin D (2000 units daily, prescribed today)
+- Calcium supplement (prescribed today)
+- Tums (over-the-counter, as needed)
+
+Allergies
+None documented.
+
+Family History
+Not documented.
+
+Social History
+Former smoker (30 years, 1.5 packs/day, quit 30 years ago). No current alcohol use. No occupational exposure to asbestos or silica. Lives alone in a house with no reported mold.
+
+Physical Examination
+Oxygen saturation 85% on room air, heart rate 100 bpm. Lungs: bilateral basal crackles. No wheezing. Cardiac: regular rate and rhythm, no murmurs. No peripheral edema. No joint swelling or tenderness. Oral mucosa dry.
+
+Investigations
+2026-01-27: CT chest with contrast – subpleural reticulation, early honeycombing at right base, bilateral lower lobe traction bronchiectasis consistent with UIP pattern.
+2026-01-09: Chest X-ray – streaky opacities in right lower and left mid zones, suggestive of an inflammatory process.
+2025-11-07: Lipid panel – cholesterol 4.9 mmol/L, triglycerides 0.97 mmol/L, LDL 2.5 mmol/L, HDL 2.0 mmol/L.
+2025-11-07: Complete blood count – normal hemoglobin, white blood cell count, and platelet count.
+2025-11-07: Urinalysis – mild leukocytosis (13 WBC/hpf), otherwise normal.
+2025-11-07: Thyroid stimulating hormone – 3.27 mIU/L (normal).
+2025-11-07: Iron studies – low iron saturation (26%), ferritin 89.8 ug/L.
+2025-11-07: Liver function tests – normal AST, ALT, and CPK.
+2025-11-07: Glucose – 5.5 mmol/L.
+2025-11-07: Uric acid – elevated at 445 umol/L.
+2025-11-07: eGFR – 89 mL/min/1.73m2.
+
+Impression
+Carmen’s presentation is consistent with progressive interstitial lung disease, likely idiopathic pulmonary fibrosis given the UIP pattern on imaging. Her symptoms of dyspnea, hypoxemia, and fatigue align with advanced lung fibrosis. The recent aspiration event may have contributed to her decline, but the underlying fibrotic process appears irreversible. Autoimmune etiologies remain possible, and further workup is required.
+
+Plan
+1. I will initiate high-dose prednisone for at least three months, with slow tapering, and prescribe calcium and vitamin D supplements to mitigate steroid-related risks.
+2. I will order an urgent autoimmune panel to evaluate for potential autoimmune-mediated lung disease.
+3. I will arrange for home oxygen therapy to maintain oxygen saturation above 90% at all times.
+4. I will discontinue her current inhalers (Cymbicort and the second inhaler) as they are not providing symptomatic relief.
+5. I will follow up in one month to reassess her clinical status and review blood work results.
+6. I will refer Carmen to pulmonary clinic for consideration of advanced therapies, including antifibrotic medications and potential bronchoscopy with biopsy if the autoimmune workup is unrevealing.

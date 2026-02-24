@@ -1,0 +1,57 @@
+Patient ID
+Robyn Dawn Goodick, 53-year-old female
+
+History of Present Illness
+Mrs. Goodick presents today with ongoing concerns about fatigue, which she describes as persistent and debilitating. She reports that after working for a single day, she requires two days of rest to recover her strength, and this has been ongoing for several months. She denies any shortness of breath, chest pain, palpitations, or lower extremity swelling. Notably, she has gained 9 lbs over the past six months without abdominal distension or changes in appetite. She also reports occasional wheezing during physical activity, which has led to consideration of underlying respiratory conditions such as asthma or chronic obstructive pulmonary disease.
+
+Her symptoms have been evaluated with recent investigations, including Holter monitoring, which revealed infrequent ectopic beats and intermittent tachycardia. She remains asymptomatic for cardiovascular symptoms, though her fatigue persists despite optimized medical therapy. She has been advised to modify her diet to reduce carbohydrate and fat intake to better manage her diabetes, though she has not yet implemented these changes.
+
+Past Medical History
+Anterior ST-elevation myocardial infarction (May 2024), type 2 diabetes mellitus, hypertension, dyslipidemia, atrial fibrillation, depression (possible), segmental left ventricular dysfunction with apical thrombus, grade I diastolic dysfunction, ejection fraction 30-35%
+
+Medications
+- Ezetimibe 10 mg PO daily
+- Sacubitril/valsartan (Entresto) 24/26 mg PO b.i.d.
+- Spironolactone 12.5 mg PO daily
+- Bisoprolol 10 mg PO daily
+- Metformin 1000 mg PO b.i.d.
+- Dapagliflozin 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Atorvastatin 40 mg PO daily
+- Apixaban 5 mg PO b.i.d.
+- Basaglar insulin 35 units once daily
+- Tiotropium (Spiriva Respimat) 2.5 mcg inhalation once daily
+- Albuterol (Ventolin HFA) 100 mcg inhalation as needed
+
+Allergies
+not documented
+
+Family History
+Strong family history of premature coronary artery disease
+
+Social History
+Former smoker, quit post-MI; no current alcohol use; income assistance for medication costs
+
+Physical Examination
+Blood pressure 112/79 mmHg, pulse 82 bpm and regular, oxygen saturation 97% on room air. Chest clear to auscultation with adequate air entry bilaterally. Normal S1 and S2 with no additional sounds or murmurs. No jugular venous distention, lower limb edema, or neurological deficits.
+
+Investigations
+2026-01-26
+- Holter monitoring: infrequent ectopic beats, intermittent tachycardia
+
+2025-03-01
+- BNP: 159 pg/mL
+- Hemoglobin A1c: 7.6% (previously 7.3%)
+- LDL cholesterol: 1.0 mmol/L
+
+2024-05-03
+- Hemoglobin A1c: 7.3% (previously 10.6%)
+- LDL cholesterol: 4.38 mmol/L
+
+Impression
+Mrs. Goodick is a 53-year-old female with a history of anterior ST-elevation myocardial infarction and subsequent segmental left ventricular dysfunction, including an apical thrombus and reduced ejection fraction of 30-35%. Despite optimized medical therapy for heart failure, hypertension, diabetes, and dyslipidemia, she continues to experience significant fatigue that limits her functional capacity. Recent investigations have ruled out acute cardiac decompensation, but her persistent symptoms warrant further evaluation for potential respiratory involvement, such as asthma or chronic obstructive pulmonary disease, given her history of smoking and occasional wheezing. Her current management includes beta-blocker therapy, sacubitril/valsartan, and diuretics, with ongoing monitoring of her cardiac function and metabolic parameters.
+
+Plan
+1. I will arrange for a sleep study to evaluate potential sleep-disordered breathing as a contributor to her fatigue.
+2. I will order iron studies and ferritin levels to assess for underlying anemia or iron deficiency contributing to her symptoms.
+3. I will schedule a follow-up appointment in six months to reassess her clinical status, review results of pending investigations, and adjust management as needed.

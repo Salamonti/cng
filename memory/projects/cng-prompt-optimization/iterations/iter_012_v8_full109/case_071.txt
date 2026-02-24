@@ -1,0 +1,56 @@
+Patient ID: Sally Belding, 73-year-old female
+
+History of Present Illness:
+Sally Belding, a 73-year-old female with a history of eosinophilic granulomatosis with polyangiitis (EGPA), presents with persistent respiratory symptoms following a confirmed influenza A infection. She reports ongoing productive cough with green phlegm for nearly two weeks, despite initial treatment with antibiotics and steroids. She describes feeling like she is "drowning" in phlegm and has been using her emergency inhaler frequently. She denies fever but reports sinus congestion and abdominal discomfort from persistent coughing. She has been hospitalized twice recently and has been treated with multiple medications, including doxycycline and prednisone, without significant improvement. Her oxygen saturation remains stable at 99% on room air.
+
+Sally is concerned about potential lung deterioration and the risk of pneumonia. She has been using her CPAP machine with a humidifier, which she believes may have contributed to her symptoms, and has since stopped using it. She expresses fear about her lung health and seeks further evaluation and management.
+
+Past Medical History:
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+Asthma
+Sinusitis
+
+Medications:
+Nucala 100 mg subcutaneous injection every 4 weeks
+Breo Ellipta 100/25 mcg inhaled once daily
+Spiriva Respimat 2.5 mcg inhaled twice daily
+Aerobika 7% hypertonic saline nebulizer solution 15 minutes four times daily
+Prednisone 40 mg oral daily (new, to be tapered over 30 days)
+Moxifloxacin 400 mg oral daily for 10 days (new)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Chest: Clear with adequate bilateral air entry, no wheezing or crackles
+Oxygen saturation: 99% on room air
+No acute distress or signs of respiratory compromise
+
+Investigations:
+2026-02-06:
+Respiratory Panel: Positive for Influenza A, negative for COVID-19, Influenza B, and Respiratory Syncytial Virus
+Complete Blood Count: WBC 7.1 x10^9/L, Neutrophils 4.5 x10^9/L, Hemoglobin 126 g/L, Platelets 352 x10^9/L
+Lytes: Sodium 140 mmol/L, Potassium 4.0 mmol/L, Chloride 101 mmol/L
+Creatinine: 56 umol/L
+Glucose Random: 5.6 mmol/L
+Ferritin: 57.3 ug/L
+Total Iron Binding Capacity: Iron 9.6 umol/L, TIBC 50 umol/L, % Saturation 0.19
+Prothrombin Time/INR: INR 1.0
+ECG: Normal sinus rhythm, no significant change from prior ECG
+
+2026-01-29:
+Chest X-ray: No acute abnormality detected
+Venous Blood Gas: pH 7.37, pCO2 50.5 mmHg, HCO3 29.1 mmol/L, Lactate 0.90 mmol/L
+
+Impression:
+Sally Belding is a 73-year-old female with EGPA and a history of asthma who presents with persistent respiratory symptoms following an influenza A infection. Despite initial treatment with antibiotics and steroids, she continues to experience productive cough with green phlegm, raising concern for a secondary bacterial infection, likely Staphylococcus aureus. Her stable oxygen saturation and clear chest examination suggest no acute respiratory compromise at this time, but her ongoing symptoms warrant targeted antibiotic therapy and a prednisone taper to manage inflammation. Further follow-up is necessary to ensure resolution of symptoms and to monitor for potential complications such as pneumonia.
+
+Plan:
+1. We will initiate Moxifloxacin 400 mg orally daily for 10 days to treat suspected Staphylococcus aureus infection.
+2. We will start Prednisone 40 mg orally daily and taper over 30 days to manage inflammation related to influenza and EGPA flare.
+3. We will arrange follow-up with Dr. Eissa in two weeks to reassess symptoms and adjust medications as needed.
+4. We will request a repeat chest X-ray if symptoms persist or worsen despite treatment.
+5. We will counsel the patient on the importance of completing the antibiotic course and tapering the prednisone as prescribed.

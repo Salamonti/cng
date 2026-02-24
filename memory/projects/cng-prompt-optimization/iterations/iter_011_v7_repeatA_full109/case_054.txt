@@ -1,0 +1,62 @@
+Patient ID: Mitchell Comeau is a 65-year-old male.
+
+History of Present Illness:
+Mitchell Comeau is a 65-year-old male who reports no current symptoms. He denies chest pain, shortness of breath, or dizziness. His cardiac examination reveals normal S1 and S2 with an S4 gallop, and he has no complaints of dyspnea or palpitations. He maintains an active lifestyle, noting he continues to play sports and lift weights without limitation.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Hyperlipidemia (unspecified)
+Sinus bradycardia
+
+Medications:
+Atorvastatin 20 mg tablet once daily
+Agrapramil 2.5 mg capsule once daily
+Apotamsulosin CR 0.4 mg tablet once daily
+Ipravent 0.06% nasal spray (42 mcg) twice daily
+Pariet EC 20 mg tablet once daily as needed (not currently using)
+Metformin HCl 500 mg tablet twice daily
+Accu-Check test strips and lancets for daily and PRN use
+
+Allergies:
+Firewood: rhinorrhea
+Fine dust/dirt: rhinorrhea
+Pollen: rhinorrhea
+Escitalopram 25 mg capsule: unspecified reaction
+Nuts: hives, rash, swelling of throat
+Animal dander: rhinorrhea
+
+Family History:
+Not documented
+
+Social History:
+Not documented
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-12-16:
+- Hemoglobin A1C: 6.2% (4.6-5.9)
+- Free T4: 14.5 pmol/L (12.0-22.0)
+- Thyroid Stimulating Hormone: 4.500 mIU/L (0.270-4.200)
+- Lytes: Sodium 142 mmol/L (136-145), Potassium 4.8 mmol/L (3.6-5.2), Chloride 106 mmol/L (98-107)
+- Lipids: Cholesterol 2.7 mmol/L (3.0-5.2), Triglycerides 0.84 mmol/L (0.00-1.70), LDL Cholesterol 1.2 mmol/L, HDL Cholesterol 1.09 mmol/L (1.03-5.17), Chol/HDL Ratio 2.4
+- Complete Blood Count: Normal ranges within reference intervals
+- eGFR: 90 mL/min/1.73m² (60+), Creatinine 80 umol/L (44-106)
+- Urine Albumin/Creatinine Ratio: Microalbumin 10.8 mg/L (0-20), Creatinine 8.36 mmol/L, Albumin/Creatinine Ratio 1.29 mg/mmol (normal <3.0)
+- Prostate Specific Antigen: 2.080 ug/L (0.00-5.85)
+
+2025-11-21:
+- ECG (12-lead): Sinus bradycardia, otherwise normal
+
+2025-01-08:
+- Prostate Specific Antigen: 2.410 ug/L (0.00-5.85)
+
+Impression:
+Mitchell Comeau is a 65-year-old male with a history of type 2 diabetes mellitus and sinus bradycardia who presents with no current symptoms but has an incidental finding of sinus bradycardia on examination. His recent investigations reveal well-controlled diabetes with an HbA1c of 6.2%, mild hyperthyroidism with a suppressed TSH and elevated Free T4, and mildly elevated urine albumin/creatinine ratio suggestive of early diabetic nephropathy. His lipid profile shows low cholesterol levels, and his ECG confirms sinus bradycardia without other acute abnormalities.
+
+Plan:
+1. I will review the patient’s thyroid function tests with a focus on the elevated Free T4 and suppressed TSH, and arrange for an endocrinology referral for further evaluation and management of potential hyperthyroidism.
+2. I will monitor the patient’s urine albumin/creatinine ratio with repeat testing in 3 months to assess for progression of diabetic nephropathy, and optimize glycemic control with current metformin therapy.
+3. I will continue atorvastatin 20 mg daily for lipid management and monitor lipid profile in 6 months.
+4. I will follow up in clinic in 3 months to reassess symptoms, review investigations, and adjust management as needed.

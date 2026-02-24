@@ -1,0 +1,56 @@
+Patient ID
+Joanne Comeau, 56-year-old female
+
+History of Present Illness
+The patient reports a new onset of cough triggered by deep breaths, occurring intermittently over the past few weeks. She also describes nasal congestion and a recent episode of right-sided hearing loss, which prompted an ENT evaluation and ear irrigation. The patient denies fever, wheezing, or chest pain but notes occasional shortness of breath, particularly with exertion, though she has been less active due to recent surgery and a busy schedule. She is using a prescribed nasal spray (azelastine-fluticasone) for congestion, which has not alleviated her cough. She denies symptoms of gastroesophageal reflux but was provided with an information sheet for potential dietary modifications.
+
+The patient mentions a slight elevation in her ACE levels on recent bloodwork, raising concern for possible sarcoidosis activity. She has not undergone a pulmonary function test in several years and expresses uncertainty about whether her symptoms are related to her known sarcoidosis or another underlying condition.
+
+Past Medical History
+Sarcoidosis
+Post-hysterectomy (uterus surgically absent)
+Complex multicystic right adnexal mass (awaiting gynecology follow-up)
+Night sweats (2-3 times per week)
+Daytime fatigue
+
+Medications
+Mylan-azelastine-fluticasone 137 mcg-50 mcg/spray, nasal, 1 spray in each nostril twice daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+No current smoking or alcohol use
+Recent surgery in September 2025 with return to work in November 2025
+Limited exercise due to post-surgical recovery and busy schedule
+
+Physical Examination
+Vital signs: PR 55 bpm, SpO2 99% on room air
+Chest: Clear, adequate air entry bilaterally, normal S1 and S2, no murmurs or additional sounds
+Neurological exam: Unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations
+2025-11-21
+Complete blood count: WBC 5.5 x10^9/L, RBC 4.42 x10^12/L, Hb 132 g/L, Hct 0.394 L/L, platelets 262 x10^9/L
+eGFR: 90 mL/min/1.73m^2
+Electrolytes: Na 141 mmol/L, K 4.3 mmol/L, Cl 104 mmol/L
+Liver function: ALT 51 U/L, AST 36 U/L, ALP 106 U/L, GGT 59 U/L, total bilirubin 20.4 umol/L
+Angiotensin-converting enzyme: 61 U/L (elevated)
+
+2025-06-09
+Complete blood count: WBC 5.2 x10^9/L, RBC 4.32 x10^12/L, Hb 128 g/L, Hct 0.385 L/L, platelets 224 x10^9/L
+eGFR: 87 mL/min/1.73m^2
+Angiotensin-converting enzyme: 52 U/L
+
+Impression
+The patient presents with new-onset cough and nasal congestion, which may be related to her known sarcoidosis given the recent elevation in ACE levels. Her symptoms could also reflect post-surgical deconditioning or an unrelated upper respiratory process. The complex adnexal mass remains under gynecology evaluation, and her sarcoidosis appears stable based on prior bloodwork trends. Further assessment with a pulmonary function test and chest CT is warranted to evaluate for potential pulmonary involvement or other causes of her symptoms.
+
+Plan
+1. I will arrange a pulmonary function test to assess for obstructive or restrictive lung disease.
+2. I will order a chest CT to evaluate for sarcoidosis-related lung changes or other pathology.
+3. I will follow up with the patient after the results of the pulmonary function test and chest CT are available to discuss findings and next steps.
+4. I will provide ongoing support for symptom management, including dietary modifications for potential reflux, and reassess as needed.

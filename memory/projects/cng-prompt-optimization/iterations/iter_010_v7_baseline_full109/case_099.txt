@@ -1,0 +1,56 @@
+Patient ID
+Katelyn Newell, 27-year-old female
+
+History of Present Illness
+Katelyn is a 27-year-old female presenting for follow-up of Hashimoto’s thyroiditis and persistent fatigue. She reports ongoing fatigue, low energy, and poor sleep despite recent investigations, including a sleep study (January 8, 2026), thyroid ultrasound (January 2026), and blood work (two weeks prior). The sleep study showed a normal apnea-hypopnea index (AHI 4.4/h) with no significant obstructive or central sleep apnea. Her thyroid ultrasound revealed features consistent with Hashimoto’s thyroiditis, though her thyroid is not enlarged on examination. She denies recent kidney stones but has a history of frequent stones in her late teens and early twenties. Katelyn describes feeling generally unwell, with persistent fatigue despite her thyroid function being in the normal range (TSH 0.299 mIU/L). She notes no recent weight changes or cold intolerance but continues to experience mood changes and poor sleep.
+
+Katelyn has explored dietary modifications, including potential gluten avoidance, as suggested by prior discussions. She has no known food allergies but is open to further testing if deemed helpful. She reports no recent changes in medication adherence and remains on the same dose of levothyroxine. She is advised to increase fluid intake due to mild hypercalciuria (24-hour urine calcium 10.87 mmol/d). Katelyn expresses concern about the chronic nature of her fatigue and its impact on her daily functioning.
+
+Past Medical History
+Hashimoto’s thyroiditis, history of recurrent kidney stones (remote), fatigue of unclear etiology
+
+Medications
+levothyroxine 75 mcg oral daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Thyroid: not enlarged
+Chest: clear
+Remaining examination not documented
+
+Investigations
+2026-02-02
+- TSH: 0.299 mIU/L
+- Free T3: 4.16 pmol/L
+- Free T4: 15.7 pmol/L (from 2025-11-17)
+- CRP: 6.5 mg/L
+- ACE: 41 U/L
+- Rheumatoid Factor: 10 IU/mL
+- 24-hour urine calcium: 10.87 mmol/d
+- 24-hour urine creatinine: 24.10 mmol/d
+- CBC: unremarkable (WBC 11.8 x10^9/L, Hb 135 g/L, platelets 315 x10^9/L)
+- LFTs: normal (ALT 17 U/L, AST 20 U/L, ALP 116 U/L)
+- Ferritin: 40.7 ug/L
+- SPE: inflammatory pattern without monoclonal protein (2025-08-22)
+
+2026-01-08
+- Sleep study: normal (AHI 4.4/h, no significant apnea)
+
+Impression
+Katelyn is a 27-year-old female with Hashimoto’s thyroiditis and persistent fatigue despite euthyroid status on current levothyroxine therapy. Her thyroid function is now normalized (TSH 0.299 mIU/L), though she continues to experience fatigue, likely multifactorial in etiology. Mild inflammatory markers (CRP 6.5 mg/L) and a history of elevated inflammatory markers (CRP 5.3 mg/L, ALP 134 U/L in August 2025) suggest ongoing low-grade inflammation, which may contribute to her symptoms. The sleep study was normal, ruling out obstructive or central sleep apnea as a primary cause. Dietary factors, such as gluten sensitivity, remain a consideration given her symptoms and prior discussions. Mild hypercalciuria is present, though no active kidney stones are reported.
+
+Plan
+1. I will continue levothyroxine 75 mcg oral daily and monitor for symptoms of hypo- or hyperthyroidism.
+2. I will repeat thyroid function tests (TSH, Free T4, Free T3) in three months to ensure stability.
+3. I will recommend a trial of gluten avoidance for four to six weeks to assess for symptomatic improvement, with follow-up to review her response.
+4. I will order an extended food allergy panel (spring 2026) if dietary modifications do not improve symptoms.
+5. I will advise continued hydration with a goal of 2–3 L of fluid daily to address mild hypercalciuria.
+6. We will schedule a follow-up appointment in three months to reassess thyroid function, fatigue, and response to dietary modifications.

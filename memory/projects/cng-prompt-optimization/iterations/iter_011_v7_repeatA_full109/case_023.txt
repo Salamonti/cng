@@ -1,0 +1,52 @@
+Patient ID
+Arthur Belliveau, 62-year-old male
+
+History of Present Illness
+Mr. Belliveau presents with Staphylococcus aureus bacteremia confirmed by recent blood cultures. He is acutely confused and hypotensive, requiring transfer to ICU for hemodynamic instability. Over the past five days, he has had fever, acute back pain, and positive urine culture for Staphylococcus aureus. His confusion and hypotension are concerning for septic shock, and his current clinical status mandates urgent intensive care management.
+
+Past Medical History
+Hypertension, dyslipidemia, history of ethanol use disorder in remission, ex-smoker with 60 pack-year history, chronic right chest/neck/spine pain from traumatic injury, bronchial asthma, severe aortic regurgitation with aortic root dilation (5.1 cm), dilated cardiomyopathy with LVEF 40%, history of NSTEMI, aortic valve replacement with bioprosthetic valve (2020), cholelithiasis
+
+Medications
+Lisinopril 20 mg PO daily
+Metoprolol 25 mg PO twice daily
+Spironolactone 25 mg PO daily
+Not documented
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3g/day
+
+Physical Examination
+Not documented
+
+Investigations
+2025-10-30
+- CBC: WBC 33.0 x10^9/L, Hb 96 g/L, Plt 31 x10^9/L
+- CRP: 215 mg/L
+- Lytes: Na 141 mmol/L, K 3.4 mmol/L, Cl 110 mmol/L
+- Creatinine: 79 umol/L
+- TSH: 0.819 mIU/L
+- Venous blood gas: pH 7.44, lactate 1.2 mmol/L
+- Urinalysis: positive nitrites, moderate bacteria, RBC 25-50/hpf, WBC 5-10/hpf
+- MRI Cervicothoracic spine: no discitis/osteomyelitis, C5-C6 disc bulge with stenosis
+- MRI Lumbar spine: no spondylodiscitis, mild degenerative changes, possible pyelonephritis
+- Portable chest X-ray: no pneumonia, clear lungs
+- Abdominal ultrasound: cholelithiasis, no cholecystitis
+- Echocardiogram: normal LV function, moderate aortic root dilation, elevated prosthetic valve gradients
+
+Impression
+Mr. Belliveau is a 62-year-old male with a history of severe aortic regurgitation, aortic valve replacement, and chronic conditions including hypertension and dyslipidemia who now presents with Staphylococcus aureus bacteremia and septic shock. His acute confusion and hypotension are concerning for systemic sepsis, likely originating from urinary tract infection given positive urine cultures and imaging findings suggestive of pyelonephritis. The elevated CRP, leukocytosis, and elevated lactate further support a severe infectious process requiring urgent ICU management.
+
+Plan
+1. I will admit Mr. Belliveau to the ICU for hemodynamic monitoring and supportive care.
+2. I will initiate broad-spectrum intravenous antibiotics targeting Staphylococcus aureus, pending sensitivity results.
+3. I will request infectious diseases consultation for further management of bacteremia and source control.
+4. I will arrange for repeat blood cultures to monitor response to therapy.
+5. I will order a transesophageal echocardiogram to assess for endocarditis or prosthetic valve complications.
+6. We will reassess for source control, including consideration of urological evaluation for pyelonephritis.

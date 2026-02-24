@@ -1,0 +1,55 @@
+Patient ID
+Joan Smith is an 85-year-old female.
+
+History of Present Illness
+Joan Smith presents with a two-month history of intermittent chest tightness, primarily triggered by anxiety or emotional distress, and persistent shortness of breath. She describes the chest tightness as rare but noticeable when anxious, while her shortness of breath is more constant. She also reports a chronic cough with phlegm production, which has been ongoing. Notably, she experiences hoarseness of voice and dry throat every morning, which she attributes to her long-standing reflux. Her symptoms have prompted multiple medical evaluations, including a thyroid ultrasound that revealed benign nodules and an echocardiogram showing mild concentric left ventricular hypertrophy and mild to moderate diastolic dysfunction. Despite these investigations, she remains uncertain about the underlying cause of her symptoms and feels overwhelmed by the extensive testing.
+
+Joan’s reflux symptoms are significant, worsening if she misses her daily medication. She has tried lifestyle modifications but continues to struggle with nighttime reflux, which exacerbates her throat dryness and hoarseness. Her shortness of breath is not positional, and she denies orthopnea or paroxysmal nocturnal dyspnea. She has not experienced any palpitations or syncope. Her knee pain and mobility issues, related to osteoarthritis and a planned knee replacement, have also contributed to her overall fatigue and reduced activity level.
+
+Past Medical History
+Hypertension, fibromyalgia, gastroesophageal reflux disease (GERD), insomnia, gout, type 2 diabetes mellitus, osteoarthritis, Baker cyst, chronic widespread pain disorder, and history of multiple surgeries including right total knee replacement (with revision), appendectomy, three cesarean sections, hysterectomy, carpal tunnel surgeries, cataracts, bladder repair, skin graft after basal cell carcinoma excision, and partial bowel resection.
+
+Medications
+- Hydrochlorothiazide 25 mg oral twice daily
+- Rosuvastatin 10 mg oral once daily
+- Mar-Allopurinol 100 mg oral once daily (stopped due to nausea)
+- Pantoprazole 40 mg oral once daily
+- Telmisartan 40 mg oral once daily
+- Salbutamol HFA 100 mcg inhalation as needed (2 puffs every 3-4 hours)
+- Myrbetriq 50 mg oral once daily
+- Sandoz fesoterodine fumarate 8 mg oral once daily
+- Zopiclone 7.5 mg oral half to one tablet at bedtime as needed
+- Corticosteroid injections in the knee every 3-4 months
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Joan Smith is an 85-year-old female who does not smoke, drink alcohol, or use marijuana. She spends her evenings watching television and has no other significant social activities due to her age and health limitations.
+
+Physical Examination
+Chest: Clear to auscultation bilaterally with a mild systolic murmur noted, likely related to her history of hypertension.
+Cardiovascular: Regular rate and rhythm, no evidence of jugular venous distension.
+Respiratory: No wheezing or crackles.
+Abdomen: Soft, non-tender, no hepatosplenomegaly.
+Extremities: No edema, normal peripheral pulses.
+Neurological: Alert and oriented, no focal deficits.
+
+Investigations
+2026-01-07: Echocardiogram showing mild concentric left ventricular hypertrophy and mild to moderate diastolic dysfunction.
+2026-01-06: Blood work including normal thyroid stimulating hormone, normal uric acid, eGFR 60, normal lipid profile, and normal liver function tests.
+2026-02-14: Thyroid ultrasound showing normal thyroid size with benign spongiform nodules.
+2026-02-05: NT-proBNP 35.5 ng/L (normal for age and symptoms).
+
+Impression
+Joan Smith is an 85-year-old female with a complex medical history, including hypertension, fibromyalgia, GERD, and diastolic dysfunction. Her symptoms of chest tightness and shortness of breath are likely multifactorial, involving both cardiac and reflux-related components. The echocardiogram findings of mild concentric left ventricular hypertrophy and diastolic dysfunction may contribute to her exertional dyspnea. Her reflux symptoms are significant and likely exacerbate her throat dryness and hoarseness. The thyroid ultrasound and NT-proBNP results are reassuring and do not suggest acute cardiac or thyroid pathology.
+
+Plan
+1. I will discontinue hydrochlorothiazide and initiate dapagliflozin 10 mg oral once daily in the morning.
+2. I will provide a detailed reflux management plan including stopping eating four hours before bedtime and elevating the head of the bed to 30-45 degrees using a wedge pillow.
+3. I will arrange for a nuclear perfusion scan of the heart to evaluate for any ischemic changes.
+4. I will restart allopurinol 100 mg oral once daily, with instructions to take it every other day if gastrointestinal side effects persist.
+5. I will follow up in two to four weeks to review the results of the nuclear perfusion scan and assess her response to the new medication and lifestyle changes.

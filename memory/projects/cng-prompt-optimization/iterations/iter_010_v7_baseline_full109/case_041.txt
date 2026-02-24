@@ -1,0 +1,43 @@
+Patient ID
+Harold Joseph Muise is a 57-year-old male.
+
+History of Present Illness
+Mr. Muise reports feeling well overall today with no changes in his respiratory status. He denies any shortness of breath, cough, chest tightness, or exacerbations in the past six months. He continues to use his rescue inhaler rarely as needed. He also mentions having a dental abscess but notes this is not related to today’s main concerns.
+
+Mr. Muise’s primary focus today is the recent imaging findings. His PET/CT scan from January 2026 showed a 1.2 cm spiculated nodule in the left upper lobe with mild FDG uptake (SUVmax 3.2), which is reassuring and not suggestive of malignancy. The right apical nodule, previously noted on CT, is associated with scarring and shows no metabolic activity. He understands the plan for continued surveillance with annual CT scans, with the next one scheduled for October 2026.
+
+Past Medical History
+Chronic Obstructive Pulmonary Disease (COPD)
+Pulmonary nodules (left upper lobe and right apical)
+Alpha-1 antitrypsin deficiency excluded
+
+Medications
+Trelegy Ellipta 100/62.5/25 once daily
+Ventolin HFA 100 mcg inhaler 2 puffs as needed
+Pantoprazole 40 mg once daily
+Rosuvastatin 10 mg once daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Former smoker (quit in 2002, 25 pack-years)
+No current smoking
+
+Physical Examination
+not documented
+
+Investigations
+2026-01-02: PET/CT scan – 1.2 cm spiculated nodule in left upper lobe with mild FDG uptake (SUVmax 3.2), no metabolic activity in right apical nodule; no FDG-avid disease elsewhere.
+2025-10-14: CT chest – 10 mm stable left upper lobe nodule, 4 mm right apical nodule with possible slight increase, recommended surveillance.
+
+Impression
+Mr. Muise has stable COPD with well-controlled symptoms and no recent exacerbations. His pulmonary nodules, including the left upper lobe lesion and right apical nodule, have been evaluated with recent imaging showing no metabolic activity suggestive of malignancy. The mild FDG uptake in the left upper lobe nodule is reassuring, and continued surveillance with annual CT scans is appropriate given his history of smoking and nodule characteristics.
+
+Plan
+1. I will continue current respiratory medications including Trelegy Ellipta once daily and Ventolin HFA as needed.
+2. I will schedule a follow-up CT chest in October 2026 for surveillance of pulmonary nodules.
+3. I will follow up with Mr. Muise in November 2026 to review the CT scan results and assess for any changes in symptoms or nodule characteristics.

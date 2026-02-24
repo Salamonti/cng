@@ -1,0 +1,48 @@
+Patient ID: Lillian Sampson, 70-year-old female
+
+History of Present Illness:
+Lillian Sampson is a 70-year-old female who presented for follow-up regarding recent imaging findings. She initially sought medical attention due to progressive dysphagia, which led to a significant weight loss of approximately 40 pounds over the past year. A CT scan was performed to investigate the cause of her dysphagia, revealing a bandlike density in the esophagus. An endoscopic evaluation subsequently identified a ring-like structure at the end of her esophagus, which was successfully treated, allowing her to resume oral intake. Despite this improvement, she continues to experience occasional choking episodes and prefers a liquid diet due to residual anxiety about swallowing. She also reports ongoing weight loss and poor weight gain despite improved appetite.
+
+During the encounter, a chest CT scan performed in December 2025 showed indeterminate findings in the right lower lobe and left upper lobe, including a wedge-shaped density and an irregular nodule, respectively. These findings raise concern for an infectious, inflammatory, or potentially malignant process. Lillian remains a heavy smoker, which adds to the clinical concern. She is scheduled for a follow-up chest CT in April 2026 but is anxious about the possibility of malignancy and the need for further evaluation.
+
+Past Medical History:
+Coronary artery disease
+Chronic airway obstruction not elsewhere classified
+Depressive disorder not elsewhere classified
+Dyslipidemia
+Generalized anxiety disorder
+Tobacco use disorder
+
+Medications:
+Ramipril 4 mg PO daily
+Metoprolol 25 mg PO BID
+Aspirin 81 mg PO daily
+Atorvastatin 40 mg PO daily
+Venlafaxine XL 150 mg PO daily
+Albuterol 100 mcg inhaler PRN
+Tiotropium 2.5 mcg inhaler BID
+Salbutamol 0.4 mg spray PRN
+Potassium 600 mg PO BID (oral/drinkable form)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: Heavy smoker, tobacco use disorder
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-07:
+- Chest CT: Indeterminate right lower lobe and left upper lobe findings, including a wedge-shaped density (3.6 x 1.8 x 3.1 cm) and an irregular nodule (2.2 x 2.2 x 0.8 cm). Findings may be related to infectious, inflammatory, or malignant processes. Borderline enlarged right hilar lymph nodes noted.
+- Abdomen/Pelvis CT: Unremarkable except for a 3.5 cm cyst in the upper left kidney.
+
+Impression:
+Lillian Sampson is a 70-year-old female with a history of tobacco use disorder and chronic airway obstruction who presented with dysphagia and significant weight loss. Recent imaging revealed indeterminate pulmonary nodules, raising concern for an infectious, inflammatory, or potentially malignant process. Given her smoking history and the presence of suspicious pulmonary findings, further evaluation is warranted. The patient’s residual dysphagia and anxiety about swallowing, despite successful endoscopic intervention, also require attention.
+
+Plan:
+1. I will expedite the follow-up chest CT scan to March 2026 instead of April 2026 to better evaluate the indeterminate pulmonary nodules.
+2. I will arrange for a PET/CT scan to further assess the pulmonary nodules if the repeat CT scan shows persistent or progressive findings.
+3. I will provide Lillian with smoking cessation resources and counsel her on the importance of quitting smoking to reduce her risk of malignancy and improve her overall health.
+4. I will schedule a follow-up appointment after the results of the repeat chest CT scan to review findings and determine next steps.
+5. I will refer Lillian to a dietitian to address her ongoing weight loss and provide guidance on a balanced diet to support weight gain and nutritional health.

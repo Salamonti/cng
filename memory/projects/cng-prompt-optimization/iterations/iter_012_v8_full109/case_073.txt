@@ -1,0 +1,70 @@
+Patient ID: Carol Anne Nickerson, 67-year-old female
+
+History of Present Illness:
+Mrs. Nickerson presents today with concerns primarily related to mild anemia identified on recent blood work. She reports no significant change in her symptoms, including shortness of breath, which she attributes to deconditioning and occasional exertion. She denies orthopnea, paroxysmal nocturnal dyspnea, lower limb swelling, chest pain, or palpitations. Her functional status remains stable, with continued ability to walk and perform daily activities such as shoveling snow, though she occasionally experiences transient dyspnea that resolves spontaneously. She mentions a family history of cancer and expresses concern about potential underlying causes of her anemia. Recent echocardiogram findings indicate mild right ventricular dysfunction with normal right atrial pressure and no evidence of pulmonary hypertension. She has been advised to undergo intravenous iron therapy for her anemia, which she is accepting.
+
+The patient has no acute changes in her symptoms despite mild anemia and right ventricular dysfunction on imaging. She remains functionally stable and denies any new or worsening symptoms. Her primary concern is the etiology of her anemia, and she is open to further investigations if necessary.
+
+Past Medical History:
+Group 1 idiopathic pulmonary hypertension
+Type 2 diabetes mellitus
+Dyslipidemia
+Meningioma
+Gastroesophageal reflux disease (GERD)
+
+Medications:
+Rosuvastatin 40 mg PO daily
+Pantoprazole 40 mg PO daily
+Metformin 500 mg/Sitagliptin 100 mg PO BID
+Janumet 50/1000 mg PO BID (discontinued, replaced by Metformin/Sitagliptin)
+Dapagliflozin 10 mg PO daily
+Tadalafil 40 mg PO daily
+Macitentan 10 mg PO daily
+Perindopril 2 mg PO daily
+Lorazepam 1 mg PO daily
+
+Allergies: not documented
+
+Family History: family history of cancer
+
+Social History:
+No smoking or alcohol use
+Daily walking for 30-40 minutes
+Reduced carbohydrate intake as part of diabetes management
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-12:
+- Hemoglobin: 105 g/L
+- NT-proBNP: 178 ng/L
+- eGFR: 72 mL/min/1.73m²
+- Liver function tests: normal
+- Bilirubin (total/direct): 6.4/2.9 umol/L
+- Albumin: 42 g/L
+- Electrolytes: within normal limits
+
+2026-02-03:
+- Hemoglobin: 108 g/L
+- Ferritin: 11.8 ug/L
+- Iron: 6.5 umol/L
+- Total Iron Binding Capacity: 69 umol/L
+- % Saturation: 0.09
+- Vitamin B12: 172 pmol/L
+- Folate: 26.3 nmol/L
+- Lactate Dehydrogenase: 259 U/L
+- Reticulocyte count: 0.023 (low)
+- Thyroid Stimulating Hormone: 1.86 mIU/L
+
+2025-12-04:
+- Echocardiogram: moderate to severe right ventricular dilation with moderately reduced right ventricular systolic function, normal left ventricular function, no pulmonary hypertension
+
+Impression:
+Mrs. Nickerson is a 67-year-old female with a history of Group 1 idiopathic pulmonary hypertension, type 2 diabetes mellitus, and dyslipidemia. She presents today with mild iron deficiency anemia, as evidenced by low hemoglobin, ferritin, and iron levels, alongside elevated total iron binding capacity and low saturation. Her recent echocardiogram shows persistent right ventricular dysfunction without evidence of pulmonary hypertension. The anemia is likely contributing to her fatigue, and the etiology requires further investigation, including consideration of gastrointestinal bleeding, malabsorption, or dietary factors. Her pulmonary hypertension remains stable on current therapy, and her diabetes and dyslipidemia are managed with oral medications.
+
+Plan:
+1. We will arrange for intravenous iron therapy (Monoferric 1 gram) to correct her iron deficiency anemia.
+2. We will order a colonoscopy and upper endoscopy to investigate the etiology of her iron deficiency anemia, given the persistent low hemoglobin and low ferritin levels.
+3. We will arrange follow-up blood work in three months to reassess her hemoglobin and iron studies.
+4. We will continue her current medications for pulmonary hypertension, diabetes, and dyslipidemia without changes.
+5. We will schedule a follow-up appointment in three months to review her progress and adjust management as needed.

@@ -1,0 +1,85 @@
+Patient ID: Douglas Thistle, 78-year-old male
+
+History of Present Illness:
+Mr. Thistle is a 78-year-old male presenting today with ongoing chronic iron deficiency anemia despite prior oral iron supplementation. He reports feeling generally well with no acute concerns but notes persistent lightheadedness and occasional dizziness. His examination today reveals clear lungs and a soft abdomen with no acute distress. He has been reassured and advised to continue oral iron supplementation only. There are no new symptoms of bleeding or gastrointestinal distress.
+
+Past Medical History:
+Benign prostatic hyperplasia
+Hypertension
+Type 2 Diabetes Mellitus
+Constipation
+Ventral hernia
+Anemia (iron deficiency, vitamin B12 deficiency)
+Chest pain
+Onychia and paronychia of finger
+GERD
+Hypothyroidism
+Neuropathy (multifocal motor neuropathy)
+Erectile dysfunction
+Esophageal stricture/stenosis
+Osteoporosis
+Bursitis
+Carpal tunnel syndrome
+History of gastric surgery (gastrectomy and vagotomy in 1968 and 1970)
+Peptic ulcer disease
+
+Medications:
+Apo-Tamsulosin CR 0.4 mg orally at bedtime
+Atacand 0.5 tablet orally once daily
+DepoMedrol 40 mg/mL intramuscularly as needed daily
+Flomax CR 0.4 mg orally once daily
+Metformin 500 mg orally twice daily
+Proscar orally once daily
+Rhinocort Aqua 64 mcg intranasally as needed daily
+Serc 16 mg orally three times daily as needed
+Synthroid 100 mcg orally once daily
+Ranitidine 150 mg orally at bedtime
+Vitamin C, Vitamin D, multivitamins, omega-3 supplements
+
+Allergies:
+ACE inhibitors
+
+Family History: not documented
+
+Social History:
+Diet: Healthy with plenty of fruits and vegetables, avoids junk food and processed meats
+Alcohol: Occasional beer, no hard liquor for 20 years
+Smoking: Never smoked
+Exercise: Engages in yoga and other exercises
+Born premature
+
+Physical Examination:
+Chest: Clear to auscultation
+Abdomen: Soft, no tenderness or masses
+Neurological: Weakness in right upper extremity due to multifocal motor neuropathy
+General: Appears well, no signs of acute distress
+
+Investigations:
+2025-12-18:
+Iron 19.6 umol/L (low), TIBC 59 umol/L, % saturation 0.33 (low), Ferritin 455.0 ug/L (high), Vitamin B12 319 pmol/L, Hemoglobin A1c 6.2%, Glucose AC 6.7 mmol/L, eGFR 88, Creatinine 75 umol/L, Complete Blood Count: Hemoglobin 124 g/L, MCV 96.2 fL, Platelets 170 x10^9/L, White Blood Count 4.4 x10^9/L
+Alanine Aminotransferase 34 U/L, Aspartate Aminotransferase 37 U/L, Lipids: Cholesterol 4.4 mmol/L, Triglycerides 1.81 mmol/L, LDL 2.1 mmol/L, HDL 1.46 mmol/L, Sodium 137 mmol/L, Potassium 4.2 mmol/L, Chloride 103 mmol/L
+
+2025-07-22:
+Complete Blood Count: Hemoglobin 118 g/L, MCV 95.3 fL, Platelets 155 x10^9/L, White Blood Count 3.8 x10^9/L
+Anti-Tissue Transglutaminase: Report pending
+Anti-Parietal Cell Antibody: Report pending
+C-Reactive Protein: 2.7 mg/L
+Bilirubin, Total: 5.8 umol/L
+Alanine Aminotransferase: 90 U/L
+Aspartate Aminotransferase: 63 U/L
+Albumin: 40 g/L
+Calcium, Total: 2.45 mmol/L
+eGFR: 89, Creatinine: 74 umol/L
+Glucose AC: 6.2 mmol/L
+
+2025-08-25:
+Chest X-ray: Clear lungs, heart and mediastinum unremarkable, surgical clips at gastroesophageal junction
+
+Impression:
+Mr. Thistle continues to have chronic iron deficiency anemia despite prior investigations and oral iron supplementation. His recent iron studies show persistently low iron saturation and ferritin levels that are unexpectedly elevated, suggesting possible hemolysis or another confounding factor. Given his history of gastrectomy and vagotomy, ongoing malabsorption remains a likely contributor to his anemia. His recent chest X-ray and laboratory investigations do not reveal any acute pathology, but his elevated ferritin warrants further evaluation to rule out hemolysis or other underlying conditions.
+
+Plan:
+1. We will discontinue IVIG and DepoMedrol PRN due to lack of follow-up and no current indication.
+2. We will continue oral iron supplementation only, as per patient preference and reassurance.
+3. We will refer Mr. Thistle back to Dr. Prabhu for ongoing management of his chronic anemia and consideration of further endoscopic evaluation if clinically indicated.
+4. We will monitor hemoglobin and iron studies in 3-6 months to assess for any changes in his anemia.

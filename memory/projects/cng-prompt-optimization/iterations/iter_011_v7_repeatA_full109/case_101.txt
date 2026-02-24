@@ -1,0 +1,45 @@
+Patient ID: Adrianne Nickerson, 75-year-old female
+
+History of Present Illness:
+Adrianne Nickerson is a 75-year-old female who was referred for evaluation of incidental findings on her CT scan. She reports no significant shortness of breath, chest pain, or other respiratory symptoms, though she acknowledges mild dyspnea with exertion consistent with her age and stair climbing. She is aware of a spot on her lung noted on imaging but remains asymptomatic otherwise. She denies any recent changes in her health status and reports passing previous pulmonary function tests. Adrianne is scheduled for a follow-up CT scan in April or May 2026.
+
+Adrianne has a history of recurrent ground-glass opacities and interstitial changes on her CT scans, which have been monitored over the past few years. She describes a past history of what she believes were "fits" as a young adult, which were treated with injections, but she has not experienced any such episodes since. She also reports a history of gastroesophageal reflux disease (GERD).
+
+---
+Past Medical History:
+Osteoarthritis, varicose veins, hypothyroidism, dyslipidemia, cataract, cervical dysplasia, obesity, benign paroxysmal positional vertigo (BPPV), venous insufficiency-related edema, Eustachian dysfunction, GERD, non-alcoholic fatty liver disease (NAFLD), pulmonary nodules (microscopic)
+
+Medications:
+- Amlodipine 30 mg tablet, 1 tablet once daily
+- Apraclonidine 500 mg tablet, 1 tablet twice daily as needed
+- Aprabeprazole 20 mg tablet, 1 tablet once daily
+- Ramipril 8 mg tablet, 1 tablet once daily
+- Levothyroxine 88 mcg tablet, 1 tablet once daily
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+Adrianne is a former smoker with a history of approximately 30 pack-years (two packs per day for roughly 30 years). She is currently a housewife, married with her husband still alive. She denies current exposure to asbestos or occupational lung irritants, though she uses a wood furnace and engages in household cleaning.
+
+Physical Examination:
+Chest: Clear bilaterally with adequate air entry. Normal S1 and S2 with no additional sounds or murmurs.
+Abdomen: Soft with no palpable organomegaly.
+Neurological: Unremarkable.
+No jugular venous distention or lower limb edema. No lymphadenopathy or signs of joint inflammation.
+
+Investigations:
+2025-11-12: CT Chest with contrast – Findings include mild cardiomegaly, mild coronary artery calcification, and moderate aortic atherosclerosis. New right upper lobe subpleural ground-glass opacity measuring 2.2 x 1.5 cm. Bilateral subpleural reticulation and cyst formation, most pronounced in the right lower lobe medially. Mild traction bronchiectasis at the medial basal right lower lobe. Distal esophagus mildly patulous. No aggressive osseous abnormalities.
+2024-11-05: CT Chest with contrast – Subpleural reticular changes persist with an apical, right middle lobe, and lingular predilection bilaterally. Focal ground-glass change in the anterior segment of the right upper lobe, likely infectious or inflammatory. No new nodules.
+2023-11-20: CT Chest with contrast – Mild diffuse interstitial lung disease potentially NSIP. No significant fibrosis. A few small pulmonary nodules, most likely benign.
+2023-03-10: Chest X-ray – Mild coarsening of bronchovascular markings. Subtle focal reticular nodularity at the lateral right upper lobe.
+2020-02-20: Pulmonary Function Tests – Normal spirometry with FEV1 at 94% predicted and FVC at 102% predicted.
+
+Impression:
+Adrianne Nickerson is a 75-year-old female with a history of recurrent ground-glass opacities and interstitial lung changes on imaging, which have been stable over time. Despite these findings, she remains asymptomatic with normal pulmonary function tests. The current imaging shows mild interstitial changes and a new subpleural ground-glass opacity, which is indeterminate for progression or clinical significance. Given her lack of symptoms and normal pulmonary function, these findings are likely not clinically significant at this time. However, continued surveillance is warranted to monitor for any progression.
+
+Plan:
+1. I will continue current medications as prescribed.
+2. I will arrange for a repeat high-resolution CT chest in one year, specifically in June 2026, to reassess the interstitial lung changes and the new ground-glass opacity.
+3. We will monitor for any new symptoms or changes in pulmonary function and schedule a follow-up appointment in June 2026 to review the results of the repeat imaging.

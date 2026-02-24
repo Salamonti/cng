@@ -1,0 +1,57 @@
+Patient ID: Brenda Hall, 63-year-old woman
+
+History of Present Illness:
+Brenda Hall presents for follow-up of a right apical cavitary lung mass initially identified on chest X-ray and confirmed on CT scan in January 2026. The lesion was highly suspicious for malignancy, prompting a PET-CT scan on February 9, 2026, which revealed a very FDG-avid mass (SUV max 26) in the right upper lobe, consistent with primary lung malignancy. Additionally, the PET-CT demonstrated focal moderate uptake in the distal sigmoid colon (SUV max 10), raising concern for a potential neoplastic process. The patient has been experiencing persistent shortness of breath on exertion, though her symptoms have improved with inhaled bronchodilators and corticosteroids. She has no acute changes in her respiratory status at this time.
+
+The current plan involves further staging and investigation of the identified lesions. The PET-CT findings have prompted referrals for thoracic surgery to consider resection of the lung lesion, and a colonoscopy to evaluate the FDG-avid lesion in the colon. An MRI brain is also scheduled to assess for metastatic disease.
+
+Past Medical History:
+Chronic obstructive pulmonary disease/emphysema
+Prior cervical cancer treated with colposcopy/LEEP (1986)
+Dyslipidemia
+
+Medications:
+Clobazam 10 mg tablet TID PRN
+Clindamycin 300 mg capsule TID
+Epinephrine 0.3 mg autoinjector once
+Salbutamol HFA 100 mcg inhaler 2 puffs Q4H PRN
+Symbicort 200/6 mcg turbuhaler 2 puffs BID
+Budesonide 200 mcg aerosol powder 2 sprays BID
+
+Allergies:
+Penicillin: other reaction
+Seafood/fish: anaphylaxis
+
+Family History: not documented
+
+Social History:
+Current smoker, 70 cigarettes per day; former heavy smoker with a peak of 12 packs per day for 45 years. No alcohol or illicit drug use documented.
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-09:
+PET-CT: Right upper lobe cavitary mass with intense uptake (SUV max 26), consistent with primary lung malignancy. Mild asymmetric uptake in right hilar lymph nodes. Moderate focal uptake in distal sigmoid colon, concerning for neoplastic process.
+
+2026-01-21:
+Bronchoscopy: No endobronchial lesions identified. Bronchial washing sent for cytology.
+Cytology: Atypical squamous cells with nuclear contour abnormalities; minimal atypia of uncertain significance.
+Sputum culture: Very light growth of Staphylococcus aureus, susceptible to erythromycin, levofloxacin, oxacillin, trimethoprim/sulfamethoxazole, and vancomycin.
+Complete blood count: Mild anemia, normal white blood cell count with lymphocytosis.
+Prothrombin time/INR: Normal.
+Point-of-care glucose: Within normal range.
+
+2026-01-09:
+Chest CT with contrast: Large right upper lobe cavitary mass (3.5 x 2.6 x 5.4 cm) with spiculated margins, suggestive of malignancy.
+
+2025-12-30:
+Baseline labs: eGFR 90 mL/min/1.73m2, creatinine 51 µmol/L, sodium 139 mmol/L, potassium 3.8 mmol/L, chloride 103 mmol/L, hemoglobin 124 g/L, CRP 5.3 mg/L, ESR 52 mm/hr.
+
+Impression:
+Brenda Hall has a highly concerning right upper lobe cavitary lung mass with intense FDG uptake on PET-CT, strongly suggestive of primary bronchogenic carcinoma. The presence of a focal FDG-avid lesion in the distal sigmoid colon raises concern for a potential synchronous neoplastic process, necessitating further investigation. Her history of heavy smoking and COPD/emphysema further supports the suspicion of lung malignancy. The current clinical picture requires invasive staging and multidisciplinary management.
+
+Plan:
+1. I will refer Brenda Hall to thoracic surgery for consideration of resection of the right upper lobe cavitary mass, potentially following invasive staging.
+2. I will ensure the scheduled MRI brain is completed in the next few days to assess for metastatic disease.
+3. I will refer Brenda Hall to Dr. Macdonald for colonoscopy to investigate the FDG-avid lesion in the distal sigmoid colon.
+4. I will follow up with Brenda Hall after the results of the MRI brain and colonoscopy are available to discuss further management and staging.

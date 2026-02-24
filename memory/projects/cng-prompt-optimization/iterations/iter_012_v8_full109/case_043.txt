@@ -1,0 +1,40 @@
+Patient ID: Robert Jeffrey Doane, 69-year-old male
+
+History of Present Illness:
+Mr. Doane is a 69-year-old male presenting for follow-up of a recent CT chest with contrast, which revealed a subpleural mass in the posterior aspect of the right lower lobe measuring 16.5 x 46 x 68 mm with multiple foci of calcification and a small right pleural effusion. The radiologist noted suspicion for malignancy, though the clinician assessing the images was less convinced. The patient has been on a prednisone taper and Symbicort for asthma exacerbation, with no recent worsening of lower limb swelling or respiratory symptoms. He reports subjective improvement in fluid levels and continues on hydrochlorothiazide for hypertension. The patient is uncertain about the need for ongoing medications and is awaiting further evaluation.
+
+The clinician discussed the findings with Mr. Doane and decided against immediate biopsy due to the nodule's location. Instead, a repeat CT chest is planned in approximately 10-12 weeks to reassess the lesion. The patient is already on a diuretic (hydrochlorothiazide), and no additional fluid-restricting medications are being added. The patient expressed understanding and acceptance of the plan.
+
+Past Medical History:
+Asthma, obstructive sleep apnea, obesity hypoventilation syndrome, hypertension, type 2 diabetes, hyperlipidemia, pleural plaques (asbestos exposure), and possible interstitial lung disease
+
+Medications:
+Symbicort 200/6 mcg 2 puffs TID inhalation
+Apo-prednisone 5 mg 8 tablets daily for 7 days, then taper as prescribed
+Teva-diltiazem XC 240 mg 1 tablet daily oral
+Apo-ramipril 10 mg 2 capsules daily oral
+Jamp-metformin 500 mg 1.5 tablets twice daily oral
+Teva-hydrochlorothiazide 25 mg 1 tablet daily oral
+Mar-ezetimibe 10 mg 1 tablet daily oral
+Jamp-atorvastatin calcium 40 mg 1 tablet daily oral
+Ventolin HFA 100 mcg 2 puffs every 4 hours as needed inhalation
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: Ex-smoker, no alcohol use, past occupational asbestos exposure
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-27:
+CT chest with contrast: Subpleural mass in right lower lobe (16.5 x 46 x 68 mm) with calcification, small right pleural effusion. No malignancy strongly suspected by radiologist.
+
+2026-01-19:
+Echocardiogram: Normal biventricular size and systolic function, no evidence of pulmonary hypertension, estimated right atrial pressure 3 mmHg.
+
+Plan:
+1. I will continue current medications as prescribed, including Symbicort 200/6 mcg 2 puffs TID, Apo-prednisone taper, and hydrochlorothiazide 25 mg daily.
+2. We will arrange a repeat CT chest in approximately 10-12 weeks (April 2026) to reassess the subpleural mass and pleural effusion.
+3. I will monitor for any changes in respiratory symptoms, fluid retention, or other concerning signs and schedule follow-up as needed.

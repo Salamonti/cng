@@ -1,0 +1,46 @@
+Patient ID: Aziza Hussein, 60-year-old female
+
+History of Present Illness:
+Aziza Hussein presents with symptoms of nausea, anorexia, and generalized malaise for three days, which began shortly after initiating dapagliflozin 10 mg daily for type 2 diabetes mellitus. She reports no improvement in symptoms despite discontinuation of the medication. Her blood glucose readings remain stable, though she experiences persistent afternoon spikes around 2–3 PM, likely postprandial. She also reports urinary symptoms, which she attributes to the dapagliflozin. Current insulin regimen includes Tresiba 22 units twice daily (morning and night), with no short-acting insulin use. She denies acute complications such as polyuria, polydipsia, or visual changes.
+
+Aziza’s diabetes has been poorly controlled, with a recent hemoglobin A1c of 11.0% and chronic renal impairment (eGFR 41 mL/min/1.73m²). She has no acute metabolic derangements on recent labs, though her renal function remains stable. The new insulin regimen adjustments are intended to improve glycemic control while mitigating side effects.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Chronic kidney disease stage III
+Hypertension (status unknown)
+
+Medications:
+Metformin 500 mg PO BID
+Rosuvastatin 20 mg PO daily
+Tresiba FlexTouch 22 units SC BID (morning and night)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-29
+- Hemoglobin A1c: 11.0%
+- Random plasma glucose: 9.3 mmol/L
+- eGFR: 42 mL/min/1.73m²
+- Creatinine: 126 µmol/L
+- Sodium: 138 mmol/L
+- Potassium: 4.7 mmol/L
+- Chloride: 107 mmol/L
+- Complete blood count: unremarkable
+- Venous blood gas: pH 7.43, HCO3 25.7 mmol/L, lactate 0.7 mmol/L
+
+Impression:
+Aziza Hussein has poorly controlled type 2 diabetes mellitus with persistent hyperglycemia and chronic renal impairment, limiting therapeutic options. The recent initiation of dapagliflozin appears to have exacerbated her symptoms, including nausea, anorexia, and urinary issues. Her current insulin regimen (Tresiba 22 units BID) is insufficient to control postprandial glucose spikes, and the lack of short-acting insulin contributes to suboptimal glycemic management.
+
+Plan:
+1. I will discontinue dapagliflozin 10 mg daily due to intolerable side effects.
+2. I will adjust Tresiba to 15 units SC BID (morning and night) and prescribe NovoRapid 5 units SC prior to each meal for improved glycemic control.
+3. I will order a repeat hemoglobin A1c and renal panel (eGFR, creatinine) to reassess glycemic control and renal function in three months.
+4. I will request a urine dipstick to evaluate for urinary tract infection or other abnormalities.
+5. We will schedule a follow-up appointment in three months to review blood work results and adjust the insulin regimen as needed.

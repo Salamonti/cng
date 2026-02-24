@@ -1,0 +1,33 @@
+Patient ID: Not documented
+
+History of Present Illness:
+This is a test encounter with no documented history of present illness. No patient-reported symptoms, duration, or relevant details are available for review.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-21: ECG shows inferior ST depression
+
+Impression:
+This encounter lacks sufficient current clinical data to form a meaningful impression. The prior history of coronary artery disease is noted, but no recent symptoms or examination findings are documented. The ECG shows inferior ST depression, which may warrant further evaluation.
+
+Plan:
+1. I will review the ECG findings with the patient and arrange for a cardiology consultation to assess inferior ST depression.
+2. I will order a troponin level to rule out acute myocardial infarction.
+3. We will schedule a follow-up appointment within one week to review results and discuss further management.

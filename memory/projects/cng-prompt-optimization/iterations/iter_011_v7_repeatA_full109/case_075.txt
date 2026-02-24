@@ -1,0 +1,69 @@
+Patient ID: Lloyd Francis is an 85-year-old male.
+
+History of Present Illness:
+Lloyd Francis presents with a persistent cough of several months duration, productive of mostly clear phlegm with occasional dark streaks. He reports the cough is deep, productive, and often requires significant effort to clear the mucus, with transient relief from short-acting bronchodilators (salbutamol). The cough is more pronounced upon waking and during driving, though it does not interfere significantly with his daily activities. He denies hemoptysis, chest pain, shortness of breath, fever, or night sweats. There is no history of smoking or occupational exposures. He has experienced unintentional weight loss and increased fatigue over the past few months. He also reports a tickle in his throat preceding the cough and occasional postnasal drip, though no active nasal congestion.
+
+Physical examination findings from prior visits show no respiratory distress, clear lungs to auscultation, and no crackles or rhonchi. His current examination is not documented.
+
+Past Medical History:
+Benign prostatic hypertrophy, chronic kidney injury, coronary artery disease (status post open heart surgery), type 2 diabetes mellitus, gastroesophageal reflux disease, gout, hypercholesterolemia, hypertension, and a neck mass.
+
+Medications:
+- Atorvastatin 40 mg PO daily
+- Aspirin 81 mg PO daily
+- Ferrous sulfate 300 mg (60 mg iron) PO daily
+- Hydrochlorothiazide 25 mg PO daily
+- Metoprolol tartrate 50 mg PO three tablets twice daily
+- Telmisartan 80 mg PO daily
+- Empagliflozin 25 mg PO daily
+- Tiotropium 2.5 mcg INH once daily
+- Nitro-Dur 0.4 mg/hour transdermal patch once daily
+- Salbutamol 100 mcg INH as needed (2 puffs 4 times daily)
+- Allopurinol 100 mg PO daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: Lloyd Francis is a caregiver for his wife. He denies smoking and has no history of occupational exposures.
+
+Physical Examination: not documented
+
+Investigations:
+2025-10-01:
+- Hemoglobin A1C: 6.6%
+- Uric acid: 186 umol/L
+- Electrolytes: Sodium 138 mmol/L, Potassium 3.6 mmol/L, Chloride 99 mmol/L
+- eGFR: 54 mL/min/1.73m^2
+- Complete blood count: Hemoglobin 128 g/L, White blood count 8.1 x10^9/L, Platelets 196 x10^9/L
+- Urine albumin/creatinine ratio: 2.58 mg/mmol
+- Thyroid stimulating hormone: 1.470 mIU/L
+- Prostate specific antigen: 0.565 ug/L
+- Ferritin: 363.00 ug/L
+- Alanine aminotransferase: 20 U/L
+- Magnesium: 0.77 mmol/L
+- Phosphorous: 0.98 mmol/L
+- Iron studies: Iron 17.0 umol/L, Total iron binding capacity 44 umol/L, % saturation 0.38
+- Erythrocyte sedimentation rate: 28 mm/hr
+- C-reactive protein: 0.8 mg/L
+- Calcium: 2.44 mmol/L
+- Alkaline phosphatase: 74 U/L
+- Aspartate aminotransferase: 26 U/L
+- Albumin: 40 g/L
+- Urinalysis: Normal parameters with no abnormalities
+
+2025-10-22:
+- Chest CT: Reticular densities at the right lung base slightly more pronounced compared to previous imaging, raising the possibility of mild interstitial lung disease progression. No suspicious pulmonary nodules or masses.
+
+2026-01-20:
+- Point-of-care glucose: 10.7 mmol/L
+
+Impression:
+Lloyd Francis is an 85-year-old male with a chronic cough productive of mostly clear phlegm, associated with mild interstitial lung disease as evidenced by CT imaging. His symptoms are likely exacerbated by postnasal drip and possibly mild progression of interstitial lung disease. He has a background of multiple comorbidities including coronary artery disease, type 2 diabetes, chronic kidney injury, and hypercholesterolemia. The cough is not associated with signs of infection or significant respiratory distress, but his fatigue and unintentional weight loss warrant further investigation.
+
+Plan:
+1. I will prescribe N-acetylcysteine 600 mg PO twice daily for thinning of phlegm.
+2. I will arrange for Lloyd Francis to obtain an Aerobika oscillating positive expiratory pressure (OPEP) device for airway clearance therapy, to be used 3-4 times daily for 5-10 minutes each session.
+3. I will order a high-resolution CT scan of the chest to further evaluate the interstitial lung disease.
+4. I will order the following blood work for further evaluation of autoimmune and inflammatory conditions: antinuclear antibodies (ANA), rheumatoid factor (RF), and antineutrophil cytoplasmic antibodies (ANCA).
+5. We will arrange for follow-up in 4 weeks to review the results of the high-resolution CT scan and blood work, and to assess the effectiveness of the new therapies.

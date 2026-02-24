@@ -1,0 +1,53 @@
+**Patient ID**
+Lane Owen Shaw is a 52-year-old male.
+
+**History of Present Illness**
+Mr. Shaw reports persistent dyspnea and throat discomfort for several months, exacerbated by prolonged talking or eating certain foods (e.g., bread). He describes losing breath during conversation, coughing episodes that induce lightheadedness, and postprandial symptoms suggestive of reflux. Symptoms began after transitioning from landscaping to a lobster processing job 10 years ago and have worsened despite trials of Simbicort, which provided minimal relief. He denies heartburn or regurgitation but notes throat irritation post-meals. No swallowing difficulties or weight changes are reported.
+
+Physical examination reveals normal vital signs (HR 88 bpm, SpO2 95%), clear lungs, normal cardiac auscultation, and an unremarkable abdominal and neurological exam. No jugular venous distention or lower limb edema is present.
+
+**Past Medical History**
+Hypertension, anxiety.
+
+**Medications**
+- Candesartan/hydrochlorothiazide 16 mg/12.5 mg tablet once daily
+- Paroxetine 20 mg tablet once daily
+- Bisoprolol 5 mg tablet once daily (recently added)
+- Simbicort 200/6 mcg inhaler twice daily
+- Aspirin 81 mg tablet once daily (recently added)
+
+**Allergies**
+Pineapple (causes shortness of breath).
+
+**Family History**
+Family history of hypertension and coronary artery disease (father had a heart attack at age 60).
+
+**Social History**
+Never smoked. No alcohol use. Former exposure to secondhand smoke as a child. Lives in Digby, NS.
+
+**Physical Examination**
+- Vital signs: HR 88 bpm, SpO2 95% on room air.
+- Lungs: Clear to auscultation bilaterally.
+- Cardiac: Normal S1/S2, no murmurs or gallops.
+- Abdomen: Soft, no organomegaly.
+- Neurological: Unremarkable.
+- No jugular venous distention or lower limb edema.
+
+**Investigations**
+2025-11-18: Echocardiogram – Normal biventricular size and function, no valvular abnormalities.
+2025-10-23: Labs –
+  - Hemoglobin A1C: 5.0% (normal)
+  - Lipids: Cholesterol 4.9 mmol/L, LDL 2.8 mmol/L, HDL 0.88 mmol/L (low), triglycerides 2.73 mmol/L (elevated)
+  - Complete blood count: Leukocytosis (WBC 15.1 x10^9/L), otherwise unremarkable
+  - Urinalysis: Trace protein, elevated leukocytes (25–50/hpf), RBCs (5–10/hpf)
+2025-03-26: Chest X-ray – Nonspecific coarsening of central airways, no consolidation.
+
+**Impression**
+Mr. Shaw’s symptoms of dyspnea, cough, and throat discomfort—particularly postprandial—are most consistent with gastroesophageal reflux disease (GERD) contributing to laryngopharyngeal reflux. His normal echocardiogram and prior negative stress test argue against cardiac or pulmonary causes, though his leukocytosis and urinalysis findings warrant further evaluation for occult infection or inflammation. The chest X-ray suggests mild airway inflammation, possibly related to reflux or prior viral exposure. Given his family history of cardiovascular disease and elevated triglycerides, metabolic optimization is also indicated.
+
+**Plan**
+1. I will prescribe **omeprazole 20 mg daily** for 8 weeks to manage reflux symptoms and refer Mr. Shaw to a dietitian for reflux-triggering food avoidance.
+2. I will arrange a **pulmonary function test** and **flexible laryngoscopy** with Dr. Broderick to evaluate for reflux-related airway inflammation or structural abnormalities.
+3. I will order **fasting glucose and lipid panel** to monitor metabolic parameters, given his elevated triglycerides and family history.
+4. We will repeat a **chest X-ray** in 3 months to assess for interval changes in airway inflammation.
+5. I will follow up in **4 weeks** to review symptom response and test results.

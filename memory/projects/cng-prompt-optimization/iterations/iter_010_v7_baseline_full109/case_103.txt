@@ -1,0 +1,59 @@
+Patient ID: Jacqueline Valerie Yvonne Philippe, 35-year-old female
+
+History of Present Illness:
+Jacqueline Philippe presents today with ongoing severe pain in her mid-thoracic spine, particularly at the T8-T9 level, which she describes as unrelenting and debilitating. She reports no improvement with gabapentin 300 mg at bedtime, which she has been taking for several weeks. She also describes worsening nausea and vomiting, with no oral intake retained for the past three weeks. She feels something is "stuck" and has experienced recurrent episodes of vomiting undigested food, including a recent episode at 1 AM following dinner. She denies recent trauma but continues to experience significant distress, stating she cannot continue her daily activities. Additionally, she describes worsening facial and upper body rosacea-like rash, which she attributes to triggers such as heat, spicy foods, and alcohol. She has also experienced recurrent episodes of throat swelling, hives, and vision changes, with four recent episodes requiring epinephrine use. She denies improvement with current cetirizine and montelukast.
+
+Jacqueline expresses frustration with her current diagnosis of fibromyalgia, stating it does not explain her symptoms or provide relief. She has undergone multiple investigations, including MRI of the thoracic spine, which revealed small disc herniations at T6-7 and T8-9 with disc material contacting the thecal sac but no significant stenosis or nerve impingement. She remains concerned about her ongoing symptoms, including pain, nausea, vomiting, and allergic reactions, and is seeking alternative treatments.
+
+Past Medical History:
+Complex PTSD, degenerative disc displacement, previous irregular heartbeats, multiple emergency department admissions for systemic symptoms, GERD, migraine without aura, thyroiditis, possible thyroid storm, fibromyalgia, rosacea, recurrent angioedema
+
+Medications:
+- Amlodipine besylate 5 mg PO daily
+- Pantoprazole sodium 80 mg PO daily (patient reports self-adjusting dose)
+- Prazosin 1 mg PO daily
+- Ranitidine 150 mg PO BID
+- Semaglutide 0.25 mg SC weekly
+- Zopiclone 7.5 mg PO PRN
+- Nortriptyline 25 mg PO daily
+- Pregabalin 75 mg PO BID
+- Vitamin D supplements
+- Gabapentin 300 mg PO at bedtime
+- Cetirizine 10 mg PO daily
+- Montelukast 10 mg PO daily
+- Naltrexone 1.5 mg PO BID (new, to be started)
+- Maxolon 5 mg PO 30 minutes before meals (new, to be started)
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History: Therapist running her own organization, adoptive parent, history of miscarriages, smoker (~5 cigarettes daily), denies recreational drug use
+
+Physical Examination: Not documented
+
+Investigations:
+2026-02-04:
+- Anti Thyroid Peroxidase Antibody: Report pending
+- Antinuclear Antibody Screen: Report pending
+- C Reactive Protein Quantitative: 22.5 mg/L (elevated)
+- Hepatitis C Antibody: Non-reactive
+- Hepatitis B Surface Antigen: Non-reactive
+- Complement C4: 0.16 g/L (low)
+- Complement C3: 1.54 g/L (normal)
+- Thyroid Stimulating Hormone: 1.700 mIU/L (normal)
+- Complete Blood Count: WBC 9.5 x10^9/L (normal), RBC 4.51 x10^12/L (normal), Hemoglobin 135 g/L (normal), Platelets 313 x10^9/L (normal)
+
+2025-12-11:
+- MRI Thoracic Spine: Small disc herniations at T6-7 and T8-9 with disc material contacting the thecal sac but no significant stenosis or nerve impingement
+
+Impression:
+Jacqueline Philippe presents with a complex and challenging clinical picture characterized by chronic thoracic spine pain, recurrent nausea and vomiting, and persistent allergic symptoms despite ongoing investigations and treatments. Her MRI findings of small disc herniations at T8-9 with disc material contacting the thecal sac may contribute to her pain, although no significant nerve impingement was identified. The ongoing nausea and vomiting suggest a possible functional esophageal disorder, and the recent initiation of Maxolon may help improve motility. Her allergic symptoms, including recurrent angioedema episodes, remain poorly controlled despite current medications, and her rosacea-like rash is likely exacerbated by dietary and environmental triggers. The elevated CRP and low complement C4 levels warrant further investigation to rule out underlying inflammatory or autoimmune processes. The patient's frustration with her current diagnosis of fibromyalgia highlights the need for a comprehensive and individualized approach to address her multisystem symptoms.
+
+Plan:
+1. I will initiate naltrexone 1.5 mg PO twice daily for fibromyalgia symptoms and reassess in four weeks.
+2. I will prescribe Maxolon 5 mg PO 30 minutes before meals to improve esophageal motility and reduce nausea/vomiting.
+3. I will arrange a follow-up appointment with the allergist/immunologist on February 25th to review her allergic symptoms and rosacea, and to consider further evaluation for mast cell activation disorder or other underlying conditions.
+4. I will discontinue gabapentin as it has not provided any relief.
+5. I will request a repeat MRI thoracic spine with contrast to further evaluate the disc herniations and their potential contribution to her pain.
+6. I will follow up in three months to reassess her response to naltrexone and Maxolon, and to review the results of her upcoming specialist consultations.

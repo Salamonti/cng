@@ -1,0 +1,46 @@
+Patient ID
+David Victor Smith is a 59-year-old male.
+
+History of Present Illness
+Mr. Smith reports feeling significantly improved over the past week, noting better mobility and reduced leg weakness that had persisted since a cellulitis infection several years ago. He can now ascend stairs without shuffling, indicating functional improvement. He denies chest pain but reports exertional shortness of breath, particularly with heavy lifting or vigorous activity. His weight fluctuates by approximately 3–4 pounds but remains stable overall. He has resumed full-time work and engages in regular physical activity, including gym sessions and aqua fitness classes, which he finds beneficial for muscle tone and endurance. He is unsure of the name of his current statin medication, which was recently changed from rosuvastatin.
+
+Past Medical History
+Hypertension, dyslipidemia, coronary artery disease (NSTEMI in February 2025), obesity, obstructive sleep apnea, obesity hypoventilation syndrome, mild COPD, osteoarthritis, iron deficiency anemia, vitamin B12 deficiency, depression.
+
+Medications
+Ticagrelor 90 mg PO b.i.d.
+Bisoprolol 5 mg PO daily
+Rosuvastatin 40 mg PO daily (recently changed, name unknown)
+Aspirin 81 mg PO daily
+Sertraline 100 mg PO daily
+Pantoprazole 40 mg PO daily
+Lisinopril/hydrochlorothiazide 20/25 mg PO daily
+Breztri 2 puffs PO b.i.d.
+Nitroglycerin spray p.r.n.
+Ferrous fumarate 300 mg PO daily (new, per cardiac rehab)
+
+Allergies
+Not documented
+
+Family History
+Mother: hypertension, diabetes
+Father: coronary artery disease (deceased at age 58)
+
+Social History
+Smoker (1 pack per day for 40 years), currently attempting cessation. Rare alcohol use. Previously worked as a truck driver; currently employed full-time. Engages in regular gym attendance and aqua fitness.
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-02
+Ferritin: 14.1 ug/L (low)
+Complete Blood Count: hemoglobin 94 g/L, hematocrit 0.320, MCV 77.1 fL (consistent with iron deficiency anemia)
+
+Impression
+Mr. Smith is a 59-year-old male with a history of coronary artery disease, hypertension, dyslipidemia, and obesity who presents with ongoing exertional dyspnea and persistent iron deficiency anemia despite oral ferrous fumarate therapy. His recent functional improvement in mobility suggests adherence to physical activity, though his weight remains a concern. The low ferritin and hemoglobin levels indicate ongoing iron deficiency, which may contribute to his fatigue and exercise intolerance. Further evaluation of his statin regimen and lipid profile is required to optimize cardiovascular risk management.
+
+Plan
+1. I will order a lipid panel to assess current cholesterol levels and guide statin therapy adjustments.
+2. I will arrange for intravenous iron infusion (Monoferric) to correct persistent iron deficiency anemia, given inadequate response to oral therapy.
+3. I will follow up in 3 months to review lipid profile results, iron levels, and overall functional status.

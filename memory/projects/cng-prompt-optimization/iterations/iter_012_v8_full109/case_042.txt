@@ -1,0 +1,49 @@
+Patient ID: James Douglas Dulong is an 82-year-old male.
+
+History of Present Illness:
+Mr. Dulong presents with progressive shortness of breath on minimal exertion, which has worsened over recent months. He reports limited mobility, with leg weakness and difficulty walking more than short distances. He uses supplemental oxygen at home (2 L/min continuously, 3 L/min intermittently) and has noted a decline in his ability to perform activities of daily living. His cough remains productive with clear phlegm, and he denies any recent changes in sputum color or hemoptysis. He has been using ankle weights for leg exercises but has not engaged in broader physical activity due to fatigue and weakness. His oxygen saturation remains stable at 90% on current settings, though it drops to the mid-80s during exertion. He denies recent chest infections or changes in weight, appetite, or sleep patterns. There is no reported diarrhea or gastrointestinal symptoms, though he has been prescribed anti-diarrheal medication as prophylaxis for his antifibrotic therapy.
+
+Mr. Dulong’s functional status has declined further, with reports of reduced strength in his legs and difficulty with ambulation. He is currently managing his dyspnea primarily with morphine as needed, with minimal use of his rescue inhaler. His wife reports that he rarely leaves the house due to breathlessness and fatigue. The patient expresses concern about his worsening mobility and seeks strategies to improve his strength and functional capacity.
+
+Past Medical History:
+Rheumatoid arthritis-associated interstitial lung disease (ILD) with usual interstitial pneumonia (UIP) pattern, chronic obstructive pulmonary disease (COPD), mild aortic stenosis, left diaphragmatic weakness, asbestos exposure, benign prostatic hyperplasia (BPH), dyslipidemia, gastroesophageal reflux disease (GERD), hypertension, insomnia, obesity, rheumatoid arthritis, anxiety, benign paroxysmal positional vertigo (BPPV), prostate cancer (treated), constipation, encephalitis in viral disease exacerbation, heart murmur, and rheumatic fever.
+
+Medications:
+nintedanib 150 mg PO daily
+morphine sulfate 2 mg/mL syrup 2 mL TID PRN
+fluticasone/vilanterol 100/25 mcg inhaler daily
+umeclidinium/vilanterol 62.5/25 mcg inhaler daily
+salbutamol 100 mcg inhaler PRN
+loperamide 2 mg PO PRN (as needed for diarrhea prophylaxis)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Vital signs: Blood pressure 125/73 mmHg, pulse 85 bpm, respiratory rate not documented, oxygen saturation 90% on 3 L/min nasal cannula.
+General: Alert and oriented, no acute distress.
+Chest: Clear to auscultation bilaterally with bibasilar fine crackles.
+Cardiovascular: Normal S1 and S2, no murmurs, no jugular venous distention.
+Extremities: Mild lower limb edema, reduced strength in lower extremities, no clubbing or cyanosis.
+Neurological: Unremarkable.
+
+Investigations:
+2025-12-03:
+Complete blood count: Hemoglobin 122 g/L, platelets 223 x10^9/L, white blood count 7.1 x10^9/L.
+Chemistry: Creatinine 73 umol/L, eGFR 88 mL/min/1.73m^2, sodium 136 mmol/L, potassium 4.0 mmol/L, calcium 2.36 mmol/L, albumin 44 g/L, C-reactive protein 15.7 mg/L.
+Urinalysis: Specific gravity 1.025, trace ketones, small bilirubin, 13 RBC/hpf, 13 WBC/hpf.
+Antinuclear antibody screen: Negative.
+Vasculitis panel: Negative.
+
+Impression:
+Mr. Dulong is an 82-year-old male with progressive rheumatoid arthritis-associated interstitial lung disease (ILD) with a UIP pattern, complicated by left diaphragmatic weakness and chronic obstructive pulmonary disease (COPD). His clinical course is characterized by worsening dyspnea on exertion, reduced functional capacity, and declining mobility. Despite ongoing antifibrotic therapy with nintedanib and supplemental oxygen, his symptoms persist, with evidence of progressive fibrosis on prior imaging and pulmonary function tests. His current presentation highlights the need for a multidisciplinary approach to address his respiratory decline, including optimization of antifibrotic therapy, symptom management, and rehabilitation strategies to improve his strength and functional status.
+
+Plan:
+1. I will initiate a referral to the hospital-based pulmonary rehabilitation program for Mr. Dulong, with a focus on respiratory muscle training and gradual mobility exercises. The program will be discussed with him and his wife, and he will be encouraged to start in the spring when weather conditions improve.
+2. I will reinforce the importance of maintaining oxygen saturation above 90% during exertion and will provide clear instructions on adjusting his oxygen flow rate from 2 L/min to 4 L/min during activity. I will ensure he understands how to monitor his saturation and the need for timely adjustments.
+3. I will continue nintedanib 150 mg daily and monitor for adverse effects, particularly diarrhea, with loperamide 2 mg as needed for prophylaxis. I will review the use of anti-diarrheal medication and ensure he has a current supply.
+4. I will schedule a follow-up appointment in six months to reassess his clinical status, pulmonary function, and response to current therapies. This will include a review of his oxygen requirements, symptom control, and any changes in functional capacity.
+5. I will ensure his current medications are renewed and that he has adequate supplies, particularly his inhalers and rescue medications. I will also confirm that his anti-diarrheal medication is up to date.

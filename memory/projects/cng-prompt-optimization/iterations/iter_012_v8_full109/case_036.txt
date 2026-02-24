@@ -1,0 +1,74 @@
+Patient ID: Miller, Janet Marie, 73-year-old female
+
+History of Present Illness:
+Ms. Miller presents for follow-up evaluation of persistent bilateral lower extremity pain and recurrent lightheadedness. She reports ongoing difficulty with ambulation due to sharp, bilateral hip-to-calf pain that limits her mobility, despite adherence to dietary and medication regimens. She denies recent chest discomfort but continues to experience intermittent anginal symptoms with exertion. Her lightheadedness remains unexplained, with no clear postural triggers. She remains non-compliant with physiotherapy rehabilitation and expresses frustration with her limited mobility, which has significantly impacted her quality of life.
+
+Ms. Miller also requires assessment for her newly diagnosed left breast cancer (ER/PR-positive infiltrating ductal carcinoma, BIRADS 5) and the feasibility of surgical intervention given her extensive cardiac history, including chronic coronary artery disease, prior CABG, multiple NSTEMIs, and an ICD in place. She strongly prefers lumpectomy over mastectomy but acknowledges the risks of general anesthesia and potential need for sentinel lymph node biopsy. Her cardiac status, including an EF of 34% and recurrent lightheadedness, raises concerns about perioperative risk.
+
+Past Medical History:
+Chronic coronary artery disease (prior CABG in 2014, NSTEMIs in 2019, August 2023, and May 2025), hypertension, type 2 diabetes mellitus, dyslipidemia, macrosteatosis, breast cancer (right mastectomy in 2014, left lumpectomy in 2015), anal cancer (treated with chemo/radiation), depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, ICD placement (May 2025), total abdominal hysterectomy and bilateral salpingo-oophorectomy (2000).
+
+Medications:
+Aspirin 81mg PO daily
+Carvedilol 6.5mg PO daily
+Ticagrelor 75mg PO daily
+Rabeprazole 20mg PO daily
+Ezetimibe 10mg PO daily
+Perindopril 4mg PO daily
+Nifedipine 60mg PO daily
+Metformin 1000mg PO b.i.d.
+Jardiance 10mg PO daily
+Atorvastatin 80mg PO daily
+Novolin NPH (insulin)
+Ferrous fumarate 300mg PO daily
+Amiodarone
+Spironolactone
+Furosemide
+Isosorbide dinitrate
+Vitamin C 500mcg PO daily
+Vitamin B12 1000mcg PO daily
+Folic acid 400mcg PO daily
+Probiotic 500mg PO daily
+
+Allergies: Amoxil, Clindamycin, Cefazolin
+
+Family History: not documented
+
+Social History: Lives alone, no tobacco/illicit drugs, occasional alcohol (2 drinks/month), new partner, declined physiotherapy referral
+
+Physical Examination:
+Vitals: not documented
+General: Appears pleasant but limited mobility due to pain
+Cardiovascular: Mild bibasilar rales, peripheral pulses palpable and equal bilaterally
+Extremities: Tenderness to palpation over bilateral hips
+Neurological: No focal deficits noted
+Breast: Not examined today (pending office visit)
+
+Investigations:
+2025-11-XX:
+- Hemoglobin A1c: 7.6%
+- Troponin: 100 pg/mL
+- D-dimer: positive
+- ECG: Possible mild ST elevation in V1 and V2
+- Echocardiogram: EF 34%, high LV filling pressure, moderately reduced RV function, mild mitral regurgitation
+- Lipid panel: Total cholesterol 3.7 mmol/L, LDL 2.0 mmol/L, HDL 1.16 mmol/L, triglycerides 1.9 mmol/L
+- LFTs: ALT 3.1, AST 19
+- CK: 16
+- Creatinine: 56 µmol/L, eGFR 83
+- Electrolytes: Sodium 130 mmol/L, Potassium 4.0 mmol/L
+- Hemoglobin: 121 g/dL, Platelets: 185 x10^9/L
+
+2025-12-XX:
+- Left breast ultrasound: 11x18mm mass (BIRADS 5)
+- Core needle biopsy: ER/PR-positive infiltrating ductal carcinoma
+
+Impression:
+Ms. Miller presents with complex, multiorgan system involvement. Her chronic coronary artery disease and heart failure (EF 34%) remain poorly controlled, with ongoing anginal symptoms and recurrent lightheadedness. The new-onset bilateral lower extremity pain likely represents peripheral arterial disease given her extensive vascular risk profile, though claudication-like symptoms could also relate to musculoskeletal or neurogenic causes. Her poorly controlled diabetes (HbA1c 7.6%) and dyslipidemia require optimization. The recent diagnosis of left breast cancer (ER/PR-positive infiltrating ductal carcinoma) introduces urgent surgical considerations, though her cardiac status significantly complicates perioperative risk assessment. Her preference for lumpectomy over mastectomy must be balanced against the risks of general anesthesia and potential need for sentinel lymph node biopsy.
+
+Plan:
+1. I will consult Cardiology for formal perioperative cardiac risk assessment and clearance for potential breast surgery, including stress testing if not recently performed.
+2. I will consult Vascular Surgery for evaluation of bilateral lower extremity pain, including ABI and Doppler ultrasound to assess for peripheral arterial disease.
+3. I will consult Oncology/Surgical Oncology for multidisciplinary review of breast cancer management options, including feasibility of lumpectomy given cardiac risks, and discuss radiation therapy alternatives.
+4. I will order repeat fasting lipid panel and HbA1c in 3 months to reassess metabolic control.
+5. I will review current cardiac medications (e.g., beta-blockers, ACE inhibitors) for optimization of heart failure and angina management, with particular attention to potential drug interactions with oncology therapies.
+6. I will arrange follow-up in 2 months to reassess symptoms, surgical planning, and medication adjustments.

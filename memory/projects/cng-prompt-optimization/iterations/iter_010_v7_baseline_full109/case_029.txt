@@ -1,0 +1,54 @@
+Patient ID
+Mr. Paul Joseph Comeau is a 79-year-old male presenting for post-CABG follow-up.
+
+History of Present Illness
+Mr. Comeau is a 79-year-old male who underwent quadruple CABG in September 2025 for acute coronary syndrome with critical left main 3-vessel disease. He reports doing well overall with no chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. He is active and working without issues. His primary concern is persistent sternotomy wire irritation with movement, which is bothersome. He denies any signs of sternal instability or infection. Vital signs are stable with a blood pressure of 120/80, pulse rate of 68 bpm, and SpO2 of 98% on room air. Physical examination reveals clear lungs, normal heart sounds without murmurs, a soft abdomen without organomegaly, and no jugular venous distention or lower limb edema. A stress test was performed today, which was stopped early due to rapid heart rate but showed no chest pain or ST changes, though it was non-diagnostic due to not reaching target heart rate.
+
+Past Medical History
+Hypertension, hypercholesterolemia, coronary artery disease, acute myocardial infarction, quadruple CABG (2025), prior inferior myocardial infarction.
+
+Medications
+Aspirin 81 mg PO daily
+Atorvastatin 80 mg PO daily
+Clopidogrel 75 mg PO daily
+Metoprolol 12.5 mg PO twice daily
+Perindopril 2 mg PO daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Nonsmoker, occasional alcohol use, lives with wife, independent in ADLs and IADLs, retired mechanic, senior pharmacare coverage.
+
+Physical Examination
+Vital signs: BP 120/80, PR 68 bpm, SpO2 98% on room air.
+General: Alert and oriented, no distress.
+Cardiac: Normal S1 and S2, no murmurs or additional sounds, no JVD.
+Respiratory: Clear lungs bilaterally, adequate air entry.
+Abdomen: Soft, no organomegaly.
+Neurological: Unremarkable.
+Extremities: No lower limb edema.
+
+Investigations
+2026-01-26
+CT Chest with contrast: Multiple intact sternotomy wires, minimal osseous bridging at prior sternotomy site, 6.5 mm perifissural nodule in left upper lobe, mild left basal atelectasis/scarring, no suspicious pulmonary nodules or pleural effusion, trivessel coronary artery calcification, 12 mm simple cyst in liver segment 6.
+
+2026-01-30
+Stress Test: Nondiagnostic due to not achieving target heart rate, no significant ST changes, normal resting BP, appropriate response to exercise.
+
+2025-12-21
+ECG: Normal sinus rhythm, nonspecific ST segment changes in anterior leads, no acute ischemic changes.
+Labs: Normal CBC, electrolytes, glucose, creatinine, and INR.
+
+Impression
+Mr. Comeau is a 79-year-old male recovering well from quadruple CABG performed in September 2025 for acute coronary syndrome. He currently has no symptoms of cardiac ischemia or heart failure, though he reports persistent sternotomy wire irritation. The stress test was nondiagnostic but reassuring, and imaging shows intact sternotomy wires with minimal osseous bridging and no evidence of sternal instability or infection. His cardiovascular risk factors are being managed with guideline-directed medical therapy.
+
+Plan
+1. I will discontinue metoprolol 12.5 mg PO twice daily given stable blood pressure and no evidence of ischemia on stress testing.
+2. I will refer Mr. Comeau to the cardiac surgeon for assessment of sternotomy wire irritation and consideration of wire removal.
+3. I will arrange follow-up in my office in three months for routine blood work and cardiovascular risk assessment.
+4. I will order routine blood work (CBC, electrolytes, glucose, creatinine) prior to the follow-up visit.
+5. I will continue aspirin 81 mg PO daily, atorvastatin 80 mg PO daily, clopidogrel 75 mg PO daily, and perindopril 2 mg PO daily as currently prescribed.

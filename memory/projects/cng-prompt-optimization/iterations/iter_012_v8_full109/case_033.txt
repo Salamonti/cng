@@ -1,0 +1,67 @@
+Patient ID: Aubrey Hillyard, 54-year-old male
+
+History of Present Illness:
+The patient is a 54-year-old male who reports feeling well overall despite a long-standing history of chronic pancytopenia, which has been present for over a decade. He denies any significant symptoms related to his blood count abnormalities, though he acknowledges mild fatigue consistent with his baseline. Recently returned from vacation, he reports no new systemic symptoms such as fever, weight loss, or night sweats. His blood sugars are stable, and he has no concerns regarding his current medications. He mentions mild shoulder impingement but otherwise feels well. The patient expresses comfort with his current management approach and is not seeking further invasive investigations at this time.
+
+The patient’s pancytopenia has been progressive over the past year, with persistent low white blood cell, red blood cell, and platelet counts. Recent investigations, including abdominal ultrasound, have confirmed mild splenomegaly and evidence of fatty liver disease with cirrhosis. The patient understands that his fatty liver disease may be contributing to his pancytopenia through splenic sequestration. He is open to considering medical management for his fatty liver disease, including semaglutide (Wegovy) for potential improvement in liver function and blood counts.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Asthma (controlled on Symbicort)
+Myocardial infarction at age 34
+Obstructive sleep apnea on CPAP
+Fatty liver disease with cirrhosis
+Colonoscopy findings: one polyp (removed), small internal hemorrhoid
+Tongue lesions
+Previous pulmonary nodules (resolved)
+Iron deficiency requiring IV iron therapy
+Dental issues requiring full dentures
+
+Medications:
+symbicort 200mcg 2 puffs bid
+dapagliflozin 5mg qd
+ramipril 10mg qd
+sitagliptin 100mg qd
+atorvastatin 40mg qd
+bisoprolol 5mg qd
+asa 81mg qd
+metformin 500mg 2 bid
+omnaris 50mcg 2 sprays each nostril prn
+furosemide 20mg qd
+pantoprazole 40mg qd
+
+Allergies: not documented
+
+Family History:
+Grandfathers both had esophageal cancer
+No history of cancer in primary family members
+
+Social History:
+Limited diet with rare vegetable intake
+Alcohol consumption approximately once a month
+20 pack years, quit smoking 17 years ago
+Works at Tusket Ford
+Lives with wife and daughter
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-13
+Abdominal ultrasound: cirrhosis with fatty infiltration of liver, hepatomegaly (liver span 20.7 cm), geographic hypoechoic area adjacent to the gallbladder fossa likely representing focal fatty sparing or a benign lesion (e.g., hemangioma or FNH). Mild splenomegaly (spleen span 17.3 cm on follow-up ultrasound).
+
+2025-12-22
+Abdominal ultrasound: findings consistent with cirrhosis and fatty liver disease. Spleen not assessed in error.
+
+2025-06-30
+Complete blood count: WBC 3.2 x10^9/L, RBC 4.63 x10^12/L, hemoglobin 142 g/L, hematocrit 0.421, platelets 111 x10^9/L.
+Haptoglobin 0.68 g/L (low), reticulocyte count 0.022 (low), lactate dehydrogenase 149 U/L.
+Liver function tests: AST 39 U/L, ALT 59 U/L, alkaline phosphatase 75 U/L, GGT 158 U/L, total bilirubin 8.9 umol/L.
+Hepatitis B surface antigen and antibody, hepatitis C antibody, and HIV AG/AB: nonreactive.
+
+Impression:
+This 54-year-old male has a long-standing history of chronic pancytopenia, which has been progressive despite extensive investigations. His current presentation is notable for stable symptoms with mild fatigue, and no evidence of acute hemolysis or infection. The abdominal ultrasound findings confirm fatty liver disease with cirrhosis and mild splenomegaly, which is likely contributing to his pancytopenia through splenic sequestration. There is no evidence of active viral hepatitis or HIV infection. The patient is open to considering medical management for his fatty liver disease, which may improve his blood counts over time.
+
+Plan:
+1. I will initiate semaglutide 2.4 mg subcutaneous injection once weekly for management of fatty liver disease and potential improvement in blood counts.
+2. I will arrange for repeat complete blood count and liver function tests in six months to monitor response to therapy.
+3. I will follow up with the patient in six months to assess symptoms, blood counts, and liver function, and to discuss further management as needed.

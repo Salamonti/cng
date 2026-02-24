@@ -1,0 +1,45 @@
+Patient ID: Louise Jeddry, 78-year-old female
+
+History of Present Illness:
+Louise Jeddry is a 78-year-old female who presents with no current symptoms. She reports feeling well overall, with no complaints of shortness of breath, cough, sputum production, wheezing, or exercise intolerance. During the examination, she was noted to have mild tenderness over the right lower ribs, but otherwise, the exam was unremarkable. The patient has had a recent CT chest performed on January 29, 2026, which revealed no suspicious mass or evidence of lymphadenopathy. The CT findings were reassuring, and the patient was counseled accordingly.
+
+The patient’s concern stems from persistent ovoid densities noted on prior chest X-rays, which were initially identified following a four-wheeler accident in October 2025. These findings were further evaluated with a CT chest, which clarified the densities as likely related to old rib fractures and summation artifact rather than a pathological mass.
+
+Past Medical History:
+Sarcoidosis of the lungs (diagnosed at age 38), hypothyroidism, chronic constipation, left eye permanent pupil dilation, history of rib fractures
+
+Medications:
+Atorvastatin 10 mg tablet Q2D
+Nitrofurantoin 100 mg capsule BID
+Constella 145 mcg capsule QD
+Nexium DR 40 mg tablet QD PRN
+Synthroid 50 mcg tablet QD
+Magnesium oxide 420 mg tablet QHS
+
+Allergies: not documented
+
+Family History:
+Brother died of lung cancer
+
+Social History: not documented
+
+Physical Examination:
+Mild tenderness over the right lower ribs, otherwise unremarkable
+
+Investigations:
+2025-11-26:
+CXR: Ovoid density in the lateral aspect of the right hemithorax, likely pleural or extrapleural, no destruction of adjacent ribs
+
+2025-10-28:
+CXR: Faint indeterminate oval density in the lateral aspect of the left hemithorax, no pleural effusion or pneumothorax, no displaced rib fracture detected
+
+2026-01-29:
+CT Chest: No suspicious pulmonary nodule or mass, no enlarged intrathoracic lymph nodes, no pleural or pericardial effusion, smooth bony callus formation and mild irregularity involving the anterolateral aspects of the right 4th, 6th, and 7th ribs consistent with late subacute to old nondisplaced fractures
+
+Impression:
+Louise Jeddry is a 78-year-old female with a history of sarcoidosis, hypothyroidism, and chronic constipation who presented for reassessment following persistent ovoid densities on chest X-rays. The recent CT chest revealed no evidence of suspicious masses or lymphadenopathy, and the densities were attributed to old rib fractures and summation artifact. The patient remains asymptomatic, and the findings are consistent with benign, non-progressive changes.
+
+Plan:
+1. I will document the reassuring findings of the CT chest and the patient’s current asymptomatic status in the chart.
+2. I will advise Louise Jeddry to follow up with her family doctor for ongoing management and monitoring of her chronic conditions.
+3. I will recommend that she continue with routine monitoring for any new symptoms or changes in her condition.

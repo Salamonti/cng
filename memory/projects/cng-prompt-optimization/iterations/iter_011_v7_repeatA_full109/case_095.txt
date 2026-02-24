@@ -1,0 +1,53 @@
+Patient ID: Michel Louis McCauley, 67-year-old male
+
+History of Present Illness:
+This encounter is a transcription from a recording that was not actually recorded, with no documented current history provided.
+
+Past Medical History:
+Hypertension, hyperlipidemia, diabetes mellitus type 2, obstructive sleep apnea, atrial fibrillation with pacemaker/defibrillator, coronary artery bypass graft (CAG), heart failure with preserved ejection fraction, gastroparesis, lumbar degenerative disc disease, and mild anterolisthesis of L4 on L5.
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-05:
+- Chest X-ray: No focal collapse or consolidation, no pneumothorax, no displaced rib fracture.
+- Troponin T: 33 ng/L and 34 ng/L (both below threshold for acute myocardial infarction).
+- Creatinine: 126 umol/L (elevated).
+- Glucose Random: 11.7 mmol/L (elevated).
+- Prothrombin Time/INR: 1.6 (elevated).
+- Complete Blood Count: Hemoglobin 172 g/L, Hematocrit 0.533, White Blood Count 7.3 x10^9/L.
+- Lytes: Sodium 136 mmol/L, Potassium 4.7 mmol/L, Chloride 100 mmol/L.
+- ECG: Ventricular-paced rhythm, QRS duration 160 ms.
+
+2026-01-12:
+- Hemoglobin A1C: 8.2% (poorly controlled diabetes).
+- Complete Blood Count: Hemoglobin 176 g/L, Hematocrit 0.564, White Blood Count 8.3 x10^9/L.
+- eGFR: 40 L/min/1.73m^2 (stage 3 chronic kidney disease).
+- Lipids: Cholesterol 3.8 mmol/L, Triglycerides 1.62 mmol/L, LDL 2.4 mmol/L, HDL 0.71 mmol/L.
+- Lytes: Sodium 139 mmol/L, Potassium 5.0 mmol/L, Chloride 99 mmol/L.
+
+2026-02-03:
+- Echocardiogram: Normal left ventricular size and preserved systolic function with segmental wall dysfunction, biatrial enlargement, mild tricuspid regurgitation, mildly dilated ascending aorta.
+
+Impression:
+This 67-year-old male with a complex medical history including diabetes mellitus, hypertension, heart failure with preserved ejection fraction, and chronic kidney disease presents with no documented current symptoms or examination findings. His recent investigations reveal poorly controlled diabetes (HbA1c 8.2%), chronic kidney disease (eGFR 40), and preserved left ventricular function with segmental wall dysfunction. The elevated troponin levels are not suggestive of acute myocardial infarction, and his ECG shows a ventricular-paced rhythm. His elevated creatinine and INR require further monitoring and management.
+
+Plan:
+1. We will optimize glycemic control with a referral to endocrinology for diabetes management and review current antihyperglycemic regimen.
+2. We will monitor renal function with repeat eGFR and creatinine in 3 months.
+3. We will arrange a cardiology consultation to review the echocardiogram findings and ventricular-paced rhythm.
+4. We will review the patient’s current medication list and adjust as needed, particularly focusing on antihypertensives and diuretics given the history of heart failure.
+5. We will follow up in clinic in 3 months to reassess symptoms, renal function, and glycemic control.

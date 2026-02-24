@@ -1,0 +1,52 @@
+Patient ID: Joanne Comeau, 56-year-old female
+
+History of Present Illness:
+Joanne Comeau is a 56-year-old female who presents today with a chief concern of new-onset cough upon deep inspiration, which she describes as persistent and not previously experienced. She also reports nasal congestion and a recent episode of right ear hearing loss, which prompted a visit to her ENT. The patient has not been exercising regularly due to recent surgery in September and a busy recovery period. She denies any reflux symptoms but has been using a prescribed nasal spray (azelastine-fluticasone) without relief of her cough. Her last pulmonary function test was over two years ago. She reports occasional shortness of breath but no significant impact on her daily activities. Her ACE levels have been trending upward on recent bloodwork.
+
+Joanne also mentions a history of night sweats, abdominal pain radiating to her right leg, and daytime fatigue, which were previously documented in July 2025. She denies any recent fevers, infection signs, or changes in vision or cognition. The patient has not smoked or consumed alcohol regularly.
+
+Physical Examination:
+Vital signs show PR 55 bpm and SpO2 99% on room air. The chest is clear with adequate bilateral air entry. Cardiac examination reveals normal S1 and S2 with no additional sounds or murmurs. Neurological examination is unremarkable, and there is no jugular venous distention or lower limb edema.
+
+Investigations:
+2025-11-21:
+- Complete Blood Count: WBC 5.5 x10^9/L, RBC 4.42 x10^12/L, Hemoglobin 132 g/L, Hematocrit 0.394 L/L, Platelets 262 x10^9/L
+- Lytes: Sodium 141 mmol/L, Potassium 4.3 mmol/L, Chloride 104 mmol/L
+- eGFR: 90 mL/min/1.73m^2, Creatinine 66 umol/L
+- Liver Function Tests: ALT 51 U/L, AST 36 U/L, ALP 106 U/L, GGT 59 U/L, Bilirubin (Direct 7.1 umol/L, Total 20.4 umol/L), Albumin 47 g/L
+- ECG: Normal sinus rhythm with sinus arrhythmia, T wave abnormality (consider anterior ischemia)
+- Other: LDH 179 U/L, CPK 58 U/L, Calcium 2.47 mmol/L
+
+2025-06-09:
+- ACE: Elevated (reported to QEII for analysis)
+- Estradiol: Below assay range (postmenopausal)
+- CA 125: Specimen referred to QEII for analysis
+
+Past Medical History:
+Sarcoidosis (stable, ACE levels previously normal)
+History of abdominal pain with radiation to right leg
+Night sweats (2-3 times per week)
+Daytime fatigue
+Pelvic ultrasound findings: Complex multicystic right adnexal mass (88 x 42 x 86 mm)
+History of surgery in September 2025 (type not specified)
+
+Medications:
+Mylan-azelastine-fluticasone 137 mcg/50 mcg spray, nasal, 1 spray each nostril twice daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+No smoking or alcohol use
+No regular exercise due to recent surgery and busy recovery period
+
+Impression:
+Joanne Comeau presents with new-onset cough and nasal congestion, which may be related to her recent ENT findings and upward trend in ACE levels. Given her history of sarcoidosis, the possibility of pulmonary involvement should be considered. The recent abdominal pain and adnexal mass require gynecological follow-up. Her fatigue and night sweats, though stable, warrant ongoing monitoring. The T wave abnormality on ECG requires further evaluation to rule out ischemic changes.
+
+Plan:
+1. I will order a pulmonary function test (PFT) to evaluate for possible sarcoidosis-related pulmonary involvement.
+2. I will arrange a CT chest to further assess for any structural or infiltrative changes.
+3. I will provide Joanne with an information sheet on reflux management and lifestyle modifications to address her cough and congestion.
+4. We will follow up in 4-6 weeks after the results of the PFT and CT chest are available to discuss findings and next steps.
+5. We will continue to monitor her ACE levels and liver function tests every 6 months as previously recommended.

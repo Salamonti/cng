@@ -1,0 +1,43 @@
+Patient ID: Donna Marie Comeau is a 54-year-old female.
+
+History of Present Illness:
+Donna Comeau is a 54-year-old female who presented for a routine check-up with Dr. Bezardo, during which a minor abnormality was noted in her lungs. This led to further investigations, including a chest X-ray and a CT scan. She reports a mild, intermittent cough and occasional left upper chest ache, which she describes as a dull ache rather than sharp pain. She has no current symptoms of chest pain, shortness of breath, or weight loss. Donna has a significant smoking history of one pack per day for the past 17 years and consumes alcohol occasionally, typically one or two drinks of hard liquor every other night. She has no known medical conditions but has not had a family doctor for a long time. The CT scan revealed a left apical opacity with scarring and a small nodule, which is concerning for possible malignancy but more likely represents scarring or mild inflammation.
+
+Past Medical History: not documented
+
+Medications: not documented
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+- Smoking: 1 pack per day for 17 years
+- Alcohol: occasional hard liquor, 1-2 drinks every other night
+- No marijuana use
+
+Physical Examination:
+- Pulses: good and equal bilaterally
+- Heart sounds: normal
+- Lung sounds: normal
+- Heart rate: 111 bpm (elevated)
+- Oxygen saturation: 98%
+
+Investigations:
+2026-01-14:
+- CT Chest Enhanced: New left apical scarring with a nodular component measuring 10 x 5 mm and a new 8 x 4 mm left apical nodule. No mediastinal mass, no enlarged thoracic lymph nodes, and no aggressive bone lesions.
+
+2025-12-18:
+- Chest X-ray: Left apical opacity noted
+
+2007-03-01:
+- CT Chest: Band of scarring in the anterior left lung apex noted
+
+Impression:
+Donna Comeau is a 54-year-old female with a significant smoking history who presents with a new left apical opacity on imaging, characterized by scarring and a small nodule. The findings are concerning for possible malignancy, though the appearance is more consistent with scarring or mild inflammation. Given the patient's smoking history and the presence of a nodule, follow-up imaging is warranted to monitor for any changes. The elevated heart rate noted on examination requires further assessment.
+
+Plan:
+1. I will prescribe nicotine replacement therapy (patch and gum/spray) to assist with smoking cessation.
+2. I will refer Donna to the provincial smoking cessation line (811) for additional support and resources.
+3. We will schedule a follow-up CT scan in April 2026 to monitor the left apical nodule and scarring.
+4. We will follow up in April 2026 to assess progress on smoking cessation and discuss further management as needed.

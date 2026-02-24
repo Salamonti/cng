@@ -1,0 +1,52 @@
+Patient ID: James Rose, 81 years old, male
+
+History of Present Illness:
+Mr. Rose is an 81-year-old man presenting for follow-up of his chronic dyspnea and sleep-disordered breathing. He reports improved volume tolerance with CPAP use during the day (approximately 6–7 hours), though he has been unable to tolerate nighttime use due to discomfort and disrupted sleep. He describes persistent central apneas despite current CPAP settings, with recent polysomnography showing elevated upper airway pressures (12.6 cm H2O) and no obstructive apnea events. He denies worsening chest congestion or orthopnea but notes occasional blood-tinged sputum, particularly after coughing, which he attributes to chronic sinus issues and idiopathic thrombocytopenic purpura (ITP). He has not experienced recent weight changes or leg swelling.
+
+Mr. Rose also reports ongoing concerns about his pancreatic cysts, including a 2.9 cm lesion, though he has not received recent updates from the referring specialist. He denies abdominal pain or jaundice. His heart failure symptoms remain stable, and he endorses good adherence to his current medications. He has not experienced palpitations or syncope.
+
+Past Medical History:
+Idiopathic thrombocytopenic purpura (ITP)
+Congestive heart failure with preserved ejection fraction
+Paralyzed right diaphragm
+Pancreatic cysts (including a 2.9 cm lesion)
+Renal lesion (previously suspicious for renal cell carcinoma, awaiting urologic follow-up)
+History of pneumonia
+Bowel resection (2012)
+Atrial fibrillation
+
+Medications:
+Pantoprazole 40 mg swallow, oral once daily
+Bisoprolol 2.5 mg swallow, oral once daily
+Spironolactone 25 mg swallow, oral half tablet once daily
+Dapagliflozin 10 mg swallow, oral daily
+Cyclomen 200 mg swallow, oral one capsule twice daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (briefly in teenage years)
+Former fireman
+No pets or bird exposure
+Grew up on a farm
+
+Physical Examination:
+Lungs: Persistent bibasilar crackles, unchanged from prior visits
+Cardiovascular: Regular rate and rhythm, no murmurs, peripheral pulses intact
+Abdomen: Soft, non-tender, no hepatosplenomegaly
+Extremities: No edema
+
+Investigations:
+2026-02-04: Echocardiogram – Normal biventricular size and systolic function, mild aortic root dilatation, no significant valvular abnormalities
+2026-02-02: Labs – eGFR 67 mL/min/1.73m², potassium 5.2 mmol/L, platelets 96 x10⁹/L, otherwise unremarkable
+
+Impression:
+Mr. Rose’s symptoms of dyspnea and sleep-disordered breathing persist despite optimized heart failure management and current CPAP therapy. His central apnea pattern suggests a need for alternative ventilatory support, such as bilevel positive airway pressure (BiPAP) with backup rate settings. The ongoing thrombocytopenia and recent blood-tinged sputum are likely related to his ITP, though chronic sinusitis cannot be excluded. His pancreatic cysts remain stable but require ongoing monitoring, and his renal lesion requires urologic follow-up. His heart failure is well-compensated with preserved ejection fraction and no significant valvular disease.
+
+Plan:
+1. I will prescribe BiPAP with backup rate of 16 breaths per minute and maintain current CPAP pressure settings for sleep-disordered breathing management.
+2. We will monitor his blood-tinged sputum and thrombocytopenia conservatively, with no immediate changes to his ITP management.
+3. I will arrange follow-up in four months to reassess his respiratory symptoms, pancreatic cysts, and renal lesion evaluation.
+4. We will continue current heart failure medications and monitor renal function and electrolytes at the next routine lab draw.

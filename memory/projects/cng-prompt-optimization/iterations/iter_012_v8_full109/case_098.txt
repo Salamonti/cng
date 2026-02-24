@@ -1,0 +1,57 @@
+Patient ID: James Rose, 81 years old, male
+
+History of Present Illness:
+Mr. Rose is an 81-year-old man who reports persistent shortness of breath despite using CPAP during the day for approximately 6–7 hours. He describes improved oxygenation with CPAP but continues to experience central apneas, as noted on his sleep study, which shows elevated pressures and no obstructive apnea. He has been unable to tolerate CPAP at night due to discomfort and disrupted sleep, preferring to use it only during daytime hours. He also reports a recent episode of epistaxis with blood-tinged sputum, which he attributes to chronic sinus issues and his history of idiopathic thrombocytopenic purpura (ITP). He denies worsening chest pain or orthopnea but continues to have mild crackles on lung examination.
+
+Mr. Rose has been compliant with his current medication regimen, including pantoprazole, bisoprolol, spironolactone, dapagliflozin, and danazol. He reports no recent changes in appetite or weight but notes ongoing fatigue. He has not had further imaging or specialist follow-up regarding his pancreatic cysts since December 2025, though he remains asymptomatic from this finding. His heart failure symptoms appear stable, with no recent hospitalizations or changes in diuretic requirements.
+
+Past Medical History:
+Idiopathic thrombocytopenic purpura (ITP)
+Congestive heart failure with preserved ejection fraction
+Paralyzed right diaphragm
+Multiple pancreatic cysts (largest 2.9 cm)
+Renal lesion (prior suspicion for renal cell carcinoma, not yet confirmed)
+Bowel resection (2012)
+Pneumonia (2025)
+Atrial fibrillation
+
+Medications:
+Pantoprazole 40 mg PO daily
+Bisoprolol 2.5 mg PO daily
+Spironolactone 12.5 mg PO daily
+Dapagliflozin 10 mg PO daily
+Danazol 200 mg PO twice daily
+Tears Naturale II 0.1%-0.3% ophthalmic as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Lung fields: persistent crackles bilaterally, otherwise clear to auscultation
+Cardiovascular: normal heart sounds, no murmurs, regular rhythm
+Abdomen: soft, non-tender, no hepatosplenomegaly
+Extremities: no edema
+
+Investigations:
+2026-02-04:
+Echocardiogram: grossly normal biventricular size and systolic function, normal ejection fraction (55–60%), mild aortic root dilatation (4.0 cm), no significant valvular abnormalities
+
+2026-02-02:
+Urea: 5.0 mmol/L (normal)
+eGFR: 67 mL/min/1.73m² (mildly decreased)
+Electrolytes: sodium 141 mmol/L, potassium 5.2 mmol/L (slightly elevated), chloride 104 mmol/L
+LFTs: AST 40 U/L, ALT 66 U/L, alkaline phosphatase 59 U/L, bilirubin 10.2 µmol/L (normal)
+CBC: platelets 96 x10⁹/L (persistent thrombocytopenia), hemoglobin 174 g/L, WBC 7.6 x10⁹/L
+
+Impression:
+Mr. Rose’s symptoms of dyspnea and fatigue persist despite optimized heart failure therapy, likely related to his chronic diaphragmatic paralysis and central sleep apnea. His echocardiogram confirms preserved ventricular function without significant valvular disease, though mild aortic root dilatation is present. Persistent thrombocytopenia secondary to ITP remains stable, and his pancreatic cysts are being monitored without acute concern. The recent epistaxis with blood-tinged sputum is likely related to his chronic sinus issues and ITP, though further evaluation may be warranted if symptoms persist or worsen.
+
+Plan:
+1. I will prescribe a BIPAP machine with a backup rate of 16 breaths per minute and maintain current CPAP pressure settings to address central apneas.
+2. I will monitor his renal function and electrolytes at the next routine visit in 4 months, given his mildly decreased eGFR and borderline potassium.
+3. I will document the recent epistaxis and blood-tinged sputum in his chart for follow-up, with consideration for ENT referral if symptoms recur or worsen.
+4. We will continue current heart failure medications (bisoprolol, spironolactone, dapagliflozin) and pantoprazole without changes.
+5. We will reassess clinically in 4 months or sooner if symptoms worsen.

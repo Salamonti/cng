@@ -1,0 +1,64 @@
+Patient ID: Michel Louis McCauley, 67-year-old male
+
+History of Present Illness:
+This 67-year-old male presents with a history of exertional dyspnea and fatigue over several months, which he attributes to recent rib fractures and falls. He reports worsening shortness of breath, particularly with minimal exertion such as walking 50 feet or climbing stairs, which has significantly limited his mobility. He also describes intermittent chest discomfort, which resolves with rest. Notably, he was recently diagnosed with chronic heart failure and atrial fibrillation during an evaluation for rib fractures, though his echocardiogram revealed normal left ventricular size, preserved systolic function with an ejection fraction of 55-60%, and no pericardial effusion. He denies orthopnea or paroxysmal nocturnal dyspnea but reports occasional peripheral edema. His symptoms have been ongoing despite his use of CPAP for obstructive sleep apnea.
+
+The patient also describes a long-standing history of dyspnea on exertion, which he has attributed to aging and deconditioning. He has been compliant with his medications, including beta-blockers, diuretics, and anticoagulants, though he remains symptomatic. He denies any recent changes in his medication regimen or new cardiac symptoms such as palpitations or syncope. His current concerns focus on managing his dyspnea and understanding the underlying cause of his symptoms, particularly given the recent echocardiographic findings.
+
+Past Medical History:
+Hypertension, hyperlipidemia, type 2 diabetes mellitus, atrial fibrillation, chronic obstructive pulmonary disease (history of smoking), obstructive sleep apnea, coronary artery disease with prior triple bypass surgery, pacemaker/defibrillator implantation, rib fractures, gastroparesis (history), and diastolic dysfunction.
+
+Medications:
+- Gliclazide 120 mg once daily
+- Aspirin 81 mg once daily
+- Sotalol 80 mg twice daily
+- Terazosin 10 mg once daily
+- Rivaroxaban 20 mg once daily
+- Vildagliptin 37.5 mg once daily
+- Vorapaxar 10 mg once daily
+- Furosemide (discontinued per recent assessment)
+- Vitamin B12 (unknown frequency, prescribed in the past)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker with a history of smoking one pack per week for 20 years, quit 25 years ago. No recent alcohol use or illicit drug use. Lives independently with support from family.
+
+Physical Examination:
+Vital signs: Blood pressure not documented, heart rate 62 bpm, oxygen saturation 90% on room air.
+General: Alert and oriented male in no acute distress.
+Cardiovascular: Regular rhythm, normal heart sounds, no murmurs, rubs, or gallops. No jugular venous distension or peripheral edema.
+Respiratory: Clear lung fields bilaterally, no wheezing or crackles.
+Abdomen: Soft, non-tender, no hepatosplenomegaly.
+Extremities: No clubbing, cyanosis, or edema.
+Neurological: Alert and oriented, no focal deficits.
+
+Investigations:
+2026-02-03:
+- ECHO 2D: Normal left ventricular size, preserved systolic function (EF 55-60%), normal right ventricular size and function, biatrial enlargement, mild tricuspid regurgitation, mildly dilated ascending aorta. Indeterminate diastolic function in the setting of atrial fibrillation.
+
+2026-01-12:
+- Hemoglobin A1c: 8.2%
+- Complete Blood Count: Normal with mild anemia (Hb 176 g/L, Hct 0.564)
+- eGFR: 40 mL/min/1.73m² (mildly reduced)
+- Lipids: Cholesterol 3.8 mmol/L, Triglycerides 1.62 mmol/L, LDL 2.4 mmol/L, HDL 0.71 mmol/L
+- Electrolytes: Sodium 139 mmol/L, Potassium 5.0 mmol/L, Chloride 99 mmol/L
+
+2026-01-05:
+- Troponin T: 33 ng/L (normal)
+- Chest X-ray: No acute abnormalities, no pericardial effusion
+- ECG: Ventricular-paced rhythm, no acute ischemia
+- Glucose Random: 11.7 mmol/L
+- INR: 1.6 (on rivaroxaban)
+
+Impression:
+This 67-year-old male presents with chronic exertional dyspnea and fatigue, which has been recently attributed to diastolic dysfunction in the setting of atrial fibrillation and obstructive sleep apnea. Despite preserved systolic function on echocardiogram, his symptoms suggest ongoing diastolic dysfunction contributing to his dyspnea. His history of coronary artery disease, hypertension, diabetes, and obstructive sleep apnea further complicates his clinical picture. Recent investigations have ruled out acute cardiac ischemia and pericardial effusion, but his symptoms persist, likely due to a combination of diastolic heart failure, deconditioning, and possible residual effects of his prior cardiac surgeries.
+
+Plan:
+1. I will arrange for a pulmonary function test to evaluate for any underlying obstructive or restrictive lung disease contributing to his dyspnea.
+2. I will request a recent CPAP compliance report from Family First to assess adherence and effectiveness in managing his obstructive sleep apnea.
+3. I will schedule a follow-up appointment in 4-6 weeks to review the results of the pulmonary function test and CPAP data, reassess his symptoms, and adjust his management plan as needed.
+4. I will continue current medications as they are appropriate for his clinical condition, with the exception of furosemide, which will be discontinued given the absence of current signs of volume overload.
+5. I will counsel the patient on strategies to improve his functional capacity, including graded exercise and pacing activities to manage dyspnea.

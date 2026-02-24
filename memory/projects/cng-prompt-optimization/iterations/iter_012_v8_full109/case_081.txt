@@ -1,0 +1,62 @@
+Patient ID
+Edward Doucet, 91-year-old male
+
+History of Present Illness
+Edward Doucet is a 91-year-old male presenting with an incidental finding of elevated white blood cell count at 14.8 x10^9/L (reference range 4.0-10.0) and a monoclonal IgG kappa protein of 2.8 g/L on serum protein electrophoresis. He denies systemic symptoms such as fatigue, weight loss (beyond the 30 lbs lost post-cholecystectomy), fever, night sweats, or frequent infections. He reports occasional cold feet and intermittent "skip beats" in his heart, which he attributes to age-related vascular changes. He has no bleeding diathesis, easy bruising, or symptoms of anemia. His only recent symptom is a mild cold that resolved after about two weeks. He is otherwise independent and denies significant functional decline.
+
+The patient’s primary concerns are understanding the significance of his lab abnormalities and the need for further testing. He is aware of the terms chronic lymphocytic leukemia (CLL) and monoclonal gammopathy of undetermined significance (MGUS) but seeks clarification on their implications and management. He is particularly anxious about the potential for these conditions to progress or require intervention in the near future.
+
+Past Medical History
+Benign essential hypertension, coronary artery disease status post double bypass at age 62, abdominal aortic aneurysm repair at age 68, cholecystectomy, kidney stones, chronic kidney disease (eGFR 29), history of transient urinary retention (TURP), elevated PSA, and right partial nephrectomy at age 83.
+
+Medications
+Adalat XL 30 mg po QD
+Atenolol 50 mg po BID
+Allopurinol 100 mg po QD
+ASA 81 mg po QD
+Atorvastatin 20 mg po QD
+Cholestyramine 4 g po QD
+Hydrochlorothiazide 12.5 mg po QD
+Nitrolingual 0.4 mg spray prn
+Ramipril 20 mg po QD
+Tecta 40 mg po QD
+Vitamin B12 1000 mcg po QD
+
+Allergies
+Seasonal allergies; no known drug allergies documented
+
+Family History
+Not documented
+
+Social History
+Lives independently; no significant tobacco or alcohol use; retired; no recent travel history.
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-03
+- Complete Blood Count: WBC 14.8 x10^9/L (elevated), lymphocytes 6.5 x10^9/L (elevated), monocytes 1.2 x10^9/L (elevated)
+- Serum Protein Electrophoresis: Monoclonal IgG kappa protein 2.8 g/L
+- Immunofixation Electrophoresis: Confirms monoclonal IgG kappa protein
+- Thyroid Stimulating Hormone: 5.240 mIU/L (elevated)
+- eGFR: 29 mL/min/1.73m^2 (moderately to severely decreased)
+- Creatinine: 186 umol/L (elevated)
+- Free T4: 15.8 pmol/L (normal)
+- Sodium: 147 mmol/L (elevated)
+- Potassium: 4.6 mmol/L (normal)
+- Chloride: 110 mmol/L (elevated)
+- Ferritin: 189 ug/L (normal)
+- Lipids: Cholesterol 3.7 mmol/L (normal), Triglycerides 1.71 mmol/L (elevated), LDL 1.7 mmol/L (normal), HDL 1.26 mmol/L (normal)
+- Prostate Specific Antigen: 8.770 ug/L (elevated)
+- Alanine Aminotransferase: 27 U/L (normal)
+- Peripheral Blood Morphology: Lymphocytes elevated on manual differential
+
+Impression
+Edward Doucet is a 91-year-old male with incidental findings of mild leukocytosis (WBC 14.8 x10^9/L) and a monoclonal IgG kappa protein of 2.8 g/L on serum protein electrophoresis, raising concern for chronic lymphocytic leukemia (CLL) and monoclonal gammopathy of undetermined significance (MGUS). His past medical history includes chronic kidney disease, coronary artery disease, and multiple prior surgeries. He is asymptomatic aside from age-related vascular symptoms and a mild cold. Given his age and lack of concerning symptoms, these findings are likely indolent at this time, but further diagnostic evaluation is warranted.
+
+Plan
+1. I will order flow cytometry on peripheral blood for further characterization of the lymphocytosis.
+2. I will arrange for serum protein electrophoresis and complete blood count every six months to monitor for progression.
+3. I will follow up with the patient in six months via telephone or in-person visit, depending on his preference and clinical stability.
+4. I will counsel the patient regarding warning signs for progression, including frequent infections, easy bruising, bleeding diathesis, and symptoms of anemia, and instruct him to seek immediate evaluation if these develop.

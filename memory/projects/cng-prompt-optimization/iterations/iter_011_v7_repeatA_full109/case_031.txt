@@ -1,0 +1,50 @@
+Patient ID: James Wenford Gaudet, 79-year-old male
+
+History of Present Illness:
+Mr. Gaudet presents with severe fatigue and marked functional decline, reporting he is sleeping 20 hours per day and unable to get off the sofa. He describes no strength in his lower extremities and is unable to perform any activities. He attributes these symptoms to recent changes in his medication regimen, specifically the discontinuation of prednisone after a prolonged course. He was restarted on prednisone 40 mg daily with a planned slow taper over 9 months, but his current symptoms suggest significant steroid withdrawal effects.
+
+Past Medical History:
+Granulomatosis with Polyangiitis (GPA), hypertension, hyperlipidemia, hypothyroidism, major depressive disorder, history of aortic aneurysm repair, and possible coronary artery disease.
+
+Medications:
+- Prednisone 40 mg oral daily
+- Methotrexate 15 mg oral weekly
+- Folic Acid 5 mg oral weekly
+- Calcium Carbonate 500 mg oral TID
+- Vitamin D 1000 IU oral daily
+- Sertraline 50 mg oral daily
+- Mirtazapine 15 mg oral daily
+- Metoprolol 25 mg oral BID
+- Plavix 75 mg oral daily
+- Atorvastatin 40 mg oral daily
+- Pantoprazole 40 mg oral daily
+- Synthroid 50 mcg oral daily
+- Alendronate 70 mg oral weekly
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-27:
+- CBC: WBC 6.1 x10^9/L, Hb 118 g/L, Hct 0.367 L/L, MCV 105.5 fL, platelets 231 x10^9/L, eGFR 44 L/min/1.73m^2, creatinine 139 umol/L
+- Lytes: Na 141 mmol/L, K 3.7 mmol/L, Cl 106 mmol/L
+- LFTs: Total bilirubin 9.8 umol/L, GGT 24 U/L, AST 29 U/L, ALT 13 U/L, ALP 94 U/L, LDH 255 U/L, CPK 62 U/L
+
+2025-11-26:
+- CBC: WBC 14.7 x10^9/L, Hb 132 g/L, Hct 0.416 L/L, MCV 101 fL, platelets 147 x10^9/L, eGFR 41 L/min/1.73m^2, creatinine 148 umol/L
+- Lytes: Na 142 mmol/L, K 4.6 mmol/L, Cl 105 mmol/L
+- LFTs: Total bilirubin 10.1 umol/L, GGT 37 U/L, AST 26 U/L, ALT 25 U/L, ALP 110 U/L, LDH 281 U/L, CPK 44 U/L
+- Peripheral blood morphology: Neutrophilia with left shift and leukoerythroblastic picture
+
+Impression:
+Mr. Gaudet is experiencing significant steroid withdrawal effects following recent discontinuation of prednisone, characterized by severe fatigue, functional decline, and lower extremity weakness. His current symptoms are likely related to the abrupt cessation of long-term corticosteroid therapy, which has been used to manage his underlying granulomatosis with polyangiitis. Recent laboratory investigations reveal mild anemia, thrombocytopenia, and mild renal impairment, which may be contributing to his overall clinical picture. The recent CBC shows a leukoerythroblastic picture, possibly related to his steroid therapy.
+
+Plan:
+1. I will restart prednisone at a dose of 40 mg daily and continue the slow taper as previously planned, with close monitoring for clinical improvement.
+2. I will order a repeat complete blood count and metabolic panel in one week to reassess his hematologic and renal status.
+3. We will arrange a follow-up appointment in two weeks to evaluate his response to the prednisone restart and to reassess his overall clinical status.

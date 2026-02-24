@@ -1,0 +1,47 @@
+Patient ID: Arnold Jordan is a 66-year-old male.
+
+History of Present Illness:
+Mr. Jordan reports feeling generally well with no chest pain or significant shortness of breath, though he occasionally experiences mild dyspnea when going outside. He denies any recent exacerbations of his COPD and states he has been adherent to his current inhaler regimen. His symptoms remain stable, with no increase in phlegm production or other concerning respiratory changes. He has not required additional medical attention beyond his routine inhaler use.
+
+Past Medical History:
+Severe COPD
+Gout
+History of alcohol abuse
+
+Medications:
+fluticasone furoate/umeclidinium bromide/vilanterol 100/62.5/25 mcg inhalation QD
+VENTOLIN HFA 100 mcg inhaler 2 puffs QID PRN
+APODOXY 100 mg capsule BID
+APOPREDNISONE 5 mg tablet QD
+
+Allergies: not documented
+
+Family History:
+Mother: lung cancer
+Father: chronic kidney disease
+
+Social History:
+Occupation: factory worker (lobster traps), significant dust exposure
+Smoking: currently 5 cigarettes per day, actively trying to quit
+Alcohol: abstinent for several years
+No recreational drug use
+
+Physical Examination: not documented
+
+Investigations:
+2025-03-21:
+CT chest: Nonspecific borderline enlarged axillary and mediastinal lymph nodes, smoking-related lung disease with centrilobular emphysema, central bronchial wall thickening, and dependent secretions in the trachea and mainstem bronchus. No suspicious pulmonary nodules or acute abnormalities.
+
+Impression:
+Mr. Jordan is a 66-year-old male with stable severe COPD on optimized inhaler therapy, including a combination inhaler (fluticasone/umeclidinium/vilanterol) and rescue albuterol. His recent imaging confirms chronic smoking-related lung changes without acute progression or malignancy. His adherence to medications and lack of recent exacerbations suggest good baseline control, though ongoing smoking remains a significant risk factor for disease progression.
+
+Plan:
+1. I will renew the following medications for Arnold Jordan:
+   - fluticasone furoate/umeclidinium bromide/vilanterol 100/62.5/25 mcg inhalation QD for 90 days
+   - VENTOLIN HFA 100 mcg inhaler 2 puffs QID PRN for 90 days
+   - APODOXY 100 mg capsule BID for 7 days
+   - APOPREDNISONE 5 mg tablet QD for 5 days
+
+2. I will document the patient's stable COPD status and adherence to current therapy in the medical record.
+
+3. We will schedule a routine follow-up in 6 months to reassess COPD control, inhaler technique, and smoking cessation progress.

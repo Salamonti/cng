@@ -1,0 +1,57 @@
+Patient ID: James Richard Wallace, 75-year-old male
+
+History of Present Illness:
+Mr. Wallace is a 75-year-old male presenting for follow-up of his chronic medical conditions. He reports feeling well overall and notes that his CPAP machine for sleep apnea has been effective, with his apnea-hypopnea index improving from 20 to 1-2 events per hour. He denies any current chest pain, palpitations, or dyspnea on exertion. His heart rate is regular at 82 beats per minute with a normal rhythm, and his oxygen saturation is 96% on room air. He has adjusted well to his CPAP therapy and finds it tolerable. Medication review reveals adherence to his current regimen, though he reports that his metformin dose was recently reduced from 1500 mg to 1000 mg daily (500 mg twice daily) due to intolerance.
+
+Mr. Wallace’s echocardiogram from December 2025 demonstrated mild concentric left ventricular hypertrophy and grade I diastolic dysfunction, which is consistent with his known history of hypertension and atrial fibrillation. His most recent stress test results were normal. He remains asymptomatic from a cardiovascular standpoint, with no recent exacerbations of his diabetes, hypothyroidism, or benign prostatic hyperplasia. He denies any new symptoms related to his chronic kidney disease or gastroesophageal reflux disease.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Hypertension
+Dyslipidemia
+Hypothyroidism
+Benign prostatic hyperplasia
+Gastroesophageal reflux disease
+Chronic kidney disease (presumed from diuretic use)
+History of tobacco use
+New-onset atrial fibrillation
+
+Medications:
+Bisoprolol 10 mg PO daily
+Candesartan 32 mg PO daily
+Indapamide 2.5 mg PO daily
+Furosemide (Lasix) 40 mg PO daily
+Rabeprazole 20 mg PO daily
+Potassium chloride 20 mEq PO daily
+Levothyroxine (Synthroid) 170 mcg PO daily
+Rivaroxaban 20 mg PO daily
+Tamsulosin hydrochloride 0.4 mg PO daily
+Rosuvastatin 10 mg PO daily
+Metformin 500 mg PO twice daily
+
+Allergies: not documented
+
+Family History: Positive family history of coronary artery disease
+
+Social History:
+Ex-smoker
+Social alcohol use
+
+Physical Examination:
+Vital signs: Heart rate 82 bpm, regular; Oxygen saturation 96% on room air.
+Cardiovascular: Normal S1 and S2, no murmurs, clear chest.
+No lower limb edema noted.
+
+Investigations:
+2025-12-15:
+Echocardiogram: Mild concentric left ventricular hypertrophy, grade I diastolic dysfunction, normal left ventricular systolic function (EF 55-60%), mildly dilated left atrium, mild aortic valve sclerosis, trace mitral regurgitation, mild tricuspid regurgitation.
+Stress test: Normal.
+Pulmonary function tests: Normal.
+
+Impression:
+Mr. Wallace is a 75-year-old male with a history of hypertension, atrial fibrillation, diabetes, and diastolic dysfunction who presents for routine follow-up. His symptoms are well-controlled with current therapies, including rate control for atrial fibrillation and adherence to CPAP therapy for sleep apnea. The echocardiogram findings of mild diastolic dysfunction and left ventricular hypertrophy are consistent with his chronic medical conditions and do not require any immediate changes to his management. His normal stress test and stable clinical status suggest that his cardiovascular risk factors remain well-managed with his current regimen.
+
+Plan:
+1. I will continue bisoprolol 10 mg daily, rivaroxaban 20 mg daily, and all other current medications as they are effective and well-tolerated.
+2. I will monitor for any new symptoms of heart failure, including dyspnea, peripheral edema, or worsening fatigue, and reassess as needed.
+3. I will follow up in 6 months for routine monitoring of his chronic conditions, including blood pressure, diabetes control, and thyroid function.

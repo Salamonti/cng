@@ -1,0 +1,56 @@
+Patient ID
+Edward Doucet is a 91-year-old male presenting for evaluation of elevated white blood cell count and monoclonal gammopathy.
+
+History of Present Illness
+Edward Doucet, a 91-year-old male, presents with an elevated white blood cell count of 14.8 x 10^9/L (reference range 4.0–10.0 x 10^9/L) and a monoclonal IgG kappa protein of 2.8 g/L detected on serum protein electrophoresis. He reports no significant symptoms attributable to these findings, though he notes occasional cold feet and intermittent burning sensations in his hands. He denies fatigue, weight loss beyond a 30-pound loss post-cholecystectomy, frequent infections, bleeding, or anemia. His past medical history includes chronic conditions such as hypertension, coronary artery disease, chronic kidney disease (eGFR 29), and a history of abdominal aortic aneurysm repair. He reports occasional skipped heartbeats but no other cardiac symptoms. He is otherwise independent and denies significant functional decline.
+
+Past Medical History
+Benign essential hypertension, coronary artery disease (double bypass at age 62), abdominal aortic aneurysm repair (age 68), cholecystectomy, chronic kidney disease (eGFR 29), kidney stones, transurethral resection of the prostate (TURP), elevated PSA, and right partial nephrectomy (age 83).
+
+Medications
+- Amlodipine 30 mg oral tablet, extended release, once daily
+- Metoprolol 50 mg tablet, twice daily
+- Allopurinol 100 mg tablet, once daily
+- Aspirin 81 mg delayed release tablet, once daily
+- Rosuvastatin 20 mg tablet, once daily
+- Hydrochlorothiazide 12.5 mg tablet, once daily
+- Nitroglycerin 0.4 mg spray, as needed
+- Pantoprazole 40 mg enteric coated tablet, once daily
+- Vitamin B12 1000 mcg oral tablet, once daily
+- Ramipril 20 mg tablet, once daily
+- Cholestyramine 4 g, once daily
+
+Allergies
+Seasonal allergies; no known drug allergies documented
+
+Family History
+Not documented
+
+Social History
+Not documented
+
+Physical Examination
+Vital signs: PR 53 bpm, SpO2 97% on room air. Chest clear with adequate bilateral air entry. Normal S1 and S2 with no additional sounds or murmurs. Abdomen soft with no palpable organomegaly. Neurological exam unremarkable. No jugular venous distention or lower limb edema. No palpable lymphadenopathy.
+
+Investigations
+2025-12-03
+- Complete Blood Count: WBC 14.8 x 10^9/L (elevated), RBC 4.97 x 10^12/L, hemoglobin 142 g/L, hematocrit 0.471, MCV 94.8 fL, MCH 28.6 pg, MCHC 301 g/L (low), RDW 15.6% (elevated), platelets 194 x 10^9/L, MPV 10.8 fL (elevated), neutrophils 6.8 x 10^9/L, lymphocytes 6.5 x 10^9/L (elevated), monocytes 1.2 x 10^9/L (elevated), eosinophils 0.2 x 10^9/L, basophils 0.1 x 10^9/L, immature granulocytes 0.06 x 10^9/L.
+- Serum Protein Electrophoresis: Monoclonal IgG kappa protein 2.8 g/L.
+- Immunofixation Electrophoresis: Monoclonal IgG kappa protein confirmed.
+- Thyroid Stimulating Hormone: 5.240 mIU/L (elevated).
+- Creatinine: 186 umol/L (elevated).
+- Free T4: 15.8 pmol/L.
+- Electrolytes: Sodium 147 mmol/L (elevated), potassium 4.6 mmol/L, chloride 110 mmol/L (elevated).
+- Ferritin: 189.00 ug/L.
+- Lipids: Cholesterol 3.7 mmol/L, triglycerides 1.71 mmol/L (elevated), LDL cholesterol 1.7 mmol/L, HDL cholesterol 1.26 mmol/L, cholesterol/HDL ratio 2.9.
+- Prostate Specific Antigen: 8.770 ug/L (elevated).
+- Alanine Aminotransferase: 27 U/L.
+
+Impression
+Edward Doucet is a 91-year-old male with a newly identified elevated white blood cell count and monoclonal gammopathy of undetermined significance (MGUS), characterized by a monoclonal IgG kappa protein of 2.8 g/L. The clinical presentation is consistent with chronic lymphocytic leukemia (CLL) and MGUS, though these diagnoses remain presumptive pending further testing. The patient is currently asymptomatic, and there are no signs of progression or complications such as anemia, bleeding, or frequent infections. His chronic kidney disease (eGFR 29) and other comorbidities are stable, though his elevated PSA is being managed by his primary care provider.
+
+Plan
+1. I will order flow cytometry testing on peripheral blood to further evaluate for CLL and MGUS.
+2. I will arrange for serum protein electrophoresis and complete blood count every six months for monitoring.
+3. I will follow up with the patient in six months via telephone or in-person visit, depending on his preference and clinical stability.
+4. I will counsel the patient to monitor for symptoms of anemia (fatigue, shortness of breath), frequent infections, easy bruising, or uncontrolled bleeding, and to contact me if any of these symptoms develop.

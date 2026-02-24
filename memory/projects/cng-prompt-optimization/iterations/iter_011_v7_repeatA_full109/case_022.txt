@@ -1,0 +1,59 @@
+Patient ID: Robyn Dawn Goodick is a 53-year-old female.
+
+History of Present Illness:
+Robyn Goodick is a 53-year-old female with a history of an anterior ST-elevation myocardial infarction (STEMI) in May 2024, complicated by the development of atrial fibrillation and an apical thrombus. She remains asymptomatic from a cardiac standpoint, reporting no chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. However, she has expressed ongoing fatigue, which significantly impacts her ability to return to work, requiring multiple days of recovery after even a single day of employment. She denies palpitations, dizziness, or exertional chest pain but reports occasional wheezing and has gained 9 lbs over the past six months. Recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia.
+
+Her current symptoms and limitations suggest a persistent reduction in functional capacity, likely influenced by both cardiac factors (such as reduced ejection fraction and ongoing fatigue) and potential respiratory involvement (wheezing, possible asthma or COPD). The fatigue and weight gain further complicate her recovery, limiting her ability to engage in sustained physical activity or maintain a consistent work routine.
+
+Past Medical History:
+Anterior ST-elevation myocardial infarction (May 2024), atrial fibrillation, apical thrombus, type 2 diabetes mellitus, hypertension, dyslipidemia, possible depression, and a strong family history of premature coronary artery disease.
+
+Medications:
+- Apixaban 5 mg PO b.i.d.
+- Atorvastatin 40 mg PO daily
+- Basaglar insulin 35 units once daily
+- Bisoprolol 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Dapagliflozin 10 mg PO daily
+- Ezetimibe 10 mg PO daily
+- Entresto 24/26 mg PO b.i.d.
+- Metformin 1000 mg PO b.i.d.
+- Spiriva Respimat 2.5 mcg inhalation 2 inhalations once daily
+- Ventolin HFA 100 mcg inhalation 2 puffs as needed
+- Spironolactone 12.5 mg PO daily
+
+Allergies: not documented
+
+Family History:
+Strong family history of premature coronary artery disease.
+
+Social History:
+Former smoker, quit after her myocardial infarction. No current alcohol use.
+
+Physical Examination:
+Blood pressure 112/79 mmHg, pulse rate 82 bpm and regular, oxygen saturation 97% on room air. Chest is clear with adequate bilateral air entry. Normal S1 and S2 with no additional sounds or murmurs. No jugular venous distention or lower limb edema. Neurological examination is unremarkable.
+
+Investigations:
+2025-03-XX:
+- Hemoglobin A1c: 7.6 (previously 7.3)
+- LDL: 1.0 mmol/L
+- BNP: 159 pg/mL
+
+2024-05-XX (post-MI admission):
+- Ejection fraction: 31-35%
+- Segmental wall abnormalities and akinetic regions
+- Grade I diastolic dysfunction
+- LDL: 4.38 mmol/L
+
+2024-07-XX (Holter monitoring):
+- Infrequent ectopic beats
+- Intermittent tachycardia
+
+Impression:
+Robyn Goodick is a 53-year-old female with a history of an anterior STEMI complicated by atrial fibrillation, apical thrombus, and reduced ejection fraction (31-35%). Despite optimal medical therapy, she continues to experience significant fatigue, which limits her functional capacity and ability to return to work. Her ongoing symptoms, combined with potential respiratory involvement (wheezing, possible asthma or COPD), further contribute to her reduced stamina. The persistent fatigue, weight gain, and cardiac limitations suggest a complex interplay of cardiac, metabolic, and possibly respiratory factors that significantly impact her daily functioning and employability.
+
+Plan:
+1. I will continue Robyn Goodick’s current medical regimen, including Entresto, bisoprolol, apixaban, and insulin, with close monitoring of her renal function and BNP levels to ensure therapeutic efficacy and safety.
+2. I will arrange for a comprehensive sleep study to evaluate potential contributions of sleep-disordered breathing to her fatigue and weight gain.
+3. I will schedule a follow-up appointment in six months to reassess her clinical status, review results of the sleep study, and adjust management as needed, with consideration for further cardiac imaging if symptoms persist or worsen.
+4. I will continue to monitor her lipid profile, HbA1c, and cardiac biomarkers to optimize secondary prevention of cardiovascular events.

@@ -1,0 +1,67 @@
+Patient ID
+Alfred Comeau, 85-year-old male
+
+History of Present Illness
+Mr. Comeau presents with persistent shortness of breath and a chronic cough, unchanged from prior visits. The cough produces white and dark phlegm, without progression to green. He denies any recent change in symptoms, though he notes ongoing exertional dyspnea and chest tightness. His primary concern remains the chest pain he experiences, which radiates to his jaw and teeth, consistent with his known angina. This pain is exacerbated by activity and relieved with rest and nitroglycerin spray. He reports no recent changes in his sarcoidosis symptoms, though he acknowledges mild progression of his dyspnea over the past decade. His cardiac symptoms have been stable under Dr. Chahal’s management, with recent adjustments to his nitro patch dose to 0.8 mg daily.
+
+Mr. Comeau describes his angina as reproducible with specific activity thresholds, adhering to a pattern of stopping activity before symptoms worsen to avoid triggering pain. He attributes his symptoms primarily to his calcified coronary arteries, which limit revascularization options. He also reports nocturnal symptoms exacerbated by eating before bedtime and lying flat, suggesting reflux-related triggers. His functional status remains limited by dyspnea, though he maintains independence in daily activities with careful pacing. He denies orthopnea or paroxysmal nocturnal dyspnea, and his sleep is not disturbed by respiratory symptoms.
+
+Past Medical History
+Sarcoidosis (remote, 40 years ago)
+Coronary artery disease with prior PCI/stenting to LAD (2006, 2020)
+Type 2 diabetes mellitus
+Dyslipidemia
+Hypertension
+Chronic kidney disease
+Hypothyroidism
+Gastroesophageal reflux disease
+Left toe amputation (childhood trauma)
+Nasal polyp removal
+
+Medications
+- Nitro patch 0.8 mg daily
+- ASA 81 mg once daily
+- Synthroid 137 mcg daily
+- Perindopril 2 mg daily
+- Metoprolol 100 mg twice daily
+- Metformin 500 mg twice daily
+- Empagliflozin 10 mg daily
+- Sucralfate 1 g daily
+- Acetaminophen (arthritis) at bedtime
+- Furosemide 20 mg daily
+- Clopidogrel 75 mg daily
+- Amlodipine/atorvastatin 10/80 mg daily
+- Mometasone nasal spray once daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+- Lives alone in Weymouth; manages daily activities independently
+- Drives locally (Weymouth to Digby)
+- Daughter manages finances; one daughter and one granddaughter nearby
+- Widowed (wife deceased 9 years ago)
+- Former smoker (quit 45–50 years ago)
+- No current alcohol or marijuana use
+
+Physical Examination
+not documented
+
+Investigations
+2025-12-23
+- High-resolution CT chest: progressed fibrotic/interstitial lung changes, stable calcified mediastinal lymph nodes, no acute pleural effusion
+
+2025-10-10
+- Pulmonary function testing: isolated reduction in diffusion capacity (48%), suggestive of interstitial lung disease
+
+Impression
+Mr. Comeau is an 85-year-old man with chronic, stable sarcoidosis sequelae and advanced coronary artery disease, presenting with persistent dyspnea and angina. His symptoms are primarily cardiac in origin, with reproducible anginal pain and exertional limitations, despite optimized medical therapy. The CT chest confirms stable fibrotic lung changes from prior granulomatous disease, though these are not felt to be the primary driver of his current symptoms. His nocturnal symptoms and reflux triggers suggest GERD as a contributing factor to his angina. Functional decline is limited by careful activity pacing, but his overall prognosis is influenced by his calcified coronary arteries and interstitial lung disease.
+
+Plan
+1. I will reinforce lifestyle modifications for GERD management, including head-of-bed elevation, avoiding meals before bedtime, and upright posture postprandial.
+2. I will provide written instructions for angina symptom management, emphasizing activity pacing and nitroglycerin use at symptom onset.
+3. We will arrange a follow-up with Dr. Chahal within 2 weeks to reassess cardiac stability and optimize nitro patch dosing.
+4. We will schedule a repeat pulmonary function test in 6 months to monitor interstitial lung disease progression.

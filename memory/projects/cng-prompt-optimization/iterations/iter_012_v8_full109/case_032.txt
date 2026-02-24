@@ -1,0 +1,65 @@
+Patient ID: Neil Ray Purdy, 60-year-old male
+
+History of Present Illness:
+Neil Ray Purdy is a 60-year-old male with newly identified leukocytosis (WBC 15.9 x 10^9/L, up from 14.7 x 10^9/L) and lymphocytosis (6.5 x 10^9/L) on recent bloodwork. The peripheral blood smear reveals moderate burr cells and Pappenheimer bodies, raising concern for an underlying hematologic disorder. The patient was diagnosed with type 2 diabetes in mid-November 2025, with an A1C of 13.6, and has been started on appropriate medications. He also has a history of hepatic steatosis confirmed by recent ultrasound, with no evidence of cirrhosis or hepatocellular carcinoma. The patient denies symptoms such as fever, night sweats, weight loss, or chills, and there is no history of splenectomy.
+
+The leukocytosis and lymphocytosis, combined with the abnormal red and white blood cell morphology, warrant further evaluation to exclude a myeloproliferative or myelodysplastic disorder. The presence of Howell-Jolly bodies on prior smear suggests possible splenic dysfunction or functional asplenia, though no splenectomy history is reported. Chronic inflammatory or infectious states have been considered but are less likely given the patient’s asymptomatic presentation.
+
+Past Medical History:
+Type 2 diabetes mellitus, hypercholesterolemia, obesity, lumbar spine osteoarthritis, hepatic steatosis, partial thickness tear of the right extensor carpi radialis (brevis longus), past history of left zygoma subtle depression post-trauma, motor vehicle accident (July 2025)
+
+Medications:
+Atorvastatin 20 mg tablet, once daily
+Dapagliflozin 10 mg tablet, once daily
+Metformin HCl 500 mg tablet, twice daily (titrated as per instructions)
+
+Allergies:
+Codeine, hay fever
+
+Family History:
+Family history of diabetes mellitus
+
+Social History:
+Former smoker (quit in 2001/2002 after smoking 1 pack per day for 20 years), quit drinking in 1996, no recreational drug use including cannabis
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-12-15:
+- Complete Blood Count: WBC 15.9 x 10^9/L (high), lymphocytes 6.5 x 10^9/L (high), monocytes 1.4 x 10^9/L (high), hemoglobin 146 g/L, platelets 373 x 10^9/L
+- Peripheral Blood Morphology: Moderate burr cells, present Pappenheimer bodies
+- Glucose AC: 8.7 mmol/L (high)
+- eGFR: 83 mL/min/1.73m^2
+- Creatinine: 91 umol/L
+- Sodium: 141 mmol/L
+- Potassium: 4.2 mmol/L
+- AST: 49 U/L
+- ALT: 66 U/L
+- ALP: 84 U/L
+- Urinalysis: 13 granular casts, 1.5 ketones, trace protein, urine albumin/creatinine ratio 4.46 mg/mmol (high)
+- ECG: Normal sinus rhythm, nonspecific ST abnormality
+
+2025-11-13:
+- Complete Blood Count: WBC 14.7 x 10^9/L (high), lymphocytes 7.1 x 10^9/L (high), monocytes 0.9 x 10^9/L, hemoglobin 156 g/L, platelets 432 x 10^9/L
+- Peripheral Blood Morphology: Howell-Jolly bodies present, moderate burr cells, present Pappenheimer bodies
+- Hemoglobin A1C: 13.6%
+- Glucose AC: 22.7 mmol/L (high)
+- AST: 46 U/L
+- ALT: 97 U/L
+- ALP: 174 U/L
+- Lipids: Cholesterol 5.8 mmol/L (high), triglycerides 3.37 mmol/L (high), LDL cholesterol 3.4 mmol/L, HDL cholesterol 0.90 mmol/L (low)
+- Thyroid Stimulating Hormone: 11.000 mIU/L (high)
+- Free T4: 12.3 pmol/L
+- Iron: 15.2 umol/L, total iron binding capacity 46 umol/L, % saturation 0.33, ferritin 590.00 ug/L (high)
+- Vitamin B12: 380 pmol/L
+
+Impression:
+Neil Ray Purdy presents with persistent leukocytosis and lymphocytosis, along with abnormal red blood cell morphology including burr cells and Pappenheimer bodies. These findings raise concern for an underlying myeloproliferative or myelodysplastic disorder, though chronic inflammation, diabetes-related metabolic effects, and functional asplenia must also be considered. The presence of Howell-Jolly bodies on prior smear suggests possible splenic dysfunction, though no history of splenectomy is reported. Further hematologic evaluation is required to determine the etiology of these abnormalities.
+
+Plan:
+1. I will order a repeat complete blood count with differential and reticulocyte count to assess for progression or resolution of leukocytosis and lymphocytosis.
+2. I will order iron studies (serum iron, TIBC, ferritin), vitamin B12, and folate levels to evaluate for nutritional deficiencies that may contribute to the blood smear abnormalities.
+3. I will arrange for a bone marrow evaluation, including biopsy and aspirate, to further assess for myeloproliferative or myelodysplastic disorders.
+4. I will request molecular testing for JAK2, CALR, and MPL mutations to aid in the diagnosis of myeloproliferative neoplasms.
+5. I will refer the patient to a hematologist for further evaluation and management of his hematologic abnormalities.

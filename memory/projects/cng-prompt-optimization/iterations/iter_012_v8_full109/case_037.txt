@@ -1,0 +1,69 @@
+Patient ID: Miller, Janet Marie, 73-year-old female
+
+History of Present Illness:
+Janet Marie Miller is a 73-year-old female presenting for preoperative cardiac risk assessment prior to planned breast surgery for invasive ductal carcinoma. She has a complex medical history including multiple non-ST elevation myocardial infarctions (NSTEMIs) in July 2023, May 2025, and a recent MI in December 2025. She has an implantable cardioverter-defibrillator (ICD) placed in May 2025 and an ejection fraction of 34% on echocardiogram. Her current medications include dual antiplatelet therapy with aspirin and ticagrelor, carvedilol, amiodarone, Jardiance, atorvastatin, metformin, spironolactone, furosemide, and others.
+
+She reports persistent bilateral lower extremity pain limiting ambulation, which has worsened since her last visit in October 2025. This pain is described as sharp and localized around the hips, extending into the shins and calves, significantly impacting her mobility. She also experiences recurrent episodes of dizziness, which are not posturally related. She denies any recent chest discomfort but continues to have poorly controlled type 2 diabetes mellitus with an HbA1c of 7.6%. Her functional status is limited due to these symptoms, and she has not undergone the recommended vascular surgery consultation for evaluation of peripheral arterial disease.
+
+The patient is scheduled for surgery to treat invasive ductal carcinoma of the left breast, which was diagnosed in December 2025. She strongly prefers a lumpectomy over a mastectomy, despite the potential need for a second operation if margins are positive. She is aware of her high cardiac risk and the potential challenges of undergoing general anesthesia, particularly given her recent MI and ICD.
+
+Past Medical History:
+Chronic coronary artery disease status post multiple NSTEMIs (2019, July 2023, May 2025, December 2025), two-vessel CABG in 2014, ICD placement in May 2025, heart failure with reduced ejection fraction (EF 34%), type 2 diabetes mellitus, hypertension, dyslipidemia, macrosteatosis, breast cancer (right mastectomy in 2014, left lumpectomy in 2015), anal cancer treated with chemo and radiation, depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, thyroid disease, fatty liver, and history of seizures.
+
+Medications:
+Aspirin 81 mg daily
+Ticagrelor 90 mg PO BID
+Carvedilol 6.5 mg PO daily
+Amiodarone 200 mg PO daily
+Jardiance 10 mg PO daily
+Atorvastatin 80 mg PO daily
+Metformin 1000 mg PO BID
+Spironolactone 25 mg PO daily
+Furosemide 40 mg PO daily
+Rabeprazole 20 mg PO daily
+Perindopril 4 mg PO daily
+Isosorbide dinitrate SL PRN
+Ferrous fumarate 300 mg PO daily
+Novolin NPH insulin as needed
+Ezetimibe 10 mg PO daily
+Vitamin D, Vitamin C, Vitamin B12 as prescribed
+
+Allergies:
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History:
+Not documented
+
+Social History:
+Lives alone, no tobacco use, occasional alcohol consumption (2 drinks/month), new gentleman friend, not interested in physiotherapy rehabilitation program
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-11-28:
+- Echocardiogram: EF 34%, high LV filling pressure, moderately reduced right ventricular systolic function, mild mitral regurgitation
+- ECG: Possible mild ST elevation in V1 and V2
+- Labs: HbA1c 7.6%, Hemoglobin 121 g/dL, Troponin 100 pg/mL, D-dimer positive, Creatinine 56 umol/L, eGFR 83
+
+2025-12-04:
+- Ultrasound-guided core needle biopsy: Invasive ductal carcinoma, ER/PR positive, equivocal for Her2neu protein overexpression, negative for Her2neu gene amplification
+
+2025-12-18:
+- Stereotactic core needle biopsy: Benign breast tissue with sclerotic fibroadenoma, negative for atypia/malignancy, early intraductal papilloma
+
+2026-01-19:
+- Mammogram: Irregular 14 mm mass in left breast upper outer quadrant (BIRADS 5), grouped calcifications (BIRADS 4A)
+- Ultrasound: 11 x 18 mm mass in left breast (BIRADS 5)
+
+Impression:
+Janet Marie Miller is a 73-year-old female with a complex medical history, including multiple NSTEMIs, an ICD, heart failure with reduced ejection fraction, and poorly controlled type 2 diabetes mellitus. She presents for preoperative cardiac risk assessment prior to planned breast surgery for invasive ductal carcinoma. Her recent MI in December 2025 places her within a high-risk perioperative period, and her functional status is significantly limited by bilateral lower extremity pain and recurrent dizziness. The presence of an ICD and dual antiplatelet therapy further complicates her surgical risk profile.
+
+Plan:
+1. I will confirm the timing of the most recent MI in December 2025 and, if confirmed within the last 3 months, defer elective surgery until at least 6 months post-MI to reduce perioperative cardiac risk.
+2. I will coordinate with cardiology for preoperative ICD interrogation and reprogramming to asynchronous mode during surgery to prevent inappropriate shocks.
+3. I will arrange for a preoperative stress test (e.g., stress echocardiogram or nuclear imaging) to assess myocardial viability and ischemic burden, given her recent MI and reduced ejection fraction.
+4. I will consult with cardiology to determine the safe timing for discontinuation of ticagrelor, considering the balance between thrombotic and bleeding risks.
+5. I will discontinue metformin preoperatively and optimize heart failure and diabetes management, including monitoring electrolytes and renal function.
+6. I will address the bilateral lower extremity pain with a vascular surgery consultation to evaluate for peripheral arterial disease, as previously recommended but not yet completed.
+7. I will schedule follow-up within 2 months to reassess cardiac risk stratification results and finalize preoperative planning.

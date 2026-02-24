@@ -1,0 +1,54 @@
+Patient ID
+Mrs. Nora Christina Gray, a 56-year-old female.
+
+History of Present Illness
+Mrs. Gray presents with worsening symptoms of her chronic obstructive pulmonary disease (COPD). Over the past two weeks, she has noticed an increase in phlegm production, which has become darker green in color, suggesting a possible exacerbation. She reports that this change occurred rapidly and is concerned about the potential need for treatment. She continues to experience shortness of breath, particularly with exertion, though she denies chest tightness or pain. Her cough persists, and she has been using her rescue inhaler more frequently. She mentions that she has not been smoking as heavily as before but still uses nicotine patches occasionally. She also reports mild tiredness and occasional nocturnal reflux symptoms.
+
+On examination, her vital signs are stable with a heart rate of approximately 80 beats per minute and oxygen saturation of 98% on room air. Her chest is clear to auscultation, with no additional sounds or murmurs. She denies any recent weight changes, hemoptysis, or sinusitis symptoms.
+
+Investigations
+2026-02-24
+- Chest CT scan arranged for further evaluation.
+
+2025-08-06
+- Complete Blood Count: WBC 9.2 x10^9/L, Hemoglobin 129 g/L, Platelets 300 x10^9/L, Neutrophils 4.9 x10^9/L, Lymphocytes 3.4 x10^9/L.
+- eGFR: 90 mL/min/1.73m^2, Creatinine 61 umol/L.
+- Electrolytes: Sodium 141 mmol/L, Potassium 4.3 mmol/L, Chloride 104 mmol/L, Calcium 2.30 mmol/L.
+- Liver Function Tests: Total Bilirubin 3.9 umol/L, AST 25 U/L, ALT 22 U/L, Alkaline Phosphatase 74 U/L.
+- IgE: 38 IU/mL.
+- C-Reactive Protein: 0.6 mg/L.
+
+Past Medical History
+Chronic Obstructive Pulmonary Disease (COPD), Gastroesophageal Reflux Disease (GERD), Allergies.
+
+Medications
+- fluticasone furoate/umeclidinium bromide/vilanterol trifenat 100 mcg/62.5 mcg/25 mcg inhalation, once daily
+- salbutamol 100 mcg inhalation, as needed
+- montelukast 10 mg tablet, once daily
+- pantoprazole 40 mg tablet, at bedtime
+- domperidone 10 mg tablet, three times daily before meals
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Current smoker, approximately 5 cigarettes per day with occasional use of nicotine patches. No alcohol consumption.
+
+Physical Examination
+Vital signs: Blood pressure not documented, heart rate approximately 80 beats per minute, oxygen saturation 98% on room air.
+Chest: Clear to auscultation bilaterally, no additional sounds or murmurs.
+Cardiac: Normal S1 and S2, no murmurs or additional sounds.
+Neurological: Unremarkable.
+No jugular venous distention or lower limb edema.
+
+Impression
+Mrs. Gray is experiencing an exacerbation of her COPD, as evidenced by increased and darker green phlegm production over the past two weeks. Her symptoms, including shortness of breath and increased use of her rescue inhaler, suggest worsening of her chronic condition. The recent change in phlegm color is concerning for a potential infectious component. Given her history of frequent exacerbations and ongoing smoking, further evaluation with a chest CT scan is warranted to assess for any structural changes or complications. Her GERD symptoms persist, and adherence to her current medication regimen remains important.
+
+Plan
+1. I will prescribe a course of oral prednisone 5 mg daily for 5 days to help manage her COPD exacerbation.
+2. I will arrange for a chest CT scan to evaluate for any underlying structural changes or complications.
+3. I will renew her prescriptions for fluticasone furoate/umeclidinium bromide/vilanterol trifenat, salbutamol, montelukast, pantoprazole, and domperidone.
+4. We will follow up in one month to assess her response to treatment and to review her symptoms.

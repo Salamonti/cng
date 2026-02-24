@@ -1,0 +1,47 @@
+Patient ID: Fu Sheng Wang, 68-year-old female
+
+History of Present Illness:
+The patient presents with no current complaints of chest pain or shortness of breath. She reports doing well overall. During the encounter, it was noted that the patient is tolerating her current medications without issue. The patient has agreed to initiate ezetimibe 10 mg orally daily for ongoing management.
+
+Past Medical History: not documented
+
+Medications:
+- Atenolol 25 mg oral once daily
+- Fluvastatin 40 mg oral once daily
+- Spironolactone 25 mg oral once daily
+- Rabeprazole 20 mg oral once daily
+- Amlodipine 10 mg oral once daily
+- Ezetimibe 10 mg oral once daily (new)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Chest: clear with adequate bilateral air entry
+Cardiovascular: normal S1 and S2 with no additional sounds or murmurs
+Abdomen: soft, no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2026-02-13:
+- Glucose AC: 7.6 mmol/L
+- Urea: 7.5 mmol/L
+- eGFR: 68 mL/min/1.73m² (creatinine 79 µmol/L)
+- Electrolytes: sodium 136 mmol/L, potassium 4.3 mmol/L, chloride 100 mmol/L
+- Lipids: total cholesterol 5.1 mmol/L, triglycerides 1.39 mmol/L, LDL cholesterol 2.9 mmol/L, HDL cholesterol 1.61 mmol/L, cholesterol/HDL ratio 3.1
+- Liver function: AST 25 U/L, ALT 16 U/L, alkaline phosphatase 134 U/L, bilirubin total 8.2 µmol/L
+- Creatine phosphokinase: 46 U/L
+- Thyroid function: TSH 3.860 mIU/L, free T4 14.4 pmol/L
+- Complete blood count: WBC 11.7 x10⁹/L (elevated neutrophils), RBC 4.52 x10¹²/L, hemoglobin 128 g/L, hematocrit 0.399 L/L, platelets 421 x10⁹/L
+
+Impression:
+This 68-year-old female presents with stable cardiovascular and abdominal findings on examination. Her current lipid profile shows elevated total cholesterol and LDL cholesterol, with a cholesterol/HDL ratio of 3.1, indicating moderate cardiovascular risk. Mildly elevated glucose and urea levels are noted, with preserved renal function (eGFR 68). The patient is otherwise asymptomatic and tolerating her current antihypertensive and lipid-lowering regimen, with recent initiation of ezetimibe for further cholesterol management.
+
+Plan:
+1. I will continue ezetimibe 10 mg orally daily for lipid management.
+2. I will monitor lipid panel in 3 months to assess response to therapy.
+3. We will follow up in 6 months for routine review of blood pressure, renal function, and lipid profile.

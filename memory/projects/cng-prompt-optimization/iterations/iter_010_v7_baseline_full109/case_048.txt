@@ -1,0 +1,61 @@
+Patient ID: Mrs. Gertrude Elizabeth Conrod, 76-year-old female
+
+History of Present Illness:
+Mrs. Conrod presents today with stable chronic obstructive pulmonary disease (COPD) and reports feeling generally well. She describes mild shortness of breath with exertion, unchanged from prior visits, and denies any recent exacerbations or flare-ups. Notably, she experiences intermittent left-sided chest tightness, similar to symptoms noted during her prior stress test, occurring both while sitting and standing. There is no associated cough, phlegm, chest pain, or orthopnea. On examination, her chest tightness is localized to the costochondral junction, consistent with costochondritis. Vital signs are stable with a heart rate of 74 bpm and oxygen saturation of 96% on room air. She denies lower extremity swelling or edema, and her legs appear dry on examination.
+
+Physical examination reveals clear lungs with adequate air entry, normal heart sounds, and no jugular venous distention. The patient’s chest tightness is localized to the costochondral junction, and she reports no tenderness on palpation beyond the described discomfort. Her medications are being taken as prescribed, including her breztri inhaler (2 puffs twice daily).
+
+Past Medical History:
+Chronic obstructive pulmonary disease, stable
+History of questionable myocardial ischemia (prior MIBI scan showed possible mild reversibility in an apical perfusion defect)
+Hypertension
+Heart failure with preserved ejection fraction (given prior NTproBNP and clinical context)
+Hypothyroidism
+Anxiety/depression (on nortriptyline and trazodone)
+History of dapagliflozin allergy
+
+Medications:
+Breztri 2 puffs twice daily
+Carvedilol 12.5 mg twice daily
+Bisoprolol 5 mg once daily
+Furosemide 40 mg once daily
+Levothyroxine 12.5 mcg once daily
+Nortriptyline 10 mg once daily
+Perindopril 2 mg once daily
+Potassium chloride 1500 mg twice daily
+Rosuvastatin 10 mg once daily
+Spironolactone 25 mg once daily
+Topiramate 50 mg morning, 100 mg night
+Trazodone 100 mg once daily
+Empagliflozin 10 mg once daily
+
+Allergies:
+Dapagliflozin (rash)
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Chest: clear lungs with adequate bilateral air entry, localized chest tightness at costochondral junction (costochondritis), no tenderness beyond patient’s reported discomfort
+Cardiac: regular rhythm, normal S1 and S2, no murmurs or gallops
+Extremities: no edema, legs dry
+Vital signs: heart rate 74 bpm, oxygen saturation 96% on room air
+
+Investigations:
+2025-11-17: Complete blood count (WBC 12.6 x10^9/L, hemoglobin 117 g/L, platelets 274 x10^9/L), creatinine 132 umol/L, D-dimer 2473 ng/mL, Doppler ultrasound left leg (no DVT)
+2025-11-07: INR 1.1, PTT 31 seconds
+2025-11-06/05: Troponin T (24 and 21 ng/L, both <50 ng/L)
+2025-11-05: ECG (normal sinus rhythm, left bundle branch block, no significant change from prior)
+2025-10-30: NTproBNP 434 ng/L
+2025-06: Stress test (completed protocol, no ischemia)
+2025-05: MIBI scan (unchanged apical perfusion defect)
+
+Impression:
+Mrs. Conrod’s presentation is consistent with stable COPD and chronic costochondritis, which is likely contributing to her intermittent left-sided chest tightness. Her cardiac evaluation, including recent troponin levels, ECG, and NTproBNP, does not suggest acute cardiopulmonary decompensation, though her history of questionable myocardial ischemia and left bundle branch block on ECG warrant ongoing monitoring. The elevated D-dimer and WBC count should be followed, though no acute thromboembolic or infectious process is evident at this time.
+
+Plan:
+1. I will prescribe acetaminophen as needed for symptomatic relief of costochondritis.
+2. I will continue all current medications at their existing doses, including breztri inhaler, carvedilol, bisoprolol, furosemide, levothyroxine, nortriptyline, perindopril, potassium chloride, rosuvastatin, spironolactone, topiramate, trazodone, and empagliflozin.
+3. I will arrange for a follow-up appointment in six months to reassess symptoms and monitor for any changes in her cardiac or pulmonary status.
+4. I will ensure her primary care physician is notified of today’s assessment and plan.

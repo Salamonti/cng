@@ -1,0 +1,40 @@
+Patient ID
+Cornelia Nickerson, 83-year-old female
+
+History of Present Illness
+Cornelia Nickerson is a 83-year-old female who presents for follow-up of pulmonary nodules identified on prior imaging. She reports persistent fatigue and unintentional weight loss of approximately 20 lbs over the past few months. She denies shortness of breath, cough, fever, hemoptysis, or significant changes in bowel habits. Notably, she has experienced recent-onset nocturnal sweats, which began last week. She remains without symptoms of syncope, edema, or calf tenderness.
+
+The patient has a history of multiple pulmonary nodules identified on CT imaging, with the largest lesion measuring 1.2 cm in the lower lobe of the left lung. Recent investigations, including a PET-CT scan, revealed multiple nodules with variable FDG avidity, raising concerns for potential malignancy. The patient’s past medical history includes breast cancer (diagnosed in 1970), chronic lymphocytic leukemia (CLL), chronic kidney disease (CKD), hypertension, hyperlipidemia, and type 2 diabetes mellitus.
+
+Past Medical History
+Breast cancer (diagnosed 1970, surgically treated), chronic lymphocytic leukemia (CLL), chronic kidney disease (CKD), basal cell carcinoma, hypertension, hyperlipidemia, thyroid disease, type 2 diabetes mellitus
+
+Medications
+Not documented
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Former smoker (40 pack-year history, quit approximately 25 years ago), denies alcohol use or illicit substance abuse
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-05
+- PET-CT scan: Multiple pulmonary nodules with variable FDG avidity. Largest nodule in right middle lobe measures 2.1 x 1.9 cm (previously 1.4 x 1.4 cm in 2007). No abnormal uptake in hilar or mediastinal nodes. No osseous lesions identified.
+
+2026-01-19
+- Bronchial wash cytology: Hypercellular specimen with benign bronchial cells and histiocytes. Rare groups of crushed cells with elevated N/C ratio noted, but tissue biopsy required for definitive diagnosis.
+
+2025-10-20
+- CT chest: Pulmonary nodules/masses, including a 1.2 cm lesion in the lower lobe of the left lung.
+
+Plan
+1. I will arrange a CT chest in 5 months for follow-up of pulmonary nodules.
+2. I will reassure the patient regarding her current symptoms and provide clear instructions for monitoring nocturnal sweats and weight changes.
+3. We will schedule a follow-up appointment after the CT chest results are available to review findings and determine next steps.

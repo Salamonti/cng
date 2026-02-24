@@ -1,0 +1,67 @@
+Patient ID: Alfred Comeau, 85-year-old male
+
+History of Present Illness:
+Mr. Comeau presents with persistent shortness of breath, unchanged from prior visits, accompanied by a chronic cough with white and dark phlegm that does not turn green. He reports no significant change in his respiratory symptoms over the past decade, though he notes a slight progression. His primary concern remains chest pain radiating to his jaw and teeth, consistent with angina, which has been stable but limiting. He describes this pain as worsening with exertion and relieved by rest, and he uses nitro spray as needed. He denies any recent changes in his respiratory status but acknowledges ongoing cardiac symptoms. His functional status is limited by these symptoms, though he remains active within his tolerances.
+
+The patient’s cardiac history is significant, with a known coronary artery blockage that has been managed medically due to calcified, non-revascularizable arteries. He has undergone multiple stent placements and angioplasties in the past, with his most recent stress test three months ago showing stable but severely calcified coronary arteries. His current management includes a nitro patch and lifestyle modifications, though he continues to experience symptoms. He also reports GERD symptoms contributing to his nocturnal chest pain, which is exacerbated by eating before bedtime or lying flat.
+
+Past Medical History:
+Sarcoidosis (40 years ago, no recurrence)
+Coronary artery disease with prior PCI/stent x3 to LAD (2006, 2020)
+Type 2 diabetes mellitus
+Dyslipidemia
+Hypertension
+Chronic kidney disease
+Hypothyroidism
+Gastroesophageal reflux disease
+Left toe amputation (childhood accident)
+Nasal polyp removal
+
+Medications:
+Nitro patch 0.8mg daily
+Mometasone nasal spray once daily
+ASA 81mg once daily
+Synthroid 137mcg daily
+Perindopril 2mg daily
+Metoprolol 100mg bid
+Metformin 500mg bid
+Empagliflozin 10mg daily
+Sucralfate 1g daily
+Acetaminophen arthritis qHS
+Furosemide 20mg daily
+Clopidogrel 75mg daily
+Amlodipine/atorvastatin 10/80mg daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Lives alone in Weymouth; manages daily activities independently, including driving locally.
+Quit smoking 45-50 years ago (1 pack per day for 20 years).
+No current alcohol or marijuana use.
+Daughter manages finances; one daughter and one granddaughter nearby.
+Widowed (wife deceased 9 years ago).
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-23
+High-resolution CT chest:
+- Scattered borderline mediastinal lymph nodes stable in size with coarse calcifications, likely sequelae of prior granulomatous disease (e.g., sarcoidosis).
+- Progressed patchy interstitial reticular fibrotic changes, most pronounced in anterior upper and lower lobes, with mild bronchiectasis and peribronchial thickening.
+- No pleural effusion.
+- Impression: Progressive fibrotic/interstitial lung disease or sequelae of prior granulomatous disease.
+
+2025-10-10
+Pulmonary function testing:
+- Isolated reduction in diffusion capacity (48%), suggestive of interstitial lung disease.
+
+Impression:
+Mr. Comeau is an 85-year-old man with long-standing coronary artery disease and stable but severely calcified coronary arteries, presenting with persistent angina and exertional dyspnea. His respiratory symptoms, including chronic cough and shortness of breath, are likely multifactorial, with contributions from interstitial lung changes on imaging and possible sequelae of prior sarcoidosis. The dominant issue at this time appears to be cardiac, given his anginal symptoms and history of coronary interventions. His current management aligns with medical therapy for angina and GERD, though symptoms remain limiting.
+
+Plan:
+1. I will optimize his cardiac management with a focus on angina control, including reinforcing nitro spray use as needed and ensuring adherence to nitro patch 0.8mg daily.
+2. I will provide written GERD management instructions, including dietary modifications, elevating the head of his bed, and avoiding meals before bedtime.
+3. I will arrange follow-up with cardiology (Dr. Chahal) within the next two weeks for reassessment of his cardiac symptoms and medication adjustments as needed.
+4. We will monitor his respiratory symptoms clinically and consider repeat pulmonary function testing if his dyspnea worsens or new findings emerge on examination.

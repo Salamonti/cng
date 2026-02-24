@@ -1,0 +1,52 @@
+Patient ID: James Wenford Gaudet, 79-year-old male
+
+History of Present Illness:
+Mr. Gaudet presents today with severe fatigue and marked functional decline, reporting he is sleeping 20 hours per day and unable to get off the sofa. He describes no lower extremity strength and is completely sedentary. He attributes these symptoms to recent changes in his medication regimen, specifically the discontinuation of prednisone after a prolonged course. He was restarted on prednisone 40 mg daily with plans for a slow taper over 9 months, but his current symptoms suggest a significant adverse reaction to the abrupt discontinuation or dose adjustment.
+
+Past Medical History:
+Granulomatosis with Polyangiitis (GPA), hypertension, hyperlipidemia, hypothyroidism, major depressive disorder, history of aortic aneurysm repair, possible coronary artery disease
+
+Medications:
+Prednisone 40 mg oral daily
+Methotrexate 15 mg oral weekly
+Folic Acid 5 mg oral weekly
+Calcium Carbonate 500 mg oral TID
+Vitamin D 1000 IU oral daily
+Sertraline 50 mg oral daily
+Mirtazapine 15 mg oral daily
+Metoprolol 25 mg oral BID
+Plavix 75 mg oral daily
+Atorvastatin 40 mg oral daily
+Pantoprazole 40 mg oral daily
+Synthroid 50 mcg oral daily
+Alendronate 70 mg oral weekly
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-27
+Complete Blood Count: WBC 6.1 x10^9/L (elevated), RBC 3.48 x10^12/L (low), Hb 118 g/L (low), Hct 0.367 (low), MCV 105.5 fL (high), MCH 33.9 pg (high), MCHC 322 g/L, RDW 0.155 (high), Platelets 231 x10^9/L, Neutrophils 3.7 x10^9/L, Lymphocytes 1.0 x10^9/L (low), Monocytes 0.9 x10^9/L (high), Eosinophils 0.4 x10^9/L, Basophils 0.1 x10^9/L
+eGFR 44 L (low), Creatinine 139 umol/L (high)
+Lytes: Na 141 mmol/L, K 3.7 mmol/L, Cl 106 mmol/L
+Bilirubin 9.8 umol/L (mildly elevated), GGT 24 U/L, AST 29 U/L, ALT 13 U/L, ALP 94 U/L, LDH 255 U/L (mildly elevated), CPK 62 U/L
+
+2025-11-26
+Complete Blood Count: WBC 14.7 x10^9/L (high), RBC 4.12 x10^12/L (low), Hb 132 g/L, Hct 0.416 (low), MCV 101 fL (high), MCH 32 pg (high), MCHC 317 g/L, RDW 0.177 (high), Platelets 147 x10^9/L (low)
+eGFR 41 L (low), Creatinine 148 umol/L (high)
+Lytes: Na 142 mmol/L, K 4.6 mmol/L, Cl 105 mmol/L
+Bilirubin 10.1 umol/L (mildly elevated), GGT 37 U/L, AST 26 U/L, ALT 25 U/L, ALP 110 U/L, LDH 281 U/L (mildly elevated), CPK 44 U/L
+
+Impression:
+Mr. Gaudet is experiencing a severe adverse reaction characterized by profound fatigue, weakness, and functional decline following recent prednisone discontinuation after prolonged use. His laboratory findings reveal a normocytic anemia, leukocytosis with a left shift, and mild renal impairment, which may be related to his underlying GPA and recent steroid adjustments. The constellation of symptoms and lab abnormalities suggests a possible steroid withdrawal syndrome or relapse of GPA activity.
+
+Plan:
+1. I will restart prednisone at a dose of 30 mg daily and taper slowly over the next 4 weeks to reassess tolerance and response.
+2. I will order a complete blood count, metabolic panel, and inflammatory markers (ESR, CRP) within the next 48 hours to evaluate for underlying infection, relapse of GPA, or other contributing factors.
+3. I will arrange a follow-up appointment in one week to reassess his clinical status and adjust medications as needed.
+4. I will consult with the patient’s primary care provider to coordinate ongoing management and ensure continuity of care.

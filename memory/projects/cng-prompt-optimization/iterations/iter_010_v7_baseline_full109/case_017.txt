@@ -1,0 +1,52 @@
+Patient ID: Crystal Coughlin, a 62-year-old female
+
+History of Present Illness:
+Crystal is a 62-year-old female being followed for a right lower lobe lung mass with ongoing dyspnea and chronic cough with gray sputum. She has been seen by thoracic surgery for invasive staging to determine surgical candidacy, though she initially had difficulty understanding this process. The patient remains aware of her ongoing workup, including a PET-CT, head CT, and echocardiogram, which are pending or awaiting formal review. She denies any new symptoms such as hemoptysis, fever, or significant weight loss, though she continues to experience bilateral lower extremity swelling and occasional palpitations.
+
+The lung mass was confirmed as a poorly differentiated adenocarcinoma of pulmonary origin via core biopsy on January 7, 2026. The PET-CT showed intense FDG avidity in the right lower lobe lesion, with mild uptake in right hilar, low paratracheal, and subcarinal nodes, raising concern for early/small volume disease involvement. The head CT was negative for intracranial metastases, and the tonsillar avidity noted on PET-CT remains under evaluation.
+
+Past Medical History:
+Asthma, chronic back issues with three lumbar surgeries (L3-L4, L4-L5), right foot drop, history of alcohol abuse (abstinent since 2003), long-term smoking history (1 pack/day)
+
+Medications:
+Breztri Aerosphere 182 mcg inhalation 2 puffs BID
+Ventolin inhalation PRN
+Respiclick inhalation PRN
+Fluticasone inhalation PRN
+Diclofenac 50 mg oral BID
+Pantoprazole 40 mg oral daily
+Hydromorphone long-acting and short-acting oral PRN
+
+Allergies:
+Nexium (adverse reaction)
+
+Family History: not documented
+
+Social History:
+Smoker (1 pack/day), quit alcohol in 2003, former personal care worker
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-07:
+- Right lung core biopsy: Positive for malignancy, poorly differentiated adenocarcinoma of pulmonary origin
+- CBC: WBC 5.9 x10^9/L, Hb 132 g/L, Plts 261 x10^9/L
+- Electrolytes: Na 136 mmol/L, K 3.9 mmol/L, Cl 99 mmol/L
+- Coagulation: INR 1.0, PTT 32 seconds
+
+2025-11-17:
+- PET-CT: Intense FDG avidity in right lower lobe mass (SUV max 16.8), mild uptake in right hilar/paratracheal/subcarinal nodes, no distant metastases, asymmetric tonsillar uptake
+
+2025-11-24:
+- Head CT: No evidence of metastatic disease
+
+2025-09-19:
+- Bronchial wash cytology: Suspicious for malignancy
+
+Impression:
+Crystal is a 62-year-old female with a confirmed diagnosis of right lower lobe pulmonary adenocarcinoma, characterized by a large, intensely FDG-avid mass on PET-CT and biopsy-proven malignancy. While there is concern for early nodal involvement based on PET-CT findings, there is no evidence of distant metastatic disease at this time. Her ongoing symptoms of dyspnea, chronic cough, and lower extremity swelling likely reflect a combination of mass effect, underlying respiratory disease, and possible cardiac or venous insufficiency. Further staging and multidisciplinary discussion are required to determine the most appropriate therapeutic pathway.
+
+Plan:
+1. I will arrange a formal review of the PET-CT and echocardiogram results with thoracic surgery to finalize staging and surgical candidacy assessment.
+2. I will ensure the patient has a clear understanding of the invasive staging process and its implications for potential surgical intervention.
+3. I will schedule follow-up in 2 weeks to review all available diagnostic information and discuss next steps, including potential referral to oncology for further management planning.

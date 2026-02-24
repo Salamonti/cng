@@ -1,0 +1,36 @@
+Patient ID: John Doe, 68 years, male
+
+History of Present Illness:
+The patient presented with severe chest pain of sudden onset approximately 2 hours prior to this encounter. The pain was described as intense and localized to the central chest region, radiating to the left arm. The patient reports associated shortness of breath and diaphoresis. On examination, the patient appeared in significant distress, with unremarkable vital signs aside from tachycardia. The patient was subsequently sent to the emergency department for further evaluation and investigations.
+
+The patient denies any recent trauma, palpitations, or syncope. There was no history of similar episodes in the past, though he acknowledges a known history of coronary artery disease. The patient was unable to provide further details due to the severity of symptoms at the time of assessment.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-21:
+ECG: Inferior ST depression noted
+
+Impression:
+This 68-year-old male with a known history of coronary artery disease presents with severe chest pain and associated symptoms highly suggestive of an acute coronary syndrome. The ECG findings of inferior ST depression further support the likelihood of ongoing myocardial ischemia. The patient requires urgent cardiac evaluation to rule out acute myocardial infarction and guide appropriate management.
+
+Plan:
+1. I will ensure the patient is transferred to the emergency department for immediate cardiac monitoring and further diagnostic evaluation, including serial ECGs and cardiac enzymes.
+2. I will recommend urgent consultation with a cardiologist for assessment and potential coronary intervention.
+3. We will arrange for follow-up in the cardiology clinic within 1 week of discharge to review the results of investigations and adjust management as needed.

@@ -1,0 +1,53 @@
+Patient ID: Roy Joseph Taylor, 73-year-old male
+
+History of Present Illness:
+Mr. Taylor is a 73-year-old male presenting for follow-up of multiple concerns. He reports no blood in his stool, but his recent blood work suggests possible new-onset diabetes, which requires confirmation with repeat testing. He denies significant short-term memory issues but acknowledges occasional night sweats, though these are less frequent than previously. His weight has stabilized between 140-142 lbs, and he reports improved sleep, though he occasionally wakes at night. He recently fell and sustained bruised ribs, and a bone scan revealed a sclerotic lesion on the anterior right fourth rib, which is nonspecific but may represent a healing fracture or another process. He also underwent an MRI of the abdomen, though results are pending. Notably, his prostate-specific antigen (PSA) is elevated at 6.41 ug/L, raising concern for a potential prostate issue, including cancer, though this requires further urological assessment.
+
+Mr. Taylor also has a thyroid nodule noted on prior imaging, and the skin over the thyroid suggests the need for a biopsy to rule out malignancy. He denies any prior rib issues but recalls a recent fall. He is scheduled for a thyroid biopsy and will follow up with urology for further evaluation of his elevated PSA. He has no acute concerns regarding his cardiac status, though he has a history of coronary artery disease and prior PCI.
+
+Past Medical History:
+Type 2 Diabetes Mellitus
+Dyslipidemia
+Coronary artery disease status post Percutaneous Coronary Intervention (PCI) to Right Coronary Artery (RCA) and its Posterior Left Ventricular (PLV) branch in March 2023
+
+Medications:
+Aspirin 81 mg QD
+Metformin 750 mg BID
+Jardiance 10 mg QD
+Rosuvastatin 40 mg QD
+Amlodipine 5 mg QD
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (quit 2 years ago after smoking a pipe for 45 years), denies alcohol use, admits to smoking marijuana 2-3 times per week
+
+Physical Examination: not documented
+
+Investigations:
+2025-10-17:
+- Hemoglobin A1c: 7.1%
+- Prostate Specific Antigen: 6.41 ug/L (elevated)
+- Complete Blood Count: WBC 9.0 x10e9/L, Hb 137 g/L, Hct 0.402 L/L, Plt 217 x10e9/L
+- Electrolytes: Na 143 mmol/L, K 4.1 mmol/L, Cl 105 mmol/L
+- Renal Function: Creatinine 67 umol/L, eGFR 90 mL/min/1.73m2
+- Liver Function Tests: Total Bilirubin 11.7 umol/L, AST 19 U/L, ALT 20 U/L, Alk Phos 79 U/L, GGT 15 U/L, LDH 148 U/L
+- Iron Studies: Fe 19.5 umol/L, TIBC 63 umol/L, Saturation 0.30, Ferritin 103.00 ug/L
+- Erythrocyte Sedimentation Rate: 13 mm/Hr
+- C-Reactive Protein: 0.6 mg/L
+- Occult Blood Stool: Negative x3
+
+2025-10:
+- CT Chest/Abdomen/Pelvis: Indeterminate thyroid nodules, sclerotic lesion on anterior right fourth rib, indeterminate liver lesion
+
+Impression:
+Mr. Taylor is a 73-year-old male with a history of type 2 diabetes mellitus, coronary artery disease, and dyslipidemia presenting for follow-up of multiple concerns. His recent blood work suggests possible new-onset diabetes, though this requires confirmation. He has an elevated PSA, which warrants further urological assessment to rule out prostate pathology, including cancer. Additionally, he has indeterminate thyroid nodules requiring biopsy to evaluate for malignancy. The sclerotic lesion on his rib is nonspecific but will be followed with a repeat bone scan in six months. His cardiac status remains stable, and his overall functional status has improved.
+
+Plan:
+1. I will arrange for a fine-needle aspiration biopsy of the thyroid nodule for further evaluation.
+2. I will refer Mr. Taylor to urology for assessment of his elevated PSA and potential prostate pathology.
+3. I will order a repeat bone scan in six months to reassess the sclerotic lesion on the anterior right fourth rib.
+4. I will repeat Hemoglobin A1c testing to confirm the diagnosis of diabetes and adjust management as needed.
+5. We will follow up in three months to review the results of the thyroid biopsy and PSA assessment, and to monitor his glycemic control.

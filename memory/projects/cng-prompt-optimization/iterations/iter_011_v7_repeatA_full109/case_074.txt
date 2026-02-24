@@ -1,0 +1,64 @@
+Patient ID
+Milford Buchanan is a 69-year-old male.
+
+History of Present Illness
+This 69-year-old male presents with chronic shortness of breath that has been persistent over a long period without recent change. He denies any chest pain but reports orthopnea that resolves when he lies on his sides. He has a history of obstructive sleep apnea (OSA) diagnosed 15 years ago but has not used CPAP therapy due to discomfort with the machine. He attributes his breathing difficulties to occupational dust exposure, though he notes the shortness of breath has only worsened in recent years. He has no history of asthma, joint inflammation, or Raynaud’s phenomenon.
+
+On examination, he has a Mallampati class IV view with very narrow air passages. He is obese with a weight of 260 lbs and a height of 5 feet 7 inches. His chest is clear to auscultation, and his abdomen is large but without signs of peritonitis. Heart sounds are normal.
+
+Past Medical History
+Type 2 diabetes mellitus, hypertension, gastroesophageal reflux disease (GERD), depression/anxiety, obesity, osteoarthritis of the knees, moderate obstructive sleep apnea (untreated), and history of bilateral total knee replacements.
+
+Medications
+APO-Dapagliflozin 10 mg PO daily
+APO-Gliclazide MR 30 mg PO daily
+JAMP-Metformin 500 mg PO four times daily
+MAR-Diltiazem 240 mg PO daily
+Sandoz-Irbesartan 300 mg PO daily
+Sandoz-Pantoprazole 40 mg PO daily
+Symbicort 100/100/6 mcg INH twice daily for maintenance; 1-2 inhalations as needed for rescue
+Teva-Hydrochlorothiazide 25 mg PO daily
+Teva-Salbutamol HFA 100 mcg INH 1-2 puffs four times daily as needed
+Tresiba FlexTouch 200 units/mL SC 70 units once daily
+Trulicity SoloStar 100 units/mL SC adjust as directed, use before meals
+
+Allergies
+Anafranil 50 mg tablet: rash
+Sumountil and Ludomil: rash
+Altace 5 mg capsule: cough
+Vibramycin 100 mg oral capsule: blurred vision and gastrointestinal upset
+
+Family History
+Not documented
+
+Social History
+Not documented
+
+Physical Examination
+Mallampati class IV view with very narrow air passages
+Obese male, weight 260 lbs, height 5 feet 7 inches
+Chest: clear to auscultation
+Abdomen: large, no peritonitis
+Heart sounds: normal
+
+Investigations
+2025-11-04: Pulmonary Function Test – moderate restrictive lung disease with normal diffusion capacity
+2021-10-27: Pulmonary Function Test – mild restrictive lung disease thought secondary to obesity
+2017-11-21: Pulmonary Function Test – mild restrictive lung disease secondary to obesity
+2024-06-21: Echocardiogram – normal biventricular size and systolic function, aortic valve sclerosis, mildly dilated ascending aorta
+2026-02-24: Urinalysis – normal findings, trace ketones, negative for blood, protein, nitrite, leukocyte esterase
+2026-02-24: Lipids – cholesterol 2.9 mmol/L, triglycerides 1.35 mmol/L, LDL 1.2 mmol/L, HDL 1.10 mmol/L
+2026-02-24: Hemoglobin A1C – 6.8%
+2026-02-24: Glucose – 8.5 mmol/L
+2026-02-24: eGFR – 90 mL/min/1.73m²
+2026-02-24: Complete Blood Count – normal findings
+2025-11-05: Chest X-ray – clear lungs and pleural surfaces, cardiac silhouette at upper limit of normal
+
+Impression
+This patient has chronic dyspnea likely multifactorial in origin, primarily related to obesity and untreated obstructive sleep apnea. The moderate restrictive lung disease on recent pulmonary function testing is consistent with his obesity and prior studies. There is no evidence of significant cardiac dysfunction on recent echocardiogram, though mild aortic valve sclerosis and a mildly dilated ascending aorta are noted. His diabetes remains suboptimally controlled with an HbA1c of 6.8%. The chronic dyspnea and orthopnea may also be exacerbated by his obesity and potential OSA, though this has not been reassessed in over 15 years.
+
+Plan
+1. I will arrange for a polysomnography study to reassess for obstructive sleep apnea and guide potential CPAP therapy.
+2. I will recommend a cardiology consultation to further evaluate the mildly dilated ascending aorta and aortic valve sclerosis, with consideration for stress testing if clinically indicated.
+3. I will discuss weight loss strategies with the patient, including referral to a dietitian and consideration of medical therapy for obesity, such as GLP-1 agonists, with close monitoring for side effects.
+4. I will follow up in 4-6 weeks to review results of investigations and adjust management as needed.

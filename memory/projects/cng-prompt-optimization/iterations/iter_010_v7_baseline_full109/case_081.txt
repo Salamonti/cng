@@ -1,0 +1,59 @@
+**Patient ID**
+Edward (Eddie) Doucet, a 91-year-old male.
+
+**History of Present Illness**
+Mr. Doucet presents with an incidental finding of an elevated white blood cell count of 14 x10^9/L (reference range 4.0–10.0) and a monoclonal IgG kappa protein of 2.8 g/L on serum protein electrophoresis. He denies systemic symptoms such as fatigue, weight loss (beyond the 30 lbs lost post-cholecystectomy), fever, night sweats, or frequent infections. He reports occasional cold feet with intermittent burning sensations, attributed to age-related vascular changes. There is no history of bleeding diathesis, easy bruising, or anemia symptoms. He has no recent changes in urinary symptoms or prostate-related concerns beyond an elevated PSA noted in prior records.
+
+**Past Medical History**
+Benign essential hypertension, coronary artery disease with double bypass at age 62, abdominal aortic aneurysm repair at age 68, cholecystectomy, kidney stones, chronic kidney disease (eGFR 29), history of transient urinary retention (TURP), and elevated PSA.
+
+**Medications**
+- Amlodipine 30 mg oral tablet, once daily
+- Metoprolol 50 mg tablet, twice daily
+- Allopurinol 100 mg tablet, once daily
+- Aspirin 81 mg delayed-release tablet, once daily
+- Rosuvastatin 20 mg tablet, once daily
+- Hydrochlorothiazide 12.5 mg tablet, once daily
+- Nitroglycerin 0.4 mg spray, as needed
+- Tecta 40 mg enteric-coated tablet, once daily
+- Vitamin B12 1000 mcg oral tablet, once daily
+- Ramipril 20 mg tablet, once daily
+- Cholestyramine 4 g, once daily
+
+**Allergies**
+Seasonal allergies; no known drug allergies documented.
+
+**Family History**
+Not documented.
+
+**Social History**
+Not documented.
+
+**Physical Examination**
+Not documented.
+
+**Investigations**
+2025-12-03:
+- Complete Blood Count: WBC 14.8 x10^9/L (elevated), lymphocytes 6.5 x10^9/L (elevated), monocytes 1.2 x10^9/L (elevated).
+- Serum Protein Electrophoresis: Monoclonal IgG kappa protein 2.8 g/L.
+- Immunofixation Electrophoresis: Confirms monoclonal IgG kappa protein.
+- Thyroid Stimulating Hormone: 5.240 mIU/L (elevated).
+- eGFR: 29 mL/min/1.73m² (moderately to severely decreased).
+- Creatinine: 186 µmol/L (elevated).
+- Free T4: 15.8 pmol/L (normal).
+- Sodium: 147 mmol/L (elevated).
+- Potassium: 4.6 mmol/L (normal).
+- Chloride: 110 mmol/L (elevated).
+- Ferritin: 189.00 µg/L (normal).
+- Lipids: Cholesterol 3.7 mmol/L (normal), triglycerides 1.71 mmol/L (elevated), LDL 1.7 mmol/L (normal), HDL 1.26 mmol/L (normal).
+- Prostate Specific Antigen: 8.770 µg/L (elevated).
+- Alanine Aminotransferase: 27 U/L (normal).
+
+**Impression**
+Mr. Doucet has a newly identified monoclonal gammopathy of undetermined significance (MGUS) with a monoclonal IgG kappa protein of 2.8 g/L and an elevated white blood cell count concerning for chronic lymphocytic leukemia (CLL). His symptoms are largely attributable to age-related vascular changes and chronic conditions, with no acute concerning features for hematologic malignancy at this time. Chronic kidney disease (eGFR 29) and hyperlipidemia are also present, with additional findings of elevated PSA and thyroid-stimulating hormone.
+
+**Plan**
+1. I will order flow cytometry on peripheral blood to further evaluate for CLL.
+2. I will arrange serum protein electrophoresis and complete blood count every six months for monitoring of MGUS and CLL.
+3. I will follow up with the patient in six months via telephone or in-person, depending on his preference and any changes in symptoms.
+4. I will counsel the patient to seek immediate attention if he develops symptoms of anemia, frequent infections, easy bruising, or uncontrolled bleeding.

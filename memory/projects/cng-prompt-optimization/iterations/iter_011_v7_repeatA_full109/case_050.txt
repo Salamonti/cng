@@ -1,0 +1,49 @@
+Patient ID
+Gertrude Elizabeth Conrod is a 76-year-old woman presenting for follow-up of chronic obstructive pulmonary disease (COPD) and evaluation of intermittent left-sided chest tightness.
+
+History of Present Illness
+Mrs. Conrod reports feeling well overall with no recent exacerbations of respiratory symptoms. She denies cough, phlegm, hemoptysis, orthopnea, paroxysmal nocturnal dyspnea, or reflux. Shortness of breath remains exertional, limited to difficulty climbing one flight of stairs. She describes occasional episodes of left-sided chest tightness occurring while sitting or standing, consistent with prior symptoms noted after her stress test in June 2025. These sensations are localized to the anterior chest wall, with no associated radiation, diaphoresis, nausea, or palpitations. No new fatigue, weight loss, fever, chills, or extremity swelling has been reported since her last visit. She confirms medication adherence and requests a refill for her albuterol inhaler, noting only one puff remains.
+
+Past Medical History
+Chronic obstructive pulmonary disease, hypertension, hyperlipidemia, osteoarthritis, anxiety disorder, hypothyroidism, history of questionable myocardial ischemia (persistent apical perfusion defect on MIBI scan, May 2025), resolved drug-induced rash to dapagliflozin, and prior ruled-out deep vein thrombosis (DVT) via Doppler ultrasound (November 2025).
+
+Medications
+BREZTRI 2 puffs twice daily
+JARDIANCE 10 mg once daily
+carvedilol 12.5 mg twice daily
+bisoprolol 5 mg once daily
+losartan 25 mg once daily
+potassium chloride 1500 mg twice daily
+spironolactone 25 mg once daily
+levothyroxine 12.5 mcg once daily
+nortriptyline 10 mg once daily
+trazodone 100 mg once daily
+topiramate 50 mg morning, 100 mg evening
+rosuvastatin 10 mg once daily
+
+Allergies
+Dapagliflozin (dermatitis)
+
+Family History
+not documented
+
+Social History
+Patient lives independently at home with family support. Denies tobacco, alcohol, or illicit drug use. Remains socially engaged despite functional limitations.
+
+Physical Examination
+Heart rate 74 bpm, regular rhythm; oxygen saturation 96% on room air. Lungs clear with adequate bilateral air entry. Cardiac exam normal (S1/S2, no murmurs/gallops/rubs). Jugular venous pressure not elevated. Bilateral lower extremity edema grade 2/3. Tenderness localized to left costochondral junction consistent with costochondritis. No leg ulcers or skin breakdown.
+
+Investigations
+2025-11-17: CBC (WBC 12.6 x10^9/L, Hb 117 g/L), creatinine 132 umol/L, D-dimer 2473 ng/mL
+2025-11-05/06: Troponin T 24/21 ng/L, ECG (sinus rhythm with LBBB)
+2025-10-30: NT-proBNP 434 ng/L
+
+Impression
+This 76-year-old woman with stable COPD presents with intermittent left-sided chest tightness most consistent with costochondritis, supported by localized tenderness on examination. Her chronic respiratory symptoms remain well-controlled, though exertional dyspnea persists at baseline. Prior imaging suggests a stable apical perfusion defect without recent progression, and her cardiac biomarkers and ECG have shown no acute changes. Mild renal impairment is present, warranting ongoing monitoring.
+
+Plan
+1. I will prescribe a refill for BREZTRI (2 puffs twice daily) to Spears Pharmacy on McLean Street.
+2. I will recommend acetaminophen (Tylenol) PRN for symptomatic management of costochondritis-related chest tightness.
+3. I will monitor kidney function with repeat creatinine measurement in 6 months (or sooner if clinically indicated).
+4. We will schedule a follow-up appointment in 6 months (August 4, 2026) unless symptoms evolve to require earlier reassessment.
+5. We will reassess the need for advanced cardiological evaluation only if future episodes include exertional angina, syncope, worsening dyspnea, or persistent biomarker elevations.

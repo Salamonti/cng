@@ -1,0 +1,61 @@
+Patient ID
+Robyn Dawn Goodick is a 53-year-old woman.
+
+History of Present Illness
+Mrs. Goodick presents today for ongoing cardiovascular follow-up after her anterior ST-elevation myocardial infarction in May 2024. She reports feeling generally well but describes persistent fatigue, particularly after returning to work, requiring several days of recovery. She denies chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. She notes a 9 lb weight gain over the past six months without abdominal distension or changes in appetite.
+
+She has no palpitations or dizziness, though recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia. She reports occasional wheezing, raising concern for possible asthma or chronic obstructive pulmonary disease given her prior smoking history. Her blood pressure remains stable, and she has been adherent to her medications.
+
+Past Medical History
+Type 2 diabetes mellitus, hypertension, dyslipidemia, coronary artery disease (prior anterior STEMI with LAD stent), atrial fibrillation, depression (possible), and heart failure with reduced ejection fraction.
+
+Medications
+- Ezetimibe 10 mg PO daily
+- Sacubitril/valsartan (Entresto) 24/26 mg PO BID
+- Spironolactone 12.5 mg PO daily
+- Bisoprolol 10 mg PO daily
+- Metformin 1000 mg PO BID
+- Dapagliflozin 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Atorvastatin 40 mg PO daily
+- Apixaban 5 mg PO BID
+- Basaglar insulin 35 units PO daily
+- Tiotropium (Spiriva Respimat) 2.5 mcg inhalation QD
+- Albuterol (Ventolin HFA) 100 mcg inhalation PRN
+
+Allergies
+not documented
+
+Family History
+Strong family history of premature coronary artery disease.
+
+Social History
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs.
+
+Physical Examination
+- Vital signs: BP 112/79, PR 82 bpm, SpO2 97% on room air
+- General: No JVD or lower limb edema
+- Cardiovascular: Normal S1/S2, no murmurs
+- Respiratory: Clear lung fields bilaterally, audible wheezing
+- Neurological: Unremarkable
+
+Investigations
+2025-03-XX
+- HbA1c: 7.6 (prior 7.3)
+- LDL: 1.0
+- BNP: 159
+
+2024-05-XX
+- HbA1c: 7.3 (prior 10.6)
+- LDL: 4.38
+- Ejection fraction: 31–35% (with segmental wall abnormalities and akinetic regions)
+
+Impression
+Mrs. Goodick is a 53-year-old woman with a history of coronary artery disease, heart failure with reduced ejection fraction, and type 2 diabetes who presents with persistent fatigue and occasional wheezing. Her cardiovascular parameters remain stable, though her HbA1c has trended upward to 7.6, and her ejection fraction remains reduced at 31–35%. The presence of wheezing and prior smoking history raises concern for underlying asthma or COPD, warranting further evaluation. Her current medication regimen is optimized for heart failure and secondary prevention, though ongoing monitoring of her metabolic and cardiac parameters is required.
+
+Plan
+1. I will order iron studies and ferritin to evaluate for potential anemia contributing to fatigue.
+2. I will arrange a sleep study to assess for sleep-disordered breathing as a possible cause of fatigue.
+3. I will schedule a follow-up echocardiogram (WMS) to reassess ejection fraction and ventricular remodeling.
+4. I will continue current medications as prescribed, with close monitoring of HbA1c and renal function.
+5. We will follow up in six months to review results and adjust management as needed.

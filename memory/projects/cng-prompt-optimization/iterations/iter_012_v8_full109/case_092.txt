@@ -1,0 +1,61 @@
+Patient ID: Amanda Doucette, 45-year-old female
+
+History of Present Illness:
+Mrs. Doucette presents with worsening shortness of breath over the past several weeks, which she attributes to a recent discontinuation of her sarcoidosis medications. She was admitted to ICU for acute decompensation of her diabetic control, requiring IV insulin, and upon discharge, her sarcoidosis medications were not restarted. Since then, her symptoms have progressively worsened, with persistent dyspnea despite a clear chest examination and normal oxygen saturation on room air. She reports no fever, cough, or wheezing, but her symptoms have limited her functional status. She resumed hydroxychloroquine and azathioprine recently, but her shortness of breath persists, raising concerns about ongoing sarcoidosis activity or potential complications.
+
+The patient denies chest pain, palpitations, or recent infections. Her review of systems is otherwise notable for night sweats and fatigue, which she attributes to her underlying sarcoidosis and immunosuppression. She has no recent changes in vision, cognitive function, or neurological symptoms. Her physical examination today reveals a clear chest with normal air entry bilaterally, normal heart sounds, and no palpable lymphadenopathy. Vital signs are stable with a normal oxygen saturation.
+
+Past Medical History:
+- Pulmonary sarcoidosis (biopsy-proven, 2024)
+- Type 2 diabetes mellitus
+- Congenital right atrophic kidney
+- Obesity
+- Hepatic steatosis
+- Cholecystectomy
+- Tonsillectomy
+- Motorcycle accident (July 2023) with sacral and right foot fractures
+- Previous smoker (10 pack-years)
+- History of obstructive lung disease (mild, 2021)
+- Embolic myocardial infarction (2025, normal coronary arteries)
+
+Medications:
+azathioprine 50 mg PO BID
+hydroxychloroquine 200 mg PO daily
+fluticasone furoate/umeclidinium/vilanterol 100/62.5/25 mcg inhalation daily
+pantoprazole 40 mg PO daily
+forxiga 10 mg PO daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+- General: Well-appearing, no acute distress
+- Vital signs: BP 109/86, PR 72, SpO2 98% on room air
+- Chest: Clear to auscultation bilaterally, no wheezing or rales
+- Cardiovascular: Normal S1 and S2, no murmurs or gallops
+- Neurological: Unremarkable
+- No lower limb edema or palpable lymphadenopathy
+
+Investigations:
+2026-02-03:
+- Complete Blood Count: WBC 10.5 x10^9/L (elevated), Hb 124 g/L, Plt 289 x10^9/L
+- Electrolytes: Na 143 mmol/L, K 3.7 mmol/L, Cl 106 mmol/L
+- C-Reactive Protein: 9.1 mg/L (elevated)
+- ESR: 27 mm/hr (elevated)
+- eGFR: 85 mL/min/1.73m^2
+- Creatinine: 76 umol/L
+
+2026-03-02:
+- Chest X-ray: Clear lungs, no pleural effusion, stable borderline cardiomegaly
+
+Impression:
+Mrs. Doucette is a 45-year-old female with biopsy-proven pulmonary sarcoidosis and a history of symptomatic disease requiring immunosuppressive therapy. Her current presentation of worsening dyspnea, despite resumption of hydroxychloroquine and azathioprine, raises concerns for ongoing inflammatory activity or potential complications such as infection or medication non-adherence. The elevated inflammatory markers (CRP and ESR) suggest active disease or an underlying infectious process, despite a clear chest examination. Her recent ICU admission for diabetic decompensation and medication discontinuation further complicates her clinical picture, requiring careful reassessment of her sarcoidosis management and monitoring for adverse effects of her current regimen.
+
+Plan:
+1. I will review recent blood work results with the patient and address the elevated CRP and ESR, considering potential causes including infection or sarcoidosis flare.
+2. We will perform a repeat chest CT to assess for ongoing pulmonary inflammation or complications, given her persistent symptoms and elevated inflammatory markers.
+3. I will arrange follow-up blood work in one month to monitor for medication side effects, including complete blood count, liver function tests, and renal function.
+4. We will schedule a follow-up appointment in one month to reassess her symptoms, review investigations, and adjust her immunosuppressive regimen as needed.

@@ -1,0 +1,67 @@
+Patient ID: Arlice Stuart is a 60-year-old female.
+
+History of Present Illness:
+Arlice Stuart, a 60-year-old female, presents with a one-year history of progressive shortness of breath (SOB) that has significantly impacted her daily activities. She describes difficulty carrying groceries upstairs and performing tasks requiring sustained breathing, such as cardio exercises. She reports a recurrence of symptoms similar to those experienced 10 years ago, including fluid accumulation in her lungs. She has been managing her symptoms with diuretics (fluid pills), which have provided some relief. She also mentions occasional palpitations, particularly during periods of anxiety, which she manages by relaxing and monitoring her heart rate with a home blood pressure machine.
+
+She has a history of childhood asthma, though recent methacholine challenge testing and spirometry have been negative for airway hyperresponsiveness. She has been on various inhalers, including Trelegy and Ventolin, with limited effectiveness. She has a history of depressive symptoms and anxiety, which have been managed without pharmacologic intervention. She also reports a history of an enlarged heart, which she attributes to past breathing difficulties.
+
+Physical Examination:
+The patient’s vital signs are stable with a heart rate of 70 beats per minute and oxygen saturation of 99% on room air. The chest examination reveals clear lung fields with adequate air entry bilaterally. Cardiac examination shows normal S1 and S2 without additional sounds or murmurs. The abdomen is soft with no palpable organomegaly, and there is no jugular venous distention or lower limb edema. The neurological examination is unremarkable.
+
+Investigations:
+2025-10-30:
+- Complete Blood Count: Normal with no significant abnormalities.
+- Electrolytes: Sodium 140 mmol/L, Potassium 4.7 mmol/L, Chloride 105 mmol/L.
+- Liver Function Tests: AST 43 U/L, ALT 39 U/L.
+- Thyroid Stimulating Hormone: 1.820 mIU/L.
+- Hemoglobin A1C: 5.2%.
+- Lipid Panel: Cholesterol 4.1 mmol/L, Triglycerides 1.08 mmol/L, LDL 2.3 mmol/L, HDL 1.30 mmol/L.
+- eGFR: 61 mL/min/1.73m².
+- D-Dimer: 5132 ng/mL (elevated).
+- Glucose: 5.6 mmol/L.
+
+2025-11-04:
+- Chest X-ray: Moderate cardiomegaly, bilateral pleural effusions, and findings suggestive of mild interstitial pulmonary edema.
+- Doppler Veins of Lower Extremities: No evidence of deep vein thrombosis; small fluid collection posteromedial to the knee, possibly a ruptured Baker’s cyst.
+
+2025-12-05:
+- Pulmonary Function Tests: Normal spirometry and flow volume loops; no airway hyperresponsiveness on methacholine challenge.
+
+2026-02-09:
+- Chest CT with Contrast: Mild cardiomegaly, subpleural nodules in the right lower lobe (stable from 2014), and multiple liver cysts.
+
+Past Medical History:
+- Childhood asthma (no current evidence of airway hyperresponsiveness)
+- History of depressive symptoms and anxiety
+- Cardiomegaly
+- Multiple liver cysts
+
+Medications:
+- Avamys nasal spray 27.5 mcg, 4 sprays once daily
+- Seasonale 0.15 mg/30 mcg tablet, 1 tablet once daily
+- Cyclobenzaprine HCl 10 mg tablet, 0.5 tablet at bedtime as needed
+- Mometasone furoate/formoterol fumarate 100/5 mcg HFA aerosol, 2 puffs twice daily
+- Furosemide (fluid pills) as needed (self-adjusted dosing)
+
+Allergies:
+- Tree nuts: Angioedema
+- Pet dander (cats, dogs): Angioedema, congestion
+
+Family History:
+not documented
+
+Social History:
+- Non-smoker
+- Works for the government feeding children in a school
+- No history of illicit drug use
+
+Impression:
+Arlice Stuart presents with a complex clinical picture characterized by progressive dyspnea, cardiomegaly, and evidence of mild interstitial pulmonary edema. Despite negative methacholine challenge and spirometry results, her symptoms suggest a possible cardiac etiology, potentially related to her history of cardiomegaly and past respiratory difficulties. The elevated D-dimer level warrants further investigation to rule out underlying thromboembolic disease. The presence of liver cysts and stable pulmonary nodules on CT imaging does not appear to contribute to her current symptoms. Her history of anxiety and depression may also play a role in her symptom exacerbation.
+
+Plan:
+1. I will optimize her diuretic therapy with furosemide, starting with a consistent daily dose of 20 mg orally once daily and reassess in one month.
+2. I will order a BNP (B-type natriuretic peptide) level to further evaluate for heart failure.
+3. I will arrange an echocardiogram to assess cardiac function and structure, prioritizing an earlier appointment time to accommodate her work schedule.
+4. I will refer her to a cardiologist for further evaluation of her cardiomegaly and heart failure symptoms.
+5. I will request a repeat chest X-ray in three months to monitor for changes in pulmonary edema.
+6. I will counsel her on stress management techniques and the importance of regular follow-up to monitor her symptoms and cardiac function.

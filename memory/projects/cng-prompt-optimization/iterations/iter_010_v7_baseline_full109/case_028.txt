@@ -1,0 +1,41 @@
+Patient ID
+Paul Comeau is a 79-year-old male presenting for follow-up after quadruple CABG and recent cardiac assessment.
+
+History of Present Illness
+Mr. Comeau reports doing well overall following his quadruple CABG and recent myocardial infarction, with no chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. He remains active and works without issues. His primary concern is sternotomy wire irritation with movement, causing discomfort. Vital signs are stable with blood pressure 120/80, pulse 68, and SpO2 98% on room air. Physical examination reveals clear lungs, normal heart sounds without murmurs, and no jugular venous distention or edema. A stress test was performed today, which he tolerated well but did not reach target heart rate, though it was reassuring with no chest pain or ST changes.
+
+Past Medical History
+Coronary artery disease, myocardial infarction, quadruple CABG (2025), hypercholesterolemia, prior stable angina.
+
+Medications
+Aspirin 81 mg PO daily
+Atorvastatin 80 mg PO daily
+Clopidogrel 75 mg PO daily
+Metoprolol 12.5 mg PO twice daily
+Perindopril 2 mg PO daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Nonsmoker, occasional alcohol use, lives with wife, retired mechanic, independent in ADLs/IADLs, senior pharmacare coverage.
+
+Physical Examination
+Blood pressure 120/80, pulse 68, SpO2 98% on room air. Lungs clear bilaterally. Cardiac exam: normal S1 and S2, no murmurs or additional sounds. Abdomen soft, no organomegaly. No jugular venous distention or lower limb edema. Neurological exam unremarkable. Sternotomy wires palpable with associated discomfort on movement.
+
+Investigations
+2026-01-26: CT chest with contrast - intact sternotomy wires, 6.5 mm perifissural nodule in left upper lobe, mild left basal atelectasis/scarring, no malignancy or suspicious pulmonary nodules.
+2026-01-30: Stress test - nondiagnostic due to failure to reach target heart rate, no chest pain or ST changes.
+
+Impression
+Mr. Comeau is a 79-year-old male recovering well from quadruple CABG and recent myocardial infarction, with stable vital signs and no evidence of cardiac ischemia on recent testing. His primary concern is sternotomy wire irritation, which requires surgical assessment. The CT chest revealed a benign 6.5 mm perifissural nodule and mild left basal atelectasis, with no evidence of malignancy or significant cardiac complications. His cardiovascular risk factors are being managed with appropriate medications.
+
+Plan
+1. I will refer Mr. Comeau to the cardiac surgery team for assessment of sternotomy wire irritation.
+2. I will continue aspirin 81 mg daily, atorvastatin 80 mg daily, clopidogrel 75 mg daily, and perindopril 2 mg daily.
+3. I will discontinue metoprolol 12.5 mg twice daily given stable blood pressure and heart rate.
+4. I will order routine blood work for follow-up in 3 months.
+5. I will follow up with Mr. Comeau in my office in 3 months for routine monitoring and reassessment.

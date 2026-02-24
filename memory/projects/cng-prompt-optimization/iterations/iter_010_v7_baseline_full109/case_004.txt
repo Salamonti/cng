@@ -1,0 +1,7 @@
+Patient ID
+This is an 83-year-old female seen in clinic today.
+
+History of Present Illness
+This 83-year-old female presents for follow-up of recurrent pleural effusion and shortness of breath. She reports that her breathing has improved since her last hospitalization, with no current cough, phlegm, or hemoptysis. She has had recurrent episodes of shortness of breath, with the last admission occurring in January 2026 for worsening dyspnea. She has been stable since discharge and denies any recent exacerbations. She notes mild skin dryness and flakiness, which she attributes to winter and possible mild eczema, but this is not causing significant discomfort.
+
+She has been experiencing occasional nosebleeds, which prompted her to stop taking her baby aspirin. She

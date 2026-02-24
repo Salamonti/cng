@@ -1,0 +1,42 @@
+Patient ID: Donald Carter, 69-year-old male
+
+History of Present Illness:
+Donald Carter is a 69-year-old male who presented today with a recent CT scan showing a 35% growth in a previously identified lung nodule in the right middle lobe. The nodule, initially measured at 14 mm, has increased in volume from 1.3 cc to 1.8 cc over approximately 18 months. The patient denies any symptoms such as hemoptysis, cough, weight loss, bone pain, B symptoms, or shortness of breath. He reports no recent changes in his health other than his cat’s unusual behavior, which he attributes to intuition rather than any physical symptoms. The patient is aware of the nodule’s growth and is seeking further evaluation and management.
+
+The nodule was previously biopsied on January 22, 2025, but the sample was inadequate, and the pathology report indicated no evidence of a mass lesion. Given the nodule’s growth, the patient is now being referred for a PET CT scan to further assess the lesion’s metabolic activity and guide next steps in management.
+
+Past Medical History:
+- Type 2 Diabetes Mellitus
+- Hypertension
+- Dyslipidemia
+- Psoriatic plaques
+
+Medications:
+not documented
+
+Allergies:
+No known drug allergies
+
+Family History:
+not documented
+
+Social History:
+Retired soldier, lives in Bridgewater. Quit smoking 9 years ago with a 50 pack-year history. Drinks alcohol on occasion.
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-16:
+- CT chest without contrast: Right middle lobe subpleural nodule measuring 14.8 mm x 14.8 mm x 15.5 mm, increased in volume by approximately 35% compared to previous scans. No evidence of axillary or mediastinal lymphadenopathy. Mild diffuse hepatic steatosis and suspected hepatomegaly.
+
+2025-01-22:
+- Lung biopsy (right middle lobe): Unremarkable fragments of lung parenchyma, no evidence of a mass lesion.
+
+Impression:
+Donald Carter is a 69-year-old male with a growing lung nodule in the right middle lobe, which has increased in size by approximately 35% over the past 18 months. The nodule was previously biopsied with inconclusive results due to inadequate sampling. Given the nodule’s growth and the patient’s smoking history, there is concern for potential malignancy despite the initial benign appearance. Further characterization with a PET CT scan is warranted to assess metabolic activity and guide subsequent management decisions.
+
+Plan:
+1. I will arrange for Donald Carter to undergo a PET CT scan in Halifax for further evaluation of the lung nodule.
+2. I will ensure the PET CT results are reviewed by the surgical team in Halifax to determine the next steps, which may include referral for surgical resection if indicated.
+3. I will follow up with Donald Carter within two weeks of the PET CT results to discuss findings and next steps in management.

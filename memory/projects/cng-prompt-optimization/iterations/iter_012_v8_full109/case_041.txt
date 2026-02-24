@@ -1,0 +1,44 @@
+Patient ID: Harold Joseph Muise, 58 years old, male
+
+History of Present Illness:
+The patient presents today feeling generally well, with no significant changes in his respiratory status. He reports an ongoing dental issue with a tooth abscess, which is not the focus of today’s visit. The patient denies any recent exacerbations of his chronic obstructive pulmonary disease (COPD), with stable breathing and no increase in shortness of breath or phlegm production. He continues to use his rescue inhaler (Ventolin) only occasionally as needed. The patient confirms he quit smoking in 2002 and has not resumed. He is aware of his scheduled follow-up imaging and understands the plan for ongoing surveillance of his pulmonary nodules.
+
+The patient’s primary concern today revolves around the recent imaging findings. He reports reviewing his PET/CT scan results, which showed no evidence of malignancy in his pulmonary nodules, specifically noting the left upper lobe nodule has mild metabolic activity (SUVmax 3.2) but no concerning features. The right apical nodule, previously of concern, is associated with scarring and shows no metabolic activity. The patient is reassured by these findings and understands the plan for annual CT surveillance until age 85, with the next scan scheduled for October 2026.
+
+Past Medical History:
+Chronic Obstructive Pulmonary Disease (COPD), well-controlled
+Pulmonary nodules (left upper lobe and right apical)
+History of smoking (quit in 2002, 25 pack-years)
+Alpha-1 antitrypsin deficiency excluded
+
+Medications:
+Trelegy Ellipta 100/62.5/25 once daily
+Ventolin HFA 100 mcg inhaler 2 puffs QID PRN
+Pantoprazole 40 mg once daily
+Rosuvastatin 10 mg once daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (quit in 2002)
+Occupation: contractor
+No current alcohol use or illicit drug use
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-02:
+PET/CT chest: Mild FDG uptake in the left upper lobe spiculated nodule (SUVmax 3.2), no metabolic activity in the right apical nodule. No evidence of malignancy. Paraseptal emphysema noted.
+
+2025-10-14:
+CT chest: 10 mm left upper lobe nodule with minimal growth since 2019, 4 mm right apical nodule with possible slight increase, recommended surveillance CT in one year.
+
+Impression:
+The patient is a 58-year-old male with well-controlled COPD and stable pulmonary nodules on surveillance imaging. His PET/CT scan from January 2026 showed no metabolic activity concerning for malignancy in his nodules, with the left upper lobe nodule demonstrating only mild uptake. Given his history of smoking and the presence of pulmonary nodules, continued annual surveillance with CT imaging is appropriate to monitor for any changes. The patient remains asymptomatic with no recent exacerbations of COPD, and his current medication regimen appears effective.
+
+Plan:
+1. I will continue the patient’s current respiratory medications, including Trelegy Ellipta once daily and Ventolin HFA as needed, with reinforcement of proper inhaler technique.
+2. I will schedule the next surveillance CT chest for October 2026 to monitor the pulmonary nodules, as previously planned.
+3. I will follow up with the patient in November 2026 after reviewing the results of the next CT scan to assess for any interval changes and adjust management as needed.

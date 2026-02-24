@@ -1,0 +1,57 @@
+Patient ID: Sasha Boudreau, 47-year-old female
+
+History of Present Illness:
+Ms. Boudreau presents with persistent hypersomnia and fatigue despite ongoing CPAP use for obstructive sleep apnea. She reports that shifting venlafaxine to once-daily dosing did not alleviate her fatigue. Her symptoms include excessive daytime sleepiness that develops within an hour of waking, requiring afternoon naps, though she denies episodes of nodding off while driving or working. She continues to experience baseline tachycardia, with heart rates in the high 90s to 110 bpm despite treatment with bisoprolol 5 mg. The patient remains compliant with CPAP therapy.
+
+On examination, the chest is clear with adequate bilateral air entry, and cardiac auscultation reveals normal S1 and S2 without murmurs or additional sounds. The abdomen is soft with no organomegaly, and the neurological exam is unremarkable. There is no jugular venous distention or lower limb edema.
+
+Past Medical History:
+ADHD
+Diabetes Mellitus Type 2
+Dyslipidemia
+Hypertension
+Hypersomnia NYD
+Obstructive Sleep Apnea (OSA)
+Possible Primary Hyperaldosteronism / Conn Syndrome
+
+Medications:
+bisoprolol 5 mg PO daily
+venlafaxine 75 mg PO daily (shifted to AM dosing)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: nonsmoker, no alcohol or recreational drug use, consumes one Coca-Cola and one cup of tea daily (advised to switch to decaffeinated beverages)
+
+Physical Examination:
+Chest: clear, adequate bilateral air entry
+Cardiac: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2025-12-24
+Complete Blood Count: Hemoglobin 116 g/L, MCV 92.4 fL, Ferritin 207.00 ug/L
+eGFR: 90 mL/min/1.73m2
+Lytes: Sodium 137 mmol/L, Potassium 3.6 mmol/L
+Thyroid Stimulating Hormone: 2.300 mIU/L
+Free T4: 11.7 pmol/L
+NTproBNP: 28.7 ng/L
+ACTH: 1.7 pmol/L
+Aldosterone/Renin Activity Ratio: not documented (recently ordered)
+Cortisol, AM: 351 nmol/L
+
+2026-01-20
+24HR Urine Metanephrines: normal
+24HR Urine Catecholamines: not documented (reported as completed)
+
+Impression:
+Ms. Boudreau continues to experience persistent hypersomnia and fatigue despite adherence to CPAP therapy and ongoing medical management. The etiology of her symptoms remains unclear, though chronic fatigue syndrome is a consideration. Her tachycardia persists despite beta-blocker therapy, and prior investigations have not identified a definitive cause for her symptoms. The possibility of primary hyperaldosteronism remains under investigation, though recent adrenal imaging was unrevealing.
+
+Plan:
+1. I will discontinue bupropion as part of the ADHD management plan.
+2. I will discuss the potential initiation of methylphenidate with the patient’s psychiatrist for further evaluation of ADHD symptoms and fatigue management.
+3. I will refer Ms. Boudreau to the chronic disease clinic in Halifax for further assessment and management of chronic fatigue syndrome if current interventions are not effective.
+4. I will follow up with the patient in one month to reassess her symptoms and response to any changes in medication.

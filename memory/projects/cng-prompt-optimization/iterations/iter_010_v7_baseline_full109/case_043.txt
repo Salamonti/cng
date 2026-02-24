@@ -1,0 +1,48 @@
+Patient ID: Robert Jeffrey Doane, 69 years old, male
+
+History of Present Illness:
+Mr. Doane is a 69-year-old male who presented for follow-up regarding a recent CT scan of the chest. The scan revealed a subpleural mass in the right lower lobe measuring 16.5 mm x 46 mm x 68 mm with multiple foci of calcification and a small right pleural effusion. The radiologist noted that the lesion is suspicious for malignancy, though the clinician assessing the scan was not convinced of malignancy and suggested further observation. Mr. Doane has been experiencing persistent shortness of breath, intermittent wheezing, and coughing with phlegm, with symptoms relieved by bronchodilators and corticosteroids. He reports no worsening of lower limb swelling and continues to use CPAP regularly for obstructive sleep apnea.
+
+He denies any recent respiratory infections or changes in his symptoms that would suggest acute deterioration. The patient is compliant with his current medications, including Symbicort and Ventolin for asthma management, and he feels his fluid levels are stable on hydrochlorothiazide. He is unsure about the need for ongoing prednisone but understands the plan for close monitoring.
+
+Past Medical History:
+Asthma, obstructive sleep apnea, obesity hypoventilation syndrome, hypertension, type 2 diabetes, hyperlipidemia, pleural plaques (asbestos exposure), and possible interstitial lung disease.
+
+Medications:
+Symbicort 200/6 mcg inhalation, 2 puffs 3 times daily
+Ventolin HFA 100 mcg inhalation, 2 puffs every 4 hours as needed
+Teva-Diltiazem XC 240 mg oral, 1 tablet once daily
+Jamp-Metformin 500 mg oral, 1.5 tablets twice daily
+Teva-Hydrochlorothiazide 25 mg oral, 1 tablet once daily
+Mar-Ezetimibe 10 mg oral, 1 tablet once daily
+Jamp-Atorvastatin Calcium 40 mg oral, 1 tablet once daily
+Apo-Ramipril 10 mg oral, 2 capsules once daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Ex-smoker, no current alcohol use, morbidly obese, history of asbestos exposure in previous occupations (industrial mechanic, fiberglass shop).
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-27:
+- CT Chest with contrast: Subpleural mass in right lower lobe (16.5 mm x 46 mm x 68 mm) with calcification, small right pleural effusion. No suspicious pulmonary nodules or lymphadenopathy. Hypoattenuating nodule in right thyroid gland.
+
+2026-01-19:
+- Echocardiogram: Grossly normal biventricular size and systolic function. No evidence of pulmonary hypertension. Estimated right atrial pressure 3 mmHg. Normal left ventricular ejection fraction (55-60%).
+
+Past Medical History Notes:
+- Chest X-ray (December 2025): Patchy airspace opacification in right middle lobe with small pleural effusion.
+- CBC (November 2025): Leukocytosis with eosinophilia and neutrophilia.
+- ECG (November 2025): Abnormal QRST angle and low voltage QRS.
+
+Impression:
+Mr. Doane is a 69-year-old male with a history of asthma, obstructive sleep apnea, obesity hypoventilation syndrome, and asbestos-related pleural plaques who presented for evaluation of a subpleural mass in the right lower lobe identified on recent CT imaging. The lesion is suspicious for malignancy, though the clinician assessing the scan did not find it highly concerning. Given his history of asbestos exposure and chronic radiographic changes, interstitial or occupational lung disease remains a consideration. The patient’s symptoms are well-controlled with current asthma medications, and there is no evidence of pulmonary hypertension on recent echocardiogram. The small pleural effusion and calcified pleural plaques suggest chronic changes rather than acute pathology.
+
+Plan:
+1. I will continue current medications as prescribed, including Symbicort 200/6 mcg inhalation 2 puffs 3 times daily and Ventolin HFA as needed.
+2. I will arrange for a repeat CT chest in April 2026 (approximately 10-12 weeks from now) to reassess the subpleural mass and pleural effusion.
+3. I will monitor for any changes in symptoms, particularly shortness of breath, cough, or lower limb swelling, and schedule follow-up as needed.

@@ -1,0 +1,47 @@
+Patient ID
+Mr. Arnold Jordan is a 66-year-old male.
+
+History of Present Illness
+Mr. Jordan reports feeling generally well with no chest pain or significant shortness of breath, though he occasionally experiences mild dyspnea when going outside. He denies any recent exacerbations of his COPD and states he is adherent to his current inhaler regimen. He specifically requests a refill for his daily maintenance inhaler and his rescue blue puffer.
+
+Past Medical History
+Severe COPD
+Gout
+History of alcohol abuse
+
+Medications
+fluticasone furoate/umeclidinium bromide/vilanterol trifenat 100 mcg/62.5 mcg/25 mcg 1 puff daily via inhalation device
+VENTOLIN HFA 100 mcg inhaler 2 puffs QID PRN
+APODOXY 100 mg capsule 1 capsule BID
+APOPREDNISONE 5 mg tablet 8 tablets daily
+
+Allergies
+not documented
+
+Family History
+Mother: lung cancer
+Father: chronic kidney disease
+
+Social History
+Occupation: factory worker making lobster traps with dust exposure
+Smoking: 5 cigarettes per day (previously higher)
+Alcohol: abstinent for several years
+No recreational drug use
+No private insurance coverage
+
+Physical Examination
+not documented
+
+Investigations
+2025-03-21: Contrast-enhanced CT chest
+- Nonspecific borderline enlarged axillary and mediastinal lymph nodes
+- Smoking-related lung disease with centrilobular emphysema and central bronchial wall thickening
+- No suspicious pulmonary nodules or acute abnormalities
+
+Impression
+Mr. Jordan is a 66-year-old male with stable severe COPD on current maintenance therapy. His symptoms remain well-controlled with no recent exacerbations, though he continues to smoke and remains exposed to occupational dust. The CT chest from March 2025 shows chronic changes consistent with his COPD and smoking history, without acute abnormalities. His adherence to inhaler therapy and absence of recent symptom deterioration suggest good baseline control, though ongoing smoking and dust exposure remain significant risk factors for progression.
+
+Plan
+1. We will renew prescriptions for fluticasone furoate/umeclidinium bromide/vilanterol 1 puff daily, VENTOLIN HFA 2 puffs QID PRN, APODOXY 1 capsule BID, and APOPREDNISONE 8 tablets daily.
+2. We will schedule an in-person follow-up in 3 months to reassess COPD control, inhaler technique, and smoking cessation progress.
+3. We will provide education on action plan triggers for COPD exacerbations and encourage prompt contact if symptoms worsen.

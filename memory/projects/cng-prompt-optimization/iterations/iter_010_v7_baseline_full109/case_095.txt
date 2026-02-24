@@ -1,0 +1,60 @@
+Patient ID: Michel Louis McCauley, 67-year-old male
+
+History of Present Illness:
+This is a 67-year-old male who presented for a follow-up visit. The patient reports no new symptoms at this time, as the encounter transcription provided is incomplete and does not contain any current patient-reported details. No further information regarding his current symptoms, duration, or aggravating/relieving factors is documented.
+
+Past Medical History:
+Hypertension, hyperlipidemia, diabetes mellitus type 2, obstructive sleep apnea, atrial fibrillation with pacemaker/defibrillator, coronary artery bypass graft surgery, heart failure with preserved ejection fraction, gastroparesis, and lumbar degenerative disc disease.
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-02-03
+ECHO 2D: Normal LV size, preserved LV systolic function with segmental wall dysfunction, biatrial enlargement, mild tricuspid regurgitation, mildly dilated ascending aorta.
+
+2026-01-12
+HEMOGLOBIN A1C: 8.2%
+COMPLETE BLOOD COUNT: Normal parameters with slight elevation in hemoglobin and hematocrit.
+eGFR: 40 mL/min/1.73m2
+LIPIDS: Cholesterol 3.8 mmol/L, triglycerides 1.62 mmol/L, LDL 2.4 mmol/L, HDL 0.71 mmol/L
+LYTES: Sodium 139 mmol/L, potassium 5.0 mmol/L, chloride 99 mmol/L
+
+2026-01-05
+CHEST X-RAY: No focal collapse or consolidation, no pneumothorax, no displaced rib fracture.
+TROPONIN T: 33 ng/L and 34 ng/L (both below threshold for acute myocardial infarction)
+CREATININE: 126 umol/L
+GLUCOSE RANDOM: 11.7 mmol/L
+PROTHROMBIN TIME/INR: 1.6
+COMPLETE BLOOD COUNT: Normal parameters with slight elevation in hemoglobin and hematocrit.
+LYTES: Sodium 136 mmol/L, potassium 4.7 mmol/L, chloride 100 mmol/L
+ECG: Ventricular-paced rhythm, no significant ST changes.
+
+2025-07-29
+LUMBAR SPINE X-RAY: Grade 1 anterolisthesis of L4 on L5, mild-moderate degenerative disc disease at L5/S1, moderate facet sclerosis at L5/S1.
+PROSTATE SPECIFIC ANTIGEN: 0.607 ug/L
+HEMOGLOBIN A1C: 8.2%
+LYTES: Sodium 140 mmol/L, potassium 4.5 mmol/L, chloride 102 mmol/L
+eGFR: 48 mL/min/1.73m2
+
+Impression:
+This 67-year-old male has a complex medical history including diabetes mellitus type 2 with poor glycemic control (HbA1c 8.2%), chronic kidney disease with declining renal function (eGFR 40 mL/min/1.73m2), and heart failure with preserved ejection fraction. His recent echocardiogram confirms preserved LV systolic function with segmental wall dysfunction and biatrial enlargement. The patient has a history of atrial fibrillation managed with a pacemaker/defibrillator and obstructive sleep apnea treated with CPAP. His lipid profile shows elevated LDL and low HDL, indicating a need for further cardiovascular risk management.
+
+Plan:
+1. I will optimize glycemic control with a referral to a diabetes educator for detailed management plan and consider starting or adjusting oral hypoglycemic agents or insulin therapy.
+2. I will review current medication list with the patient and ensure adherence to heart failure medications, including furosemide, and assess for potential adjustments based on renal function.
+3. I will arrange for a follow-up appointment in 3 months to reassess symptoms, renal function, and glycemic control.
+4. We will order a lipid panel repeat in 3 months to reassess cardiovascular risk factors and consider further management if LDL remains elevated.
+5. We will arrange for a cardiology consultation to review the recent echocardiogram findings and optimize management of heart failure and atrial fibrillation.

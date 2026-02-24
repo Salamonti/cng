@@ -1,0 +1,60 @@
+Patient ID: Raymond Doucette, 84-year-old male
+
+History of Present Illness:
+Mr. Doucette is an 84-year-old male with a recent CT scan demonstrating multiple pulmonary nodules described as "cannonball" lesions, highly concerning for metastatic disease. The CT abdomen and pelvis revealed a large colonic mass measuring approximately 3.7 x 2.7 cm at the splenic flexure, raising suspicion for a primary colonic malignancy. The patient has been referred for a colonoscopy with biopsy on 2026-02-05 to obtain tissue diagnosis. He has a history of chronic obstructive pulmonary disease (COPD) with stable oxygen saturation around 87-91% on room air and has been recently assessed for radiation therapy eligibility. He reports feeling generally well aside from persistent coughing related to his COPD. The patient is aware of his advanced age and multiple comorbidities, including end-stage renal disease (eGFR 19), type 2 diabetes, and a history of right nephrectomy for renal cell carcinoma.
+
+The patient and his family have been counseled about the potential diagnosis of metastatic colorectal cancer with pulmonary metastases. The patient understands that treatment will likely involve a combination of chemotherapy and immunotherapy, with possible surgical resection of the colonic mass pending biopsy results. He is also aware that radiation therapy may be considered for the pulmonary nodules if indicated. The patient remains independent and mobile, which is a positive prognostic factor for treatment tolerance.
+
+Past Medical History:
+- Type 2 diabetes mellitus with diabetic kidney disease (CKD G4A3, eGFR 19)
+- Hypertension
+- Dyslipidemia
+- Right nephrectomy for renal cell carcinoma
+- Gout
+- Chronic obstructive pulmonary disease (COPD)
+- Morbid obesity
+- History of left leg swelling and fall
+
+Medications:
+- Metoprolol tartrate 100 mg once daily
+- Calcitriol 0.25 mcg on Monday, Wednesday, Friday
+- Furosemide 40 mg twice daily
+- Sodium bicarbonate 500 mg twice daily
+- Candesartan 32 mg once daily
+- Breo Ellipta 1 puff daily
+- Betahistine 16 mg twice daily as needed
+- Insulin Degludec 70 units subcutaneously every night
+- Tamsulosin 0.4 mg once daily
+- Rosuvastatin 5 mg once daily
+- Amlodipine 5 mg twice daily
+- Allopurinol 100 mg once daily
+- Dapagliflozin 10 mg once daily
+- Salbutamol 12 puffs 4-hourly as needed
+
+Allergies: Flu shots
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-09:
+- CT Chest without contrast: Multiple bilateral pulmonary nodules (largest 1.9 cm) concerning for pulmonary metastases. Prominent pulmonary trunk (3.4 cm) suggestive of pulmonary hypertension.
+
+2026-01-12:
+- CT Abdomen and Pelvis without contrast: Large colonic mass (3.7 x 2.7 cm) at splenic flexure, differential includes colonic malignancy. No evidence of liver metastases. Trace ascites.
+
+2026-01-27:
+- Labs: eGFR 19, creatinine 274, urea 25.8, potassium 5.7, bicarbonate 20, hemoglobin 120, WBC 10.8, calcium 1.90 (low), phosphorus 1.86 (high).
+
+Impression:
+Mr. Doucette is an 84-year-old male with a newly identified large colonic mass and multiple pulmonary nodules highly suspicious for metastatic colorectal cancer. The patient’s comorbidities, including advanced CKD, COPD, and diabetes, necessitate careful consideration of treatment options. The biopsy results from the colonoscopy scheduled for 2026-02-05 will be critical in guiding further management. Given the metastatic disease burden, a multidisciplinary approach involving oncology, surgery, and pulmonology will be essential for determining the most appropriate treatment plan, which may include chemotherapy, immunotherapy, and possibly radiation therapy.
+
+Plan:
+1. I will await the results of the colonoscopy with biopsy scheduled for 2026-02-05 to confirm the diagnosis and guide further treatment planning.
+2. I will order a pulmonary function test to assess the patient’s eligibility for potential radiation therapy and to optimize his respiratory status prior to any interventions.
+3. I will coordinate with Dr. Chris Murphy and the oncology team to ensure seamless transition of care following the biopsy results and to discuss potential treatment options, including chemotherapy, immunotherapy, and radiation therapy.
+4. I will monitor the patient’s renal function closely given his advanced CKD and adjust medications as needed to prevent further deterioration.
+5. I will follow up with the patient in 4 weeks or sooner if there are any changes in his clinical status or if biopsy results become available earlier.

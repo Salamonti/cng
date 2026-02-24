@@ -1,0 +1,56 @@
+Patient ID: Milford Roy Buchanan, 69-year-old male
+
+History of Present Illness:
+Mr. Buchanan is a 69-year-old male with a long-standing history of exertional shortness of breath, which has remained stable over time. He denies any chest pain but reports orthopnea that resolves when he lies on his sides. He has a history of obstructive sleep apnea (OSA) diagnosed 15 years ago but has not used CPAP due to discomfort with the machine. He attributes his breathing difficulties to occupational dust exposure, though he notes the symptoms have only worsened in recent years. He has no history of asthma, joint inflammation, or Raynaud’s phenomenon.
+
+On examination, he has a Mallampati class IV view with very narrow air passages. He is obese with a weight of 260 lbs and a height of 5 feet 7 inches. His chest is clear to auscultation, and his abdomen is large but without signs of peritonitis. Heart sounds are normal.
+
+Past Medical History:
+Type 2 diabetes mellitus, hypertension, gastroesophageal reflux disease (GERD), moderate obstructive sleep apnea (untreated), osteoarthritis of the knees, depression/anxiety, obesity, and mild restrictive lung disease.
+
+Medications:
+APO-Dapagliflozin 10 mg PO daily
+APO-Gliclazide MR 30 mg PO daily
+JAMP-Metformin 500 mg PO four times daily
+MAR-Diltiazem ER 240 mg PO daily
+Sandoz-Irbesartan 300 mg PO daily
+Sandoz-Pantoprazole 40 mg PO daily
+Symbicort 100/100/6 mcg INH twice daily for maintenance; 1-2 inhalations as needed for rescue
+Teva-Hydrochlorothiazide 25 mg PO daily
+Teva-Salbutamol HFA 100 mcg INH 1-2 puffs four times daily as needed
+Tresiba FlexTouch 200 units/mL SC 70 units once daily
+Trurapi Solostar 100 units/mL SC adjust as directed, use before meals
+
+Allergies:
+Anafranil 50 mg tablet (rash), Surmontil and Ludomil (rash), Altace 5 mg capsule (cough), Vibramycin 100 mg oral capsule (blurred vision and gastrointestinal upset)
+
+Family History: not documented
+
+Social History:
+Occupational exposure to dust without respiratory protection; no current CPAP use for OSA
+
+Physical Examination:
+Mallampati class IV view with very narrow air passages, obese (260 lbs, 5’7”), chest clear, abdomen large without peritonitis, heart sounds normal
+
+Investigations:
+2025-11-04: Pulmonary Function Test – moderate restrictive lung disease with normal diffusion capacity
+2021-10-27: Pulmonary Function Test – mild restrictive lung disease
+2017-11-21: Pulmonary Function Test – mild restrictive lung disease with normal static lung volumes and diffusion capacity
+2024-06-21: Echocardiogram – normal biventricular size and systolic function, aortic valve sclerosis, mildly dilated ascending aorta
+2026-02-24: Urinalysis – normal, specific gravity 1.030, no protein, glucose, or occult blood
+2026-02-24: Albumin/Creatinine Ratio – 6.74 mg/mmol (mildly increased)
+2026-02-24: Lipids – cholesterol 2.9 mmol/L, triglycerides 1.35 mmol/L, LDL 1.2 mmol/L, HDL 1.10 mmol/L
+2026-02-24: Hemoglobin A1C – 6.8% (elevated)
+2026-02-24: Glucose – 8.5 mmol/L (elevated)
+2026-02-24: eGFR – 90 mL/min/1.73m²
+2025-11-05: Chest X-ray – clear lungs, cardiac silhouette at upper limit of normal
+
+Impression:
+Mr. Buchanan presents with chronic exertional dyspnea and orthopnea in the context of long-standing obesity, untreated obstructive sleep apnea, and moderate restrictive lung disease. His symptoms are likely multifactorial, involving both cardiopulmonary contributions from obesity and OSA, as well as potential restrictive lung disease. The echocardiogram demonstrates normal cardiac function without evidence of heart failure, though mild aortic valve sclerosis and a mildly dilated ascending aorta are noted. His diabetes remains suboptimally controlled, and there is mild microalbuminuria.
+
+Plan:
+1. I will arrange for a polysomnography study to reassess for obstructive sleep apnea and guide CPAP therapy if indicated.
+2. I will refer Mr. Buchanan to a respiratory therapist and social worker to assist with CPAP acquisition and adherence if OSA is confirmed.
+3. I will discuss weight loss strategies, including dietary modifications and physical activity, with his primary care provider.
+4. I will review his diabetes management with his primary care provider, considering adjustments to his current regimen to improve glycemic control.
+5. I will follow up in 3 months to review results of the sleep study and assess symptom improvement.

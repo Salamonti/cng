@@ -1,0 +1,47 @@
+Patient ID
+Sally Belding is a 73-year-old female presenting for evaluation of persistent respiratory symptoms.
+
+History of Present Illness
+Sally reports ongoing respiratory symptoms despite recent hospitalizations and treatment. She describes persistent green phlegm production, worsening cough, and concern for lung involvement. Two weeks prior, she was diagnosed with influenza A and treated with prednisone for presumed asthma exacerbation. She reports using her emergency inhaler frequently and has been unable to access her usual physician for follow-up. Symptoms include persistent productive cough with green phlegm, sinus congestion, and abdominal discomfort from coughing. She denies fever, shortness of breath, or wheezing at present but remains concerned about potential pneumonia given the persistent symptoms. She has been using her CPAP machine with mist therapy but notes irritation from this and has since discontinued it.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA), asthma, sinusitis.
+
+Medications
+Nucala 100 mg subcutaneous injection every 4 weeks
+Prednisone 40 mg oral daily (new, tapering planned)
+Moxifloxacin 400 mg oral daily for 10 days (new)
+Breo Ellipta 100/25 mcg inhaled daily
+Spiriva Respimat 2.5 mcg inhaled twice daily
+Aerobika nebulizer solution 15 minutes four times daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Lives with family, uses CPAP nightly but with poor sleep quality. Reports recent influenza vaccination but concerned about potential exposure to family members.
+
+Physical Examination
+Chest: Clear to auscultation bilaterally, adequate air entry, no wheezing or crackles. Oxygen saturation 99% on room air.
+Cardiovascular: Normal S1 and S2, no murmurs or gallops.
+No lower limb edema or jugular venous distension noted.
+
+Investigations
+2026-02-06
+Respiratory panel: Positive for influenza A, negative for COVID-19, respiratory syncytial virus.
+Complete blood count: WBC 7.1 x10^9/L, hemoglobin 126 g/L, platelets 352 x10^9/L.
+Lytes, creatinine, glucose, INR: All within normal limits.
+ECG: Normal sinus rhythm, no acute abnormalities.
+
+Impression
+Sally presents with persistent respiratory symptoms in the setting of recent influenza A infection, likely complicated by secondary bacterial infection given the green phlegm production. Her current symptoms and oxygen saturation suggest no acute respiratory compromise, but she remains at risk for progression to pneumonia if symptoms persist. The use of prednisone and antibiotics is appropriate given her clinical picture, and close monitoring for improvement is warranted.
+
+Plan
+1. I will prescribe Moxifloxacin 400 mg orally once daily for 10 days for suspected Staphylococcus aureus pneumonia.
+2. I will continue prednisone 40 mg orally daily with a planned taper over 30 days to zero.
+3. I will arrange follow-up in two weeks to reassess symptoms and adjust medications as needed.
+4. I will request a repeat chest X-ray if symptoms persist beyond the planned follow-up.
+5. We will reinforce the importance of completing the antibiotic course and tapering steroids as directed.

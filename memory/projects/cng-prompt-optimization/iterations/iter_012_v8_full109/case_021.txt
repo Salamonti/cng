@@ -1,0 +1,53 @@
+Patient ID: Robyn Dawn Goodick, 53-year-old female
+
+History of Present Illness:
+Mrs. Goodick presents today with ongoing concerns about fatigue, which she describes as persistent and debilitating. She reports that even after a single day of work, she requires multiple days to recover her energy levels. She denies any shortness of breath, chest pain, palpitations, or symptoms of heart failure such as orthopnea or lower limb swelling. Her weight has increased by approximately 9 lbs over the past six months, though she has not noticed abdominal distension. She has no nausea, loss of appetite, or dizziness. She remains asymptomatic from a cardiovascular standpoint, though she acknowledges occasional wheezing during physical activity.
+
+She has been adherent to her medication regimen, including Entresto, apixaban, and insulin, though her fatigue persists despite these measures. She has not experienced any recent changes in her heart rate or blood pressure fluctuations, though she occasionally notes irregular heartbeats on Holter monitoring. Her primary concern remains her inability to sustain daily activities without significant recovery time, which she attributes to both cardiovascular and potential respiratory or metabolic factors.
+
+Past Medical History:
+Anterior ST-elevation myocardial infarction (May 2024), type 2 diabetes mellitus, hypertension, dyslipidemia, atrial fibrillation, depression (possible), segmental left ventricular dysfunction with reduced ejection fraction (30-35%), grade I diastolic dysfunction, apical thrombus post-MI, and history of smoking cessation.
+
+Medications:
+Entresto 24/26 mg PO BID
+Apixaban 5 mg PO BID
+Atorvastatin 40 mg PO daily
+Metformin 1000 mg PO BID
+Dapagliflozin 10 mg PO daily
+Ezetimibe 10 mg PO daily
+Spironolactone 12.5 mg PO daily
+Clopidogrel 75 mg PO daily
+Basaglar insulin 35 units PO daily
+Bisoprolol 10 mg PO daily
+Spiriva Respimat 2.5 mcg inhalation BID
+Ventolin HFA 100 mcg inhalation PRN
+
+Allergies: not documented
+
+Family History: Strong family history of premature coronary artery disease
+
+Social History:
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs, works but experiences significant fatigue limiting activity tolerance.
+
+Physical Examination:
+Blood pressure 112/79 mmHg, pulse rate 82 bpm and regular, oxygen saturation 97% on room air. Chest clear with adequate bilateral air entry, no wheezing noted today. Normal S1 and S2 with no additional sounds or murmurs. No jugular venous distention or lower limb edema. Neurological exam unremarkable.
+
+Investigations:
+2025-03-XX:
+BNP: 159 pg/mL
+HbA1c: 7.6% (previously 7.3%)
+LDL: 1.0 mmol/L
+
+2024-05-XX (post-MI admission):
+LDL: 4.38 mmol/L
+Ejection fraction: 30-35% with segmental wall abnormalities and apical thrombus
+
+Impression:
+Mrs. Goodick is a 53-year-old female with a history of anterior ST-elevation myocardial infarction complicated by reduced ejection fraction (30-35%), atrial fibrillation, and segmental left ventricular dysfunction. Despite optimal medical therapy for heart failure, diabetes, and dyslipidemia, she continues to experience significant fatigue, which may be multifactorial—potentially related to residual cardiac dysfunction, metabolic factors (e.g., HbA1c 7.6%), or undiagnosed respiratory or sleep-related conditions. Her current investigations, including BNP and Holter monitoring, suggest stable cardiovascular status but do not fully explain her persistent fatigue. Further evaluation for potential obstructive sleep apnea and iron deficiency is warranted.
+
+Plan:
+1. I will order a sleep study to evaluate for obstructive sleep apnea as a potential contributor to her fatigue.
+2. I will request iron studies and ferritin levels to assess for underlying anemia or iron deficiency.
+3. I will arrange a follow-up echocardiogram with wall motion score assessment to reassess left ventricular function and remodeling.
+4. I will schedule a pulmonary function test to further evaluate her respiratory symptoms and potential asthma or COPD.
+5. I will follow up with Mrs. Goodick in six months to review results of the above investigations and reassess her clinical status, with particular attention to her fatigue and functional capacity.

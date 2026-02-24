@@ -1,0 +1,37 @@
+Patient ID
+Mr. Roger Bruce Belliveau is a 76-year-old male.
+
+History of Present Illness
+Mr. Belliveau presents today for routine follow-up regarding his eosinophilic granulomatosis with polyangiitis (EGPA). He reports feeling well overall and denies any new symptoms, including fever, malaise, weight loss, bleeding, rashes, numbness, swelling, headaches, shortness of breath, wheezing, cough, chest pain, nausea, diarrhea, or abdominal pain. His examination remains unchanged from prior visits, with no acute abnormalities noted.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+
+Medications
+azathioprine 100 mg tablet once daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Blood pressure 97/55, pulse 73 bpm, SpO2 97% on room air. Chest clear with adequate air entry bilaterally. Normal S1 and S2 with no additional sounds or murmurs. Neurological exam unremarkable. 1+ pitting lower limb edema.
+
+Investigations
+2025-11-25
+- Complete blood count: WBC 10.4 x10^9/L, eosinophils 0.3 x10^9/L, hemoglobin 142 g/L, platelets 220 x10^9/L
+- Renal function: eGFR 69 mL/min/1.73m^2, creatinine 98 umol/L
+- Liver function: AST 34 U/L, ALT 50 U/L, alkaline phosphatase 57 U/L, bilirubin 8.9 umol/L, GGT 32 U/L, LDH 213 U/L, CPK 48 U/L
+
+Impression
+Mr. Belliveau remains asymptomatic with stable EGPA on current immunosuppressive therapy. His recent laboratory results show mild eosinophilia and stable renal and liver function, consistent with his chronic disease course. The persistence of mild lower limb edema may warrant further monitoring, though it is not acutely concerning. Overall, his clinical status is well-controlled on optimized medical therapy.
+
+Plan
+1. I will continue azathioprine 100 mg tablet once daily and monitor for efficacy and tolerability.
+2. I will order repeat complete blood count, renal function, and liver function tests in 6 months to assess for ongoing disease activity and medication safety.
+3. I will schedule a follow-up visit in 6 months to review laboratory results and clinical status.

@@ -1,0 +1,75 @@
+Patient ID
+Morgan Bowman Macdonald is a 74-year-old male.
+
+History of Present Illness
+Mr. Macdonald presents for assessment of pulmonary nodules identified on recent imaging. He reports no specific symptoms related to the nodules but notes ongoing shortness of breath and intermittent mucus production, which he attributes to his smoking history. He has been smoking intermittently, including currently, despite prior attempts to quit. He denies weight loss, hemoptysis, or other concerning symptoms. His myasthenia gravis symptoms have improved with Mestinon, though he continues to experience mild eye strain and tunnel vision. He has a history of COPD and reports prior pulmonary nodules identified in the past, with the largest nodule in his right lung previously evaluated at the University of Pennsylvania and found to be non-malignant.
+
+Mr. Macdonald emigrated to Canada recently and had a chest X-ray for emigration purposes, which prompted further evaluation. He has a long-standing history of smoking, with prior quit attempts, and has a history of bronchial infections. He has received flu and pneumonia vaccinations this year. His current symptoms are primarily related to his smoking and COPD, with no acute concerns related to the pulmonary nodules.
+
+Past Medical History
+Myasthenia gravis
+Chronic obstructive pulmonary disease (COPD)
+Emphysema
+Prior pulmonary nodules (right lung, previously evaluated)
+History of smoking
+
+Medications
+Lisinopril 40 mg once daily
+Mestinon (pyridostigmine) 60 mg four times daily
+Aspirin 81 mg once daily
+Ipratropium bromide (Atrovent) inhaler as needed
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Smoker (current, intermittent)
+Prior quit attempts, longest duration nine years
+History of bronchial infections since childhood
+No family physician currently
+
+Physical Examination
+Vital signs: PR 76 bpm, SpO2 97% on room air
+Lungs: Clear bilaterally
+Cardiovascular: Regular rate and rhythm, no murmurs or gallops
+No acute abnormalities noted
+
+Investigations
+2025-10-14: Chest CT with contrast
+- Multiple small pulmonary nodules, largest 9 mm in right middle lobe
+- Mild centrilobular emphysema
+- Heterogeneous thyroid nodule, right lobe, 2.7 cm
+- No evidence of thymoma or malignancy
+
+2025-12-04: Thyroid ultrasound
+- 4 cm right thyroid lobe nodule, mildly suspicious (TIRADS 3), FNA recommended
+
+2025-11-21: Head and neck CT angiogram
+- Incidental right thyroid nodule, 26 mm
+- Mild centrilobular emphysema
+
+2025-12-09: Barium swallow
+- No evidence of aspiration
+
+2025-11-04: Brain MRI
+- No evidence of acute/subacute infarction
+- Left frontal lobe encephalomalacia (prior trauma or infarct)
+
+2025-09-23: Lab results
+- Hemoglobin A1c 5.3%
+- Immunoglobulins: IgG 9.9 g/L, IgA 1.65 g/L, IgM 0.49 g/L
+- eGFR 83 mL/min/1.73m2
+
+Impression
+Mr. Macdonald is a 74-year-old male with a history of myasthenia gravis, COPD, and emphysema who presents for evaluation of pulmonary nodules. The nodules are likely smoking-related, with the largest nodule in the right lung previously evaluated and found to be non-malignant. His current symptoms are primarily related to his smoking and COPD, with no acute concerns related to the pulmonary nodules. The thyroid nodule identified on imaging requires further evaluation with fine-needle aspiration. His myasthenia gravis is well-controlled on current medications, though he continues to experience mild symptoms.
+
+Plan
+1. I will prescribe nicotine replacement therapy (patch, gum, or spray) for smoking cessation and provide smoking cessation resources.
+2. I will arrange for a follow-up chest CT in November 2026 to monitor the pulmonary nodules.
+3. I will refer Mr. Macdonald for fine-needle aspiration of the right thyroid nodule.
+4. I will schedule a follow-up appointment in December 2026 to review progress and address any new concerns.
+5. I will continue the Atrovent inhaler for symptomatic relief of COPD.
+6. We will monitor his myasthenia gravis symptoms and adjust Mestinon as needed.

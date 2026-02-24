@@ -1,0 +1,62 @@
+Patient ID: Carol Anne Nickerson is a 67-year-old female.
+
+History of Present Illness:
+Carol Anne Nickerson presents today with concerns related to her recent blood work, which revealed low iron levels and mild anemia. She reports no significant changes in her symptoms, including shortness of breath, which she describes as intermittent and not worsening. She denies any swelling, orthopnea, or changes in exercise tolerance. She has been eating iron-rich foods such as sardines and liver, but her iron levels remain low. She mentions that her recent echocardiogram showed a moderately reduced right ventricular function, but no evidence of pulmonary hypertension at this time. She is otherwise feeling stable and continues with her daily activities, including walking and shoveling snow.
+
+She expresses concern about her family history of cancer and mentions that her sister also has low iron levels. She denies any recent changes in bowel habits or gastrointestinal symptoms, though she has been doing annual fecal occult blood tests, which have been negative.
+
+---
+
+Past Medical History:
+- Precapillary pulmonary hypertension
+- Type 2 diabetes
+- Dyslipidemia
+- GERD
+- Meningioma
+
+Medications:
+- Rosuvastatin 40 mg PO daily
+- Pantoprazole 40 mg PO daily
+- Metformin/Sitagliptin 50/1000 mg PO BID
+- Dapagliflozin 10 mg PO daily
+- Tadalafil 40 mg PO daily
+- Macitentan 10 mg PO daily
+- Potassium chloride 20 mEq PO BID
+- Lasix 40 mg PO BID
+
+Allergies: not documented
+
+Family History:
+Family history significant for cancer.
+
+Social History:
+No smoking or alcohol use. She is married and lives independently. She walks daily and engages in physical activities such as shoveling snow.
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-03:
+- Hemoglobin: 108 g/L
+- Ferritin: 11.8 µg/L
+- Iron: 6.5 µmol/L
+- Total Iron Binding Capacity: 69 µmol/L
+- Vitamin B12: 172 pmol/L
+- Serum Folate: 26.3 nmol/L
+- Lactate Dehydrogenase: 259 U/L
+- Reticulocyte Count: 0.023 (low)
+- Thyroid Stimulating Hormone: 1.860 mIU/L
+- NT-proBNP: 178 ng/L
+
+2025-12-04:
+- Echocardiogram: Moderate to severely dilated right ventricle with moderately reduced right ventricular function. No evidence of pulmonary hypertension. Normal left ventricular function.
+
+Impression:
+Carol Anne Nickerson is a 67-year-old female with a history of precapillary pulmonary hypertension, type 2 diabetes, and dyslipidemia. She presents today with mild iron deficiency anemia, as evidenced by low hemoglobin, ferritin, and iron levels. Her recent echocardiogram shows persistent right ventricular dysfunction without evidence of pulmonary hypertension. Given her stable clinical status and lack of symptoms, the anemia is likely contributing to her fatigue and may be impacting her functional capacity. The etiology of her iron deficiency is unclear, but dietary intake and potential occult gastrointestinal blood loss should be considered. Her pulmonary hypertension medications are stable, and her diabetes and lipid management appear to be well-controlled.
+
+Plan:
+1. We will arrange for intravenous iron infusion (Monoferric 1 gram) to correct her iron deficiency anemia.
+2. I will order further investigations to evaluate the cause of her iron deficiency, including a fecal immunochemical test (FIT) and upper and lower endoscopy if indicated based on further blood work results.
+3. We will monitor her hemoglobin levels with follow-up blood work in 3 months to assess response to treatment.
+4. I will copy my letter to Dr. Simon Jackson to inform him of the plan and coordinate care.
+5. We will continue her current medications as they are well-tolerated and effective.
+6. I will arrange for a follow-up appointment in 3 months to reassess her symptoms, functional status, and response to treatment.

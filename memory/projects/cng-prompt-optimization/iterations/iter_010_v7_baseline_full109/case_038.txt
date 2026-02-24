@@ -1,0 +1,49 @@
+Patient ID: Miller, Janet Marie, 73-year-old female
+
+History of Present Illness:
+Janet Marie Miller is a 73-year-old female presenting for preoperative cardiac clearance prior to planned left breast lumpectomy for invasive ductal carcinoma. She reports no acute chest pain, dyspnea, or palpitations but continues to experience significant bilateral lower extremity pain limiting ambulation and recurrent lightheadedness. She denies recent changes in anginal symptoms but notes ongoing functional limitations. The patient expresses strong preference for lumpectomy over mastectomy despite acknowledging the cardiac risks of multiple general anesthetics. She remains adherent to cardiac medications and reports no recent ICD shocks or device-related symptoms.
+
+Past Medical History:
+Chronic coronary artery disease status post two-vessel CABG (2014), multiple NSTEMIs (2019, July 2023, May 2025), ICD placement (May 2025), heart failure with reduced ejection fraction (EF 34%), hypertension, type 2 diabetes mellitus, dyslipidemia, macrosteatosis, breast cancer (right mastectomy 2014, left lumpectomy 2015), anal cancer (treated with chemo/radiation), depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, thyroid disease, fatty liver, and history of seizures
+
+Medications:
+Aspirin 81mg PO daily
+Ticagrelor 90mg PO BID
+Carvedilol 6.5mg PO daily
+Amiodarone 200mg PO daily
+Jardiance 10mg PO daily
+Atorvastatin 80mg PO daily
+Metformin 1000mg PO BID
+Spironolactone 25mg PO daily
+Furosemide 40mg PO daily
+Isosorbide dinitrate 20mg PO BID
+Perindopril 4mg PO daily
+Rabeprazole 20mg PO daily
+Ferrous fumarate 300mg PO daily
+Effexor XR 75mg PO daily
+
+Allergies:
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History: not documented
+
+Social History:
+Lives alone, no tobacco use, occasional alcohol (2 drinks/month), new gentleman friend, not interested in physiotherapy
+
+Physical Examination: not documented
+
+Investigations:
+2025-05-27: Echocardiogram - EF 34%, high LV filling pressure, moderately reduced RV function, mild mitral regurgitation
+2025-12-04: Ultrasound-guided core needle biopsy - invasive ductal carcinoma (ER/PR positive, equivocal Her2neu)
+2025-12-18: Stereotactic core needle biopsy - benign breast tissue with sclerotic fibroadenoma
+
+Impression:
+This 73-year-old female with complex cardiovascular history including recent NSTEMI (May 2025), ICD placement, and heart failure with reduced ejection fraction presents for preoperative cardiac clearance prior to planned breast cancer surgery. Her cardiac risk is significantly elevated due to recent MI (within 7 months), reduced EF, and multiple comorbidities. The patient's preference for lumpectomy over mastectomy introduces additional perioperative risk given the need for potential reoperation if margins are positive. Her ongoing bilateral lower extremity pain and lightheadedness suggest potential peripheral arterial disease and arrhythmic risk requiring further evaluation.
+
+Plan:
+1. I will discontinue metformin preoperatively and resume only when oral intake is confirmed postoperatively.
+2. I will consult cardiology to determine safe timing for ticagrelor interruption (5-7 days preoperatively) while maintaining aspirin unless high bleeding risk is identified.
+3. I will arrange preoperative ICD interrogation and coordinate with anesthesia/surgery to program device to asynchronous mode during procedure.
+4. I will request preoperative stress echocardiogram to assess myocardial viability and ischemic burden given recent MI and reduced EF.
+5. I will refer to vascular surgery for evaluation of bilateral lower extremity pain and assessment for peripheral arterial disease.
+6. I will schedule follow-up appointment in 4 weeks to reassess cardiac status and surgical readiness.

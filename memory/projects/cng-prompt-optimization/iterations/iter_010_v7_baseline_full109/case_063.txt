@@ -1,0 +1,48 @@
+Patient ID
+Morgan Bowman Macdonald, 73-year-old male
+
+History of Present Illness
+This 73-year-old male presents for assessment of pulmonary nodules identified on a recent CT scan performed during evaluation for myasthenia gravis. He reports no weight loss, hemoptysis, or other constitutional symptoms, though he has experienced shortness of breath and intermittent mucus production, which he attributes to smoking. He has a long-standing history of smoking, with a recent relapse after an eight-year quit period. He denies any recent changes in his myasthenia gravis symptoms but notes persistent eye strain and tunnel vision. He has no concerns regarding swallowing or aspiration. The patient’s lungs are clear to auscultation bilaterally, with a pulse rate of 76 bpm and oxygen saturation of 97% on room air.
+
+The patient describes a history of pulmonary nodules dating back to 1923, which was later confirmed on chest x-ray in 1923 and subsequent CT scans in the United States. Previous evaluations, including a PET scan, showed no evidence of malignancy, and the nodules have remained stable or reduced in size over time. He has a history of COPD and has been treated for this in the past, though he is not currently on inhaled therapies. He has a history of frequent bronchial infections since childhood and has received annual flu and pneumonia vaccinations.
+
+Past Medical History
+Hypertension, myasthenia gravis, COPD, centrilobular emphysema, mild atherosclerotic disease, degenerative cervical spine disease, prior neck trauma
+
+Medications
+Lisinopril 40 mg once daily
+Mestinon (pyridostigmine) 60 mg four times daily
+Aspirin 81 mg once daily
+Ipratropium bromide inhaler as needed
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Lifetime smoker with recent relapse after an eight-year quit period. No family doctor currently. Covered under provincial pharmacare.
+
+Physical Examination
+Vital signs: Pulse 76 bpm, SpO2 97% on room air
+Lungs: Clear bilaterally
+Cardiovascular: Regular rate and rhythm, no murmurs
+Neurological: Normal mental status, no focal deficits, mild tunnel vision and eye strain reported
+
+Investigations
+2025-10-14: Chest CT with contrast – Multiple small pulmonary nodules, largest 9 mm in right middle lobe, mild centrilobular emphysema, right thyroid nodule 2.7 cm, no evidence of malignancy
+2025-11-21: Head CT angiogram – No acute infarction, incidental right thyroid nodule 26 mm, mild centrilobular emphysema
+2025-12-04: Thyroid ultrasound – 4 cm right thyroid lobe nodule, mildly suspicious TIRADS 3, FNA recommended
+2025-12-09: Barium swallow – No evidence of aspiration
+2025-07-28: Complete blood count, electrolytes, liver function tests, lipid panel, thyroid function tests – All within normal limits except mild elevation in ferritin (119 ug/L)
+
+Impression
+This 73-year-old male has multiple small pulmonary nodules identified on recent imaging, likely related to his long-standing smoking history and underlying COPD. The largest nodule is stable and appears benign, but follow-up imaging is recommended to monitor for changes. He also has a significant right thyroid nodule that requires further evaluation with fine-needle aspiration. His myasthenia gravis is well-controlled on current therapy, though he continues to experience mild ocular symptoms. The patient’s recent relapse in smoking is a significant concern given his history of COPD and pulmonary nodules, and smoking cessation support should be prioritized.
+
+Plan
+1. I will prescribe ipratropium bromide inhaler 2 puffs four times daily for COPD symptom management.
+2. I will arrange for a fine-needle aspiration biopsy of the right thyroid nodule for further characterization.
+3. I will refer the patient to the smoking cessation program for support and provide nicotine replacement therapy options.
+4. We will schedule a follow-up CT chest in six months to monitor the pulmonary nodules.
+5. We will arrange a follow-up appointment in December to assess progress on smoking cessation and review thyroid nodule biopsy results.

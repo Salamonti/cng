@@ -1,0 +1,56 @@
+Patient ID: Arthur Belliveau, 62-year-old male
+
+History of Present Illness:
+Mr. Belliveau presented with acute confusion and hemodynamic instability requiring transfer to ICU. On the same day, blood cultures returned positive for gram-negative bacteremia. This development follows a recent clinical course marked by fever, elevated inflammatory markers (CRP 298 mg/L), and positive urine culture for Staphylococcus aureus. The patient has been experiencing acute back pain, and investigations were initiated to rule out discitis, osteomyelitis, or abscess. Despite negative blood cultures for Staphylococcus aureus, the clinical picture remains concerning for sepsis and bacteremia, likely contributing to his confusion and hemodynamic instability.
+
+Past Medical History:
+Hypertension, dyslipidemia, severe dilated cardiomyopathy with LVEF 40% and LV size 6.5 cm secondary to valvular disease, severe aortic regurgitation due to flail right coronary cusp, aortic root dilation (5.1 cm), history of NSTEMI, history of alcohol overuse disorder (no use for 12 years), bronchial asthma, chronic right chest, neck, and spine pain secondary to traumatic injury, history of smoking (60 pack-years, quit 11 years ago), vaping marijuana (3g/day)
+
+Medications:
+Lisinopril 20 mg PO OD
+Metoprolol 25 mg PO BID
+Spironolactone 25 mg PO OD
+Not documented
+
+Allergies:
+No known allergies
+
+Family History:
+Not documented
+
+Social History:
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3g/day
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-10-30:
+- CBC: WBC 33.0 x10^9/L, Hb 96 g/L, Plts 31 x10^9/L, immature granulocytes 0.92 x10^9/L
+- CRP: 215 mg/L
+- Lytes: Na 141 mmol/L, K 3.4 mmol/L, Cl 110 mmol/L
+- Creatinine: 79 umol/L
+- Venous Blood Gas: pH 7.44, lactate 1.2 mmol/L
+- Urinalysis: Positive nitrites, moderate bacteria, WBC 5-10/hpf
+- MRI Cervicothoracic Spine: No discitis/osteomyelitis, no abscess, C5-C6 broad-based disc bulge with moderate spinal canal stenosis
+- MRI Lumbar Spine: No discitis/osteomyelitis, mild to moderate degenerative changes, bilateral renal hypoenhancement suggestive of pyelonephritis
+
+2025-10-26:
+- CBC: WBC 11.1 x10^9/L, Hb 133 g/L, Plts 12 x10^9/L, toxic neutrophils, echinocytes, no schistocytes
+- CRP: 298 mg/L
+- Lytes: Na 136 mmol/L, K 3.2 mmol/L, Cl 104 mmol/L
+- Creatinine: 77 umol/L
+- Urinalysis: Positive nitrites, moderate bacteria, WBC 5-10/hpf
+- Chest X-ray: No acute abnormality detected
+- ECG: Sinus tachycardia, premature atrial complexes, bifascicular block, T wave abnormalities
+
+Impression:
+Mr. Belliveau is a 62-year-old male with a complex medical history, including severe dilated cardiomyopathy and aortic root dilation, presenting with acute confusion and hemodynamic instability. The recent positive blood culture for gram-negative bacteremia, despite negative Staphylococcus aureus cultures, suggests a severe infectious process contributing to his clinical decline. Elevated inflammatory markers and evidence of pyelonephritis on imaging further support the diagnosis of sepsis with bacteremia. The patient’s confusion and hypotension likely reflect systemic sepsis and its complications.
+
+Plan:
+1. I will initiate broad-spectrum intravenous antibiotics targeting gram-negative bacteremia, pending final culture results and sensitivity.
+2. I will consult Infectious Diseases for further management of bacteremia and sepsis.
+3. I will arrange for continuous hemodynamic monitoring and supportive care in the ICU.
+4. I will repeat blood cultures and CRP in 24-48 hours to assess response to treatment.
+5. I will obtain a transesophageal echocardiogram to evaluate for endocarditis or prosthetic valve dysfunction.
+6. We will reassess the patient’s mental status and hemodynamic stability daily, with adjustments to treatment as needed.

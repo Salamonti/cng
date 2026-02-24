@@ -1,0 +1,48 @@
+Patient ID: Catherine Lynn Deveau, 63-year-old female
+
+History of Present Illness:
+Mrs. Deveau presents with worsening respiratory symptoms characterized by persistent wheezing and shortness of breath, particularly during the day. She reports that her current inhalers, including Ventolin (blue puffer) and Atrovent (green puffer), are not providing adequate relief. She previously used a red inhaler but discontinued it due to severe panic attacks and the sensation of impending heart attack, which she attributed to the medication. She denies hemoptysis but reports weight gain and continues to smoke approximately five to six cigarettes daily despite prior attempts to quit. She also describes transient episodes of facial numbness and freezing on the right side, which have been evaluated with a CT scan of the head and carotid ultrasound, showing small vessel ischemic changes and no significant carotid atherosclerosis.
+
+Her past medical history includes a myocardial infarction in 2011 treated with a drug-eluting stent, hypertension, dyslipidemia, chronic anxiety, and a history of substance abuse. She has a history of panic attacks and depression, with prior trials of mirtazapine and sertraline. She denies any recent changes in her mental health status but remains concerned about her respiratory symptoms and their impact on her daily activities.
+
+Past Medical History:
+Myocardial infarction (2011, treated with drug-eluting stent), hypertension, dyslipidemia, chronic anxiety, history of substance abuse (opioids, benzodiazepines), depression, chronic obstructive pulmonary disease (COPD)
+
+Medications:
+- APO-metoprolol 25 mg, 1 tablet twice daily
+- MYLAN-pantoprazole 40 mg, 1 tablet daily
+- TARO-atorvastatin 80 mg, 1 tablet once daily at bedtime
+- PMS-sertraline 25 mg, 2 capsules once daily in the morning
+- APO-perindopril 8 mg, 1 tablet once daily
+- SANDOZ-amlodipine 5 mg, 1/2 tablet once daily
+- SANDOZ-mirtazapine 15 mg, 1/2 tablet at bedtime
+- Ventolin (albuterol) 100 mcg, 2 puffs as needed
+- Atrovent (ipratropium) 20 mcg, 2 puffs as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Current smoker (5-6 cigarettes daily), history of substance abuse (opioids, benzodiazepines), no alcohol use reported
+
+Physical Examination:
+Vital signs: not documented
+Lungs: diminished air entry bilaterally, no wheezing noted on auscultation
+Cardiovascular: regular rate and rhythm, no murmurs
+General: weight gain noted, no acute distress
+
+Investigations:
+2025-11-18:
+- Carotid ultrasound: no cervical carotid atherosclerosis, mildly elevated peak systolic velocity in the mid left cervical ICA without vascular narrowing
+- CT head: small vessel ischemic changes, normal brain volume for age, no acute intracranial hemorrhage
+
+2023-06-26:
+- MIBI scan: fixed perfusion defects in septal regions, normal global LV systolic function with EF of 73%
+
+Plan:
+1. I will refer Mrs. Deveau for a pulmonary function test (PFT) to further evaluate her respiratory symptoms and confirm the diagnosis of COPD.
+2. I will order a chest CT scan to assess for structural lung abnormalities and rule out other potential causes of her respiratory symptoms.
+3. I will refer Mrs. Deveau to a smoking cessation program and provide counseling on the importance of quitting smoking to improve her respiratory and cardiovascular health.
+4. I will review her inhaler regimen with her and consider alternative bronchodilators or inhaled corticosteroids if her symptoms persist, ensuring careful monitoring for adverse effects such as panic attacks.
+5. I will follow up with Mrs. Deveau in one month to review the results of the PFT and chest CT scan, and to reassess her respiratory symptoms and overall health status.

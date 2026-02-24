@@ -1,0 +1,53 @@
+Patient ID: Jennifer Crowell, 50-year-old female
+
+History of Present Illness:
+Jennifer is a 50-year-old female with a history of pulmonary sarcoidosis who presents for follow-up three weeks post-breast reduction surgery. She reports mild irritation and redness at the surgical site but no other complications. She has been off methotrexate for two months without issues. She notes new raised bumps on her tattooed left arm and forearm, which she associates with sarcoidosis given her prior history of similar skin changes. Her breathing has been affected since surgery, with wheezing that has improved slightly in the last few days, though she remains tender. She also reports a persistent cough, which she attributes to her blood pressure medication (Temazartan/Hydrochlorothiazide), causing occasional severe coughing fits lasting six to eight hours.
+
+Jennifer denies fever, chest pain, or hemoptysis. Her weight loss is intentional, and she feels otherwise well aside from the cough and skin changes. She has not required increased use of her inhaler aside from the recent wheezing. She is concerned about the cough and inquires about alternative blood pressure medications.
+
+Past Medical History:
+Pulmonary sarcoidosis
+Hypertension
+Diastolic dysfunction (stable)
+Dilated pulmonary artery (stable)
+
+Medications:
+Temazartan 80 mg po daily
+Hydrochlorothiazide 12.5 mg po daily
+Methotrexate discontinued (last dose 2 months ago)
+Folic acid 5 mg po weekly (discontinued with methotrexate)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+General: Well-appearing female in no acute distress.
+Vital signs: Not documented.
+Cardiovascular: Normal S1 and S2, no murmurs or additional sounds.
+Respiratory: Clear lungs, adequate air entry bilaterally.
+Abdomen: Soft, no organomegaly.
+Skin: Multiple nodules on the left arm and forearm at tattoo sites.
+Neurological: Unremarkable.
+No jugular venous distention or lower limb edema.
+
+Investigations:
+2025-12-31:
+- ACE level: 1 U/L (reference 8-52)
+- Hemoglobin A1c: 5.3%
+- Complete blood count: WBC 5.8 x10^9/L, hemoglobin 131 g/L, platelets 329 x10^9/L
+- eGFR: 90 mL/min/1.73m^2, creatinine 69 umol/L
+- Electrolytes: Sodium 139 mmol/L, potassium 3.8 mmol/L, chloride 100 mmol/L
+- Liver enzymes: AST 38 U/L, ALT 34 U/L, GGT 28 U/L, alkaline phosphatase 91 U/L
+- Bilirubin: 16.8 umol/L
+
+Impression:
+Jennifer Crowell is a 50-year-old female with a history of pulmonary sarcoidosis presenting with new skin nodules at tattoo sites and a persistent cough attributed to her current blood pressure medication. Her pulmonary symptoms have improved since surgery, though she remains tender. Laboratory findings show stable renal function, normal hemoglobin A1c, and mildly elevated liver enzymes likely related to prior methotrexate use. The skin nodules are concerning for sarcoidosis involvement, though she is asymptomatic from her pulmonary disease at this time.
+
+Plan:
+1. I will discontinue Temazartan/Hydrochlorothiazide and switch to Perindopril/Indapamide 4 mg/1.25 mg po daily to address her cough attributed to current blood pressure medication.
+2. I will monitor her sarcoidosis skin nodules clinically without intervention at this time, given her asymptomatic status and stable pulmonary disease.
+3. I will arrange a follow-up appointment in three months to reassess her blood pressure control, skin nodules, and overall symptoms.
+4. I will order a repeat ACE level and liver function tests in three months to monitor for sarcoidosis activity and methotrexate-related effects.

@@ -1,0 +1,51 @@
+Patient ID
+Aziza Hussein, 60-year-old female
+
+History of Present Illness
+Aziza Hussein presents with a three-day history of nausea, anorexia, and urinary symptoms since initiating dapagliflozin 10 mg daily for type 2 diabetes mellitus. She reports her blood sugars remain "not that bad" despite these symptoms. Her current insulin regimen includes Tresiba 22 units twice daily (morning and bedtime), which was recently adjusted from a prior regimen of 20 units BID. She experiences postprandial hyperglycemia, particularly in the early afternoon (2–3 PM), suggesting suboptimal glycemic control. She also describes urinary symptoms consistent with possible dapagliflozin-related side effects.
+
+Aziza denies acute symptoms such as polyuria, polydipsia, or visual changes. Her family doctor initiated dapagliflozin, but she has not tolerated it due to gastrointestinal and urinary symptoms. She has been advised to reduce her Tresiba dose to 15 units twice daily, with plans to add short-acting insulin (e.g., NovoRapid) prior to meals. She expresses concern about her medication regimen and its impact on her quality of life.
+
+Past Medical History
+Type 2 diabetes mellitus (diagnosed in late 20s)
+Hypertension (status unknown)
+Chronic kidney disease stage III (eGFR 41 mL/min/1.73m², creatinine 130 µmol/L)
+No surgical procedures reported
+
+Medications
+Rosuvastatin 20 mg swallow oral once daily
+Metformin 500 mg swallow oral twice daily
+Tresiba FlexTouch 100 units/mL subcutaneous injection 15 units twice daily (morning and bedtime)
+NovoRapid 100 units/mL subcutaneous injection 5 units before each meal
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Lifelong non-smoker
+Does not consume alcohol
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-29
+- Hemoglobin A1c: Not documented (pending)
+- Random plasma glucose: 9.3 mmol/L
+- Complete blood count: Normal (WBC 8.1 x10⁹/L, Hb 122 g/L, platelets 409 x10⁹/L)
+- Electrolytes: Sodium 138 mmol/L, potassium 4.7 mmol/L, chloride 107 mmol/L
+- eGFR: 42 mL/min/1.73m² (creatinine 126 µmol/L)
+- Venous blood gas: pH 7.43, HCO₃ 25.7 mmol/L, lactate 0.7 mmol/L
+
+Impression
+Aziza Hussein has poorly controlled type 2 diabetes mellitus with persistent hyperglycemia, as evidenced by her random glucose of 9.3 mmol/L and prior hemoglobin A1c of 11.0%. Her recent initiation of dapagliflozin has been poorly tolerated, causing gastrointestinal and urinary symptoms, prompting discontinuation. Chronic kidney disease stage III (eGFR 42) limits medication options and necessitates careful monitoring. Postprandial hyperglycemia suggests suboptimal insulin coverage, requiring adjustment of her regimen.
+
+Plan
+1. I will discontinue dapagliflozin 10 mg daily due to intolerance and poor tolerability.
+2. I will adjust Tresiba to 15 units twice daily (morning and bedtime) and initiate NovoRapid 5 units before each meal to improve glycemic control and reduce postprandial spikes.
+3. I will order hemoglobin A1c and renal panel (including creatinine, eGFR, electrolytes) to reassess glycemic control and renal function.
+4. I will request a urine analysis to evaluate for urinary symptoms and potential infection.
+5. I will schedule a follow-up appointment in three months to reassess glycemic control, renal function, and medication adjustments.

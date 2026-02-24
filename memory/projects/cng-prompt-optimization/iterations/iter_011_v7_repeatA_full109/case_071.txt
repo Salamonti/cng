@@ -1,0 +1,60 @@
+Patient ID: Sally Belding is a 73-year-old female.
+
+History of Present Illness:
+Sally presents with persistent respiratory symptoms following a confirmed influenza A infection diagnosed on February 6, 2026. She reports ongoing productive cough with thick green phlegm, which she describes as overwhelming and difficult to clear. Despite initial treatment for bronchitis and asthma exacerbation, her symptoms have not improved. She has been using her emergency inhaler frequently and has had no fever for several days but continues to experience sinus congestion and abdominal soreness from persistent coughing. She denies shortness of breath or wheezing but remains concerned about potential lung involvement, fearing progression to pneumonia. She has been using her CPAP machine intermittently due to irritation from the mist, which she believes may have contributed to her symptoms.
+
+Sally was previously hospitalized twice and treated with multiple medications, including prednisone, which was initiated by Dr. Long. She was told she was too far along in her influenza course to benefit from antiviral therapy. She has been unable to secure an appointment with her family doctor, Dr. Ovi, and feels frustrated by the lack of access to consistent care.
+
+Past Medical History:
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+Asthma
+Chronic sinusitis
+
+Medications:
+Nucala 100mg subcutaneous injection monthly
+Breo Ellipta 100/200mcg inhaled once daily
+Spiriva Respimat 2.5mcg inhaled twice daily
+Prednisone 40mg oral daily (taper planned)
+Moxifloxacin 400mg oral daily (10-day course)
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+Lives with family, uses CPAP nightly but with poor sleep quality, concerned about spreading illness to household members. Reports recent flu shot but unsure if timing affects current treatment.
+
+Physical Examination:
+Chest: Clear to auscultation bilaterally, no wheezing or crackles. Oxygen saturation 99% on room air.
+Cardiovascular: Normal S1 and S2, no murmurs or gallops.
+Respiratory: No accessory muscle use, respiratory rate unremarkable.
+General: No acute distress, no fever.
+
+Investigations:
+2026-02-06:
+Respiratory panel: Positive for influenza A, negative for COVID-19, respiratory syncytial virus.
+Complete blood count: WBC 7.1 x10^9/L, hemoglobin 126 g/L, platelets 352 x10^9/L.
+Lytes: Sodium 140 mmol/L, potassium 4.0 mmol/L, chloride 101 mmol/L.
+Creatinine: 56 umol/L.
+Glucose random: 5.6 mmol/L.
+Ferritin: 57.30 ug/L.
+Total iron binding capacity: Iron 9.6 umol/L, TIBC 50 umol/L, % saturation 0.19.
+Prothrombin time/INR: 1.0.
+ECG: Normal sinus rhythm, no significant changes from prior.
+
+2026-01-29:
+Chest X-ray: Clear lungs, no acute abnormalities detected.
+Venous blood gas: pH 7.37, pCO2 50.5 mmHg, HCO3 29.1 mmol/L, lactate 0.90 mmol/L.
+
+Impression:
+Sally is experiencing a prolonged post-influenza respiratory illness characterized by persistent productive cough and thick green phlegm, likely representing a secondary bacterial infection. Given the history of influenza A and the current symptoms, Staphylococcus aureus infection is suspected, which is commonly seen in post-viral respiratory exacerbations. Her EGPA remains stable, and there is no evidence of acute respiratory compromise on examination or recent imaging. The concern for progression to pneumonia is mitigated by her current clinical stability and normal oxygen saturation.
+
+Plan:
+1. I will prescribe Moxifloxacin 400mg orally once daily for 10 days to treat suspected Staphylococcus aureus infection.
+2. I will continue prednisone 40mg orally daily with a taper over 30 days to baseline, as previously initiated for respiratory symptoms.
+3. I will arrange follow-up with Dr. Ovi’s office to address ongoing access to primary care and coordinate future EGPA management.
+4. We will review the need for flu shot rescheduling due to recent influenza infection and assess timing for future vaccination.
+5. I will advise Sally to continue her current inhaler regimen (Breo Ellipta, Spiriva Respimat) as prescribed and discontinue CPAP mist therapy temporarily to reduce lung irritation.
+6. We will schedule a follow-up appointment in 4 weeks to reassess respiratory symptoms and taper prednisone as planned.

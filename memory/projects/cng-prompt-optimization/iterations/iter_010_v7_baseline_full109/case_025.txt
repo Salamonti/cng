@@ -1,0 +1,52 @@
+Patient ID
+Arthur Belliveau is a 62-year-old male.
+
+History of Present Illness
+Mr. Belliveau presented with worsening confusion and hypotension. He was found to have Staphylococcus aureus bacteremia on pending cultures, which was later confirmed. Given his clinical deterioration, he was transferred to the ICU for management of sepsis with possible endocarditis. The patient has a history of aortic valve replacement in 2020, and his current presentation raises concern for a potential prosthetic valve infection or other metastatic focus of infection.
+
+Past Medical History
+Hypertension, dyslipidemia, ex-smoker (60 pack-years, quit 11 years ago), vapes marijuana 3g/day, history of alcohol use disorder (no use for 12 years), bronchial asthma, chronic right chest, neck, and spine pain secondary to traumatic injury, dilated cardiomyopathy with severe aortic regurgitation, aortic root dilation, and history of NSTEMI.
+
+Medications
+Lisinopril 20 mg PO daily
+Metoprolol 25 mg PO twice daily
+Spironolactone 25 mg PO daily
+Not documented
+
+Allergies
+No known allergies
+
+Family History
+Not documented
+
+Social History
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3g/day.
+
+Physical Examination
+Not documented
+
+Investigations
+2026-01-26
+Blood culture: Staphylococcus aureus detected
+
+2025-10-31 to 2025-10-26
+Complete blood count: Leukocytosis (WBC 11.1-34.3 x10^9/L), thrombocytopenia (platelets 11-42 x10^9/L), anemia (hemoglobin 96-133 g/L)
+C-reactive protein: Elevated (202-298 mg/L)
+Venous blood gas: pH 7.41-7.44, lactate 1.2-2.1 mmol/L
+Urinalysis: Positive nitrites, moderate bacteria, no significant hematuria or pyuria
+Echocardiogram: Moderate aortic root dilation, elevated prosthetic aortic valve gradients, no independently mobile valvular masses diagnostic of vegetation on this study
+Chest X-ray: No acute abnormality detected
+MRI Cervicothoracic Spine: No findings to suggest discitis/osteomyelitis or abscess
+MRI Lumbar Spine: No convincing evidence of spondylodiscitis, osteomyelitis, or abscess; mild to moderate degenerative changes
+Abdominal ultrasound: Cholelithiasis, no definite cholecystitis or ascites
+ECG: Sinus tachycardia with premature atrial complexes, bifascicular block, T wave abnormalities
+
+Impression
+Mr. Belliveau is a 62-year-old male with a history of aortic valve replacement and chronic conditions including hypertension, dyslipidemia, and asthma, who presented with Staphylococcus aureus bacteremia and clinical signs of sepsis. His current presentation, including hypotension and confusion, raises concern for a serious infection, potentially involving the prosthetic aortic valve or another metastatic focus. The elevated inflammatory markers and leukocytosis support the diagnosis of sepsis, and the echocardiogram findings, while not definitive, warrant consideration of endocarditis as a possible complication.
+
+Plan
+1. I will ensure the patient is transferred to the ICU for close monitoring and management of sepsis with possible endocarditis.
+2. I will consult Infectious Diseases for guidance on antimicrobial therapy, including consideration of empiric coverage for Staphylococcus aureus, including methicillin-resistant strains if appropriate.
+3. I will arrange for a transesophageal echocardiogram (TEE) to further evaluate for prosthetic valve endocarditis or other cardiac complications.
+4. I will continue to monitor blood cultures and inflammatory markers to guide ongoing management and response to therapy.
+5. We will reassess the patient's hemodynamic status and adjust supportive care as needed, including fluid resuscitation and vasopressor support if required.

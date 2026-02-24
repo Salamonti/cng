@@ -1,0 +1,60 @@
+Patient ID
+Edward Doucet is a 91-year-old male presenting for evaluation of elevated white blood cell count and monoclonal gammopathy.
+
+History of Present Illness
+Mr. Doucet reports a recent discovery of an elevated white blood cell count at 14 x10^9/L, which he understands is slightly above the normal range. He also has a monoclonal IgG kappa protein detected on serum protein electrophoresis, measuring 2.8 g/L. He denies symptoms of fatigue, muscle pain, frequent infections, or bleeding beyond minor cuts. He notes occasional cold feet and intermittent burning sensations in both feet, which he attributes to age-related vascular changes. He has lost approximately 30 pounds over the past year, primarily following a cholecystectomy. He reports occasional skipped heartbeats but no other cardiac symptoms. He denies recent weight loss beyond the noted post-cholecystectomy loss and has no recent changes in appetite or energy level.
+
+Past Medical History
+Benign essential hypertension, coronary artery disease status post double bypass at age 62, abdominal aortic aneurysm repair at age 68, cholecystectomy, kidney stones, chronic kidney disease stage 3b (eGFR 29), history of transient urinary retention (TURP), elevated PSA.
+
+Medications
+- Amlodipine 30 mg oral tablet, once daily
+- Metoprolol 50 mg tablet, twice daily
+- Allopurinol 100 mg tablet, once daily
+- Aspirin 81 mg delayed release tablet, once daily
+- Rosuvastatin 20 mg tablet, once daily
+- Hydrochlorothiazide 12.5 mg tablet, once daily
+- Nitroglycerin 0.4 mg spray, as needed
+- Tecta 40 mg enteric coated tablet, once daily
+- Vitamin B12 1000 mcg oral tablet, once daily
+- Ramipril 20 mg tablet, once daily
+- Cholestyramine 4 g, once daily
+
+Allergies
+Seasonal allergies; no known drug allergies documented
+
+Family History
+Not documented
+
+Social History
+Not documented
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-03
+- Complete Blood Count: WBC 14.8 x10^9/L (elevated), RBC 4.97 x10^12/L, hemoglobin 142 g/L, hematocrit 0.471, MCV 94.8 fL, MCH 30.1 pg, MCHC 316 g/L, RDW 15.6% (elevated), platelets 194 x10^9/L, MPV 10.8 fL (elevated), neutrophils 6.8 x10^9/L, lymphocytes 6.5 x10^9/L (elevated), monocytes 1.2 x10^9/L (elevated), eosinophils 0.2 x10^9/L, basophils 0.1 x10^9/L, immature granulocytes 0.06 x10^9/L.
+- Serum Protein Electrophoresis: Monoclonal IgG kappa protein 2.8 g/L.
+- Immunofixation Electrophoresis: Confirms monoclonal IgG kappa protein.
+- Thyroid Stimulating Hormone: 5.240 mIU/L (elevated).
+- eGFR: 29 mL/min/1.73m^2 (moderately to severely decreased).
+- Creatinine: 186 umol/L (elevated).
+- Free T4: 15.8 pmol/L (normal).
+- Sodium: 147 mmol/L (elevated).
+- Potassium: 4.6 mmol/L (normal).
+- Chloride: 110 mmol/L (elevated).
+- Ferritin: 189.00 ug/L (normal).
+- Lipids: Cholesterol 3.7 mmol/L, triglycerides 1.71 mmol/L (elevated), LDL cholesterol 1.7 mmol/L, HDL cholesterol 1.26 mmol/L, cholesterol/HDL ratio 2.9.
+- Prostate Specific Antigen: 8.770 ug/L (elevated).
+- Alanine Aminotransferase: 27 U/L (normal).
+- Peripheral Blood Morphology: Lymphocytes elevated on manual differential.
+
+Impression
+Mr. Doucet is a 91-year-old male with a newly identified elevated white blood cell count and monoclonal gammopathy of undetermined significance (MGUS) characterized by a monoclonal IgG kappa protein. He also has a long-standing history of chronic lymphocytic leukemia (CLL), though this has not been definitively confirmed. His symptoms are largely attributed to age-related vascular changes and prior surgical interventions. The elevated WBC and monoclonal protein are currently asymptomatic and do not require immediate intervention, but ongoing monitoring is essential.
+
+Plan
+1. I will order flow cytometry on peripheral blood for further characterization of the lymphocytosis.
+2. I will arrange for serum protein electrophoresis and complete blood count every six months for monitoring of MGUS and CLL.
+3. I will schedule follow-up in six months to review results and assess for any changes in symptoms or laboratory findings.
+4. I will advise the patient to return promptly if he develops symptoms of frequent infections, easy bruising, uncontrolled bleeding, or signs of anemia such as fatigue, shortness of breath, or pallor.

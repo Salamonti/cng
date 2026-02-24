@@ -1,0 +1,35 @@
+Patient ID: This is a 65-year-old male patient presenting for evaluation of chest pain.
+
+History of Present Illness:
+The patient presents today with severe chest pain, which is described as sudden in onset and described as pressure-like in character. The pain is located centrally and radiates to the left arm. It is associated with shortness of breath and mild diaphoresis. The patient denies any relief with rest or nitroglycerin. The pain has been ongoing for approximately 2 hours prior to presentation. The patient reports no prior episodes of similar chest pain, though he has a known history of coronary artery disease.
+
+The patient denies any associated symptoms such as nausea, vomiting, or palpitations. There is no history of trauma or recent exertion. The patient is concerned due to the severity and persistence of the symptoms.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-01-21: ECG shows ST depression in inferior leads
+
+Impression:
+This patient presents with severe chest pain and an ECG demonstrating ST depression in the inferior leads, which is highly suggestive of an acute coronary syndrome. Given his known history of coronary artery disease, the risk of an acute myocardial infarction is elevated. Immediate evaluation and management are warranted to assess for ongoing ischemia and to prevent further cardiac events.
+
+Plan:
+1. I will initiate aspirin 325 mg orally and start intravenous heparin infusion.
+2. I will consult cardiology for urgent cardiac catheterization to evaluate for coronary revascularization.
+3. We will monitor the patient in the coronary care unit for ongoing cardiac assessment and management.

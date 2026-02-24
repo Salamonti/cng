@@ -1,0 +1,43 @@
+Patient ID
+Edwin Avery Nickerson is an 81-year-old male.
+
+History of Present Illness
+Mr. Nickerson reports a sudden, brief episode approximately one month ago that he describes as a "shock" or "boom" sensation, lasting less than a second, with no associated loss of vision, speech difficulty, numbness, or weakness. He was sitting in a chair with his wife present and felt well immediately afterward. He does not believe this was a stroke, as symptoms were transient and lacked typical stroke features. He denies any recent changes in breathing, chest pain, or palpitations, though he has long-standing shortness of breath on exertion. He also notes persistent abdominal distension without weight gain or edema. He feels generally well aside from mild weakness attributed to age and early cognitive changes, though he denies significant memory or word-finding difficulties.
+
+Past Medical History
+Coronary artery disease, congestive heart failure, atrial fibrillation, hypertension, type 2 diabetes mellitus, mild aortic root dilation, mild mitral regurgitation, mild tricuspid regurgitation, mild aortic regurgitation, mild mitral valve prolapse, segmental left ventricular dysfunction, mild concentric left ventricular hypertrophy, biatrial enlargement.
+
+Medications
+Atorvastatin 40mg OD
+Bisoprolol 10mg OD
+Empagliflozin 25mg OD
+Gliclazide 60mg OD
+Metformin 500mg BID
+Rivaroxaban 20mg OD
+Spironolactone 25mg OD
+Perindopril 8mg OD
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Blood pressure 120/78 mmHg, pulse 78 bpm (regular), oxygen saturation 98% on room air. No jugular venous distention or lower limb edema. Lungs clear to auscultation bilaterally. No murmurs or additional heart sounds. Neurological exam unremarkable. Abdominal distension noted without tenderness or hepatomegaly.
+
+Investigations
+2025-02-03: ECHO - Normal LV size, mild concentric LV hypertrophy, EF 50-55%, segmental LV dysfunction, biatrial enlargement, moderate aortic root dilation (4.5 cm), mild ascending aorta dilation (4.1 cm), mild mitral regurgitation, mild tricuspid regurgitation.
+2025-09-24: Labs - eGFR 64, creatinine 102, glucose AC 10.5, urea 6.6, sodium 136, potassium 4.1, cholesterol 3.4, triglycerides 1.24, LDL 1.6, HDL 1.22, bilirubin 11.3, AST 30, ALT 23, alkaline phosphatase 124, TSH 3.38, urine ACR 57.2.
+
+Impression
+Mr. Nickerson is an 81-year-old male with a history of coronary artery disease, congestive heart failure, and atrial fibrillation who presents with a transient, unexplained episode that he does not believe is a stroke. His recent echocardiogram demonstrates stable segmental LV dysfunction with preserved ejection fraction and mild valvular abnormalities. His long-standing exertional dyspnea and abdominal distension persist without acute decompensation. Given his history of atrial fibrillation and the transient nature of his symptoms, a cardiac arrhythmia remains a consideration, though no clear correlation has been established.
+
+Plan
+1. I will arrange for a 24-hour Holter monitor to assess for arrhythmias, particularly atrial fibrillation-related events.
+2. I will review the Holter monitor results at the next follow-up visit to guide further management.
+3. I will continue current medications as they are well tolerated and appropriate for his comorbidities.
+4. I will schedule a follow-up appointment in 3 months to reassess symptoms and Holter monitor results.

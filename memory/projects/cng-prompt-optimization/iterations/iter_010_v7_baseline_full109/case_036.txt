@@ -1,0 +1,70 @@
+Patient ID
+Janet Marie Miller is a 73-year-old female.
+
+History of Present Illness
+Ms. Miller presents for follow-up regarding ongoing bilateral lower extremity pain and recurrent lightheadedness, which have persisted since her October 2025 visit. She describes the pain as sharp, localized around the bilateral hip bones, and radiating into her shins and calves, significantly limiting her mobility. Previously able to walk several miles daily, she now struggles beyond brief distances and requires a shopping cart for support. The pain is exacerbated by physical activity and persists even at rest. She denies any recent chest discomfort but continues to experience intermittent episodes of dizziness unrelated to postural changes. Her anginal symptoms remain intermittent and are primarily triggered by exertion, though she reports no recent worsening. She adheres to dietary recommendations and takes her medications regularly.
+
+Ms. Miller also reports new concerns regarding her breast cancer management. She has been diagnosed with an ER/PR-positive infiltrating ductal carcinoma in her left breast, confirmed by biopsy in December 2025. She is a poor surgical candidate due to her extensive cardiac history, including chronic coronary artery disease, multiple NSTEMI events, an EF of 34%, and an implanted ICD. She strongly prefers a lumpectomy over mastectomy and is willing to accept the risks of a second operation if needed. She has not undergone further vascular surgery evaluation for her lower extremity pain despite prior recommendations.
+
+Past Medical History
+Chronic coronary artery disease status post CABG (2014), multiple NSTEMI events (2019, 2023, 2025), hypertension, type 2 diabetes mellitus, dyslipidemia, macrosteatosis, breast cancer (right mastectomy 2014, left lumpectomy 2015, new left infiltrating ductal carcinoma 2025), anal cancer (treated with chemo/radiation), depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, mental illness, seizures, bleeding disorders, liver disease, thyroid disease, fatty liver.
+
+Medications
+Aspirin 81 mg PO daily
+Ticagrelor 75 mg PO daily
+Carvedilol 6.5 mg PO daily
+Rabeprazole 20 mg PO daily
+Ezetimibe 10 mg PO daily
+Perindopril 4 mg PO daily
+Nifedipine 60 mg PO daily
+Metformin 1000 mg PO b.i.d.
+Jardiance 10 mg PO daily
+Atorvastatin 80 mg PO daily
+Ferrous fumarate 300 mg PO daily
+Novolin NPH (insulin) as prescribed
+Amiodarone as prescribed
+Spironolactone as prescribed
+Furosemide as prescribed
+Isosorbide dinitrate as prescribed
+Vitamin C 500 mcg PO daily
+Vitamin B12 1000 mcg PO daily
+Folic acid 400 mcg PO daily
+Probiotic 500 mg PO daily
+Echinacea 1000 mg PO daily
+
+Allergies
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History
+Not documented
+
+Social History
+Lives alone, no smoking or recreational drug use, occasional alcohol (2 drinks/month), new gentleman friend, not interested in physiotherapy rehabilitation.
+
+Physical Examination
+Vitals stable. Patient appears pleasant and cooperative. Lower extremities demonstrate bilateral tenderness over hips with palpable and equal peripheral pulses. Mild bibasilar rales on auscultation. No further details documented in current encounter.
+
+Investigations
+2025-11-XX:
+- ECG: possible mild ST elevation in V1 and V2
+- Echocardiogram: EF 34%, high LV filling pressure, moderately reduced RV function, mild mitral regurgitation
+- Labs: total cholesterol 3.7 mmol/L, triglycerides 1.9 mmol/L, LDL 2.0 mmol/L, HDL 1.16 mmol/L, ALT 3.1, AST 19, CK 16, creatinine 56 umol/L, eGFR 83, sodium 130 mmol/L (corrected from 90), potassium 4.0 mmol/L (corrected from 90), random glucose 4.7 mmol/L, HbA1c 7.6%, hemoglobin 121 g/L, platelets 185 x10^9/L (corrected from 18.5), troponin 100 pg/mL, D-dimer positive.
+
+2025-12-XX:
+- Left breast ultrasound-guided core needle biopsy: infiltrating ductal carcinoma ER/PR positive, equivocal Her2neu
+- Stereotactic core needle biopsy: benign breast tissue with sclerotic fibroadenoma, early intraductal papilloma
+
+2026-02-XX (not documented):
+- No new investigations documented in current encounter
+
+Impression
+Ms. Miller presents with complex, multifactorial complaints requiring urgent attention. Her persistent bilateral lower extremity pain, likely vascular in origin given her extensive cardiac risk profile, necessitates vascular surgery evaluation and further diagnostic workup. Her recurrent lightheadedness may relate to medication effects, orthostatic hypotension, or arrhythmia given her ICD and cardiac history. Poorly controlled type 2 diabetes (HbA1c 7.6%) and dyslipidemia require optimization to reduce cardiovascular risk. Additionally, her new diagnosis of left breast infiltrating ductal carcinoma presents a significant surgical challenge due to her high cardiac risk, requiring careful multidisciplinary planning.
+
+Plan
+1. I will arrange a vascular surgery consultation within 1 week to evaluate bilateral lower extremity pain and assess for peripheral arterial disease with noninvasive testing (ABI, ultrasound) and angiography if indicated.
+2. I will order the following investigations today: fasting lipid panel, HbA1c, complete blood count, comprehensive metabolic panel, and troponin to reassess cardiovascular risk and glycemic control.
+3. I will schedule a follow-up appointment in 4 weeks to review vascular surgery recommendations, adjust diabetes management, and address lightheadedness symptoms.
+4. I will consult the breast oncology team today to discuss surgical options for her left breast cancer, emphasizing her preference for lumpectomy and the need for cardiac risk stratification prior to anesthesia.
+5. I will request a cardiology review today to assess her cardiac status for potential breast surgery and optimize medical management to minimize perioperative risk.
+6. I will reinforce diabetes self-management strategies, including dietary adherence and medication review, with a focus on achieving HbA1c <7.0%.
+7. I will arrange a referral to the diabetes education program for structured support and monitoring.

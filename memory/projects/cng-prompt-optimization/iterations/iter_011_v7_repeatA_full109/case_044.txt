@@ -1,0 +1,55 @@
+Patient ID: Catherine Lynn Deveau, 62-year-old female
+
+History of Present Illness:
+This 62-year-old female presents with persistent respiratory symptoms and concerns about her inhaler regimen. She reports worsening wheezing and shortness of breath, particularly during the day, which has significantly impacted her quality of life. She describes difficulty attending afternoon and nighttime activities due to these symptoms. Despite using multiple inhalers—including Ventolin (blue puffer), Atrovent (green puffer), and Spiriva—she feels they are not providing adequate relief. She also reports a history of facial numbness and freezing sensations on the right side, which were previously evaluated with a CT scan of the head and carotid ultrasound, both of which showed small vessel ischemic changes and no significant carotid atherosclerosis.
+
+She denies any recent weight loss, coughing up blood, or changes in her cough. She reports smoking approximately five to six cigarettes daily, despite acknowledging the need to quit completely. She has a history of chronic anxiety and depression, which have been managed with medications, though she has experienced panic attacks in the past related to her inhalers. She is also concerned about her family history of early-onset cancer and her own mortality, though she feels relatively well overall despite some physical limitations.
+
+Past Medical History:
+Hypertension, dyslipidemia, myocardial infarction (2011, treated with drug-eluting stent), chronic obstructive pulmonary disease (COPD), depression, anxiety, substance use disorder (history of alcoholism, opioid dependence, and benzodiazepine use), and small vessel ischemic changes on neuroimaging.
+
+Medications:
+- APO-Metoprolol 25 mg tablet, 1 tablet twice daily
+- Mylan-Pantoprazole 40 mg delayed-release tablet, 1 tablet daily
+- Taro-Atorvastatin 80 mg tablet, 1 tablet once daily at bedtime
+- PMS-Sertraline 25 mg capsule, 2 capsules once daily in the morning
+- APO-Perindopril 8 mg tablet, 1 tablet once daily
+- Sandoz-Amlodipine 5 mg tablet, half tablet once daily
+- Sandoz-Mirtazapine 15 mg tablet, half tablet at bedtime
+- Ventolin (albuterol) 100 mcg/puff inhaler, as needed
+- Atrovent (ipratropium) 20 mcg/puff inhaler, 2 puffs four times daily
+- Spiriva (tiotropium) 18 mcg capsule, 1 capsule once daily
+
+Allergies: not documented
+
+Family History:
+Multiple uncles died of cancer at a young age.
+
+Social History:
+Current smoker (5-6 cigarettes daily), history of alcohol and substance use disorder, chronic anxiety and depression.
+
+Physical Examination:
+Vital signs: not documented
+General: Patient appears anxious but in no acute distress.
+Cardiovascular: Regular rate and rhythm, no murmurs, rubs, or gallops.
+Respiratory: Diminished air entry bilaterally, no wheezing heard on this examination.
+Neurological: No focal deficits, cranial nerves intact.
+Extremities: No edema, pulses intact.
+
+Investigations:
+2025-11-18:
+- Carotid ultrasound: No cervical carotid atherosclerosis, negative vertebral artery ultrasound.
+- CT scan of the head: Small vessel ischemia, normal brain volume for age, white matter hypodensity in both brain hemispheres, worse in the right frontal area, no brain mass or bleeding.
+
+2023-06-26:
+- MIBI scan: Fixed perfusion defects in septal regions, normal global LV systolic function with EF of 73%.
+
+Impression:
+This 62-year-old female with a history of COPD, myocardial infarction, and chronic anxiety presents with persistent respiratory symptoms and concerns about her inhaler regimen. Her physical examination reveals diminished air entry bilaterally, consistent with her history of COPD. The recent neuroimaging confirms small vessel ischemic changes, which may contribute to her transient neurological symptoms. Her ongoing smoking and respiratory symptoms necessitate further evaluation and management.
+
+Plan:
+1. I will discontinue the Spiriva inhaler due to patient's sensitivity and lack of perceived benefit.
+2. I will arrange for a pulmonary function test (PFT) to assess her lung function and confirm the diagnosis of COPD.
+3. I will order a chest CT scan to evaluate for any structural lung abnormalities or evidence of lung cancer given her smoking history.
+4. I will refer the patient to a smoking cessation program and provide counseling on complete smoking cessation.
+5. I will follow up in one month to review the results of the PFT and chest CT scan and adjust her inhaler regimen accordingly.

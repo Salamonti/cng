@@ -1,0 +1,56 @@
+Patient ID
+Karen Jones, 74-year-old woman
+
+History of Present Illness
+Over the past four months, this patient has experienced progressively worsening dyspnea, particularly in the mornings, with significant phlegm production and cough that improves slightly throughout the day. She describes a sensation of pressure on her chest rather than pain and notes marked fatigue, with dyspnea triggered by minimal activity such as walking across a room or dressing. Her symptoms peaked approximately three weeks ago, prompting an emergency department visit for acute breathlessness. There has been slight improvement in the past week, though she remains significantly limited in her activities. She denies chest pain but reports numbness in her fingers, which she attributes to rapid breathing.
+
+She has been using salbutamol as needed for symptom relief, with recent use limited to two or three times daily due to inactivity. Prednisone courses have provided temporary relief, improving her energy and reducing fluid retention for the duration of the five-day regimen. She has a history of Crohn’s disease managed with monthly ixekizumab injections and vitamin B12 supplementation. She smokes three to four cigarettes daily, having done so for 50 years since college.
+
+Physical examination reveals adequate air entry bilaterally despite her symptoms, with no jugular venous distention or lower limb edema. She appears underweight, and the remainder of her examination is unremarkable.
+
+Past Medical History
+Chronic obstructive pulmonary disease, Crohn’s disease
+
+Medications
+Ixekizumab 100 mg intravenous every 4 weeks
+Salbutamol HFA 100 mcg inhalation 1–2 puffs 4 times daily (as needed)
+Ipratropium HFA 20 mcg/actuation inhalation 2 puffs 4 times daily
+Apo-prednisone 5 mg oral 8 tablets once daily for 5 days (as needed)
+
+Allergies
+Nuts, eggs
+
+Family History
+not documented
+
+Social History
+Smoker: 3–4 cigarettes/day for 50 years
+Occupational history: not documented
+Alcohol: not documented
+Support system: lives with partner
+
+Physical Examination
+Chest: clear, adequate air entry bilaterally
+Cardiovascular: normal S1 and S2, no murmurs or additional sounds
+Abdomen: soft, no organomegaly
+Neurological: unremarkable
+Extremities: no jugular venous distention or lower limb edema
+
+Investigations
+2025-10-20
+Chest X-ray: diffusely coarsened lung markings, mild hyperinflation, prominent costochondral junctions; findings consistent with COPD
+
+2026-01-21
+Pulmonary function tests: not documented (results pending)
+
+Impression
+This patient presents with severe, poorly controlled COPD characterized by progressive dyspnea, morning cough with phlegm, and exercise intolerance despite maximal bronchodilator therapy. Her chest X-ray confirms significant hyperinflation and coarsened lung markings, supporting a diagnosis of advanced COPD likely exacerbated by long-term smoking. The transient improvement with prednisone suggests an inflammatory component to her symptoms. Additional investigations are required to evaluate for alpha-1 antitrypsin deficiency, adrenal insufficiency, and bone health given her history of chronic steroid use and Crohn’s disease.
+
+Plan
+1. I will discontinue Spiriva Respimat and initiate Breo Ellipta 100/50 mcg inhalation 2 puffs twice daily with AeroChamber spacer.
+2. I will order the following investigations:
+   - Alpha-1 antitrypsin level
+   - Serum cortisol (8 AM) and ACTH
+   - IgE and eosinophil count
+   - DEXA scan for bone density assessment
+3. I will arrange a follow-up appointment in two months to review results, assess symptom control, and discuss smoking cessation strategies, including nicotine replacement therapy and referral to the provincial smoking cessation program.

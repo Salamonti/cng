@@ -1,0 +1,52 @@
+Patient ID: Carolyn TomkinsWhite, 65-year-old female
+
+History of Present Illness:
+Carolyn TomkinsWhite is a 65-year-old female with a history of obstructive lung disease who presents today feeling significantly better since starting treatment with antibiotics and prednisone for a recent respiratory infection. She reports marked improvement in her symptoms, though she still experiences mild shortness of breath and occasional mucus production in her throat, which is difficult to clear. She describes a persistent postnasal drip that is exacerbated by exposure to strong scents, such as fabric softeners and air fresheners, which have previously triggered severe respiratory distress during travel. Carolyn notes that her cough has significantly decreased since September but has worsened again over the past year, particularly with exertion and exposure to irritants. She also mentions recent travel-related stress, where exposure to strong scents in hotels and on planes caused acute respiratory symptoms, requiring her to seek fresh air and use her rescue inhaler.
+
+Carolyn reports that her current medication regimen includes Breztri three times daily, though she has only been taking it twice daily due to side effects. She has noticed improvement in her mucus production and overall respiratory comfort with this medication. She remains concerned about her persistent mucus and occasional shortness of breath, particularly when exposed to environmental triggers. Carolyn also mentions that she recently underwent a CT scan of her lungs on February 11, 2026, which revealed multiple nodules and a large lesion suggestive of a benign tumor or hematoma, though the official report is pending.
+
+Past Medical History:
+Obstructive lung disease (diagnosed 2025)
+History of bronchial issues since childhood
+Previous Hartmann’s procedure and reversal for perforated diverticulum
+History of pneumonia and sinus infections as a child
+Severe obstructive airway disease on pulmonary function testing (2025)
+Possible emphysema or bronchiectasis (considering common variable immunodeficiency or prior exposure-induced emphysema)
+Alpha-1 antitrypsin level: normal
+Ferritin: elevated at 298 with high iron levels
+Hemochromatosis testing pending
+
+Medications:
+Breztri 100/32/16 mcg inhalation 2 puffs BID (budesonide/glycopyrronium/formoterol)
+Salbutamol inhalation prn (rescue inhaler)
+Flonase nasal spray prn (fluticasone)
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker, intermittent over the years
+No current smokers in household
+Occasional alcohol consumption
+Lives with husband and son
+Has seniors Pharmacare drug coverage
+
+Physical Examination:
+Chest: clear with adequate air entry bilaterally, normal S1 and S2 with no additional sounds or murmurs
+Abdomen: soft with no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations:
+2026-02-11: CT chest – revealed multiple pulmonary nodules and a large lesion in the left lung suggestive of a benign tumor or hematoma; official report pending
+
+Impression:
+Carolyn TomkinsWhite is a 65-year-old female with a long-standing history of obstructive lung disease, likely COPD with features of emphysema, given her severe obstructive pattern on pulmonary function testing and recent imaging findings. Her symptoms of persistent mucus production, shortness of breath, and sensitivity to environmental triggers suggest an overlapping component of bronchial asthma or reactive airway disease, supported by her eosinophil count of 300. The recent CT scan findings of multiple pulmonary nodules and a large lesion raise concerns for possible bronchiectasis or other underlying lung pathology, though the benign nature of the lesion is reassuring. Her clinical improvement with Breztri and prednisone suggests responsiveness to inhaled corticosteroids and bronchodilators, though ongoing monitoring is required to assess for treatment efficacy and potential side effects.
+
+Plan:
+1. I will prescribe N-acetylcysteine (NAC) 600 mg orally three times daily for mucus clearance and potential reduction in flare-ups, to be purchased from a health store.
+2. We will await the official CT chest report and arrange follow-up imaging as needed to monitor the pulmonary nodules and large lesion.
+3. I will arrange for hemochromatosis testing to further evaluate her elevated ferritin and iron levels.
+4. We will schedule a follow-up appointment in 3 months to reassess her respiratory symptoms, medication efficacy, and imaging results.
+5. I will provide Carolyn with a prescription for the pneumococcal vaccine given her underlying lung disease and recent respiratory infection.

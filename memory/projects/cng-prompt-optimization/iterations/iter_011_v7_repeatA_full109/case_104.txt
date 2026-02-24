@@ -1,0 +1,62 @@
+Patient ID
+Irving Randolph Woodworth is a 76-year-old male.
+
+History of Present Illness
+For approximately 18 months, Irving has been experiencing thick green phlegm in his throat, which has worsened recently, causing nocturnal choking episodes and panic attacks. He describes the phlegm as thick and difficult to clear, often requiring him to cough or use his inhalers to bring it up. This has led to significant shortness of breath, limiting his mobility and causing fatigue, particularly when walking around his seniors' village. He reports that his symptoms fluctuate, with some days being better than others, but the choking and breathlessness persist. Irving also notes hoarseness of voice and bad breath, which he attributes to a "bad stomach." He has been treated with antibiotics and prednisone in the past, which temporarily relieved his symptoms, but they recur shortly after stopping these medications. He denies recent weight gain but acknowledges a long-standing history of acid reflux, for which he takes Nexium.
+
+Irving’s symptoms are exacerbated indoors, with improved breathing when outside. He has tried various inhalers, including Ventolin and Flovent, which help bring up the phlegm and temporarily relieve his breathing difficulties. Despite these measures, he remains significantly limited in his activities, unable to climb hills or walk long distances without stopping. He expresses frustration with his inability to manage his symptoms independently and seeks a clearer understanding of his condition and long-term management plan.
+
+Past Medical History
+Gleason 6 prostate cancer (low-grade, low-volume), degenerative cervical intervertebral disc disease, gout, impaired fasting glucose, subclinical hyperthyroidism, anxiety, possible statin-induced myopathy, unspecified urine retention, and history of asbestos exposure.
+
+Medications
+Nexium 20 mg swallow, oral once daily
+Sandoz-tamsulosin CR 0.4 mg swallow, oral once daily
+Teva-dutasteride 0.5 mg swallow, oral once daily
+Lorazepam 1 mg dissolve, sublingual twice daily as needed
+Sandoz-amlodipine 10 mg swallow, oral once daily
+Sandoz-telmisartan 80 mg swallow, oral once daily
+Jamp-nystatin 100,000 unit/ml swallow, oral swish and swallow 5 ml four times daily for 2 weeks (as needed)
+
+Allergies
+morphine: visual hallucinations
+mirtazapine 15 mg tablet: other
+sertraline HCl 25 mg capsule: other
+
+Family History
+breast cancer with metastases
+
+Social History
+not documented
+
+Physical Examination
+not documented
+
+Investigations
+2025-12-30
+CT chest: no evidence of asbestosis or malignancy; scattered benign pulmonary nodules noted.
+
+2025-08-20
+Lipids: cholesterol 5.7 mmol/L, triglycerides 2.90 mmol/L, LDL cholesterol 3.5 mmol/L, HDL cholesterol 0.94 mmol/L, cholesterol/HDL ratio 6.0
+Liver function tests: AST 34 U/L, ALT 49 U/L, alkaline phosphatase 60 U/L, total bilirubin 9.0 umol/L
+Thyroid stimulating hormone: 1.340 mIU/L
+Iron studies: iron 19.2 umol/L, total iron binding capacity 59 umol/L, ferritin 333.00 ug/L
+Vitamin B12: 344 pmol/L
+Prostate specific antigen: 4.670 ug/L
+eGFR: 70 mL/min/1.73m^2
+Glucose: 6.6 mmol/L
+Complete blood count: within normal limits
+
+2025-05-15
+Chest X-ray: no focal collapse or consolidation, no suspicious osseous lesion, no pneumothorax
+Pulmonary function tests: restrictive pattern with moderate obstructive component responsive to bronchodilators
+
+Impression
+Irving’s symptoms of thick green phlegm, nocturnal choking, and shortness of breath are most consistent with reflux-induced bronchial asthma. His history of acid reflux, along with the improvement in symptoms during outdoor activities and the lack of evidence of malignancy or asbestosis on imaging, supports this diagnosis. The fluctuating nature of his symptoms and the temporary relief provided by prednisone further suggest an inflammatory component driven by gastroesophageal reflux. His pulmonary function tests indicate an obstructive pattern responsive to bronchodilators, reinforcing the diagnosis of asthma secondary to reflux. The absence of significant weight gain or other systemic symptoms makes alternative diagnoses such as congestive heart failure or chronic obstructive pulmonary disease less likely.
+
+Plan
+1. I will discontinue the Flovent inhaler and Ventolin inhaler, and prescribe Symbicort 200/5 mcg inhaler, 2 puffs twice daily, with instructions to use additional puffs as needed for symptom relief.
+2. I will provide Irving with a strict anti-reflux diet plan and instructions to avoid food and drink for at least 3 hours before bedtime.
+3. I will recommend elevating the head of his bed using a wedge pillow or a similar device to reduce nocturnal reflux symptoms.
+4. I will arrange a follow-up appointment in four months to reassess his symptoms and response to the new management plan.
+5. I will send a copy of this note to Georgann Lois MacDonald, RN NP, for continuity of care.

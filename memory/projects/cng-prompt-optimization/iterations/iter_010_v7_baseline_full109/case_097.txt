@@ -1,0 +1,70 @@
+Patient ID: Andrea Crosby, a 68-year-old female
+
+History of Present Illness:
+Andrea Crosby presents with persistent shortness of breath on exertion (SOBOE) that has worsened significantly over the past few months. She describes needing to stop midway during her walk from the car to the clinic due to severe dyspnea and burning sensations in her lungs. These symptoms are exacerbated by exertion and bending over, and she reports using her salbutamol inhaler approximately twice weekly, though she finds it ineffective in improving her breathing. She denies any cough but mentions minimal phlegm production. Andrea also reports recent onset hoarseness starting six weeks ago, coinciding with increased caregiving stress due to her husband’s health issues. She continues to experience chest pain associated with exertion, relieved by rest, as previously described. Andrea expresses concern about potential cardiac involvement, noting that her sister and brother have had cardiac issues, including blocked arteries and multiple heart attacks.
+
+Andrea has not been taking her Inspiolto inhaler consistently, as she feels it is not improving her symptoms. She uses two puffs of salbutamol in the morning and occasionally her other inhaler during strenuous activities. She has not had a stress test in the past and is uncertain about prior echocardiograms, though she recalls having multiple AKGs (EKGs). Andrea reports no smoking for the past 20 years and denies any recent changes in alcohol consumption.
+
+Past Medical History:
+Alcoholic cirrhosis of the liver
+Benign essential hypertension
+Bicuspid aortic valve
+Diabetes mellitus type 2
+Esophageal varices
+GERD
+Hypothyroidism
+Mitral insufficiency/Aortic stenosis
+Mixed hyperlipidemia
+
+Medications:
+Synthroid 0.1 mg PO daily
+Pantoprazole 40 mg PO daily
+Solifenacin 5 mg PO daily
+Salbutamol inhaler 2 puffs PRN
+Nadolol 40 mg PO daily
+Calcium supplement 600 mg PO daily
+Omega-3 supplement 1000 mg PO daily
+Tiotropium bromide/olodaterol HCl 2.5 mcg/2.5 mcg inhalation QD (Inspiolto)
+
+Allergies:
+Not documented
+
+Family History:
+Heart attack in brother at age 67
+Sister with recent cardiac issues including blocked artery
+
+Social History:
+Andrea stopped smoking approximately 20 years ago. She drinks about 2-3 glasses of alcohol daily. She lives with her husband, who is awaiting hip replacement surgery and has had open heart surgery twice. Andrea is retired and was previously a billing specialist. She is the primary caregiver for her husband and has a cow farm on their property.
+
+Physical Examination:
+Not in any obvious distress. Cardiovascular exam reveals a systolic murmur radiating to the neck, consistent with prior findings. Respiratory exam shows clear lungs bilaterally. Abdomen is soft and non-tender.
+
+Investigations:
+2025-11-14:
+- WBC: 3.8 x10^9/L
+- Platelet count: 75 x10^9/L
+- Hemoglobin: 135 g/L
+- HbA1c: 8.2%
+- Echocardiogram: Mild aortic stenosis (no significant change)
+- CT Chest: Mild apical emphysema and mild subpleural reticulations
+- Pulmonary Function Tests: Reduced FEV1 and DLCO, normal FEV1/FVC ratio
+
+2026-01-08:
+- Hemoglobin A1c: 6.1%
+- Complete Blood Count: WBC 3.1 x10^9/L, Hemoglobin 103 g/L, Platelets 85 x10^9/L
+- eGFR: 84 mL/min/1.73m^2
+- Lipids: Cholesterol 5.3 mmol/L, LDL 2.9 mmol/L, HDL 1.97 mmol/L
+- Lytes: Sodium 137 mmol/L, Potassium 4.2 mmol/L, Chloride 101 mmol/L
+- Liver function tests: AST 46 U/L, ALT 23 U/L, Alkaline Phosphatase 92 U/L, Bilirubin total 20.8 umol/L, Albumin 36 g/L
+
+2026-02-01:
+- CT Abdomen/Pelvis: Heterogeneous nodular liver, esophageal varices, unchanged mild splenomegaly, cholelithiasis, multiloculated left adnexal cystic lesion, slowly enlarging right adnexal cyst
+
+Impression:
+Andrea Crosby is a 68-year-old female with a complex medical history, including alcoholic cirrhosis, diabetes mellitus, and known mild aortic stenosis. She presents with progressive exertional dyspnea and chest pain, which are likely multifactorial. The recent CT chest demonstrates mild apical emphysema and subpleural reticulations, contributing to her restrictive lung disease pattern. Her echocardiogram shows stable mild aortic stenosis, making it less likely to be the primary driver of her current symptoms. The recent HbA1c of 6.1% indicates improved glycemic control compared to prior values. Given her family history of cardiac disease and her symptoms, further cardiac evaluation is warranted to rule out ischemic contributions to her dyspnea.
+
+Plan:
+1. I will arrange for a stress test to evaluate for cardiac ischemia as a potential contributor to Andrea's dyspnea and chest pain.
+2. I will continue the current regimen of Inspiolto 2 inhalations once daily and salbutamol as needed for her respiratory symptoms, with reassessment in two months.
+3. I will refer Andrea to a cardiologist for further evaluation of her cardiac symptoms and to discuss potential management options, including optimization of her diabetes and cardiovascular risk factors.
+4. We will follow up in two months to review the results of the stress test and assess her response to current therapies.

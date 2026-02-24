@@ -1,0 +1,29 @@
+Patient ID: This is a 65-year-old male patient presenting to the ED with acute symptoms.
+
+History of Present Illness:
+The patient presented with severe chest pain that began approximately two hours prior to arrival. The pain is described as severe and has prompted urgent evaluation. The physical examination findings were unremarkable aside from the acute presentation. The patient was subsequently sent to the emergency department for further investigations due to the severity and nature of the symptoms.
+
+Past Medical History:
+The patient has a history of coronary artery disease (CAD).
+
+Medications: not documented
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-02-24:
+- ECG shows inferior ST depression.
+
+Impression:
+This patient presents with acute severe chest pain in the context of a known history of coronary artery disease. The ECG findings of inferior ST depression are concerning for an acute coronary syndrome, likely an inferior myocardial infarction. Immediate cardiac evaluation and management are warranted to assess for ischemic events and guide further treatment.
+
+Plan:
+1. We will initiate a full cardiac workup including cardiac enzymes, troponin levels, and repeat ECG monitoring in the ED.
+2. We will consult cardiology for urgent evaluation and consideration of cardiac catheterization if indicated.
+3. We will arrange for admission to the cardiac care unit for further management and monitoring.

@@ -1,0 +1,47 @@
+Patient ID: Marilyn Ross is a 90-year-old female.
+
+History of Present Illness:
+Marilyn Ross presents with a chronic cough that has worsened over the past few weeks. She reports coughing up increased amounts of green phlegm, though she also notes occasional white phlegm. She denies hemoptysis at present, though she previously experienced it in June 2025. Her cough is exacerbated when lying down, prompting her to use her inhalers (salbutamol and ipratropium) two to three times daily. She denies fever, weight loss, and smoking. Marilyn has a hearing aid and no recent changes in her social habits.
+
+Marilyn’s symptoms have been ongoing, with a history of recurrent respiratory infections and chronic bronchiectasis. She previously had a sharp pain in her left lung with green phlegm in September 2025, which resolved with antibiotics. Her current symptoms are concerning for chronic infections, specifically Mycobacterium avium complex (MAC) and Proteus mirabilis, as identified on prior respiratory cultures and imaging.
+
+Past Medical History:
+Chronic bronchiectasis, Mycobacterium avium complex (MAC) infection, Proteus mirabilis infection, gastroesophageal reflux disease (GERD), hiatus hernia, Barrett’s esophagus, anxiety disorder, urge incontinence, chronic kidney disease (eGFR 46-51), iron deficiency anemia, and history of weight loss.
+
+Medications:
+- Sertraline 50 mg orally once daily
+- Famotidine 20 mg orally twice daily
+- Pantoprazole 40 mg orally once daily in the morning, ½ hour before breakfast
+- Clonazepam 0.5 mg orally at bedtime
+- Solifenacin 10 mg orally once daily
+- Ferrous fumarate 300 mg (100 mg iron) orally every second day
+- Salbutamol HFA 100 mcg inhalation, 2 puffs four times daily as needed
+- Ipratropium HFA 20 mcg/actuation inhalation, 2 puffs four times daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Lifelong nonsmoker, no alcohol use. Marilyn is a caregiver for her husband and has a hearing aid. She denies current smoking or drinking.
+
+Physical Examination:
+Chest: Clear to auscultation, though air entry is decreased on the right side. Normal S1 and S2 with no additional sounds or murmurs. No lower limb edema.
+
+Investigations:
+2025-09-11: Chest X-ray (2 views) – Stable findings with chronic nodularity, no evidence of acute pneumonia.
+2025-09-12: ECG – Normal sinus rhythm, left anterior fascicular block, minimal voltage criteria for LVH, anteroseptal infarct age undetermined.
+2025-09-12: CBC – Mild anemia (Hgb 91 g/L), elevated WBC (10.9 x10^9/L), low MCV (72.9 fL).
+2025-09-12: Iron studies – Low ferritin (9.96 ug/L), low iron (3.0 umol/L), low TIBC (72 umol/L), low saturation (4%).
+2025-09-12: eGFR – 51 mL/min/1.73m^2.
+2025-09-12: Urinalysis – Cloudy urine, trace occult blood, numerous bacteria.
+
+Impression:
+Marilyn Ross is a 90-year-old female with chronic bronchiectasis and recurrent respiratory infections, including chronic Mycobacterium avium complex (MAC) and Proteus mirabilis infections. Her current symptoms of increased green phlegm and cough, particularly at night, suggest a flare-up of her chronic lung infections. The presence of these infections, along with her history of recurrent hospitalizations and chronic lung disease, requires careful management. Her recent imaging and laboratory results confirm ongoing anemia and chronic kidney disease, which may contribute to her overall frailty.
+
+Plan:
+1. I will prescribe sulfamethoxazole-trimethoprim (Bactrim DS) 800-160 mg orally one tablet twice daily for seven days for her current flare-up of green phlegm.
+2. I will arrange for a chest CT scan to assess the current state of her lung infections and bronchiectasis.
+3. I will refer Marilyn Ross to the Infectious Disease Specialist for further evaluation and management of her chronic MAC and Proteus mirabilis infections.
+4. I will provide Marilyn with a mucus-clearing device (e.g., Aerobika) to help manage her chronic phlegm production.
+5. We will follow up after the chest CT scan and infectious disease consultation to reassess her symptoms and treatment plan.

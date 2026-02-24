@@ -1,0 +1,72 @@
+Patient ID: Andrea Crosby, a 68-year-old female
+
+History of Present Illness:
+Andrea Crosby presents today with persistent shortness of breath on exertion, which has worsened significantly over the past few months. She describes feeling breathless even with minimal activity, such as walking from her car to the clinic, and notes that her symptoms are exacerbated by bending over. She reports using her salbutamol inhaler approximately twice weekly, but it provides only temporary relief. Additionally, she mentions intermittent chest pain associated with exertion, relieved by rest, and hoarseness that has persisted for six weeks. Andrea denies any cough or significant phlegm production but continues to experience chest tightness and burning sensations in her lungs. She has not taken her salbutamol inhaler this morning due to her clinic visit. Andrea also expresses concern about potential cardiac involvement, given her family history of coronary artery disease and her own symptoms.
+
+Andrea reports that her husband, who is her primary caregiver, has similar symptoms, and both have been exposed to potential respiratory irritants while caring for him. She stopped smoking approximately 20 years ago but had a history of 36 pack-years. She denies any recent smoking or illicit drug use. Andrea is retired and lives on a cow farm, which may expose her to additional environmental factors.
+
+Past Medical History:
+Alcoholic cirrhosis of the liver
+Benign essential hypertension
+Bicuspid aortic valve
+Diabetes mellitus type 2
+Esophageal varices
+Gastroesophageal reflux disease (GERD)
+Hypothyroidism
+Mitral insufficiency/aortic stenosis
+Mixed hyperlipidemia
+
+Medications:
+Levothyroxine 75 mcg PO daily
+Pantoprazole 40 mg PO daily
+Solifenacin 5 mg PO daily
+Salbutamol 100 mcg/puff inhaler PRN
+Nadolol 40 mg PO daily
+Calcium supplement 600 mg PO daily
+Omega-3 supplement 1 g PO daily
+Tiotropium bromide/olodaterol HCl 2.5 mcg/2.5 mcg inhalation once daily
+
+Allergies: Not documented
+
+Family History:
+Brother with myocardial infarction at age 67
+Sister with respiratory symptoms and coronary artery disease
+
+Social History:
+Retired billing specialist
+Lives on a cow farm with husband
+Former smoker (quit 20 years ago, 36 pack-years)
+Current alcohol consumption: 2-3 glasses daily
+Caregiver for husband awaiting hip replacement
+
+Physical Examination:
+General: Not in any obvious distress
+Cardiovascular: Systolic murmur radiating to the neck, consistent with prior findings
+Respiratory: Clear lungs bilaterally
+Abdomen: Soft, non-tender
+
+Investigations:
+2025-05-23:
+Autoimmune workup: Negative ANA, ANCA, RF, normal kidney and liver function tests
+Angiotensin-converting enzyme: 61 U/L (normal)
+Cyclic citrullinated peptide antibodies: 0.5 U/mL (negative)
+
+2026-01-08:
+Hemoglobin A1c: 6.1%
+Complete blood count: WBC 3.1 x 10^9/L, Hemoglobin 103 g/L, Platelets 85 x 10^9/L
+Lipid profile: Cholesterol 5.3 mmol/L, Triglycerides 0.98 mmol/L, LDL 2.9 mmol/L, HDL 1.97 mmol/L
+Liver function tests: Bilirubin 20.8 umol/L, AST 46 U/L, ALT 23 U/L, Alkaline phosphatase 92 U/L
+eGFR: 84 mL/min/1.73m^2
+
+2026-02-01:
+CT Abdomen/Pelvis: Heterogeneous nodular liver, esophageal varices, mild splenomegaly, cholelithiasis, multiloculated left adnexal cystic lesion (stable), slowly enlarging right adnexal cyst
+
+Impression:
+Andrea Crosby is a 68-year-old female with a complex medical history, including alcoholic cirrhosis, diabetes mellitus, and known cardiac conditions such as bicuspid aortic valve and mild aortic stenosis. She presents with progressive exertional dyspnea and chest pain, which are likely multifactorial in etiology. The persistent dyspnea, despite the use of salbutamol, and the presence of mild apical emphysema and restrictive lung disease on prior imaging suggest a significant pulmonary component to her symptoms. Additionally, her family history of coronary artery disease and her own exertional chest pain raise concerns about potential cardiac ischemia. The recent HbA1c of 6.1% indicates suboptimal glycemic control, which may contribute to her overall symptom burden and cardiovascular risk.
+
+Plan:
+1. I will arrange for a stress test to evaluate for cardiac ischemia given her exertional chest pain and family history of coronary artery disease.
+2. I will continue the current inhaler regimen of tiotropium bromide/olodaterol HCl 2.5 mcg/2.5 mcg inhalation once daily and salbutamol PRN, with a plan to reassess inhaler technique and adherence at follow-up.
+3. I will refer Andrea to a pulmonologist for further evaluation of her pulmonary symptoms, including consideration of high-resolution CT chest and potential lung function testing to better characterize her restrictive lung disease and emphysema.
+4. We will optimize her diabetes management with a focus on improving glycemic control, aiming for an HbA1c target of less than 7.0%. This will include dietary counseling and consideration of oral hypoglycemic agents if lifestyle modifications are insufficient.
+5. We will schedule a follow-up appointment in two months to review the results of the stress test, pulmonary evaluation, and glycemic control, and to reassess her overall symptom management.

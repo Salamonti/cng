@@ -1,0 +1,64 @@
+Patient ID
+Neil Ray Purdy, 60-year-old male
+
+History of Present Illness
+Neil Ray Purdy is a 60-year-old male with newly identified leukocytosis (WBC 15.9 x10^9/L, up from 14.7 x10^9/L) and persistent lymphocytosis (6.5 x10^9/L) on recent bloodwork. He was found to have moderate burr cells and Pappenheimer bodies on peripheral blood smear, raising concern for an underlying hematologic disorder. The patient denies constitutional symptoms such as fever, night sweats, weight loss, or chills. His medical history includes newly diagnosed type 2 diabetes (A1C 13.6), hepatic steatosis, and a recent motor vehicle accident with left shoulder and neck trauma. There is no history of splenectomy or known blood disorders in the family.
+
+The patient has no symptoms suggestive of infection, malignancy, or chronic inflammatory states. The leukocytosis and lymphocytosis are persistent over the past month, and the peripheral blood smear findings are concerning for a myeloproliferative or myelodysplastic process. The patient’s diabetes and hepatic steatosis are being managed, but the hematologic abnormalities remain unexplained.
+
+Past Medical History
+Type 2 diabetes mellitus
+Hepatic steatosis
+Hypercholesterolemia
+Obesity
+Lumbar spine osteoarthritis
+Motor vehicle accident (July 2025)
+Partial thickness tear of the right extensor carpi radialis (2015)
+Left zygoma depression post-trauma (2016)
+
+Medications
+Atorvastatin 20 mg tablet, once daily
+Dapagliflozin 10 mg tablet, once daily
+Metformin HCl 500 mg tablet, twice daily (titrated as per regimen)
+
+Allergies
+Codeine
+Hay fever
+
+Family History
+Family history of diabetes mellitus
+
+Social History
+Former smoker (quit in 2001/2002 after smoking 1 pack per day for 20 years)
+Former drinker (quit in 1996)
+No recreational drug use, including cannabis
+
+Physical Examination
+not documented
+
+Investigations
+2025-12-15
+- Complete Blood Count: WBC 15.9 x10^9/L (elevated), lymphocytes 6.5 x10^9/L (elevated), monocytes 1.4 x10^9/L (elevated), hemoglobin 146 g/L, hematocrit 0.451 L/L, platelets 373 x10^9/L
+- Peripheral Blood Morphology: Moderate burr cells, present Pappenheimer bodies
+- Glucose: 8.7 mmol/L
+- eGFR: 83 mL/min/1.73m^2
+- Liver Function Tests: AST 49 U/L, ALT 66 U/L, alkaline phosphatase 84 U/L
+- Urinalysis: Albumin/creatinine ratio 4.46 mg/mmol (mildly elevated), granular casts, trace protein, 1.5 mmol/L ketones
+
+2025-11-13
+- Complete Blood Count: WBC 14.7 x10^9/L (elevated), lymphocytes 7.1 x10^9/L (elevated), hemoglobin 156 g/L, hematocrit 0.475 L/L, platelets 432 x10^9/L
+- Peripheral Blood Morphology: Mild lymphocytosis, moderate burr cells, present Pappenheimer bodies, few Howell-Jolly bodies
+- Hemoglobin A1C: 13.6%
+- Iron Studies: Iron 15.2 umol/L, total iron binding capacity 46 umol/L, ferritin 590.0 ug/L, % saturation 0.33
+- Vitamin B12: 380 pmol/L
+- Thyroid Stimulating Hormone: 11.000 mIU/L (elevated)
+- Free T4: 12.3 pmol/L
+
+Impression
+Neil Ray Purdy presents with persistent leukocytosis, lymphocytosis, and abnormal red blood cell morphology, including burr cells and Pappenheimer bodies, which are concerning for an underlying hematologic disorder such as a myeloproliferative neoplasm or myelodysplastic syndrome. The presence of Howell-Jolly bodies on prior smear raises the possibility of functional asplenia, though no history of splenectomy is reported. Chronic diabetes and hepatic steatosis are present but may not fully explain the hematologic findings. Further evaluation is required to determine the etiology of these abnormalities.
+
+Plan
+1. I will order a repeat complete blood count with differential and reticulocyte count to assess for ongoing leukocytosis and lymphocytosis.
+2. I will arrange for iron studies, vitamin B12, folate levels, and a bone marrow evaluation to further investigate the underlying cause of the abnormal blood smear findings.
+3. I will refer the patient for molecular testing for JAK2, CALR, and MPL mutations to assess for myeloproliferative neoplasm.
+4. I will schedule a follow-up appointment to review results and discuss further management.

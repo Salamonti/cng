@@ -1,0 +1,47 @@
+Patient ID
+Paul Raymond Lake is a 71-year-old male.
+
+History of Present Illness
+Mr. Lake presents with persistent exertional dyspnea that has remained stable over the past few weeks. He describes difficulty walking longer distances and requires frequent rests during prolonged activity, though he denies worsening symptoms at rest. His shortness of breath limits his ability to climb stairs or engage in physical exertion, and he reports occasional chest tightness. Notably, he has not tolerated prior immunosuppressive therapies, including azathioprine and methotrexate, due to intolerable side effects such as muscle weakness and fatigue. He denies cough, sputum production, hemoptysis, or changes in weight or appetite. His baseline oxygen saturation remains stable at 93% on room air.
+
+Mr. Lake’s symptoms have been chronic, with no acute deterioration noted in recent months. He reports that his breathing is stable but not improving, and he avoids exertion to prevent symptom exacerbation. He has not experienced any recent infections or changes in his medication regimen beyond discontinuing azathioprine and methotrexate due to side effects. His functional status remains limited, though he denies nocturnal dyspnea or orthopnea.
+
+Past Medical History
+Hypertension, chronic kidney disease, prior cerebrovascular accident (stroke), dyslipidemia, sensorineural hearing loss, interstitial lung disease secondary to antisynthetase syndrome.
+
+Medications
+not documented
+
+Allergies
+Rosuvastatin (rash, fever)
+
+Family History
+not documented
+
+Social History
+Former mechanic with long-term exposure to metal dusts. Quit smoking in January 2025 (50 pack-years). Lives in a household with secondhand smoke exposure from his son and son’s partner. Denies alcohol, marijuana, or illicit substance use.
+
+Physical Examination
+not documented
+
+Investigations
+2025-10-24
+- Chest CT: No change in reticulations or fibrosis.
+- PFTs: Reduced diffusion capacity (DLCO 68%).
+
+2025-06-XX
+- Bloodwork: AntiPL7 strongly positive, AntiKu weakly positive, ANA positive, chromatin elevated.
+
+2025-05-XX
+- PFT: FEV1 86%, FVC 83%, ratio 78%, normal flow-volume loop.
+
+2026-01-14
+- CBC: WBC 9.1 x10^9/L, Hb 152 g/L, platelets 219 x10^9/L, eGFR 54 mL/min/1.73 m².
+
+Impression
+Mr. Lake has stable interstitial lung disease associated with antisynthetase syndrome, characterized by exertional dyspnea and mild functional limitation. His prior therapies with azathioprine and methotrexate were discontinued due to intolerable side effects, and his current symptoms remain unchanged despite stable imaging and pulmonary function tests. The decision to proceed with mycophenolate mofetil will be guided by repeat imaging and pulmonary function testing to assess disease progression and the need for further immunosuppressive therapy.
+
+Plan
+1. I will order a repeat chest CT scan and pulmonary function tests (PFTs) to reassess disease progression.
+2. I will schedule a follow-up appointment in August 2026 to review the results of the repeat imaging and PFTs.
+3. I will consider initiating mycophenolate mofetil if the repeat studies demonstrate disease progression or worsening symptoms.

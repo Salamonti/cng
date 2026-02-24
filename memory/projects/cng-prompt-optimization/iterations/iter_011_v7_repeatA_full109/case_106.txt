@@ -1,0 +1,49 @@
+Patient ID
+Arlice Stuart is a 60-year-old female presenting for evaluation of progressive dyspnea and fatigue.
+
+History of Present Illness
+Arlice reports a one-year history of worsening shortness of breath, particularly with exertion such as carrying groceries or walking from the store to her car. She describes tingling in her legs when climbing stairs and has noted difficulty with activities requiring sustained breathing, such as cardio exercises. She reports a recurrence of symptoms similar to a prior episode in 2015, which she attributes to fluid accumulation in her lungs. She has a history of managing her symptoms with diuretics, which she self-adjusts based on symptom severity, but notes that stopping them leads to rapid deterioration. She denies chest pain but acknowledges past swelling in her legs, now controlled with diuretics. She has a long-standing history of asthma, though recent methacholine challenge and spirometry were negative. She describes occasional wheezing and windedness with exercise but no cough. She has tried tapering off her inhalers and diuretics in the past but found this led to symptom recurrence.
+
+Physical Examination
+Vital signs: PR 70 bpm, SPO2 99% on room air. Chest is clear with adequate air entry bilaterally. Heart sounds are normal with no murmurs or additional sounds. Abdomen is soft with no organomegaly. No jugular venous distention or lower limb edema is noted. Neurological exam is unremarkable.
+
+Investigations
+2025-10-30:
+- Lytes: Sodium 140 mmol/L, Potassium 4.7 mmol/L, Chloride 105 mmol/L
+- AST 43 U/L, ALT 39 U/L, TSH 1.820 mIU/L, HbA1c 5.2%, eGFR 61 mL/min/1.73m2, Glucose 5.6 mmol/L, D-dimer 5132 ng/mL, CBC and Lipids within normal limits
+
+2025-11-04:
+- Chest X-ray: Cardiomegaly, bilateral pleural effusions, interstitial pulmonary edema
+- Doppler Veins: No DVT, small heterogeneous fluid collection posteromedial to the knee
+
+2026-02-09:
+- CT Chest with Contrast: Mild cardiomegaly, subpleural nodules in right lower lobe, multiple liver cysts
+
+Past Medical History
+Asthma (childhood onset, negative methacholine challenge), depression (2014), anxiety, liver cysts
+
+Medications
+- Avamys 27.5 mcg nasal spray, 4 sprays QD
+- Seasonale 0.15 mg/30 mcg tablet, 1 tablet QD
+- Cyclobenzaprine HCl 10 mg tablet, 0.5 tablet QHS PRN
+- Mometasone furoate/formoterol fumarate 100/5 mcg HFA aerosol, 2 puffs BID
+- Furosemide (self-adjusted dose)
+
+Allergies
+Tree nuts, pet dander
+
+Family History
+Not documented
+
+Social History
+Non-smoker, works for the government feeding children in a school, reports high stress related to job demands
+
+Impression
+Arlice is a 60-year-old female with a history of childhood asthma and recurrent dyspnea, now presenting with progressive exertional shortness of breath, lower extremity tingling, and a history of fluid retention. Recent investigations reveal mild cardiomegaly, interstitial pulmonary edema, and pleural effusions, suggesting possible chronic heart failure or volume overload. The negative methacholine challenge and normal spirometry argue against significant asthma, though her symptoms may be exacerbated by anxiety and stress. The presence of liver cysts and mild hepatic enzyme elevation warrants further evaluation.
+
+Plan
+1. I will optimize furosemide dosing with close monitoring of symptoms and fluid status, aiming for a target dose that balances symptom control and potential side effects.
+2. I will arrange an echocardiogram to further evaluate the cardiomegaly and assess for systolic/diastolic dysfunction. I will expedite this investigation by requesting an earlier appointment time to accommodate the patient's schedule.
+3. I will refer Arlice to a cardiologist for further evaluation of her heart failure symptoms and management, including consideration of diuretic optimization, afterload reduction, and potential need for advanced therapies.
+4. I will monitor her liver enzymes and consider further evaluation of liver cysts if they are symptomatic or progressive.
+5. We will follow up in two weeks to assess response to diuretic optimization and echocardiogram results.

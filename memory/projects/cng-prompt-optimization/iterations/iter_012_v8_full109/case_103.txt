@@ -1,0 +1,63 @@
+Patient ID: Jacqueline Valerie Yvonne Philippe, 35-year-old female
+
+History of Present Illness:
+Jacqueline Philippe presents today with ongoing severe pain and functional impairment. She reports persistent back pain, particularly in the mid-thoracic region, which has not improved despite trials of gabapentin 300 mg at bedtime. She describes the pain as unrelenting, affecting her ability to function daily. Additionally, she reports significant nausea and vomiting, with no oral intake retained for approximately three weeks. She describes episodes of projectile vomiting, including undigested food, suggesting a possible motility disorder. She also notes worsening facial and body skin changes consistent with rosacea, which she finds distressing. Jacqueline expresses frustration with her current management, particularly the lack of resolution for her symptoms despite multiple investigations.
+
+She reports ongoing concerns about fibromyalgia, which she feels has not been adequately addressed. She also mentions recurrent episodes of throat swelling and hives, with a history of using her epinephrine auto-injector four times in the past year. These episodes are associated with visual disturbances and difficulty breathing. She denies any recent trauma but continues to experience significant systemic symptoms, including fatigue, sleep disturbances, and temperature dysregulation.
+
+Past Medical History:
+Complex PTSD, degenerative disc displacement, previous irregular heartbeats, multiple emergency department admissions for systemic symptoms, GERD, migraine without aura, thyroiditis, suspected thyroid storm, fibromyalgia, rosacea, recurrent angioedema, esophageal strictures requiring multiple dilations.
+
+Medications:
+- Amlodipine besylate 5 mg PO daily
+- Pantoprazole sodium 80 mg PO daily (patient self-adjusted from 40 mg)
+- Prazosin 1 mg PO daily
+- Ranitidine 150 mg PO daily
+- Semaglutide 0.25 mg SC weekly
+- Zopiclone 7.5 mg PO PRN
+- Nortriptyline 25 mg PO daily
+- Pregabalin 75 mg PO twice daily
+- Vitamin D supplements
+- Gabapentin 300 mg PO at bedtime
+- Cetirizine 10 mg PO daily
+- Naltrexone 1.5 mg PO twice daily (new)
+- Metoclopramide 5 mg PO 30 minutes before meals (new)
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+Therapist running her own organization, adoptive parent, history of miscarriages, smoker (~510 cigarettes daily), denies recreational drug use.
+
+Physical Examination:
+Not documented
+
+Investigations:
+2026-02-04:
+- Anti Thyroid Peroxidase Antibody: Report pending
+- Antinuclear Antibody Screen: Report pending
+- C Reactive Protein Quantitative: 22.5 mg/L (elevated)
+- Hepatitis C Antibody: Non-reactive
+- Hepatitis B Surface Antigen: Non-reactive
+- Complement C4: 0.16 g/L (low)
+- Complement C3: 1.54 g/L (normal)
+- Thyroid Stimulating Hormone: 1.700 mIU/L (normal)
+- Complete Blood Count: WBC 9.5 x10^9/L, RBC 4.51 x10^12/L, Hgb 135 g/L, Hct 0.400 L/L, Platelets 313 x10^9/L
+
+2025-12-17:
+- Surgical Pathology Final Report: Mediastinal lymph node biopsy negative for malignancy and granulomas
+
+2025-12-11:
+- MRI Thoracic Spine: Small disc herniations at T6-T7 and T8-T9 with disc material contacting the anterior thecal sac at T8-T9. No significant spinal stenosis or nerve impingement.
+
+Impression:
+Jacqueline Philippe presents with a complex and challenging clinical picture characterized by chronic pain, likely fibromyalgia, and significant gastrointestinal symptoms including nausea and vomiting. Her ongoing back pain, despite trials of gabapentin, suggests a need for alternative pain management strategies. The recurrent episodes of angioedema and skin changes, including rosacea, add to her burden of illness. The recent MRI findings of thoracic disc herniation may contribute to her pain, although no significant nerve impingement is noted. The elevated CRP and low complement C4 levels raise concerns for ongoing inflammation, which may be contributing to her systemic symptoms. Further evaluation of her thyroid and autoimmune markers is warranted, given her history of thyroiditis and ongoing symptoms.
+
+Plan:
+1. I will discontinue gabapentin 300 mg PO at bedtime due to lack of efficacy.
+2. I will initiate low-dose naltrexone 1.5 mg PO twice daily for fibromyalgia and assess response in four weeks.
+3. I will prescribe metoclopramide 5 mg PO 30 minutes before meals to improve gastrointestinal motility and manage nausea/vomiting.
+4. I will arrange a follow-up appointment with the allergist/immunologist on February 25th to further evaluate her recurrent angioedema and rosacea.
+5. I will order a repeat MRI thoracic spine with contrast to reassess the disc herniations and rule out any progression or additional pathology.
+6. We will follow up in three months to reassess her response to the new medications and further plan management based on the allergist's recommendations and MRI findings.

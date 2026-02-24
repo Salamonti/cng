@@ -1,0 +1,62 @@
+Patient ID
+Mrs. Amanda Doucette, 45-year-old female
+
+History of Present Illness
+Mrs. Doucette presents with worsening shortness of breath over the past several weeks, which she attributes to recent discontinuation of her sarcoidosis medications. She reports that after stopping her immunosuppressants due to a prior urinary tract infection, her diabetic control deteriorated acutely, leading to an ICU admission for IV insulin therapy. Since discharge, she has not been restarted on her sarcoidosis medications—hydroxychloroquine and azathioprine—and notes progressive dyspnea despite otherwise stable vitals (SPO2 normal, clear lungs on exam). She denies fever, chest pain, or palpitations but reports persistent night sweats and mild fatigue. Her current regimen includes resumed hydroxychloroquine and azathioprine, though she remains concerned about ongoing respiratory symptoms.
+
+She has a history of pulmonary sarcoidosis diagnosed in 2024, initially managed with inhaled corticosteroids and later escalated to azathioprine and hydroxychloroquine for symptomatic control. Recent imaging (2026-02-03) showed clear lungs without active inflammation, but her functional status remains limited. She reports no recent weight changes or new constitutional symptoms beyond fatigue.
+
+Past Medical History
+Pulmonary sarcoidosis (biopsy-proven, 2024)
+Type 2 diabetes mellitus
+Congenital right atrophic kidney
+Obesity
+Hepatic steatosis
+Motorcycle accident (2023) with sacral/right foot fractures
+G1P1, no complications
+Cholecystectomy
+Tonsillectomy
+Previous smoker (10 pack-years)
+
+Medications
+azathioprine 75 mg tablet, PO, BID
+hydroxychloroquine 200 mg tablet, PO, daily
+fluticasone furoate/umeclidinium/vilanterol 100/62.5/25 mcg, inhalation, daily
+pantoprazole 40 mg tablet, PO, daily
+forxiga 10 mg tablet, PO, daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Chest: Clear to auscultation bilaterally, no wheezing or rales. SPO2 98% on room air.
+Cardiovascular: Normal S1/S2, no murmurs or gallops. BP 109/86, PR 72.
+Neurological: Unremarkable.
+Abdomen: Soft, nontender, no organomegaly.
+Extremities: No edema.
+
+Investigations
+2026-02-03:
+- Complete blood count: WBC 10.5 (H), Hb 124, Plts 289
+- Electrolytes: Na 143, K 3.7, Cl 106
+- CRP: 9.1 (H)
+- ESR: 27 (H)
+- eGFR: 85 (normal), creatinine 76
+
+2026-02-03:
+- Chest X-ray: Clear lungs, no effusion, stable cardiomegaly
+
+Impression
+Mrs. Doucette’s worsening dyspnea in the context of untreated sarcoidosis and recent medication discontinuation is likely due to disease flare, given her history of biopsy-proven pulmonary involvement and prior response to immunosuppression. While current imaging shows no active inflammation, her elevated inflammatory markers (CRP/ESR) and persistent symptoms suggest subclinical activity or deconditioning. The absence of fever or new infiltrates makes infection unlikely, though her leukocytosis may reflect ongoing immune activation. Her diabetic control remains fragile post-ICU, and further optimization of glycemic management is needed alongside sarcoidosis therapy.
+
+Plan
+1. I will confirm adherence to azathioprine 75 mg BID and hydroxychloroquine 200 mg daily, with close monitoring for toxicity (CBC/liver function every 3 months).
+2. We will repeat chest imaging (HRCT) in 3 months to assess for subclinical sarcoidosis progression, given her persistent symptoms despite normal X-ray.
+3. I will arrange a diabetes clinic referral to optimize glycemic control and prevent recurrent decompensation.
+4. We will follow up in 3 months to reassess respiratory status and adjust therapy as needed.

@@ -1,0 +1,60 @@
+Patient ID: Mitchell Comeau, 65-year-old male
+
+History of Present Illness:
+Mitchell Comeau is a 65-year-old male who presents today with no acute symptoms. He reports normal S1 and S2 heart sounds with an S4 gallop, but denies any chest pain, shortness of breath, or dizziness. He remains asymptomatic and continues to engage in physical activities such as sports and weightlifting without limitation.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Unspecified hyperlipidemia
+Sinus bradycardia
+
+Medications:
+Atorvastatin 20 mg tablet, once daily
+Amlodipine 2.5 mg capsule, once daily
+Apotamsulosin CR 0.4 mg tablet, once daily
+Fluticasone nasal spray 0.06%, two sprays twice daily
+Pariet EC 20 mg tablet, once daily as needed (not currently using)
+Metformin HCl 500 mg tablet, twice daily
+
+Allergies:
+Firewood, fine dust/dirt (rhinorrhea)
+Pollen (rhinorrhea)
+Sertraline 25 mg capsule (unspecified reaction)
+Nuts (hives, rash, swelling of throat)
+Animal dander (rhinorrhea)
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+S1 and S2 heart sounds normal with S4 gallop
+No chest pain, shortness of breath, or dizziness
+Active lifestyle with continued participation in sports and weightlifting
+
+Investigations:
+2025-12-16:
+- Hemoglobin A1C: 6.2% (reference range: 4.6-5.9%)
+- Free T4: 14.5 pmol/L (reference range: 12.0-22.0)
+- Thyroid Stimulating Hormone: 4.500 mIU/L (reference range: 0.270-4.200)
+- Complete Blood Count: Normal
+- Electrolytes: Sodium 142 mmol/L, Potassium 4.8 mmol/L, Chloride 106 mmol/L
+- Lipids: Cholesterol 2.7 mmol/L, Triglycerides 0.84 mmol/L, LDL 1.2 mmol/L, HDL 1.09 mmol/L, Chol/HDL ratio 2.4
+- eGFR: 90 mL/min/1.73m², Creatinine 80 µmol/L
+- Urine Albumin/Creatinine Ratio: Albumin 10.8 mg/L, Creatinine 8.36 mmol/L, Ratio 1.29 mg/mmol
+- Prostate Specific Antigen: 2.080 µg/L (reference range: 0.00-5.85)
+
+2025-11-21:
+- ECG: Sinus bradycardia, otherwise normal
+
+2025-11-20:
+- Pelvis and hips X-ray: Minimal degenerative changes with osteophytes, no acute bony abnormality
+
+Impression:
+Mitchell Comeau is a 65-year-old male with a history of type 2 diabetes mellitus and sinus bradycardia who presents today without acute symptoms. His current investigations reveal controlled diabetes with an HbA1C of 6.2%, mild hyperlipidemia with a borderline cholesterol level, and a normal ECG showing sinus bradycardia. There is evidence of mild albuminuria, which may warrant further monitoring and management. His active lifestyle and lack of current symptoms are notable.
+
+Plan:
+1. I will continue atorvastatin 20 mg once daily for hyperlipidemia management.
+2. I will monitor HbA1C and adjust metformin dose as needed to maintain glycemic control.
+3. I will arrange follow-up in three months to reassess albuminuria and renal function, including repeat urine albumin/creatinine ratio and eGFR.
+4. We will continue to monitor prostate-specific antigen levels annually given the current value of 2.08 µg/L.

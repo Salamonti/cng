@@ -1,0 +1,49 @@
+Patient ID: Richard Wade Kennedy is a 69-year-old male.
+
+History of Present Illness:
+Mr. Kennedy is a 69-year-old male who presented for assessment of a newly identified lung mass. He quit smoking in 2009 and has no current symptoms related to the mass, as it was detected incidentally on screening CT scans. The patient reports no pain or respiratory symptoms, though he does experience exertional dyspnea. He has a history of severe asthma in his youth and worked in asbestos-exposed environments in the Canadian Navy during his younger years. Recent CT imaging shows a 14 x 8 mm nodule in the superior segment of the left lower lobe, which has increased in size compared to prior imaging from February 2025. The patient also has a history of multiple colonic polyps, with seven polyps removed during a colonoscopy in April 2025.
+
+Past Medical History:
+Hypertension, GERD, asthma, ex-smoker (quit in 2009), enchondroma of the left proximal femur, multiple colonic polyps, cholelithiasis.
+
+Medications:
+Irbesartan 150 mg PO daily
+Pantoprazole 40 mg PO daily
+
+Allergies: not documented
+
+Family History:
+Sisters and a niece with breast cancer.
+
+Social History:
+Ex-smoker (quit in 2009), former Canadian Navy worker with asbestos exposure, no current alcohol or illicit drug use.
+
+Physical Examination:
+Vital signs: PR 78 bpm, SpO2 96% on room air.
+Chest: clear with adequate air entry bilaterally, normal S1 and S2 with no murmurs.
+Abdomen: soft, no organomegaly.
+Neurological exam: unremarkable.
+No jugular venous distention or lower limb edema.
+
+Investigations:
+2026-01-09: Chest, abdomen, and pelvis CT with contrast
+- 14 x 8 mm irregular pulmonary nodule in the superior segment of the left lower lobe, increased from prior 12 x 8 mm nodule.
+- No pleural effusion, no enlarged lymph nodes.
+- Stable mesenteric haziness, likely benign mesenteric panniculitis.
+- Cholelithiasis, mild prostatic enlargement, minor diverticular disease.
+
+2025-05-16: Chest CT with contrast
+- 12 x 8 x 9 mm nodule in the superior segment of the left lower lobe, unchanged from February 2025.
+- No pleural effusion, no enlarged lymph nodes.
+
+2025-02-24: Chest, abdomen, pelvis CT
+- 12 x 8 x 9 mm nodule in the superior segment of the left lower lobe.
+
+Impression:
+Mr. Kennedy is a 69-year-old male with a growing pulmonary nodule in the left lower lobe, which has increased in size over the past year. Given his history of asbestos exposure and smoking, there is concern for a malignant process. The nodule's growth and its location warrant further investigation to determine its nature. The patient's exertional dyspnea and history of asthma may also require further evaluation to assess for underlying pulmonary function impairment.
+
+Plan:
+1. I will arrange a PET-CT scan in Halifax for further characterization of the pulmonary nodule.
+2. I will order pulmonary function testing to evaluate the patient's exertional dyspnea and assess for underlying obstructive or restrictive lung disease.
+3. I will refer Mr. Kennedy to respirology for further assessment and management of the pulmonary nodule.
+4. We will follow up in clinic after the PET-CT results are available to discuss next steps, which may include biopsy or surgical consultation for wedge resection if malignancy is suspected.

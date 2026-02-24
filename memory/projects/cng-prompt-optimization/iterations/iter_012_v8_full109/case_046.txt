@@ -1,0 +1,53 @@
+Patient ID: Vernon Sabean, 80-year-old male
+
+History of Present Illness:
+Mr. Sabean presents with a six-week history of progressive dysphagia and chewing difficulties, requiring foods to be near-pureed consistency for consumption. He reports jaw fatigue and prolonged chewing time, with associated aching after meals. Liquids and soft foods like ice cream are tolerated, but solids such as Cheerios, pickles, and wiener are impossible to chew. He also describes occasional nocturnal swallowing difficulties and a sensation of weakness when chewing. Symptoms began around late November and have gradually worsened. He denies pain, visual issues, or significant weight loss but reports generalized weakness and mild balance issues with a sensation of falling forward. A prior CT scan of the brain (January 9, 2026) showed no acute abnormalities, though mild chronic microvascular ischemic changes were noted.
+
+Mr. Sabean has a history of smoldering myeloma, which remains stable with no recent changes in blood work. He has been evaluated by physiotherapy and ENT, with no clear etiology identified for his symptoms. Neurological examination revealed a mild right-sided tremor, subtle hand tremor, and impaired arm swing on the right side during ambulation. There is no focal weakness or sensory deficit, but balance is impaired on standing. The patient denies orthostatic symptoms, shaking, or other neurological concerns.
+
+Past Medical History:
+Smoldering myeloma, hypertension, dyslipidemia, gastroesophageal reflux disease (GERD), asthma, atony of bladder, anxiety, history of urinary tract infections, renal colic and calculi, bilateral total knee replacements (2024), hernia repair (umbilical and left inguinal)
+
+Medications:
+Rosuvastatin 10 mg daily
+Lorazepam 0.5 mg as needed
+Rabeprazole 10 mg daily
+Budesonide/formoterol 200/6 mcg BID
+Salbutamol HFA 2 puffs every 4 hours as needed
+Betamethasone/salicylic acid lotion BID
+Cyanocobalamin 1000 mcg BID
+Ferrous fumarate 300 mg (100 mg elemental iron) once daily
+Duloxetine 60 mg daily
+Levocarbidopa 25 mg/100 mg three times daily (new)
+
+Allergies:
+Duloxetine HCl 30 mg capsule (tolerated better on lower doses)
+
+Family History:
+Anxiety (mother), stroke (mother and sister), father deceased at age 90 (natural causes)
+
+Social History:
+Not documented
+
+Physical Examination:
+Vital signs stable. Neurological exam reveals mild right-sided tremor, subtle hand tremor, and impaired arm swing on the right side. Facial strength and cranial nerves are intact. Balance is impaired on standing. No focal weakness or sensory deficits. No jugular venous distention or lower limb edema. Chest and cardiovascular exams unremarkable.
+
+Investigations:
+2026-02-02:
+- Complete Blood Count: Hemoglobin 125 g/L, WBC 8.1 x 10^9/L, Platelets 227 x 10^9/L
+- Urea: 6.5 mmol/L
+- eGFR: 76 mL/min/1.73m^2
+- Electrolytes: Sodium 139 mmol/L, Potassium 4.5 mmol/L, Chloride 102 mmol/L
+- Calcium: 2.62 mmol/L
+- Lactate Dehydrogenase: 160 U/L
+2026-01-09:
+- CT Head Without Contrast: No acute intracranial findings, mild chronic microvascular ischemic change, few punctate bilateral old basal ganglia lacunar infarcts
+
+Impression:
+Mr. Sabean’s progressive dysphagia and chewing difficulties, combined with mild neurological findings such as tremor and impaired arm swing, raise concern for a neurodegenerative process, such as Parkinson’s disease. His symptoms began insidiously and have gradually worsened, which is consistent with a neurological etiology. While smoldering myeloma remains stable, giant cell arteritis and other inflammatory conditions have been considered but are less likely without associated systemic symptoms. The absence of acute intracranial findings on CT scan reduces the likelihood of a structural cause for his symptoms.
+
+Plan:
+1. I will initiate levocarbidopa/benserazide 25 mg/100 mg three times daily for suspected Parkinson’s disease and reassess symptoms in two to three weeks.
+2. We will order urgent inflammatory markers (C-reactive protein and erythrocyte sedimentation rate) to rule out giant cell arteritis or other inflammatory etiologies.
+3. I will refer Mr. Sabean to neurology for further evaluation, including electromyography and nerve conduction studies, to assess for potential neuromuscular disorders such as ALS or myasthenia gravis.
+4. We will schedule a follow-up appointment in six weeks to reassess his symptoms and response to levocarbidopa. If significant improvement is noted by then, this would support a diagnosis of Parkinson’s disease. If not, further neurological evaluation will be pursued.

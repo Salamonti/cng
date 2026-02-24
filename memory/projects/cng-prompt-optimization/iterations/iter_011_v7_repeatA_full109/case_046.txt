@@ -1,0 +1,54 @@
+Patient ID
+Mr. Vernon Kenneth Sabean is an 80-year-old male.
+
+History of Present Illness
+Mr. Sabean presents with a six-week history of progressive dysphagia and chewing difficulties, unable to manage solids such as Cheerios, pickles, or wieners without significant effort. He describes jaw fatigue and prolonged chewing time, requiring near-pureed foods for adequate intake. Associated symptoms include occasional nocturnal swallowing difficulty and a sensation of jaw aching after eating. He denies pain, visual issues, or significant weight loss but reports mild generalized weakness and balance concerns. No orthostatic symptoms, tremors, or focal neurological deficits were identified on examination, though a subtle right-sided arm tremor and mild hypertonia were noted. He has had a CT head without contrast on January 9, 2026, which showed no acute abnormalities.
+
+Past Medical History
+Smoldering myeloma, hypertension, dyslipidemia, gastroesophageal reflux disease, asthma, atony of bladder, anxiety, history of urinary tract infections, renal colic and calculi, bilateral total knee replacements, hernia repair (umbilical and left inguinal).
+
+Medications
+Rosuvastatin 10 mg tablet daily
+Lorazepam 1 mg tablet as needed
+Rabeprazole EC 10 mg tablet daily
+Budesonide/formoterol 200/6 mcg 2 puffs BID
+Salbutamol HFA 2 puffs every 4 hours as needed
+Betamethasone/salicylic acid lotion BID
+Cyanocobalamin 1000 mcg tablet BID
+Ferrous fumarate 300 mg (100 mg elemental iron) once daily
+Duloxetine 60 mg capsule daily
+
+Allergies
+Duloxetine HCl 30 mg capsule (enteric-coated): tolerated better on lower doses
+
+Family History
+Anxiety: mother
+Stroke: mother and sister
+Father deceased at age 90 (natural causes)
+
+Social History
+not documented
+
+Physical Examination
+Vital signs stable. Neurological exam reveals subtle right-sided tremor, mild hypertonia, and impaired balance on standing. No focal deficits or cranial nerve abnormalities. Jaw clenching demonstrates no pain or resistance. No jugular venous distention or lower limb edema.
+
+Investigations
+2026-02-02
+Complete blood count: Hemoglobin 125 g/L, MCV 92.5 fL, platelets 227 x10^9/L, normal white blood cell differential.
+Urea: 6.5 mmol/L
+eGFR: 76 mL/min/1.73m^2
+Electrolytes: Sodium 139 mmol/L, potassium 4.5 mmol/L, chloride 102 mmol/L
+Calcium: 2.62 mmol/L
+Lactate dehydrogenase: 160 U/L
+
+2026-01-09
+CT head without contrast: No acute intracranial findings; mild chronic microvascular ischemic change and old lacunar infarcts.
+
+Impression
+Mr. Sabean presents with progressive dysphagia and chewing difficulties, likely multifactorial given his age and underlying smoldering myeloma. The subtle neurological findings, including mild tremor and hypertonia, raise concern for a neurodegenerative process such as Parkinson’s disease, though giant cell arteritis and ALS remain in the differential. The absence of acute intracranial pathology on CT head does not exclude a neurological cause. Further evaluation is needed to determine the underlying etiology of his symptoms.
+
+Plan
+1. I will start levocarbidopa 25 mg tablet three times daily and reassess in six weeks to evaluate for improvement in dysphagia and neurological symptoms.
+2. I will order urgent inflammatory markers (C-reactive protein and erythrocyte sedimentation rate) to rule out giant cell arteritis.
+3. I will arrange a follow-up appointment with neurology for further assessment if symptoms persist or worsen despite levocarbidopa therapy.
+4. I will send a referral to ENT for formal evaluation of dysphagia, including a barium swallow study, as previously arranged.

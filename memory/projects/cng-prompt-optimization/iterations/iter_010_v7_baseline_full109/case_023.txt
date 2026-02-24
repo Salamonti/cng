@@ -1,0 +1,59 @@
+Patient ID
+Arthur Belliveau, 62-year-old male
+
+History of Present Illness
+Mr. Belliveau presents with Staphylococcus aureus bacteremia confirmed by recent blood culture results. He is acutely confused and hypotensive, requiring transfer to the ICU for hemodynamic monitoring and further management. Over the past five days, he has had persistent fever, acute back pain, and positive urine culture for Staphylococcus aureus. His mental status has progressively declined, and his blood pressure has become unstable, indicating possible septic shock or severe systemic infection.
+
+Past Medical History
+Hypertension, dyslipidemia, history of ethanol use disorder in remission, ex-smoker with 60 pack-year history (quit 11 years ago), vaping marijuana 3g/day, bronchial asthma, chronic right chest/neck/spine pain from traumatic injury, severe dilated cardiomyopathy with LVEF 40%, severe aortic regurgitation, aortic root dilation (5.1 cm), history of NSTEMI, aortic valve replacement with tissue valve in 2020
+
+Medications
+Lisinopril 20 mg PO OD
+Metoprolol 25 mg PO BID
+Spironolactone 25 mg PO OD
+Not documented
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Lives alone with his dog, on disability and work compensation for injury, vapes marijuana 3g/day
+
+Physical Examination
+Not documented
+
+Investigations
+2026-01-26
+Blood culture: Positive for Staphylococcus aureus
+
+2025-10-31
+CBC: WBC 34.3 x10^9/L, Hb 97 g/L, Plt 42 x10^9/L
+CRP: 204 mg/L
+Venous blood gas: pH 7.44, lactate 1.2 mmol/L
+MRI Cervicothoracic spine: No discitis/osteomyelitis, C5-C6 disc bulge with moderate spinal canal stenosis
+
+2025-10-30
+CBC: WBC 33.0 x10^9/L, Hb 96 g/L, Plt 31 x10^9/L
+CRP: 215 mg/L
+MRI Lumbar spine: No discitis/osteomyelitis, mild degenerative changes
+Abdominal ultrasound: Cholelithiasis, no cholecystitis
+ECHO: Moderate aortic root dilation, prosthetic aortic valve gradients elevated
+
+2025-10-26
+CBC: WBC 11.1 x10^9/L, Hb 133 g/L, Plt 12 x10^9/L
+CRP: 298 mg/L
+Urinalysis: Positive nitrites, moderate bacteria, WBC 5-10/hpf
+Blood culture: Negative (reported earlier)
+
+Impression
+Mr. Belliveau is a 62-year-old male with a history of severe aortic regurgitation and aortic valve replacement who presents with Staphylococcus aureus bacteremia and acute confusion. The recent positive blood culture for Staphylococcus aureus, combined with his clinical deterioration including hypotension and altered mental status, suggests severe systemic infection likely leading to septic shock. His elevated inflammatory markers and persistent fever further support this diagnosis. The source of infection may be related to his urinary tract infection or other potential foci such as his prosthetic aortic valve or gallbladder stones.
+
+Plan
+1. I will transfer Mr. Belliveau to the ICU for close hemodynamic monitoring and management of septic shock.
+2. I will initiate broad-spectrum intravenous antibiotics targeting Staphylococcus aureus, including vancomycin or daptomycin, pending susceptibility results.
+3. I will obtain a transesophageal echocardiogram to evaluate for endocarditis or prosthetic valve infection.
+4. I will consult Infectious Diseases for further management of Staphylococcus aureus bacteremia.
+5. I will monitor for signs of organ dysfunction and adjust supportive care as needed.

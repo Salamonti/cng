@@ -1,0 +1,44 @@
+Patient ID: Judy Ester Dianne Menzies, 74-year-old female
+
+History of Present Illness:
+Ms. Menzies presents for follow-up of an incidental pulmonary lesion first identified on a CT abdomen/pelvis in September 2025. The lesion, a 1.7 x 1.0 cm peripheral opacity in the right middle lobe, was initially described as potentially inflammatory or infective with mild spiculation. She remains asymptomatic with no respiratory symptoms, cough, hemoptysis, weight loss, or fevers. A follow-up CT chest with contrast performed on December 10, 2025, revealed a spiculated nodule in the right middle lobe measuring 14 x 11 mm, now described as suspicious for malignancy. Additional ground-glass nodules were also noted at the right apex. The patient denies any new symptoms and reports no changes in her baseline health. She is concerned about the possibility of malignancy and asks about further diagnostic steps.
+
+Ms. Menzies reports no acute issues today. She is aware of the need for ongoing monitoring and understands that the lesion’s behavior over time will guide further management. She exercises daily and remains physically active, with no shortness of breath or other respiratory complaints. The patient is anxious about the potential for cancer but is otherwise stable and compliant with prior recommendations.
+
+Past Medical History:
+Hypertension
+Gastroesophageal reflux disease (GERD)
+Remote smoking history (quit over 25 years ago)
+No known malignancy
+No history of respiratory disease
+
+Medications:
+Rabeprazole 20 mg, oral, once daily as needed
+Amlodipine 10 mg, oral, once daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker, quit over 25 years ago
+Lives independently
+No alcohol or recreational drug use
+
+Physical Examination: not documented
+
+Investigations:
+2025-09-30:
+CT Abdomen/Pelvis: Incidental 1.7 x 1.0 cm peripheral opacity in the right middle lobe, potentially inflammatory or infective
+Laboratory Results: Elevated WBC (14.2 x10^9/L), normal hemoglobin and platelets, CRP 1.6 mg/L, creatinine 115 µmol/L, urinalysis suggestive of urinary tract inflammation
+
+2025-12-10:
+CT Chest with Contrast: Spiculated nodule in the right middle lobe (14 x 11 mm), suspicious for malignancy; additional ground-glass nodules at the right apex
+
+Impression:
+Ms. Menzies has a spiculated nodule in the right middle lobe that is now suspicious for malignancy based on the December 2025 CT chest. While the lesion has not significantly changed in size since its initial detection, the presence of spiculation and the need for further characterization warrant consideration of a PET-CT scan to assess metabolic activity. The patient remains asymptomatic, and her remote smoking history and lack of respiratory symptoms are reassuring but do not exclude malignancy. Further diagnostic evaluation is necessary to guide management.
+
+Plan:
+1. I will arrange a PET-CT scan in Halifax to further evaluate the metabolic activity of the right middle lobe lesion and determine the need for biopsy.
+2. I will review the PET-CT results with the patient and discuss next steps, including potential biopsy if indicated.
+3. I will schedule follow-up in 3 months to reassess symptoms and any new imaging or biopsy results.

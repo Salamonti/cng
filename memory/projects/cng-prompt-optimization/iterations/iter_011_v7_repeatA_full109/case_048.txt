@@ -1,0 +1,72 @@
+Patient ID: Mrs. Gertrude Elizabeth Conrod, 76-year-old female
+
+History of Present Illness:
+Mrs. Conrod reports feeling generally well but describes mild shortness of breath, unchanged from prior visits. She denies recent flare-ups or exacerbations of her respiratory symptoms. Notably, she experiences intermittent left-sided chest tightness, similar to what was noted during her prior stress test, occurring both while sitting and standing. There is no associated cough, phlegm, or chest pain at rest. On examination, tenderness was noted at the costochondral junction, consistent with costochondritis. Her vital signs are stable with a heart rate of 74 bpm and oxygen saturation of 96% on room air. She denies lower extremity swelling or edema at this time.
+
+Past Medical History:
+Chronic Obstructive Pulmonary Disease (COPD), stable
+History of questionable myocardial ischemia (prior MIBI scan showed possible mild reversibility in an apical perfusion defect)
+Left bundle branch block on ECG
+Hypothyroidism
+History of drug reaction to dapagliflozin
+
+Medications:
+Breztri 2 puffs twice daily
+Carvedilol 12.5 mg twice daily
+Bisoprolol 5 mg once daily
+Furosemide 40 mg once daily
+Levothyroxine 12.5 mcg once daily
+Nortriptyline 10 mg once daily
+Perindopril 2 mg once daily
+Potassium chloride 1500 mg twice daily
+Rosuvastatin 10 mg once daily
+Spironolactone 25 mg once daily
+Topiramate 50 mg morning, 100 mg night
+Trazodone 100 mg once daily
+Empagliflozin 10 mg once daily
+
+Allergies:
+Dapagliflozin
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Vital signs: Heart rate 74 bpm, Oxygen saturation 96% on room air
+Chest: Clear lungs with adequate bilateral air entry, tenderness at costochondral junction
+Cardiac: Regular rhythm, normal S1 and S2 without murmurs or gallops
+Lower extremities: No edema
+
+Investigations:
+2025-11-17:
+Complete Blood Count: White blood count 12.6 x10^9/L, Hemoglobin 117 g/L, Platelets 274 x10^9/L
+Creatinine: 132 umol/L
+D-Dimer: 2473 ng/mL
+Doppler Ultrasound Left Leg: No evidence of DVT
+
+2025-11-07:
+Prothrombin Time/INR: INR 1.1
+Partial Thromoplastin Time: 31 seconds
+
+2025-11-06 and 2025-11-05:
+Troponin T: 21 ng/L and 24 ng/L
+
+2025-11-05:
+ECG: Normal sinus rhythm, Left bundle branch block
+
+2025-10-30:
+NT-proBNP: 434 ng/L
+
+2025-05:
+MIBI Scan: Perfusion defect unchanged from July 2022, questionable mild reversibility in apical defect
+
+Impression:
+Mrs. Conrod presents with stable COPD and persistent mild dyspnea on exertion, without recent exacerbations. Her chest discomfort is likely attributable to costochondritis, given the localized tenderness and absence of other concerning features. The stable cardiac findings, including unchanged perfusion defects on MIBI and normal troponin levels, suggest no acute cardiopulmonary process at this time. Her elevated D-dimer and NT-proBNP warrant monitoring, though no acute thromboembolic or heart failure process is evident.
+
+Plan:
+1. I will prescribe acetaminophen as needed for costochondritis-related chest discomfort.
+2. I will continue current medications as they are well tolerated and effective.
+3. I will arrange for a refill of Breztri inhaler to be sent to Spears Pharmacy on McLean.
+4. We will monitor renal function and electrolytes periodically given empagliflozin therapy.
+5. We will schedule a follow-up appointment in six months to reassess symptoms and medication effectiveness.

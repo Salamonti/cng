@@ -1,0 +1,56 @@
+Patient ID: Robyn Dawn Goodick, 53-year-old female
+
+History of Present Illness:
+Robyn Goodick is a 53-year-old female who experienced an anterior ST-elevation myocardial infarction (STEMI) in May 2024, complicated by the development of atrial fibrillation and an apical thrombus. She underwent percutaneous coronary intervention with a drug-eluting stent to the left anterior descending artery. Since then, she has been managed with a combination of medications to address her cardiovascular risks, including hypertension, type 2 diabetes, and dyslipidemia. She reports ongoing fatigue, which has limited her ability to return to full-time work, requiring several days of recovery after even a single day of employment. She denies symptoms of heart failure such as shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling, though she has gained 9 lbs over the past six months. She also reports occasional wheezing and infrequent ectopic beats with intermittent tachycardia on Holter monitoring, raising concerns for possible underlying asthma or chronic obstructive pulmonary disease (COPD).
+
+Her current symptoms primarily revolve around persistent fatigue and weight gain, which have impacted her functional capacity. She has been advised to modify her diet to reduce carbohydrates and fats to better manage her diabetes, though she has not yet noticed significant improvements in her energy levels. She remains asymptomatic from a cardiac standpoint but continues to require close monitoring of her ejection fraction, which remains between 30-35% with segmental left ventricular dysfunction and grade I diastolic dysfunction.
+
+Past Medical History:
+Type 2 diabetes mellitus, hypertension, dyslipidemia, coronary artery disease with prior STEMI, atrial fibrillation, apical thrombus, possible depression, and suspected asthma or COPD.
+
+Medications:
+- Apixaban 5 mg PO b.i.d.
+- Atorvastatin 40 mg PO daily
+- Basaglar insulin 35 units once daily
+- Bisoprolol 10 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Dapagliflozin 10 mg PO daily
+- Ezetimibe 10 mg PO daily
+- Entresto 24/26 mg PO b.i.d.
+- Metformin 1000 mg PO b.i.d.
+- Spiriva Respimat 2.5 mcg inhalation b.i.d.
+- Ventolin HFA 100 mcg inhalation as needed
+
+Allergies: not documented
+
+Family History:
+Strong family history of premature coronary artery disease.
+
+Social History:
+Former smoker who quit after her myocardial infarction. No current alcohol use. Receiving income assistance to help pay for medications.
+
+Physical Examination:
+Blood pressure 112/79 mmHg, pulse rate 82 bpm and regular, oxygen saturation 97% on room air. Chest is clear with adequate air entry bilaterally. Normal S1 and S2 with no additional sounds or murmurs. No jugular venous distention or lower limb edema. Neurological examination is unremarkable.
+
+Investigations:
+2025-03-XX:
+- BNP: 159
+- HbA1c: 7.6 (previously 7.3)
+- LDL: 1.0
+
+2024-05-XX:
+- HbA1c: 7.3 (previously 10.6)
+- LDL: 4.38
+
+2024-07-XX:
+- Echocardiogram: Ejection fraction 30-35%, segmental left ventricular dysfunction, akinetic regions, and grade I diastolic dysfunction.
+
+Impression:
+Robyn Goodick is a 53-year-old female with a significant medical history, including a prior STEMI, atrial fibrillation, and reduced ejection fraction. Her current symptoms of persistent fatigue and weight gain, despite optimal medical management, suggest ongoing limitations in her functional capacity. The presence of possible respiratory conditions such as asthma or COPD, along with her cardiac history, complicates her overall prognosis and ability to engage in sustained physical activity. Her ejection fraction remains impaired, and her diabetes control, while improved, is not yet at target levels. These factors collectively contribute to her reduced ability to maintain full-time employment and perform activities of daily living without significant fatigue.
+
+Plan:
+1. I will continue to monitor Robyn Goodick’s cardiac function with a follow-up echocardiogram in six months to reassess her ejection fraction and left ventricular function.
+2. I will arrange for a sleep study to further evaluate her persistent fatigue and rule out sleep-related causes such as obstructive sleep apnea.
+3. I will order iron studies and ferritin levels to investigate potential anemia as a contributing factor to her fatigue.
+4. I will schedule pulmonary function testing to definitively diagnose and manage any underlying asthma or COPD.
+5. I will follow up with Robyn Goodick in six months to reassess her clinical status, review test results, and adjust her management plan as needed.

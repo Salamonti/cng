@@ -1,0 +1,47 @@
+Patient ID
+Edwin Avery Nickerson is an 81-year-old male.
+
+History of Present Illness
+Mr. Nickerson reports a sudden, unexplained event approximately one month ago, which he describes as a "shock" or "boom" sensation lasting less than a second while sitting in a chair. He denies associated symptoms such as vision loss, speech difficulties, numbness, or weakness in his limbs. He does not believe this was a stroke, as he was able to speak and move normally afterward. He did not seek emergency care at the time and has not experienced recurrence. He also reports persistent shortness of breath, unchanged for years, and attributes his current weakness to aging and early dementia, though he denies significant cognitive decline.
+
+Past Medical History
+Coronary artery disease, congestive heart failure, atrial fibrillation, type 2 diabetes mellitus, hypertension, mild aortic root dilation, mild mitral regurgitation, mild tricuspid regurgitation, and mild aortic regurgitation.
+
+Medications
+- Atorvastatin 40mg OD
+- Bisoprolol 10mg OD
+- Empagliflozin 25mg OD
+- Gliclazide 60mg OD
+- Metformin 500mg BID
+- Rivaroxaban 20mg OD
+- Spironolactone 25mg OD
+- Perindopril 8mg OD
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+- Vital signs: BP 128/77, HR 78, SpO2 98% on room air
+- No lower limb swelling
+- No jugular venous distention
+- Neurological exam unremarkable
+- Cardiovascular exam: normal S1 and S2, no additional sounds or murmurs
+
+Investigations
+2025-02-03: ECHO - Normal LV size, mild concentric LV hypertrophy, EF 50-55%, segmental LV dysfunction, biatrial enlargement, moderate aortic root dilation (4.5cm), mildly dilated ascending aorta.
+2025-09-24: Labs - Glucose AC 10.5 mmol/L, eGFR 64, UACR 57.2 mg/mmol, TSH 3.38 mIU/L, normal electrolytes, lipids, and liver enzymes.
+
+Impression
+Mr. Nickerson is an 81-year-old male with a history of CAD, CHF, and atrial fibrillation who presents with a recent unexplained transient event that he does not believe was a stroke. His chronic shortness of breath remains stable, and his recent echocardiogram shows stable mild LV dysfunction with preserved EF and no significant changes. The unexplained event requires further evaluation, particularly given his history of atrial fibrillation and prior transient ischemic events.
+
+Plan
+1. I will arrange for a 24-hour Holter monitor to assess for arrhythmias or ischemic events.
+2. I will review Holter monitor results at the next follow-up appointment.
+3. I will continue current medications as they are well tolerated and appropriate for his comorbidities.
+4. We will reassess symptoms and repeat echocardiogram in 6 months if no significant changes occur.

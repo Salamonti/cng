@@ -1,0 +1,46 @@
+Patient ID: Jones, Ronald Wayne, 74-year-old male
+
+History of Present Illness:
+This 74-year-old male presents with a four-month history of progressively worsening dyspnea, characterized by significant shortness of breath that prevents him from performing even minimal activities such as walking across a room or getting dressed. He describes mornings as particularly challenging, with copious phlegm production and persistent coughing that improves slightly throughout the day. Despite recent mild improvement, his symptoms were severe enough to require an emergency department visit approximately three weeks ago. He also reports a sensation of pressure on his chest, though no frank chest pain. His dyspnea is exacerbated by activity but improves with rest or lying down. He has noticed no energy and occasional numbness in his fingers, which he attributes to his rapid breathing. Prednisone courses have provided temporary symptomatic relief, improving his energy and reducing fluid retention, but symptoms return to baseline after completion.
+
+The patient has a history of Crohn’s disease, for which he receives monthly infusions of ixekizumab (a biosimilar to Remicade). He has been a smoker for 50 years, currently consuming three to four cigarettes daily. He has not undergone formal pulmonary function testing in the past week, though prior imaging suggests significant hyperinflation consistent with COPD. He denies any recent weight changes, chest pain, or orthopnea.
+
+Past Medical History:
+COPD, Crohn’s disease, osteoporosis (bone density testing 20 years ago showed advanced disease), chronic prednisone use in the past
+
+Medications:
+ixekizumab 100 mg IV every 4 weeks
+salbutamol HFA 100 mcg inhalation 1-2 puffs 4 times daily (PRN)
+budesonide/formoterol 160/4.5 mcg inhalation 2 puffs twice daily (new prescription)
+prednisone 5 mg oral 8 tablets once daily for 5 days (as needed)
+
+Allergies:
+nuts, eggs
+
+Family History:
+not documented
+
+Social History:
+50-year smoking history (3-4 cigarettes/day), no recent quit attempts, no alcohol abuse, no illicit drug use
+
+Physical Examination:
+General: appears underweight
+Chest: clear to auscultation bilaterally, adequate air entry, no JVD or edema
+Cardiovascular: normal S1/S2, no murmurs or additional sounds
+Abdomen: soft, no organomegaly
+Neurological: unremarkable
+
+Investigations:
+2025-10-20: Chest X-ray – diffusely coarsened lung markings with mild hyperinflation, consistent with COPD; no acute abnormalities
+
+Impression:
+This patient presents with severe, poorly controlled COPD likely exacerbated by chronic smoking and recurrent inflammation. His chronic prednisone use for Crohn’s disease may have contributed to osteoporosis, though no recent bone density assessment has been performed. The recent chest X-ray confirms significant hyperinflation, and his symptoms—including dyspnea, morning phlegm, and fatigue—are consistent with advanced disease. His finger numbness may relate to hyperventilation or peripheral neuropathy, though further evaluation is warranted. Smoking cessation remains critical to prevent further lung damage.
+
+Plan:
+1. I will discontinue Spiriva Respimat and initiate budesonide/formoterol 160/4.5 mcg inhalation 2 puffs twice daily with AeroChamber spacer.
+2. I will order the following investigations:
+   - Pulmonary function tests (urgent repeat if prior results unavailable)
+   - Serum cortisol (8 AM), ACTH, alpha-1 antitrypsin, IgE, and complete blood count
+   - Bone densitometry (DEXA scan)
+3. I will prescribe nicotine replacement therapy (e.g., gum/spray) for smoking cessation and refer to the provincial smoking cessation line (811).
+4. We will schedule a follow-up appointment in two months to review test results, assess symptom control, and discuss further smoking cessation strategies if needed.

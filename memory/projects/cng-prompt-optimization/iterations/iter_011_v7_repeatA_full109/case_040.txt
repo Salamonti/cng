@@ -1,0 +1,53 @@
+Patient ID: Susan Boudreau, 74-year-old female
+
+History of Present Illness:
+Ms. Boudreau presents with persistent symptoms of congestive heart failure and new medication-related side effects. She reports ongoing loose stools occurring every few days, which she attributes to her recent heart failure medications, particularly noting this is atypical for her baseline bowel habits. She also describes recurrent mouth sores, which she similarly suspects are medication-related. Her dyspnea remains exertion-limited, particularly with stairs, though she reports this is now her baseline due to her heart's reduced capacity. She denies cough or phlegm production but confirms no improvement in her breathing capacity despite current therapies. She expresses concern about her symptoms being stable but not improving, and asks if further interventions are possible.
+
+Ms. Boudreau has been adherent to her current heart failure regimen, including vorziga (dapagliflozin), bisoprolol, and spironolactone, which were initiated following her echocardiogram revealing an ejection fraction of 38%. She denies any recent changes in fluid intake or weight gain, though she has not had recent blood work to assess her BNP levels or fluid status. She reports no leg swelling or other signs of worsening heart failure but remains limited in her activities due to breathlessness.
+
+Past Medical History:
+Asthma
+Glaucoma
+Breast cancer (2004, treated with surgery, chemotherapy, radiation)
+Ischemic stroke (remote)
+Congestive heart failure (newly diagnosed, EF 38%)
+Prediabetes (HbA1c 6.0%)
+Mild proteinuria (ACR 2.68 mg/mmol)
+
+Medications:
+Dapagliflozin 10 mg daily
+Bisoprolol 5 mg at bedtime
+Spironolactone 12.5 mg daily
+Perindopril 2 mg daily
+Voriconazole 10 mg daily
+Montelukast 10 mg daily
+Zenhale 2 puffs BID
+Spiriva Respimat 2 puffs daily
+
+Allergies: not documented
+
+Family History:
+Emphysema (mother)
+
+Social History:
+Never smoker
+No alcohol use
+Remote occupational smoke exposure
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-03:
+CBC: WBC 6.8 x 10^9/L, RBC 4.09 x 10^12/L, Hemoglobin 119 g/L, Hematocrit 0.382 L/L, eGFR 62 mL/min/1.73m^2, Creatinine 84 umol/L
+Echocardiogram: LVEF 38%, moderate global hypokinesis, no valvular abnormalities
+Myocardial Perfusion Study (sestamibi): No reversible perfusion defect, small fixed defect in apical anteroseptal wall, EF 33% (stress), EF 41% (rest)
+
+Impression:
+Ms. Boudreau’s symptoms of exertional dyspnea and persistent heart failure are consistent with her reduced ejection fraction of 38% and moderate global hypokinesis on echocardiogram. Her recent medication-related side effects, including loose stools and mouth sores, likely stem from her heart failure regimen, particularly dapagliflozin. While her myocardial perfusion study showed no reversible ischemia, her fixed defect and reduced ejection fraction suggest chronic systolic dysfunction. Her prediabetes and mild proteinuria require ongoing monitoring, though these are not acute concerns at this time.
+
+Plan:
+1. I will reduce dapagliflozin to 5 mg daily for two weeks to assess for improvement in her bowel symptoms and mouth sores, with plans to reassess tolerance at follow-up.
+2. I will initiate a nitroglycerin transdermal patch (0.4 mg/hour) to be applied daily to improve her exertional dyspnea and assess for symptomatic relief.
+3. I will order a BNP level to be drawn at her next blood work to evaluate her current heart failure status and guide potential diuretic therapy if needed.
+4. I will arrange follow-up in one month to reassess her symptoms, medication tolerability, and BNP results, with plans to adjust therapy as indicated.
+5. I will ensure her next routine blood work, including CBC, electrolytes, creatinine, and HbA1c, is scheduled for early March as previously planned.

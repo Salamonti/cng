@@ -1,0 +1,60 @@
+Patient ID: Sherrie Lynn Robinson, 75-year-old female
+
+History of Present Illness:
+Sherrie Lynn Robinson is a 75-year-old female presenting with persistent intermittent chest pain and exertional shortness of breath despite prior investigations and treatment. She reports ongoing mild chest pain, which has improved compared to her severe episode before Christmas, but remains bothersome. Her shortness of breath has also persisted, although she notes improvement in her ability to walk without lightheadedness or severe dyspnea since starting CPAP therapy for obstructive sleep apnea one week ago. She has been adhering to her CPAP regimen, though she acknowledges it is still a period of adjustment. She denies current active angina but continues to experience mild chest discomfort. Sherrie also mentions that her echocardiogram showed normal left ventricular function with mildly reduced right ventricular function, which may be related to her obstructive sleep apnea and associated pulmonary hypertension.
+
+Sherrie’s symptoms have been evaluated extensively, including a recent stress test and echocardiogram, which showed no evidence of significant coronary artery disease or acute myocardial injury. Her BNP levels were elevated in the past, but her current symptoms are more likely related to her obstructive sleep apnea and chronic lung disease. She has been prescribed gabapentin and duloxetine for pain management and continues to take her other medications, including pantoprazole and apixaban. Sherrie is hopeful for improvement with ongoing CPAP use and recent medication adjustments.
+
+Past Medical History:
+Arthritis, Atrial Fibrillation, GERD, Hearing Loss, Hypertension, Obstructive Sleep Apnea, Osteoporosis, Past History of Depression
+
+Medications:
+Pantoprazole 40mg QD
+Duloxetine 30mg QD
+Gabapentin 300mg QD (new)
+Apixaban 5mg BID
+Bisoprolol 5mg QD (reduced from 7.5mg)
+Digoxin 0.0625mg QD (new)
+Dapagliflozin 10mg QD (new)
+
+Allergies:
+Dilaudid, Aloe Vera
+
+Family History:
+not documented
+
+Social History:
+Lives in Digby, NS. Resides there for 6 years. Occasional glass of wine. No smoking history.
+
+Physical Examination:
+not documented
+
+Investigations:
+2025-12-21:
+- Troponin T: 9 ng/L (normal)
+- Chest X-ray: No acute intrathoracic disease
+- ECG: Atrial fibrillation, no significant ST changes, no inferior MI criteria
+- Complete Blood Count: Normal
+- BMP: Normal electrolytes, creatinine 90 umol/L
+- BNP: Not documented in this visit but previously elevated (659 ng/L on 10/14/25)
+- Echocardiogram: Normal left ventricular function, mildly reduced right ventricular function, normal pulmonary artery pressure
+
+2025-12-17:
+- Echocardiogram: Normal left ventricular size and function, mildly reduced right ventricular systolic function, normal pulmonary artery pressure
+
+2025-11-27:
+- Stress Test: Atrial fibrillation at rest, no significant ST changes, moderate risk, terminated due to dyspnea
+
+2025-10-14:
+- Troponin T: 10 ng/L (normal)
+- BNP: 659 ng/L (elevated)
+- Wall Motion Study: Normal ventricular walls, ejection fraction 55.6%
+
+Impression:
+Sherrie Lynn Robinson is a 75-year-old female with a history of atrial fibrillation, obstructive sleep apnea, and chronic exertional dyspnea. Her ongoing symptoms of mild chest pain and exertional shortness of breath are likely multifactorial, involving chronic obstructive sleep apnea, mildly reduced right ventricular function, and possibly GERD. Recent investigations have ruled out acute coronary syndrome and significant structural heart disease. Her elevated BNP in the past may reflect chronic lung disease and obstructive sleep apnea, which are being addressed with CPAP therapy and new medications such as dapagliflozin and digoxin.
+
+Plan:
+1. I will continue the following medications: Pantoprazole 40mg QD, Duloxetine 30mg QD, Gabapentin 300mg QD, Apixaban 5mg BID, Bisoprolol 5mg QD, Digoxin 0.0625mg QD, and Dapagliflozin 10mg QD.
+2. I will discontinue Hydrochlorothiazide 12.5mg QD.
+3. I will arrange for a CPAP machine fitting and follow-up with a respiratory therapist to ensure proper mask fit and machine maintenance, and to obtain data for pressure adjustments.
+4. I will follow up in three months to reassess symptoms, CPAP compliance, and overall response to treatment.

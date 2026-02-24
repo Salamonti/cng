@@ -1,0 +1,54 @@
+Patient ID
+Sheldon Robie O'Connell, 57-year-old male
+
+History of Present Illness
+This 57-year-old male presents with persistent post-sternotomy pain, described as a daily, continuous discomfort with exacerbations to 8-9/10 in the sternal region, radiating to bilateral chest walls. The pain is localized to the sternotomy site and adjacent ribs, with tenderness on palpation. He reports a history of open-heart surgery with sternotomy and left thoracotomy in 2024, complicated by pneumonia and subsequent nerve damage. Despite current management with acetaminophen-codeine (Tylenol-3), his pain remains poorly controlled, with daily levels of 6-7/10. He denies any recent trauma or new symptoms suggestive of cardiac ischemia.
+
+The patient has undergone extensive investigations, including CT chest and cardiac evaluations, which have ruled out acute cardiac or structural causes for his pain. His pain is attributed to post-sternotomy syndrome, characterized by chronic sternal and rib pain due to nerve injury and scar tissue formation. He has adapted to living with this pain but seeks better management options.
+
+Past Medical History
+Coronary artery bypass graft x3 (2024), left thoracotomy and decortication (2025), type 2 diabetes mellitus, hypertension, dyslipidemia, post-sternotomy syndrome, iron deficiency anemia (resolved with transfusion), prior atrial fibrillation (resolved), history of syncope with polymorphic ventricular arrest (2024), gastroesophageal reflux disease, Barrett's esophagus (suspected), and history of smoking (40 pack-years, ex-smoker)
+
+Medications
+Gabapentin 300 mg oral once daily
+Perindopril/indapamide 2 mg/0.625 mg oral once daily
+Rosuvastatin 40 mg oral once daily
+Aspirin 81 mg oral once daily
+Pantoprazole 40 mg oral once daily
+Humalog 100 units/mL subcutaneous (dosing as directed)
+Basaglar 100 units/mL subcutaneous 22 units at bedtime
+Synjardy 12.5 mg/1000 mg oral once daily
+Symbicort 200/6 mcg inhalation twice daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Not documented
+
+Physical Examination
+General: Well-developed male in no acute distress.
+Cardiovascular: Normal S1 and S2, no murmurs or additional sounds.
+Respiratory: Clear to auscultation bilaterally, no wheezes or crackles.
+Abdominal: Soft, no organomegaly.
+Neurological: Unremarkable.
+Chest: Maximal tenderness over the lateral chest wall around the 5th ribs bilaterally, consistent with sternotomy site and adjacent ribs.
+
+Investigations
+2026-01-30: Chest CT without contrast - No focal abnormalities seen in relation to the sternum or medial right ribs. No cause for atypical chest pain identified.
+2026-01-09: Complete blood count - Hemoglobin 155 g/L, platelets 212 x10^9/L.
+2026-01-09: Ferritin - 187.00 ug/L, Vitamin B12 - 255 pmol/L, Serum folate - 21.4 nmol/L.
+2025-12-31: Troponin T - Elevated (peak 44 ng/L), ECG - Normal sinus rhythm with nonspecific T wave abnormalities.
+2025-12-31: Chest X-ray - Small bilateral pleural effusions, stable linear pulmonary scarring in the left lower lung zone.
+2025-09-18: Hemoglobin A1C - 7.9%, Lipids - LDL 1.2 mmol/L, Triglycerides 1.35 mmol/L.
+
+Impression
+This 57-year-old male presents with chronic post-sternotomy pain, consistent with post-sternotomy syndrome, which has been refractory to current analgesic management. His extensive cardiac history, including prior coronary artery bypass graft and left thoracotomy, along with investigations ruling out acute cardiac or structural causes, supports the diagnosis. The pain is localized to the sternotomy site and adjacent ribs, with tenderness on palpation, and is attributed to nerve damage and scar tissue formation. Despite ongoing management, his pain remains poorly controlled, necessitating further intervention.
+
+Plan
+1. I will initiate gabapentin 300 mg oral once daily and titrate up to 900 mg daily as tolerated for neuropathic pain management.
+2. I will arrange for follow-up in two months to reassess pain control and adjust medication as needed.
+3. I will consider local steroid injections if gabapentin does not provide adequate pain relief.

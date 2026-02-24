@@ -1,0 +1,36 @@
+Patient ID: Dianne Gayle Williams, 80-year-old female
+
+History of Present Illness:
+Ms. Williams is an 80-year-old female who presents for medication review and general health assessment. She reports feeling well overall and denies any current chest pain or shortness of breath. She has been taking several supplements (vitamin D, omega-3, multivitamin, magnesium) and is uncertain about their necessity. She is particularly concerned about the magnesium type, as she is unsure if it is needed for muscle relaxation or sleep. She has been advised by a previous physician to discontinue pantoprazole if she remains asymptomatic and adheres to dietary modifications, including elevating the head of her bed and avoiding late-night meals. She also mentions that her five-year follow-up for colonoscopy is overdue and that she had a stent placed in the past, with the associated medication discontinued after six months. She is taking low-dose aspirin, metoprolol, and metformin as lifelong medications. Ms. Williams is also proactive about her health, participating in yoga classes and home exercises, and has noticed improvements in her activity level since joining a local walking group.
+
+Ms. Williams has a history of GERD, for which she was previously taking pantoprazole, and she is unsure if this medication is still necessary. She mentions that she had an endoscopic procedure revealing inflammation at the gastroesophageal junction, but she has not had a repeat endoscopy. She also notes that her cholesterol medication was recently stopped by her family doctor pending further blood work, which is due in March. She expresses concern about her upcoming 80th birthday and asks for advice on maintaining her health in this new decade.
+
+Physical Examination:
+The chest is clear with adequate air entry bilaterally. Heart sounds are normal with a regular rhythm, and there are no murmurs or additional sounds. The abdomen is soft with no palpable organomegaly. Neurological examination is unremarkable. There is no jugular venous distention or lower limb edema. Vital signs include a heart rate of 63 beats per minute and an oxygen saturation of 97% on room air.
+
+Investigations:
+2025-11-10:
+- Hemoglobin A1C: 6.9%
+- Urinalysis: Clear urine with specific gravity 1.020, pH 8.0, negative for protein, ketones, bilirubin, occult blood, nitrite, and glucose. Leukocyte esterase elevated at 125 H Leu/uL, with 13 RBC and 510 WBC per high-power field.
+- ECG: Sinus bradycardia, moderate voltage criteria for LVH, borderline ECG.
+- Lytes: Sodium 139 mmol/L, potassium 4.4 mmol/L, chloride 102 mmol/L.
+- eGFR: 78 mL/min/1.73m², creatinine 68 µmol/L.
+- Glucose random: 7.8 mmol/L.
+- Complete Blood Count: Hemoglobin 107 g/L, platelets 144 x10^9/L, WBC 5.1 x10^9/L.
+- Troponin T: 28 ng/L.
+- INR: 1.0.
+
+2025-07-18:
+- ECHO: Normal biventricular size and systolic function, aortic valve sclerosis, mild mitral annular calcification.
+
+Impression:
+Ms. Williams is an 80-year-old female with a history of type 2 diabetes mellitus, GERD, treated ductal carcinoma in situ of the left breast, and coronary artery disease with prior PCI and stent placement in the right coronary artery. She currently remains asymptomatic with stable vital signs and a normal cardiovascular examination. Her recent investigations show controlled diabetes with an A1C of 6.9%, normal biventricular function on echocardiography, and no evidence of acute ischemia on ECG. However, her urinalysis shows elevated leukocyte esterase and WBCs, which may warrant further investigation. She is on lifelong aspirin and metoprolol for cardiovascular protection and metformin for diabetes management. The decision to continue or discontinue pantoprazole and other supplements should be individualized based on her symptoms and dietary adherence.
+
+Plan:
+1. I will continue aspirin 81 mg orally daily and metoprolol 25 mg orally twice daily indefinitely for cardiovascular protection.
+2. I will continue metformin 500 mg orally twice daily for diabetes management.
+3. I will discontinue pantoprazole 40 mg orally daily if Ms. Williams remains asymptomatic and adheres to dietary modifications, including elevating the head of her bed and avoiding late-night meals.
+4. I will recommend continuing vitamin D and omega-3 supplements, as they are generally safe and may provide health benefits, but discontinue the multivitamin and magnesium unless specifically needed for a particular health concern.
+5. I will arrange for a repeat colonoscopy to be performed, given that her last screening was overdue.
+6. I will refer Ms. Williams back to her family doctor for further management of her cholesterol medication and to follow up on her urinalysis findings.
+7. I will encourage Ms. Williams to continue her active lifestyle, including yoga and walking, and will schedule a follow-up visit in six months to reassess her overall health and address any new concerns.

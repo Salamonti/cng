@@ -1,0 +1,52 @@
+Patient ID: Mrs. Gertrude Elizabeth Conrod, a 76-year-old woman
+
+History of Present Illness:
+Mrs. Conrod presents today for follow-up of her chronic obstructive pulmonary disease (COPD) and evaluation of intermittent left-sided chest tightness. She reports feeling well overall with no recent exacerbations of respiratory symptoms, though she notes occasional episodes of left-sided chest tightness occurring both while sitting and standing. These episodes are consistent with prior reports following her stress test in June 2025 and are not associated with radiation, diaphoresis, nausea, or palpitations. Her shortness of breath remains limited to exertion, such as climbing one flight of stairs, and does not significantly impact her daily activities. She denies cough, phlegm, hemoptysis, orthopnea, paroxysmal nocturnal dyspnea, or reflux. Medication adherence is confirmed, though she has only one puff remaining in her current albuterol inhaler supply and requests a refill.
+
+The patient’s chest tightness has been evaluated as possibly related to costochondritis based on physical examination findings today. There has been no new onset of fatigue, weight loss, fever, chills, or swelling in extremities since her last visit.
+
+Past Medical History:
+Chronic obstructive pulmonary disease, hypertension, hyperlipidemia, osteoarthritis, anxiety disorder, hypothyroidism, history of questionable myocardial ischemia (persistent apical perfusion defect on MIBI scan, May 2025), resolved drug-induced rash to dapagliflozin, prior DVT ruled out via Doppler ultrasound (November 2025), and stable lower limb edema bilaterally.
+
+Medications:
+BREZTRI 2 puffs twice daily
+JARDIANCE 10 mg once daily
+carvedilol 12.5 mg twice daily
+bisoprolol 5 mg once daily
+losartan 25 mg once daily
+potassium chloride 1500 mg twice daily
+spironolactone 25 mg once daily
+levothyroxine 12.5 mcg once daily
+nortriptyline 10 mg once daily
+trazodone 100 mg once daily
+topiramate 50 mg morning, 100 mg evening
+rosuvastatin 10 mg once daily
+
+Allergies:
+Dapagliflozin (dermatitis)
+
+Family History: not documented
+
+Social History:
+Patient lives independently at home with family support. Denies tobacco use, alcohol consumption, and illicit drugs. Actively engaged socially despite functional limitations.
+
+Physical Examination:
+Heart rate 74 beats per minute, regular rhythm. Oxygen saturation 96% on room air. Clear lungs with adequate bilateral air entry. Normal S1 and S2 without murmurs, gallops, or rubs. Jugular venous pressure not elevated. Bilateral lower extremity edema grade 2/3. Tenderness localized to left junction of ribs and sternum, consistent with costochondritis. No signs of ulceration or skin breakdown on legs.
+
+Investigations:
+2025-11-17: CBC showed leukocytosis (WBC 12.6 x10^9/L), mild anemia (Hb 117 g/L), elevated creatinine (132 umol/L)
+2025-11-05/06: Troponin T levels 24 and 21 ng/L (slightly elevated but below ACS threshold)
+2025-11-05: ECG showed sinus rhythm with left bundle branch block (stable from October 2025)
+2025-10-30: NT-proBNP 434 ng/L (mildly elevated)
+2025-05: MIBI scan showed persistent apical perfusion defect (no progression since July 2022)
+
+Impression:
+Mrs. Conrod’s COPD remains stable with minimal symptom burden, though her intermittent left-sided chest tightness is likely due to costochondritis based on physical examination findings. The persistent apical perfusion defect on nuclear imaging from 2022, unchanged through 2025, raises ongoing questions about its clinical significance, though her stable clinical status and lack of recent troponin rise or ECG changes suggest a low likelihood of progressive coronary artery disease. Mild renal impairment is present, as evidenced by elevated creatinine, and requires ongoing monitoring.
+
+Plan:
+1. I will continue the current COPD regimen, including BREZTRI 2 puffs twice daily, and prescribe a refill for BREZTRI to be sent to Spears Pharmacy on McLean Street.
+2. I will advise symptomatic management of costochondritis with acetaminophen (Tylenol) as needed for pain relief.
+3. I will maintain all other chronic medications at current dosages unless otherwise indicated.
+4. We will schedule a follow-up appointment in six months (August 4, 2026) unless symptoms worsen or new concerns arise.
+5. I will monitor kidney function periodically with repeat creatinine checks every six months or sooner if any decline is suspected.
+6. We will reassess the need for stress testing or advanced cardiological evaluation only if future episodes evolve into exertional angina, syncope, worsening dyspnea, or persistent biomarker elevations.

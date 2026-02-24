@@ -1,0 +1,64 @@
+Patient ID
+Carolyn TomkinsWhite, a 65-year-old female.
+
+History of Present Illness
+Carolyn TomkinsWhite presents with persistent respiratory symptoms despite recent treatment adjustments. She reports significant improvement in her cough and sputum production since starting Breztri, though she still experiences shortness of breath, particularly when exposed to strong scents such as fabric softener or air fresheners. She describes a thick mucus in the back of her throat that is difficult to cough up, which occasionally triggers choking if she cannot access water. Carolyn also notes a recent flare-up of symptoms, including increased dyspnea and coughing, which she attributes to environmental triggers during a recent trip. She has had no recent changes in her nighttime symptoms or hemoptysis.
+
+Carolyn mentions that she underwent a CT scan of her lungs on February 11, 2026, which revealed multiple nodules, including a larger lesion on the left side described as a benign tumor or hematoma. She has no prior history of CT scans and has only had chest X-rays in the past. Her symptoms have been ongoing for the past year, with worsening dyspnea and cough, despite using her current inhalers (Symbicort and Atrovent). She reports that her symptoms have fluctuated, with periods of improvement and recent exacerbations.
+
+Past Medical History
+Obstructive lung disease (diagnosed on pulmonary function testing in 2025)
+History of bronchial issues since childhood
+Previous Hartmann’s procedure and reversal for a perforated diverticulum
+History of pneumonia and sinus infections as a child
+
+Medications
+Breztri 1 puff twice daily (budesonide/glycopyrronium/formoterol)
+Symbicort 2 puffs twice daily (budesonide/formoterol) [stopped per prior note, but patient reports ongoing use]
+Atrovent prn (ipratropium)
+Salbutamol prn (rescue inhaler)
+Flonase prn (fluticasone nasal spray)
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Former smoker, off and on over the years
+No current smokers in the household
+Occasional alcohol consumption
+Lives with husband and son
+Has seniors Pharmacare drug coverage
+
+Physical Examination
+Chest: clear with adequate air entry bilaterally; normal S1 and S2 with no additional sounds or murmurs
+Abdominal: soft with no palpable organomegaly
+Neurological: unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations
+2025-11-09
+CBC: WBC 10.6, Hgb 153, Plts 305
+VBG: pH 7.40, pCO2 46.6, pO2 28.8, HCO3 1.4
+Chemistry: Na 134, K 3.8, Cl 97, Cr 56
+Alpha-1 antitrypsin level: normal
+Ferritin: 298 with high iron levels
+% saturation: 57%
+
+2025-10-27
+Pulmonary function tests: severe obstructive airway disease with hyperinflation and reduced DLCO
+
+2026-02-11
+CT chest: multiple pulmonary nodules, including a larger lesion on the left side (described as a benign tumor or hematoma)
+
+Impression
+Carolyn TomkinsWhite presents with chronic obstructive pulmonary disease (COPD) and possible overlapping bronchiectasis or emphysema, given her long-standing respiratory symptoms, severe obstructive findings on pulmonary function testing, and recent CT chest findings of multiple pulmonary nodules. Her symptoms are exacerbated by environmental triggers, suggesting a possible asthmatic component or heightened sensitivity to irritants. The presence of nodules on CT chest raises concern for potential infectious or inflammatory processes, though the larger lesion is described as benign. Further evaluation and follow-up are needed to correlate these findings with her clinical picture and adjust her management plan accordingly.
+
+Plan
+1. I will prescribe N-acetylcysteine (NAC) 600 mg orally three times daily for mucus clearance and potential reduction in flare-ups.
+2. I will arrange follow-up pulmonary function testing and CT chest imaging in 3-6 months to monitor the progression of pulmonary nodules and lung disease.
+3. I will send a requisition for hemochromatosis genetic testing given her elevated ferritin and iron levels.
+4. I will review the formal CT chest report once available and arrange a follow-up appointment to discuss findings and adjust her inhaler regimen as needed.
+5. I will counsel Carolyn on avoiding environmental triggers, including strong scents and irritants, to minimize symptom exacerbations.

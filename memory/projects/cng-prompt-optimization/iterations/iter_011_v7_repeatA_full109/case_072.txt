@@ -1,0 +1,59 @@
+Patient ID
+Sally Belding is a 73-year-old female presenting for evaluation of persistent respiratory symptoms.
+
+History of Present Illness
+Sally reports ongoing respiratory distress characterized by persistent green phlegm production despite recent influenza A infection confirmed on February 6, 2026. She describes feeling like she is "drowning" in phlegm and has been using her emergency inhaler frequently. She denies fever but notes persistent sinus congestion and abdominal discomfort from coughing. She was previously treated with prednisone 50 mg for 5 days and doxycycline for bronchitis, but symptoms have not improved. She has been hospitalized twice recently for respiratory issues and remains concerned about potential lung deterioration.
+
+She reports worsening symptoms over the past two weeks, including increased use of her rescue inhaler and difficulty sleeping due to coughing. She has been using her CPAP machine with added mist but has since discontinued it due to irritation. Her oxygen saturation remains stable at 99% on room air, but she has bilateral wheezing on examination.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+Asthma
+Sinusitis
+Bronchitis
+
+Medications
+Nucala (mepolizumab) subcutaneous injection monthly
+Prednisone 40 mg oral daily (new, to taper over 30 days)
+Moxifloxacin 400 mg oral daily for 10 days (new)
+Breo Ellipta (fluticasone/vilanterol) 100/25 mcg inhaled daily
+Spiriva Respimat (tiotropium) 2.5 mcg inhaled twice daily
+Aerobika (dornase alfa) nebulizer 15 minutes four times daily
+Emergency puffer (salbutamol) as needed
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+Lives with family, uses CPAP nightly but with poor sleep quality. Reports recent flu vaccination but concerned about potential exposure to others in household.
+
+Physical Examination
+Vital signs: Heart rate 75 bpm, oxygen saturation 99% on room air.
+Chest: Bilateral wheezing, no acute distress.
+Cardiovascular: Normal S1 and S2, no murmurs.
+No lower limb edema or jugular venous distension.
+
+Investigations
+2026-02-06
+Respiratory panel: Positive for influenza A, negative for COVID-19, RSV.
+Complete blood count: WBC 7.1 x10^9/L, hemoglobin 126 g/L, platelets 352 x10^9/L.
+Lytes: Sodium 140 mmol/L, potassium 4.0 mmol/L, chloride 101 mmol/L.
+Creatinine: 56 umol/L.
+ECG: Normal sinus rhythm, no significant change from prior.
+
+2026-01-29
+Chest X-ray: Clear lungs, no acute abnormality detected.
+Venous blood gas: pH 7.37, pCO2 50.5 mmHg, lactate 0.9 mmol/L.
+
+Impression
+Sally presents with persistent respiratory symptoms following influenza A infection, complicated by likely post-influenza bacterial superinfection. Her ongoing wheezing and phlegm production, despite prior treatment with antibiotics and steroids, suggest a possible Staphylococcus aureus infection. Her stable oxygen saturation and lack of acute radiographic findings on chest X-ray are reassuring, though her clinical course remains concerning for potential progression to pneumonia if not adequately treated.
+
+Plan
+1. I will prescribe moxifloxacin 400 mg orally once daily for 10 days to target potential Staphylococcus aureus superinfection.
+2. I will initiate prednisone 40 mg orally daily with a taper over 30 days to manage ongoing inflammation.
+3. I will arrange follow-up with Dr. Eissa in two weeks to reassess respiratory status and coordinate care, given her complex medical history and difficulty accessing primary care.
+4. I will counsel on CPAP use with head elevation to minimize irritation and improve sleep quality.
+5. We will monitor for clinical improvement in phlegm production and wheezing over the next 10 days.

@@ -1,0 +1,57 @@
+Patient ID: Robyn Dawn Goodick, 53-year-old female
+
+History of Present Illness:
+Robyn Goodick is a 53-year-old female with a history of significant cardiovascular events, including an anterior ST-elevation myocardial infarction (STEMI) in May 2024, complicated by the development of atrial fibrillation and an apical thrombus. She remains asymptomatic for cardiac-related symptoms such as chest pain, shortness of breath, orthopnea, or lower limb swelling, though she reports occasional episodes of tachycardia and rare chest pain. Her primary concern at recent follow-ups has been persistent fatigue, which significantly impacts her ability to sustain daily activities, including employment. She describes needing multiple days of recovery after a single day of work, indicating a marked reduction in functional capacity. Additionally, she has gained 9 lbs over the past six months, and her HbA1c has risen from 7.3% to 7.6%, suggesting suboptimal control of her type 2 diabetes.
+
+Robyn’s current management includes medications for heart failure, diabetes, and atrial fibrillation, alongside lifestyle modifications such as smoking cessation and dietary adjustments. Despite these efforts, her fatigue persists, and she has developed new respiratory symptoms, including wheezing, raising concerns for potential asthma or chronic obstructive pulmonary disease (COPD). Recent Holter monitoring revealed infrequent ectopic beats and intermittent tachycardia, which require ongoing surveillance. Her echocardiogram continues to show a reduced ejection fraction (30-35%) with segmental wall motion abnormalities and grade I diastolic dysfunction, indicating persistent cardiac dysfunction.
+
+Past Medical History:
+Type 2 diabetes mellitus, hypertension, dyslipidemia, coronary artery disease with prior STEMI, atrial fibrillation, heart failure with reduced ejection fraction, possible depression, and history of smoking
+
+Medications:
+- Entresto 24/26 mg PO BID
+- Atorvastatin 40 mg PO daily
+- Apixaban 5 mg PO BID
+- Metformin 1000 mg PO BID
+- Dapagliflozin 10 mg PO daily
+- Spironolactone 12.5 mg PO daily
+- Clopidogrel 75 mg PO daily
+- Basaglar insulin 35 units PO daily
+- Bisoprolol 10 mg PO daily
+- Spiriva Respimat 2.5 mcg inhalation QD
+- Ventolin HFA 100 mcg inhalation PRN
+- Ezetimibe 10 mg PO daily
+
+Allergies: not documented
+
+Family History:
+Strong family history of premature coronary artery disease
+
+Social History:
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-03-XX:
+- HbA1c: 7.6 (previously 7.3)
+- LDL: 1.0
+- BNP: 159
+
+2024-07-05 (post-MI admission):
+- Echocardiogram: EF 31-35%, apical thrombus, segmental wall abnormalities
+- LDL: 4.38
+
+2025-04-XX (Holter monitoring):
+- Infrequent ectopic beats, intermittent tachycardia
+
+Impression:
+Robyn Goodick is a 53-year-old female with a complex medical history marked by a prior STEMI, persistent heart failure with reduced ejection fraction, and atrial fibrillation. Her current clinical picture is further complicated by uncontrolled diabetes, as evidenced by an elevated HbA1c, and new respiratory symptoms suggestive of asthma or COPD. Despite optimal medical therapy, her persistent fatigue and reduced functional capacity significantly limit her ability to engage in daily activities, including employment. The combination of cardiac dysfunction, metabolic derangements, and potential respiratory limitations creates a substantial burden on her overall health and functional status.
+
+Plan:
+1. I will arrange for a comprehensive pulmonary function test to definitively evaluate for asthma or COPD and guide further respiratory management.
+2. I will monitor her HbA1c and lipid profile at her next follow-up visit in six months, with adjustments to her diabetes and lipid-lowering medications as needed to achieve better metabolic control.
+3. I will schedule a follow-up echocardiogram in six months to reassess her ejection fraction and cardiac function, with consideration for further optimization of heart failure therapy if indicated.
+4. I will refer Robyn for a sleep study to evaluate for potential sleep-disordered breathing, which may contribute to her fatigue and overall functional limitations.
+5. I will continue to follow up with Robyn in six months to reassess her clinical status, review all test results, and adjust her management plan accordingly.

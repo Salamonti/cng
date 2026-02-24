@@ -1,0 +1,46 @@
+Patient ID
+Sally Belding, 73-year-old female
+
+History of Present Illness
+Sally Belding, a 73-year-old female, presents with persistent respiratory symptoms despite recent treatments. She reports worsening bronchitis with asthma exacerbation, initially managed by a virtual physician with doxycycline 100 mg twice daily for seven days. Symptoms did not improve, and she was subsequently treated with prednisone 50 mg daily for five days by an outpatient physician. Despite this, she continues to experience significant green phlegm production, sinus congestion, and abdominal discomfort from persistent coughing. She denies fever but remains concerned about steroid use, which she has avoided for six years. Her current inhaler regimen includes Breo Ellipta 200/25 mcg daily, Spiriva Respimat 2.5 mcg twice daily, and as-needed salbutamol. She also reports recent influenza A infection.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA), asthma, chronic obstructive pulmonary disease (COPD), gastroesophageal reflux disease (GERD), sinusitis
+
+Medications
+- Mepolizumab 100 mg subcutaneous injection weekly
+- Spiriva Respimat 2.5 mcg inhaled twice daily
+- Breo Ellipta 200/25 mcg inhaled daily
+- Pantoprazole 40 mg oral twice daily
+- Famotidine 20 mg oral twice daily
+- Montelukast 10 mg oral daily
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+not documented
+
+Investigations
+2026-02-02
+- Respiratory panel: Positive for influenza A, negative for COVID-19, respiratory syncytial virus
+- ECG: Normal sinus rhythm, no significant changes from prior
+- CBC: WBC 7.1 x10^9/L, eosinophils 0.1 x10^9/L
+- Chemistry: Creatinine 56 umol/L, eGFR 90 mL/min/1.73m^2, normal electrolytes
+- Chest X-ray: Clear lungs, no acute abnormalities
+
+Impression
+Sally Belding is a 73-year-old female with a history of EGPA, asthma, and COPD who presents with persistent respiratory symptoms and recent influenza A infection. Her current exacerbation is characterized by ongoing green phlegm production, sinus congestion, and abdominal discomfort from coughing despite recent antibiotic and steroid therapy. The lack of improvement with doxycycline and prednisone suggests a possible bacterial sinusitis or persistent viral infection. The recent influenza A infection may have contributed to her respiratory symptoms. Her current medication regimen includes inhaled corticosteroids, long-acting beta agonists, and mepolizumab for EGPA, but her symptoms persist, indicating the need for reassessment and potential adjustment of her treatment plan.
+
+Plan
+1. I will discontinue prednisone and doxycycline as they have not improved her symptoms.
+2. I will prescribe amoxicillin-clavulanate 875/125 mg orally twice daily for 10 days to cover possible bacterial sinusitis.
+3. I will arrange for a sinus-focused CT scan to assess for sinusitis or other structural abnormalities.
+4. We will review her inhaler technique and adherence to ensure optimal use of Breo Ellipta, Spiriva Respimat, and as-needed salbutamol.
+5. We will schedule a follow-up appointment in one week to reassess her symptoms and response to treatment.

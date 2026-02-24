@@ -1,0 +1,45 @@
+Patient ID: Katelyn Newell, 27-year-old female
+
+History of Present Illness:
+Katelyn is a 27-year-old female presenting for follow-up of Hashimoto’s thyroiditis and persistent fatigue. She reports ongoing fatigue despite recent investigations, including a sleep study (January 8, 2026) showing a normal apnea-hypopnea index (AHI 4.4/h), no significant obstructive or central sleep apnea, and minimal snoring. She also underwent a thyroid ultrasound in January, which confirmed features of Hashimoto’s thyroiditis without thyroid enlargement. Her fatigue has persisted despite normal thyroid function tests (TSH 0.299 mIU/L, Free T3 4.16 pmol/L), and she describes feeling generally unwell with low energy. She denies recent kidney stones but has a history of recurrent stones in her late teens and early twenties. She also notes mild calcium in urine (24-hour urine calcium 10.87 mmol/d) and has been advised to increase fluid intake.
+
+Katelyn has explored dietary modifications, including potential gluten sensitivity, though celiac disease testing was previously negative. She remains open to further investigations, such as food allergy testing, to explore potential triggers for her fatigue. She has no acute symptoms of hyper- or hypothyroidism but continues to experience fatigue despite normal thyroid hormone levels. She is adherent to her current medications and has no recent changes in her regimen.
+
+Past Medical History:
+Hashimoto’s thyroiditis, recurrent kidney stones (history, no recent episodes), fatigue of unclear etiology
+
+Medications:
+levothyroxine 75 mcg PO daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Thyroid is not enlarged on exam. Chest is clear.
+
+Investigations:
+2026-02-02:
+- Thyroid Stimulating Hormone: 0.299 mIU/L (normal range 0.270–4.200)
+- Free T3: 4.16 pmol/L (normal range 3.1–6.8)
+- Complete Blood Count: WBC 11.8 x10^9/L (elevated), RBC 4.65 x10^12/L, Hemoglobin 135 g/L, Hematocrit 0.407 L/L, Platelets 315 x10^9/L
+- C-Reactive Protein: 6.5 mg/L (elevated)
+- Rheumatoid Factor: 10 IU/mL (normal)
+- Angiotensin-Converting Enzyme: 41 U/L (normal)
+- Ferritin: 40.70 ug/L (low)
+- Uric Acid: 334 umol/L (elevated)
+- 24-Hour Urine Calcium: 10.87 mmol/d (elevated)
+- 24-Hour Urine Creatinine: 24.10 mmol/d (normal)
+- Sleep Study (January 8, 2026): Normal AHI 4.4/h, no significant obstructive or central sleep apnea
+
+Impression:
+Katelyn is a 27-year-old female with Hashimoto’s thyroiditis and persistent fatigue despite normal thyroid function tests and a normal sleep study. Her fatigue may be multifactorial, potentially related to chronic inflammation (elevated CRP) or dietary sensitivities. The elevated 24-hour urine calcium suggests mild hypercalciuria, though she denies recent kidney stone symptoms. Her low ferritin and elevated uric acid may contribute to her fatigue and should be addressed. Further evaluation for dietary triggers or underlying autoimmune processes may be warranted.
+
+Plan:
+1. I will continue levothyroxine 75 mcg PO daily and monitor thyroid function.
+2. I will repeat thyroid function tests (TSH, Free T3, Free T4) in three months.
+3. I will order food allergy testing to explore potential dietary triggers for fatigue.
+4. I will recommend increased fluid intake to manage mild hypercalciuria and monitor for kidney stone recurrence.
+5. We will follow up in three months to reassess symptoms and laboratory results.

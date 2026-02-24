@@ -1,0 +1,72 @@
+Patient ID: Mitchell Comeau, 65-year-old male
+
+History of Present Illness:
+Mitchell Comeau is a 65-year-old male who presents today with no acute symptoms. He denies any chest pain, shortness of breath, or dizziness. His cardiac examination reveals normal S1 and S2 with an S4 gallop, though he remains asymptomatic. He reports no limitations in his usual activities, including sports and weightlifting, indicating he remains functionally active and well.
+
+Past Medical History:
+Type 2 diabetes mellitus
+Hyperlipidemia
+Sinus bradycardia
+
+Medications:
+Atorvastatin 20 mg tablet QD
+Ramipril 2.5 mg capsule QD
+Tamsulosin CR 0.4 mg tablet QD
+Pariet EC 20 mg tablet QD PRN (not currently using)
+Metformin HCl 500 mg tablet BID
+Fluticasone propionate 0.06% nasal spray 2 sprays BID
+
+Allergies:
+Firewood: rhinorrhea
+Pollen: rhinorrhea
+Nuts: hives, rash, swelling of throat
+Animal dander: rhinorrhea
+Sertraline 25 mg capsule: unspecified reaction
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Cardiac: Normal S1 and S2, S4 gallop, no murmurs, rubs, or gallops noted beyond S4. No further details documented.
+
+Investigations:
+2026-01-08:
+Prostate Specific Antigen: 2.410 ug/L (reference range: 0.00-5.85)
+
+2025-12-16:
+Free T4: 14.5 pmol/L (reference range: 12.0-22.0)
+Urine Albumin/Creatinine Ratio: 1.29 mg/mmol (reference range: normal <3.0)
+Prostate Specific Antigen: 2.080 ug/L (reference range: 0.00-5.85)
+Hemoglobin A1C: 6.2% (reference range: 4.6-5.9)
+Lytes: Sodium 142 mmol/L, Potassium 4.8 mmol/L, Chloride 106 mmol/L
+Thyroid Stimulating Hormone: 4.500 mIU/L (reference range: 0.270-4.200)
+Lipids: Cholesterol 2.7 mmol/L, Triglycerides 0.84 mmol/L, LDL Cholesterol 1.2 mmol/L, HDL Cholesterol 1.09 mmol/L, Chol/HDL Ratio 2.4
+Complete Blood Count: Normal ranges for WBC, RBC, Hemoglobin, Hematocrit, MCV, MCH, MCHC, RDW, Platelets, Neutrophils, Lymphocytes, Monocytes, Eosinophils, Basophils
+eGFR: 90 mL/min/1.73m² (reference range: >60)
+
+2025-11-21:
+ECG: Sinus bradycardia, otherwise normal ECG
+
+2025-11-20:
+Pelvis and Hips X-ray: Bony pelvis intact, joint spacing and alignment maintained at both hips, minimal degenerative changes with tiny osteophytes, no acute bony abnormality
+
+2025-11-19:
+Antinuclear Antibody Screen: Report pending at QE2
+Rheumatoid Factor Quantitative: 10 IU/mL (reference range: <14)
+C-Reactive Protein Quantitative: 0.6 mg/L (reference range: <5.0)
+Erythrocyte Sedimentation Rate: 5 mm/hr (reference range: 0-20)
+Cyclic Citrullinated Peptide Antibodies: Report pending at QE2
+
+2025-06-30:
+Hemoglobin A1C: 5.9% (reference range: 4.6-5.9)
+eGFR: 82 mL/min/1.73m² (reference range: >60)
+Urine Albumin/Creatinine Ratio: 0.82 mg/mmol (reference range: normal <3.0)
+
+Impression:
+Mitchell Comeau is a 65-year-old male with a history of type 2 diabetes mellitus and hyperlipidemia, presenting today with no acute symptoms but with a documented S4 gallop on cardiac examination. His recent investigations reveal a mildly elevated PSA, normal thyroid function, and stable renal function with mild microalbuminuria. The sinus bradycardia noted on ECG is chronic and without current symptoms. His lipid profile shows low cholesterol and triglycerides, which is favorable. The minimal degenerative changes in his pelvis and hips are consistent with his age and do not appear to be causing symptoms.
+
+Plan:
+1. I will continue atorvastatin 20 mg daily, ramipril 2.5 mg daily, tamsulosin CR 0.4 mg daily, metformin 500 mg twice daily, and fluticasone propionate nasal spray as currently prescribed.
+2. I will monitor PSA levels with repeat testing in 12 months given the mildly elevated result.
+3. I will arrange follow-up in 6 months to reassess symptoms, review recent investigations, and address any concerns related to his chronic conditions and physical examination findings.

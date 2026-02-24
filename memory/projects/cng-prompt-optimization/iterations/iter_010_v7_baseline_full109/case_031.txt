@@ -1,0 +1,49 @@
+Patient ID: James Wenford Gaudet, 79 years old, male
+
+History of Present Illness:
+Mr. Gaudet presents with severe fatigue and marked functional decline, reporting he is sleeping 20 hours per day and unable to get off the sofa. He describes no lower body strength and is unable to perform any activities. These symptoms began after recent prednisone discontinuation, which he had been tapering over nine months. He was restarted on prednisone 40 mg daily, but symptoms persist.
+
+Past Medical History:
+Granulomatosis with Polyangiitis (GPA), hypertension, hyperlipidemia, hypothyroidism, major depressive disorder, history of aortic aneurysm repair, possible coronary artery disease
+
+Medications:
+- Prednisone 40 mg oral daily
+- Methotrexate 15 mg oral weekly
+- Folic Acid 5 mg oral weekly
+- Calcium Carbonate 500 mg oral TID
+- Vitamin D 1000 IU oral daily
+- Sertraline 50 mg oral daily
+- Mirtazapine 15 mg oral daily
+- Metoprolol 25 mg oral BID
+- Plavix 75 mg oral daily
+- Atorvastatin 40 mg oral daily
+- Pantoprazole 40 mg oral daily
+- Synthroid 50 mcg oral daily
+- Alendronate 70 mg oral weekly
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-27:
+- CBC: WBC 6.1 x10^9/L, Hb 118 g/L, MCV 105.5 fL, Plts 231 x10^9/L, eGFR 44 mL/min, Cr 139 umol/L
+- Lytes: Na 141 mmol/L, K 3.7 mmol/L, Cl 106 mmol/L
+- LFTs: Bilirubin 9.8 umol/L, GGT 24 U/L, AST 29 U/L, ALT 13 U/L, ALP 94 U/L, LDH 255 U/L, CPK 62 U/L
+
+2025-11-26:
+- CBC: WBC 14.7 x10^9/L, Hb 132 g/L, MCV 101 fL, Plts 147 x10^9/L, eGFR 41 mL/min, Cr 148 umol/L
+- Lytes: Na 142 mmol/L, K 4.6 mmol/L, Cl 105 mmol/L
+- LFTs: Bilirubin 10.1 umol/L, GGT 37 U/L, AST 26 U/L, ALT 25 U/L, ALP 110 U/L, LDH 281 U/L, CPK 44 U/L
+
+Impression:
+Mr. Gaudet is experiencing severe steroid withdrawal symptoms consistent with abrupt discontinuation of long-term prednisone, despite recent restart. His fatigue, functional decline, and weakness are likely related to this, compounded by underlying GPA and chronic comorbidities. Recent laboratory findings show mild anemia, thrombocytopenia, and declining renal function, which may contribute to his symptoms. Further assessment of disease activity and medication adherence is required.
+
+Plan:
+1. I will restart prednisone at 40 mg oral daily and taper slowly over the next 6 months under close supervision.
+2. I will monitor complete blood count, renal function, and liver enzymes monthly to assess for toxicity and disease activity.
+3. I will arrange follow-up in two weeks to reassess symptoms and medication response.

@@ -1,0 +1,53 @@
+Patient ID: Crystal Coughlin, a 62-year-old female
+
+History of Present Illness:
+Crystal Coughlin is a 62-year-old female with a known right lower lobe lung mass, now confirmed as poorly differentiated adenocarcinoma of pulmonary origin. She has been under evaluation by thoracic surgery for invasive staging to determine surgical candidacy. During today's phone follow-up, she expressed ongoing uncertainty about the staging process, which was clarified in detail. She remains aware of her chronic dyspnea and cough with gray sputum, unchanged from prior assessments. No new symptoms were reported, and she continues to experience occasional palpitations and bilateral lower extremity swelling.
+
+The patient has been awaiting formal PET/CT results, head CT, and echocardiogram to guide further management. She has been reassured that her current symptoms are being monitored, and the plan remains to proceed with surgical evaluation based on the outcomes of these investigations.
+
+Past Medical History:
+Asthma, chronic back issues with three lumbar surgeries (L3-L4, L4-L5), right foot drop, history of alcohol abuse (abstinent since 2003), long-term smoking history
+
+Medications:
+Breztri Aerosphere 182 mcg inhalation 2 puffs twice daily
+Ventolin inhalation (as needed)
+Respiclick inhalation (as needed)
+Fluticasone inhalation (as needed)
+Diclofenac 50 mg orally twice daily
+Pantoprazole 40 mg orally once daily
+Hydromorphone (long-acting and short-acting) for pain management
+
+Allergies:
+Nexium (adverse reaction)
+
+Family History:
+Not documented
+
+Social History:
+Smoker (1 pack per day), quit alcohol in 2003, history of working as a personal care worker
+
+Physical Examination:
+Not documented
+
+Investigations:
+2026-01-07:
+- Complete Blood Count: WBC 5.9 x10^9/L, RBC 4.62 x10^12/L, Hemoglobin 132 g/L, Platelets 261 x10^9/L
+- Electrolytes: Sodium 136 mmol/L, Potassium 3.9 mmol/L, Chloride 99 mmol/L
+- Prothrombin Time/INR: INR 1.0
+- Peripheral Blood Morphology: Normal with platelet clumping noted
+- Lung Biopsy (07/01/26): Positive for malignancy, poorly differentiated adenocarcinoma
+
+2025-11-24:
+- Head CT: No evidence of metastatic disease
+
+2025-11-17:
+- PET/CT: Very intense uptake associated with right lower lobe mass, mild uptake in right hilar and subcarinal nodes, no evidence of distant metastatic disease
+
+Impression:
+Crystal Coughlin is a 62-year-old female with a confirmed diagnosis of poorly differentiated adenocarcinoma of the right lower lobe of the lung. The PET/CT and head CT investigations have not shown evidence of distant metastatic disease, though mild uptake in the hilar and subcarinal nodes raises concern for potential early/small volume disease involvement. The patient remains under evaluation by thoracic surgery for invasive staging to determine surgical candidacy. Her chronic symptoms of dyspnea and cough are likely multifactorial, including contributions from her asthma, COPD, and the mass effect of the lung lesion.
+
+Plan:
+1. I will ensure the patient understands the invasive staging process and the potential outcomes, including surgical candidacy.
+2. We will await the formal echocardiogram results to complete the preoperative assessment.
+3. I will coordinate with thoracic surgery to finalize the staging plan and next steps based on the completed investigations.
+4. We will schedule a follow-up appointment to review all results and discuss the definitive management plan, including potential surgical intervention or alternative therapies.

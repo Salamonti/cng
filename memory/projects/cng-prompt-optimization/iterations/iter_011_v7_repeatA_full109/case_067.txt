@@ -1,0 +1,50 @@
+Patient ID: Ronald Wayne Jones is a 74-year-old male.
+
+History of Present Illness:
+For the past four months, this patient has experienced progressively worsening dyspnea, particularly upon exertion such as walking across a room or getting dressed. He describes a sensation of pressure on his chest rather than pain, with no relief when lying flat. Morning symptoms include significant phlegm production and coughing, which improve slightly throughout the day. He reports no chest pain but notes persistent fatigue and reduced energy levels. Approximately three weeks ago, his symptoms were severe enough to require an emergency department visit due to acute shortness of breath. Over the past week, there has been some improvement, though symptoms remain problematic.
+
+The patient’s breathing difficulties are exacerbated by minimal activity and are partially relieved by a short course of oral prednisone, which improves his energy and reduces dyspnea for the duration of the five-day treatment. He denies any recent weight gain, fluid retention, or changes in sleep patterns unrelated to his respiratory symptoms. He also reports intermittent numbness in his fingers, which he attributes to rapid breathing.
+
+Past Medical History:
+Chronic Obstructive Pulmonary Disease (COPD), Crohn’s disease.
+
+Medications:
+- Spiriva Respimat 2.5 mcg/actuation inhalation, 2 puffs once daily (discontinued today)
+- Salbutamol HFA 100 mcg inhalation, 1-2 puffs 4 times daily as needed
+- JAMP-Ipratropium HFA 20 mcg/actuation inhalation, 2 puffs 4 times daily
+- Apo-Prednisone 5 mg oral, 8 tablets once daily for 5 days (as needed)
+- Ixifi 100 mg intravenous injection, 500 mg every 4 weeks (for Crohn’s disease)
+- Vitamin B12 injections, 100 mg monthly
+
+Allergies:
+Nuts, eggs.
+
+Family History:
+Not documented.
+
+Social History:
+Lifetime smoker of 50 years, currently smoking 3-4 cigarettes daily. No recent attempts at smoking cessation.
+
+Physical Examination:
+Chest: Clear to auscultation bilaterally with adequate air entry. No jugular venous distention or lower limb edema.
+Cardiac: Normal S1 and S2 with no murmurs or additional sounds.
+Abdomen: Soft with no organomegaly.
+Neurological: Unremarkable.
+
+Investigations:
+2025-10-20: Chest X-ray – Diffusely coarsened lung markings and mild hyperinflation consistent with COPD. No evidence of pulmonary edema, pneumothorax, or pleural effusion.
+
+Impression:
+This 74-year-old male presents with worsening COPD symptoms, including exertional dyspnea, chronic cough with phlegm production, and a history of severe acute exacerbations. His chest X-ray confirms significant hyperinflation and coarsened lung markings consistent with advanced COPD. The patient’s symptoms are partially responsive to short-term prednisone, suggesting an inflammatory component to his respiratory distress. His long-standing smoking history is a major contributing factor to his pulmonary decline. Additionally, his Crohn’s disease and chronic prednisone use raise concerns for secondary osteoporosis, though this has not been recently evaluated.
+
+Plan:
+1. I will discontinue Spiriva Respimat and prescribe Breztri Aerosphere 176 mcg/actuation inhalation, 2 puffs twice daily (morning and evening) with an AeroChamber spacer.
+2. I will order the following investigations:
+   - Complete blood count and serum immunoglobulin E.
+   - Alpha-1 antitrypsin level.
+   - Serum cortisol and ACTH at 8 AM.
+   - Urgent repeat pulmonary function tests (PFTs) if prior results are unavailable.
+   - Bone densitometry (DEXA scan) to assess osteoporosis risk.
+3. I will provide smoking cessation support, including nicotine replacement therapy (e.g., gum or spray) and referral to the provincial smoking cessation line (811).
+4. We will schedule a follow-up appointment in two months to review test results, assess response to Breztri, and discuss further smoking cessation strategies if needed.
+5. We will consider a short course of prednisone to stabilize symptoms while transitioning to Breztri, contingent on the patient’s commitment to smoking cessation.

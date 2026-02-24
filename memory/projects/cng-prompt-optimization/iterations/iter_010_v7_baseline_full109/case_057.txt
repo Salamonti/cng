@@ -1,0 +1,72 @@
+**Patient ID**
+Alfred Comeau, 85-year-old male.
+
+**History of Present Illness**
+Mr. Comeau presents with persistent shortness of breath and a chronic cough, unchanged from prior visits. He describes white to dark phlegm without green discoloration. His primary concern remains exertional dyspnea, now accompanied by worsening chest pain radiating to his jaw and lower teeth, consistent with angina. He reports using nitro spray and a nitro patch for symptom relief, with limited efficacy. His cardiac history includes multiple prior stents and a recent stress test showing "tough" coronary arteries with calcified blockages deemed unsuitable for further revascularization. He denies recent changes in weight, appetite, or hemoptysis. His sarcoidosis, diagnosed 40 years ago, is considered inactive with stable fibrotic changes on imaging.
+
+Mr. Comeau remains functionally limited, managing activities by pacing himself to avoid chest pain or dyspnea. He notes nocturnal symptoms, including chest pain and reflux, exacerbated by eating before bedtime. His cardiac follow-up is planned with a nurse in Digby in two weeks. He expresses understanding that his symptoms are primarily cardiac in origin, with sarcoidosis considered a remote, inactive process.
+
+**Past Medical History**
+Sarcoidosis (40 years ago, no recurrence)
+Coronary artery disease with PCI/stent x3 (LAD, 2006, 2020)
+Type 2 diabetes mellitus
+Dyslipidemia
+Hypertension
+Chronic kidney disease
+Hypothyroidism
+Gastroesophageal reflux disease
+Left toe amputation (childhood accident)
+Nasal polyp removal
+
+**Medications**
+- Nitro patch 0.8mg daily
+- Mometasone nasal spray once daily
+- Aspirin 81mg once daily
+- Synthroid 137mcg daily
+- Perindopril 2mg daily
+- Metoprolol 100mg twice daily
+- Metformin 500mg twice daily
+- Empagliflozin 10mg daily
+- Sucralfate 1g daily
+- Acetaminophen arthritis at bedtime
+- Furosemide 20mg daily
+- Clopidogrel 75mg daily
+- Amlodipine/atorvastatin 10/80mg daily
+
+**Allergies**
+Not documented
+
+**Family History**
+Not documented
+
+**Social History**
+Lives alone in Weymouth; manages daily activities independently (chores, laundry, driving locally).
+Daughter manages finances. One daughter and one granddaughter nearby.
+Widowed (wife deceased 9 years ago).
+Former smoker (quit 45–50 years ago, 1 pack/day for 20 years).
+No current alcohol or marijuana use.
+
+**Physical Examination**
+Not documented
+
+**Investigations**
+2025-12-23: High-resolution CT chest
+- Stable mediastinal lymph nodes with calcifications (prior granulomatous disease).
+- Progressed interstitial fibrotic changes (upper lobes), mild bronchiectasis.
+- No pleural effusion. Findings consistent with sequelae of sarcoidosis or fibrotic lung disease.
+
+2025-10-10: Pulmonary function testing
+- Isolated reduction in diffusion capacity (48%), suggestive of interstitial lung disease.
+
+2024-01: Echocardiogram
+- Normal LV size/function, EF 55–60%, grade 1 diastolic dysfunction.
+
+**Impression**
+Mr. Comeau’s symptoms are primarily driven by his advanced coronary artery disease with refractory angina, exacerbated by calcified lesions unsuitable for revascularization. His sarcoidosis, though historically significant, appears inactive with stable fibrotic changes on imaging and is unlikely contributing to his current dyspnea. The isolated reduction in diffusion capacity on PFTs reflects chronic lung changes but does not explain his exertional limitations. His nocturnal symptoms and reflux further suggest cardiac ischemia as the dominant pathology.
+
+**Plan**
+1. I will optimize his anti-anginal regimen with a trial of **isosorbide mononitrate 30mg daily** in addition to his current nitro patch, to be reviewed at his cardiac follow-up in two weeks.
+2. We will provide written reflux management instructions, including dietary modifications (avoiding large meals before bedtime), elevating the head of his bed, and avoiding bending after eating.
+3. I will arrange a formal cardiac rehabilitation assessment with Dr. Chahal’s team to guide activity pacing and symptom management strategies.
+4. We will repeat pulmonary function testing in 6 months to monitor for progression of interstitial changes, given his stable fibrotic pattern on CT.
+5. I will follow up with Mr. Comeau in 3 months to reassess symptoms and medication efficacy.

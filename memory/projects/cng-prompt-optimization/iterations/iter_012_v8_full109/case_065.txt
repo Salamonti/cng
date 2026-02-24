@@ -1,0 +1,58 @@
+Patient ID: Judy Ester Dianne Menzies, 74-year-old female
+
+History of Present Illness:
+The patient presents for follow-up regarding a pulmonary lesion initially identified on a CT abdomen/pelvis in September 2025. The lesion, a 1.7 x 1.0 cm peripheral opacity in the right middle lobe, was described as potentially inflammatory or infective with mild spiculation. The patient remains asymptomatic with no respiratory symptoms, cough, hemoptysis, weight loss, or fevers. A follow-up CT chest with contrast performed on December 10, 2025, revealed a spiculated nodule in the right middle lobe measuring 14 x 11 mm, which is suspicious for malignancy. The patient reports no changes in symptoms and denies any shortness of breath or exercise limitations despite mild to moderate emphysema noted on imaging. The patient is concerned about the possibility of malignancy and the need for further diagnostic testing.
+
+The patient has been advised to continue monitoring the lesion, but the current imaging suggests a need for further evaluation. The patient is uncertain about the timeline of the lesion’s presence, as it was only identified three months prior. She denies any recent changes in health status and remains functionally independent with daily exercise.
+
+Past Medical History:
+Hypertension
+Gastroesophageal reflux disease (GERD)
+Mild to moderate emphysema
+Remote smoking history (quit over 25 years ago)
+No known malignancy
+
+Medications:
+Amlodipine 10 mg oral once daily
+Rabeprazole 20 mg oral as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker, quit over 25 years ago
+Lives independently
+No alcohol or recreational drug use
+
+Physical Examination: not documented
+
+Investigations:
+2025-12-10:
+CT Chest with Contrast:
+- Spiculated nodule in the medial segment of the right middle lobe, measuring 14 x 11 mm (suspicious for malignancy)
+- Additional ground glass nodules at the right apex (5 mm and 9 mm)
+- Focal attenuation at the left apex (23 mm x 32 mm x 12 mm, possibly pleural-parenchymal scarring)
+- No pleural or pericardial effusion, no lymph node enlargement
+- 13 mm hypoattenuating nodule in the right thyroid
+- 18 mm hepatic simple cyst in segment 3 and 8 mm cyst in segment 8
+
+2025-09-30:
+CT Abdomen/Pelvis:
+- Incidental 1.7 x 1.0 cm peripheral opacity in the right middle lobe (potentially inflammatory or infective)
+
+2025-09-29:
+Laboratory Results:
+- CBC: Elevated WBC (14.2 x10^9/L), neutrophils (10.4 x10^9/L)
+- CRP: 1.6 mg/L (normal)
+- Creatinine: 115 µmol/L (mildly elevated)
+- LFTs: Within normal limits
+- Urinalysis: Positive leukocyte esterase, hematuria, proteinuria, pyuria (suggestive of urinary tract inflammation/infection)
+
+Impression:
+The patient has a spiculated nodule in the right middle lobe of the lung, which is suspicious for malignancy based on the December 2025 CT chest. The lesion has shown some interval change since the initial identification in September 2025, raising concern for a neoplastic process. While the patient remains asymptomatic and has no evidence of respiratory disease, the imaging characteristics warrant further evaluation. The mildly elevated white blood cell count and urinary tract inflammation noted previously may reflect subclinical infection but are not directly related to the pulmonary findings.
+
+Plan:
+1. I will arrange a PET CT scan in Halifax to further evaluate the pulmonary nodules for metabolic activity and guide the need for biopsy.
+2. I will review the results of the PET CT scan with the patient and discuss the next steps, which may include a biopsy if the findings are concerning for malignancy.
+3. I will follow up with the patient in one month to assess for any new symptoms or changes in her condition and to coordinate further diagnostic testing as needed.

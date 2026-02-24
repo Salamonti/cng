@@ -1,0 +1,74 @@
+Patient ID: Lloyd Francis, 85-year-old male
+
+History of Present Illness:
+Lloyd Francis is an 85-year-old male who presents with a persistent cough of approximately 10 months' duration. The cough is productive of mostly clear phlegm, with occasional dark streaks, and he experiences transient relief with short-acting bronchodilators (salbutamol). He reports a tickle in his throat prior to coughing episodes and describes the phlegm as thick, requiring significant effort to expectorate. He denies hemoptysis, chest pain, shortness of breath, fever, night sweats, or increased work of breathing. His cough is more pronounced upon waking and during driving, though it resolves with time. He has noticed unintentional weight loss, fatigue, and occasional postnasal drip without significant nasal congestion. There is no history of smoking or occupational exposures. He has a past history of open heart surgery for coronary artery disease but denies current cardiac symptoms.
+
+Lloyd’s cough has been evaluated with a CT chest, which showed reticular densities at the right lung base, suggestive of mild interstitial lung disease (ILD). He has been using salbutamol inhalers and has tried lozenges for symptomatic relief, though these have not significantly improved his cough. His primary concern is the persistent nature of the cough and its impact on his quality of life, particularly given his role as a caregiver for his wife.
+
+Past Medical History:
+Type 2 Diabetes Mellitus
+Coronary Artery Disease (status post open heart surgery)
+Chronic Kidney Injury
+Hypertension
+Hypercholesterolemia
+Gastroesophageal Reflux Disease
+Benign Prostatic Hypertrophy
+Gout
+Decreased Red Blood Cell and Hemoglobin
+Neck Mass
+
+Medications:
+atorvastatin 40 mg PO daily
+asa ec 81 mg PO daily
+ferrous sulfate 300 mg (60 mg iron) PO daily
+hydrochlorothiazide 25 mg PO daily
+metoprolol tartrate 50 mg PO 3 tablets twice daily
+telmisartan 80 mg PO daily
+empagliflozin 25 mg PO daily
+tiotropium 2.5 mcg INH once daily
+nitroglycerin transdermal patch 0.4 mg/hour apply once daily
+salbutamol 100 mcg INH 2 puffs 4 times daily as needed
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2025-10-01:
+- Hemoglobin A1C: 6.6%
+- Uric Acid: 186 umol/L
+- Electrolytes: Sodium 138 mmol/L, Potassium 3.6 mmol/L, Chloride 99 mmol/L
+- eGFR: 54 mL/min/1.73m²
+- Complete Blood Count: Hemoglobin 128 g/L, Hematocrit 0.393 L/L, Platelets 196 x10⁹/L
+- Urine Albumin/Creatinine Ratio: 2.58 mg/mmol
+- ESR: 28 mm/hr
+- CRP: 0.8 mg/L
+- Thyroid Stimulating Hormone: 1.470 mIU/L
+- Prostate Specific Antigen: 0.565 ug/L
+- Ferritin: 363.00 ug/L
+- Alanine Aminotransferase: 20 U/L
+- Magnesium: 0.77 mmol/L
+- Phosphorous: 0.98 mmol/L
+- Total Iron Binding Capacity: 44 umol/L, Iron Saturation: 0.38
+- Urinalysis: Normal parameters, no protein, glucose, or occult blood
+
+2025-10-22:
+- CT Chest: Reticular densities at the right lung base slightly more pronounced compared to prior imaging, raising the possibility of mild interstitial lung disease. No suspicious pulmonary nodules or masses.
+
+2026-01-20:
+- POC Glucose: 10.7 mmol/L
+
+Impression:
+Lloyd Francis is an 85-year-old male with a persistent productive cough of 10 months' duration, associated with mild interstitial lung disease on imaging and unintentional weight loss. His cough is likely multifactorial, involving both his underlying ILD and possible postnasal drip. The CT chest findings of reticular densities suggest mild progression of interstitial lung disease, which may contribute to his chronic cough and fatigue. His diabetes remains well-controlled, though recent glucose monitoring shows elevated levels. Given the chronicity of his symptoms and the imaging findings, further evaluation is warranted to rule out autoimmune or infectious etiologies contributing to his ILD.
+
+Plan:
+1. I will prescribe N-acetylcysteine 600 mg PO twice daily to thin secretions and improve expectoration.
+2. I will arrange for Lloyd to obtain an Aerobika oscillating positive expiratory pressure (OPEP) device for chest clearance therapy, to be used four times daily for five minutes each session.
+3. I will order a high-resolution CT scan of the chest to further evaluate the interstitial lung disease and rule out alternative diagnoses.
+4. I will send Lloyd for blood work to assess for autoimmune markers, including antinuclear antibodies (ANA), rheumatoid factor (RF), and possibly antineutrophil cytoplasmic antibodies (ANCA).
+5. I will follow up with Lloyd in four weeks to review the results of the high-resolution CT scan, blood work, and assess his response to the N-acetylcysteine and chest clearance therapy.
+6. We will provide Lloyd with a home blood pressure monitor for ongoing monitoring of his hypertension.

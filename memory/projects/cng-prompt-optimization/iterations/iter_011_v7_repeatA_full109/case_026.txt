@@ -1,0 +1,66 @@
+Patient ID: Arthur Belliveau, 62-year-old male
+
+History of Present Illness:
+Mr. Belliveau, a 62-year-old male, presented with acute confusion and hemodynamic instability requiring transfer to ICU. On the same day, blood cultures confirmed gram-negative bacteremia. He has a history of severe aortic regurgitation with aortic root dilation and a prior aortic valve replacement in 2020. The patient has been experiencing fever for five days, with positive urine culture for Staphylococcus aureus and elevated inflammatory markers, including a white blood cell count of 34.3 x10^9/L and CRP of 204 mg/L. He also reports acute back pain and increased cough.
+
+Past Medical History:
+- Hypertension
+- Dyslipidemia
+- Decompensated heart failure with severe dilated cardiomyopathy (LVEF 40%)
+- Severe aortic regurgitation secondary to flail right coronary cusp
+- Aortic root dilation (5.1 cm)
+- NSTEMI (2020)
+- History of alcohol use disorder (12 years abstinent)
+- Bronchial asthma
+- Chronic right chest, neck, and spine pain secondary to traumatic injury
+- Cholelithiasis
+
+Medications:
+- Lisinopril 20 mg PO OD
+- Metoprolol 25 mg PO BID
+- Spironolactone 25 mg PO OD
+- Not documented (no current medication list provided in current encounter)
+
+Allergies: Not documented
+
+Family History: Not documented
+
+Social History:
+- Lives alone with his dog
+- On disability and work compensation for injury
+- Former smoker (60 pack-year history, quit 11 years ago)
+- Vapes marijuana 3 g/day
+
+Physical Examination: Not documented
+
+Investigations:
+2026-01-27:
+- Blood cultures: Gram-negative bacteremia
+
+2025-10-31:
+- CBC: WBC 34.3 x10^9/L, Hb 97 g/L, Hct 0.273, Plt 42 x10^9/L
+- CRP: 204 mg/L
+- Urinalysis: Positive nitrites, moderate bacteria, WBC 5-10/hpf
+- Venous blood gas: pH 7.44, lactate 1.2 mmol/L
+
+2025-10-30:
+- CBC: WBC 33.0 x10^9/L, Hb 96 g/L, Hct 0.270, Plt 31 x10^9/L
+- CRP: 215 mg/L
+- Urine culture: Positive for Staphylococcus aureus
+- MRI Cervicothoracic spine: No discitis/osteomyelitis or abscess; C5-C6 disc bulge with moderate spinal canal stenosis
+- MRI Lumbar spine: No convincing evidence of spondylodiscitis; mild to moderate degenerative changes
+- Portable chest X-ray: No radiographic evidence of pneumonia
+
+2025-10-28:
+- Echocardiogram: Normal LV size and function, moderate aortic root dilation, elevated prosthetic aortic valve gradients
+- Abdominal ultrasound: Cholelithiasis, no definite cholecystitis or ascites
+
+Impression:
+Mr. Belliveau presents with acute confusion and gram-negative bacteremia, likely secondary to Staphylococcus aureus infection given the positive urine culture and elevated inflammatory markers. His history of aortic valve replacement and aortic root dilation, along with current hemodynamic instability, suggests a complex interplay of cardiac and infectious etiologies. The recent fever, elevated CRP, and leukocytosis further support a systemic infectious process, potentially complicated by his underlying cardiac conditions.
+
+Plan:
+1. I will initiate broad-spectrum intravenous antibiotics targeting gram-negative bacteremia and Staphylococcus aureus, pending final culture sensitivities.
+2. We will monitor closely in ICU for hemodynamic stability and adjust vasopressor support as needed.
+3. I will arrange for repeat blood cultures and further infectious workup, including urine culture sensitivities and potential source control (e.g., imaging for abscess or other foci of infection).
+4. We will reassess the patient’s cardiac status with a transthoracic echocardiogram to evaluate for new valvular dysfunction or prosthetic valve complications.
+5. I will consult Infectious Diseases for further management of bacteremia and source control.

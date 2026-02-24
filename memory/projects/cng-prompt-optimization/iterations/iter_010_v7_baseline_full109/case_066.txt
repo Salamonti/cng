@@ -1,0 +1,49 @@
+Patient ID
+Judy Ester Dianne Menzies, a 74-year-old woman, presented for follow-up of incidental pulmonary findings.
+
+History of Present Illness
+The patient reports no change in her respiratory status since the last visit and remains asymptomatic, denying cough, hemoptysis, shortness of breath, fever, chills, weight loss, or night sweats. She continues to exercise daily without limitation. Today’s visit was prompted by the need to arrange a PET-CT scan for further evaluation of a previously identified pulmonary nodule.
+
+Past Medical History
+Hypertension, GERD, remote smoking history (quit over 25 years ago), mild to moderate chronic obstructive changes.
+
+Medications
+Sandozrabeprazole 20 mg swallow oral once daily as needed
+Sandozamlodipine 10 mg swallow oral once daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Former smoker, quit over 25 years ago. Lives independently. Denies alcohol or recreational drug use.
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-10: CT Chest With Contrast
+- Spiculated nodule in the medial segment of the right middle lobe measuring 14 mm x 11 mm (previously 1.7 cm x 1.0 cm in September 2025).
+- Additional small nodules: 4 mm nodule in the left lower lobe, two ground-glass opacities at the right apex (5 mm and 9 mm).
+- Focal attenuation at the left apex, possibly postinflammatory or surgical scar.
+- Right thyroid nodule measuring 13 mm.
+- Stable hepatic cysts bilaterally.
+
+2025-09-30: CT Abdomen/Pelvis
+- Incidental 1.7 cm x 1.0 cm peripheral opacity in the right middle lobe, potentially inflammatory or infective.
+
+2025-09-29: Laboratory Results
+- CBC: Elevated WBC (14.2 x10^9/L), neutrophils (10.4 x10^9/L); otherwise normal.
+- CRP: 1.6 mg/L (normal).
+- Creatinine: 115 µmol/L (mildly elevated).
+- Urinalysis: Suggestive of urinary tract inflammation (positive leukocyte esterase, hematuria, proteinuria, pyuria).
+
+Impression
+This patient has a spiculated pulmonary nodule in the right middle lobe that remains suspicious for malignancy despite apparent size reduction on recent imaging. Additional pulmonary nodules and ground-glass opacities require ongoing monitoring. Given the radiologic features and the need for further characterization, a PET-CT scan is indicated to assess metabolic activity and guide next steps. The patient remains asymptomatic, and her remote smoking history is reassuring, though it does not exclude malignancy.
+
+Plan
+1. I will arrange a PET-CT scan in Halifax for further evaluation of the right middle lobe nodule and assessment of metabolic activity.
+2. I will ensure the patient is contacted regarding scheduling and next steps for the PET-CT scan.
+3. I will monitor for any new respiratory symptoms and encourage adherence to follow-up appointments.

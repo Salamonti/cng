@@ -1,0 +1,57 @@
+Patient ID: Robyn Dawn Goodick, 53-year-old female
+
+History of Present Illness:
+Mrs. Goodick presents today for follow-up regarding ongoing cardiovascular and metabolic management following her anterior ST-elevation myocardial infarction (STEMI) in May 2024. She reports persistent fatigue, which significantly impacts her daily functioning, particularly after returning to work. She describes needing two days of recovery after a single workday and denies symptoms of dyspnea, orthopnea, or lower extremity edema. Her chest pain remains rare and non-exertional, though she notes occasional wheezing during physical activity. She has gained 9 lbs over the past six months without abdominal distension or appetite changes. Recent Holter monitoring revealed infrequent ectopy and intermittent tachycardia, raising concerns about potential respiratory comorbidities such as asthma or chronic obstructive pulmonary disease (COPD).
+
+Her cardiovascular symptoms remain stable, with no recent palpitations, dizziness, or exertional chest pain. She adheres to her medication regimen and reports compliance with lifestyle modifications, including smoking cessation and dietary adjustments to reduce carbohydrate and fat intake. Her blood pressure has been well-controlled, and she denies symptoms of heart failure exacerbation.
+
+Past Medical History:
+Anterior ST-elevation myocardial infarction (May 2024), type 2 diabetes mellitus, hypertension, dyslipidemia, atrial fibrillation, depression (possible), segmental left ventricular dysfunction with ejection fraction 30-35%, apical thrombus, grade I diastolic dysfunction
+
+Medications:
+- atorvastatin 40 mg PO daily
+- apixaban 5 mg PO b.i.d.
+- Basaglar insulin 35 units PO daily
+- bisoprolol 10 mg PO daily
+- clopidogrel 75 mg PO daily
+- dapagliflozin 10 mg PO daily
+- ezetimibe 10 mg PO daily
+- Entresto 24/26 mg PO b.i.d.
+- metformin 1000 mg PO b.i.d.
+- spironolactone 12.5 mg PO daily
+- Spiriva Respimat 2.5 mcg inhalation b.i.d.
+- Ventolin HFA 100 mcg inhalation PRN
+
+Allergies: not documented
+
+Family History:
+Premature coronary artery disease
+
+Social History:
+Former smoker (quit post-MI), no current alcohol use, income assistance for medication costs
+
+Physical Examination:
+- Vital signs: BP 112/79 mmHg, PR 82 bpm, SpO2 97% on room air
+- General: No JVD, no lower extremity edema
+- Cardiovascular: Normal S1/S2, no murmurs, no gallops
+- Respiratory: Clear lung fields bilaterally, audible wheezing
+- Neurological: Unremarkable
+
+Investigations:
+2025-03-XX:
+- HbA1c: 7.6 (previous 7.3)
+- LDL: 1.0 mmol/L
+- BNP: 159 pg/mL
+
+2024-07-XX:
+- Echocardiogram: EF 30-35%, segmental LV dysfunction, akinetic regions, grade I diastolic dysfunction
+
+Impression:
+Mrs. Goodick is a 53-year-old female with a history of anterior STEMI, type 2 diabetes, and reduced ejection fraction (30-35%) who presents with persistent fatigue and potential respiratory symptoms. Her cardiovascular status remains stable on optimized medical therapy, including Entresto and bisoprolol, with well-controlled blood pressure and no recent heart failure decompensation. However, her fatigue and wheezing raise concerns for underlying asthma or COPD, warranting further pulmonary evaluation. Metabolic control remains suboptimal with an HbA1c of 7.6, despite dietary modifications and maximal oral therapy.
+
+Plan:
+1. I will initiate pulmonary function testing to evaluate for asthma or COPD and guide management of her wheezing.
+2. I will order iron studies and ferritin to assess for potential anemia contributing to her fatigue.
+3. I will arrange a sleep study to evaluate for obstructive sleep apnea as a possible contributor to her symptoms.
+4. I will recheck renal function and BNP in 3 months following Entresto initiation to monitor for therapeutic response and side effects.
+5. I will schedule a follow-up appointment in 6 months to reassess her fatigue, pulmonary function, and cardiovascular status.

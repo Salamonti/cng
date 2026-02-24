@@ -1,0 +1,38 @@
+Patient ID: Louise Jeddry, 78-year-old female
+
+History of Present Illness:
+Louise Jeddry is a 78-year-old female who presented for reassessment following recent imaging. She reports feeling well overall with no current symptoms, including no shortness of breath, cough, sputum production, wheezing, or exercise intolerance. She denies hemoptysis, B symptoms, or axillary lymphadenopathy. On examination, she is asymptomatic aside from mild tenderness over the right lower ribs, which was noted on physical exam. The patient is anxious due to prior imaging findings and a recent family history of lung cancer.
+
+Past Medical History:
+Sarcoidosis of the lungs (age 38), hypothyroidism, chronic constipation, left eye permanent pupil dilation, and history of rib fractures from a four-wheeler accident.
+
+Medications:
+Atorvastatin 10 mg tablet, 1 tablet every other day
+Nitrofurantoin 100 mg capsule, 1 capsule twice daily
+Constellation 145 mcg capsule, 1 capsule daily
+Nexium DR 40 mg tablet, 1 tablet daily as needed
+Synthroid 50 mcg tablet, 1 tablet daily
+Magnesium oxide 420 mg tablet, 13 tablets at bedtime
+
+Allergies: not documented
+
+Family History:
+Brother died of lung cancer
+
+Social History: not documented
+
+Physical Examination:
+Mild tenderness over the right lower ribs. Chest clear bilaterally to bases.
+
+Investigations:
+2025-11-26: Chest X-ray (2 views) – Ovoid density in the lateral aspect of the right hemithorax, likely pleural or extrapleural, with no destruction of adjacent ribs. Lung fields clear.
+2025-10-28: Chest X-ray – Ovoid density in the lateral aspect of the left hemithorax, recommended further evaluation with low-dose CT chest.
+2026-01-29: CT Chest – No suspicious pulmonary nodule or mass. No enlarged intrathoracic lymph nodes. Mild atelectasis or scarring at lung bases. Late subacute to old nondisplaced fractures of right 4th, 6th, and 7th ribs.
+
+Impression:
+Louise Jeddry is a 78-year-old female with a history of sarcoidosis and recent imaging findings concerning for a persistent ovoid density on chest X-ray. The CT chest revealed no suspicious pulmonary nodule or mass, but did show late subacute to old nondisplaced rib fractures, which may account for the prior radiographic findings. The patient remains asymptomatic aside from mild rib tenderness, and the imaging findings are consistent with benign causes. Given the family history of lung cancer and prior sarcoidosis, ongoing monitoring is warranted.
+
+Plan:
+1. I will reassure the patient that the imaging findings are consistent with benign causes, specifically old rib fractures and summation artifact, and that there is no evidence of malignancy or active sarcoidosis.
+2. I will continue to monitor her symptoms and recommend follow-up with her family doctor in three months for reassessment.
+3. I will document the findings in the patient's chart and ensure she has a copy of the CT report for her records.

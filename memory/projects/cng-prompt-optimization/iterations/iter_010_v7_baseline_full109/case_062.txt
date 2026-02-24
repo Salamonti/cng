@@ -1,0 +1,37 @@
+Patient ID
+Mr. Roger Bruce Belliveau is a 76-year-old male.
+
+History of Present Illness
+Mr. Belliveau presents today for follow-up regarding his eosinophilic granulomatosis with polyangiitis (EGPA). He reports feeling well overall and denies any new symptoms, including fever, malaise, weight loss, bleeding, rashes, numbness, swelling, headaches, shortness of breath, wheezing, cough, chest pain, nausea, diarrhea, or abdominal pain. His examination remains unchanged from prior visits, with no acute concerns.
+
+Past Medical History
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+
+Medications
+azathioprine 100 mg tablet, QD
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Blood pressure 97/55, pulse 73 bpm, SpO2 97% on room air. Chest clear with adequate air entry bilaterally. Normal S1 and S2 with no additional sounds or murmurs. Neurological examination unremarkable. 1+ pitting lower limb edema.
+
+Investigations
+2025-11-25
+- Complete blood count: WBC 10.4 x10^9/L, eosinophils 0.3 x10^9/L, hemoglobin 142 g/L, platelets 220 x10^9/L
+- Renal function: eGFR 69 mL/min/1.73m^2, creatinine 98 umol/L
+- Liver function: AST 34 U/L, ALT 50 U/L, alkaline phosphatase 57 U/L, bilirubin 8.9 umol/L, GGT 32 U/L, LDH 213 U/L, CPK 48 U/L
+
+Impression
+Mr. Belliveau remains asymptomatic with stable EGPA. His recent investigations show mild eosinophilia and stable renal and liver function, consistent with his chronic disease course. The lower limb edema noted on examination may represent mild peripheral edema, though no acute decompensation is evident. Continued monitoring of his medication regimen and clinical status is warranted.
+
+Plan
+1. I will continue azathioprine 100 mg daily and monitor for efficacy and tolerability.
+2. I will repeat complete blood count, renal function, and liver function tests in 3 months to assess for changes.
+3. I will follow up with Mr. Belliveau in 3 months to evaluate his clinical status and laboratory results.

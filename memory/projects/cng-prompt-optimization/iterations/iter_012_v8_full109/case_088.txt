@@ -1,0 +1,55 @@
+Patient ID: Norbert Joseph Robicheau, 85-year-old male
+
+History of Present Illness:
+Norbert Robicheau is an 85-year-old male who has been managing a chronic anemia issue for approximately 1.5 years. His symptoms initially included pallor, fatigue, and weakness, prompting further investigation which revealed a hemoglobin level in the 50s. He has undergone extensive workup including EGD and colonoscopy, with prior treatment for H. pylori and gastritis. Despite these interventions, his hemoglobin levels have remained low, requiring regular blood transfusions and iron infusions. Over the past month, he has received four units of packed red blood cells and at least one intravenous iron transfusion monthly. He continues to monitor his hemoglobin levels every two weeks, with recent results showing a hemoglobin of 92 g/L and ferritin levels of 524 µg/L. The patient has also experienced some weight loss. Recently, a bone marrow biopsy was performed, revealing borderline hypercellular bone marrow with megakaryocyte dysplasia and anemia, raising suspicion for myelodysplastic syndrome (MDS). The patient is currently receiving transfusions approximately every three to four weeks. He is a caregiver for his mother who has dementia, which has contributed to his fatigue.
+
+The patient has been advised to see a hematologist for further evaluation and potential treatment options for his suspected MDS. He is currently managing his symptoms with transfusions and iron therapy, but there is ongoing concern about the progression of his condition. The patient remains active in his daily activities despite his fatigue, which is primarily attributed to his caregiving responsibilities.
+
+Past Medical History:
+GERD/Gastritis (positive H. pylori in the past)
+Hyperlipidemia
+Hypertension
+Colon cancer (ascending colon resection in 2012)
+
+Medications:
+Ramipril 10 mg once daily
+Rosuvastatin 10 mg once daily
+Metoprolol 50 mg BID
+Rabeprazole 20 mg once daily
+Latanoprost eye drops
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Nonsmoker
+Does not drink alcohol
+Does not use recreational drugs
+Caregiver for mother with dementia
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-15:
+- Complete Blood Count: Hemoglobin 92 g/L, Platelets 165 x 10^9/L, White Blood Cells 5.2 x 10^9/L, MCV 92.5 fL
+- Bone Marrow Aspirate and Biopsy: Borderline hypercellular bone marrow with megakaryocyte dysplasia and anemia
+- Flow Cytometry: No abnormal hematologic population detected, blasts not increased
+- Peripheral Blood Morphology: Moderate ovalocytes
+
+2025-12-22:
+- Hemoglobin 90 g/L, MCV 91.7 fL, Ferritin 524 µg/L, Vitamin B12 352 pmol/L
+- Reticulocyte Count: 0.040 (high)
+- Liver Function Tests: AST 30 U/L, ALT 16 U/L, Alkaline Phosphatase 106 U/L, Bilirubin (total) 17.7 µmol/L, Bilirubin (direct) 7.8 µmol/L
+- Iron Studies: Iron 29.0 µmol/L, TIBC 87 µmol/L, % Saturation 0.33
+- CEA: 3.91 µg/L
+- eGFR: 57 mL/min/1.73m^2
+
+Impression:
+Norbert Robicheau is an 85-year-old male with a long-standing history of anemia and suspected myelodysplastic syndrome (MDS) based on recent bone marrow biopsy findings. His chronic anemia has required frequent blood transfusions and iron infusions, with recent investigations confirming borderline hypercellular bone marrow with megakaryocyte dysplasia. Despite ongoing management, his hemoglobin levels remain low, and there is concern about the progression of his condition. His past medical history includes GERD, hyperlipidemia, hypertension, and a history of colon cancer. The patient's fatigue is compounded by his role as a caregiver for his mother with dementia.
+
+Plan:
+1. I will refer Norbert Robicheau to a hematologist for further evaluation and management of his suspected myelodysplastic syndrome.
+2. I will continue monitoring his hemoglobin levels every two weeks and administer blood transfusions and iron infusions as needed.
+3. I will arrange for pending cytogenetic studies to further refine the diagnosis of MDS.
+4. We will reassess the patient's overall condition and treatment plan at the next follow-up visit, scheduled in four weeks.

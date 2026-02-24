@@ -1,0 +1,54 @@
+Patient ID: Gertrude Elizabeth Conrod, 76-year-old woman
+
+History of Present Illness:
+Mrs. Conrod presents for follow-up of chronic obstructive pulmonary disease (COPD) with stable respiratory symptoms, including no recent exacerbations, cough, or dyspnea beyond exertional shortness of breath. She denies orthopnea, paroxysmal nocturnal dyspnea, or reflux but reports intermittent left-sided chest tightness occurring at rest and with activity, consistent with prior symptoms noted after her stress test in June 2025. These episodes are now attributed to costochondritis based on localized tenderness over the left anterior chest wall. No associated radiation, diaphoresis, nausea, palpitations, fatigue, weight loss, fever, or extremity swelling has been reported. Medication adherence is confirmed, with a request for albuterol inhaler refill due to low supply.
+
+The patient’s chest tightness is non-positional and lacks cardiac or pulmonary symptoms, supporting a musculoskeletal etiology. She remains functionally stable, with no impact on daily activities beyond difficulty climbing stairs. No new symptoms or systemic concerns have emerged since her last visit.
+
+Past Medical History:
+Chronic obstructive pulmonary disease, hypertension, hyperlipidemia, osteoarthritis, anxiety disorder, hypothyroidism, history of questionable myocardial ischemia (persistent apical perfusion defect on MIBI scan, May 2025), resolved dapagliflozin-induced rash, prior DVT ruled out via Doppler ultrasound (November 2025), stable lower limb edema.
+
+Medications:
+breztri 2 puffs twice daily
+jardiance 10 mg once daily
+carvedilol 12.5 mg twice daily
+bisoprolol 5 mg once daily
+losartan 25 mg once daily
+potassium chloride 1500 mg twice daily
+spironolactone 25 mg once daily
+levothyroxine 12.5 mcg once daily
+nortriptyline 10 mg once daily
+trazodone 100 mg once daily
+topiramate 50 mg morning, 100 mg evening
+rosuvastatin 10 mg once daily
+
+Allergies:
+dapagliflozin (dermatitis)
+
+Family History: not documented
+
+Social History:
+Lives independently with family support. Denies tobacco, alcohol, or illicit drug use. Actively engaged socially despite functional limitations.
+
+Physical Examination:
+Vital signs: HR 74 bpm, regular rhythm; SpO2 96% on room air.
+Lungs: clear with adequate bilateral air entry.
+Cardiac: normal S1/S2, no murmurs/gallops/rubs; JVP not elevated.
+Lower extremities: bilateral grade 2+ edema.
+Anterior chest wall: localized tenderness at left costochondral junction, consistent with costochondritis. No leg ulcers or skin breakdown.
+
+Investigations:
+2025-11-17: CBC (WBC 12.6 x10^9/L, Hb 117 g/L), creatinine 132 umol/L, D-dimer 2473 ng/mL (negative Doppler ultrasound for DVT).
+2025-11-05/06: troponin T 24/21 ng/L (stable, no ACS).
+2025-11-05: ECG (sinus rhythm with LBBB, unchanged from prior).
+2025-10-30: NT-proBNP 434 ng/L (mildly elevated).
+
+Impression:
+Mrs. Conrod’s stable COPD and intermittent left-sided chest tightness are most consistent with costochondritis, supported by localized tenderness and absence of cardiopulmonary symptoms. Her persistent apical perfusion defect on nuclear imaging remains unexplained but clinically stable without troponin elevation or ECG changes. Mild renal impairment (creatinine 132 umol/L) requires ongoing monitoring, and the unexplained elevated D-dimer (2473 ng/mL) does not warrant anticoagulation in the absence of thromboembolic risk factors or radiographic evidence of clot.
+
+Plan:
+1. I will refill breztri inhaler via prescription to Spears Pharmacy, McLean Street.
+2. I will advise acetaminophen PRN for symptomatic costochondritis pain relief.
+3. I will monitor kidney function with repeat creatinine in 6 months (or sooner if decline suspected).
+4. We will schedule a follow-up appointment in 6 months (August 4, 2026) unless symptoms evolve.
+5. We will reassess need for stress testing or cardiology referral only if exertional angina, syncope, or worsening dyspnea/biomarkers develop.

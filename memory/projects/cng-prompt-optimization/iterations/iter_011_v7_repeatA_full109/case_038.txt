@@ -1,0 +1,56 @@
+Patient ID
+Janet Marie Miller is a 73-year-old female.
+
+History of Present Illness
+Ms. Miller presents for preoperative cardiac risk assessment prior to planned breast surgery for invasive ductal carcinoma of the left breast. She reports no recent chest pain, dyspnea, or palpitations but continues to experience significant bilateral lower extremity pain limiting ambulation and recurrent lightheadedness. The pain is described as sharp, localized around the hips and extending into the calves, worsening with activity. She denies syncope or exertional symptoms but remains functionally limited. Recent investigations confirm a new diagnosis of invasive ductal carcinoma (ER/PR positive, equivocal HER2) with planned lumpectomy and sentinel lymph node biopsy in Yarmouth within the next few weeks.
+
+Past Medical History
+Chronic coronary artery disease status post CABG (2014), NSTEMIs (2019, July 2023, May 2025), ICD placement (May 2025), heart failure (EF 34%), hypertension, type 2 diabetes mellitus, dyslipidemia, macrosteatosis, breast cancer (right mastectomy 2014, left lumpectomy 2015), anal cancer (treated with chemo/radiation), depression/anxiety, GERD, osteoarthritis, osteoporosis, pneumonia, thyroid disease, fatty liver, and history of seizures.
+
+Medications
+Aspirin 81 mg PO daily
+Ticagrelor 90 mg PO twice daily
+Carvedilol 6.5 mg PO daily
+Amiodarone 200 mg PO daily
+Jardiance (empagliflozin) 10 mg PO daily
+Atorvastatin 80 mg PO daily
+Metformin 1000 mg PO twice daily
+Spironolactone 25 mg PO daily
+Furosemide 40 mg PO daily
+Rabeprazole 20 mg PO daily
+Perindopril 4 mg PO daily
+Isosorbide dinitrate 20 mg PO twice daily
+Ferrous fumarate 300 mg PO daily
+Ezetimibe 10 mg PO daily
+Novolin NPH insulin (dose not documented)
+
+Allergies
+Amoxicillin, Clindamycin, Cefazolin
+
+Family History
+Not documented
+
+Social History
+Lives alone, no tobacco use, occasional alcohol (2 drinks/month), new partner, declines physiotherapy
+
+Physical Examination
+Not documented
+
+Investigations
+2025-11-28: Diagnostic mammogram – 14 mm irregular mass (BIRADS 5), 6 mm calcifications (BIRADS 4A)
+2025-12-04: Ultrasound-guided core biopsy – invasive ductal carcinoma (ER/PR positive, equivocal HER2)
+2025-12-18: Stereotactic biopsy – benign breast tissue, fibroadenoma, early intraductal papilloma
+2025-05-27: Echocardiogram – EF 34%, high LV filling pressure, moderate RV dysfunction, mild mitral regurgitation
+2025-10-10: Labs – HbA1c 7.6%, LDL 2.0 mmol/L, creatinine 56 µmol/L, eGFR 83 mL/min
+
+Impression
+Ms. Miller is a 73-year-old female with complex cardiovascular comorbidities, including recent NSTEMIs, reduced ejection fraction (34%), and an ICD, presenting for preoperative assessment prior to breast surgery. Her most recent MI in May 2025 places her within the higher-risk perioperative window, compounded by bilateral lower extremity pain (likely vascular in origin) and poorly controlled diabetes. The planned lumpectomy for invasive ductal carcinoma carries significant cardiac risk given her history of multiple MIs, CABG, and heart failure. Preoperative optimization and risk stratification are essential to mitigate perioperative cardiac events.
+
+Plan
+1. I will consult cardiology to confirm timing of the most recent MI and assess for possible revascularization or medical optimization prior to surgery.
+2. I will arrange preoperative stress testing (e.g., stress echocardiogram) to evaluate myocardial viability and ischemic burden before proceeding with surgery.
+3. I will coordinate with electrophysiology to interrogate the ICD and reprogram to asynchronous mode for the procedure, with postoperative reactivation.
+4. I will consult vascular surgery to evaluate the bilateral lower extremity pain and assess for peripheral arterial disease prior to surgery.
+5. I will discontinue metformin preoperatively and optimize glycemic control with insulin or Jardiance adjustments.
+6. I will review antiplatelet therapy with cardiology to determine safe timing for ticagrelor interruption, if needed, balancing thrombotic and bleeding risks.
+7. We will schedule a preoperative assessment with anesthesia to discuss perioperative cardiac monitoring and hemodynamic support.

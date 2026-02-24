@@ -1,0 +1,50 @@
+Patient ID
+Luralee Adams, 63-year-old female
+
+History of Present Illness
+Luralee Adams is a 63-year-old female with known asthma-COPD overlap syndrome who reports improvement in her breathing symptoms since starting diltiazem and engaging in regular exercise using a pedal machine. She notes a reduction in rescue inhaler use to approximately three to four times per week from a higher frequency previously. Despite these improvements, she continues to experience occasional flare-ups of ulcerative colitis, which she is currently managing with treatment. She also mentions that her heart rate remains elevated at 105 beats per minute, despite adherence to her diltiazem regimen. Luralee attributes her overall improvement to increased physical activity and notes that her oxygen saturation remains stable at 97%.
+
+Luralee has lost a significant amount of weight, which she attributes to her ulcerative colitis diagnosis. She reports that this diagnosis explains her unintentional weight loss of 70 pounds and has led to a better understanding of her symptoms. She continues to experience mild flare-ups of ulcerative colitis but states they are not as severe as in the past. Her physical examination reveals clear lungs and normal heart sounds, and her recent stress test results were unremarkable.
+
+Past Medical History
+Asthma-COPD overlap syndrome
+Ulcerative colitis
+Hypothyroidism
+
+Medications
+diltiazem HCl 120 mg capsule, extended release 1 capsule orally once daily
+levothyroxine 1.25 mg tablet 1 tablet orally once daily
+theophylline 200 mg tablet 1 tablet orally twice daily
+mirtazapine 15 mg tablet 1 tablet orally at bedtime
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+Lungs: clear to auscultation
+Heart: normal S1 and S2, no additional sounds or murmurs
+Oxygen saturation: 97% on room air
+Heart rate: 105 beats per minute
+Chest: clear
+
+Investigations
+2024-12-17
+IgE: 104 IU/mL
+Complete Blood Count: normal hemoglobin (127 g/L), normal red blood count, normal white blood count (7.7 x10^9/L), normal platelets
+eGFR: 80 mL/min/1.73m^2
+Creatinine: 73 umol/L
+Lytes: sodium 141 mmol/L, potassium 3.7 mmol/L, chloride 105 mmol/L
+
+Impression
+Luralee Adams presents with improved symptoms of asthma-COPD overlap syndrome, likely due to adherence to her diltiazem regimen and increased physical activity. Her elevated heart rate of 105 beats per minute remains a concern and requires further management. The recent diagnosis of ulcerative colitis explains her significant weight loss and provides context for her ongoing symptoms. Her stable oxygen saturation and clear lung fields on examination suggest good control of her respiratory symptoms at this time.
+
+Plan
+1. I will increase diltiazem dose from 120 mg to 180 mg once daily to better control her heart rate.
+2. I will order a repeat echocardiogram to further evaluate her heart rate and cardiac function.
+3. I will schedule a follow-up appointment in six months to reassess her symptoms, medication efficacy, and overall health status.

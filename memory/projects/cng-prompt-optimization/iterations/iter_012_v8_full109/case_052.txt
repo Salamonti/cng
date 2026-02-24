@@ -1,0 +1,39 @@
+Patient ID: Mr. Roger Bruce Belliveau, 76-year-old male
+
+History of Present Illness:
+Mr. Belliveau reports feeling generally well today but notes a slight weight gain, which he attributes to difficulty with weight loss. He denies any significant shortness of breath, though he mentions minimal cough and no phlegm production. On examination, his oxygen saturation is stable at 97% on room air, though auscultation reveals mild phlegm in his chest. He has been adherent to his current medications and is up to date with vaccinations. He is scheduled for routine blood work in March for monitoring of his chronic condition.
+
+Mr. Belliveau expresses interest in using a new device, an Aerobika oscillating positive expiratory pressure (OPEP) device, to help clear phlegm from his chest. He has no current respiratory infections or exacerbations of his underlying condition but acknowledges the need for better airway clearance. His overall functional status remains stable, with no changes in mobility or energy levels.
+
+Past Medical History:
+Eosinophilic granulomatosis with polyangiitis (EGPA)
+
+Medications:
+azathioprine 100 mg tablet QD
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Vital signs: Oxygen saturation 97% on room air
+Lungs: Mild phlegm auscultated bilaterally, no wheezing or crackles
+Cardiovascular: Normal S1 and S2, no murmurs
+Extremities: No lower limb edema noted today
+
+Investigations:
+2025-11-25
+Complete Blood Count: WBC 10.4 x10^9/L, RBC 4.73 x10^12/L, Hemoglobin 142 g/L, Platelets 220 x10^9/L, Eosinophils 0.3 x10^9/L
+eGFR: 69 mL/min/1.73m^2, Creatinine 98 umol/L
+Lytes: Sodium 141 mmol/L, Potassium 4.1 mmol/L, Chloride 104 mmol/L
+Liver Function Tests: Bilirubin 8.9 umol/L, AST 34 U/L, ALT 50 U/L, Alkaline Phosphatase 57 U/L, GGT 32 U/L, LDH 213 U/L, CPK 48 U/L
+
+Impression:
+Mr. Belliveau remains stable with no active symptoms of EGPA, though mild phlegm in his chest suggests the need for improved airway clearance. His recent blood work shows stable renal function and mild elevation in liver enzymes, which may warrant monitoring. The patient’s overall clinical picture is consistent with well-controlled EGPA, but attention to airway hygiene and potential respiratory clearance may be beneficial.
+
+Plan:
+1. I will prescribe an Aerobika oscillating positive expiratory pressure (OPEP) device for use three to four times daily to assist with airway clearance.
+2. I will continue azathioprine 100 mg daily and monitor liver enzymes at the next routine blood work in March 2026.
+3. We will schedule a follow-up visit in six months to reassess symptoms, medication tolerability, and overall clinical status.

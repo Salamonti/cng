@@ -1,0 +1,49 @@
+Patient ID
+Judy Ester Dianne Menzies, 74-year-old woman
+
+History of Present Illness
+The patient presents for longitudinal management of an incidental pulmonary nodule discovered in September 2025. She remains asymptomatic with no reported cough, shortness of breath, hemoptysis, fever, chills, weight loss, or night sweats. She continues to exercise daily without limitation. The patient has been awaiting a PET CT scan to further evaluate the right middle lobe nodule, which remains under surveillance due to persistent radiologic concern for malignancy despite apparent size reduction.
+
+The nodule was initially identified on an abdominal CT in September 2025 as a 1.7 cm x 1.0 cm lesion with mild spiculation. A follow-up contrast-enhanced chest CT in December 2025 demonstrated a 14 mm x 11 mm spiculated nodule in the right middle lobe, along with additional small nodules and ground-glass opacities. The patient denies any respiratory symptoms and has no known history of malignancy.
+
+Past Medical History
+Hypertension
+Gastroesophageal reflux disease (GERD)
+Remote smoking history (quit over 25 years ago)
+Mild to moderate chronic obstructive changes (clinically silent)
+
+Medications
+Sandozrabeprazole 20 mg swallow oral once daily as needed
+Sandozamlodipine 10 mg swallow oral once daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Former smoker, quit over 25 years ago
+Lives independently
+Denies alcohol or recreational drug use
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-10:
+- CT Chest With Contrast: Spiculated nodule in right middle lobe (14 mm x 11 mm), additional nodules (4 mm in left lower lobe, 5 mm and 9 mm ground-glass opacities at right apex), right thyroid nodule (13 mm), stable hepatic cysts. No lymphadenopathy or pleural effusions.
+
+2025-09-30:
+- CT Abdomen/Pelvis: Incidental 1.7 cm x 1.0 cm peripheral opacity in right middle lobe.
+- Laboratory Results: Elevated WBC (14.2 x10^9/L), mild creatinine elevation (115 µmol/L), normal CRP, urinalysis suggestive of urinary tract inflammation.
+
+Impression
+The patient has a persistent spiculated pulmonary nodule in the right middle lobe, which remains concerning for early-stage primary lung cancer despite measurable size reduction. Additional pulmonary nodules and ground-glass opacities require ongoing monitoring. Given the radiologic suspicion for malignancy and lack of definitive benign characteristics, further metabolic characterization with PET CT is indicated. The patient remains asymptomatic, and her chronic obstructive changes are clinically silent.
+
+Plan
+1. I will arrange a PET CT scan in Halifax to further evaluate the metabolic activity of the right middle lobe nodule and assess for occult malignancy.
+2. I will schedule a repeat contrast-enhanced chest CT in three months following completion of the PET CT to evaluate interval growth or stability of all identified lesions.
+3. I will refer the patient to endocrinology for ultrasound evaluation of the 13 mm right thyroid nodule within six weeks unless otherwise directed.
+4. I will continue current antihypertensive therapy with amlodipine and proton pump inhibitor for GERD symptom control, with regular blood pressure monitoring.
+5. I will educate the patient that any new onset respiratory symptoms should prompt urgent medical review and encourage adherence to scheduled appointments.

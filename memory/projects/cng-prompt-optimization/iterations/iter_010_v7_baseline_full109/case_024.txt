@@ -1,0 +1,61 @@
+Patient ID: Arthur Belliveau, 62-year-old male
+
+History of Present Illness:
+Mr. Belliveau is a 62-year-old male presenting with Staphylococcus aureus bacteremia, as confirmed by recent blood culture results. He has been experiencing hypotension with a soft blood pressure and is acutely confused, necessitating transfer to the ICU for closer monitoring and management. The patient has had a fever for five days, with blood in urine culture positive for Staphylococcus aureus, elevated white blood cell count, and significantly elevated CRP levels. He also reports acute back pain, which prompted further investigation.
+
+Past Medical History:
+- Hypertension
+- Dyslipidemia
+- Ex-smoker (60 pack-year history, quit 11 years ago)
+- Vapes marijuana 3g/day
+- History of alcohol use disorder (no use for 12 years)
+- Bronchial asthma
+- Chronic right chest, neck, and spine pain secondary to traumatic injury
+- Severe dilated cardiomyopathy with LVEF 40% and LV size 6.5 cm secondary to valvular disease
+- Severe aortic regurgitation due to flail right coronary cusp
+- Severe aortic root dilation (5.1 cm)
+- History of NSTEMI
+- Aortic valve replacement with tissue valve (2020)
+- Cholelithiasis
+
+Medications:
+not documented
+
+Allergies:
+No known allergies
+
+Family History:
+not documented
+
+Social History:
+Lives alone with his dog. On disability and work compensation for injury.
+
+Physical Examination:
+not documented
+
+Investigations:
+2025-10-30:
+- Complete Blood Count: WBC 33.0 x10^9/L, Hemoglobin 96 g/L, Platelets 31 x10^9/L
+- C-Reactive Protein: 215 mg/L
+- Creatinine: 79 umol/L
+- Echocardiogram: Moderate aortic root dilation, prosthetic aortic valve gradients elevated
+- Cervicothoracic Spine MRI: No findings to suggest discitis/osteomyelitis or abscess
+- Portable Chest X-ray: No radiographic evidence of pneumonia
+
+2025-10-31:
+- Complete Blood Count: WBC 34.3 x10^9/L, Hemoglobin 97 g/L, Platelets 42 x10^9/L
+- C-Reactive Protein: 204 mg/L
+- Creatinine: 86 umol/L
+- Urinalysis: Positive nitrites, moderate bacteria, WBC 5-10/hpf
+- Lumbar Spine MRI: No convincing evidence of spondylodiscitis, osteomyelitis, or abscess
+
+Impression:
+Mr. Belliveau is a 62-year-old male with a complex medical history, including severe aortic regurgitation, aortic root dilation, and a history of aortic valve replacement, who now presents with Staphylococcus aureus bacteremia and acute confusion. His current presentation is concerning for sepsis with hypotension and elevated inflammatory markers. The elevated white blood cell count, significantly elevated CRP, and positive urine culture for Staphylococcus aureus suggest a systemic infection. The acute confusion and hypotension necessitate urgent ICU admission for further management and monitoring.
+
+Plan:
+1. I will arrange for immediate transfer to the ICU for close monitoring and management of Staphylococcus aureus bacteremia and hypotension.
+2. I will initiate broad-spectrum intravenous antibiotics targeting Staphylococcus aureus, pending final culture sensitivities.
+3. I will order a transesophageal echocardiogram to assess for endocarditis or other complications related to the prosthetic aortic valve.
+4. We will monitor for signs of septic shock and adjust fluid resuscitation and vasopressor support as needed.
+5. We will reassess the patient’s mental status and ensure adequate pain management for acute back pain.
+6. I will coordinate with infectious disease specialists for further management of the bacteremia and potential endocarditis.

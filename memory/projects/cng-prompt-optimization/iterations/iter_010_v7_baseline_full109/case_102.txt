@@ -1,0 +1,52 @@
+Patient ID
+Jennifer Crowell, 50-year-old female
+
+History of Present Illness
+Jennifer is a 50-year-old female with known pulmonary sarcoidosis who presents for follow-up three weeks after breast reduction surgery. She reports mild irritation and redness at the surgical site, which has resolved without complications. She has been off methotrexate for two months with no issues, though she notes raised bumps on her left arm and forearm at tattoo sites, which she associates with sarcoidosis given her history. These bumps are intermittent and non-tender, appearing and disappearing in the same location.
+
+Jennifer describes a persistent cough, which she attributes to her current blood pressure medication (Temazartan/Hydrochlorothiazide). She reports coughing fits that occur sporadically, lasting six to eight hours before resolving, and denies hemoptysis or dyspnea. She notes recent wheezing and increased puffer use since her surgery, though her breathing has improved in the last few days. She intentionally lost weight and denies other systemic symptoms.
+
+Past Medical History
+Pulmonary sarcoidosis
+Hypertension
+Diastolic dysfunction (stable)
+
+Medications
+Temazartan 80 mg/Hydrochlorothiazide 12.5 mg po daily
+Methotrexate discontinued (last dose 2 months ago)
+Folic acid 5 mg po weekly (discontinued with methotrexate)
+
+Allergies
+not documented
+
+Family History
+not documented
+
+Social History
+not documented
+
+Physical Examination
+General: Well-appearing female, no acute distress
+Chest: Clear to auscultation bilaterally, adequate air entry
+Cardiovascular: Normal S1 and S2, no murmurs or additional sounds
+Abdomen: Soft, no organomegaly
+Skin: Multiple nodules on left arm and forearm at tattoo sites
+Neurological: Unremarkable
+No jugular venous distention or lower limb edema
+
+Investigations
+2025-12-31
+- Complete blood count: WBC 5.8 x10^9/L, Hb 131 g/L, platelets 329 x10^9/L
+- Angiotensin-converting enzyme: 1 U/L
+- Hemoglobin A1c: 5.3%
+- Liver enzymes: AST 38 U/L, ALT 34 U/L, GGT 28 U/L, alkaline phosphatase 91 U/L
+- Creatinine: 69 umol/L, eGFR 90 mL/min/1.73m^2
+- Bilirubin: 16.8 umol/L
+
+Impression
+Jennifer Crowell is a 50-year-old female with a history of pulmonary sarcoidosis and hypertension who presents for follow-up after recent surgery and medication changes. Her sarcoidosis appears stable with a normal ACE level and no active symptoms aside from intermittent skin nodules at tattoo sites, which she attributes to her condition. Her cough is likely medication-related, given her recent initiation of Temazartan/Hydrochlorothiazide. Her pulmonary function remains stable, though she reports mild post-surgical wheezing that is improving.
+
+Plan
+1. We will discontinue Temazartan/Hydrochlorothiazide and switch to an alternative antihypertensive such as perindopril/indapamide to address her cough.
+2. We will monitor her sarcoidosis skin manifestations conservatively, as they are intermittent and non-tender, with no need for intervention at this time.
+3. We will arrange follow-up in three months to reassess her blood pressure control on the new medication and to monitor for any changes in sarcoidosis activity.

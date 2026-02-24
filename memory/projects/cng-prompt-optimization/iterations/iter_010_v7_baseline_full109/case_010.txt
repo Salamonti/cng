@@ -1,0 +1,44 @@
+Patient ID
+Sharon E. Harvie is a 66-year-old female presenting for follow-up of asthma.
+
+History of Present Illness
+Mrs. Harvie reports a recent severe influenza infection acquired during travel, which led to a significant asthma exacerbation. She developed worsening cough, congestion, and dyspnea on December 31st, with oxygen saturation dropping to the 80s and audible wheezing described as "Rice Krispies." She self-treated with prednisone 50 mg for three days per her action plan, which improved her symptoms. She has since lost nine pounds due to poor oral intake and continues to experience evening cough and congestion, though she is otherwise improving. Her current symptoms are primarily upper airway congestion, with clear lung fields on examination. She remains concerned about her ability to participate in her upcoming half marathon in May and requests documentation to support this if needed.
+
+Past Medical History
+Adult-onset asthma, gastroesophageal reflux disease, history of influenza-related exacerbations, and a family history of COPD/emphysema.
+
+Medications
+ZENHALE 200/5 mcg inhaler 2 puffs twice daily
+Prednisone 40 mg tablets as needed for exacerbations
+
+Allergies
+Penicillin (anaphylaxis), ciprofloxacin (anaphylaxis), morphine (hypersensitivity), benzodiazepines (hypersensitivity)
+
+Family History
+Mother: cardiomyopathy, died at age 72
+Father’s side: COPD/emphysema
+No family history of liver disease
+
+Social History
+Works as a nurse, lives with husband, nonsmoker, nondrinker, active runner (previously ran 35–40 km/week), allergic to cats, scales, molds, and dust
+
+Physical Examination
+Vital signs: BP not documented, PR 68 bpm, SpO2 100% on room air
+General: No distress
+Respiratory: Clear to auscultation bilaterally, no wheezes or crackles
+Cardiovascular: Normal S1 and S2, no murmurs, no JVD, no lower limb edema
+Neurological: Unremarkable
+
+Investigations
+2025-05-09: Echocardiogram – Normal biventricular size and function, no regional wall motion abnormalities, normal valves
+2025-05-13: Bone density scan – Normal bone mineral density, low 10-year fracture risk
+2025-04-07: Chest CT – Incidental 4 mm nodule in left lower lobe, minimal reticular scarring, no interstitial lung disease or emphysema
+
+Impression
+Mrs. Harvie has a history of poorly controlled adult-onset asthma with recurrent exacerbations, including recent influenza-related worsening requiring systemic corticosteroids. Despite current therapy with ZENHALE, she experiences persistent upper airway congestion and concerns about her ability to resume high-intensity activities. Her recent weight loss and ongoing symptoms suggest incomplete recovery from her exacerbation, though her physical examination is currently stable. The incidental pulmonary nodules on CT are likely benign, but follow-up is recommended.
+
+Plan
+1. I will provide a letter documenting her current asthma status and fitness for the half marathon, to be shared with her only if she determines she cannot participate.
+2. I will continue ZENHALE 200/5 mcg inhaler 2 puffs twice daily and provide a prescription for prednisone 40 mg tablets as needed for future exacerbations.
+3. I will counsel on gradual reintroduction of running, targeting weight restoration and symptom monitoring before resuming full activity.
+4. We will schedule follow-up in three months to reassess asthma control, weight recovery, and activity tolerance.

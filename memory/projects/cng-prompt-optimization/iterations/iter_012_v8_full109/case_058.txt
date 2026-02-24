@@ -1,0 +1,41 @@
+Patient ID: Edwin Avery Nickerson is an 81-year-old male.
+
+History of Present Illness:
+Mr. Nickerson reports a sudden, unexplained event approximately one month ago, which he describes as a brief, intense "shock" sensation localized to the forehead, lasting less than a second. He denies associated symptoms such as vision loss, speech difficulties, numbness, or weakness in his limbs. He does not believe this event was a stroke, as it lacked typical stroke features. He was sitting in a chair with his wife present at the time and felt well immediately afterward. He also mentions a prior similar episode approximately two to three years ago while walking his dog, during which he experienced dizziness and fell but does not recall any other details. He denies seeking medical attention for either event. His current symptoms include persistent shortness of breath, unchanged over time, and mild weakness, which he attributes partly to aging and early dementia. He reports no chest pain, palpitations, or lower limb swelling. His oxygen saturation is 98% on room air, and his heart rate is 78 bpm.
+
+Past Medical History:
+Coronary artery disease, congestive heart failure, atrial fibrillation, hypertension, type 2 diabetes mellitus, mild dementia, aortic root dilation, mild mitral regurgitation, mild aortic regurgitation, mild tricuspid regurgitation, and segmental left ventricular dysfunction.
+
+Medications:
+Atorvastatin 40mg OD
+Bisoprolol 10mg OD
+Empagliflozin 25mg OD
+Gliclazide 60mg OD
+Metformin 500mg BID
+Rivaroxaban 20mg OD
+Spironolactone 25mg OD
+Perindopril 8mg OD
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Vital signs: Blood pressure not documented, heart rate 78 bpm, oxygen saturation 98% on room air.
+No lower limb swelling. No jugular venous distention. No evidence of acute distress or respiratory distress.
+
+Investigations:
+2025-02-03: ECHO - Normal LV size, mild concentric LV hypertrophy, EF 50-55%, segmental LV dysfunction, biatrial enlargement, moderate aortic root dilation, mild mitral/aortic/tricuspid regurgitation.
+2025-09-24: Labs - Glucose AC 10.5 mmol/L, eGFR 64 mL/min, UACR 57.2 mg/mmol, TSH 3.38 mIU/L, normal electrolytes, liver enzymes, and bilirubin.
+
+Impression:
+Mr. Nickerson presents with a history of coronary artery disease, congestive heart failure, and atrial fibrillation, with recent echocardiographic evidence of segmental left ventricular dysfunction and biatrial enlargement. His current complaint of a brief, unexplained "shock-like" sensation is atypical for stroke and requires further evaluation to rule out arrhythmic or cardiac causes. Persistent shortness of breath and mild weakness are likely related to his underlying cardiac and decompensated metabolic status. Given his history of atrial fibrillation and the unexplained event, further cardiac monitoring is warranted.
+
+Plan:
+1. I will arrange for a 24-48 hour Holter monitor to assess for arrhythmias or cardiac causes of the patient's symptoms.
+2. I will review the Holter monitor results and follow up with Mr. Nickerson within two weeks to discuss findings and next steps.
+3. I will continue current medications as they are appropriate for his cardiac and metabolic conditions.
+4. I will reassess his glycemic control with a hemoglobin A1c test in three months.
+5. I will refer Mr. Nickerson to a cardiologist for further evaluation of his segmental left ventricular dysfunction and aortic root dilation if the Holter monitor does not provide a clear etiology for his symptoms.

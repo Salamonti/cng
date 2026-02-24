@@ -1,0 +1,50 @@
+Patient ID: Mrs. Gertrude Elizabeth Conrod, 76-year-old woman
+
+History of Present Illness:
+Mrs. Conrod presents for follow-up of chronic obstructive pulmonary disease (COPD) and evaluation of intermittent left-sided chest tightness. She reports feeling well overall with no recent respiratory exacerbations, though she describes occasional episodes of left-sided chest tightness occurring both while sitting and standing. These sensations are consistent with prior reports following her stress test in June 2025 and are not associated with radiation, diaphoresis, nausea, or palpitations. Her shortness of breath remains limited to exertion, primarily affecting her ability to climb one flight of stairs. She denies cough, phlegm, hemoptysis, orthopnea, paroxysmal nocturnal dyspnea, or reflux. Medication adherence is confirmed, with only one puff remaining from her current albuterol inhaler supply.
+
+The patient’s chest tightness has been evaluated as possibly related to costochondritis based on physical exam findings today, which demonstrate localized tenderness at the junction of the ribs and sternum on the left side. There has been no new onset of fatigue, weight loss, fever, chills, or extremity swelling since her last visit.
+
+Past Medical History:
+Chronic obstructive pulmonary disease, hypertension, hyperlipidemia, osteoarthritis, anxiety disorder, hypothyroidism, history of questionable myocardial ischemia with stable apical perfusion defect on MIBI scan (May 2025), prior drug-induced rash to dapagliflozin (discontinued November 2025), and ruled-out deep vein thrombosis (DVT) via Doppler ultrasound (November 2025).
+
+Medications:
+BREZTRI 2 puffs BID
+JARDIANCE 10 mg QD
+carvedilol 12.5 mg BID
+bisoprolol 5 mg QD
+losartan 25 mg QD
+potassium chloride 1500 mg BID
+spironolactone 25 mg QD
+levothyroxine 12.5 mcg QD
+nortriptyline 10 mg QD
+trazodone 100 mg QD
+topiramate 50 mg AM, 100 mg PM
+rosuvastatin 10 mg QD
+
+Allergies:
+Dapagliflozin (dermatitis)
+
+Family History: not documented
+
+Social History:
+Patient lives independently at home with family support. Denies tobacco, alcohol, or illicit drug use. Actively engaged socially despite functional limitations.
+
+Physical Examination:
+Heart rate 74 bpm, regular rhythm. Oxygen saturation 96% on room air. Lungs clear with adequate bilateral air entry. Cardiac exam normal S1/S2, no murmurs, gallops, or rubs. Jugular venous pressure not elevated. Bilateral lower extremity edema grade 2/3. Tenderness localized to left anterior chest wall at rib-sternum junction, consistent with costochondritis. Legs dry with no ulceration or skin breakdown.
+
+Investigations:
+2025-11-17: CBC (WBC 12.6 x10^9/L, Hb 117 g/L), creatinine 132 umol/L, D-dimer 2473 ng/mL
+2025-11-05/06: Troponin T 24/21 ng/L
+2025-11-05: ECG (sinus rhythm with LBBB, stable from October 2025)
+2025-10-30: NT-proBNP 434 ng/L
+
+Impression:
+Mrs. Conrod’s COPD remains stable with minimal symptom burden, though her intermittent left-sided chest tightness is most likely due to costochondritis based on physical exam findings. The persistent apical perfusion defect on nuclear imaging from 2022 remains unchanged, with no recent electrocardiographic or biomarker evidence of active ischemia, suggesting low risk of progressive coronary artery disease. Mild renal impairment is present, as evidenced by elevated creatinine, and requires ongoing monitoring. The unexplained elevated D-dimer without thromboembolic risk factors or radiographic evidence of clot formation remains clinically nondiagnostic.
+
+Plan:
+1. I will refill BREZTRI 2 puffs BID and send prescription to Spears Pharmacy on McLean Street.
+2. I will advise acetaminophen PRN for symptomatic management of costochondritis-related chest tightness.
+3. I will monitor kidney function with repeat creatinine check in 6 months or sooner if clinically indicated.
+4. I will schedule a follow-up appointment in 6 months (August 4, 2026) unless symptoms worsen or new concerns arise.
+5. I will reassess the need for stress testing or advanced cardiology evaluation only if future episodes evolve into exertional angina, syncope, worsening dyspnea, or persistent biomarker elevations.

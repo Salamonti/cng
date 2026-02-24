@@ -1,0 +1,46 @@
+Patient ID
+Paul Comeau is a 79-year-old male.
+
+History of Present Illness
+Mr. Comeau presents for follow-up approximately four months after undergoing quadruple coronary artery bypass grafting (CABG) with left internal mammary artery (LIMA) to the left anterior descending artery (LAD) and saphenous vein grafts to the diagonal, obtuse marginal (OM), and posterior left ventricular (PLV) branches. He reports feeling well overall with no chest pain, shortness of breath, orthopnea, paroxysmal nocturnal dyspnea, or lower limb swelling. His primary concern is persistent discomfort from sternotomy wires rubbing against his skin with movement, which is bothersome. He denies any signs of sternal instability or infection. He has returned to his usual activities, including work in his machine shop, without issues. Vital signs are stable with a blood pressure of 120/80 mmHg, pulse rate of 68 bpm, and oxygen saturation of 98% on room air. Physical examination reveals clear lung fields, normal heart sounds without murmurs, a soft abdomen without organomegaly, and no jugular venous distention or lower limb edema. A stress test was performed today, which he tolerated well, though the target heart rate was not achieved due to the pace of the test. The test was reassuring with no chest pain or ST changes.
+
+Past Medical History
+Coronary artery disease, myocardial infarction, hypertension, hypercholesterolemia, prior sternotomy.
+
+Medications
+Aspirin 81 mg PO daily
+Atorvastatin 80 mg PO daily
+Clopidogrel 75 mg PO daily
+Perindopril 2 mg PO daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Nonsmoker, occasional alcohol use, lives with wife, retired mechanic, independent in activities of daily living.
+
+Physical Examination
+Blood pressure 120/80 mmHg, pulse 68 bpm, oxygen saturation 98% on room air.
+Lungs: Clear bilaterally with adequate air entry.
+Heart: Normal S1 and S2, no murmurs or additional sounds.
+Abdomen: Soft, no organomegaly.
+Neurological: Unremarkable.
+No jugular venous distention or lower limb edema.
+
+Investigations
+2026-01-30
+Stress test: Nondiagnostic due to failure to reach target heart rate, no chest pain or ST changes.
+2026-01-26
+CT chest: Multiple intact sternotomy wires, minimal osseous bridging at sternotomy site, 6.5 mm perifissural nodule in left upper lobe, mild left basal atelectasis/scarring, no suspicious pulmonary nodules, no pleural or pericardial effusion, trivessel coronary artery calcification, 12 mm simple cyst in segment 6 of the liver.
+
+Impression
+Mr. Comeau is a 79-year-old male who underwent quadruple CABG four months ago and is recovering well from his cardiac event. He has no active cardiac symptoms, and his physical examination is reassuring. The persistent discomfort from sternotomy wires is the primary concern at this time. The nondiagnostic stress test is reassuring in the absence of symptoms or ST changes. The CT chest shows stable postoperative findings with no evidence of malignancy or new concerning abnormalities.
+
+Plan
+1. I will continue aspirin 81 mg daily, atorvastatin 80 mg daily, clopidogrel 75 mg daily, and perindopril 2 mg daily.
+2. I will refer Mr. Comeau to the cardiac surgeon for assessment of sternal wire discomfort.
+3. I will arrange follow-up in my office in three months for routine blood work and clinical assessment.
+4. I will recommend cardiac rehabilitation for comprehensive recovery and secondary prevention.

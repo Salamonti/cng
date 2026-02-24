@@ -1,0 +1,59 @@
+Patient ID: Edward (Eddie) Doucet, 91-year-old male
+
+History of Present Illness:
+This 91-year-old male presents with an incidental finding of an elevated white blood cell count of 14 x 10^9/L, which is mildly elevated given the normal range of 4-10 x 10^9/L. He also has an abnormal protein in his blood, specifically a monoclonal IgG kappa protein at 2.8 g/L, identified on serum protein electrophoresis. The patient denies significant symptoms related to these findings, though he reports occasional cold feet and intermittent burning sensations in his hands, which he attributes to age-related vascular changes. He has no complaints of fatigue, muscle pain, frequent infections, bleeding, or anemia. Notably, he has lost approximately 30 pounds since his gallbladder removal surgery, which he attributes to the procedure. He also reports occasional skipped heartbeats, though these are not frequent or concerning to him.
+
+The patient’s review of systems is otherwise unremarkable aside from a history of a prolonged cold approximately 15 years ago, which was atypical for him. He denies any recent weight loss beyond the noted post-cholecystectomy weight loss, night sweats, or unintentional weight changes. His current symptoms are stable, and he has no acute concerns prompting this visit.
+
+Past Medical History:
+Benign essential hypertension, coronary artery disease with double bypass surgery at age 62, abdominal aortic aneurysm repair at age 68, cholecystectomy, kidney stones, chronic kidney disease (eGFR 29), history of transient urinary retention (TURP), elevated PSA (managed by PCP), and right partial nephrectomy at age 83.
+
+Medications:
+- Amlodipine 30 mg PO QD
+- Metoprolol 50 mg PO BID
+- Allopurinol 100 mg PO QD
+- Aspirin 81 mg PO QD
+- Rosuvastatin 20 mg PO QD
+- Hydrochlorothiazide 12.5 mg PO QD
+- Nitroglycerin 0.4 mg SL PRN
+- Pantoprazole 40 mg PO QD
+- Vitamin B12 1000 mcg PO QD
+- Ramipril 20 mg PO QD
+- Cholestyramine 4 g PO QD
+
+Allergies: Seasonal allergies; no known drug allergies documented
+
+Family History: Not documented
+
+Social History: Not documented
+
+Physical Examination:
+Vital signs: PR 53 bpm, SpO2 97% on room air. Chest is clear with adequate bilateral air entry. Cardiac exam reveals normal S1 and S2 with no additional sounds or murmurs. Abdomen is soft with no palpable organomegaly. Neurological exam is unremarkable. No jugular venous distention or lower limb edema. No palpable lymphadenopathy.
+
+Investigations:
+2025-12-03:
+- Complete Blood Count: WBC 14.8 x 10^9/L (elevated), RBC 4.97 x 10^12/L, Hemoglobin 142 g/L, Hematocrit 0.471, MCV 94.8 fL, MCH 28.6 pg, MCHC 301 g/L (low), RDW 15.6% (elevated), Platelets 194 x 10^9/L, MPV 10.8 fL (elevated). Differential: Neutrophils 6.8 x 10^9/L, Lymphocytes 6.5 x 10^9/L (elevated), Monocytes 1.2 x 10^9/L (elevated), Eosinophils 0.2 x 10^9/L, Basophils 0.1 x 10^9/L, Immature granulocytes 0.06 x 10^9/L.
+- Serum Protein Electrophoresis: Monoclonal IgG kappa protein 2.8 g/L.
+- Immunofixation Electrophoresis: Confirms monoclonal IgG kappa protein.
+- Thyroid Stimulating Hormone: 5.240 mIU/L (elevated).
+- eGFR: 29 mL/min/1.73m^2 (moderately to severely decreased).
+- Creatinine: 186 umol/L (elevated).
+- Free T4: 15.8 pmol/L (normal).
+- Sodium: 147 mmol/L (elevated).
+- Potassium: 4.6 mmol/L (normal).
+- Chloride: 110 mmol/L (elevated).
+- Ferritin: 189 ug/L (normal).
+- Lipids: Cholesterol 3.7 mmol/L, Triglycerides 1.71 mmol/L (elevated), LDL 1.7 mmol/L, HDL 1.26 mmol/L, Chol/HDL ratio 2.9.
+- Prostate Specific Antigen: 8.770 ug/L (elevated).
+- Alanine Aminotransferase: 27 U/L (normal).
+- Peripheral Blood Morphology: Lymphocytes elevated at 0.490 (manual differential).
+
+Impression:
+This 91-year-old male has two incidental findings of concern: a mild elevation in white blood cell count (WBC 14.8 x 10^9/L) with an elevated lymphocyte count, and a monoclonal IgG kappa protein at 2.8 g/L. These findings are suggestive of chronic lymphocytic leukemia (CLL) and monoclonal gammopathy of undetermined significance (MGUS), respectively. The patient remains asymptomatic aside from age-related vascular symptoms and a history of weight loss post-cholecystectomy. His chronic kidney disease (eGFR 29) and elevated PSA are known and managed by his primary care provider. The patient’s overall clinical picture is stable, and there are no acute concerns prompting immediate intervention.
+
+Plan:
+1. I will order flow cytometry on peripheral blood to further evaluate the monoclonal protein and lymphocyte population.
+2. I will arrange for serum protein electrophoresis and complete blood count every six months for monitoring.
+3. I will follow up with the patient in six months via telephone or in-person visit, depending on his preference and location, to review results and assess for any changes in symptoms or laboratory findings.
+4. I will instruct the patient to return immediately if he develops symptoms of anemia (fatigue, shortness of breath), frequent infections, easy bruising, or uncontrolled bleeding.
+5. I will ensure the patient understands the importance of early morning bloodwork and avoiding Thursday/Friday draws if possible.

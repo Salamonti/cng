@@ -1,0 +1,58 @@
+Patient ID: Raymond Doucette, 84-year-old male
+
+History of Present Illness:
+This 84-year-old male presents with a known large mass in the colon and multiple pulmonary nodules identified on recent imaging. The patient has been referred for further assessment of suspected metastatic adenocarcinoma, with the primary suspected to be colonic in origin. The CT scan revealed a 3.7 x 2.7 cm nodular soft tissue mass in the colon at the splenic flexure, along with multiple pulmonary nodules ranging from 1.1 cm to 1.9 cm in size. The patient also has a history of chronic obstructive pulmonary disease (COPD) with recent oxygen saturation fluctuations between 87% and 91%. He reports chronic coughing and dyspnea, which have been stable but prompted further investigation. The patient is scheduled for a colonoscopy with biopsy on February 5, 2026, to obtain tissue diagnosis and guide further management.
+
+The patient has a complex medical history, including end-stage renal disease with an eGFR of 19, type 2 diabetes mellitus, and a history of right nephrectomy for renal cell carcinoma. He is currently independent and maintains a good appetite and energy level despite his comorbidities. The patient is aware of his advanced stage disease and has been informed that while curative treatment is unlikely, there are options to prolong survival with chemotherapy and immunotherapy. He is also considering the potential need for radiation therapy for lung nodules, though this will depend on further biopsy results and oncological assessment.
+
+Past Medical History:
+- Type 2 diabetes mellitus with diabetic kidney disease (CKD G4A3)
+- Hypertension
+- Dyslipidemia
+- Right nephrectomy for renal cell carcinoma (2010)
+- Gout
+- Chronic obstructive pulmonary disease (COPD)
+- Morbid obesity
+
+Medications:
+- Metoprolol tartrate 100 mg once daily
+- Calcitriol 0.25 mcg on Monday, Wednesday, and Friday
+- Furosemide 40 mg twice a day
+- Sodium bicarbonate 500 mg twice daily
+- Candesartan 32 mg once daily
+- Breo Ellipta 1 puff daily
+- Betahistine 16 mg twice a day as needed
+- Insulin Degludec 70 units subcutaneously every night
+- Tamsulosin 0.4 mg once a day
+- Rosuvastatin 5 mg once daily
+- Amlodipine 5 mg twice daily
+- Allopurinol 100 mg once daily
+- Dapagliflozin 10 mg once daily
+- Salbutamol 12 puffs 4-hourly as needed
+
+Allergies: Flu shots
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-09:
+- CT Chest: Multiple bilateral pulmonary nodules (largest 1.9 cm), highly concerning for pulmonary metastases of unknown primary. Prominent pulmonary trunk measuring 3.4 cm.
+
+2026-01-12:
+- CT Abdomen and Pelvis: Nodular soft tissue mass in the colon at the splenic flexure measuring 3.7 x 2.7 cm, likely a colonic mass. No evidence of metastatic disease in the liver or adrenal glands.
+
+2026-01-27:
+- Labs: eGFR 19, creatinine 274, urea 25.8, potassium 5.7, bicarbonate 20, hemoglobin 120, white blood count 10.8, carcinoembryonic antigen 3.31 ug/L, CA 19-9 referred for analysis.
+
+Impression:
+This 84-year-old male has a concerning imaging profile suggestive of metastatic colonic adenocarcinoma with pulmonary metastases. The CT abdomen and pelvis revealed a large colonic mass, while the CT chest demonstrated multiple pulmonary nodules highly suspicious for metastatic disease. Given the patient's advanced age and significant comorbidities, including end-stage renal disease and COPD, a multidisciplinary approach involving oncological, surgical, and pulmonary teams is essential. The biopsy results from the colonoscopy scheduled for February 5, 2026, will be critical in confirming the diagnosis and guiding definitive treatment planning.
+
+Plan:
+1. I will await the results of the colonoscopy with biopsy scheduled for February 5, 2026, to confirm the diagnosis of colonic malignancy and guide further management.
+2. I will order a pulmonary function test to assess the patient's eligibility for potential radiation therapy and to guide perioperative risk assessment.
+3. I will arrange for a referral to medical oncology for further assessment and management planning once the biopsy results are available.
+4. I will continue to monitor the patient's renal function, electrolytes, and overall clinical status with regular follow-up visits.

@@ -1,0 +1,58 @@
+Patient ID
+Brenda Hall is a 63-year-old woman presenting for assessment of a suspicious malignant pulmonary mass and new FDG-avid lesions.
+
+History of Present Illness
+Brenda Hall is a 63-year-old woman with a known right upper lobe cavitary mass initially identified on chest X-ray and confirmed on CT scan in January 2026. She has persistent shortness of breath on exertion, attributed to underlying COPD/emphysema, which has improved with inhaled bronchodilators. Following a bronchoscopy and bronchial washings in January 2026, cytology revealed atypical squamous cells of uncertain significance, prompting further investigation. A recent PET-CT scan on February 9, 2026, demonstrated a highly FDG-avid right apical cavitary mass (SUV max 26), raising concern for primary lung malignancy. Additionally, the PET-CT revealed a focal FDG-avid lesion in the distal sigmoid colon (SUV max 10), concerning for a neoplastic process.
+
+The patient was informed of the PET-CT findings, including the possibility of lung cancer and a potential colonic lesion. She is currently awaiting MRI brain imaging and has been referred for surgical and endoscopic evaluation.
+
+Past Medical History
+Chronic obstructive pulmonary disease/emphysema
+Prior cervical cancer treated with colposcopy/LEEP (1986)
+Dyslipidemia
+
+Medications
+Clobazepam 10 mg tablet TID PRN
+Clindamycin 300 mg capsule TID
+Epinephrine autoinjector 0.3 mg once
+Salbutamol HFA 100 mcg inhaler 2 puffs Q4H PRN
+Symbicort 200/6 mcg turbuhaler 2 puffs BID
+Budesonide 200 mcg aerosol powder 2 sprays BID
+
+Allergies
+Penicillin: other reaction
+Seafood/fish: anaphylaxis
+
+Family History
+not documented
+
+Social History
+Current smoker, 70 cigarettes/day; former heavy smoker (12 packs/day for 45 years)
+No alcohol or illicit drug use documented
+
+Physical Examination
+Clear chest auscultation; normal heart sounds
+No other findings noted
+
+Investigations
+2026-01-09
+Chest CT with contrast: Large right upper lobe cavitary mass (3.5 x 2.6 x 5.4 cm) with spiculated margins, moderate centrilobular emphysema, hyperinflated lungs consistent with COPD
+
+2026-01-21
+Bronchoscopy with bronchial washings: Cytology revealed atypical squamous cells of uncertain significance
+Sputum culture: Staphylococcus aureus (very light growth), sensitive to erythromycin, levofloxacin, oxacillin, trimethoprim/sulfamethoxazole, and vancomycin
+Complete blood count: WBC 5.8 x10^9/L, hemoglobin 117 g/L, platelets 313 x10^9/L
+Prothrombin time/INR: INR 1.0, PTT 32 seconds
+
+2026-02-09
+PET-CT whole body: Right upper lobe cavitary mass with intense FDG uptake (SUV max 26), concerning for primary lung malignancy; focal FDG-avid lesion in distal sigmoid colon (SUV max 10), concerning for neoplastic process
+
+Impression
+Brenda Hall has a highly suspicious right apical cavitary lung mass with intense FDG avidity on PET-CT, strongly concerning for primary bronchogenic carcinoma. The presence of a focal FDG-avid lesion in the distal sigmoid colon raises concern for a synchronous colonic neoplastic process. Given her history of heavy smoking and prior cervical cancer, these findings warrant urgent staging and multidisciplinary evaluation.
+
+Plan
+1. I will refer Brenda Hall to thoracic surgery for consideration of resection, potentially following invasive staging.
+2. I will ensure the scheduled MRI brain is completed in the next few days.
+3. I will refer Brenda Hall to Dr. Macdonald for colonoscopy to investigate the FDG-avid lesion in the distal sigmoid colon.
+4. I will review the results of the MRI brain and colonoscopy with Brenda Hall at a follow-up appointment to be scheduled within two weeks.
+5. I will continue current medications as prescribed and monitor for any changes in her respiratory symptoms.

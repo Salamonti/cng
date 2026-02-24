@@ -1,0 +1,43 @@
+Patient ID: Luralee Adams, 63-year-old female
+
+History of Present Illness:
+Luralee Adams is a 63-year-old female who reports improvement in her breathing since starting diltiazem and initiating regular exercise using a pedal machine. She attributes her enhanced functional capacity and reduced reliance on her rescue inhaler (now used approximately three to four times weekly) to these changes. She has noted a significant weight loss of 70 pounds, recently diagnosed with ulcerative colitis, which she is currently managing with treatment. Luralee also mentions occasional flare-ups of ulcerative colitis, though they are less severe than in the past.
+
+Her heart rate remains elevated at 105 bpm despite adherence to diltiazem, and she reports no acute exacerbations of her asthma-COPD overlap syndrome. She denies any recent fevers, night sweats, or additional weight loss beyond the intentional loss due to ulcerative colitis. Her oxygen saturation is stable at 97% on room air, and her chest remains clear to auscultation with normal heart sounds.
+
+Past Medical History:
+Asthma-COPD overlap syndrome
+Ulcerative colitis
+Hypothyroidism
+
+Medications:
+diltiazem HCl 120 mg capsule, extended release, once daily
+levothyroxine 1.25 mg tablet, once daily
+mirtazapine 15 mg tablet, at bedtime
+theophylline 200 mg tablet, twice daily
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+Chest: clear to auscultation
+Heart: normal S1 and S2, no murmurs
+Vital signs: heart rate 105 bpm, oxygen saturation 97% on room air
+
+Investigations:
+2024-12-17:
+Complete blood count: hemoglobin 127 g/L, white blood count 7.7 x10^9/L, eosinophils 0.2 x10^9/L
+eGFR: 80 mL/min/1.73m^2
+Lytes: sodium 141 mmol/L, potassium 3.7 mmol/L, chloride 105 mmol/L
+IgE: 104 IU/mL
+
+Impression:
+Luralee Adams presents with stable asthma-COPD overlap syndrome, evidenced by improved functional capacity and reduced rescue inhaler use. Her recent diagnosis of ulcerative colitis explains her significant weight loss and occasional flare-ups, which are currently well-managed. Despite adherence to diltiazem, her persistent tachycardia warrants consideration of dose optimization to achieve a target heart rate below 100 bpm. Her overall clinical picture remains stable with no acute exacerbations, and her investigations show no concerning abnormalities.
+
+Plan:
+1. I will increase diltiazem dose from 120 mg to 180 mg once daily to better control heart rate.
+2. I will arrange follow-up in six months to reassess symptom control, heart rate, and overall clinical status.
+3. I will continue current medications as prescribed and monitor for any adverse effects or changes in symptoms.

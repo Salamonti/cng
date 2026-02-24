@@ -1,0 +1,46 @@
+Patient ID
+Adrianne Nickerson, a 75-year-old female.
+
+History of Present Illness
+Adrianne Nickerson is a 75-year-old female who was referred for evaluation of incidental findings on her chest CT scan. She reports no current shortness of breath, chest pain, or symptoms of respiratory distress, though she acknowledges mild exertional dyspnea with stair climbing, which she attributes to her age. She is aware of a "spot" on her lung from prior imaging and is concerned about this finding. She denies any recent changes in her breathing pattern or new symptoms. Adrianne mentions she is scheduled for a follow-up CT scan in April or May 2026, as previously arranged. She has a history of smoking approximately 30 years, with a peak of two packs per day, but has since quit. She reports no exposure to asbestos or occupational lung irritants aside from occasional wood furnace use and household cleaning. She denies joint inflammation, Raynaud’s phenomenon, or other systemic symptoms.
+
+Adrianne describes a past history of two episodes of what she believes were "spells" as a young adult, which were treated with injections and have not recurred. She has a known history of gastroesophageal reflux disease (GERD) and reports no recent changes in her reflux symptoms. She is otherwise asymptomatic and feels well overall.
+
+Past Medical History
+Osteoarthritis, varicose veins, hypothyroidism, dyslipidemia, cataract, cervical dysplasia, obesity, benign paroxysmal positional vertigo (BPPV), venous insufficiency with edema, Eustachian dysfunction, gastroesophageal reflux disease (GERD), non-alcoholic fatty liver disease (NAFLD), and pulmonary micro-nodules.
+
+Medications
+Adalat XL 30 mg tablet, one tablet once daily
+Aponaproxen 500 mg tablet, one tablet twice daily as needed
+Aprabeprazole EC 20 mg tablet, one tablet once daily
+Coversyl 8 mg tablet, one tablet once daily
+Synthroid 88 mcg tablet, one tablet once daily
+
+Allergies
+Not documented
+
+Family History
+Not documented
+
+Social History
+Adrianne Nickerson is a housewife and her husband is alive. She is a former smoker with a 30-year history, having smoked approximately two packs per day at her peak. She denies current alcohol use or illicit drug use. She has a wood furnace at home and occasionally cleans, but denies significant occupational exposures.
+
+Physical Examination
+Chest: Clear to auscultation bilaterally with adequate air entry. Normal S1 and S2 with no additional sounds or murmurs.
+Abdomen: Soft with no palpable organomegaly.
+Neurological: Unremarkable.
+No jugular venous distention or lower limb edema. No lymphadenopathy or signs of joint inflammation.
+
+Investigations
+2025-11-12: Chest CT with contrast – Mild cardiomegaly, new right upper lobe subpleural ground-glass opacity measuring 2.2 x 1.5 cm, subpleural reticulation and cyst formation, mild traction bronchiectasis at the medial basal right lower lobe. No significant lymphadenopathy or pleural effusion.
+2024-11-05: Chest CT with contrast – New focal ground-glass opacity in the right upper lobe, stable reticular changes, no new nodules.
+2023-11-20: Chest CT with contrast – Mild diffuse interstitial lung disease potentially NSIP, stable micronodules, no significant fibrosis.
+2020-02-20: Pulmonary Function Tests – Normal spirometry with FEV1 94% predicted, FVC 102% predicted, and normal flow-volume loops.
+
+Impression
+Adrianne Nickerson is a 75-year-old female with a history of smoking and incidental findings on chest imaging consistent with mild interstitial lung disease, potentially non-specific interstitial pneumonia (NSIP). Her current symptoms are minimal, with no significant dyspnea or respiratory distress, and her pulmonary function tests remain within normal limits. The recent CT scan shows waxing and waning ground-glass opacities and mild interstitial changes, which are indeterminate for progressive fibrosis but warrant continued surveillance. Given her asymptomatic status and stable pulmonary function, the findings are not currently clinically concerning for malignancy or rapidly progressive disease.
+
+Plan
+1. I will continue current medications as prescribed, with no changes to Adalat XL, Aponaproxen, Aprabeprazole, Coversyl, or Synthroid.
+2. I will arrange for a follow-up chest CT scan in June 2026 to compare with the upcoming April/May 2026 scan and assess for any interval changes in the interstitial lung disease.
+3. I will schedule a follow-up appointment in June 2026 to review the imaging results and reassess symptoms at that time.

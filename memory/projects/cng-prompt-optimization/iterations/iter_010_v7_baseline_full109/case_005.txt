@@ -1,0 +1,49 @@
+Patient ID: Marilyn Pothier, a 71-year-old female
+
+History of Present Illness:
+Mrs. Pothier is a 71-year-old female with a history of autoimmune-related interstitial lung disease (ILD) who presented for follow-up regarding her ongoing iron deficiency anemia and recent infusions. She reports her last iron infusion was on January 6, 2026, which was her fourth infusion since December 19, 2025. Despite these infusions, her iron levels remain persistently low, raising concerns about an ongoing source of blood loss. She denies any overt gastrointestinal bleeding but remains concerned about potential occult bleeding, particularly given her history of ILD and recent CT imaging that showed stable findings without significant changes.
+
+She reports feeling somewhat improved in terms of energy and shortness of breath since her last infusion but remains fatigued. Her breathing has improved, though she continues to experience occasional exertional dyspnea. She has not undergone a recent endoscopy to evaluate for a source of bleeding, and her family physician has arranged for a referral to Dr. Ahmed for this procedure. She also mentions that she was previously taking oral iron supplements but was not aware that these should be discontinued during IV iron infusions. Her recent CT scan from December 12, 2025, showed stable findings with no significant changes in her ILD.
+
+Past Medical History:
+Autoimmune-related interstitial lung disease (ILD), hypertension, chronic obstructive pulmonary disease (COPD) or related bronchiectasis, possible autoimmune-related symptoms (Anti-Ro52, Anti-Ro, Anti-Th weakly positive), history of chest pain and tachycardia with exertion, mild lower extremity edema (historical)
+
+Medications:
+- Pantoprazole
+- Hydrochlorothiazide 12.5 mg PO daily
+- Telmisartan 40 mg PO daily
+- Cetirizine as needed
+- Aspirin 81 mg PO daily
+- Vitamin C
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History: not documented
+
+Physical Examination:
+- Vitals: BP 166/74 mmHg, HR 87 bpm, SpO2 98% on room air (historical, no recent exam documented)
+- Lungs: Clear bilaterally with adequate air entry
+- Cardiovascular: Normal S1, S2, no murmurs or additional sounds
+- Neurological: Intact
+- Extremities: No lower extremity edema noted in recent exam
+
+Investigations:
+2025-12-12:
+- CT Chest: Stable mild interstitial lung disease with no significant changes to explain worsening dyspnea. No new or suspicious pulmonary nodules or masses.
+
+2025-01-XX (historical, Alberta labs):
+- Autoimmune panel: Negative or unremarkable findings
+
+2025-04-XX:
+- Pulmonary Function Test: FEV1 101%, FVC 94%, FEV1/FVC ratio 82%, DLCO 78%
+
+Impression:
+Mrs. Pothier’s persistent iron deficiency anemia despite multiple IV iron infusions raises concern for an ongoing source of blood loss, likely gastrointestinal in origin. Her stable CT findings from December 2025 do not explain her ongoing symptoms or iron deficiency. Given her history of autoimmune-related ILD and recent symptoms, further evaluation with endoscopy is warranted to identify a potential source of bleeding. Her ILD remains stable, and her recent improvement in dyspnea and energy levels is encouraging but requires ongoing monitoring.
+
+Plan:
+1. I will order a complete blood count (CBC) and iron studies (ferritin, transferrin saturation, total iron-binding capacity) to be repeated now to assess her current iron status.
+2. I will refer Mrs. Pothier urgently to Dr. Ahmed for upper and lower endoscopy to evaluate for a source of gastrointestinal bleeding.
+3. I will arrange a follow-up appointment in three months to review the results of her endoscopy and iron studies, and to reassess her overall clinical status.
+4. I will counsel Mrs. Pothier to continue monitoring her symptoms and to return to the Emergency Department if she experiences worsening dyspnea, chest pain, or other concerning symptoms.

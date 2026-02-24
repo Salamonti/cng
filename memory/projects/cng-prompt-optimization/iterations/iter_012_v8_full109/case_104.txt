@@ -1,0 +1,79 @@
+Patient ID: Irving Woodworth, 76-year-old male
+
+History of Present Illness:
+For approximately 18 months, Irving has experienced persistent thick green phlegm in his throat, which has worsened recently. He describes it as causing choking episodes at night, particularly when lying on his back, leading to panic attacks due to difficulty breathing. He has tried spitting it up but finds it increasingly difficult to clear. Previous treatment with antibiotics and prednisone has provided temporary relief, but symptoms return shortly after discontinuation. He also reports hoarseness of voice, bad breath, and worsening shortness of breath with exertion, such as walking around his seniors village or climbing hills. He notes that his symptoms fluctuate, with some days being better than others. Irving uses Ventolin inhalers, which help bring up the phlegm and improve breathing temporarily. He has also experienced acid reflux, for which he takes Nexium, but his symptoms persist despite this treatment.
+
+Irving’s quality of life is significantly impacted, as he feels limited in his activities and struggles with fatigue. He has a history of working with asbestos, which has raised concerns about potential long-term respiratory issues. He denies recent weight gain but acknowledges a long-standing history of acid reflux and a "bad stomach." He also mentions that his symptoms are worse indoors and improve when he is outside, suggesting possible environmental triggers.
+
+Past Medical History:
+Gleason 6 prostate cancer (low-grade, low-volume disease)
+Hypertension
+Anxiety
+Degenerative cervical intervertebral disc disease
+Gout
+Impaired fasting glucose
+Subclinical hyperthyroidism
+Unspecified urinary retention
+Possible statin-induced myopathy
+History of asbestos exposure
+
+Medications:
+Nexium 20 mg oral once daily
+Sandoz-tamsulosin CR 0.4 mg oral once daily
+Sandoz-amlodipine 10 mg oral once daily
+Sandoz-telmisartan 80 mg oral once daily
+Lorazepam 1 mg sublingual twice daily as needed
+Teva-salbutamol HFA 100 mcg inhalation every 4-6 hours as needed (to be discontinued)
+APO-fluticasone HFA 125 mcg inhalation 2 puffs twice daily (to be discontinued)
+Inhale 200/5 mcg inhalation 2 puffs twice daily (new prescription)
+
+Allergies:
+Morphine (visual hallucinations)
+Mirtazapine 15 mg tablet (unknown reaction)
+Sertraline HCl 25 mg capsule (unknown reaction)
+
+Family History:
+Breast cancer with metastases
+
+Social History:
+Non-smoker
+Former asbestos exposure
+Active lifestyle (shoveling walkways, plowing yards)
+
+Physical Examination:
+Not documented
+
+Investigations:
+2025-12-30:
+CT Chest: No evidence of asbestosis or malignancy. Scattered pulmonary nodules favored as benign. Follow-up CT in 1 year recommended.
+
+2025-10-15:
+Knee X-ray (right, weight-bearing): No significant bone or joint abnormality identified.
+
+2025-08-20:
+Lipids: Cholesterol 5.7 mmol/L, Triglycerides 2.9 mmol/L, LDL 3.5 mmol/L, HDL 0.94 mmol/L, Chol/HDL ratio 6.0
+Liver function tests: Normal
+Thyroid stimulating hormone: 1.34 mIU/L
+Iron studies: Ferritin 333 ug/L, Iron 19.2 umol/L, TIBC 59 umol/L, % saturation 0.32
+Vitamin B12: 344 pmol/L
+Prostate-specific antigen: 4.67 ug/L
+eGFR: 70 mL/min/1.73m²
+Glucose: 6.6 mmol/L
+Complete blood count: Normal
+Urinalysis: Normal
+
+2025-05-15:
+Chest X-ray: No focal collapse or consolidation, no suspicious osseous lesion, no pneumothorax
+Pulmonary function tests: Restrictive pattern with moderate obstructive component responding well to bronchodilators
+
+Impression:
+Irving Woodworth presents with chronic symptoms of thick green phlegm, hoarseness, and shortness of breath, which are highly suggestive of reflux-induced bronchial asthma. His symptoms are likely exacerbated by gastroesophageal reflux disease (GERD), leading to irritation and inflammation of the airways. The presence of thick phlegm and occasional improvement with bronchodilators supports this diagnosis. His history of asbestos exposure and imaging findings of benign pulmonary nodules do not suggest malignancy or asbestosis as the primary cause of his symptoms. The restrictive and obstructive pattern on pulmonary function tests further supports the presence of airway inflammation and possible bronchospasm.
+
+Plan:
+1. I will discontinue Teva-salbutamol HFA (Ventolin) and APO-fluticasone HFA (Flovent) inhalers.
+2. I will prescribe Inhale 200/5 mcg inhalation, 2 puffs twice daily, with instructions to use additional puffs as needed for symptom relief.
+3. I will provide Irving with a strict anti-reflux diet and instructions to avoid food and drink for at least 3 hours before bedtime.
+4. I will recommend raising the head of his bed with a wedge pillow or similar device to reduce nocturnal reflux.
+5. I will arrange follow-up in four months to reassess his symptoms and response to treatment.
+6. I will provide Irving with a printed anti-reflux diet sheet for better adherence to dietary recommendations.
+7. I will continue monitoring his prostate cancer with PSA levels and follow up with urology as needed.

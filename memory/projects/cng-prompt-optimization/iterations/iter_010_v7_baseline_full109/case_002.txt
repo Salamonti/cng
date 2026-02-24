@@ -1,0 +1,34 @@
+Patient ID: 55-year-old male
+
+History of Present Illness:
+The patient presented with severe chest pain that began approximately two hours prior to arrival. The pain is described as intense and localized to the chest region. The patient was noted to have an unremarkable physical examination on initial assessment but was subsequently sent to the Emergency Department for further evaluation.
+
+Past Medical History:
+Coronary artery disease
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-02-24
+- ECG: Inferior ST depression
+
+Impression:
+This patient presents with severe chest pain in the context of known coronary artery disease. The ECG findings of inferior ST depression are concerning for acute myocardial ischemia or infarction. Further cardiac evaluation in the Emergency Department is warranted to assess for ongoing cardiac events.
+
+Plan:
+1. I will ensure the patient is transferred to the Emergency Department for immediate cardiac assessment and monitoring.
+2. I will recommend urgent cardiac enzymes, repeat ECG, and possible stress testing or coronary angiography as indicated by the Emergency Department team.
+3. We will follow up with cardiology consultation for further management of coronary artery disease and risk stratification.

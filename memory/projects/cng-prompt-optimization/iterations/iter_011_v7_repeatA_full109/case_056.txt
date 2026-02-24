@@ -1,0 +1,50 @@
+Patient ID: Roy Joseph Taylor is a 72-year-old male.
+
+History of Present Illness:
+Mr. Taylor presents for follow-up regarding recent investigations and concerns raised by abnormal laboratory findings. He reports no blood in his stool, though he notes occasional night sweats that have improved since prior visits. His weight has stabilized between 140-142 lbs, and he denies significant shortness of breath or chest pain. He recently underwent an MRI of the abdomen, thyroid, and bone scan, though results are pending. He also reports a recent fall resulting in bruised ribs, with a noted sclerotic lesion on the anterior right fourth rib on prior imaging, which remains unexplained. He describes mild short-term memory concerns but denies other neurological symptoms.
+
+Mr. Taylor’s blood work indicates a possible new diagnosis of diabetes, pending confirmation with repeat testing. His prostate-specific antigen (PSA) level is elevated at 6.41 ng/mL, raising concern for prostate pathology, though he denies urinary symptoms. A thyroid nodule was noted on prior imaging, and a biopsy is planned to assess for malignancy. He denies fever, chills, or other systemic symptoms.
+
+Past Medical History:
+Type 2 Diabetes Mellitus
+Dyslipidemia
+Coronary artery disease status post Percutaneous Coronary Intervention (PCI) to Right Coronary Artery (RCA) and Posterior Left Ventricular (PLV) branch in March 2023
+
+Medications:
+Aspirin 81 mg QD
+Metformin 750 mg BID
+Jardiance 10 mg QD
+Atorvastatin 40 mg QD
+Amlodipine 5 mg QD
+
+Allergies: not documented
+
+Family History: not documented
+
+Social History:
+Former smoker (quit 2 years ago after smoking a pipe for 45 years), denies alcohol use, admits to smoking marijuana 2-3 times per week
+
+Physical Examination: not documented
+
+Investigations:
+2025-10-17:
+- Complete Blood Count (WBC 9.0 x10^9/L, Hb 137 g/L, Plt 217 x10^9/L)
+- Hemoglobin A1c 7.1%
+- Prostate-Specific Antigen 6.41 ng/mL
+- Iron Studies (Ferritin 103.00 ug/L, Iron 19.5 umol/L)
+- ESR 13 mm/hr, CRP 0.6 mg/L
+- Renal Function (eGFR 90 mL/min/1.73m^2)
+- Liver Function Tests (AST 19 U/L, ALT 20 U/L, Alk Phos 79 U/L)
+
+2025-10-20 to 2025-10-22:
+- Occult Blood Stool x3 (negative)
+
+Impression:
+Mr. Taylor is a 72-year-old male with a history of coronary artery disease, diabetes, and dyslipidemia presenting for evaluation of abnormal laboratory findings and pending imaging results. His elevated PSA and thyroid nodule require further investigation, with a planned biopsy for the thyroid lesion and urological referral for prostate assessment. The sclerotic rib lesion noted on prior imaging remains unexplained but will be followed clinically. His recent weight stabilization and improved night sweats suggest resolution of prior concerns, though diabetes control requires monitoring with repeat HbA1c testing.
+
+Plan:
+1. We will arrange for a fine-needle aspiration biopsy of the thyroid nodule for further characterization.
+2. We will refer Mr. Taylor to urology for evaluation of his elevated PSA (6.41 ng/mL) and consideration of prostate pathology, including potential biopsy.
+3. We will repeat Hemoglobin A1c testing in 3 months to confirm diabetes diagnosis and assess glycemic control.
+4. We will schedule a follow-up bone scan in 6 months to reassess the sclerotic lesion on the anterior right fourth rib.
+5. We will follow up with Mr. Taylor in 3 months to review biopsy and urology consultation results, as well as repeat HbA1c.

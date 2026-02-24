@@ -1,0 +1,30 @@
+Patient ID: James Herbert Theriault, 82-year-old male
+
+History of Present Illness:
+Mr. Theriault is an 82-year-old male presenting with persistent dyspnea on exertion and reduced functional capacity. He reports no recent bleeding, bruising, or changes in energy levels beyond his baseline limited activity due to shortness of breath. His symptoms have worsened over the winter months, limiting his ability to climb stairs or engage in activities of daily living. He denies chest pain at rest but acknowledges exertional discomfort. Recent blood work shows stable thrombocytopenia (platelets 78 x 10^9/L) with no evidence of bleeding or anemia. An echocardiogram performed in January 2026 revealed severe biatrial enlargement, moderate to severe tricuspid regurgitation, and evidence of pulmonary hypertension with an estimated pulmonary artery systolic pressure of 54.5 mmHg or higher. The patient is aware of his diagnosis of pulmonary hypertension but remains uncertain about ongoing management.
+
+The patient’s current medications include a nitro patch, Incruse Ellipta, Ventolin HFA as needed, rivaroxaban, metoprolol, and atorvastatin. He has no known allergies and reports no recent changes in dietary habits, though he acknowledges minimal salt intake. His social history is notable for lifelong nonsmoking status and no alcohol use. The patient lives with his son, who assists with daily care.
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-02-02
+- Complete Blood Count: WBC 5.6 x 10^9/L, hemoglobin 133 g/L, platelets 78 x 10^9/L, MCV 106.1 fL
+- Peripheral Blood Morphology: Normal RBC morphology, manual platelet estimate correlates with automated count
+- Prothrombin Time/INR/PTT: INR 3.4 (elevated), PTT 47 seconds
+
+2026-01-20
+- Echocardiogram: Severe biatrial enlargement, moderate to severe tricuspid regurgitation, pulmonary hypertension (estimated PASP ≥54.5 mmHg), mild to moderately reduced right ventricular systolic function
+
+2025-12-17
+- eGFR: 76 mL/min/1.73m² (normal range)
+
+Impression:
+Mr. Theriault is an 82-year-old male with chronic stable thrombocytopenia and newly diagnosed pulmonary hypertension, likely contributing to his exertional dyspnea and functional decline. The echocardiogram confirms severe biatrial enlargement, moderate to severe tricuspid regurgitation, and elevated pulmonary artery pressures, consistent with pulmonary hypertension. His current symptoms and functional limitations are likely secondary to this condition, compounded by his baseline COPD and coronary artery disease. The elevated INR suggests ongoing anticoagulation with rivaroxaban, and his renal function remains stable.
+
+Plan:
+1. I will initiate furosemide 40 mg orally once daily for management of pulmonary hypertension and associated fluid overload, with instructions to monitor for diuretic effects and side effects.
+2. I will order repeat blood work in two weeks to assess renal function (creatinine, eGFR) and complete blood count following initiation of furosemide.
+3. I will arrange follow-up in six months to reassess symptoms, functional status, and response to therapy, with earlier review if symptoms worsen or if Dr. Dugas identifies additional concerns requiring investigation.
+4. We will ensure coordination of care with Dr. Dugas to avoid duplication of investigations or management plans for pulmonary hypertension.

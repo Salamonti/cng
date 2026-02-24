@@ -1,0 +1,36 @@
+Patient ID: Paul Raymond Lake is a 71-year-old male.
+
+History of Present Illness:
+Paul Raymond Lake presents with persistent exertional dyspnea that has remained stable over the past few weeks. He reports difficulty walking longer distances, requiring frequent rests, and describes his breathing as "not too good" on exertion, though it does not worsen significantly at rest. He denies recent acute changes or worsening symptoms, though he notes ongoing functional limitations, including difficulty climbing stairs. Notably, he has not tolerated previous immunosuppressive therapies, including azathioprine and methotrexate, due to adverse effects that exacerbated his muscle weakness and mobility issues. His symptoms have not responded to these medications, and he remains functionally limited despite attempts at treatment.
+
+Paul’s baseline dyspnea is associated with interstitial lung disease secondary to antisynthetase syndrome, a diagnosis established through prior investigations including positive autoimmune markers (AntiPL7 strongly positive, AntiKu weakly positive, ANA positive). He describes occasional chest tightness, particularly with cold air exposure, but denies cough, sputum production, hemoptysis, or nocturnal dyspnea. His fatigue and exertional limitations persist, though he reports no recent weight changes or significant acute deterioration.
+
+Past Medical History:
+Interstitial lung disease secondary to antisynthetase syndrome, hypertension, chronic kidney disease (eGFR 54 mL/min/1.73 m²), prior cerebrovascular accident (stroke), dyslipidemia, sensorineural hearing loss, malignant skin lesion (nose, 2025).
+
+Medications:
+methotrexate 10 mg PO weekly (discontinued)
+folic acid 5 mg PO weekly (discontinued)
+azathioprine 50 mg PO daily (discontinued)
+
+Allergies: rosuvastatin (rash, fever)
+
+Family History: not documented
+
+Social History:
+Former smoker (50 pack-years, quit January 2025), exposed to secondhand smoke at home, no alcohol or illicit substance use.
+
+Physical Examination: not documented
+
+Investigations:
+2026-01-14:
+Complete blood count: WBC 9.1 x10⁹/L, Hb 152 g/L, platelets 219 x10⁹/L, eGFR 54 mL/min, creatinine 124 µmol/L, electrolytes normal, LFTs normal, LDH 163 U/L, CPK 54 U/L.
+
+Impression:
+Paul Raymond Lake is a 71-year-old male with stable but persistent exertional dyspnea secondary to interstitial lung disease associated with antisynthetase syndrome. His symptoms have remained unchanged over recent months, with no acute deterioration despite ongoing functional limitations. Prior attempts at immunosuppressive therapy with azathioprine and methotrexate were poorly tolerated, exacerbating his muscle weakness and mobility issues. Current blood work demonstrates stable hematologic and renal parameters, though his interstitial lung disease remains progressive on prior imaging. Given the lack of recent clinical decline and the intolerance to prior therapies, further immunosuppressive therapy should be deferred until reassessment with repeat pulmonary function testing and chest imaging.
+
+Plan:
+1. I will order repeat pulmonary function testing (PFTs) with diffusion capacity (DLCO) for reassessment of interstitial lung disease progression.
+2. I will arrange for a repeat high-resolution chest CT scan to evaluate for changes in fibrosis or reticulation.
+3. I will schedule follow-up in August 2026 to review results and reassess the need for immunosuppressive therapy.
+4. I will instruct the patient to return earlier if his dyspnea worsens beyond his baseline or if new symptoms develop.

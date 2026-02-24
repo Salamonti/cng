@@ -1,0 +1,50 @@
+Patient ID
+Gertrude Elizabeth Conrod is a 76-year-old woman presenting for follow-up of chronic obstructive pulmonary disease (COPD) and evaluation of intermittent left-sided chest tightness.
+
+History of Present Illness
+Mrs. Conrod reports feeling well overall with no recent exacerbations of respiratory symptoms. She denies cough, sputum production, hemoptysis, orthopnea, or nocturnal dyspnea. Shortness of breath remains exertional, limiting her to one flight of stairs without significant impact on daily activities. She describes intermittent left-sided chest tightness occurring both at rest and with activity, consistent with prior symptoms noted after her stress test in June 2025. These episodes are not associated with radiation, diaphoresis, nausea, or palpitations. No new fatigue, weight loss, fever, chills, or extremity swelling has been reported since her last visit. She confirms medication adherence and notes her albuterol inhaler is nearly depleted, requesting a refill.
+
+Past Medical History
+Chronic obstructive pulmonary disease, hypertension, hyperlipidemia, osteoarthritis, anxiety disorder, hypothyroidism, history of questionable myocardial ischemia (persistent apical perfusion defect on MIBI scan, May 2025), resolved dapagliflozin-induced rash (discontinued November 2025), and prior ruled-out deep vein thrombosis (DVT) via Doppler ultrasound (November 2025). Stable lower limb edema bilaterally documented since July 2025.
+
+Medications
+BREZTRI 2 puffs twice daily
+JARDIANCE 10 mg once daily
+carvedilol 12.5 mg twice daily
+bisoprolol 5 mg once daily
+losartan 25 mg once daily
+potassium chloride 1500 mg twice daily
+spironolactone 25 mg once daily
+levothyroxine 12.5 mcg once daily
+nortriptyline 10 mg once daily
+trazodone 100 mg once daily
+topiramate 50 mg morning, 100 mg evening
+rosuvastatin 10 mg once daily
+
+Allergies
+Dapagliflozin (dermatitis)
+
+Family History
+not documented
+
+Social History
+Lives independently with family support. Denies tobacco, alcohol, or illicit drug use. Remains socially engaged despite functional limitations.
+
+Physical Examination
+Heart rate 74 bpm, regular rhythm. Oxygen saturation 96% on room air. Lungs clear with adequate bilateral air entry. Cardiac exam normal (S1, S2 without murmurs, gallops, or rubs). Jugular venous pressure not elevated. Bilateral lower extremity edema grade 2/3. Tenderness localized to left costochondral junction consistent with costochondritis. No leg ulcers or skin breakdown.
+
+Investigations
+2025-11-17: CBC (WBC 12.6 x10^9/L, Hb 117 g/L), creatinine 132 µmol/L, D-dimer 2473 ng/mL (negative Doppler ultrasound for DVT)
+2025-11-05/06: Troponin T 24/21 ng/L (serial testing stable)
+2025-11-05: ECG (sinus rhythm with LBBB, stable from October 2025)
+2025-10-30: NT-proBNP 434 ng/L
+
+Impression
+Mrs. Conrod’s COPD remains stable with minimal symptom burden, though her intermittent left-sided chest tightness is most consistent with costochondritis based on physical exam findings. The persistent apical perfusion defect on nuclear imaging from 2022–2025 raises ongoing questions about potential myocardial ischemia, though her clinical stability and lack of objective ischemic markers suggest low risk of progressive coronary artery disease. Mild renal impairment (creatinine 132 µmol/L) requires monitoring, and the unexplained elevated D-dimer (2473 ng/mL) without thromboembolic evidence warrants observation.
+
+Plan
+1. I will prescribe a refill of BREZTRI 2 puffs twice daily to Spears Pharmacy on McLean Street.
+2. I will recommend acetaminophen (Tylenol) as needed for symptomatic management of costochondritis-related chest tightness.
+3. We will monitor renal function with repeat creatinine measurement in 6 months or sooner if clinically indicated.
+4. We will schedule a routine follow-up appointment in 6 months (August 4, 2026) unless symptoms evolve to require earlier reassessment.
+5. We will reassess the need for advanced cardiac evaluation (e.g., stress test) only if future episodes include exertional angina, syncope, worsening dyspnea, or persistent biomarker elevations.

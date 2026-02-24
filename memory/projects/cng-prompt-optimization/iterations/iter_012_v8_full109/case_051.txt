@@ -1,0 +1,65 @@
+Patient ID: Raymond Doucette, 84-year-old male
+
+History of Present Illness:
+This 84-year-old male presents with a known large colonic mass and multiple pulmonary nodules identified on recent imaging. The CT abdomen and pelvis from January 12, 2026, revealed a 3.7 x 2.7 cm nodular soft tissue mass at the splenic flexure of the colon, raising concern for a colonic malignancy. The CT chest from January 9, 2026, demonstrated multiple bilateral pulmonary nodules, the largest measuring 1.9 cm in the right upper lobe, highly suspicious for metastatic disease. The patient is scheduled for a colonoscopy on February 5, 2026, to obtain a biopsy of the colonic mass. The patient’s father had COPD, and he has a long-standing history of COPD himself, with recent oxygen saturation readings in the low 80s to low 90s. He has been stable otherwise, with no acute respiratory distress, though he has chronic coughing and dyspnea related to his COPD.
+
+The patient’s clinical picture suggests advanced metastatic disease, likely originating from the colon, given the imaging findings and the clinical context. The patient is currently awaiting biopsy results from the colonic mass to confirm the diagnosis and guide further treatment. The patient’s overall functional status is relatively preserved, with independence in activities of daily living, though his comorbidities, including chronic kidney disease stage IV, COPD, and diabetes, pose challenges for treatment planning.
+
+Past Medical History:
+Type 2 diabetes with diabetic kidney disease (CKD G4A3)
+Hypertension
+Dyslipidemia
+Right nephrectomy for renal cell carcinoma
+Gout
+Chronic obstructive pulmonary disease (COPD)
+Morbid obesity
+
+Medications:
+Metoprolol tartrate 100 mg PO daily
+Calcitriol 0.25 mcg PO Monday, Wednesday, Friday
+Furosemide 40 mg PO twice daily
+Sodium bicarbonate 500 mg PO twice daily
+Candesartan 32 mg PO daily
+Breo Ellipta 1 puff PO daily
+Betahistine 16 mg PO twice daily as needed
+Insulin Degludec 70 units subcutaneously every night
+Tamsulosin 0.4 mg PO daily
+Rosuvastatin 5 mg PO daily
+Amlodipine 5 mg PO twice daily
+Allopurinol 100 mg PO daily
+Dapagliflozin 10 mg PO daily
+Salbutamol 12 puffs 4 hourly as needed
+
+Allergies: Flu shots
+
+Family History: Not documented
+
+Social History: Not documented
+
+Physical Examination: Not documented
+
+Investigations:
+2026-01-09:
+CT chest without contrast: Multiple bilateral pulmonary nodules, largest 1.9 cm in right upper lobe, highly suspicious for pulmonary metastases. Mild paraseptal emphysematous changes.
+
+2026-01-12:
+CT abdomen and pelvis without contrast: 3.7 x 2.7 cm nodular soft tissue mass at splenic flexure of colon, suggestive of colonic malignancy. No evidence of liver metastases.
+
+2026-01-27:
+Laboratory results:
+- eGFR: 19 mL/min
+- Creatinine: 274 µmol/L
+- Potassium: 5.7 mmol/L
+- Bicarbonate: 20 mmol/L (low)
+- Hemoglobin: 120 g/L
+- White blood count: 10.8 x 10^9/L
+
+Impression:
+This 84-year-old male presents with advanced metastatic disease highly suspicious for colorectal cancer with pulmonary metastases. The CT imaging demonstrates a large colonic mass and multiple pulmonary nodules, consistent with metastatic spread. The patient’s comorbidities, including advanced chronic kidney disease and COPD, necessitate careful consideration of treatment options. The biopsy of the colonic mass is essential to confirm the diagnosis and guide further management, including potential chemotherapy, immunotherapy, and radiation therapy.
+
+Plan:
+1. I will ensure the colonoscopy with biopsy of the colonic mass is completed as scheduled on February 5, 2026, and await the results for definitive diagnosis and treatment planning.
+2. I will order a pulmonary function test to assess the patient’s respiratory reserve prior to considering radiation therapy for pulmonary nodules.
+3. I will refer the patient to the oncology team for further management and treatment planning once the biopsy results are available.
+4. I will monitor the patient’s renal function closely given his advanced CKD and adjust medications as needed to avoid nephrotoxicity.
+5. We will follow up with the patient in one month or sooner if there are any changes in his clinical status or if biopsy results become available earlier.

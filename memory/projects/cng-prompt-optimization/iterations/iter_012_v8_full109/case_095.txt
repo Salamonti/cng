@@ -1,0 +1,60 @@
+Patient ID: McCauley, Michel Louis, 67-year-old male
+
+History of Present Illness:
+This encounter does not contain any documented history of present illness. The transcription provided is incomplete and does not include any relevant clinical details for the current presentation.
+
+Past Medical History:
+Hypertension, Hyperlipidemia, Diabetes Mellitus, Obstructive Sleep Apnea, Atrial Fibrillation with pacemaker/defibrillator, Previous Coronary Artery Bypass Grafting, Heart Failure with preserved ejection fraction, Chronic Kidney Disease, Degenerative Disc Disease (L5/S1)
+
+Medications:
+not documented
+
+Allergies:
+not documented
+
+Family History:
+not documented
+
+Social History:
+not documented
+
+Physical Examination:
+not documented
+
+Investigations:
+2026-02-03
+ECHO 2D: Normal LV size, preserved LV systolic function with segmental wall dysfunction, biatrial enlargement, mild tricuspid regurgitation, mildly dilated ascending aorta.
+
+2026-01-12
+HEMOGLOBIN A1C: 8.2%
+COMPLETE BLOOD COUNT: WBC 8.3 x10^9/L, RBC 6.09 x10^12/L, Hemoglobin 176 g/L, Hematocrit 0.564, Platelets 224 x10^9/L
+eGFR: 40 mL/min/1.73m^2, Creatinine 160 umol/L
+LIPIDS: Cholesterol 3.8 mmol/L, Triglycerides 1.62 mmol/L, LDL 2.4 mmol/L, HDL 0.71 mmol/L
+LYTES: Sodium 139 mmol/L, Potassium 5.0 mmol/L, Chloride 99 mmol/L
+
+2026-01-05
+CHEST X-RAY: No focal collapse or consolidation, no pneumothorax, no displaced rib fracture
+TROPONIN T: 33 ng/L and 34 ng/L (both below threshold for acute myocardial infarction)
+CREATININE: 126 umol/L
+GLUCOSE RANDOM: 11.7 mmol/L
+PROTHROMBIN TIME/INR: 1.6
+COMPLETE BLOOD COUNT: WBC 7.3 x10^9/L, RBC 5.77 x10^12/L, Hemoglobin 172 g/L, Hematocrit 0.533
+LYTES: Sodium 136 mmol/L, Potassium 4.7 mmol/L, Chloride 100 mmol/L
+ECG: Ventricular-paced rhythm, QTc interval 475 ms
+
+2025-07-29
+LUMBAR SPINE X-RAY: Grade 1 anterolisthesis of L4 on L5, mild-moderate degenerative disc disease at L5/S1, moderate facet sclerosis at L5/S1
+PROSTATE SPECIFIC ANTIGEN: 0.607 ug/L
+HEMOGLOBIN A1C: 8.2%
+LYTES: Sodium 140 mmol/L, Potassium 4.5 mmol/L, Chloride 102 mmol/L
+eGFR: 48 mL/min/1.73m^2, Creatinine 139 umol/L
+COMPLETE BLOOD COUNT: WBC 6.5 x10^9/L, RBC 5.93 x10^12/L, Hemoglobin 175 g/L, Hematocrit 0.555
+
+Impression:
+This 67-year-old male with a complex medical history including diabetes mellitus, chronic kidney disease, and heart failure with preserved ejection fraction presents with no documented current symptoms in this encounter. His recent investigations reveal persistent hyperglycemia with an HbA1c of 8.2%, mild renal impairment with an eGFR of 40 mL/min/1.73m^2, and stable cardiac function on echocardiography. His ventricular-paced rhythm and elevated potassium levels warrant further monitoring and management.
+
+Plan:
+1. I will optimize glycemic control with a referral to a diabetes educator for further management and review of current medications.
+2. I will monitor renal function with repeat eGFR and creatinine in 3 months.
+3. I will arrange for a cardiology consultation to review the ventricular-paced rhythm and assess the need for further cardiac investigations or adjustments to management.
+4. We will follow up in the clinic in 3 months to reassess overall clinical status and review laboratory results.

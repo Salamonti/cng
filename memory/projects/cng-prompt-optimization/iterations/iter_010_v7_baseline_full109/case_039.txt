@@ -1,0 +1,45 @@
+Patient ID
+David Victor Smith is a 59-year-old male.
+
+History of Present Illness
+Mr. Smith reports feeling significantly improved over the past week, with better mobility and reduced leg weakness. He can now ascend stairs without shuffling, which he previously required. He remains on an unknown statin medication (previously rosuvastatin 40 mg daily) and denies chest pain but experiences shortness of breath with exertion and heavy lifting. His weight fluctuates by 3-4 pounds but has not changed significantly. He feels motivated to continue weight loss efforts through diet and exercise, including gym attendance and aqua fitness classes.
+
+Past Medical History
+Hypertension, dyslipidemia, coronary artery disease (NSTEMI February 2025), obstructive sleep apnea, obesity hypoventilation syndrome, mild COPD, osteoarthritis, iron deficiency anemia, vitamin B12 deficiency, depression.
+
+Medications
+Ticagrelor 90 mg PO b.i.d.
+Bisoprolol 5 mg PO daily
+Rosuvastatin 40 mg PO daily (brand unknown, patient unsure)
+Aspirin 81 mg PO daily
+Sertraline 100 mg PO daily
+Pantoprazole 40 mg PO daily
+Lisinopril/hydrochlorothiazide 20/25 mg PO daily
+Breztri 2 puffs b.i.d.
+Nitroglycerin spray p.r.n.
+
+Allergies
+Not documented
+
+Family History
+Mother: hypertension, diabetes
+Father: coronary artery disease (deceased at age 58)
+
+Social History
+Smoker (1 pack per day for 40 years), occasional alcohol use, no recreational drug use. Currently employed full-time. Previously worked as a truck driver.
+
+Physical Examination
+Not documented
+
+Investigations
+2025-12-02:
+Ferritin: 14.1 µg/L (ref 30.0–400.0)
+Complete Blood Count: Hemoglobin 94 g/L (ref 125–175), Hematocrit 0.320 (ref 0.420–0.520), MCV 77.1 fL (ref 80.0–100.0)
+
+Impression
+Mr. Smith is a 59-year-old male with a history of coronary artery disease, obstructive sleep apnea, and obesity who reports improved mobility and functional status. His recent labs demonstrate persistent iron deficiency anemia with low ferritin and hemoglobin, despite prior oral iron therapy. He remains symptomatic with exertional dyspnea and continues to struggle with weight management. Further evaluation of his iron deficiency and optimization of cardiovascular risk factors, including lipid management, are required.
+
+Plan
+1. I will order a Monoferric infusion for iron repletion and repeat CBC in 4 weeks.
+2. I will arrange lipid panel and fasting glucose testing to monitor statin efficacy and metabolic control.
+3. I will schedule follow-up in 3 months to reassess symptoms, weight management progress, and response to interventions.
