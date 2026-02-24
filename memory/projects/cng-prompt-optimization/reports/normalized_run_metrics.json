@@ -1,0 +1,58 @@
+[
+  {
+    "run_id": "iter_001_v2_sample25",
+    "n_cases": 25,
+    "raw_mean_30": 9.52,
+    "normalized_mean_pct": 33.19,
+    "estimated_gold_mean_30": 28.72,
+    "prompt_file": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v2_baseline.txt"
+  },
+  {
+    "run_id": "iter_002_v2_sample15",
+    "n_cases": 15,
+    "raw_mean_30": 26.8,
+    "normalized_mean_pct": 93.83,
+    "estimated_gold_mean_30": 28.6,
+    "prompt_file": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v2_baseline.txt"
+  },
+  {
+    "run_id": "iter_003_v3_sample15",
+    "n_cases": 15,
+    "raw_mean_30": 27.0,
+    "normalized_mean_pct": 94.54,
+    "estimated_gold_mean_30": 28.6,
+    "prompt_file": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v3_ndfix.txt"
+  },
+  {
+    "run_id": "iter_004_v3b_sample15",
+    "n_cases": 15,
+    "raw_mean_30": 26.6,
+    "normalized_mean_pct": 93.09,
+    "estimated_gold_mean_30": 28.6,
+    "prompt_file": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v3b_guardrails.txt"
+  },
+  {
+    "run_id": "iter_006_v4_medsfix_sample15",
+    "n_cases": 15,
+    "raw_mean_30": 26.7333,
+    "normalized_mean_pct": 93.62,
+    "estimated_gold_mean_30": 28.6,
+    "prompt_file": "prompts/prompt_v4_medsfix.txt"
+  },
+  {
+    "run_id": "iter_007_v5_hpifix_sample15",
+    "n_cases": 15,
+    "raw_mean_30": 26.9333,
+    "normalized_mean_pct": 94.24,
+    "estimated_gold_mean_30": 28.6,
+    "prompt_file": "prompts/prompt_v5_hpifix.txt"
+  },
+  {
+    "run_id": "iter_008_v6_hpianchorfix_sample15",
+    "n_cases": 15,
+    "raw_mean_30": 26.4667,
+    "normalized_mean_pct": 92.62,
+    "estimated_gold_mean_30": 28.6,
+    "prompt_file": "prompts/prompt_v6_hpianchorfix.txt"
+  }
+]

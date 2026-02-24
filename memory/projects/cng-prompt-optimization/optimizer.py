@@ -329,32 +329,40 @@ def score_note(note: str) -> Tuple[float, Dict[str, float], List[str]]:
 
 
 def run_eval(run_id: str, prompt_path: Path, endpoint: str, model: str, sampler: SamplerConfig, sample_n: int = 0, seed: int = 42):
-    cases = load_cases(INPUTS / 'cases.json')
-    if sample_n and sample_n < len(cases):
+    all_cases = load_cases(INPUTS / 'cases.json')
+    selected_indices = list(range(len(all_cases)))
+    if sample_n and sample_n < len(all_cases):
         rnd = random.Random(seed)
-        idxs = sorted(rnd.sample(range(len(cases)), sample_n))
-        cases = [cases[i] for i in idxs]
+        selected_indices = sorted(rnd.sample(range(len(all_cases)), sample_n))
+    cases = [all_cases[i] for i in selected_indices]
     prompt_text = prompt_path.read_text()
     system_prompt, user_prompt = split_prompt(prompt_text)
 
     out_dir = ITERATIONS / run_id
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    results: List[CaseResult] = []
+    results: List[dict] = []
     for i, case in enumerate(cases):
+        src_idx = selected_indices[i]
         try:
             raw, latency = call_model(endpoint, model, system_prompt, user_prompt, case['data'], sampler)
             note = extract_final_note(raw)
             total, breakdown, failures = score_note(note)
-            results.append(CaseResult(i, str(case.get('case_id', '')), latency, total, breakdown, failures))
+            rec = asdict(CaseResult(i, str(case.get('case_id', '')), latency, total, breakdown, failures))
+            rec['source_index'] = src_idx
+            rec['source_case_id'] = f'case_{src_idx:03d}'
+            results.append(rec)
             (out_dir / f'case_{i:03d}.txt').write_text(note)
         except Exception as e:
-            results.append(CaseResult(i, str(case.get('case_id', '')), 0.0, 0.0, {}, [f'exception: {e}']))
+            rec = asdict(CaseResult(i, str(case.get('case_id', '')), 0.0, 0.0, {}, [f'exception: {e}']))
+            rec['source_index'] = src_idx
+            rec['source_case_id'] = f'case_{src_idx:03d}'
+            results.append(rec)
 
     metrics = {}
     if results:
-        totals = [r.score_total for r in results]
-        lats = [r.latency_s for r in results if r.latency_s > 0]
+        totals = [r['score_total'] for r in results]
+        lats = [r['latency_s'] for r in results if r['latency_s'] > 0]
         metrics = {
             'n_cases': len(results),
             'mean_score': round(statistics.mean(totals), 4),
@@ -368,15 +376,15 @@ def run_eval(run_id: str, prompt_path: Path, endpoint: str, model: str, sampler:
         }
 
     # aggregate item means
-    items = sorted({k for r in results for k in r.score_breakdown.keys()})
+    items = sorted({k for r in results for k in r['score_breakdown'].keys()})
     item_means = {}
     for k in items:
-        vals = [r.score_breakdown.get(k, 0) for r in results]
+        vals = [r['score_breakdown'].get(k, 0) for r in results]
         item_means[k] = round(statistics.mean(vals), 4)
 
     fail_counter: Dict[str, int] = {}
     for r in results:
-        for f in r.failures:
+        for f in r['failures']: 
             key = f.split(':')[0]
             fail_counter[key] = fail_counter.get(key, 0) + 1
 
@@ -386,7 +394,7 @@ def run_eval(run_id: str, prompt_path: Path, endpoint: str, model: str, sampler:
         'metrics': metrics,
         'item_means': item_means,
         'top_failures': sorted(fail_counter.items(), key=lambda x: x[1], reverse=True)[:20],
-        'cases': [asdict(r) for r in results],
+        'cases': results,
     }
 
     (out_dir / 'report.json').write_text(json.dumps(report, indent=2))
