@@ -46,6 +46,9 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - Primary live model for note-generation tests: `Ministral 3 14B Q5_K_M` on port `8081`.
 - Preferred short name for this model: `ministral14`.
 - `ministral14` can process images (vision-capable) in addition to text.
+- Remote Whisper ASR endpoint (via PCHost proxy): `https://ieissa.com:3443/whisperx` (alt: `https://ieissa.com:3443/api/transcribe_diarized`).
+- Remote OCR endpoint (via PCHost proxy): `https://ieissa.com:3443/ocr` (alt: `https://ieissa.com:3443/api/ocr`).
+- Both endpoints are reachable and require auth (unauthenticated POST returns 401).
 
 ---
 
