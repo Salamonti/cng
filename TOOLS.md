@@ -44,6 +44,8 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - `config/config.json` model path may be stale and does not necessarily reflect live llama-server model.
 - Live note-generation server is manually started by Islam on local workstation.
 - Primary live model for note-generation tests: `Ministral 3 14B Q5_K_M` on port `8081`.
+- Preferred short name for this model: `ministral14`.
+- `ministral14` can process images (vision-capable) in addition to text.
 
 ---
 
