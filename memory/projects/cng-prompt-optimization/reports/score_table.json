@@ -1,0 +1,58 @@
+[
+  {
+    "run_id": "iter_003_v3_sample15",
+    "n": 15,
+    "mean": 27,
+    "median": 28,
+    "stdev": 5.2409,
+    "lat": 34.919,
+    "prompt": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v3_ndfix.txt",
+    "sampler": {
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "max_tokens": 6000
+    }
+  },
+  {
+    "run_id": "iter_002_v2_sample15",
+    "n": 15,
+    "mean": 26.8,
+    "median": 29,
+    "stdev": 7.3412,
+    "lat": 34.141,
+    "prompt": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v2_baseline.txt",
+    "sampler": {
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "max_tokens": 6000
+    }
+  },
+  {
+    "run_id": "iter_004_v3b_sample15",
+    "n": 15,
+    "mean": 26.6,
+    "median": 28,
+    "stdev": 4.3019,
+    "lat": 32.458,
+    "prompt": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v3b_guardrails.txt",
+    "sampler": {
+      "temperature": 0.15,
+      "top_p": 0.85,
+      "max_tokens": 5000
+    }
+  },
+  {
+    "run_id": "iter_001_v2_sample25",
+    "n": 25,
+    "mean": 9.52,
+    "median": 10,
+    "stdev": 1.962,
+    "lat": 20.266,
+    "prompt": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v2_baseline.txt",
+    "sampler": {
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "max_tokens": 6000
+    }
+  }
+]

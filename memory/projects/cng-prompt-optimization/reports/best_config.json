@@ -1,0 +1,9 @@
+{
+  "best_prompt_file": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v3_ndfix.txt",
+  "best_sampler": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "max_tokens": 6000
+  },
+  "selection_basis": "Highest mean auto-score among valid sample runs in this session"
+}

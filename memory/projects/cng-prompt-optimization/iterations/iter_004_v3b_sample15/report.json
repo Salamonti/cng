@@ -1,0 +1,516 @@
+{
+  "run_id": "iter_004_v3b_sample15",
+  "timestamp_utc": "2026-02-24T03:51:07.418773Z",
+  "metrics": {
+    "n_cases": 15,
+    "mean_score": 26.6,
+    "median_score": 28,
+    "stdev_score": 4.3019,
+    "min_score": 13,
+    "max_score": 30,
+    "mean_latency_s": 32.458,
+    "sampler": {
+      "temperature": 0.15,
+      "top_p": 0.85,
+      "max_tokens": 5000
+    },
+    "prompt_file": "/home/solom/.openclaw/workspace/memory/projects/cng-prompt-optimization/prompts/prompt_v3b_guardrails.txt"
+  },
+  "item_means": {
+    "1.8": 1.8667,
+    "2.1": 1.7333,
+    "2.2": 1.4667,
+    "2.3": 1.8667,
+    "2.4": 1.7333,
+    "2.5": 1,
+    "3.1": 1.8667,
+    "3.2": 1,
+    "3.3": 1.8667,
+    "3.4": 2,
+    "3.5": 2,
+    "4.1": 1.6,
+    "4.2": 1.1333,
+    "4.3": 1.6667,
+    "4.4": 1.8667,
+    "4.5": 1.9333
+  },
+  "top_failures": [
+    [
+      "2.2 weak HPI completeness",
+      8
+    ],
+    [
+      "4.2 meds format bad/empty",
+      6
+    ],
+    [
+      "4.1 bad order",
+      3
+    ],
+    [
+      "1.8 minor forbidden markers",
+      2
+    ],
+    [
+      "2.1 sections missing",
+      2
+    ],
+    [
+      "2.4 multiple blank sections",
+      2
+    ],
+    [
+      "4.3 investigations no iso date",
+      2
+    ],
+    [
+      "3.1 HPI list-like/short",
+      1
+    ],
+    [
+      "4.5 minor brackets",
+      1
+    ],
+    [
+      "2.3 impression poor",
+      1
+    ],
+    [
+      "3.3 no first-person",
+      1
+    ],
+    [
+      "4.4 plan format fail",
+      1
+    ],
+    [
+      "4.2 one overlong med line",
+      1
+    ],
+    [
+      "4.3 investigations has format issues",
+      1
+    ]
+  ],
+  "cases": [
+    {
+      "idx": 0,
+      "case_id": "1",
+      "latency_s": 18.105747938156128,
+      "score_total": 25,
+      "score_breakdown": {
+        "1.8": 1,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 0,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 1
+      },
+      "failures": [
+        "1.8 minor forbidden markers",
+        "2.2 weak HPI completeness",
+        "3.1 HPI list-like/short",
+        "4.5 minor brackets"
+      ]
+    },
+    {
+      "idx": 1,
+      "case_id": "1",
+      "latency_s": 40.30214071273804,
+      "score_total": 13,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 0,
+        "2.2": 1,
+        "2.3": 0,
+        "2.4": 0,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 0,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 0,
+        "4.2": 0,
+        "4.3": 0,
+        "4.4": 0,
+        "4.5": 2
+      },
+      "failures": [
+        "2.1 sections missing: ['Medications', 'Allergies', 'Family History', 'Social History', 'Physical Examination', 'Investigations', 'Impression', 'Plan']",
+        "2.2 weak HPI completeness",
+        "2.3 impression poor",
+        "2.4 multiple blank sections",
+        "3.3 no first-person",
+        "4.1 bad order",
+        "4.2 meds format bad/empty",
+        "4.3 investigations no iso date",
+        "4.4 plan format fail"
+      ]
+    },
+    {
+      "idx": 2,
+      "case_id": "1",
+      "latency_s": 13.731098890304565,
+      "score_total": 30,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": []
+    },
+    {
+      "idx": 3,
+      "case_id": "1",
+      "latency_s": 41.72537851333618,
+      "score_total": 22,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 0,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 0,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 0,
+        "4.2": 0,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "2.1 sections missing: ['Past Medical History', 'Medications', 'Allergies', 'Family History', 'Social History']",
+        "2.4 multiple blank sections",
+        "4.1 bad order",
+        "4.2 meds format bad/empty"
+      ]
+    },
+    {
+      "idx": 4,
+      "case_id": "1",
+      "latency_s": 41.13965654373169,
+      "score_total": 29,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "2.2 weak HPI completeness"
+      ]
+    },
+    {
+      "idx": 5,
+      "case_id": "1",
+      "latency_s": 27.462430477142334,
+      "score_total": 29,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "2.2 weak HPI completeness"
+      ]
+    },
+    {
+      "idx": 6,
+      "case_id": "1",
+      "latency_s": 29.281977891921997,
+      "score_total": 29,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "2.2 weak HPI completeness"
+      ]
+    },
+    {
+      "idx": 7,
+      "case_id": "1",
+      "latency_s": 14.103618621826172,
+      "score_total": 29,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "2.2 weak HPI completeness"
+      ]
+    },
+    {
+      "idx": 8,
+      "case_id": "1",
+      "latency_s": 29.902847051620483,
+      "score_total": 27,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 0,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "2.2 weak HPI completeness",
+        "4.2 meds format bad/empty"
+      ]
+    },
+    {
+      "idx": 9,
+      "case_id": "1",
+      "latency_s": 32.214316844940186,
+      "score_total": 26,
+      "score_breakdown": {
+        "1.8": 1,
+        "2.1": 2,
+        "2.2": 1,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 0,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "1.8 minor forbidden markers",
+        "2.2 weak HPI completeness",
+        "4.2 meds format bad/empty"
+      ]
+    },
+    {
+      "idx": 10,
+      "case_id": "1",
+      "latency_s": 42.78795623779297,
+      "score_total": 30,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": []
+    },
+    {
+      "idx": 11,
+      "case_id": "1",
+      "latency_s": 68.0479519367218,
+      "score_total": 24,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 0,
+        "4.2": 0,
+        "4.3": 0,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "4.1 bad order",
+        "4.2 meds format bad/empty",
+        "4.3 investigations no iso date"
+      ]
+    },
+    {
+      "idx": 12,
+      "case_id": "1",
+      "latency_s": 46.43709945678711,
+      "score_total": 28,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 0,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "4.2 meds format bad/empty"
+      ]
+    },
+    {
+      "idx": 13,
+      "case_id": "1",
+      "latency_s": 29.52626371383667,
+      "score_total": 28,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 1,
+        "4.3": 1,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": [
+        "4.2 one overlong med line",
+        "4.3 investigations has format issues"
+      ]
+    },
+    {
+      "idx": 14,
+      "case_id": "1",
+      "latency_s": 12.10431170463562,
+      "score_total": 30,
+      "score_breakdown": {
+        "1.8": 2,
+        "2.1": 2,
+        "2.2": 2,
+        "2.3": 2,
+        "2.4": 2,
+        "2.5": 1,
+        "3.1": 2,
+        "3.2": 1,
+        "3.3": 2,
+        "3.4": 2,
+        "3.5": 2,
+        "4.1": 2,
+        "4.2": 2,
+        "4.3": 2,
+        "4.4": 2,
+        "4.5": 2
+      },
+      "failures": []
+    }
+  ]
+}
