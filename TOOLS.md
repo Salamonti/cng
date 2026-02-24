@@ -49,6 +49,7 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - Remote Whisper ASR endpoint (via PCHost proxy): `https://ieissa.com:3443/whisperx` (alt: `https://ieissa.com:3443/api/transcribe_diarized`).
 - Remote OCR endpoint (via PCHost proxy): `https://ieissa.com:3443/ocr` (alt: `https://ieissa.com:3443/api/ocr`).
 - Both endpoints are reachable and require auth (unauthenticated POST returns 401).
+- App login credentials are stored locally for agent tests at `~/.openclaw/credentials/cng_app_auth.json` (chmod 600).
 
 ---
 
