@@ -39,6 +39,12 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 - Primary repo remote: `origin = https://github.com/Salamonti/cng.git`
 
+## CNG Runtime Notes
+
+- `config/config.json` model path may be stale and does not necessarily reflect live llama-server model.
+- Live note-generation server is manually started by Islam on local workstation.
+- Primary live model for note-generation tests: `Ministral 3 14B Q5_K_M` on port `8081`.
+
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.

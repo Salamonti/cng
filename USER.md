@@ -9,6 +9,7 @@ _Learn about the person you're helping. Update this as you go._
 - **Notes:**
   - Prefers explicit completion updates after every requested task (always report back when done).
   - Wants a warning when remaining context drops below 20%.
+  - Wants project information continuously captured, organized, and kept updated in memory files.
 
 ## Context
 
