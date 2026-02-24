@@ -1,0 +1,48 @@
+{
+  "objective": ">=95 normalized mean on full 109-case set with repeatability",
+  "runs": [
+    {
+      "run_id": "iter_010_v7_baseline_full109",
+      "prompt": "prompts/prompt_v7_reliability.txt",
+      "n_cases": 109,
+      "raw_mean_30": 27.2844,
+      "normalized_mean_pct": 95.45,
+      "weak_lt94_count": 26,
+      "mean_latency_s": 9.432
+    },
+    {
+      "run_id": "iter_011_v7_repeatA_full109",
+      "prompt": "prompts/prompt_v7_reliability.txt",
+      "n_cases": 109,
+      "raw_mean_30": 27.6606,
+      "normalized_mean_pct": 96.79,
+      "weak_lt94_count": 26,
+      "mean_latency_s": 9.489
+    },
+    {
+      "run_id": "iter_012_v8_full109",
+      "prompt": "prompts/prompt_v8_stability.txt",
+      "n_cases": 109,
+      "raw_mean_30": 28.5046,
+      "normalized_mean_pct": 99.71,
+      "weak_lt94_count": 14,
+      "mean_latency_s": 9.929
+    }
+  ],
+  "repeatability": {
+    "baseline_prompt": "prompts/prompt_v7_reliability.txt",
+    "normalized_mean_pct_across_repeats": 96.12,
+    "normalized_stddev_pct_points": 0.67
+  },
+  "best": {
+    "run_id": "iter_012_v8_full109",
+    "prompt": "prompts/prompt_v8_stability.txt",
+    "sampler": {
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "max_tokens": 6000
+    }
+  },
+  "promotion_recommendation": "promote_v8",
+  "status": "objective_met"
+}
