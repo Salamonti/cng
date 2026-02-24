@@ -1,0 +1,1101 @@
+{
+  "summary": {
+    "model": "Ministral-3-14B-Instruct-2512-Q5_K_M.gguf",
+    "total_cases": 109,
+    "completed_ok": 108,
+    "mean_raw_score_10": 7.278,
+    "mean_latency_s": 9.055,
+    "generic_assessment_rate": 0.583,
+    "generic_plan_rate": 0.333,
+    "interval_ref_rate": 0.722
+  },
+  "cases": [
+    {
+      "case_index": 0,
+      "ok": true,
+      "latency_s": 1.945,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 1,
+      "ok": true,
+      "latency_s": 1.998,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 2,
+      "ok": true,
+      "latency_s": 1.021,
+      "raw_score_10": 6,
+      "sections_present": 6,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 3,
+      "ok": true,
+      "latency_s": 1.697,
+      "raw_score_10": 10,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 4,
+      "ok": false,
+      "error": "HTTP Error 400: Bad Request",
+      "latency_s": 0,
+      "raw_score_10": 0
+    },
+    {
+      "case_index": 5,
+      "ok": true,
+      "latency_s": 6.134,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 6,
+      "ok": true,
+      "latency_s": 7.211,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 7,
+      "ok": true,
+      "latency_s": 9.501,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 8,
+      "ok": true,
+      "latency_s": 6.161,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 9,
+      "ok": true,
+      "latency_s": 8.176,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 10,
+      "ok": true,
+      "latency_s": 7.847,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 11,
+      "ok": true,
+      "latency_s": 7.229,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 12,
+      "ok": true,
+      "latency_s": 6.415,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 13,
+      "ok": true,
+      "latency_s": 8.876,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 14,
+      "ok": true,
+      "latency_s": 5.274,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 15,
+      "ok": true,
+      "latency_s": 3.222,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 16,
+      "ok": true,
+      "latency_s": 9.513,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 17,
+      "ok": true,
+      "latency_s": 7.034,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 18,
+      "ok": true,
+      "latency_s": 1.7,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 19,
+      "ok": true,
+      "latency_s": 13.532,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 20,
+      "ok": true,
+      "latency_s": 7.831,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 21,
+      "ok": true,
+      "latency_s": 9.916,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 22,
+      "ok": true,
+      "latency_s": 19.937,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 23,
+      "ok": true,
+      "latency_s": 12.422,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 24,
+      "ok": true,
+      "latency_s": 10.598,
+      "raw_score_10": 6,
+      "sections_present": 10,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 25,
+      "ok": true,
+      "latency_s": 9.413,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 26,
+      "ok": true,
+      "latency_s": 11.872,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 27,
+      "ok": true,
+      "latency_s": 14.085,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 28,
+      "ok": true,
+      "latency_s": 7.831,
+      "raw_score_10": 6,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 29,
+      "ok": true,
+      "latency_s": 10.304,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 30,
+      "ok": true,
+      "latency_s": 11.296,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 31,
+      "ok": true,
+      "latency_s": 9.799,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 32,
+      "ok": true,
+      "latency_s": 10.121,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 33,
+      "ok": true,
+      "latency_s": 8.381,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 34,
+      "ok": true,
+      "latency_s": 4.488,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 35,
+      "ok": true,
+      "latency_s": 4.959,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 36,
+      "ok": true,
+      "latency_s": 12.659,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 37,
+      "ok": true,
+      "latency_s": 11.435,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 38,
+      "ok": true,
+      "latency_s": 12.285,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 39,
+      "ok": true,
+      "latency_s": 8.075,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 40,
+      "ok": true,
+      "latency_s": 6.653,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 41,
+      "ok": true,
+      "latency_s": 6.649,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 42,
+      "ok": true,
+      "latency_s": 11.692,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 43,
+      "ok": true,
+      "latency_s": 8.769,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 44,
+      "ok": true,
+      "latency_s": 13.989,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 45,
+      "ok": true,
+      "latency_s": 4.801,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 46,
+      "ok": true,
+      "latency_s": 8.91,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 47,
+      "ok": true,
+      "latency_s": 6.134,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 48,
+      "ok": true,
+      "latency_s": 5.919,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 49,
+      "ok": true,
+      "latency_s": 9.179,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 50,
+      "ok": true,
+      "latency_s": 8.358,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 51,
+      "ok": true,
+      "latency_s": 11.091,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 52,
+      "ok": true,
+      "latency_s": 4.75,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 53,
+      "ok": true,
+      "latency_s": 6.78,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 54,
+      "ok": true,
+      "latency_s": 9.978,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 55,
+      "ok": true,
+      "latency_s": 10.328,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 56,
+      "ok": true,
+      "latency_s": 9.287,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 57,
+      "ok": true,
+      "latency_s": 7.878,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 58,
+      "ok": true,
+      "latency_s": 13.979,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 59,
+      "ok": true,
+      "latency_s": 5.19,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 60,
+      "ok": true,
+      "latency_s": 9.06,
+      "raw_score_10": 4,
+      "sections_present": 6,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 61,
+      "ok": true,
+      "latency_s": 10.568,
+      "raw_score_10": 10,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 62,
+      "ok": true,
+      "latency_s": 3.961,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 63,
+      "ok": true,
+      "latency_s": 15.733,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 64,
+      "ok": true,
+      "latency_s": 15.864,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 65,
+      "ok": true,
+      "latency_s": 6.938,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 66,
+      "ok": true,
+      "latency_s": 3.918,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 67,
+      "ok": true,
+      "latency_s": 9.106,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 68,
+      "ok": true,
+      "latency_s": 6.908,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 69,
+      "ok": true,
+      "latency_s": 9.936,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 70,
+      "ok": true,
+      "latency_s": 10.346,
+      "raw_score_10": 8,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 71,
+      "ok": true,
+      "latency_s": 6.877,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 72,
+      "ok": true,
+      "latency_s": 6.464,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 73,
+      "ok": true,
+      "latency_s": 15.105,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 74,
+      "ok": true,
+      "latency_s": 10.692,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 75,
+      "ok": true,
+      "latency_s": 12.272,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 76,
+      "ok": true,
+      "latency_s": 10.769,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 77,
+      "ok": true,
+      "latency_s": 4.002,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 78,
+      "ok": true,
+      "latency_s": 12.76,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 79,
+      "ok": true,
+      "latency_s": 8.094,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 80,
+      "ok": true,
+      "latency_s": 5.726,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 81,
+      "ok": true,
+      "latency_s": 13.937,
+      "raw_score_10": 6,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 82,
+      "ok": true,
+      "latency_s": 13.214,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 83,
+      "ok": true,
+      "latency_s": 13.186,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 84,
+      "ok": true,
+      "latency_s": 11.984,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 85,
+      "ok": true,
+      "latency_s": 20.02,
+      "raw_score_10": 6,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 86,
+      "ok": true,
+      "latency_s": 8.214,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 87,
+      "ok": true,
+      "latency_s": 6.194,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 88,
+      "ok": true,
+      "latency_s": 15.277,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 89,
+      "ok": true,
+      "latency_s": 8.94,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 90,
+      "ok": true,
+      "latency_s": 8.307,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 91,
+      "ok": true,
+      "latency_s": 6.334,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 92,
+      "ok": true,
+      "latency_s": 6.154,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 93,
+      "ok": true,
+      "latency_s": 5.388,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 94,
+      "ok": true,
+      "latency_s": 5.499,
+      "raw_score_10": 10,
+      "sections_present": 10,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 95,
+      "ok": true,
+      "latency_s": 8.176,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 96,
+      "ok": true,
+      "latency_s": 16.882,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 97,
+      "ok": true,
+      "latency_s": 9.076,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 98,
+      "ok": true,
+      "latency_s": 11.273,
+      "raw_score_10": 4,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 99,
+      "ok": true,
+      "latency_s": 6.582,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 100,
+      "ok": true,
+      "latency_s": 14.602,
+      "raw_score_10": 10,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 101,
+      "ok": true,
+      "latency_s": 10.51,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 102,
+      "ok": true,
+      "latency_s": 6.121,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 1,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 103,
+      "ok": true,
+      "latency_s": 14.02,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 104,
+      "ok": true,
+      "latency_s": 11.341,
+      "raw_score_10": 6,
+      "sections_present": 10,
+      "interval_ref": 0,
+      "generic_assessment": 1,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 105,
+      "ok": true,
+      "latency_s": 6.997,
+      "raw_score_10": 8,
+      "sections_present": 9,
+      "interval_ref": 1,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    },
+    {
+      "case_index": 106,
+      "ok": true,
+      "latency_s": 15.214,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 107,
+      "ok": true,
+      "latency_s": 6.663,
+      "raw_score_10": 6,
+      "sections_present": 0,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 0
+    },
+    {
+      "case_index": 108,
+      "ok": true,
+      "latency_s": 10.245,
+      "raw_score_10": 6,
+      "sections_present": 9,
+      "interval_ref": 0,
+      "generic_assessment": 0,
+      "generic_plan": 1
+    }
+  ]
+}
