@@ -10,6 +10,7 @@ _Learn about the person you're helping. Update this as you go._
   - Prefers explicit completion updates after every requested task (always report back when done).
   - Wants a warning when remaining context drops below 20%.
   - Wants project information continuously captured, organized, and kept updated in memory files.
+  - Prefers heartbeat runs to perform background checks and send brief status summaries instead of silent HEARTBEAT_OK responses.
 
 ## Context
 

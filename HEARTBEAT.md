@@ -7,4 +7,4 @@
   1) blocker,
   2) whether user action is needed,
   3) next step.
-- If no active long task and nothing urgent, reply HEARTBEAT_OK.
+- Do background checks even when nothing urgent; send a brief status summary instead of HEARTBEAT_OK.
