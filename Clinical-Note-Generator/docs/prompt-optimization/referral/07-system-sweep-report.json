@@ -1,0 +1,105 @@
+{
+  "model": "Ministral-3-14B-Instruct-2512-Q5_K_M.gguf",
+  "user_prompt_file": "06-iter5-directive-reason-prompt.txt",
+  "system_base_sha256": "656b41d89ecaeaef1e2dba98e9255a8313136ccf8c499e4aff83d2f16c110d01",
+  "base_full": {
+    "n": 91,
+    "completed_ok": 90,
+    "mean_raw_score_10": 9.244,
+    "mean_norm_pct": 92.444,
+    "mean_latency_s": 4.806,
+    "heading_violation_rate": 0.056,
+    "directive_language_rate": 0.156,
+    "thanks_presence_rate": 1.0,
+    "referral_ask_presence_rate": 0.989,
+    "reason_preservation_rate": 0.767
+  },
+  "base_repeat": {
+    "n": 91,
+    "completed_ok": 90,
+    "mean_raw_score_10": 9.133,
+    "mean_norm_pct": 91.333,
+    "mean_latency_s": 4.902,
+    "heading_violation_rate": 0.078,
+    "directive_language_rate": 0.222,
+    "thanks_presence_rate": 1.0,
+    "referral_ask_presence_rate": 0.978,
+    "reason_preservation_rate": 0.778
+  },
+  "sample_comparison": {
+    "base": {
+      "n": 15,
+      "completed_ok": 15,
+      "mean_raw_score_10": 9,
+      "mean_norm_pct": 90.0,
+      "mean_latency_s": 4.854,
+      "heading_violation_rate": 0.133,
+      "directive_language_rate": 0.333,
+      "thanks_presence_rate": 1.0,
+      "referral_ask_presence_rate": 0.933,
+      "reason_preservation_rate": 0.867
+    },
+    "sysA_contract": {
+      "n": 15,
+      "completed_ok": 15,
+      "mean_raw_score_10": 9.067,
+      "mean_norm_pct": 90.667,
+      "mean_latency_s": 4.924,
+      "heading_violation_rate": 0.067,
+      "directive_language_rate": 0.4,
+      "thanks_presence_rate": 1.0,
+      "referral_ask_presence_rate": 1.0,
+      "reason_preservation_rate": 0.8
+    },
+    "sysB_contract_tone": {
+      "n": 15,
+      "completed_ok": 15,
+      "mean_raw_score_10": 8.733,
+      "mean_norm_pct": 87.333,
+      "mean_latency_s": 5.595,
+      "heading_violation_rate": 0.267,
+      "directive_language_rate": 0.2,
+      "thanks_presence_rate": 1.0,
+      "referral_ask_presence_rate": 0.867,
+      "reason_preservation_rate": 0.867
+    },
+    "sysC_contract_tone_reason": {
+      "n": 15,
+      "completed_ok": 15,
+      "mean_raw_score_10": 8.533,
+      "mean_norm_pct": 85.333,
+      "mean_latency_s": 4.826,
+      "heading_violation_rate": 0.267,
+      "directive_language_rate": 0.267,
+      "thanks_presence_rate": 1.0,
+      "referral_ask_presence_rate": 0.933,
+      "reason_preservation_rate": 0.733
+    }
+  },
+  "best_system_variant": "sysA_contract",
+  "best_full": {
+    "n": 91,
+    "completed_ok": 90,
+    "mean_raw_score_10": 9.1,
+    "mean_norm_pct": 91.0,
+    "mean_latency_s": 4.97,
+    "heading_violation_rate": 0.089,
+    "directive_language_rate": 0.256,
+    "thanks_presence_rate": 1.0,
+    "referral_ask_presence_rate": 0.989,
+    "reason_preservation_rate": 0.778
+  },
+  "best_repeat": {
+    "n": 91,
+    "completed_ok": 90,
+    "mean_raw_score_10": 9.2,
+    "mean_norm_pct": 92.0,
+    "mean_latency_s": 5.089,
+    "heading_violation_rate": 0.044,
+    "directive_language_rate": 0.156,
+    "thanks_presence_rate": 1.0,
+    "referral_ask_presence_rate": 0.967,
+    "reason_preservation_rate": 0.756
+  },
+  "slots_all_idle": true
+}
