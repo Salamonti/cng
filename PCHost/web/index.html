@@ -3641,6 +3641,22 @@
             }
         }
 
+        function focusCurrentSection() {
+            const currentSection = document.querySelector('.input-section.input-current')
+                || document.getElementById('transcriptionData')
+                || document.getElementById('transcriptionDisplay');
+            if (!currentSection) return;
+
+            try {
+                currentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch {}
+
+            const targetField = document.getElementById('transcriptionData') || document.getElementById('transcriptionDisplay');
+            if (targetField) {
+                try { targetField.focus({ preventScroll: true }); } catch { try { targetField.focus(); } catch {} }
+            }
+        }
+
         function clearGeneratedNote() {
             const noteEl = document.getElementById('generatedNote');
             if (!noteEl) return;
@@ -3724,6 +3740,7 @@
                 }
 
                 showToast('Cleared', 'All data cleared - ready for new patient', 'success');
+                focusCurrentSection();
             }
         }
 

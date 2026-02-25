@@ -746,6 +746,9 @@
       this.workspaceVersion = data.version;
       this.applyWorkspaceState(data.state || {});
       this.updateWorkspaceMeta();
+      if (typeof window.focusCurrentSection === 'function') {
+        try { window.focusCurrentSection(); } catch {}
+      }
     },
 
     async logout(skipConfirm = false) {
