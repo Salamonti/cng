@@ -2531,6 +2531,12 @@
                     saveToStorage();
                     hideServiceErrorBanner();
                     showToast('Success', 'Audio transcribed with speaker labels', 'success');
+
+                    if (app.pendingGenerateAfterTranscription) {
+                        app.pendingGenerateAfterTranscription = false;
+                        showToast('Generating', 'Transcription complete — generating note now...', 'info');
+                        generateNote();
+                    }
                 } else {
                     let detail = null;
                     try { detail = await response.json(); } catch (e) {}
@@ -2541,6 +2547,9 @@
                 }
             } catch (error) {
                 showToast('Error', 'Failed to transcribe audio', 'error');
+                if (app.pendingGenerateAfterTranscription) {
+                    app.pendingGenerateAfterTranscription = false;
+                }
                 if (!skipQueueOnError) {
                     queueRequest('transcribe', { file: file, fileName: file.name });
                 }
@@ -3642,13 +3651,16 @@
         }
 
         function focusCurrentSection() {
+            const chartCard = document.getElementById('chartCard');
             const currentSection = document.querySelector('.input-section.input-current')
                 || document.getElementById('transcriptionData')
                 || document.getElementById('transcriptionDisplay');
-            if (!currentSection) return;
+
+            const scrollTarget = chartCard || currentSection;
+            if (!scrollTarget) return;
 
             try {
-                currentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } catch {}
 
             const targetField = document.getElementById('transcriptionData') || document.getElementById('transcriptionDisplay');
@@ -3887,9 +3899,38 @@
             }
         }
 
+        function isAudioCaptureActive() {
+            const audio = window.universalAudio;
+            if (!audio) return false;
+            return !!(
+                audio.isRecording ||
+                audio.isListening ||
+                audio.shouldKeepListening ||
+                audio.shouldKeepRecording ||
+                (audio.mediaRecorder && audio.mediaRecorder.state === 'recording') ||
+                (audio.dictationRecorder && audio.dictationRecorder.state === 'recording')
+            );
+        }
+
         function triggerGenerateNoteAndFocus() {
             goToGeneratedNoteCardActions();
-            // Keep existing generation pipeline behavior (including active-recording handling)
+
+            if (isAudioCaptureActive()) {
+                app.pendingGenerateAfterTranscription = true;
+                showToast('Recording', 'Stopping recording and transcribing before generating note...', 'info');
+                try {
+                    if (window.universalAudio && typeof window.universalAudio.stopAudioRecording === 'function') {
+                        window.universalAudio.stopAudioRecording();
+                    } else {
+                        toggleSpeechRecognition();
+                    }
+                } catch (e) {
+                    app.pendingGenerateAfterTranscription = false;
+                    showToast('Audio Error', 'Could not stop recording cleanly. Please stop recording and try again.', 'error');
+                }
+                return;
+            }
+
             generateNote();
         }
 
@@ -3991,6 +4032,34 @@
                 }
 
                 closeTable();
+
+                const hr = line.match(/^(-{3,}|\*{3,})$/);
+                if (hr) {
+                    closeList();
+                    out.push('<hr>');
+                    continue;
+                }
+
+                const h6 = line.match(/^######\s+(.+)$/);
+                if (h6) {
+                    closeList();
+                    out.push(`<h6>${inlineFormat(h6[1])}</h6>`);
+                    continue;
+                }
+
+                const h5 = line.match(/^#####\s+(.+)$/);
+                if (h5) {
+                    closeList();
+                    out.push(`<h5>${inlineFormat(h5[1])}</h5>`);
+                    continue;
+                }
+
+                const h4 = line.match(/^####\s+(.+)$/);
+                if (h4) {
+                    closeList();
+                    out.push(`<h4>${inlineFormat(h4[1])}</h4>`);
+                    continue;
+                }
 
                 const h3 = line.match(/^###\s+(.+)$/);
                 if (h3) {
@@ -4692,6 +4761,7 @@
             },
             speechRecognition: null,
             isListening: false,
+            pendingGenerateAfterTranscription: false,
             requestQueue: [],
             uiState: {
                 lastGenerationId: null,
