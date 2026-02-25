@@ -8,3 +8,4 @@
   2) whether user action is needed,
   3) next step.
 - Do background checks even when nothing urgent; send a brief status summary instead of HEARTBEAT_OK.
+- Track workspace file changes (new/removed/moved key files) and include a compact file-organization status line in summaries.
