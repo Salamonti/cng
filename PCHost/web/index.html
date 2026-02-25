@@ -801,6 +801,10 @@
             background: #edf7ef;
         }
 
+        #chartCard {
+            scroll-margin-top: 18px;
+        }
+
         #chartCard .form-label {
             margin-bottom: 4px;
         }
@@ -2500,7 +2504,7 @@
                     showToast('Success', 'Audio transcribed with speaker labels', 'success');
 
                     if (app.pendingGenerateAfterTranscription) {
-                        app.pendingGenerateAfterTranscription = false;
+                        clearPendingGenerateAfterTranscription();
                         showToast('Generating', 'Transcription complete — generating note now...', 'info');
                         generateNote();
                     }
@@ -2515,7 +2519,7 @@
             } catch (error) {
                 showToast('Error', 'Failed to transcribe audio', 'error');
                 if (app.pendingGenerateAfterTranscription) {
-                    app.pendingGenerateAfterTranscription = false;
+                    clearPendingGenerateAfterTranscription();
                 }
                 if (!skipQueueOnError) {
                     queueRequest('transcribe', { file: file, fileName: file.name });
@@ -3628,8 +3632,6 @@
 
             try {
                 scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Nudge slightly higher so CURRENT section/header is clearly visible
-                window.scrollBy({ top: -260, behavior: 'smooth' });
             } catch {}
 
             const targetField = document.getElementById('transcriptionData') || document.getElementById('transcriptionDisplay');
@@ -3881,12 +3883,29 @@
             );
         }
 
+        function clearPendingGenerateAfterTranscription() {
+            app.pendingGenerateAfterTranscription = false;
+            if (app.pendingGenerateTimer) {
+                clearTimeout(app.pendingGenerateTimer);
+                app.pendingGenerateTimer = null;
+            }
+        }
+
         function triggerGenerateNoteAndFocus() {
             goToGeneratedNoteCardActions();
 
             if (isAudioCaptureActive()) {
+                clearPendingGenerateAfterTranscription();
                 app.pendingGenerateAfterTranscription = true;
                 showToast('Recording', 'Stopping recording and transcribing before generating note...', 'info');
+
+                // Fail-safe: avoid stuck pending state if stop/transcribe callback never arrives
+                app.pendingGenerateTimer = setTimeout(() => {
+                    if (!app.pendingGenerateAfterTranscription) return;
+                    clearPendingGenerateAfterTranscription();
+                    showToast('Audio Timeout', 'Transcription did not complete in time. Please stop recording and try Generate again.', 'warning');
+                }, 45000);
+
                 try {
                     // Reflect stop intent on all record buttons immediately
                     setRecordingButtonsState(false);
@@ -3896,7 +3915,7 @@
                         toggleSpeechRecognition();
                     }
                 } catch (e) {
-                    app.pendingGenerateAfterTranscription = false;
+                    clearPendingGenerateAfterTranscription();
                     showToast('Audio Error', 'Could not stop recording cleanly. Please stop recording and try again.', 'error');
                 }
                 return;
@@ -4733,6 +4752,7 @@
             speechRecognition: null,
             isListening: false,
             pendingGenerateAfterTranscription: false,
+            pendingGenerateTimer: null,
             requestQueue: [],
             uiState: {
                 lastGenerationId: null,
