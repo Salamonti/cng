@@ -10,12 +10,22 @@ API_KEY = os.getenv("SEARXNG_API_KEY", "")
 
 
 def main():
+    json_mode = False
     if len(sys.argv) < 2:
-        print("Usage: searx_search.py <query> [limit]", file=sys.stderr)
+        print("Usage: searx_search.py [--json] <query> [limit]", file=sys.stderr)
         sys.exit(1)
 
-    query = sys.argv[1]
-    limit = sys.argv[2] if len(sys.argv) > 2 else "5"
+    args = sys.argv[1:]
+    if args and args[0] == "--json":
+        json_mode = True
+        args = args[1:]
+
+    if len(args) < 1:
+        print("Usage: searx_search.py [--json] <query> [limit]", file=sys.stderr)
+        sys.exit(1)
+
+    query = args[0]
+    limit = args[1] if len(args) > 1 else "5"
 
     if not API_KEY:
         print("Error: SEARXNG_API_KEY is not set", file=sys.stderr)
@@ -34,6 +44,10 @@ def main():
     except Exception as e:
         print(f"Request failed: {e}", file=sys.stderr)
         sys.exit(3)
+
+    if json_mode:
+        print(json.dumps(data, ensure_ascii=False))
+        return
 
     results = data.get("results", [])[: int(limit)]
     if not results:
