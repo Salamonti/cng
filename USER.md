@@ -11,6 +11,7 @@ _Learn about the person you're helping. Update this as you go._
   - Wants a warning when remaining context drops below 20%.
   - Wants project information continuously captured, organized, and kept updated in memory files.
   - Prefers heartbeat runs to perform background checks and send brief status summaries instead of silent HEARTBEAT_OK responses.
+  - Heartbeat preferences: minimum 2-hour gap for non-urgent updates, quiet hours 10:00 PM-7:00 AM Atlantic, short bullet-style output, batch low-priority items, and send action prompts immediately when needed.
 
 ## Context
 
