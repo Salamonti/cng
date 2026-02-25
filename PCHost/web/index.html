@@ -2039,6 +2039,21 @@
         }
 
         // Speech Recognition
+        function setRecordingButtonsState(isRecording) {
+            const ids = ['recordBtnSidebar', 'recordBtnInline', 'recordBtnInlineRound'];
+            ids.forEach((id) => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+                if (isRecording) {
+                    btn.classList.add('recording-active');
+                    btn.classList.remove('recording-ready');
+                } else {
+                    btn.classList.remove('recording-active');
+                    btn.classList.add('recording-ready');
+                }
+            });
+        }
+
         function initSpeechRecognition() {
             if (!window.universalAudio) {
                 window.universalAudio = initUniversalAudio();
@@ -2064,19 +2079,11 @@
             });
 
             audioHandler.onSpeechStart = () => {
-                const btn = document.getElementById('recordBtn');
-                if (btn) {
-                    btn.classList.remove('recording-ready');
-                    btn.classList.add('recording-active');
-                }
+                setRecordingButtonsState(true);
             };
 
             audioHandler.onSpeechStop = () => {
-                const btn = document.getElementById('recordBtn');
-                if (btn) {
-                    btn.classList.remove('recording-active');
-                    btn.classList.add('recording-ready');
-                }
+                setRecordingButtonsState(false);
             };
 
             audioHandler.onSpeechError = (error) => {
@@ -2084,28 +2091,16 @@
             };
 
             audioHandler.onRecordingStart = () => {
-                const btn = document.getElementById('recordBtn');
-                if (btn) {
-                    btn.classList.remove('recording-ready');
-                    btn.classList.add('recording-active');
-                }
+                setRecordingButtonsState(true);
             };
 
             audioHandler.onRecordingStop = () => {
-                const btn = document.getElementById('recordBtn');
-                if (btn) {
-                    btn.classList.remove('recording-active');
-                    btn.classList.add('recording-ready');
-                }
+                setRecordingButtonsState(false);
             };
 
             audioHandler.onRecordingError = (error) => {
                 showToast('Recording Error', `Recording failed: ${error.message}`, 'error');
-                const btn = document.getElementById('recordBtn');
-                if (btn) {
-                    btn.classList.remove('recording-active');
-                    btn.classList.add('recording-ready');
-                }
+                setRecordingButtonsState(false);
             };
 
             const speechResult = audioHandler.initSpeechRecognition();
@@ -2136,21 +2131,9 @@
                     }
                 }
 
-                // Update both record buttons based on NEW state (opposite of wasRecording)
-                const sidebarBtn = document.getElementById('recordBtnSidebar');
-                const inlineBtn = document.getElementById('recordBtnInline');
-                const inlineRoundBtn = document.getElementById('recordBtnInlineRound');
+                // Keep all recording buttons in sync
                 const nowRecording = !wasRecording;
-
-                if (nowRecording) {
-                    if (sidebarBtn) { sidebarBtn.classList.add('recording-active'); sidebarBtn.classList.remove('recording-ready'); }
-                    if (inlineBtn) { inlineBtn.classList.add('recording-active'); inlineBtn.classList.remove('recording-ready'); }
-                    if (inlineRoundBtn) { inlineRoundBtn.classList.add('recording-active'); inlineRoundBtn.classList.remove('recording-ready'); }
-                } else {
-                    if (sidebarBtn) { sidebarBtn.classList.remove('recording-active'); sidebarBtn.classList.add('recording-ready'); }
-                    if (inlineBtn) { inlineBtn.classList.remove('recording-active'); inlineBtn.classList.add('recording-ready'); }
-                    if (inlineRoundBtn) { inlineRoundBtn.classList.remove('recording-active'); inlineRoundBtn.classList.add('recording-ready'); }
-                }
+                setRecordingButtonsState(nowRecording);
             } else {
                 const suggestions = guidance.recommendations.join('. ');
                 showToast('Audio Input', suggestions, 'info');
@@ -2159,23 +2142,7 @@
 
         function stopSpeechRecognition() {
             app.isListening = false;
-            // Update sidebar button
-            const sidebarBtn = document.getElementById('recordBtnSidebar');
-            if (sidebarBtn) {
-                sidebarBtn.classList.remove('recording-active');
-                sidebarBtn.classList.add('recording-ready');
-            }
-            // Update inline button
-            const inlineBtn = document.getElementById('recordBtnInline');
-            if (inlineBtn) {
-                inlineBtn.classList.remove('recording-active');
-                inlineBtn.classList.add('recording-ready');
-            }
-            const inlineRoundBtn = document.getElementById('recordBtnInlineRound');
-            if (inlineRoundBtn) {
-                inlineRoundBtn.classList.remove('recording-active');
-                inlineRoundBtn.classList.add('recording-ready');
-            }
+            setRecordingButtonsState(false);
         }
 
         // File Upload Handling
@@ -3661,6 +3628,8 @@
 
             try {
                 scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Nudge slightly higher so CURRENT section/header is clearly visible
+                window.scrollBy({ top: -260, behavior: 'smooth' });
             } catch {}
 
             const targetField = document.getElementById('transcriptionData') || document.getElementById('transcriptionDisplay');
@@ -3919,6 +3888,8 @@
                 app.pendingGenerateAfterTranscription = true;
                 showToast('Recording', 'Stopping recording and transcribing before generating note...', 'info');
                 try {
+                    // Reflect stop intent on all record buttons immediately
+                    setRecordingButtonsState(false);
                     if (window.universalAudio && typeof window.universalAudio.stopAudioRecording === 'function') {
                         window.universalAudio.stopAudioRecording();
                     } else {
