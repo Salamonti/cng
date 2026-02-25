@@ -1,0 +1,20 @@
+# OpenClaw local runtime artifacts
+.openclaw/
+_tmp/
+
+# Nested project workspace handled separately
+cng/
+
+# Python/runtime cache
+**/__pycache__/
+*.pyc
+
+# Scratch daily memory snapshots (keep canonical YYYY-MM-DD.md)
+memory/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md
+
+# Prompt optimization bulky/generated artifacts
+memory/projects/cng-prompt-optimization/inputs/
+memory/projects/cng-prompt-optimization/iterations/iter_00*/
+memory/projects/cng-prompt-optimization/prompts/prompt_v4_medsfix.txt
+memory/projects/cng-prompt-optimization/prompts/prompt_v5_hpifix.txt
+memory/projects/cng-prompt-optimization/prompts/prompt_v6_hpianchorfix.txt
