@@ -3896,6 +3896,7 @@
             const lines = escaped.split('\n');
             const out = [];
             let inList = false;
+            let inTable = false;
 
             function closeList() {
                 if (inList) {
@@ -3904,13 +3905,53 @@
                 }
             }
 
-            for (const lineRaw of lines) {
-                const line = lineRaw.trim();
+            function closeTable() {
+                if (inTable) {
+                    out.push('</tbody></table>');
+                    inTable = false;
+                }
+            }
+
+            function isTableSeparator(line) {
+                return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line);
+            }
+
+            function parseRow(line) {
+                return line
+                    .replace(/^\|/, '')
+                    .replace(/\|$/, '')
+                    .split('|')
+                    .map(cell => inlineFormat(cell.trim()));
+            }
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
 
                 if (!line) {
                     closeList();
+                    closeTable();
                     continue;
                 }
+
+                // Markdown table: header row + separator row + data rows
+                if (line.includes('|')) {
+                    const next = (lines[i + 1] || '').trim();
+                    if (!inTable && next && isTableSeparator(next)) {
+                        closeList();
+                        const headers = parseRow(line);
+                        out.push('<table><thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>');
+                        inTable = true;
+                        i += 1; // consume separator line
+                        continue;
+                    }
+                    if (inTable) {
+                        const cells = parseRow(line);
+                        out.push('<tr>' + cells.map(c => `<td>${c}</td>`).join('') + '</tr>');
+                        continue;
+                    }
+                }
+
+                closeTable();
 
                 const h3 = line.match(/^###\s+(.+)$/);
                 if (h3) {
@@ -3948,6 +3989,7 @@
             }
 
             closeList();
+            closeTable();
             return out.join('');
         }
 
