@@ -3622,21 +3622,17 @@
         }
 
         function focusCurrentSection() {
-            const chartCard = document.getElementById('chartCard');
-            const currentSection = document.querySelector('.input-section.input-current')
-                || document.getElementById('transcriptionData')
-                || document.getElementById('transcriptionDisplay');
-
-            const scrollTarget = chartCard || currentSection;
+            const authCard = document.getElementById('authCard');
+            const scrollTarget = authCard || document.getElementById('chartCard');
             if (!scrollTarget) return;
 
             try {
                 scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } catch {}
 
-            const targetField = document.getElementById('transcriptionData') || document.getElementById('transcriptionDisplay');
-            if (targetField) {
-                try { targetField.focus({ preventScroll: true }); } catch { try { targetField.focus(); } catch {} }
+            const focusTarget = document.getElementById('logoutBtn') || document.getElementById('authStatus');
+            if (focusTarget) {
+                try { focusTarget.focus({ preventScroll: true }); } catch { try { focusTarget.focus(); } catch {} }
             }
         }
 
