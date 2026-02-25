@@ -16,6 +16,7 @@ _Learn about the person you're helping. Update this as you go._
   - Communication preference: always specify execution context for commands (VPS vs workstation, and exact path when relevant).
   - Strong preference to avoid time-wasting debug loops: use fail-fast troubleshooting (single change + single verification), stop after repeated failure, report root cause + next best alternative immediately.
   - LLM policy preference: default to low-cost model first, escalate quickly when quality is weak, max one retry per tier, use premium models only for high-stakes/final-pass tasks, and report model-choice rationale on non-trivial tasks.
+  - Verification preference: when feasible, test/verify commands and fixes before recommending user-side implementation.
 
 ## Context
 
