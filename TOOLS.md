@@ -50,6 +50,9 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - Remote OCR endpoint (via PCHost proxy): `https://ieissa.com:3443/ocr` (alt: `https://ieissa.com:3443/api/ocr`).
 - Both endpoints are reachable and require auth (unauthenticated POST returns 401).
 - App login credentials are stored locally for agent tests at `~/.openclaw/credentials/cng_app_auth.json` (chmod 600).
+- SearXNG replacement search path: `https://ieissa.com:3443/searxng/search` (protected via `X-API-Key` + IP allowlist in `PCHost/server.js`).
+- VPS OpenClaw runtime loads SearX secrets from `/home/solom/.openclaw/secrets.env` via systemd drop-in `~/.config/systemd/user/openclaw-gateway.service.d/searx.conf`.
+- VPS helper scripts for search: `/home/solom/.openclaw/workspace/scripts/searx_search.py` and `scripts/searx_search.sh`.
 
 ---
 
