@@ -1399,7 +1399,7 @@
             <span class="icon">&#9881;</span>
             <span class="label">AI Prompts</span>
         </button>
-        <button class="sidebar-btn requires-auth" onclick="generateNote()" title="Generate Note">
+        <button class="sidebar-btn requires-auth" onclick="goToGeneratedNoteCardActions()" title="Generate Note">
             <span class="icon">&#9998;</span>
             <span class="label">Generate Note</span>
         </button>
@@ -1442,7 +1442,7 @@
                 <option value="summarize">Summarize</option>
                 <option value="custom">Custom (Free Form)</option>
             </select>
-            <button class="btn btn-success bar-action" onclick="generateNote()">&#9998; Generate Note</button>
+            <button class="btn btn-success bar-action" onclick="goToGeneratedNoteCardActions()">&#9998; Generate Note</button>
             <button class="btn record-toggle recording-ready bar-action" id="recordBtnInline" onclick="toggleSpeechRecognition()" title="Record/Stop">
                 &#127908; Record / Stop
             </button>
@@ -3851,6 +3851,21 @@
             if (card) {
                 card.classList.remove('hidden');
                 try { card.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch {}
+            }
+        }
+
+        function goToGeneratedNoteCardActions() {
+            const card = document.getElementById('noteCard');
+            if (!card) return;
+
+            try {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch {}
+
+            // Focus the in-card Generate Note button for quick keyboard activation
+            const actionBtn = card.querySelector('.note-header-actions .btn.btn-success');
+            if (actionBtn) {
+                try { actionBtn.focus({ preventScroll: true }); } catch { try { actionBtn.focus(); } catch {} }
             }
         }
 
