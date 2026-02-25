@@ -14,6 +14,7 @@ _Learn about the person you're helping. Update this as you go._
   - Heartbeat preferences: minimum 2-hour gap for non-urgent updates, quiet hours 10:00 PM-7:00 AM Atlantic, short bullet-style output, batch low-priority items, and send action prompts immediately when needed.
   - Networking preference: keep app/OpenWebUI publicly reachable while securing only sensitive search proxy routes (avoid blanket port blocks that break user access).
   - Communication preference: always specify execution context for commands (VPS vs workstation, and exact path when relevant).
+  - Strong preference to avoid time-wasting debug loops: use fail-fast troubleshooting (single change + single verification), stop after repeated failure, report root cause + next best alternative immediately.
 
 ## Context
 
