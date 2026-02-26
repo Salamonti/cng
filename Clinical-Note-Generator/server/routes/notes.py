@@ -802,6 +802,33 @@ def _rag_tail_window(text: str, *, max_tokens: int = 500, min_tokens: int = 300)
     return " ".join(tokens[-target:]).strip()
 
 
+def _fallback_focus_from_note(note_text: str, *, max_lines: int = 16) -> str:
+    """Fallback focus extractor when section headers are missing/unreliable."""
+    if not note_text:
+        return ""
+    lines = [ln.strip() for ln in note_text.splitlines() if ln.strip()]
+    if not lines:
+        return ""
+
+    keep: List[str] = []
+    clinical_hint_re = re.compile(
+        r"\b(diagnosis|impression|assessment|plan|treat|management|differential|consider|recommend|follow[- ]?up|monitor|start|stop|increase|decrease|admit|discharge|urgent|red flag)\b",
+        re.IGNORECASE,
+    )
+    med_or_value_re = re.compile(r"\b\d+(?:\.\d+)?\s*(mg|mcg|g|kg|mL|ml|L|mmol/?L|units?)\b", re.IGNORECASE)
+
+    for ln in lines:
+        if clinical_hint_re.search(ln) or med_or_value_re.search(ln):
+            keep.append(ln)
+        if len(keep) >= max_lines:
+            break
+
+    if not keep:
+        # Last-resort compact tail
+        return _rag_tail_window(note_text, max_tokens=220, min_tokens=120)
+    return "\n".join(keep)
+
+
 def _as_bool(value: Any, default: bool = False) -> bool:
     if value is None:
         return default
@@ -898,7 +925,7 @@ async def _generate_consult_comment(
     note_text: str,
     cfg: Dict,
     *,
-    strategy: str = "full_note",
+    strategy: str = "sections",
 ) -> None:
     """Derive a brief evidence-backed comment from contextual sections."""
     try:
@@ -933,7 +960,7 @@ async def _generate_consult_comment(
             )
             query_text = await rag_llm.collect_completion(
                 query_prompt,
-                temperature=0.05,
+                temperature=0.12,
                 max_tokens=80,
                 stop=[],
             )
@@ -942,11 +969,19 @@ async def _generate_consult_comment(
         else:
             focus, used_sections = _extract_rag_focus_sections(note_text)
 
+        if not focus.strip():
+            focus = _fallback_focus_from_note(note_text)
+            used_sections = ["Heuristic Fallback"]
+
         raw_focus_source = focus
-        if not focus:
+        if not focus.strip():
+            focus = _rag_tail_window(note_text, max_tokens=300, min_tokens=140)
+            used_sections = ["Tail Window Fallback"]
+
+        if not focus.strip():
             _consult_comment_store[gen_id] = {
                 "status": "error",
-                "error": "Missing required headings for RAG focus extraction.",
+                "error": "Unable to derive focus for RAG query.",
             }
             return
         focus_summary = focus
@@ -962,7 +997,7 @@ async def _generate_consult_comment(
             focus_words = focus.split()
             focus_word_count = len(focus_words)
             focus_summary_words = int(cfg.get("rag_focus_summary_words", 150))
-            consult_cap = max(3, int(cfg.get("rag_consult_top_k_cap", 6)))
+            consult_cap = max(3, int(cfg.get("rag_consult_top_k_cap", 5)))
             base_top_k = int(cfg.get("rag_top_k", 16))
             requested_top_k = base_top_k
             if focus_word_count >= max(90, focus_summary_words):
@@ -1018,16 +1053,25 @@ async def _generate_consult_comment(
         assertions_text = "\n".join(assertions_lines) if assertions_lines else "No explicit confirmed or ruled-out statements were identified in the note."
 
         prompt = (
-            "You are a senior consultant. Provide a concise, evidence-grounded critique to accompany this clinical note's Impression/Plan.\n"
-            "CRITICAL:\n"
-            "- Respect the statements from the original note below. If a diagnosis is confirmed, reinforce that certainty; if something is ruled out, do NOT suggest it as a differential.\n"
-            "- Use ONLY the Evidence Context provided. If the evidence contradicts the note, flag the discrepancy without discarding the note's conclusion.\n"
-            "- Focus on deficiencies, missing items, or incorrect statements that should be corrected.\n"
-            "- If evidence is insufficient, respond with: 'Insufficient evidence available for reliable commentary.'\n\n"
-            "FORMAT (plain text, short paragraphs; brief bullets are acceptable if clearer):\n"
-            "1) Gaps or missing items in the note vs evidence (tests, safety checks, key steps).\n"
-            "2) Potential errors or contradictions (what looks incorrect and why).\n"
-            "3) Evidence-backed corrections or next steps (only if directly supported).\n\n"
+            "You are a senior consultant writing an evidence-grounded consult addendum for this note.\n"
+            "Use ONLY Evidence Context. Do not invent facts or cite outside knowledge.\n"
+            "If evidence is limited, provide best-effort guidance with confidence qualifiers instead of refusing.\n"
+            "Respect confirmed diagnoses and ruled-out conditions from the original note.\n\n"
+            "OUTPUT REQUIREMENTS (plain text only):\n"
+            "- Target about 350-500 tokens (hard cap is system-side).\n"
+            "- Keep concise and clinically actionable.\n"
+            "- Use clear section headers exactly as below.\n\n"
+            "Sections:\n"
+            "1) Differential to Consider (ranked, brief rationale)\n"
+            "2) Workup to Add Now\n"
+            "3) Management Adjustments to Consider\n"
+            "4) Safety / Red Flags\n"
+            "5) What Is Already Appropriate in Current Plan\n\n"
+            "Rules:\n"
+            "- Every recommendation must be traceable to Evidence Context.\n"
+            "- Mark uncertain items as low confidence.\n"
+            "- Do not repeat the same point across sections.\n"
+            "- Avoid generic textbook phrasing.\n\n"
             f"Original Note Excerpt:\n{note_excerpt}\n\n"
             f"Confirmed / Ruled Statements:\n{assertions_text}\n\n"
             f"Evidence Context:\n{ctx}\n\n"
@@ -1037,23 +1081,58 @@ async def _generate_consult_comment(
 
         # Generate via llama-server (collect in background)
         rag_llm = _get_rag_comment_llm(cfg)
+        consult_temp = float(cfg.get("consult_comment_temperature", 0.4))
         comment_text = await rag_llm.collect_completion(
             prompt,
-            temperature=float(cfg.get("default_qa_temperature", 0.2)),
+            temperature=consult_temp,
             max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
             stop=[],
         )
         comment = clean_model_output_final(comment_text).replace("'''", "").replace('"""', '').strip()
 
+        # If model omits required sections, force a structured retry once.
+        required_headers = [
+            "Differential to Consider",
+            "Workup to Add Now",
+            "Management Adjustments to Consider",
+            "Safety / Red Flags",
+            "What Is Already Appropriate in Current Plan",
+        ]
+        if not all(h.lower() in comment.lower() for h in required_headers[:3]):
+            structure_retry_prompt = (
+                "Rewrite the following comment using the REQUIRED section headers exactly.\n"
+                "Keep content evidence-grounded and concise.\n\n"
+                "Required headers:\n"
+                "1) Differential to Consider (ranked, brief rationale)\n"
+                "2) Workup to Add Now\n"
+                "3) Management Adjustments to Consider\n"
+                "4) Safety / Red Flags\n"
+                "5) What Is Already Appropriate in Current Plan\n\n"
+                f"Evidence Context:\n{ctx}\n\n"
+                f"Draft Comment:\n{comment}\n\n"
+                "Rewritten Comment:\n"
+            )
+            structure_retry = await rag_llm.collect_completion(
+                structure_retry_prompt,
+                temperature=consult_temp,
+                max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
+                stop=[],
+            )
+            structure_clean = clean_model_output_final(structure_retry).replace("'''", "").replace('"""', '').strip()
+            if structure_clean:
+                comment = structure_clean
+
         if ctx.strip() and "insufficient evidence available" in comment.lower():
             retry_prompt = (
-                "You are a senior consultant. Evidence Context IS PROVIDED below.\n"
-                "Do NOT respond with 'Insufficient evidence'. You must identify at least one gap, risk, or correction.\n"
-                "If evidence is weak, state it briefly but still list the top 1-3 possible deficiencies.\n\n"
-                "FORMAT:\n"
-                "1) Gaps or missing items vs evidence.\n"
-                "2) Potential errors or contradictions.\n"
-                "3) Evidence-backed corrections or next steps.\n\n"
+                "Evidence Context is available below.\n"
+                "Do not refuse. Provide best-effort clinical guidance with explicit confidence qualifiers where needed.\n"
+                "If evidence is weak, still provide conservative next steps and safety checks.\n\n"
+                "Use required headers exactly:\n"
+                "1) Differential to Consider (ranked, brief rationale)\n"
+                "2) Workup to Add Now\n"
+                "3) Management Adjustments to Consider\n"
+                "4) Safety / Red Flags\n"
+                "5) What Is Already Appropriate in Current Plan\n\n"
                 f"Original Note Excerpt:\n{note_excerpt}\n\n"
                 f"Confirmed / Ruled Statements:\n{assertions_text}\n\n"
                 f"Evidence Context:\n{ctx}\n\n"
@@ -1062,7 +1141,7 @@ async def _generate_consult_comment(
             )
             retry_text = await rag_llm.collect_completion(
                 retry_prompt,
-                temperature=float(cfg.get("default_qa_temperature", 0.2)),
+                temperature=consult_temp,
                 max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
                 stop=[],
             )
