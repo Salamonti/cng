@@ -192,3 +192,15 @@ Primary goals:
 4. Pick next phase item (A3 cleanup or modularization step 1).
 5. Run one change + one test + report.
 
+
+
+## 9) Phase execution status (latest)
+
+- Phase 3 cleanup: DONE
+  - debug logs gated behind `debugLog` and `window.DEBUG_MODE`
+  - `alert()` usage removed from audio debug flow (toast-based)
+- Phase 4 modularization: CORE DONE
+  - markdown renderer extracted to `PCHost/web/markdown_renderer.js`
+  - generate/focus orchestration extracted to `PCHost/web/generate_ui_flow.js`
+  - audio UI helpers extracted to `PCHost/web/audio_ui_utils.js`
+- Deployment state: GitHub only, workstation live not updated yet (intentional).
