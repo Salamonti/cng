@@ -7,19 +7,31 @@ from typing import List
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-# Force CPU for compatibility with newer GPUs and prevent torchao import issues.
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
+# Keep torchao disabled by default; device selection is handled dynamically.
 os.environ.setdefault("TRANSFORMERS_NO_TORCHAO_IMPORT", "1")
 
 _MODEL_CACHE: dict[str, SentenceTransformer] = {}
 _MODEL_LOCK = Lock()
 
 
+def _pick_device() -> str:
+    forced = (os.environ.get("EMBEDDER_DEVICE") or "").strip().lower()
+    if forced in {"cpu", "cuda", "mps"}:
+        return forced
+    try:
+        import torch  # type: ignore
+        if torch.cuda.is_available():
+            return "cuda"
+    except Exception:
+        pass
+    return "cpu"
+
+
 def _get_model(model_name: str) -> SentenceTransformer:
     with _MODEL_LOCK:
         model = _MODEL_CACHE.get(model_name)
         if model is None:
-            model = SentenceTransformer(model_name, device="cpu")
+            model = SentenceTransformer(model_name, device=_pick_device())
             _MODEL_CACHE[model_name] = model
         return model
 

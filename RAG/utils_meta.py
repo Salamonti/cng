@@ -218,10 +218,14 @@ def normalize_whitespace(text: str) -> str:
     return " ".join(str(text).split())
 
 
-def dedupe_and_normalize_hits(hits: Iterable[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Deduplicate hits by canonical doc id and normalize whitespace without altering score ordering."""
+def dedupe_and_normalize_hits(
+    hits: Iterable[Dict[str, Any]],
+    *,
+    max_per_doc: int = 2,
+) -> List[Dict[str, Any]]:
+    """Deduplicate/normalize while allowing up to max_per_doc chunks per document."""
     cleaned: List[Dict[str, Any]] = []
-    seen_ids: Set[str] = set()
+    seen_ids: Dict[str, int] = {}
     for h in hits or []:
         if not isinstance(h, dict):
             continue
@@ -233,9 +237,10 @@ def dedupe_and_normalize_hits(hits: Iterable[Dict[str, Any]]) -> List[Dict[str, 
         summary = h.get("summary")
         if summary is not None:
             h["summary"] = normalize_whitespace(summary)
-        if doc_id and doc_id in seen_ids:
-            continue
         if doc_id:
-            seen_ids.add(doc_id)
+            used = seen_ids.get(doc_id, 0)
+            if used >= max(1, int(max_per_doc)):
+                continue
+            seen_ids[doc_id] = used + 1
         cleaned.append(h)
     return cleaned

@@ -36,7 +36,7 @@ from pydantic import BaseModel, Field
 
 from store import get_client, get_collection
 from embedder import Embedder
-from bm25_index import BM25Helper
+from bm25_index import BM25Helper, get_bm25
 
 QUERY_CACHE_MAX = 128
 _QUERY_CACHE: "OrderedDict[Tuple[str, int, str, str, str, Tuple[str, ...], int], List[Dict[str, Any]]]" = OrderedDict()
@@ -279,7 +279,8 @@ def hybrid_search_filtered(
         qvec = emb.encode([req.query])[0]
     where = _where_for(req)
 
-    dense_n = max(req.top_k * 3, 10)
+    dense_cfg = int(cfg.get("dense_top_k", 16))
+    dense_n = max(req.top_k * 4, dense_cfg, 12)
 
     with _measure("vector_search"):
         res = col.query(
@@ -320,8 +321,19 @@ def hybrid_search_filtered(
         bm25 = BM25Helper(docs) if docs else None
         bm25_scores = bm25.scores(req.query) if bm25 else [0.0] * len(docs)
 
-    HYBRID_LAMBDA = 0.10
-    RERANK_KEYWORD_LAMBDA = 0.15
+        # Global BM25 provides stronger lexical grounding than candidate-only BM25.
+        bm25_global = None
+        bm25_global_scores: List[float] = []
+        bm25_id_pos: Dict[str, int] = {}
+        try:
+            bm25_global, global_ids = get_bm25(col)
+            bm25_global_scores = bm25_global.scores(req.query)
+            bm25_id_pos = {str(i): pos for pos, i in enumerate(global_ids or [])}
+        except Exception:
+            bm25_global = None
+
+    HYBRID_LAMBDA = float(cfg.get("hybrid_lambda", 0.10))
+    RERANK_KEYWORD_LAMBDA = float(cfg.get("keyword_overlap_lambda", 0.15))
     out: List[Dict[str, Any]] = []
     with _measure("hybrid_merge"):
         for idx, (text, meta) in enumerate(zip(docs, metas)):
@@ -330,6 +342,12 @@ def hybrid_search_filtered(
                 sim = 1.0 - float(dists[idx])
             bm_raw = bm25_scores[idx] if idx < len(bm25_scores) else 0.0
             bm_norm = bm25.normalize(bm_raw) if bm25 else 0.0
+            if bm25_global and idx < len(ids):
+                gid = ids[idx]
+                gpos = bm25_id_pos.get(str(gid))
+                if gpos is not None and gpos < len(bm25_global_scores):
+                    gbm_raw = bm25_global_scores[gpos]
+                    bm_norm = max(bm_norm, bm25_global.normalize(gbm_raw))
             hybrid = sim * (1 - HYBRID_LAMBDA) + bm_norm * HYBRID_LAMBDA
             if qkw_set:
                 dtoks = set(_tokens(text))
@@ -337,6 +355,23 @@ def hybrid_search_filtered(
             else:
                 overlap = 0.0
             final_score = hybrid * (1 - RERANK_KEYWORD_LAMBDA) + overlap * RERANK_KEYWORD_LAMBDA
+
+            # Small metadata-aware boosts for clinical-quality ranking
+            year_val, _, _ = _parse_date_any(_text_date(meta or {}))
+            recency_boost = 0.0
+            if year_val >= 2022:
+                recency_boost = 0.025
+            elif year_val >= 2018:
+                recency_boost = 0.01
+
+            src = str((meta or {}).get("source") or (meta or {}).get("society") or "").lower()
+            authority_boost = 0.0
+            for kw in ("guideline", "thoracic", "chest", "nice", "idsa", "acc", "aha", "who", "asco", "ats"):
+                if kw in src:
+                    authority_boost = 0.02
+                    break
+
+            final_score += recency_boost + authority_boost
             out.append({
                 "text": text,
                 "metadata": meta,
@@ -363,14 +398,15 @@ def hybrid_search_filtered(
 
     top = out[: req.top_k]
     enriched: List[Dict[str, Any]] = []
-    SUMMARIZE_THRESHOLD = 500
+    SUMMARIZE_THRESHOLD = int(cfg.get("summarize_threshold_words", 700))
+    SUMMARY_TARGET_WORDS = int(cfg.get("summary_target_words", 220))
     for h in top:
         txt = h.get("text", "")
         wc = int(h.get("metadata", {}).get("word_count") or 0)
         if wc == 0:
             wc = len(_tokens(txt))
         if wc > SUMMARIZE_THRESHOLD:
-            h["summary"] = summarize_chunk(txt, query_kws=query_kws, target_words=160)
+            h["summary"] = summarize_chunk(txt, query_kws=query_kws, target_words=SUMMARY_TARGET_WORDS)
         else:
             h["summary"] = txt
         enriched.append(h)
@@ -551,7 +587,8 @@ def query(req: QueryRequest) -> QueryResponse:
                     }
                 )
 
-            norm_hits = dedupe_and_normalize_hits(norm_hits)
+            per_doc = int(cfg.get("max_chunks_per_doc", 2))
+            norm_hits = dedupe_and_normalize_hits(norm_hits, max_per_doc=per_doc)
             _store_cached_hits(cache_key, norm_hits)
 
         used = {
