@@ -15,6 +15,7 @@ from fastapi.responses import StreamingResponse, JSONResponse
 
 from services.note_generator_clean import get_simple_note_generator, SimpleNoteGenerator, ExternalServiceError
 from services.rag_http_client import RAGHttpClient
+from services.clinical_text_normalizer import normalize_clinical_note_output
 from metrics import metrics as global_metrics
 
 
@@ -79,6 +80,12 @@ NOTE_END_TOKEN = "END_OF_NOTE"
 NOTE_STOP_TOKENS = [NOTE_END_TOKEN, f"\n{NOTE_END_TOKEN}"]
 _CONTROL_CHARS_RE = re.compile(r"[\x00-\x09\x0b-\x1f\x7f]")
 _FORMAT_SYMBOLS_RE = re.compile(r"[#*=_+\-]{3,}")
+NUMERIC_UNIT_STYLE_INSTRUCTION = (
+    "FINAL OUTPUT STYLE: Use numerals with compact clinical units in the final note "
+    "(e.g., 5 mg, 100 mcg, 10 mL, 2 units). "
+    "Do not spell out dose numbers/units when a compact form is appropriate. "
+    "For medication lines, prefer: Medication Dose Unit Route Frequency when available."
+)
 
 
 def _service_error_detail(err: ExternalServiceError) -> Dict[str, Any]:
@@ -399,6 +406,15 @@ def clean_model_output_final(text: str) -> str:
     cleaned = re.sub(r'([.!?])\s*\n(?!\s*\n)([A-Za-z0-9])', r'\1\n\n\2', cleaned)
     # If there are 3+ newlines, reduce to 2.
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+
+    # Conservative clinical normalization pass:
+    # - number words + units -> compact numeric notation
+    # - optional RxNorm medication name canonicalization (confidence-gated)
+    try:
+        norm = normalize_clinical_note_output(cleaned)
+        cleaned = norm.text
+    except Exception:
+        pass
 
     # Trim global ends only
     return cleaned.strip()
@@ -1488,6 +1504,7 @@ def build_prompt_v8(
     if custom_prompt and custom_prompt.strip():
         prompt_body += "ADDITIONAL INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
 
+    prompt_body += "STYLE REQUIREMENTS:\n" + NUMERIC_UNIT_STYLE_INSTRUCTION + "\n\n"
     prompt_body += "When finished, output END_OF_NOTE on its own line and stop.\n\n"
     prompt_body += "ASSISTANT:\n"
 
@@ -1557,6 +1574,7 @@ def build_prompt_other(
     if custom_prompt and custom_prompt.strip():
         prompt_body += "ADDITIONAL INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
 
+    prompt_body += "STYLE REQUIREMENTS:\n" + NUMERIC_UNIT_STYLE_INSTRUCTION + "\n\n"
     prompt_body += "When finished, output END_OF_NOTE on its own line and stop.\n\n"
     prompt_body += "ASSISTANT:\n"
 
@@ -1671,6 +1689,7 @@ def build_prompt(
     if custom_prompt and custom_prompt.strip():
         prompt_body += "USER CUSTOM INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
 
+    prompt_body += "STYLE REQUIREMENTS:\n" + NUMERIC_UNIT_STYLE_INSTRUCTION + "\n\n"
     prompt_body += "ASSISTANT:\n"
 
     return prompt_body
