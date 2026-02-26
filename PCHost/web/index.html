@@ -1339,6 +1339,7 @@
 
     <script src="universal_audio_handler.js"></script>
     <script src="markdown_renderer.js"></script>
+    <script src="generate_ui_flow.js"></script>
     <script>
       const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if ('serviceWorker' in navigator && !isLocal) {
@@ -3623,17 +3624,8 @@
         }
 
         function focusCurrentSection() {
-            const authCard = document.getElementById('authCard');
-            const scrollTarget = authCard || document.getElementById('chartCard');
-            if (!scrollTarget) return;
-
-            try {
-                scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } catch {}
-
-            const focusTarget = document.getElementById('logoutBtn') || document.getElementById('authStatus');
-            if (focusTarget) {
-                try { focusTarget.focus({ preventScroll: true }); } catch { try { focusTarget.focus(); } catch {} }
+            if (window.CNGGenerateUI && typeof window.CNGGenerateUI.focusCurrentSection === 'function') {
+                return window.CNGGenerateUI.focusCurrentSection();
             }
         }
 
@@ -3853,71 +3845,28 @@
         }
 
         function goToGeneratedNoteCardActions() {
-            const card = document.getElementById('noteCard');
-            if (!card) return;
-
-            try {
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } catch {}
-
-            // Focus the in-card Generate Note button for quick keyboard activation
-            const actionBtn = card.querySelector('.note-header-actions .btn.btn-success');
-            if (actionBtn) {
-                try { actionBtn.focus({ preventScroll: true }); } catch { try { actionBtn.focus(); } catch {} }
+            if (window.CNGGenerateUI && typeof window.CNGGenerateUI.goToGeneratedNoteCardActions === 'function') {
+                return window.CNGGenerateUI.goToGeneratedNoteCardActions();
             }
         }
 
         function isAudioCaptureActive() {
-            const audio = window.universalAudio;
-            if (!audio) return false;
-            return !!(
-                audio.isRecording ||
-                audio.isListening ||
-                audio.shouldKeepListening ||
-                audio.shouldKeepRecording ||
-                (audio.mediaRecorder && audio.mediaRecorder.state === 'recording') ||
-                (audio.dictationRecorder && audio.dictationRecorder.state === 'recording')
-            );
+            if (window.CNGGenerateUI && typeof window.CNGGenerateUI.isAudioCaptureActive === 'function') {
+                return window.CNGGenerateUI.isAudioCaptureActive();
+            }
+            return false;
         }
 
         function clearPendingGenerateAfterTranscription() {
-            app.pendingGenerateAfterTranscription = false;
-            if (app.pendingGenerateTimer) {
-                clearTimeout(app.pendingGenerateTimer);
-                app.pendingGenerateTimer = null;
+            if (window.CNGGenerateUI && typeof window.CNGGenerateUI.clearPendingGenerateAfterTranscription === 'function') {
+                return window.CNGGenerateUI.clearPendingGenerateAfterTranscription();
             }
         }
 
         function triggerGenerateNoteAndFocus() {
-            goToGeneratedNoteCardActions();
-
-            if (isAudioCaptureActive()) {
-                clearPendingGenerateAfterTranscription();
-                app.pendingGenerateAfterTranscription = true;
-                showToast('Recording', 'Stopping recording and transcribing before generating note...', 'info');
-
-                // Fail-safe: avoid stuck pending state if stop/transcribe callback never arrives
-                app.pendingGenerateTimer = setTimeout(() => {
-                    if (!app.pendingGenerateAfterTranscription) return;
-                    clearPendingGenerateAfterTranscription();
-                    showToast('Audio Timeout', 'Transcription did not complete in time. Please stop recording and try Generate again.', 'warning');
-                }, 45000);
-
-                try {
-                    // Reflect stop intent on all record buttons immediately
-                    setRecordingButtonsState(false);
-                    if (window.universalAudio && typeof window.universalAudio.stopAudioRecording === 'function') {
-                        window.universalAudio.stopAudioRecording();
-                    } else {
-                        toggleSpeechRecognition();
-                    }
-                } catch (e) {
-                    clearPendingGenerateAfterTranscription();
-                    showToast('Audio Error', 'Could not stop recording cleanly. Please stop recording and try again.', 'error');
-                }
-                return;
+            if (window.CNGGenerateUI && typeof window.CNGGenerateUI.triggerGenerateNoteAndFocus === 'function') {
+                return window.CNGGenerateUI.triggerGenerateNoteAndFocus();
             }
-
             generateNote();
         }
 
