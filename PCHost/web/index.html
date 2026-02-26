@@ -1339,6 +1339,7 @@
 
     <script src="universal_audio_handler.js"></script>
     <script src="markdown_renderer.js"></script>
+    <script src="audio_ui_utils.js"></script>
     <script src="generate_ui_flow.js"></script>
     <script>
       const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
@@ -2046,18 +2047,9 @@
 
         // Speech Recognition
         function setRecordingButtonsState(isRecording) {
-            const ids = ['recordBtnSidebar', 'recordBtnInline', 'recordBtnInlineRound'];
-            ids.forEach((id) => {
-                const btn = document.getElementById(id);
-                if (!btn) return;
-                if (isRecording) {
-                    btn.classList.add('recording-active');
-                    btn.classList.remove('recording-ready');
-                } else {
-                    btn.classList.remove('recording-active');
-                    btn.classList.add('recording-ready');
-                }
-            });
+            if (window.CNGAudioUI && typeof window.CNGAudioUI.setRecordingButtonsState === 'function') {
+                return window.CNGAudioUI.setRecordingButtonsState(isRecording);
+            }
         }
 
         function initSpeechRecognition() {
@@ -5077,19 +5069,9 @@ Contact Information:`,
         }
 
         function debugAudioCapabilities() {
-            const audioHandler = window.universalAudio;
-            if (!audioHandler) {
-                showToast('Audio', 'Audio handler not initialized', 'warning');
-                return;
+            if (window.CNGAudioUI && typeof window.CNGAudioUI.debugAudioCapabilities === 'function') {
+                return window.CNGAudioUI.debugAudioCapabilities();
             }
-            const guidance = audioHandler.getBrowserGuidance();
-            const msg = `Browser: ${audioHandler.capabilities?.isChromeiOS ? 'Chrome iOS' : 'Other'}\n`
-                + `Speech Available: ${guidance.speechAvailable}\n`
-                + `Recording Available: ${guidance.recordingAvailable}\n`
-                + `Has MediaRecorder: ${!!window.MediaRecorder}\n`
-                + `Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)}`;
-            showToast('Audio Debug', msg, 'info');
-            debugLog('[Audio Debug]', msg);
         }
 
         let connectionFailures = 0;
