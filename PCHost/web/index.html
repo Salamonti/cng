@@ -2819,7 +2819,7 @@
 
                             // Log stats for debugging
                             if (meta.stats) {
-                                console.log('[Map-Reduce Stats]', meta.stats);
+                                debugLog('[Map-Reduce Stats]', meta.stats);
                             }
 
                             // Display uncertain items for user review
@@ -4143,7 +4143,7 @@
             const poll = setInterval(async () => {
                 tries++;
                 try {
-                    console.log(`[RAG] Polling consult comment (attempt ${tries}/${maxRetries})`);
+                    debugLog(`[RAG] Polling consult comment (attempt ${tries}/${maxRetries})`);
                     const url = (force && tries === 1)
                         ? `${apiBase}/generation/${genId}/consult_comment?force=1&strategy=full_note`
                         : `${apiBase}/generation/${genId}/consult_comment`;
@@ -4523,7 +4523,7 @@
                 if (error && (error.name === 'AbortError' || error.name === 'NotAllowedError')) {
                     return { ok: false, canceled: true };
                 }
-                console.log('Web Share failed:', error && error.message ? error.message : error);
+                debugLog('Web Share failed:', error && error.message ? error.message : error);
             }
             return { ok: false, canceled: false };
         }
@@ -5240,6 +5240,12 @@ Contact Information:`,
         }
 
         // Settings Management
+        function debugLog(...args) {
+            if (window.DEBUG_MODE === true) {
+                console.log(...args);
+            }
+        }
+
         function loadSettings() {
             const token = getAuthToken();
             app.settings = { serverUrl: '/api', apiKey: token };
@@ -5258,15 +5264,17 @@ Contact Information:`,
         function debugAudioCapabilities() {
             const audioHandler = window.universalAudio;
             if (!audioHandler) {
-                alert('Audio handler not initialized');
+                showToast('Audio', 'Audio handler not initialized', 'warning');
                 return;
             }
             const guidance = audioHandler.getBrowserGuidance();
-            alert(`Browser: ${audioHandler.capabilities?.isChromeiOS ? 'Chrome iOS' : 'Other'}
-Speech Available: ${guidance.speechAvailable}
-Recording Available: ${guidance.recordingAvailable}
-Has MediaRecorder: ${!!window.MediaRecorder}
-Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)}`);
+            const msg = `Browser: ${audioHandler.capabilities?.isChromeiOS ? 'Chrome iOS' : 'Other'}\n`
+                + `Speech Available: ${guidance.speechAvailable}\n`
+                + `Recording Available: ${guidance.recordingAvailable}\n`
+                + `Has MediaRecorder: ${!!window.MediaRecorder}\n`
+                + `Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)}`;
+            showToast('Audio Debug', msg, 'info');
+            debugLog('[Audio Debug]', msg);
         }
 
         let connectionFailures = 0;
@@ -5305,11 +5313,11 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
                 updateConnectionStatus('disconnected');
 
                 if (error.name === 'AbortError') {
-                    console.log('Connection timeout during health check');
+                    debugLog('Connection timeout during health check');
                 } else if (error.message.includes('Failed to fetch')) {
-                    console.log('Network error during health check');
+                    debugLog('Network error during health check');
                 } else {
-                    console.log('Connection error:', error.message);
+                    debugLog('Connection error:', error.message);
                 }
             }
         }
@@ -5446,7 +5454,7 @@ Has getUserMedia: ${!!(navigator.mediaDevices && navigator.mediaDevices.getUserM
                     event.clipboardData.setData('text/plain', sanitized);
                     event.preventDefault();
 
-                    console.log('[Copy] Sanitized clipboard text for EMR compatibility');
+                    debugLog('[Copy] Sanitized clipboard text for EMR compatibility');
                 }
             });
 
@@ -5538,17 +5546,17 @@ async function refreshBadge() {
     el.textContent = 'Disconnected';
     el.classList.remove('connected');
     el.classList.add('disconnected');
-    console.log('[Connection]', state.reason);
+    debugLog('[Connection]', state.reason);
   }
 }
 
 setTimeout(() => {
-  console.log('[Init] Initializing connection management...');
+  debugLog('[Init] Initializing connection management...');
   refreshBadge();
 
   setInterval(refreshBadge, 30000);
 
-  console.log('[Init] Connection management initialized');
+  debugLog('[Init] Connection management initialized');
 }, 500);
 
 window.addEventListener('workspace-auth-changed', (event) => {
