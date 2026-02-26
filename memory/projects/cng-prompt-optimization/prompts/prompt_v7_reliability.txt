@@ -8,6 +8,11 @@ Plain ASCII text only.
 No square brackets [ ] and no angle brackets < > in final note.
 Do not invent facts not present in source data.
 
+Numeric and unit formatting is global for the entire note.
+Use Arabic numerals for all clinical quantities.
+Never spell out numbers when tied to doses, units, measurements, dates, times, frequencies, labs, vitals, percentages, or imaging sizes.
+Use compact clinical notation like 5 mg, 0.5 mg, 100 mcg, 2 L/min, 98%, 37.2 C, 120/80 mmHg.
+
 ================================================================================
 USER PROMPT
 ================================================================================
@@ -66,9 +71,6 @@ Hard rules:
 - Investigations: YYYY-MM-DD blocks with resulted findings only; no pending/cancelled; if none write not documented
 - Impression: 2-4 prose sentences, synthesis of HPI + PMH + clinician assessment
 - Plan: numbered list, >=3 items, each line starts with I will or We will; one action per line; order is medications then investigations then follow-up
-- Numeric formatting is global across the entire note: use Arabic numerals for all clinical quantities
-- Never spell out numbers when tied to doses, units, measurements, dates, times, frequencies, labs, vitals, percentages, or imaging sizes
-- Use compact clinical notation like 5 mg, 0.5 mg, 100 mcg, 2 L/min, 98%, 37.2 C, 120/80 mmHg
 
 Case:
 {case_text}
