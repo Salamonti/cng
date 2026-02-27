@@ -383,13 +383,6 @@
         </select>
       </div>
 
-      <div class="form-group" style="margin-bottom: 2rem;">
-        <label for="qaMode">Q&A Mode:</label>
-        <select id="qaMode" name="qaMode">
-          <option value="v2" selected>Clinical Chat v2 (De-ID + RAG + Web)</option>
-          <option value="legacy">Legacy QA Stream</option>
-        </select>
-      </div>
 
       <div class="form-group" style="margin-bottom: 2rem;">
         <button type="button" id="recentUpdatesBtn" class="btn-secondary">Show Recent Updates</button>
@@ -713,7 +706,6 @@
         const questionElement = document.getElementById('question');
         const question = questionElement.value.trim();
         const temperature = parseFloat(document.getElementById('temperature').value);
-        const qaMode = (document.getElementById('qaMode')?.value || 'v2').trim();
         const apiKey = getAuthToken();
 
         if (!question) {
@@ -739,11 +731,7 @@
         output.textContent = 'Generating response...';
 
         try {
-          if (qaMode === 'v2') {
-            await submitQuestionV2(question, temperature, apiKey);
-          } else {
-            await submitQuestionLegacy(question, temperature, apiKey);
-          }
+          await submitQuestionV2(question, temperature, apiKey);
         } catch (err) {
           console.error('Error:', err);
           showError(`Failed to get response: ${err.message}`);
@@ -800,75 +788,6 @@
         } else {
           refsSection.style.display = 'none';
           refsPanel.textContent = '';
-        }
-      }
-
-      async function submitQuestionLegacy(question, temperature, apiKey) {
-        const output = document.getElementById('output');
-        const formData = new FormData();
-        formData.append('chart_data', '');
-        formData.append('transcription', question);
-        formData.append('note_type', 'qa');
-        formData.append('temperature', temperature.toString());
-        formData.append('max_tokens', MAX_RESPONSE_TOKENS.toString());
-
-        const serverUrls = [
-          buildEndpoint('/generate_stream'),
-          '/api/generate_stream',
-          'http://127.0.0.1:7860/api/generate_stream'
-        ];
-
-        let response = null;
-        let lastError = null;
-        for (const url of serverUrls) {
-          try {
-            response = await fetch(url, {
-              method: 'POST',
-              headers: { 'Authorization': `Bearer ${apiKey}` },
-              body: formData
-            });
-            if (response.ok) break;
-            if (response.status !== 0) lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
-          } catch (err) {
-            lastError = err;
-          }
-        }
-        if (!response || !response.ok) throw (lastError || new Error('All server endpoints failed'));
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let answer = '';
-        const genId = response.headers.get('X-Generation-Id');
-        let streamEnded = false;
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          let chunkRaw = decoder.decode(value, { stream: true });
-          if (!chunkRaw) continue;
-          if (chunkRaw.includes(STREAM_END_MARKER)) {
-            chunkRaw = chunkRaw.split(STREAM_END_MARKER).join('');
-            streamEnded = true;
-          }
-          if (!chunkRaw) { if (streamEnded) break; continue; }
-          let chunk = chunkRaw.replace(/?
-?
-/g, '__QA_PARAGRAPH_BREAK__').replace(/?
-/g, ' ').replace(/__QA_PARAGRAPH_BREAK__/g, '
-
-');
-          answer += chunk;
-          output.textContent = answer;
-          output.scrollTop = output.scrollHeight;
-          if (streamEnded) break;
-        }
-
-        answer = answer.trim() || 'Unable to generate response. Please try again.';
-        output.textContent = answer;
-        conversationHistory.push({ question, answer, timestamp: new Date().toLocaleString() });
-        updateConversationHistory();
-        if (genId) {
-          fetchReferencesWithRetry(genId).catch(err => console.warn(`Reference polling failed: ${err.message || err}`));
         }
       }
 

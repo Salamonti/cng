@@ -1825,10 +1825,10 @@ def build_note_prompt_legacy(
 
 
 # ---------------------------------------------------------------------------
-# Route: /generate_stream
+# Deprecated internal generator path (unrouted)
+# Canonical note route is /generate_v8_stream
 # ---------------------------------------------------------------------------
 
-@router.post("/generate_stream")
 async def generate_stream(request: Request):
     try:
         chart = trans = custom_prompt = ""
@@ -2549,7 +2549,6 @@ async def generate_v8_stream(request: Request):
         raise HTTPException(status_code=503, detail=error_detail)
 
 
-@router.post("/generate_v8")
 async def generate_v8(request: Request):
     """
     Non-streaming version of the v8 direct note generation.
