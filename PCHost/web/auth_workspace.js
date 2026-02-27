@@ -559,10 +559,10 @@
       if (transEl) {
         const transcription = typeof extras.transcription === 'string' ? extras.transcription : '';
         const currentEncounter = typeof extras.currentEncounter === 'string' ? extras.currentEncounter : '';
-        const notesValue = currentEncounter || transEl.value || '';
-        transEl.value = notesValue;
+        // Apply server state exactly (including empty string) for deterministic cross-device sync.
+        transEl.value = currentEncounter;
         if (transDisplayEl) {
-          transDisplayEl.value = transcription || transDisplayEl.value || '';
+          transDisplayEl.value = transcription;
         }
       }
 
