@@ -5520,7 +5520,10 @@ function closeQAPanel(){
         try{
           const card=document.getElementById('authCard');
           const mount=document.getElementById('settingsAuthMount');
-          if(card && mount){ mount.appendChild(card); }
+          if(card && mount){
+            mount.appendChild(card);
+            card.style.display = '';
+          }
         }catch(e){}
       });
     </script>
