@@ -387,6 +387,10 @@
           <label for="question">Medical Question:</label>
           <textarea id="question" name="question" placeholder="Ask a medical question about patient care, diagnosis, treatment, etc..." required></textarea>
           <div class="char-count">Characters remaining: <span id="charCount">1024</span> • Response max tokens: <span id="qaMaxTokens">512</span></div>
+          <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+            <button type="submit" id="sendQuestionBtn">Send</button>
+            <span style="font-size:12px; color:#6b7280;">Press Enter to send • Shift+Enter for new line</span>
+          </div>
         </div>
       </form>
 
@@ -712,7 +716,10 @@
       document.getElementById('question').addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
-          submitQuestion();
+          Promise.resolve(submitQuestion()).catch(err => {
+            console.error('submitQuestion keydown failed', err);
+            showError(`Failed to send question: ${err.message || err}`);
+          });
         }
       });
 
@@ -927,7 +934,10 @@
       // Add form submit handler
       document.getElementById('qaForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        submitQuestion();
+        Promise.resolve(submitQuestion()).catch(err => {
+          console.error('submitQuestion form failed', err);
+          showError(`Failed to send question: ${err.message || err}`);
+        });
       });
 
       // Initialize character count and load config
