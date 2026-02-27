@@ -1513,8 +1513,8 @@
 
     <!-- Main Content -->
     <div class="container">
-      <!-- authCard moved into Settings drawer on load -->
-      <div class="auth-card" id="authCard" style="display:none;">
+      <div id="authCardSlot"></div>
+      <div class="auth-card" id="authCard">
         <div class="auth-status-row">
           <div class="auth-actions-left">
             <button type="button" id="logoutBtn" class="secondary">Sign Out</button>
@@ -5515,16 +5515,28 @@ function closeQAPanel(){
         b.classList.remove('open');
         d.setAttribute('aria-hidden','true');
       }
-      document.addEventListener('DOMContentLoaded', ()=>{
-        // Move auth card into drawer to declutter main UI
+      function placeAuthCard(signedIn){
         try{
           const card=document.getElementById('authCard');
           const mount=document.getElementById('settingsAuthMount');
-          if(card && mount){
+          const slot=document.getElementById('authCardSlot');
+          if(!card || !mount || !slot) return;
+          if(signedIn){
             mount.appendChild(card);
-            card.style.display = '';
+          } else {
+            // Keep login visible on first screen when not signed in
+            slot.parentNode.insertBefore(card, slot.nextSibling);
           }
         }catch(e){}
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+        // Default: show sign-in card on main page until authenticated
+        placeAuthCard(false);
+        window.addEventListener('workspace-auth-changed', (ev)=>{
+          const signedIn = !!(ev && ev.detail && ev.detail.signedIn);
+          placeAuthCard(signedIn);
+        });
       });
     </script>
 </body>
