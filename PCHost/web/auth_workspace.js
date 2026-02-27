@@ -567,9 +567,16 @@
       const noteEl = document.getElementById('generatedNote');
       const extras = state.extras || {};
       if (noteEl) {
-        const draft = typeof state.draft === 'string' ? state.draft : '';
-        const fallbackNote = typeof extras.generatedNote === 'string' ? extras.generatedNote : '';
-        noteEl.value = draft || fallbackNote || noteEl.value || '';
+        // Use explicit null checks so empty strings from server (e.g. after clear) are applied correctly.
+        // Only fall back to existing DOM value when the field is truly absent from the server payload.
+        const draft = typeof state.draft === 'string' ? state.draft : null;
+        const fallbackNote = typeof extras.generatedNote === 'string' ? extras.generatedNote : null;
+        if (draft !== null) {
+          noteEl.value = draft;
+        } else if (fallbackNote !== null) {
+          noteEl.value = fallbackNote;
+        }
+        // If neither field present (old workspace format), leave DOM as-is.
       }
       const transEl = document.getElementById('transcriptionData');
       const transDisplayEl = document.getElementById('transcriptionDisplay');
@@ -586,23 +593,25 @@
       // V7 API: Restore old visits field
       const oldVisitsEl = document.getElementById('oldVisitsData');
       if (oldVisitsEl) {
-        // Check for new format first, then fall back to legacy 'chart' field
-        if (typeof extras.oldVisits === 'string' && extras.oldVisits) {
+        // Use explicit presence checks so empty strings (e.g. after a clear) are applied correctly.
+        // Only leave DOM untouched when the field is absent from the server payload (old workspace format).
+        if (typeof extras.oldVisits === 'string') {
           oldVisitsEl.value = extras.oldVisits;
-        } else if (typeof extras.chart === 'string' && extras.chart) {
+        } else if (typeof extras.chart === 'string') {
           // Backward compatibility: migrate old 'chart' data to 'oldVisits'
           oldVisitsEl.value = extras.chart;
-        } else {
-          oldVisitsEl.value = oldVisitsEl.value || '';
         }
+        // If neither field present (pre-V7 workspace), leave DOM as-is.
       }
 
       // V7 API: Restore mixed other field
       const mixedOtherEl = document.getElementById('mixedOtherData');
       const specialityEl = document.getElementById('userSpeciality');
       if (mixedOtherEl) {
-        const mixedOther = typeof extras.mixedOther === 'string' ? extras.mixedOther : '';
-        mixedOtherEl.value = mixedOther || mixedOtherEl.value || '';
+        if (typeof extras.mixedOther === 'string') {
+          mixedOtherEl.value = extras.mixedOther;
+        }
+        // If field absent from payload (pre-V7 workspace), leave DOM as-is.
       }
       if (specialityEl) {
         specialityEl.value = typeof extras.userSpeciality === 'string' ? extras.userSpeciality : '';
