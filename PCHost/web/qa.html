@@ -74,7 +74,10 @@
     function esc(s){ return String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[c])); }
     function md(s){
       let t=esc(s||'');
-      t=t.replace(/^###\s+(.+)$/gm,'<h4>$1</h4>').replace(/^##\s+(.+)$/gm,'<h3>$1</h3>').replace(/^#\s+(.+)$/gm,'<h2>$1</h2>');
+      t=t.replace(/^\s*####\s+(.+)$/gm,'<h5>$1</h5>')
+         .replace(/^\s*###\s+(.+)$/gm,'<h4>$1</h4>')
+         .replace(/^\s*##\s+(.+)$/gm,'<h3>$1</h3>')
+         .replace(/^\s*#\s+(.+)$/gm,'<h2>$1</h2>');
       t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
       t=t.replace(/^\s*---\s*$/gm,'<hr>');
       t=t.replace(/^\s*[-•]\s+(.+)$/gm,'<li>$1</li>');
@@ -155,6 +158,8 @@
       const token=getAuthToken();
       if(!token){ showError('Not signed in. Please open from main app session.'); return; }
 
+      // Clear immediately on send (industry-standard chat behavior)
+      questionEl.value='';
       clearError();
       addMsg('user', md(q));
       const pending=addMsg('assistant','<em>Generating...</em>');
@@ -173,7 +178,6 @@
           refs='<div class="refs"><strong>'+esc(info)+'</strong></div>';
         }
         pending.innerHTML=md(d.answer||'No answer returned.')+refs;
-        questionEl.value='';
       }catch(e){
         pending.innerHTML='<span style="color:#991b1b">Failed to generate response.</span>';
         showError(e.message||String(e));
