@@ -3776,6 +3776,8 @@
                 }
 
                 saveToStorage();
+                try { localStorage.removeItem('clinicalNoteData'); } catch(e) {}
+                try { localStorage.removeItem('notegen_draft'); } catch(e) {}
 
                 document.getElementById('queueCard').classList.add('hidden');
                 if (typeof updateCharacterCounter === 'function') {
@@ -5276,7 +5278,13 @@ Contact Information:`,
 
             initSpeechRecognition();
             initDragAndDrop();
-            loadFromStorage();
+            // Workspace (server) is source of truth when signed in.
+            // Avoid resurrecting old cases from localStorage when auth is present.
+            if (typeof _hasToken === 'function' && _hasToken()) {
+                loadQueue();
+            } else {
+                loadFromStorage();
+            }
             ensureRagState();
             ensureOrderRequestsState();
 
