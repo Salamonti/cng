@@ -138,9 +138,7 @@
       fileMeta.textContent=`Extracting from: ${f.name}...`;
       try{
         const txt=await extractFileText(f);
-        questionEl.value = (questionEl.value? questionEl.value+'
-
-':'') + txt;
+        questionEl.value = (questionEl.value ? questionEl.value + '\n\n' : '') + txt;
         fileMeta.textContent=`Attached: ${f.name} · extracted ${txt.length} chars`;
         questionEl.focus();
       }catch(err){
