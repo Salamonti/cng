@@ -1824,19 +1824,6 @@ def build_note_prompt_legacy(
     return prompt_body
 
 
-def build_prompt(
-    chart_data: str,
-    transcription: str,
-    note_type: str,
-    custom_prompt: Optional[str] = None,
-    user_speciality: Optional[str] = None,
-) -> str:
-    """Backward-compatible wrapper. Prefer build_qa_prompt/build_note_prompt_legacy explicitly."""
-    if note_type == "qa":
-        return build_qa_prompt(chart_data, transcription)
-    return build_note_prompt_legacy(chart_data, transcription, note_type, custom_prompt, user_speciality)
-
-
 # ---------------------------------------------------------------------------
 # Route: /generate_stream
 # ---------------------------------------------------------------------------
