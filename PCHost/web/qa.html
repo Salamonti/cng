@@ -84,13 +84,18 @@
       t=t.replace(/(<li>.*<\/li>\n?)+/gs,m=>`<ul>${m}</ul>`);
             // Basic markdown table support
       const lines = t.split(/\n/);
-      if (lines.some(l => /^\|.+\|$/.test(l.trim()))) {
+      const hasPipeRows = lines.some(l => l.includes('|'));
+      if (hasPipeRows) {
+        const splitCols = (line) => line.replace(/^\s*\|\s*/, '').replace(/\s*\|\s*$/, '').split('|').map(x=>x.trim()).filter(x=>x.length>0);
+        const isSep = (line) => /[-:]/.test(line) && line.includes('|');
         let out=[]; let i=0;
         while(i<lines.length){
-          if(/^\|.+\|$/.test(lines[i].trim()) && i+1<lines.length && /^\|?[\s:-]+\|[\s|:-]*$/.test(lines[i+1].trim())){
-            const head=lines[i].trim().replace(/^\||\|$/g,'').split('|').map(x=>x.trim());
+          const cur = lines[i].trim();
+          const nxt = i+1 < lines.length ? lines[i+1].trim() : '';
+          if(cur.includes('|') && isSep(nxt)){
+            const head=splitCols(cur);
             i+=2; const rows=[];
-            while(i<lines.length && /^\|.+\|$/.test(lines[i].trim())){rows.push(lines[i].trim().replace(/^\||\|$/g,'').split('|').map(x=>x.trim())); i++;}
+            while(i<lines.length && lines[i].includes('|')){rows.push(splitCols(lines[i])); i++;}
             let tbl='<table><thead><tr>'+head.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>';
             for(const r of rows){ tbl+='<tr>'+r.map(c=>`<td>${c}</td>`).join('')+'</tr>'; }
             tbl+='</tbody></table>'; out.push(tbl); continue;
@@ -109,6 +114,18 @@
       chat.appendChild(div);
       chat.scrollTop=chat.scrollHeight;
       return div;
+    }
+
+    function addCopyButton(container, plainText){
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.title='Copy answer';
+      btn.textContent='📑';
+      btn.style.cssText='margin-top:8px;border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:4px 8px;cursor:pointer;float:right;';
+      btn.addEventListener('click', async ()=>{
+        try{ await navigator.clipboard.writeText(plainText||''); btn.textContent='✅'; setTimeout(()=>btn.textContent='📑',900);}catch{}
+      });
+      container.appendChild(btn);
     }
 
     function showError(msg){ errorEl.textContent=msg; errorEl.style.display='block'; }
@@ -177,7 +194,9 @@
         } else {
           refs='<div class="refs"><strong>'+esc(info)+'</strong></div>';
         }
-        pending.innerHTML=md(d.answer||'No answer returned.')+refs;
+        const answerText = d.answer||'No answer returned.';
+        pending.innerHTML=md(answerText)+refs;
+        addCopyButton(pending, answerText);
       }catch(e){
         pending.innerHTML='<span style="color:#991b1b">Failed to generate response.</span>';
         showError(e.message||String(e));
