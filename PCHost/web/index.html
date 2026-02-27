@@ -1425,9 +1425,9 @@
             <span class="icon">&#9998;</span>
             <span class="label">Generate Note</span>
         </button>
-        <button class="sidebar-btn" onclick="clearAll()" title="Clear All">
+        <button class="sidebar-btn" onclick="clearAll()" title="Start New Case">
             <span class="icon">&#128465;</span>
-            <span class="label">Clear All</span>
+            <span class="label">New Case</span>
         </button>
         <button class="sidebar-btn" onclick="openQAPanel()" title="Q&A">
             <span class="icon">&#128172;</span>
@@ -1470,9 +1470,9 @@
             </button>
         </div>
 
-        <!-- GROUP 3 (RIGHT): Clear All, Clear Queue, Q&A -->
+        <!-- GROUP 3 (RIGHT): New Case, Clear Queue, Q&A -->
         <div class="bar-group bar-group-right">
-            <button class="btn-danger" onclick="clearAll()">&#128465; Clear All</button>
+            <button class="btn-danger" onclick="clearAll()">&#128465; New Case</button>
             <button class="btn-danger" onclick="clearQueue()">&#128683; Clear Queue</button>
             <a href="#" onclick="openQAPanel(); return false;">&#128172; Q&A</a>
         </div>
@@ -3651,6 +3651,10 @@
         }
 
         async function clearAll(skipConfirm = false) {
+            // Unified clear path: server-authoritative workspace reset for cross-device consistency.
+            if (window.AuthWorkspace && typeof window.AuthWorkspace.clearWorkspace === 'function' && !skipConfirm) {
+                return window.AuthWorkspace.clearWorkspace();
+            }
             if (skipConfirm || confirm('This will clear ALL data (chart, note, audio, queue). Continue?')) {
                 setChartDataValue('');
                 document.getElementById('generatedNote').value = '';

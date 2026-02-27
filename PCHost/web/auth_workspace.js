@@ -247,14 +247,9 @@
       const name = profile?.email || 'User';
       this.updateStatus(`Signed in as ${name}`, 'success');
 
-      // Hide clear workspace button on secondary pages
+      // Clear workspace action is unified under "New Case" button in main toolbar.
       if (this.clearBtn) {
-        if (window.WORKSPACE_PAGE_TYPE === 'main') {
-          this.clearBtn.style.display = '';
-          this.clearBtn.disabled = false;
-        } else {
-          this.clearBtn.style.display = 'none';
-        }
+        this.clearBtn.style.display = 'none';
       }
 
       const apiSection = document.getElementById('apiSection');
