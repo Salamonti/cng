@@ -73,6 +73,10 @@
       this.registerForm = document.getElementById('registerForm');
       this.apiBaseInput = document.getElementById('authApiBase');
       this.workspaceMeta = document.getElementById('workspaceMeta');
+      this.syncPill = document.getElementById('syncPill');
+      this.syncPillText = document.getElementById('syncPillText');
+      this.diagWorkspaceVersion = document.getElementById('diagWorkspaceVersion');
+      this.diagSyncStatus = document.getElementById('diagSyncStatus');
       this.loginError = document.getElementById('loginError');
       this.registerInfo = document.getElementById('registerInfo');
       this.approvalNotice = document.getElementById('approvalNotice');
@@ -290,11 +294,26 @@
     },
 
     updateWorkspaceMeta() {
-      if (!this.workspaceMeta) return;
-      if (!this.workspaceVersion) {
-        this.workspaceMeta.textContent = 'Workspace: not synced';
-      } else {
-        this.workspaceMeta.textContent = `Workspace version ${this.workspaceVersion}`;
+      const v = this.workspaceVersion ? `v${this.workspaceVersion}` : '--';
+      if (this.workspaceMeta) {
+        // keep hidden in main UI; retained for backwards compat
+        this.workspaceMeta.textContent = this.workspaceVersion ? `Workspace version ${this.workspaceVersion}` : 'Workspace: not synced';
+      }
+      if (this.diagWorkspaceVersion) {
+        this.diagWorkspaceVersion.textContent = v;
+      }
+    },
+
+    setSyncPill(level, text) {
+      if (this.syncPill) {
+        this.syncPill.classList.remove('ok', 'warn', 'bad');
+        if (level) this.syncPill.classList.add(level);
+      }
+      if (this.syncPillText) {
+        this.syncPillText.textContent = text || 'Sync: --';
+      }
+      if (this.diagSyncStatus) {
+        this.diagSyncStatus.textContent = text || '--';
       }
     },
 
@@ -341,6 +360,7 @@
       this.refreshPromise = null;
       this.workspaceVersion = 0;
       this.user = null;
+      this.setSyncPill('bad', 'Signed out');
       this.profilePromise = null;
       this.workspacePromise = null;
       this.updateWorkspaceMeta();
@@ -496,6 +516,7 @@
         this.workspaceVersion = data.version;
         this.applyWorkspaceState(data.state || {});
         this.updateWorkspaceMeta();
+        this.setSyncPill('ok', 'Synced');
         this.startWorkspaceSyncLoop();
         return true;
       })();
@@ -510,6 +531,7 @@
       if (this.syncTimer) return;
       this.syncTimer = setInterval(() => {
         this.pullWorkspaceIfNewer().catch((err) => {
+          this.setSyncPill('warn', 'Sync issue');
           console.warn('[WorkspaceSync] pull failed:', err?.message || err);
         });
       }, this.syncIntervalMs);
@@ -698,6 +720,7 @@
       if (Date.now() < (this.suppressAutoSaveUntil || 0)) return;
       this.lastLocalEditAt = Date.now();
       clearTimeout(this.saveTimer);
+      this.setSyncPill('warn', 'Syncing…');
       this.saveTimer = setTimeout(() => this.saveWorkspace(), 1000);
       this.resetIdleTimer();
     },
@@ -745,12 +768,14 @@
         return;
       }
       if (!resp.ok) {
+        this.setSyncPill('bad', 'Not synced');
         console.warn('Workspace save failed', await resp.text());
         return;
       }
       const result = await resp.json();
       this.workspaceVersion = result.version;
       this.updateWorkspaceMeta();
+      this.setSyncPill('ok', 'Synced');
     },
 
     async clearWorkspace() {
