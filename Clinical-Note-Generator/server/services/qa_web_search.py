@@ -22,6 +22,11 @@ _ALLOWED_DOMAINS = [
     "ema.europa.eu",
     "diabetesjournals.org",
     "aace.com",
+    "accessdata.fda.gov",
+    "dailymed.nlm.nih.gov",
+    "ozempic.com",
+    "wegovy.com",
+    "novonordisk",
 ]
 
 
@@ -32,9 +37,9 @@ def _allowed(url: str) -> bool:
 
 async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
     preferred = os.environ.get("SEARXNG_URL", "https://ieissa.com:3443/searxng/search").rstrip("/")
-    # Try preferred first, then local fallbacks to avoid remote auth/egress issues.
+    # Prefer local SearXNG path on workstation first (fast + no remote ACL issues).
     bases = []
-    for b in [preferred, "http://127.0.0.1:8083/search", "http://127.0.0.1:8083/searxng/search", "http://127.0.0.1:3443/searxng/search"]:
+    for b in ["http://127.0.0.1:8083/search", preferred, "http://127.0.0.1:8083/searxng/search", "http://127.0.0.1:3443/searxng/search"]:
         if b and b not in bases:
             bases.append(b.rstrip('/'))
 
@@ -62,8 +67,9 @@ async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
     if not isinstance(data, dict):
         return []
 
+    raw_results = (data.get("results") or [])[: max(1, limit * 5)]
     out: List[Dict[str, Any]] = []
-    for it in (data.get("results") or [])[: max(1, limit * 4)]:
+    for it in raw_results:
         url = it.get("url") or ""
         if not _allowed(url):
             continue
@@ -77,4 +83,28 @@ async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
         )
         if len(out) >= limit:
             break
+
+    if out:
+        return out
+
+    # If strict allowlist yields zero, allow high-signal medical/regulatory domains.
+    def _semi_allowed(u: str) -> bool:
+        uu = (u or "").lower()
+        return any(k in uu for k in [".gov", ".edu", "nih", "pubmed", "fda", "ema", "nejm", "jama", "bmj", "lancet", "diabetes", "novonordisk", "ozempic", "wegovy"])
+
+    for it in raw_results:
+        url = it.get("url") or ""
+        if not _semi_allowed(url):
+            continue
+        out.append(
+            {
+                "title": it.get("title") or "",
+                "url": url,
+                "snippet": (it.get("content") or "")[:500],
+                "source": "web",
+            }
+        )
+        if len(out) >= limit:
+            break
+
     return out
