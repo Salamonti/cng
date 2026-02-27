@@ -1541,7 +1541,7 @@
     <!-- Main Content -->
     <div class="container">
       <div id="authCardSlot"></div>
-      <div class="auth-card" id="authCard">
+      <div class="auth-card" id="authCard" style="display:none;">
         <div class="auth-status-row">
           <div class="auth-actions-left">
             <button type="button" id="logoutBtn" class="secondary">Sign Out</button>
@@ -5541,6 +5541,14 @@ function closeQAPanel(){
         b.classList.remove('open');
         d.setAttribute('aria-hidden','true');
       }
+      function _hasToken(){
+        try{
+          return !!(sessionStorage.getItem('auth_access_token') || localStorage.getItem('access_token') || (window.app && window.app.settings && window.app.settings.apiKey));
+        }catch(e){
+          return false;
+        }
+      }
+
       function placeAuthCard(signedIn){
         try{
           const card=document.getElementById('authCard');
@@ -5549,10 +5557,13 @@ function closeQAPanel(){
           if(!card || !mount || !slot) return;
           if(signedIn){
             mount.appendChild(card);
+            card.dataset.location = 'drawer';
           } else {
             // Keep login visible on first screen when not signed in
             slot.parentNode.insertBefore(card, slot.nextSibling);
+            card.dataset.location = 'main';
           }
+          card.style.display = '';
         }catch(e){}
       }
 
@@ -5573,14 +5584,23 @@ function closeQAPanel(){
       }
 
       document.addEventListener('DOMContentLoaded', ()=>{
-        // Default: show sign-in card on main page until authenticated
-        placeAuthCard(false);
-        applyMobileBarPolicy(false);
+        // Default placement based on stored token to avoid flash on refresh
+        const initialSignedIn = _hasToken();
+        placeAuthCard(initialSignedIn);
+        applyMobileBarPolicy(initialSignedIn);
+
         window.addEventListener('workspace-auth-changed', (ev)=>{
           const signedIn = !!(ev && ev.detail && ev.detail.signedIn);
           placeAuthCard(signedIn);
           applyMobileBarPolicy(signedIn);
         });
+
+        // Safety: if auth event fired before listener attached, reconcile once.
+        setTimeout(()=>{
+          const signedInNow = _hasToken();
+          placeAuthCard(signedInNow);
+          applyMobileBarPolicy(signedInNow);
+        }, 600);
       });
     </script>
 </body>
