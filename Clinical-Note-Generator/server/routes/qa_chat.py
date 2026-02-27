@@ -50,14 +50,21 @@ async def _rag_query(question: str, cfg: Dict[str, Any]) -> Tuple[str, List[Dict
     return ctx or "", refs or []
 
 
-def _build_prompt(message: str, state: Dict[str, Any], rag_ctx: str, web_items: List[Dict[str, Any]]) -> str:
+def _build_prompt(message: str, state: Dict[str, Any], rag_ctx: str, web_items: List[Dict[str, Any]], allow_knowledge_fallback: bool = False) -> str:
     summary = state.get("summary", "")
     recent = state.get("turns", [])[-4:]
     recent_text = "\n".join([f"Q: {t.get('q','')}\nA: {t.get('a','')}" for t in recent])
     web_ctx = "\n\n".join([f"[{i+1}] {w.get('title','')}\n{w.get('snippet','')}\n{w.get('url','')}" for i, w in enumerate(web_items[:6])])
+    fallback_rule = (
+        "If RAG/web evidence is weak, you MAY use stable core medical knowledge, but label it as 'Knowledge fallback' and mention likely knowledge cutoff uncertainty.\n"
+        if allow_knowledge_fallback else
+        "Prefer evidence-grounded answer. If evidence is weak, keep uncertainty explicit and avoid fabricated citations.\n"
+    )
     return (
         "You are a clinical Q&A assistant for healthcare professionals.\n"
-        "Use only provided evidence context and clearly mark uncertainty.\n"
+        "Provide a practical answer first, then concise supporting details.\n"
+        "Never fabricate citations.\n"
+        + fallback_rule +
         "Output concise plain text with practical clinical actions.\n\n"
         f"Conversation Summary:\n{summary}\n\n"
         f"Recent Turns:\n{recent_text}\n\n"
@@ -110,8 +117,11 @@ async def qa_chat(req: QAChatRequest, creds: Optional[HTTPAuthorizationCredentia
     rag_ctx, rag_refs = await rag_task
     web_items = await web_task
 
+    evidence_chars = len((rag_ctx or '').strip()) + sum(len((w.get('snippet') or '')) for w in web_items)
+    weak_evidence = evidence_chars < int(cfg.get("qa_chat_min_evidence_chars", 260))
+
     llm = get_simple_note_generator()
-    prompt = _build_prompt(req.message, state, rag_ctx, web_items)
+    prompt = _build_prompt(req.message, state, rag_ctx, web_items, allow_knowledge_fallback=weak_evidence)
     answer = await llm.collect_completion(
         prompt,
         temperature=float(cfg.get("qa_chat_temperature", 0.2)),
@@ -119,6 +129,9 @@ async def qa_chat(req: QAChatRequest, creds: Optional[HTTPAuthorizationCredentia
         stop=[],
     )
     answer = (answer or "").strip()
+
+    if weak_evidence and req.message.lower().strip().startswith(("what is the dose", "dose of", "dosing of", "ozempic")):
+        answer = answer + "\n\nKnowledge fallback: Provided from model core knowledge due limited indexed/web evidence in this turn; verify against latest label/guideline updates."
 
     state["turns"].append({"q": req.message, "a": answer})
     state["turns"] = state["turns"][-12:]

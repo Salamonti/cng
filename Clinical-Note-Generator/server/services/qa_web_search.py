@@ -18,6 +18,10 @@ _ALLOWED_DOMAINS = [
     "cdc.gov",
     "canada.ca",
     "nice.org.uk",
+    "fda.gov",
+    "ema.europa.eu",
+    "diabetesjournals.org",
+    "aace.com",
 ]
 
 

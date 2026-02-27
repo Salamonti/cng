@@ -1339,12 +1339,23 @@
                 font-size: 0.7rem;
             }
         }
-    </style>
+    
+        .qa-side-panel{position:fixed;top:0;right:-52vw;width:min(52vw,760px);height:100vh;background:#fff;z-index:12000;box-shadow:-8px 0 28px rgba(0,0,0,.18);transition:right .22s ease;display:flex;flex-direction:column}
+        .qa-side-panel.open{right:0}
+        .qa-side-panel-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #e5e7eb;background:#f8fafc}
+        .qa-side-panel iframe{width:100%;height:100%;border:0}
+        .qa-side-panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:11999;display:none}
+        .qa-side-panel-backdrop.open{display:block}
+</style>
 
-    <script src="universal_audio_handler.js"></script>
-    <script src="markdown_renderer.js"></script>
-    <script src="audio_ui_utils.js"></script>
-    <script src="generate_ui_flow.js"></script>
+    <script src="universal_audio_handler.js">
+</script>
+    <script src="markdown_renderer.js">
+</script>
+    <script src="audio_ui_utils.js">
+</script>
+    <script src="generate_ui_flow.js">
+</script>
     <script>
       const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if ('serviceWorker' in navigator && !isLocal) {
@@ -1358,7 +1369,7 @@
           }
         })();
       }
-    </script>
+</script>
 
     <script>
       if (!isLocal) {
@@ -1378,7 +1389,7 @@
           }
         })();
       }
-    </script>
+</script>
 </head>
 
 <body>
@@ -1418,7 +1429,7 @@
             <span class="icon">&#128465;</span>
             <span class="label">Clear All</span>
         </button>
-        <button class="sidebar-btn" onclick="window.location.href='qa.html'" title="Q&A">
+        <button class="sidebar-btn" onclick="openQAPanel()" title="Q&A">
             <span class="icon">&#128172;</span>
             <span class="label">Q&A</span>
         </button>
@@ -1463,7 +1474,7 @@
         <div class="bar-group bar-group-right">
             <button class="btn-danger" onclick="clearAll()">&#128465; Clear All</button>
             <button class="btn-danger" onclick="clearQueue()">&#128683; Clear Queue</button>
-            <a href="qa.html">&#128172; Q&A</a>
+            <a href="#" onclick="openQAPanel(); return false;">&#128172; Q&A</a>
         </div>
     </div>
 
@@ -5279,8 +5290,7 @@ Contact Information:`,
         setInterval(() => {
             if (currentNoteText()) saveToStorage();
         }, 10000);
-
-    </script>
+</script>
 
 <!-- ========== UNIFIED SETTINGS & CONNECTION MANAGEMENT ========== -->
 <script>
@@ -5405,6 +5415,30 @@ window.addEventListener('storage', (event) => {
   // Workspace page type detection - enables workspace sync on main page
   window.WORKSPACE_PAGE_TYPE = 'main';
 </script>
-<script src="auth_workspace.js"></script>
+<script src="auth_workspace.js">
+</script>
+
+    <div id="qaSideBackdrop" class="qa-side-panel-backdrop" onclick="closeQAPanel()"></div>
+    <div id="qaSidePanel" class="qa-side-panel" aria-hidden="true">
+      <div class="qa-side-panel-header"><strong>Medical Q&A</strong><button class="btn" onclick="closeQAPanel()">Close</button></div>
+      <iframe id="qaSideFrame" src="qa.html" title="Medical Q&A"></iframe>
+    </div>
+
+
+<script>
+function openQAPanel(){
+  const p=document.getElementById('qaSidePanel');
+  const b=document.getElementById('qaSideBackdrop');
+  if(!p||!b){ window.location.href='qa.html'; return; }
+  p.classList.add('open'); b.classList.add('open'); p.setAttribute('aria-hidden','false');
+}
+function closeQAPanel(){
+  const p=document.getElementById('qaSidePanel');
+  const b=document.getElementById('qaSideBackdrop');
+  if(!p||!b) return;
+  p.classList.remove('open'); b.classList.remove('open'); p.setAttribute('aria-hidden','true');
+}
+</script>
+
 </body>
 </html>
