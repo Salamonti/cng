@@ -258,6 +258,28 @@
         .sync-pill.warn .dot{background:#f59e0b;}
         .sync-pill.bad .dot{background:#ef4444;}
 
+        /* Mobile: collapse status controls after login (phone only) */
+        .mobile-top-toggle{display:none;}
+        @media (max-width: 850px) {
+            .mobile-top-toggle{
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                border: 1px solid #cbd5e1;
+                background: #fff;
+                color: #0f172a;
+                border-radius: 10px;
+                padding: 6px 10px;
+                font-weight: 700;
+                font-size: 0.85rem;
+            }
+            body.auth-ready.mobile-bar-collapsed #connectionStatus,
+            body.auth-ready.mobile-bar-collapsed #syncPill,
+            body.auth-ready.mobile-bar-collapsed #openSettingsBtn {
+                display: none;
+            }
+        }
+
         /* Settings drawer */
         .settings-drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:12999;display:none;}
         .settings-drawer-backdrop.open{display:block;}
@@ -1471,8 +1493,9 @@
 
     <!-- Floating Top Bar - Sticky with Left/Right Alignment -->
     <div class="floating-bar">
-        <!-- GROUP 1 (LEFT): Connection + Speciality -->
+        <!-- GROUP 1 (LEFT): Status + Speciality (mobile-collapsible) -->
         <div class="bar-group bar-group-left">
+            <button type="button" class="mobile-top-toggle" id="mobileTopToggle" onclick="toggleMobileTopBar()" title="Toggle status bar">☰</button>
             <span class="connection-status disconnected" id="connectionStatus">Disconnected</span>
             <span id="syncPill" class="sync-pill" title="Workspace sync status">
                 <span class="dot"></span>
@@ -5530,12 +5553,30 @@ function closeQAPanel(){
         }catch(e){}
       }
 
+      function isMobile(){
+        try{ return window.matchMedia && window.matchMedia('(max-width: 850px)').matches; }catch(e){ return false; }
+      }
+      function applyMobileBarPolicy(signedIn){
+        if(!signedIn) {
+          document.body.classList.remove('mobile-bar-collapsed');
+          return;
+        }
+        if(isMobile()) document.body.classList.add('mobile-bar-collapsed');
+      }
+      function toggleMobileTopBar(){
+        // Toggle collapsed/expanded on mobile
+        if(!isMobile()) return;
+        document.body.classList.toggle('mobile-bar-collapsed');
+      }
+
       document.addEventListener('DOMContentLoaded', ()=>{
         // Default: show sign-in card on main page until authenticated
         placeAuthCard(false);
+        applyMobileBarPolicy(false);
         window.addEventListener('workspace-auth-changed', (ev)=>{
           const signedIn = !!(ev && ev.detail && ev.detail.signedIn);
           placeAuthCard(signedIn);
+          applyMobileBarPolicy(signedIn);
         });
       });
     </script>
