@@ -2128,6 +2128,27 @@ async def generate_stream(request: Request):
 # ---------------------------------------------------------------------------
 
 
+def _maybe_autostart_consult_comment(gen_id: str, note_text: str, cfg: Dict[str, Any], note_type: str) -> None:
+    """Start consult comment generation in background right after note generation."""
+    try:
+        if _normalize_note_type(note_type or "") != "consult":
+            return
+        if not bool(cfg.get("consult_comment_autostart", True)):
+            return
+        if not (note_text or "").strip():
+            return
+
+        st = _consult_comment_store.get(gen_id) or {}
+        status = str(st.get("status") or "").lower()
+        if status in {"pending", "done"}:
+            return
+
+        _consult_comment_store[gen_id] = {"status": "pending", "autostart": True}
+        asyncio.create_task(_generate_consult_comment(gen_id, note_text, cfg, strategy="sections"))
+    except Exception:
+        pass
+
+
 @router.get("/generation/{gen_id}/meta")
 async def generation_meta(gen_id: str) -> Dict[str, Any]:
     meta = _generation_meta.get(gen_id)
@@ -2438,6 +2459,8 @@ async def generate_v8_stream(request: Request):
                     with _cache_lock:
                         if generation_id in _generation_cache:
                             _generation_cache[generation_id]["output"] = combined_output
+
+                    _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type)
                 except Exception as e:
                     print(f"Feedback CSV write failed: {e}")
 
@@ -2519,6 +2542,18 @@ async def generate_v8(request: Request):
                 user_speciality=user_speciality,
             )
 
+        generation_id = uuid.uuid4().hex
+        with _cache_lock:
+            _generation_cache[generation_id] = {"prompt": prompt, "output": ""}
+
+        _generation_meta[generation_id] = {
+            "refs": [],
+            "used_filters": {},
+            "context": "",
+            "full_evidence": "",
+            "pipeline": "v8_direct",
+        }
+
         t0 = time.perf_counter()
 
         # Direct LLM call
@@ -2535,7 +2570,14 @@ async def generate_v8(request: Request):
         duration = time.perf_counter() - t0
         cleaned = clean_model_output_final(_strip_note_end_marker(note_text))
 
+        with _cache_lock:
+            if generation_id in _generation_cache:
+                _generation_cache[generation_id]["output"] = cleaned
+
+        _maybe_autostart_consult_comment(generation_id, cleaned, cfg, note_type)
+
         return JSONResponse(content={
+            "generation_id": generation_id,
             "note": cleaned,
             "pipeline": "v8_direct",
             "stats": {
