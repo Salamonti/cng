@@ -290,6 +290,8 @@
         color: #6c757d;
         margin-top: 0.25rem;
       }
+      #authCard, #authActions, #workspaceMeta, #logoutBtn, #clearWorkspaceBtn { display:none !important; }
+      #temperature, label[for="temperature"] { display:none !important; }
     </style>
   <!-- Only register PWA assets in production (guarded with HEAD checks) -->
   <script>
@@ -372,18 +374,6 @@
         </div>
       </div>
 
-      <!-- Response Style Selection -->
-      <div class="form-group" style="margin-bottom: 1rem;">
-        <label for="temperature">Response Style:</label>
-        <select id="temperature" name="temperature">
-          <option value="0.05">Very Conservative</option>
-          <option value="0.1" selected>Conservative</option>
-          <option value="0.2">Balanced</option>
-          <option value="0.3">Creative</option>
-        </select>
-      </div>
-
-
       <div class="form-group" style="margin-bottom: 2rem;">
         <button type="button" id="recentUpdatesBtn" class="btn-secondary">Show Recent Updates</button>
         <div id="recentUpdatesPanel" class="info-panel hidden">
@@ -400,9 +390,17 @@
         </div>
       </form>
 
-      <div class="form-group" style="margin-top: 2rem;">
-        <label>AI Response:</label>
-        <div id="output" class="output">Ready for your medical question...</div>
+      <div id="conversationHistory" style="display: none; margin-top: 1rem;">
+        <h3>Conversation History</h3>
+        <div id="historyItems"></div>
+        <div style="margin-top: 1rem; text-align: center;">
+          <button type="button" class="btn-danger" id="clearHistoryBtn" onclick="clearHistory()" style="display:none;">Clear Chat History</button>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 1rem;">
+        <label>Assistant Response:</label>
+        <div id="output" class="output markdown">Ready for your medical question...</div>
       </div>
 
       <div class="form-group" id="refsSection" style="margin-top: 1rem; display:none;">
@@ -410,7 +408,7 @@
         <div id="refsPanel" class="output" style="max-height: 220px;"></div>
       </div>
 
-      <div id="conversationHistory" style="display: none; margin-top: 2rem;">
+      
         <h3>Conversation History</h3>
         <div id="historyItems"></div>
         <div style="margin-top: 1rem; text-align: center;">
@@ -579,6 +577,22 @@
           .replace(/'/g, '&#39;');
       }
 
+      function renderAnswerMarkdown(text) {
+        const src = escapeHtml(text || '');
+        const withBold = src.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        const withHeads = withBold
+          .replace(/^###\s+(.+)$/gm, '<h4>$1</h4>')
+          .replace(/^##\s+(.+)$/gm, '<h3>$1</h3>')
+          .replace(/^#\s+(.+)$/gm, '<h2>$1</h2>');
+        const withBullets = withHeads.replace(/^\s*[-•]\s+(.+)$/gm, '<li>$1</li>');
+        const grouped = withBullets.replace(/(<li>.*<\/li>
+?)+/gs, m => `<ul>${m}</ul>`);
+        return grouped.replace(/
+
++/g, '<br><br>').replace(/
+/g, '<br>');
+      }
+
       function renderRecentUpdates(data) {
         const generated = escapeHtml(data.generated_at || 'unknown');
         const runStarted = escapeHtml(data.run_started || 'unknown');
@@ -705,7 +719,8 @@
       async function submitQuestion() {
         const questionElement = document.getElementById('question');
         const question = questionElement.value.trim();
-        const temperature = parseFloat(document.getElementById('temperature').value);
+        const tempEl = document.getElementById('temperature');
+        const temperature = tempEl ? parseFloat(tempEl.value) : 0.2;
         const apiKey = getAuthToken();
 
         if (!question) {
@@ -728,7 +743,7 @@
         const output = document.getElementById('output');
         const error = document.getElementById('error');
         error.style.display = 'none';
-        output.textContent = 'Generating response...';
+        output.innerHTML = '<em>Generating response...</em>'; 
 
         try {
           await submitQuestionV2(question, temperature, apiKey);
@@ -765,7 +780,7 @@
 
         const data = await response.json();
         const answer = (data.answer || '').trim() || 'Unable to generate response. Please try again.';
-        output.textContent = answer;
+        output.innerHTML = renderAnswerMarkdown(answer);
 
         conversationHistory.push({
           question: question,
@@ -775,9 +790,12 @@
         updateConversationHistory();
 
         const sources = Array.isArray(data.sources) ? data.sources : [];
+        const webCount = Number(data.web_results_count || 0);
+        const ragCount = Number(data.rag_results_count || 0);
+        const infoLine = `<div style="margin-bottom:8px;color:#475569;"><strong>Evidence:</strong> RAG ${ragCount} · Web ${webCount}${data.evidence_max_year ? ` · Max year ${data.evidence_max_year}` : ''}</div>`;
         if (sources.length) {
           refsSection.style.display = 'block';
-          refsPanel.innerHTML = sources.map((s, idx) => {
+          refsPanel.innerHTML = infoLine + sources.map((s, idx) => {
             const kind = (s.kind || 'source').toUpperCase();
             const title = escapeHtml(s.title || 'Untitled');
             const url = escapeHtml(s.url || '');
@@ -787,7 +805,7 @@
           }).join('');
         } else {
           refsSection.style.display = 'none';
-          refsPanel.textContent = '';
+          refsPanel.innerHTML = infoLine + '<em>No source cards returned.</em>'; 
         }
       }
 

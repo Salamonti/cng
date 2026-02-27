@@ -29,6 +29,10 @@ class QAChatResponse(BaseModel):
     summary: str
     sources: List[Dict[str, Any]]
     deid_counts: Dict[str, int]
+    web_results_count: int = 0
+    rag_results_count: int = 0
+    used_knowledge_fallback: bool = False
+    evidence_max_year: Optional[int] = None
 
 
 def _load_cfg() -> Dict[str, Any]:
@@ -130,13 +134,32 @@ async def qa_chat(req: QAChatRequest, creds: Optional[HTTPAuthorizationCredentia
     )
     answer = (answer or "").strip()
 
+    used_knowledge_fallback = False
     if weak_evidence and req.message.lower().strip().startswith(("what is the dose", "dose of", "dosing of", "ozempic")):
+        used_knowledge_fallback = True
         answer = answer + "\n\nKnowledge fallback: Provided from model core knowledge due limited indexed/web evidence in this turn; verify against latest label/guideline updates."
 
     state["turns"].append({"q": req.message, "a": answer})
     state["turns"] = state["turns"][-12:]
     state["summary"] = await _update_summary(state, llm)
     _QA_STATE[state_key] = state
+
+    years: List[int] = []
+    for r in rag_refs[:20]:
+        md = r.get("metadata", {}) if isinstance(r, dict) else {}
+        y = md.get("year")
+        try:
+            if y is not None:
+                years.append(int(y))
+        except Exception:
+            pass
+    evidence_max_year = max(years) if years else None
+
+    # remove stale-year disclaimer when evidence has newer years
+    if evidence_max_year and evidence_max_year >= 2025:
+        answer = answer.replace("(Note: Dosing reflects FDA/EMA labels as of 2023; local regulations may vary.)", "")
+        answer = answer.replace("as of 2023", f"as of {evidence_max_year}")
+        answer = answer.replace("since 2023", f"since {evidence_max_year}")
 
     sources: List[Dict[str, Any]] = []
     for r in rag_refs[:6]:
@@ -150,4 +173,8 @@ async def qa_chat(req: QAChatRequest, creds: Optional[HTTPAuthorizationCredentia
         summary=state.get("summary", ""),
         sources=sources,
         deid_counts=counts,
+        web_results_count=len(web_items),
+        rag_results_count=len(rag_refs),
+        used_knowledge_fallback=used_knowledge_fallback,
+        evidence_max_year=evidence_max_year,
     )
