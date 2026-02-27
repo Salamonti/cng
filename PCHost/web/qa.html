@@ -373,13 +373,21 @@
       </div>
 
       <!-- Response Style Selection -->
-      <div class="form-group" style="margin-bottom: 2rem;">
+      <div class="form-group" style="margin-bottom: 1rem;">
         <label for="temperature">Response Style:</label>
         <select id="temperature" name="temperature">
           <option value="0.05">Very Conservative</option>
           <option value="0.1" selected>Conservative</option>
           <option value="0.2">Balanced</option>
           <option value="0.3">Creative</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 2rem;">
+        <label for="qaMode">Q&A Mode:</label>
+        <select id="qaMode" name="qaMode">
+          <option value="v2" selected>Clinical Chat v2 (De-ID + RAG + Web)</option>
+          <option value="legacy">Legacy QA Stream</option>
         </select>
       </div>
 
@@ -705,186 +713,162 @@
         const questionElement = document.getElementById('question');
         const question = questionElement.value.trim();
         const temperature = parseFloat(document.getElementById('temperature').value);
+        const qaMode = (document.getElementById('qaMode')?.value || 'v2').trim();
         const apiKey = getAuthToken();
 
         if (!question) {
           showError('Please enter a medical question.');
           return;
         }
-
         if (question.length > MAX_USER_CHARS) {
           showError(`Question too long. Please limit to ${MAX_USER_CHARS} characters.`);
           return;
         }
-
         if (!apiKey) {
           showError('Please sign in to ask questions.');
           return;
         }
 
-        // Clear question immediately when user presses Enter
         questionElement.value = '';
         document.getElementById('charCount').textContent = MAX_USER_CHARS;
         document.getElementById('charCount').style.color = '#6c757d';
 
         const output = document.getElementById('output');
         const error = document.getElementById('error');
-
-        // Clear previous errors and show the question being processed
         error.style.display = 'none';
         output.textContent = 'Generating response...';
 
         try {
-          // Prepare request - send the current question only
-          const formData = new FormData();
-          formData.append('chart_data', '');
-          formData.append('transcription', question);
-          formData.append('note_type', 'qa');
-          formData.append('temperature', temperature.toString());
-          formData.append('max_tokens', MAX_RESPONSE_TOKENS.toString());
-
-          const primaryUrl = buildEndpoint('/generate_stream');
-          // Try different server endpoints (primary + sensible fallbacks)
-          const serverUrls = [
-            primaryUrl,
-            '/api/generate_stream',            // Proxy default
-            'http://127.0.0.1:7860/api/generate_stream'
-          ];
-
-          let response = null;
-          let lastError = null;
-
-          for (const url of serverUrls) {
-            try {
-              response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                  'Authorization': `Bearer ${apiKey}`
-                },
-                body: formData
-              });
-
-              if (response.ok) {
-                break; // Success, exit loop
-              } else if (response.status !== 0) {
-                lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
-              }
-            } catch (err) {
-              lastError = err;
-              continue; // Try next URL
-            }
+          if (qaMode === 'v2') {
+            await submitQuestionV2(question, temperature, apiKey);
+          } else {
+            await submitQuestionLegacy(question, temperature, apiKey);
           }
-
-          if (!response || !response.ok) {
-            throw lastError || new Error('All server endpoints failed');
-          }
-
-          // Stream response
-          const reader = response.body.getReader();
-          const decoder = new TextDecoder();
-          let answer = '';
-          let hasReceivedContent = false;
-          let repetitionCount = 0;
-          let lastChunk = '';
-
-          // Capture generation id for downstream metadata polling
-          const genId = response.headers.get('X-Generation-Id');
-
-          let streamEnded = false;
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            let chunkRaw = decoder.decode(value, { stream: true });
-            if (!chunkRaw) continue;
-
-            if (chunkRaw.includes(STREAM_END_MARKER)) {
-              chunkRaw = chunkRaw.split(STREAM_END_MARKER).join('');
-              streamEnded = true;
-            }
-
-            if (!chunkRaw) {
-              if (streamEnded) break;
-              continue;
-            }
-
-            const paraPlaceholder = '__QA_PARAGRAPH_BREAK__';
-            let chunk = chunkRaw.replace(/\r?\n\r?\n/g, paraPlaceholder);
-            chunk = chunk.replace(/\r?\n/g, ' ');
-            chunk = chunk.replace(new RegExp(paraPlaceholder, 'g'), '\n\n');
-            const chunkTrimmed = chunk.trim();
-            if (chunkTrimmed) {
-              if (!hasReceivedContent) {
-                output.textContent = '';
-                hasReceivedContent = true;
-              }
-
-              if (
-                chunkTrimmed.includes('Final Answer:') ||
-                chunkTrimmed.includes('$\\boxed{') ||
-                chunkTrimmed.includes('\\boxed{')
-              ) {
-                console.log('Detected repetitive pattern, stopping...');
-                break;
-              }
-
-              if (chunkTrimmed === lastChunk.trim()) {
-                repetitionCount += 1;
-                if (repetitionCount > 2) {
-                  console.log('Detected repetition loop, stopping...');
-                  break;
-                }
-              } else {
-                repetitionCount = 0;
-              }
-              lastChunk = chunkTrimmed;
-            }
-
-            answer += chunk;
-            output.textContent = answer;
-            output.scrollTop = output.scrollHeight;
-
-            if (streamEnded) {
-              break;
-            }
-
-            if (repetitionCount > 2 || answer.includes('Final Answer:') || answer.includes('$\\boxed{')) {
-              break;
-            }
-          }
-
-          // Clean up any trailing repetitive content
-          if (answer.includes('Final Answer:')) {
-            const firstOccurrence = answer.indexOf('Final Answer:');
-            answer = answer.substring(0, firstOccurrence).trim();
-          }
-
-          output.textContent = answer.trim();
-
-          if (!answer.trim()) {
-            answer = 'Unable to generate response. Please try again.';
-            output.textContent = answer;
-          }
-
-          // Add to conversation history
-          conversationHistory.push({
-            question: question,
-            answer: answer.trim(),
-            timestamp: new Date().toLocaleString()
-          });
-
-          updateConversationHistory();
-
-          // Fetch references if we have a generation id
-          if (genId) {
-            fetchReferencesWithRetry(genId).catch(err => {
-              console.warn(`Reference polling failed: ${err.message || err}`);
-            });
-          }
-
         } catch (err) {
           console.error('Error:', err);
           showError(`Failed to get response: ${err.message}`);
+        }
+      }
+
+      async function submitQuestionV2(question, temperature, apiKey) {
+        const output = document.getElementById('output');
+        const refsSection = document.getElementById('refsSection');
+        const refsPanel = document.getElementById('refsPanel');
+
+        const payload = {
+          message: question,
+          session_id: 'default',
+          temperature: temperature
+        };
+
+        const response = await fetch(buildEndpoint('/qa/chat'), {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          const txt = await response.text();
+          throw new Error(`HTTP ${response.status}: ${txt.slice(0, 180)}`);
+        }
+
+        const data = await response.json();
+        const answer = (data.answer || '').trim() || 'Unable to generate response. Please try again.';
+        output.textContent = answer;
+
+        conversationHistory.push({
+          question: question,
+          answer: answer,
+          timestamp: new Date().toLocaleString()
+        });
+        updateConversationHistory();
+
+        const sources = Array.isArray(data.sources) ? data.sources : [];
+        if (sources.length) {
+          refsSection.style.display = 'block';
+          refsPanel.innerHTML = sources.map((s, idx) => {
+            const kind = (s.kind || 'source').toUpperCase();
+            const title = escapeHtml(s.title || 'Untitled');
+            const url = escapeHtml(s.url || '');
+            const year = s.year ? ` (${escapeHtml(String(s.year))})` : '';
+            const link = url ? `<a href="${url}" target="_blank" rel="noopener">${url}</a>` : '';
+            return `<div style="margin-bottom:8px;"><strong>[${idx+1}] ${kind}</strong>: ${title}${year}<br>${link}</div>`;
+          }).join('');
+        } else {
+          refsSection.style.display = 'none';
+          refsPanel.textContent = '';
+        }
+      }
+
+      async function submitQuestionLegacy(question, temperature, apiKey) {
+        const output = document.getElementById('output');
+        const formData = new FormData();
+        formData.append('chart_data', '');
+        formData.append('transcription', question);
+        formData.append('note_type', 'qa');
+        formData.append('temperature', temperature.toString());
+        formData.append('max_tokens', MAX_RESPONSE_TOKENS.toString());
+
+        const serverUrls = [
+          buildEndpoint('/generate_stream'),
+          '/api/generate_stream',
+          'http://127.0.0.1:7860/api/generate_stream'
+        ];
+
+        let response = null;
+        let lastError = null;
+        for (const url of serverUrls) {
+          try {
+            response = await fetch(url, {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${apiKey}` },
+              body: formData
+            });
+            if (response.ok) break;
+            if (response.status !== 0) lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
+          } catch (err) {
+            lastError = err;
+          }
+        }
+        if (!response || !response.ok) throw (lastError || new Error('All server endpoints failed'));
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let answer = '';
+        const genId = response.headers.get('X-Generation-Id');
+        let streamEnded = false;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          let chunkRaw = decoder.decode(value, { stream: true });
+          if (!chunkRaw) continue;
+          if (chunkRaw.includes(STREAM_END_MARKER)) {
+            chunkRaw = chunkRaw.split(STREAM_END_MARKER).join('');
+            streamEnded = true;
+          }
+          if (!chunkRaw) { if (streamEnded) break; continue; }
+          let chunk = chunkRaw.replace(/?
+?
+/g, '__QA_PARAGRAPH_BREAK__').replace(/?
+/g, ' ').replace(/__QA_PARAGRAPH_BREAK__/g, '
+
+');
+          answer += chunk;
+          output.textContent = answer;
+          output.scrollTop = output.scrollHeight;
+          if (streamEnded) break;
+        }
+
+        answer = answer.trim() || 'Unable to generate response. Please try again.';
+        output.textContent = answer;
+        conversationHistory.push({ question, answer, timestamp: new Date().toLocaleString() });
+        updateConversationHistory();
+        if (genId) {
+          fetchReferencesWithRetry(genId).catch(err => console.warn(`Reference polling failed: ${err.message || err}`));
         }
       }
 
