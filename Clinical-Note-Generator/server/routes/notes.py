@@ -1705,7 +1705,25 @@ def build_prompt_other(
     return prompt_body
 
 
-def build_prompt(
+def build_qa_prompt(
+    chart_data: str,
+    transcription: str,
+) -> str:
+    header = (
+        "You are an expert medical assistant with comprehensive knowledge of clinical medicine, diagnosis, and treatment.\n"
+        "Provide accurate, clinically useful guidance (assessment, risks, options with dosing/route/timing, monitoring, contraindications).\n"
+        "Write 2-4 tight paragraphs separated by blank lines; be concise but include key specifics.\n"
+        "Be direct and practical. Avoid fluff or repetition.\n\n"
+    )
+
+    question_section = f"Medical Question: {transcription}\n\n" if transcription.strip() else ""
+    context_section = f"Patient Context:\n{chart_data}\n\n" if chart_data.strip() else ""
+
+    full_prompt = header + context_section + question_section + "Detailed Medical Response:\n"
+    return full_prompt
+
+
+def build_note_prompt_legacy(
     chart_data: str,
     transcription: str,
     note_type: str,
@@ -1713,20 +1731,6 @@ def build_prompt(
     user_speciality: Optional[str] = None,
 ) -> str:
     cfg = load_config()
-
-    if note_type == "qa":
-        header = (
-            "You are an expert medical assistant with comprehensive knowledge of clinical medicine, diagnosis, and treatment.\n"
-            "Provide accurate, clinically useful guidance (assessment, risks, options with dosing/route/timing, monitoring, contraindications).\n"
-            "Write 2-4 tight paragraphs separated by blank lines; be concise but include key specifics.\n"
-            "Be direct and practical. Avoid fluff or repetition.\n\n"
-        )
-
-        question_section = f"Medical Question: {transcription}\n\n" if transcription.strip() else ""
-        context_section = f"Patient Context:\n{chart_data}\n\n" if chart_data.strip() else ""
-
-        full_prompt = header + context_section + question_section + "Detailed Medical Response:\n"
-        return full_prompt
 
     # Note generation: with system + user prompt composition
     today = date.today().strftime("%Y-%m-%d")
@@ -1773,6 +1777,7 @@ def build_prompt(
                 "Raw data follows:\n{RAW_DATA}\n"
             )
 
+
 # Reason fields: if you later add explicit reason in payload, wire it here.
     # For now, keep it unknown and let the model infer from RAW_DATA.
 # Prepare all template values
@@ -1817,6 +1822,20 @@ def build_prompt(
     prompt_body += "ASSISTANT:\n"
 
     return prompt_body
+
+
+def build_prompt(
+    chart_data: str,
+    transcription: str,
+    note_type: str,
+    custom_prompt: Optional[str] = None,
+    user_speciality: Optional[str] = None,
+) -> str:
+    """Backward-compatible wrapper. Prefer build_qa_prompt/build_note_prompt_legacy explicitly."""
+    if note_type == "qa":
+        return build_qa_prompt(chart_data, transcription)
+    return build_note_prompt_legacy(chart_data, transcription, note_type, custom_prompt, user_speciality)
+
 
 # ---------------------------------------------------------------------------
 # Route: /generate_stream
@@ -1884,7 +1903,10 @@ async def generate_stream(request: Request):
         if note_type == "qa":
             chart = _sanitize_chart_text(chart)
             trans = _sanitize_transcription_text(trans)
-        prompt = build_prompt(chart, trans, note_type, custom_prompt, user_speciality)
+        if note_type == "qa":
+            prompt = build_qa_prompt(chart, trans)
+        else:
+            prompt = build_note_prompt_legacy(chart, trans, note_type, custom_prompt, user_speciality)
         if note_type != "qa":
             print(f"[NOTE_PROMPT_DEBUG] prompt start: {prompt[:160]!r}")
             print(f"[NOTE_PROMPT_DEBUG] chart_len={len(chart)}, trans_len={len(trans)}")
