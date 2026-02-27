@@ -14,6 +14,10 @@
     workspacePromise: null,
     saveTimer: null,
     initialized: false,
+    syncTimer: null,
+    syncIntervalMs: 7000,
+    lastLocalEditAt: 0,
+    suppressAutoSaveUntil: 0,
     idleTimer: null,
     idleWarningTimer: null,
     idleTimeoutMs: 60 * 60 * 1000,
@@ -205,6 +209,8 @@
         if (document.hidden && this.isWorkspaceReady()) {
           clearTimeout(this.saveTimer);
           this.saveWorkspace();
+        } else if (!document.hidden && this.isWorkspaceReady()) {
+          this.pullWorkspaceIfNewer(true).catch(() => {});
         }
       });
     },
@@ -334,6 +340,7 @@
 
     clearSession() {
       this.setAccessToken(null);
+      this.stopWorkspaceSyncLoop();
       this.tokenExpiryMs = null;
       this.clearTokenRefreshTimer();
       this.refreshPromise = null;
@@ -494,6 +501,7 @@
         this.workspaceVersion = data.version;
         this.applyWorkspaceState(data.state || {});
         this.updateWorkspaceMeta();
+        this.startWorkspaceSyncLoop();
         return true;
       })();
       try {
@@ -503,7 +511,42 @@
       }
     },
 
+    startWorkspaceSyncLoop() {
+      if (this.syncTimer) return;
+      this.syncTimer = setInterval(() => {
+        this.pullWorkspaceIfNewer().catch((err) => {
+          console.warn('[WorkspaceSync] pull failed:', err?.message || err);
+        });
+      }, this.syncIntervalMs);
+    },
+
+    stopWorkspaceSyncLoop() {
+      if (this.syncTimer) {
+        clearInterval(this.syncTimer);
+        this.syncTimer = null;
+      }
+    },
+
+    async pullWorkspaceIfNewer(force = false) {
+      if (!this.isWorkspaceReady()) return;
+      const resp = await this.request('/api/workspace/');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      const serverVersion = Number(data.version || 0);
+      const localVersion = Number(this.workspaceVersion || 0);
+      if (!serverVersion || serverVersion <= localVersion) return;
+
+      // Avoid stomping active typing; pull once user is idle unless forced.
+      const recentlyEdited = Date.now() - Number(this.lastLocalEditAt || 0) < 3000;
+      if (!force && recentlyEdited) return;
+
+      this.workspaceVersion = serverVersion;
+      this.applyWorkspaceState(data.state || {});
+      this.updateWorkspaceMeta();
+    },
+
     applyWorkspaceState(state) {
+      this.suppressAutoSaveUntil = Date.now() + 1500;
       const noteEl = document.getElementById('generatedNote');
       const extras = state.extras || {};
       if (noteEl) {
@@ -657,6 +700,8 @@
       // GUARD: Only save workspace on main page
       if (window.WORKSPACE_PAGE_TYPE !== 'main') return;
       if (!this.isWorkspaceReady()) return;
+      if (Date.now() < (this.suppressAutoSaveUntil || 0)) return;
+      this.lastLocalEditAt = Date.now();
       clearTimeout(this.saveTimer);
       this.saveTimer = setTimeout(() => this.saveWorkspace(), 1000);
       this.resetIdleTimer();

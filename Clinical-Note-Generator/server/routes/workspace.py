@@ -1,5 +1,6 @@
 # C:\Clinical-Note-Generator\server\routes\workspace.py
 from datetime import datetime
+import copy
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session, select
@@ -81,6 +82,12 @@ def update_workspace(
     cleared_flag = bool(incoming_extras.get("transcriptionCleared"))
     if cleared_flag:
         incoming_extras.pop("transcriptionCleared", None)
+
+    # Respect explicit clear markers across devices.
+    incoming_cleared_at = str(incoming_extras.get("clearedAt") or "").strip()
+    existing_cleared_at = str(existing_extras.get("clearedAt") or "").strip()
+    if existing_cleared_at and incoming_cleared_at and existing_cleared_at > incoming_cleared_at:
+        incoming_extras["clearedAt"] = existing_cleared_at
     incoming_state["extras"] = incoming_extras
 
     # Prevent stale client state from wiping ASR results unless explicitly cleared.
@@ -114,11 +121,26 @@ def clear_workspace(
     workspace = session.exec(
         select(UserWorkspace).where(UserWorkspace.user_id == current_user.id)
     ).one_or_none()
-    baseline = get_baseline_workspace()
+    baseline = copy.deepcopy(get_baseline_workspace())
     if not workspace:
         workspace = UserWorkspace(user_id=current_user.id, state_json=baseline)
+
+    extras = baseline.get("extras") or {}
+    extras.update(
+        {
+            "transcription": "",
+            "currentEncounter": "",
+            "oldVisits": "",
+            "mixedOther": "",
+            "generatedNote": "",
+            "clearedAt": datetime.utcnow().isoformat() + "Z",
+        }
+    )
+    baseline["extras"] = extras
+
     workspace.state_json = baseline
-    workspace.version = 1
+    # Keep monotonic versioning across clears (critical for cross-device sync)
+    workspace.version = int(workspace.version or 0) + 1
     workspace.updated_at = datetime.utcnow()
     session.add(workspace)
     session.commit()
