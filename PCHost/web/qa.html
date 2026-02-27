@@ -65,6 +65,7 @@
       let t=esc(s||'');
       t=t.replace(/^###\s+(.+)$/gm,'<h4>$1</h4>').replace(/^##\s+(.+)$/gm,'<h3>$1</h3>').replace(/^#\s+(.+)$/gm,'<h2>$1</h2>');
       t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+      t=t.replace(/^\s*---\s*$/gm,'<hr>');
       t=t.replace(/^\s*[-•]\s+(.+)$/gm,'<li>$1</li>');
       t=t.replace(/(<li>.*<\/li>\n?)+/gs,m=>`<ul>${m}</ul>`);
       return t.replace(/\n\n+/g,'<br><br>').replace(/\n/g,'<br>');
