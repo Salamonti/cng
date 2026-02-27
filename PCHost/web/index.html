@@ -275,9 +275,14 @@
             }
             body.auth-ready.mobile-bar-collapsed #connectionStatus,
             body.auth-ready.mobile-bar-collapsed #syncPill,
-            body.auth-ready.mobile-bar-collapsed #openSettingsBtn {
+            body.auth-ready.mobile-bar-collapsed #openSettingsBtn,
+            body.auth-ready.mobile-bar-collapsed #userSpeciality {
                 display: none;
             }
+
+            /* Mobile: make Q&A panel full width */
+            .qa-side-panel{right:-100vw;width:100vw;max-width:100vw;}
+            .qa-side-panel.open{right:0;}
         }
 
         /* Settings drawer */
@@ -1507,7 +1512,6 @@
 
         <!-- GROUP 2 (MIDDLE): Note Type + Actions -->
         <div class="bar-group bar-group-middle requires-auth">
-            <span class="small-text">Note Type</span>
             <select id="noteType" class="bar-select bar-action">
                 <option value="consult">Consultation Note</option>
                 <option value="followup">Follow-up Note</option>
@@ -1685,7 +1689,6 @@
                     <div class="card-subtitle">Review and edit your note</div>
                 </div>
                 <div class="note-header-actions">
-                    <span class="small-text">Note Type</span>
                     <select id="noteTypeMirror" class="form-control note-type-inline">
                         <option value="consult">Consultation Note</option>
                         <option value="followup">Follow-up Note</option>
