@@ -565,34 +565,48 @@ def _normalize_request_items(items: Any) -> List[Dict[str, str]]:
 
 
 def _format_imaging_request(text: str) -> str:
-    """Enforce 3-4 line imaging request with simple wrapping."""
+    """Normalize imaging request into a radiology-friendly concise block."""
     if not text:
         return ""
     cleaned = clean_model_output_final(text).strip()
-    # Normalize whitespace and remove excessive blank lines
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
     lines = [ln.strip() for ln in cleaned.splitlines() if ln.strip()]
     if not lines:
         return ""
-    # If already multi-line, cap to 4 lines
-    if len(lines) >= 4:
-        return "\n".join(lines[:4])
-    # Wrap single/short lines to max 90 chars into up to 4 lines
+
+    # Keep useful headered format when present.
+    wanted = [
+        "Study Requested:",
+        "Clinical Indication:",
+        "Pertinent Findings / History:",
+        "Clinical Question to Answer:",
+        "Prior Relevant Imaging:",
+        "Urgency:",
+    ]
+    header_hits = [ln for ln in lines if any(ln.lower().startswith(h.lower()) for h in wanted)]
+    if header_hits:
+        out: List[str] = []
+        for h in wanted:
+            for ln in lines:
+                if ln.lower().startswith(h.lower()):
+                    out.append(ln)
+                    break
+        if out:
+            return "\n".join(out[:6])
+
+    # Fallback: wrap to readable lines
     wrapped: List[str] = []
     buffer = " ".join(lines)
-    while buffer and len(wrapped) < 4:
-        if len(buffer) <= 90:
+    while buffer and len(wrapped) < 6:
+        if len(buffer) <= 100:
             wrapped.append(buffer)
-            buffer = ""
             break
-        cut = buffer.rfind(" ", 0, 90)
-        if cut <= 20:
-            cut = 90
+        cut = buffer.rfind(" ", 0, 100)
+        if cut <= 25:
+            cut = 100
         wrapped.append(buffer[:cut].strip())
         buffer = buffer[cut:].strip()
-    if buffer and len(wrapped) < 4:
-        wrapped.append(buffer)
-    return "\n".join(wrapped[:4])
+    return "\n".join(wrapped[:6])
 
 
 def _merge_medication_items(items: List[Dict[str, str]]) -> List[Dict[str, str]]:
@@ -607,9 +621,20 @@ def _merge_medication_items(items: List[Dict[str, str]]) -> List[Dict[str, str]]
     if not meds:
         return items
 
-    # Build unique medication lines
+    # Build unique medication lines (dedupe by line + approximate drug stem)
     lines: List[str] = []
     seen: set[str] = set()
+    seen_drug: set[str] = set()
+
+    def _drug_stem(line: str) -> str:
+        l = re.sub(r"\s+", " ", (line or "").strip().lower())
+        l = re.sub(r"^[\-•*\d.\)\(\s]+", "", l)
+        # cut at first dose/route/frequency marker
+        m = re.search(r"\b\d+(?:\.\d+)?\b|\b(po|iv|im|sc|sq|subq|bid|tid|qid|qhs|daily|weekly|prn)\b", l)
+        head = l[: m.start()].strip() if m else l
+        head = re.sub(r"[^a-z0-9\- ]", "", head)
+        return head[:40].strip()
+
     for item in meds:
         req = (item.get("request") or "").strip()
         for line in req.splitlines():
@@ -617,9 +642,14 @@ def _merge_medication_items(items: List[Dict[str, str]]) -> List[Dict[str, str]]
             if not line:
                 continue
             norm = re.sub(r"\s+", " ", line).strip().lower()
+            stem = _drug_stem(line)
             if norm in seen:
                 continue
+            if stem and stem in seen_drug and len(norm) < 90:
+                continue
             seen.add(norm)
+            if stem:
+                seen_drug.add(stem)
             lines.append(line)
 
     if not lines:
@@ -1232,13 +1262,23 @@ def _normalize_note_type(note_type: Optional[str]) -> str:
     }
     return mapping.get(nt, nt or "consult")
 
+def _llm_with_primary_url(url: Optional[str]) -> SimpleNoteGenerator:
+    llm = get_simple_note_generator()
+    if url and str(url).strip():
+        llm = SimpleNoteGenerator()
+        llm.primary_url = str(url).strip().rstrip("/")
+        llm.fallback_url = None
+    return llm
+
+
 def _get_rag_comment_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
-    return get_simple_note_generator()
+    # Default consult-comment model endpoint (typically 8036).
+    return _llm_with_primary_url(cfg.get("rag_comment_llm_url"))
 
 
 def _get_order_request_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
-    """Use the same LLM client as main note generation."""
-    return get_simple_note_generator()
+    """Use dedicated endpoint for orders when configured (typically 8081)."""
+    return _llm_with_primary_url(cfg.get("order_request_llm_url"))
 
 
 async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> None:
@@ -1411,11 +1451,16 @@ async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> No
                     )
                 elif category.lower() == "imaging":
                     gen_prompt = (
-                        "Write a concise imaging requisition request. No directive phrasing (do not say 'Order').\n"
-                        "Use 3 to 4 short lines max.\n"
-                        "Include patient age/sex if available, key symptoms, relevant background, and the specific question.\n"
-                        "You may refine the modality name to the most appropriate study (e.g., HRCT chest).\n"
-                        "Output plain text only.\n\n"
+                        "Write a radiology-ready requisition that is clinically informative and specific.\n"
+                        "Output plain text only with these headers exactly:\n"
+                        "Study Requested:\n"
+                        "Clinical Indication:\n"
+                        "Pertinent Findings / History:\n"
+                        "Clinical Question to Answer:\n"
+                        "Prior Relevant Imaging:\n"
+                        "Urgency:\n"
+                        "Do not use directive phrasing (no 'Order a').\n"
+                        "Use only details supported by the note/context.\n\n"
                         f"ITEM: {title}\n"
                         "FULL NOTE:\n"
                         f"{context_block}\n\n"
@@ -2128,6 +2173,23 @@ async def generate_stream(request: Request):
 # ---------------------------------------------------------------------------
 
 
+def _maybe_autostart_order_requests(gen_id: str, note_text: str, cfg: Dict[str, Any]) -> None:
+    """Start order/referral extraction in background right after note generation."""
+    try:
+        if not bool(cfg.get("order_request_autostart", True)):
+            return
+        if not (note_text or "").strip():
+            return
+        st = _order_request_store.get(gen_id) or {}
+        status = str(st.get("status") or "").lower()
+        if status in {"pending", "done"}:
+            return
+        _order_request_store[gen_id] = {"status": "pending", "autostart": True, "items": []}
+        asyncio.create_task(_generate_order_requests(gen_id, note_text, cfg))
+    except Exception:
+        pass
+
+
 def _maybe_autostart_consult_comment(gen_id: str, note_text: str, cfg: Dict[str, Any], note_type: str) -> None:
     """Start consult comment generation in background right after note generation."""
     try:
@@ -2461,6 +2523,7 @@ async def generate_v8_stream(request: Request):
                             _generation_cache[generation_id]["output"] = combined_output
 
                     _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type)
+                    _maybe_autostart_order_requests(generation_id, combined_output, cfg)
                 except Exception as e:
                     print(f"Feedback CSV write failed: {e}")
 
@@ -2575,6 +2638,7 @@ async def generate_v8(request: Request):
                 _generation_cache[generation_id]["output"] = cleaned
 
         _maybe_autostart_consult_comment(generation_id, cleaned, cfg, note_type)
+        _maybe_autostart_order_requests(generation_id, cleaned, cfg)
 
         return JSONResponse(content={
             "generation_id": generation_id,

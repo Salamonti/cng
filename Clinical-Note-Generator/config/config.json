@@ -56,6 +56,7 @@
   "__section_rag__": "RAG",
   "rag_service_url": "http://127.0.0.1:8007",
   "rag_comment_llm_url": "http://127.0.0.1:8036",
+  "order_request_llm_url": "http://127.0.0.1:8081",
   "rag_timeout_ms": 25000,
   "rag_top_k": 16,
   "rag_min_score": 0.05,

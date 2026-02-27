@@ -1084,12 +1084,16 @@
             border-radius: 999px;
             white-space: nowrap;
         }
+        .order-requests-modal-content {
+            max-width: 920px;
+        }
         .request-text {
             width: 100%;
-            min-height: 70px;
+            min-height: 110px;
             resize: vertical;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            line-height: 1.4;
             border: 1px solid #dee2e6;
             border-radius: 8px;
             padding: 10px;
@@ -1683,7 +1687,7 @@
 
         <!-- Order / Referral Requests Modal -->
         <div id="orderRequestsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="orderRequestsTitle">
-            <div class="modal-content">
+            <div class="modal-content order-requests-modal-content">
                 <div class="modal-header">
                     <div>
                         <div class="modal-title" id="orderRequestsTitle">Order & Referral Requests</div>
@@ -4082,7 +4086,7 @@
                 const textarea = document.createElement('textarea');
                 textarea.className = 'request-text';
                 textarea.value = item.request || '';
-                textarea.rows = 3;
+                textarea.rows = 5;
 
                 const actions = document.createElement('div');
                 actions.className = 'request-actions';
