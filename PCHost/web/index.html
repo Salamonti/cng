@@ -242,17 +242,24 @@
 
         .bar-group-left {
             justify-content: flex-start;
-            flex-direction: column; /* stack Connected + Sync */
-            align-items: flex-start;
-            gap: 6px;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            grid-auto-rows: min-content;
+            column-gap: 8px;
+            row-gap: 6px;
+            align-items: center;
         }
+        /* Make specialty input sit on its own row (clean 2-row layout) */
+        .bar-group-left #userSpeciality{grid-column: 1 / -1; width: 100%;}
 
         .bar-group-right {
             justify-content: flex-end;
         }
-        /* v5: right group duplicated by sidebar/actions; hide on desktop to free space for command cluster */
+        /* Desktop: show a small right group for quick actions (Q&A + Clear Queue) */
         @media (min-width: 851px) {
-            .floating-bar .bar-group-right { display: none; }
+            .floating-bar .bar-group-right { display: flex; gap: 8px; align-items: center; }
+            .floating-bar .bar-group-right .btn-ic{width:36px;height:36px;min-width:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #e2e8f0;background:#fff;cursor:pointer;}
+            .floating-bar .bar-group-right .btn-ic:hover{background:#f1f5f9;}
         }
 
         .bar-group-middle {
@@ -1637,10 +1644,7 @@
             <span class="icon">&#128465;</span>
             <span class="label">New Case</span>
         </button>
-        <button class="sidebar-btn" onclick="openQAPanel()" title="Q&A">
-            <span class="icon">&#128172;</span>
-            <span class="label">Q&A</span>
-        </button>
+
     </div>
 
     <!-- Header -->
@@ -1683,11 +1687,10 @@
             </button>
         </div>
 
-        <!-- GROUP 3 (RIGHT): New Case, Clear Queue, Q&A -->
-        <div class="bar-group bar-group-right">
-            <button class="btn-danger" onclick="clearAll()">&#128465; New Case</button>
-            <button class="btn-danger" onclick="clearQueue()">&#128683; Clear Queue</button>
-            <a href="#" onclick="openQAPanel(); return false;">&#128172; Q&A</a>
+        <!-- GROUP 3 (RIGHT): Quick actions (Desktop) -->
+        <div class="bar-group bar-group-right requires-auth">
+            <button class="btn-ic" onclick="clearQueue()" title="Clear Queue">&#128683;</button>
+            <button class="btn-ic" onclick="openQAPanel()" title="Q&A">&#128172;</button>
         </div>
     </div>
 
