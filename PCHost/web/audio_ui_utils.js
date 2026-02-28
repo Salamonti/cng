@@ -4,12 +4,27 @@
     ids.forEach((id) => {
       const btn = document.getElementById(id);
       if (!btn) return;
+
+      // Toggle visual state
       if (isRecording) {
         btn.classList.add('recording-active');
         btn.classList.remove('recording-ready');
       } else {
         btn.classList.remove('recording-active');
         btn.classList.add('recording-ready');
+      }
+
+      // Update label text: "Record" when idle, "Stop" when recording.
+      // Prefer a dedicated span.rec-label; otherwise attempt a safe fallback.
+      const labelEl = btn.querySelector && btn.querySelector('.rec-label');
+      if (labelEl) {
+        labelEl.textContent = isRecording ? 'Stop' : 'Record';
+      } else {
+        // Fallback: only touch text for known patterns to avoid clobbering icon-only buttons.
+        const t = (btn.textContent || '').trim();
+        if (t.includes('Record') || t.includes('Stop') || t.includes('Record / Stop') || t.includes('Record/Stop')) {
+          btn.textContent = isRecording ? 'Stop' : 'Record';
+        }
       }
     });
   }

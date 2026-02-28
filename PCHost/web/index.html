@@ -341,6 +341,35 @@
             min-width: 180px;
             min-height: 44px;
             height: 44px;
+            border-radius: 999px; /* v5 command cluster feel */
+        }
+        /* v5: command cluster buttons */
+        .floating-bar .bar-group-middle .btn.btn-success{
+            border-radius: 999px;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            border: none;
+            font-weight: 700;
+        }
+        .floating-bar .bar-group-middle .btn.btn-success:hover{
+            background: linear-gradient(135deg, #15803d, #16a34a);
+        }
+        .floating-bar .bar-group-middle #noteType{
+            border-radius: 999px;
+            border: 1.5px solid #22c55e;
+            background: #f2fff6;
+            font-weight: 700;
+            color: #14532d;
+        }
+        .floating-bar .bar-group-middle #recordBtnInline{
+            border-radius: 999px;
+            background: #dc3545;
+            color: #fff;
+            border: 1.5px solid #dc3545;
+            font-weight: 800;
+        }
+        .floating-bar .bar-group-middle #recordBtnInline.recording-active{
+            background: #28a745;
+            border-color: #28a745;
         }
 
         .record-toggle {
@@ -1401,6 +1430,33 @@
         .qa-side-panel iframe{width:100%;height:100%;border:0}
         .qa-side-panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:11999;display:none}
         .qa-side-panel-backdrop.open{display:block}
+
+        /* ===== Mobile v5: bottom nav + tools sheet (Chart | Tools | Note | Q&A | New Case) ===== */
+        .mobile-bottom-nav{display:none;}
+        .tools-sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:14000;display:none;}
+        .tools-sheet-backdrop.open{display:block;}
+        .tools-sheet{position:fixed;left:0;right:0;bottom:-520px;background:#fff;z-index:14001;border-radius:18px 18px 0 0;box-shadow:0 -20px 40px rgba(0,0,0,.22);padding:12px 12px 18px;transition:bottom .22s ease;}
+        .tools-sheet.open{bottom:0;}
+        .tools-sheet header{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 10px;}
+        .tools-sheet header .title{font-size:.9rem;font-weight:700;color:#334155;}
+        .tools-sheet header button{border:none;background:transparent;font-size:1.4rem;cursor:pointer;color:#64748b;}
+        .tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 6px;}
+        .tools-item{border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;padding:12px;cursor:pointer;display:flex;gap:10px;align-items:flex-start;}
+        .tools-item .ic{font-size:1.25rem;}
+        .tools-item .tx{display:flex;flex-direction:column;gap:2px;}
+        .tools-item .nm{font-weight:700;font-size:.85rem;color:#0f172a;}
+        .tools-item .ds{font-weight:500;font-size:.72rem;color:#64748b;line-height:1.35;}
+
+        @media (max-width: 850px) {
+            body{padding-left:0;}
+            .left-sidebar{display:none;}
+            .container{padding-bottom:88px;}
+            .mobile-bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e2e8f0;z-index:15000;justify-content:space-around;padding:6px 0 18px;}
+            .mobile-bottom-nav .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:62px;cursor:pointer;color:#94a3b8;font-size:.62rem;font-weight:700;user-select:none;}
+            .mobile-bottom-nav .nav-item .ic{font-size:1.2rem;}
+            .mobile-bottom-nav .nav-item.active{color:#667eea;}
+            .mobile-bottom-nav .nav-item.danger{color:#dc3545;border-left:1px solid #e2e8f0;padding-left:12px;}
+        }
 </style>
 
     <script src="universal_audio_handler.js">
@@ -1462,7 +1518,7 @@
     <div class="left-sidebar" id="leftSidebar" onmouseenter="expandSidebar()" onmouseleave="collapseSidebar()">
         <button class="sidebar-btn recording-ready" id="recordBtnSidebar" onclick="toggleSpeechRecognition()" title="Audio Recording">
             <span class="icon">&#127908;</span>
-            <span class="label">Record Audio</span>
+            <span class="label"><span class="rec-label">Record</span></span>
         </button>
         <button class="sidebar-btn" onclick="useFileCamera()" title="Camera">
             <span class="icon">&#128247;</span>
@@ -1526,7 +1582,7 @@
             </select>
             <button class="btn btn-success bar-action" onclick="triggerGenerateNoteAndFocus()">&#9998; Generate Note</button>
             <button class="btn record-toggle recording-ready bar-action" id="recordBtnInline" onclick="toggleSpeechRecognition()" title="Record/Stop">
-                &#127908; Record / Stop
+                &#127908; <span class="rec-label">Record</span>
             </button>
         </div>
 
@@ -1599,7 +1655,7 @@
                     <div class="card-title">Chart Data & Patient Info</div>
                     <div class="card-subtitle">Enter or review patient information</div>
                 </div>
-                <button class="record-round-btn recording-ready" id="recordBtnInlineRound" onclick="toggleSpeechRecognition()" title="Record/Stop">
+                <button class="record-round-btn recording-ready" id="recordBtnInlineRound" onclick="toggleSpeechRecognition()" title="Record/Stop" aria-label="Record">
                     &#127908;
                 </button>
             </div>
@@ -1826,6 +1882,30 @@
             Whisper / WhisperX (OpenAI), LLaMA / llama.cpp (Meta/Apache 2.0), Qwen (Alibaba),
             GPT-OSS, OLMOCR, Nanonets OCR, ChromaDB (Apache 2.0), FastAPI (MIT), and other medical LLMs.
             We acknowledge and thank the open-source community and contributors.
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Nav (v5) -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile navigation">
+        <div class="nav-item active" data-target="chart" onclick="mobileNavGo('chart', this)"><div class="ic">📋</div>Chart</div>
+        <div class="nav-item" data-target="tools" onclick="openToolsSheet(); mobileNavSetActive(this)"><div class="ic">🧰</div>Tools</div>
+        <div class="nav-item" data-target="note" onclick="mobileNavGo('note', this)"><div class="ic">📝</div>Note</div>
+        <div class="nav-item" data-target="qa" onclick="openQAPanel(); mobileNavSetActive(this)"><div class="ic">💬</div>Q&amp;A</div>
+        <div class="nav-item danger" data-target="newcase" onclick="clearAll()"><div class="ic">🗑</div>New Case</div>
+    </nav>
+
+    <!-- Tools Bottom Sheet (mobile) -->
+    <div class="tools-sheet-backdrop" id="toolsSheetBackdrop" onclick="closeToolsSheet()"></div>
+    <div class="tools-sheet" id="toolsSheet" role="dialog" aria-modal="true" aria-label="Tools">
+        <header>
+            <div class="title">Tools</div>
+            <button type="button" onclick="closeToolsSheet()" aria-label="Close">&times;</button>
+        </header>
+        <div class="tools-grid">
+            <div class="tools-item" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">📷</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
+            <div class="tools-item" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">📁</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
+            <div class="tools-item" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">⚙️</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
+            <div class="tools-item" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">🛠</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
         </div>
     </div>
 
@@ -5610,6 +5690,43 @@ function closeQAPanel(){
           applyMobileBarPolicy(signedInNow);
         }, 600);
       });
+    </script>
+
+    <script>
+      // ===== Mobile v5 helpers: bottom nav + tools sheet =====
+      function openToolsSheet() {
+        const back = document.getElementById('toolsSheetBackdrop');
+        const sheet = document.getElementById('toolsSheet');
+        if (back) back.classList.add('open');
+        if (sheet) sheet.classList.add('open');
+      }
+      function closeToolsSheet() {
+        const back = document.getElementById('toolsSheetBackdrop');
+        const sheet = document.getElementById('toolsSheet');
+        if (back) back.classList.remove('open');
+        if (sheet) sheet.classList.remove('open');
+      }
+      function mobileNavSetActive(el) {
+        if (!el || el.classList.contains('danger')) return;
+        document.querySelectorAll('#mobileBottomNav .nav-item:not(.danger)').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+      }
+      function mobileNavGo(which, el) {
+        try {
+          if (el) mobileNavSetActive(el);
+          closeToolsSheet();
+          if (which === 'chart') {
+            const t = document.getElementById('chartCard') || document.getElementById('authCard');
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+          if (which === 'note') {
+            const t = document.getElementById('noteCard');
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+        } catch {}
+      }
     </script>
 </body>
 </html>
