@@ -544,6 +544,8 @@
             /* prevent content from forcing unequal columns */
             #chartCard, #noteCard { min-width: 0; }
             #chartCard textarea, #noteCard textarea { min-width: 0; }
+            /* Keep evidence/consult comment in the note (right) column */
+            #ragHint, #consultCommentCard { grid-column: 2; }
             /* Auth card spans full width */
             #authCardSlot, #authCard, .auth-card {
                 grid-column: 1 / -1;
