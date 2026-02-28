@@ -544,20 +544,15 @@
             /* prevent content from forcing unequal columns */
             #chartCard, #noteCard { min-width: 0; }
             #chartCard textarea, #noteCard textarea { min-width: 0; }
-            /* Keep evidence/consult comment in the note (right) column */
-            #ragHint, #consultCommentCard { grid-column: 2; }
             /* Auth card spans full width */
-            #authCardSlot, #authCard, .auth-card {
-                grid-column: 1 / -1;
-            }
-            /* Chart input = left column */
-            #chartCard { grid-column: 1; }
-            /* Note output = right column */
-            #noteCard { grid-column: 2; }
-            /* Everything else (consult comment, orders modal, uncertain items, queue, etc.) spans right column */
-            #ragHint, #consultCommentCard, #orderRequestsModal, #uncertainItemsCard, #queueCard {
-                grid-column: 2;
-            }
+            #authCardSlot, #authCard, .auth-card { grid-column: 1 / -1; }
+
+            /* Two independent columns to avoid big vertical gaps when the left card is taller */
+            .desktop-col{min-width:0;}
+            .desktop-col-left{grid-column:1; display:flex; flex-direction:column; gap:16px;}
+            .desktop-col-right{grid-column:2; display:flex; flex-direction:column; gap:16px;}
+
+            /* We now stack cards inside the columns, so remove per-card grid positioning */
         }
 
         @media (max-width: 850px) {
@@ -1760,6 +1755,7 @@
         <div class="auth-actions hidden" id="authActions"></div>
       </div>
 
+      <div class="desktop-col desktop-col-left">
         <!-- Chart Data Card -->
         <div class="card requires-auth chart-dropzone" id="chartCard"
             ondrop="event.preventDefault(); handleDrop(event);"
@@ -1852,6 +1848,9 @@
             </div>
         </div>
 
+      </div>
+
+      <div class="desktop-col desktop-col-right">
         <!-- Generated Note Card -->
         <div class="card requires-auth" id="noteCard">
             <div class="card-header">
@@ -1924,6 +1923,7 @@
             </div>
             <button class="btn btn-outline btn-full hidden" id="retryConsultComment" onclick="retryConsultComment()">&#128257; Retry Evidence Comment</button>
         </div>
+      </div>
 
         <!-- Order / Referral Requests Modal -->
         <div id="orderRequestsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="orderRequestsTitle">
