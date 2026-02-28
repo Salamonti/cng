@@ -313,6 +313,9 @@
             /* Mobile: make Q&A panel full width */
             #qaSidePanel.qa-side-panel{right:-100vw !important; width:100vw !important; max-width:100vw !important;}
             #qaSidePanel.qa-side-panel.open{right:0 !important;}
+            /* v5: give QA panel room above mobile bottom nav */
+            #qaSidePanel.qa-side-panel { height: calc(100vh - 64px) !important; top: 0; }
+            #qaSidePanel.qa-side-panel iframe { height: 100% !important; }
         }
 
         /* Settings drawer */
