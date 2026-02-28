@@ -588,6 +588,9 @@
             gap: 8px;
             flex-wrap: wrap;
         }
+        /* Never show Sign Out unless authenticated (prevents stale/cached UI confusion) */
+        #logoutBtn{display:none;}
+        body.auth-ready #logoutBtn{display:inline-flex;}
         .auth-status-stack {
             display: flex;
             flex-direction: column;
