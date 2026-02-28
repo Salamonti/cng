@@ -1,10 +1,30 @@
 (function () {
+  function ensureRecLabel(btn) {
+    if (!btn || !btn.querySelector) return null;
+    let labelEl = btn.querySelector('.rec-label');
+    if (labelEl) return labelEl;
+
+    // If the button has any visible text (beyond icon entities), create a label span
+    // so iOS/Safari text updates are reliable.
+    labelEl = document.createElement('span');
+    labelEl.className = 'rec-label';
+    labelEl.style.marginLeft = '6px';
+    btn.appendChild(labelEl);
+    return labelEl;
+  }
+
   function setRecordingButtonsState(isRecording) {
     const ids = ['recordBtnSidebar', 'recordBtnInline', 'recordBtnInlineRound'];
-    ids.forEach((id) => {
-      const btn = document.getElementById(id);
-      if (!btn) return;
 
+    // Update explicit IDs + any other record buttons that may exist in mobile/desktop variants
+    const btns = new Set();
+    ids.forEach((id) => {
+      const b = document.getElementById(id);
+      if (b) btns.add(b);
+    });
+    document.querySelectorAll('button.record-toggle, button.record-round-btn, button[onclick*="toggleSpeechRecognition"]').forEach((b) => btns.add(b));
+
+    btns.forEach((btn) => {
       // Toggle visual state
       if (isRecording) {
         btn.classList.add('recording-active');
@@ -15,16 +35,10 @@
       }
 
       // Update label text: "Record" when idle, "Stop" when recording.
-      // Prefer a dedicated span.rec-label; otherwise attempt a safe fallback.
-      const labelEl = btn.querySelector && btn.querySelector('.rec-label');
+      // Prefer a dedicated span.rec-label; otherwise create one.
+      const labelEl = ensureRecLabel(btn);
       if (labelEl) {
         labelEl.textContent = isRecording ? 'Stop' : 'Record';
-      } else {
-        // Fallback: only touch text for known patterns to avoid clobbering icon-only buttons.
-        const t = (btn.textContent || '').trim();
-        if (t.includes('Record') || t.includes('Stop') || t.includes('Record / Stop') || t.includes('Record/Stop')) {
-          btn.textContent = isRecording ? 'Stop' : 'Record';
-        }
       }
     });
   }
