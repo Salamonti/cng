@@ -1,11 +1,22 @@
 (function () {
+  function isIconOnlyRecordButton(btn) {
+    return !!(btn && (btn.id === 'recordBtnInlineRound' || btn.classList?.contains('record-round-btn')));
+  }
+
   function ensureRecLabel(btn) {
     if (!btn || !btn.querySelector) return null;
+
+    // Round chart-header record button should remain icon-only.
+    if (isIconOnlyRecordButton(btn)) {
+      const existing = btn.querySelector('.rec-label');
+      if (existing) existing.remove();
+      return null;
+    }
+
     let labelEl = btn.querySelector('.rec-label');
     if (labelEl) return labelEl;
 
-    // If the button has any visible text (beyond icon entities), create a label span
-    // so iOS/Safari text updates are reliable.
+    // Create a label span so iOS/Safari text updates are reliable.
     labelEl = document.createElement('span');
     labelEl.className = 'rec-label';
     labelEl.style.marginLeft = '6px';
@@ -34,12 +45,16 @@
         btn.classList.add('recording-ready');
       }
 
-      // Update label text: "Record" when idle, "Stop" when recording.
-      // Prefer a dedicated span.rec-label; otherwise create one.
-      const labelEl = ensureRecLabel(btn);
-      if (labelEl) {
-        labelEl.textContent = isRecording ? 'Stop' : 'Record';
+      // Icon-only round button: never show text
+      if (isIconOnlyRecordButton(btn)) {
+        const existing = btn.querySelector && btn.querySelector('.rec-label');
+        if (existing) existing.remove();
+        return;
       }
+
+      // Update label text: "Record" when idle, "Stop" when recording.
+      const labelEl = ensureRecLabel(btn);
+      if (labelEl) labelEl.textContent = isRecording ? 'Stop' : 'Record';
     });
   }
 
