@@ -1451,11 +1451,11 @@
             body{padding-left:0;}
             .left-sidebar{display:none;}
             .container{padding-bottom:88px;}
-            .mobile-bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e2e8f0;z-index:15000;justify-content:space-around;padding:6px 0 18px;}
-            .mobile-bottom-nav .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:62px;cursor:pointer;color:#94a3b8;font-size:.62rem;font-weight:700;user-select:none;}
+            .mobile-bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e2e8f0;z-index:15000;justify-content:space-evenly;padding:6px 4px calc(env(safe-area-inset-bottom, 8px) + 8px);overflow:hidden;}
+            .mobile-bottom-nav .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;flex:1;cursor:pointer;color:#94a3b8;font-size:.62rem;font-weight:700;user-select:none;text-align:center;overflow:hidden;white-space:nowrap;}
             .mobile-bottom-nav .nav-item .ic{font-size:1.2rem;}
             .mobile-bottom-nav .nav-item.active{color:#667eea;}
-            .mobile-bottom-nav .nav-item.danger{color:#dc3545;border-left:1px solid #e2e8f0;padding-left:12px;}
+            .mobile-bottom-nav .nav-item.danger{color:#dc3545;border-left:1px solid #e2e8f0;}
         }
 </style>
 
@@ -1887,11 +1887,11 @@
 
     <!-- Mobile Bottom Nav (v5) -->
     <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile navigation">
-        <div class="nav-item active" data-target="chart" onclick="mobileNavGo('chart', this)"><div class="ic">📋</div>Chart</div>
-        <div class="nav-item" data-target="tools" onclick="openToolsSheet(); mobileNavSetActive(this)"><div class="ic">🧰</div>Tools</div>
-        <div class="nav-item" data-target="note" onclick="mobileNavGo('note', this)"><div class="ic">📝</div>Note</div>
-        <div class="nav-item" data-target="qa" onclick="openQAPanel(); mobileNavSetActive(this)"><div class="ic">💬</div>Q&amp;A</div>
-        <div class="nav-item danger" data-target="newcase" onclick="clearAll()"><div class="ic">🗑</div>New Case</div>
+        <div class="nav-item active" data-target="chart" onclick="mobileNavGo('chart', this)"><div class="ic">&#x1F4CB;</div>Chart</div>
+        <div class="nav-item" data-target="tools" onclick="openToolsSheet(); mobileNavSetActive(this)"><div class="ic">&#x1F9F0;</div>Tools</div>
+        <div class="nav-item" data-target="note" onclick="mobileNavGo('note', this)"><div class="ic">&#x1F4DD;</div>Note</div>
+        <div class="nav-item" data-target="qa" onclick="openQAPanel(); mobileNavSetActive(this)"><div class="ic">&#x1F4AC;</div>Q&amp;A</div>
+        <div class="nav-item danger" data-target="newcase" onclick="clearAll()"><div class="ic">&#x1F5D1;</div>New Case</div>
     </nav>
 
     <!-- Tools Bottom Sheet (mobile) -->
@@ -1902,10 +1902,10 @@
             <button type="button" onclick="closeToolsSheet()" aria-label="Close">&times;</button>
         </header>
         <div class="tools-grid">
-            <div class="tools-item" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">📷</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
-            <div class="tools-item" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">📁</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
-            <div class="tools-item" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">⚙️</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
-            <div class="tools-item" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">🛠</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
+            <div class="tools-item" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">&#x1F4F7;</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
+            <div class="tools-item" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">&#x1F4C1;</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
+            <div class="tools-item" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">&#x2699;&#xFE0F;</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
+            <div class="tools-item" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">&#x1F6E0;</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
         </div>
     </div>
 
