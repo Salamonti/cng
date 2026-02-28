@@ -413,16 +413,25 @@
             color: #fff;
             border: 1.5px solid #dc3545;
             font-weight: 800;
-            font-size: 0.82rem;
+            font-size: 0.82rem !important;
+            line-height: 1 !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .floating-bar .bar-group-middle #recordBtnInline .rec-label{
-            font-size: 0.82rem;
+            font-size: 0.82rem !important;
             font-weight: 800;
-            line-height: 1;
+            line-height: 1 !important;
+            white-space: nowrap;
         }
         .floating-bar .bar-group-middle #recordBtnInline.recording-active{
             background: #28a745;
             border-color: #28a745;
+            font-size: 0.82rem !important; /* ensure label doesn't jump on active */
+        }
+        .floating-bar .bar-group-middle #recordBtnInline.recording-ready{
+            font-size: 0.82rem !important;
         }
 
         .record-toggle {
