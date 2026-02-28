@@ -19,7 +19,7 @@
             color: #2c3e50;
             line-height: 1.6;
             overflow-x: hidden;
-            padding-left: 70px; /* Space for left sidebar - ALWAYS */
+            padding-left: 210px; /* v5: wider rail with text labels */
         }
 
         body:not(.auth-ready) .requires-auth {
@@ -50,7 +50,7 @@
             gap: 12px;
             align-items: center;
             justify-content: space-between;
-            padding-left: 86px;
+            padding-left: 220px;
         }
         .service-error-banner.hidden {
             display: none !important;
@@ -90,7 +90,7 @@
             left: 0;
             top: 0;
             height: 100vh;
-            width: 70px;
+            width: 210px; /* v5: wider rail, labels always visible */
             background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             z-index: 200;
@@ -99,7 +99,7 @@
             overflow-y: auto;
         }
         .left-sidebar.expanded {
-            width: 180px;
+            width: 210px;
         }
         .sidebar-btn {
             display: flex;
@@ -141,19 +141,42 @@
             margin-left: 12px;
             font-size: 0.85rem;
             white-space: nowrap;
-            opacity: 0;
+            opacity: 1; /* v5: always visible */
             transition: opacity 0.3s;
         }
         .left-sidebar.expanded .sidebar-btn .label {
             opacity: 1;
         }
 
+        @media (max-width: 850px) {
+            body { padding-left: 0 !important; } /* v5: no sidebar on mobile */
+            .left-sidebar { display: none !important; } /* v5: hidden on mobile, replaced by bottom nav */
+            .header { text-align: center; }
+            /* Hide floating-bar right group on mobile — duplicated in bottom nav */
+            .floating-bar .bar-group-right { display: none !important; }
+            /* Make floating-bar compact single-row command bar */
+            .floating-bar .bar-group-left { display: none !important; } /* Status hidden behind hamburger or settings */
+            .floating-bar { flex-direction: row !important; padding: 8px 10px !important; gap: 6px !important; justify-content: stretch !important; }
+            .floating-bar .bar-group-middle {
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 6px !important;
+                width: 100% !important;
+            }
+            .floating-bar .bar-group-middle .bar-action {
+                min-width: 0 !important;
+                width: auto !important;
+                flex: 1;
+                height: 38px !important;
+                font-size: 0.75rem !important;
+            }
+            .floating-bar .bar-group-middle #noteType {
+                flex: 2;
+            }
+        }
         @media (max-width: 768px) {
             .left-sidebar {
-                width: 55px;
-            }
-            .left-sidebar.expanded {
-                width: 150px;
+                display: none !important;
             }
             .sidebar-btn {
                 padding: 10px;
@@ -481,14 +504,37 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1600px;
             padding: 20px 16px;
             margin: 0 auto;
         }
 
-        @media (max-width: 768px) {
+        /* v5: Desktop 2-column layout for chart + note side by side */
+        @media (min-width: 851px) {
             .container {
-                padding: 15px 12px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+                align-items: start;
+            }
+            /* Auth card spans full width */
+            #authCardSlot, #authCard, .auth-card {
+                grid-column: 1 / -1;
+            }
+            /* Chart input = left column */
+            #chartCard { grid-column: 1; }
+            /* Note output = right column */
+            #noteCard { grid-column: 2; }
+            /* Everything else (consult comment, orders modal, uncertain items, queue, etc.) spans right column */
+            #ragHint, #consultCommentCard, #orderRequestsModal, #uncertainItemsCard, #queueCard {
+                grid-column: 2;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                padding: 12px 10px;
+                padding-bottom: 88px; /* space for bottom nav */
             }
         }
 
@@ -1532,10 +1578,7 @@
             <span class="icon">&#9881;</span>
             <span class="label">AI Prompts</span>
         </button>
-        <button class="sidebar-btn requires-auth" onclick="triggerGenerateNoteAndFocus()" title="Generate Note">
-            <span class="icon">&#9998;</span>
-            <span class="label">Generate Note</span>
-        </button>
+        <!-- v5: Generate Note removed from sidebar (lives in command cluster + noteCard header) -->
         <button class="sidebar-btn" onclick="clearAll()" title="Start New Case">
             <span class="icon">&#128465;</span>
             <span class="label">New Case</span>
@@ -1562,7 +1605,7 @@
                 <span class="dot"></span>
                 <span id="syncPillText">Sync: --</span>
             </span>
-            <button class="btn bar-action" id="openSettingsBtn" type="button" onclick="openSettingsDrawer()" title="Settings" style="padding:6px 10px;">&#9881;</button>
+            <button class="btn" id="openSettingsBtn" type="button" onclick="openSettingsDrawer()" title="Settings" style="padding:6px 10px;min-width:36px;width:36px;height:36px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;">&#9881;</button>
             <input class="bar-input requires-auth" type="text" id="userSpeciality" placeholder="Speciality focus (e.g., cardiology)">
         </div>
 
