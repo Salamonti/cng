@@ -1074,6 +1074,13 @@
             justify-content:center;
             font-size:1rem;
         }
+        .note-copy-float{
+            position:absolute;
+            top:10px;
+            right:10px;
+            z-index:5;
+        }
+        .note-textarea{position:relative;}
         .note-copy-ic:hover{background:#f1f5f9;}
 
         .note-header-actions {
@@ -1690,7 +1697,7 @@
         <!-- GROUP 3 (RIGHT): Quick actions (Desktop) -->
         <div class="bar-group bar-group-right requires-auth">
             <button class="btn-ic" onclick="clearQueue()" title="Clear Queue">&#128683;</button>
-            <button class="btn-ic" onclick="openQAPanel()" title="Q&A">&#128172;</button>
+            <button class="btn btn-secondary bar-action" onclick="openQAPanel()" title="Q&A">&#128172; Q&A</button>
         </div>
     </div>
 
@@ -1845,7 +1852,6 @@
                     <div class="card-subtitle">Review and edit your note</div>
                 </div>
                 <div class="note-header-actions">
-                    <button class="note-copy-ic" onclick="copyNote()" title="Copy">&#128203;</button>
                     <select id="noteTypeMirror" class="form-control note-type-inline" title="Note Type">
                         <option value="consult">Consultation Note</option>
                         <option value="followup">Follow-up Note</option>
@@ -1870,12 +1876,10 @@
             <div class="form-group">
                 <div class="note-layout">
                     <div class="note-textarea">
-                        <textarea id="generatedNote" class="form-control" rows="15" placeholder="Generated note will appear here..."></textarea>
+                        <button class="note-copy-ic note-copy-float" onclick="copyNote()" title="Copy">&#128203;</button>
+                        <textarea id="generatedNote" class="form-control" rows="10" placeholder="Generated note will appear here..."></textarea>
                     </div>
-                    <div class="note-actions-vertical">
-                        <button class="btn btn-secondary" onclick="sendFeedback(2)">&#128077; Good</button>
-                        <button class="btn btn-secondary" onclick="sendFeedback(0)">&#128078; Needs Work</button>
-                    </div>
+
                 </div>
             </div>
             <div class="progress hidden" id="noteProgress">
@@ -1883,13 +1887,13 @@
             </div>
             <div id="noteStatus" class="note-status hidden">Generating note...</div>
 
-            <div class="btn-group">
-                <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="handleOrderRequestsClick()">
-                    Order & Referral Requests
-                </button>
-                <button class="btn btn-outline btn-full hidden" id="openConsultCommentBtn">
-                    Evidence Based Comments
-                </button>
+            <div class="btn-group" style="gap:10px;">
+                <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="handleOrderRequestsClick()">Order & Referral Requests</button>
+                <button class="btn btn-outline btn-full hidden" id="openConsultCommentBtn">Evidence Based Comments</button>
+            </div>
+            <div class="note-feedback-icons" style="margin-top:10px;justify-content:flex-end;">
+                <button class="fb-ic" onclick="sendFeedback(2)" title="Good">&#128077;</button>
+                <button class="fb-ic" onclick="sendFeedback(0)" title="Needs work">&#128078;</button>
             </div>
         </div>
 
