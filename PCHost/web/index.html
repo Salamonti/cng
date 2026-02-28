@@ -1035,8 +1035,8 @@
 
         .note-textarea textarea {
             height: auto;
-            min-height: 160px;
-            max-height: 38vh; /* keep evidence + consult comment close */
+            min-height: 260px; /* comfortable default without giant dead space */
+            max-height: none;
         }
 
         .note-actions-vertical {
@@ -1879,7 +1879,7 @@
                 <div class="note-layout">
                     <div class="note-textarea">
                         <button class="note-copy-ic note-copy-float" onclick="copyNote()" title="Copy">&#128203;</button>
-                        <textarea id="generatedNote" class="form-control" rows="6" placeholder="Generated note will appear here..."></textarea>
+                        <textarea id="generatedNote" class="form-control" rows="12" placeholder="Generated note will appear here..."></textarea>
                         <div class="note-feedback-icons note-feedback-float" title="Rate output">
                             <button class="fb-ic" onclick="sendFeedback(2)" title="Good">&#128077;</button>
                             <button class="fb-ic" onclick="sendFeedback(0)" title="Needs work">&#128078;</button>
@@ -1893,7 +1893,7 @@
             </div>
             <div id="noteStatus" class="note-status hidden">Generating note...</div>
 
-            <div class="btn-group" style="gap:10px;">
+            <div class="btn-group" style="gap:10px;margin-top:8px;">
                 <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="handleOrderRequestsClick()">Order & Referral Requests</button>
                 <button class="btn btn-outline btn-full hidden" id="openConsultCommentBtn">Evidence Based Comments</button>
             </div>
