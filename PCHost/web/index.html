@@ -1035,8 +1035,8 @@
 
         .note-textarea textarea {
             height: auto;
-            min-height: 220px;
-            max-height: 55vh; /* reduce huge blank space so evidence card is closer */
+            min-height: 160px;
+            max-height: 38vh; /* keep evidence + consult comment close */
         }
 
         .note-actions-vertical {
@@ -1081,6 +1081,12 @@
             z-index:5;
         }
         .note-textarea{position:relative;}
+        .note-feedback-float{
+            position:absolute;
+            right:10px;
+            bottom:10px;
+            z-index:5;
+        }
         .note-copy-ic:hover{background:#f1f5f9;}
 
         .note-header-actions {
@@ -1866,10 +1872,6 @@
                     </select>
                     <button class="btn btn-success" onclick="triggerGenerateNoteAndFocus()">&#9998; Generate</button>
                     <button class="btn btn-secondary" onclick="saveNote()" title="Download">&#128190;</button>
-                    <div class="note-feedback-icons" title="Rate output">
-                        <button class="fb-ic" onclick="sendFeedback(2)" title="Good">&#128077;</button>
-                        <button class="fb-ic" onclick="sendFeedback(0)" title="Needs work">&#128078;</button>
-                    </div>
                 </div>
             </div>
 
@@ -1877,7 +1879,11 @@
                 <div class="note-layout">
                     <div class="note-textarea">
                         <button class="note-copy-ic note-copy-float" onclick="copyNote()" title="Copy">&#128203;</button>
-                        <textarea id="generatedNote" class="form-control" rows="10" placeholder="Generated note will appear here..."></textarea>
+                        <textarea id="generatedNote" class="form-control" rows="6" placeholder="Generated note will appear here..."></textarea>
+                        <div class="note-feedback-icons note-feedback-float" title="Rate output">
+                            <button class="fb-ic" onclick="sendFeedback(2)" title="Good">&#128077;</button>
+                            <button class="fb-ic" onclick="sendFeedback(0)" title="Needs work">&#128078;</button>
+                        </div>
                     </div>
 
                 </div>
@@ -1891,10 +1897,7 @@
                 <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="handleOrderRequestsClick()">Order & Referral Requests</button>
                 <button class="btn btn-outline btn-full hidden" id="openConsultCommentBtn">Evidence Based Comments</button>
             </div>
-            <div class="note-feedback-icons" style="margin-top:10px;justify-content:flex-end;">
-                <button class="fb-ic" onclick="sendFeedback(2)" title="Good">&#128077;</button>
-                <button class="fb-ic" onclick="sendFeedback(0)" title="Needs work">&#128078;</button>
-            </div>
+
         </div>
 
         <div id="ragHint" class="card hidden" style="background:#fff3cd;color:#856404;border-color:#ffeeba;">
