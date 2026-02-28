@@ -745,6 +745,9 @@
             min-height: 120px;
             font-family: inherit;
         }
+        /* v5: reduce extra vertical whitespace in the note column */
+        #noteCard { margin-bottom: 12px; }
+        #consultCommentCard { margin-top: 12px; }
         pre.form-control {
             white-space: pre-wrap;
             height: 120px;
@@ -1011,8 +1014,9 @@
         }
 
         .note-textarea textarea {
-            height: 100%;
-            min-height: 320px;
+            height: auto;
+            min-height: 220px;
+            max-height: 55vh; /* reduce huge blank space so evidence card is closer */
         }
 
         .note-actions-vertical {
