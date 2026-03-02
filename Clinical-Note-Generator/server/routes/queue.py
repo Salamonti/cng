@@ -6,7 +6,7 @@ import uuid
 from pathlib import Path
 from typing import List, Dict, Any
 
-from fastapi import APIRouter, Depends, HTTPException, status, Form, File, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, status, Form, File, UploadFile, Request
 from starlette.datastructures import Headers
 from sqlmodel import Session, select
 
@@ -198,6 +198,7 @@ def download_queued_job(
 @router.post("/{job_id}/process")
 def process_queued_job(
     job_id: uuid.UUID,
+    request: Request,
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
 ) -> Dict[str, Any]:
@@ -239,12 +240,20 @@ def process_queued_job(
 
         if job.type == "transcribe":
             # Use internal HTTP to reuse existing ASR proxy behavior.
+            # Forward the caller's Authorization header so the ASR
+            # endpoint's bearer-token middleware doesn't reject us.
             import requests
+
+            auth_header = request.headers.get("authorization", "")
+            internal_headers = {}
+            if auth_header:
+                internal_headers["Authorization"] = auth_header
 
             upload_file.file.seek(0)
             resp = requests.post(
                 "http://127.0.0.1:7860/api/transcribe_diarized",
                 files={"audio": (job.file_name, upload_file.file, job.mime_type)},
+                headers=internal_headers,
                 timeout=180,
             )
             if resp.status_code != 200:
