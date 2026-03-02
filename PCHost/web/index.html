@@ -4879,23 +4879,20 @@
 
             container.appendChild(toast);
 
-            // Dismiss on click
-            toast.addEventListener('click', () => {
+            let autoDismissTimer = setTimeout(() => {
                 if (toast.parentNode) {
                     toast.style.animation = 'slideIn 0.3s ease reverse';
                     setTimeout(() => container.removeChild(toast), 300);
                 }
-            });
-
-            // Auto-dismiss after 2.5 seconds (instead of 5)
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.style.animation = 'slideIn 0.3s ease reverse';
-                    setTimeout(() => {
-                        container.removeChild(toast);
-                    }, 300);
-                }
             }, 2500);
+
+            // Dismiss on click
+            toast.addEventListener('click', () => {
+                if (!toast.parentNode) return;
+                clearTimeout(autoDismissTimer);
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => container.removeChild(toast), 300);
+            });
         }
 
         // Sidebar Functions
