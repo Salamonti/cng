@@ -5331,8 +5331,57 @@ Contact Information:`,
 
             lastServiceRetry = typeof retryFn === 'function' ? retryFn : null;
             retryBtn.disabled = !lastServiceRetry;
-            retryBtn.onclick = () => {
-                if (lastServiceRetry) {
+            retryBtn.onclick = async () => {
+                if (!lastServiceRetry) return;
+                // If a queue job ID is attached, process via queue endpoint
+                // (clears the job on success) instead of legacy direct call.
+                const jobId = lastServiceRetry.jobId;
+                if (jobId) {
+                    const token = getAuthToken();
+                    if (!token) { showToast('Sign In Required', 'Log in to retry.', 'warning'); return; }
+                    const progressMap = { transcribe: 'audioProgress', ocr: 'documentProgress' };
+                    const barMap = { transcribe: 'audioProgressBar', ocr: 'documentProgressBar' };
+                    // Find request type from app.requestQueue
+                    const qJob = app.requestQueue.find(r => r.id === jobId);
+                    const jobType = qJob?.type || 'transcribe';
+                    if (progressMap[jobType]) showProgress(progressMap[jobType], barMap[jobType]);
+                    try {
+                        const resp = await fetch(`/api/queue/${jobId}/process`, {
+                            method: 'POST',
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+                        if (!resp.ok) {
+                            const errText = await resp.text();
+                            throw new Error(`Process failed: HTTP ${resp.status} ${errText}`);
+                        }
+                        const data = await resp.json();
+                        if (jobType === 'ocr') {
+                            const existing = setChartDataValue();
+                            const addition = sanitizeClinicalText(data.text || '');
+                            const block = addition || '[No text detected]';
+                            const newVal = existing ? `${existing}\n\nExtracted Text:\n\n${block}` : `Extracted Text:\n\n${block}`;
+                            setChartDataValue(newVal);
+                        } else if (jobType === 'transcribe') {
+                            const tx = document.getElementById('transcriptionDisplay');
+                            appendToTextarea(tx, data.text || '');
+                            if (typeof updateCharacterCounter === 'function') updateCharacterCounter();
+                        }
+                        // Remove from local queue
+                        app.requestQueue = app.requestQueue.filter(r => r.id !== jobId);
+                        saveQueue();
+                        updateQueueDisplay();
+                        saveToStorage();
+                        hideServiceErrorBanner();
+                        showToast('Processed', `${jobType === 'ocr' ? 'OCR' : 'Transcription'} complete`, 'success');
+                    } catch (error) {
+                        console.error('[Ribbon Retry] Failed:', error);
+                        const errorMsg = error.message.length > 100 ? error.message.substring(0, 100) + '...' : error.message;
+                        showToast('Error', `Retry failed: ${errorMsg}`, 'error');
+                    } finally {
+                        if (progressMap[jobType]) hideProgress(progressMap[jobType]);
+                    }
+                } else {
+                    // No queue job — legacy direct retry
                     lastServiceRetry();
                 }
             };
