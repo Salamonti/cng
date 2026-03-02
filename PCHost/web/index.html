@@ -3565,7 +3565,9 @@
 
             if (!queueCard || !queueList) return;
 
-            if (app.requestQueue.length === 0) {
+            // Security: never show queue when not authenticated (patient data exposure)
+            const isAuthenticated = typeof _hasToken === 'function' && _hasToken();
+            if (app.requestQueue.length === 0 || !isAuthenticated) {
                 queueCard.classList.add('hidden');
                 queueList.innerHTML = '';
                 return;
@@ -5779,6 +5781,7 @@ window.addEventListener('workspace-auth-changed', (event) => {
     loadSettings();
     checkConnection();
     refreshBadge();
+    updateQueueDisplay(); // show queue if any pending
     // Load workspace and prompts after login
     loadWorkspaceState().then(() => loadDefaultPrompts()).catch(err => {
       console.error('[Init] Failed to load workspace/prompts:', err);
@@ -5796,6 +5799,7 @@ window.addEventListener('workspace-auth-changed', (event) => {
       statusEl.classList.add('disconnected');
       statusEl.textContent = 'Disconnected';
     }
+    updateQueueDisplay(); // hide queue when signed out
   }
 });
 
