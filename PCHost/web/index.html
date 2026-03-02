@@ -3412,9 +3412,23 @@
                     throw new Error(`HTTP ${resp.status}: ${errText}`);
                 }
                 const job = await resp.json();
+                // Transform to same format as loadQueue() for consistent display
+                const mappedJob = {
+                    id: job.id,
+                    type: job.type,
+                    data: {
+                        fileName: job.file_name || maybeFile.name || 'unknown',
+                        fileSize: job.file_size,
+                        mimeType: job.mime_type,
+                        serverFileKey: job.server_file_key,
+                        fileKey: job.id, // used for download endpoint
+                        storageState: 'stored'
+                    },
+                    timestamp: job.created_at
+                };
                 // Add to local cache
                 if (!app.requestQueue.find(j => j.id === job.id)) {
-                    app.requestQueue.push(job);
+                    app.requestQueue.push(mappedJob);
                 }
                 updateConnectionStatus('queued');
                 updateQueueDisplay();
@@ -3509,7 +3523,8 @@
                 } catch (error) {
                     console.error(`[Queue] Failed to process job ${request.id}:`, error);
                     app.requestQueue.push(request);
-                    showToast('Error', `Failed to process ${request.type} request. Will retry.`, 'error');
+                    const errorMsg = error.message.length > 100 ? error.message.substring(0, 100) + '...' : error.message;
+                    showToast('Error', `Failed to process ${request.type}: ${errorMsg}`, 'error');
                 }
             }
 
@@ -5755,7 +5770,8 @@ window.addEventListener('workspace-auth-changed', (event) => {
     loadSettings();
     checkConnection();
     refreshBadge();
-    updateQueueDisplay(); // show queue if any pending
+    // Load queue from server and update display
+    loadQueue().then(() => updateQueueDisplay());
     // Load workspace and prompts after login
     loadWorkspaceState().then(() => loadDefaultPrompts()).catch(err => {
       console.error('[Init] Failed to load workspace/prompts:', err);
