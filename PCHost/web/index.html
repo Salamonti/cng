@@ -2381,6 +2381,20 @@
             if (window.CNGAudioUI && typeof window.CNGAudioUI.setRecordingButtonsState === 'function') {
                 return window.CNGAudioUI.setRecordingButtonsState(isRecording);
             }
+            // Fallback in case CNGAudioUI not loaded
+            console.warn('[Audio UI] CNGAudioUI not found, using fallback');
+            const ids = ['recordBtnSidebar', 'recordBtnInline', 'recordBtnInlineRound'];
+            ids.forEach(id => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+                if (isRecording) {
+                    btn.classList.add('recording-active');
+                    btn.classList.remove('recording-ready');
+                } else {
+                    btn.classList.remove('recording-active');
+                    btn.classList.add('recording-ready');
+                }
+            });
         }
 
         function initSpeechRecognition() {
@@ -2441,30 +2455,43 @@
         }
 
         function toggleSpeechRecognition() {
+            console.log('[Audio] toggleSpeechRecognition called');
             const audioHandler = window.universalAudio;
-            if (!audioHandler) return;
+            if (!audioHandler) {
+                console.warn('[Audio] universalAudio not found');
+                return;
+            }
 
             const guidance = audioHandler.getBrowserGuidance();
+            console.log('[Audio] recordingAvailable:', guidance.recordingAvailable);
 
             if (guidance.recordingAvailable) {
                 const wasRecording = audioHandler.isRecording;
+                console.log('[Audio] wasRecording:', wasRecording);
 
                 if (wasRecording) {
+                    console.log('[Audio] stopping recording');
                     audioHandler.stopAudioRecording();
                 } else {
                     try {
+                        console.log('[Audio] starting recording');
                         audioHandler.startAudioRecording();
                     } catch (error) {
+                        console.error('[Audio] startAudioRecording failed:', error);
                         showToast('Recording Error', 'Failed to start recording', 'error');
+                        // Ensure button state reflects that we are not recording
+                        setRecordingButtonsState(false);
                         return;
                     }
                 }
 
                 // Keep all recording buttons in sync
                 const nowRecording = !wasRecording;
+                console.log('[Audio] nowRecording:', nowRecording);
                 setRecordingButtonsState(nowRecording);
             } else {
                 const suggestions = guidance.recommendations.join('. ');
+                console.log('[Audio] recording not available:', suggestions);
                 showToast('Audio Input', suggestions, 'info');
             }
         }
