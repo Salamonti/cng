@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import List, Dict, Any
 
 from fastapi import APIRouter, Depends, HTTPException, status, Form, File, UploadFile
+from starlette.datastructures import Headers
 from sqlmodel import Session, select
 
 from server.core.db import get_session
@@ -65,14 +66,22 @@ def delete_queued_file(server_file_key: str) -> None:
 
 
 def _create_uploadfile_from_disk(file_path: Path, filename: str, content_type: str) -> UploadFile:
-    """Create an UploadFile object from a disk file."""
+    """Create an UploadFile-like object from a disk file.
+
+    Starlette/FastAPI UploadFile __init__ signature varies by version but generally:
+      UploadFile(file, *, filename=..., headers=...)
+
+    content_type is derived from headers, and is not a supported constructor kwarg.
+    """
     file_data = file_path.read_bytes()
-    # UploadFile constructor accepts content_type as third positional argument
-    # Use empty string if content_type is None
+
+    headers = Headers({
+        "content-type": (content_type or "application/octet-stream")
+    })
     return UploadFile(
-        filename,
         io.BytesIO(file_data),
-        content_type or ""
+        filename=filename,
+        headers=headers,
     )
 
 
