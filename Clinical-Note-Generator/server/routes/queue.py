@@ -81,6 +81,10 @@ async def create_queued_job(
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
 ):
+    # Debug logging
+    import sys
+    print(f"[Queue] Creating job: type={type}, filename={file.filename}, content_type={file.content_type}", file=sys.stderr)
+
     # Validate file size (optional)
     MAX_FILE_SIZE = 100 * 1024 * 1024  # 100 MB
     file.file.seek(0, 2)  # seek to end
@@ -187,11 +191,14 @@ def process_queued_job(
     current_user: User = Depends(get_current_user),
 ) -> Dict[str, Any]:
     """Process a queued job server-side; delete on success; persist on failure."""
+    import sys
+    print(f"[Queue] Processing job {job_id}", file=sys.stderr)
     job = session.exec(
         select(QueuedJob).where(QueuedJob.id == job_id, QueuedJob.user_id == current_user.id)
     ).one_or_none()
     if not job:
         raise HTTPException(status_code=404, detail="Queued job not found")
+    print(f"[Queue] Job type={job.type}, mime={job.mime_type}, file={job.file_name}", file=sys.stderr)
 
     root = get_queue_storage_root()
     file_path = root / job.server_file_key
