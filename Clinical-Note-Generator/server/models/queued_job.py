@@ -22,4 +22,4 @@ class QueuedJob(SQLModel, table=True):
     mime_type: str
     file_size: int  # bytes
     server_file_key: str = Field(index=True, unique=True)  # path relative to queue storage root
-    error: Optional[str] = Field(default=None, nullable=True, sa_column=Column(Text))
+    error: Optional[str] = Field(default=None, sa_column=Column(Text, nullable=True))
