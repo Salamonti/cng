@@ -3528,6 +3528,14 @@
             for (const request of queue) {
                 try {
                     console.log('[Queue] Processing job:', request);
+
+                    // Show progress bar matching the job type
+                    const progressMap = { transcribe: 'audioProgress', ocr: 'documentProgress' };
+                    const barMap = { transcribe: 'audioProgressBar', ocr: 'documentProgressBar' };
+                    if (progressMap[request.type]) {
+                        showProgress(progressMap[request.type], barMap[request.type]);
+                    }
+
                     const resp = await fetch(`/api/queue/${request.id}/process`, {
                         method: 'POST',
                         headers: { 'Authorization': `Bearer ${token}` }
@@ -3550,10 +3558,13 @@
                         try { saveToStorage && saveToStorage(); } catch(e) {}
                         showToast('Processed', 'OCR complete (queued)', 'success');
                     } else if (request.type === 'transcribe') {
-                        // Append transcription text to transcriptionData
-                        const existing = document.getElementById('transcriptionData')?.value || '';
-                        const sep = existing ? (existing.endsWith('\n') ? '\n' : '\n\n') : '';
-                        document.getElementById('transcriptionData').value = existing + sep + (data.text || '');
+                        // Append transcription to the read-only transcription display
+                        // (same target as the normal live transcription flow)
+                        const tx = document.getElementById('transcriptionDisplay');
+                        appendToTextarea(tx, data.text || '');
+                        if (typeof updateCharacterCounter === 'function') {
+                            updateCharacterCounter();
+                        }
                         try { saveToStorage && saveToStorage(); } catch(e) {}
                         showToast('Processed', 'Transcription complete (queued)', 'success');
                     }
@@ -3562,6 +3573,12 @@
                     app.requestQueue.push(request);
                     const errorMsg = error.message.length > 100 ? error.message.substring(0, 100) + '...' : error.message;
                     showToast('Error', `Failed to process ${request.type}: ${errorMsg}`, 'error');
+                } finally {
+                    // Hide progress bar
+                    const progressMap = { transcribe: 'audioProgress', ocr: 'documentProgress' };
+                    if (progressMap[request.type]) {
+                        hideProgress(progressMap[request.type]);
+                    }
                 }
             }
 
