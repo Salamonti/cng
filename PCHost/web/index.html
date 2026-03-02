@@ -3548,15 +3548,20 @@
                     console.log('[Queue] Process response:', data);
 
                     if (request.type === 'ocr') {
-                        const existing = setChartDataValue();
+                        // V7: OCR results go to the target field (default: oldVisitsData)
+                        const targetFieldId = window.currentDropTargetField || window.lastInputFieldId || 'oldVisitsData';
+                        const targetEl = document.getElementById(targetFieldId);
+                        const existing = targetEl ? targetEl.value : '';
                         const addition = sanitizeClinicalText(data.text || '');
                         const block = addition || '[No text detected]';
                         const newVal = existing
                             ? `${existing}\n\nExtracted Text:\n\n${block}`
                             : `Extracted Text:\n\n${block}`;
-                        setChartDataValue(newVal);
+                        if (targetEl) {
+                            setFieldValue(targetFieldId, newVal);
+                        }
                         try { saveToStorage && saveToStorage(); } catch(e) {}
-                        showToast('Processed', 'OCR complete (queued)', 'success');
+                        showToast('Processed', `OCR complete (queued) → ${getFieldDisplayName(targetFieldId)}`, 'success');
                     } else if (request.type === 'transcribe') {
                         // Append transcription to the read-only transcription display
                         // (same target as the normal live transcription flow)
@@ -5356,11 +5361,14 @@ Contact Information:`,
                         }
                         const data = await resp.json();
                         if (jobType === 'ocr') {
-                            const existing = setChartDataValue();
+                            // V7: OCR results go to the target field (default: oldVisitsData)
+                            const targetFieldId = window.currentDropTargetField || window.lastInputFieldId || 'oldVisitsData';
+                            const targetEl = document.getElementById(targetFieldId);
+                            const existing = targetEl ? targetEl.value : '';
                             const addition = sanitizeClinicalText(data.text || '');
                             const block = addition || '[No text detected]';
                             const newVal = existing ? `${existing}\n\nExtracted Text:\n\n${block}` : `Extracted Text:\n\n${block}`;
-                            setChartDataValue(newVal);
+                            if (targetEl) setFieldValue(targetFieldId, newVal);
                         } else if (jobType === 'transcribe') {
                             const tx = document.getElementById('transcriptionDisplay');
                             appendToTextarea(tx, data.text || '');
