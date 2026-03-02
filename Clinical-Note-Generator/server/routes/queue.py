@@ -59,7 +59,7 @@ def delete_queued_file(server_file_key: str) -> None:
         pass  # ignore missing files
 
 
-@router.post("/", response_model=QueuedJobResponse)
+@router.post("", response_model=QueuedJobResponse)
 async def create_queued_job(
     file: UploadFile = File(...),
     type: str = "ocr",  # default, could also be passed as form field
@@ -94,7 +94,7 @@ async def create_queued_job(
     return job
 
 
-@router.get("/", response_model=List[QueuedJobResponse])
+@router.get("", response_model=List[QueuedJobResponse])
 def list_queued_jobs(
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
@@ -165,7 +165,7 @@ def download_queued_job(
     )
 
 
-@router.delete("/", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("", status_code=status.HTTP_204_NO_CONTENT)
 def clear_all_queued_jobs(
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
