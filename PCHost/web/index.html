@@ -2854,6 +2854,11 @@
             const existing = targetEl ? targetEl.value : '';
             const results = [];
 
+            // Client-side stabilization: even though we process sequentially, adding a small
+            // cooldown between OCR calls helps avoid back-to-back VRAM spikes / server overload.
+            const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+            const perFileCooldownMs = files.length > 1 ? 750 : 0;
+
             try {
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
@@ -2890,6 +2895,10 @@
                     }
 
                     results.push(`--- ${file.name}${note} ---\n${text || '[No text detected]'}`);
+
+                    if (perFileCooldownMs && i < files.length - 1) {
+                        await sleep(perFileCooldownMs);
+                    }
                 }
 
                 if (results.length) {
@@ -5138,6 +5147,23 @@ Contact Information:`,
         let lastServiceRetry = null;
 
         function showServiceErrorBanner(detail, retryFn) {
+            // Mobile UX: fixed banners can block interactions on small screens.
+            // Use a non-blocking toast as the primary surface, and only fall back
+            // to the banner UI on larger screens.
+            try {
+                const svc = detail?.service || detail?.detail?.service || 'service';
+                const errors = detail?.errors || detail?.detail?.errors || [];
+                const msg = errors && errors.length ? errors[0] : 'unavailable';
+                showToast('Service Unavailable', `${svc.toUpperCase()}: ${msg}`, 'warning');
+            } catch (e) {}
+
+            const isNarrow = (window.innerWidth || 9999) <= 640;
+            if (isNarrow) {
+                // On phones, don't show the blocking banner.
+                lastServiceRetry = typeof retryFn === 'function' ? retryFn : null;
+                return;
+            }
+
             const banner = document.getElementById('serviceErrorBanner');
             const titleEl = document.getElementById('serviceErrorTitle');
             const detailsEl = document.getElementById('serviceErrorDetails');

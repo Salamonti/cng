@@ -831,13 +831,29 @@
         clearTimeout(this.saveTimer);
         await this.saveWorkspace();
       }
-      
+
       if (!skipConfirm) {
         const confirmed = window.confirm('Sign out and clear the current UI?');
         if (!confirmed) {
           return;
         }
       }
+
+      // SECURITY: ensure no queued/failed requests (which may contain patient files)
+      // are visible while signed out. We clear both the in-memory queue and
+      // persisted queue storage.
+      try {
+        if (window.app) {
+          window.app.requestQueue = [];
+        }
+      } catch (e) {}
+      try { localStorage.removeItem('clinicalNoteQueue'); } catch (e) {}
+      try {
+        if (typeof window.updateQueueDisplay === 'function') {
+          window.updateQueueDisplay();
+        }
+      } catch (e) {}
+
       this.clearUiState();
       try {
         await this.request('/api/auth/logout', {
