@@ -3561,6 +3561,7 @@
                             setFieldValue(targetFieldId, newVal);
                         }
                         try { saveToStorage && saveToStorage(); } catch(e) {}
+                        hideServiceErrorBanner();
                         showToast('Processed', `OCR complete (queued) → ${getFieldDisplayName(targetFieldId)}`, 'success');
                     } else if (request.type === 'transcribe') {
                         // Append transcription to the read-only transcription display
@@ -3571,6 +3572,7 @@
                             updateCharacterCounter();
                         }
                         try { saveToStorage && saveToStorage(); } catch(e) {}
+                        hideServiceErrorBanner();
                         showToast('Processed', 'Transcription complete (queued)', 'success');
                     }
                 } catch (error) {
