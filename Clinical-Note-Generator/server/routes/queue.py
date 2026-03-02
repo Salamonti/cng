@@ -67,12 +67,13 @@ def delete_queued_file(server_file_key: str) -> None:
 def _create_uploadfile_from_disk(file_path: Path, filename: str, content_type: str) -> UploadFile:
     """Create an UploadFile object from a disk file."""
     file_data = file_path.read_bytes()
-    upload = UploadFile(
+    # UploadFile constructor accepts content_type as third positional argument
+    # Use empty string if content_type is None
+    return UploadFile(
         filename=filename,
-        file=io.BytesIO(file_data)
+        file=io.BytesIO(file_data),
+        content_type=content_type or ""
     )
-    upload.content_type = content_type or ""
-    return upload
 
 
 @router.post("", response_model=QueuedJobResponse)
