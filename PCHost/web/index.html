@@ -969,6 +969,40 @@
             color: #495057;
             resize: none;
             min-height: 70px;
+            padding-right: 44px; /* leave room for edit/save button */
+            transition: background-color 0.15s ease;
+        }
+        .transcription-display.is-editable {
+            background: #ffffff;
+        }
+
+        .transcription-stack {
+            position: relative;
+        }
+        .transcription-edit-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 6;
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        .transcription-edit-btn:hover {
+            background: #f1f5f9;
+        }
+        .transcription-edit-btn.is-saving {
+            background: #16a34a;
+            border-color: #16a34a;
+            color: #ffffff;
         }
 
         .transcription-notes {
@@ -1078,13 +1112,15 @@
             width:34px;
             height:34px;
             border-radius:10px;
-            border:1px solid #e2e8f0;
-            background:#ffffff;
+            border:1px solid #007bff;
+            background:#007bff;
+            color:#ffffff;
             cursor:pointer;
             display:flex;
             align-items:center;
             justify-content:center;
             font-size:1rem;
+            box-shadow:0 2px 4px rgba(0,123,255,0.3);
         }
         .note-copy-float{
             position:absolute;
@@ -1099,7 +1135,11 @@
             bottom:10px;
             z-index:5;
         }
-        .note-copy-ic:hover{background:#f1f5f9;}
+        .note-copy-ic:hover{background:#0056b3; border-color:#0056b3;}
+        #generatedNote {
+            padding-bottom: 44px;
+            padding-right: 44px;
+        }
 
         .note-header-actions {
             display: flex;
@@ -1206,6 +1246,11 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             border-left: 4px solid #007bff;
             animation: slideIn 0.3s ease;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .toast:hover {
+            background-color: #f8f9fa;
         }
 
         /* Modal */
@@ -1792,7 +1837,10 @@
                     <span class="badge bg-success">CURRENT</span>
                     Current Encounter
                 </label>
-                <div class="stacked-box">
+                <div class="stacked-box transcription-stack">
+                    <button id="transcriptionEditBtn" class="transcription-edit-btn" onclick="toggleEditTranscription()" title="Edit transcription" aria-label="Edit transcription">
+                        ✎
+                    </button>
                     <textarea id="transcriptionDisplay" class="form-control transcription-display" rows="2" readonly
                         placeholder="Transcription (read-only) will appear here..."></textarea>
                     <div class="stacked-divider"></div>
@@ -4775,10 +4823,54 @@
             }
         }
 
+        // Transcription display: allow explicit edit/save with double-confirmation.
+        function toggleEditTranscription() {
+            const tx = document.getElementById('transcriptionDisplay');
+            const btn = document.getElementById('transcriptionEditBtn');
+            if (!tx || !btn) return;
+
+            const isReadonly = tx.hasAttribute('readonly');
+
+            if (isReadonly) {
+                const ok = window.confirm('Edit transcription? This changes the raw transcript text.');
+                if (!ok) return;
+
+                tx.removeAttribute('readonly');
+                tx.classList.add('is-editable');
+                btn.classList.add('is-saving');
+                btn.textContent = '💾';
+                btn.title = 'Save transcription edits';
+                try { tx.focus(); } catch (e) {}
+                return;
+            }
+
+            // Saving
+            const ok2 = window.confirm('Save these transcription edits?');
+            if (!ok2) return;
+
+            tx.setAttribute('readonly', 'readonly');
+            tx.classList.remove('is-editable');
+            btn.classList.remove('is-saving');
+            btn.textContent = '✎';
+            btn.title = 'Edit transcription';
+
+            // Persist via existing storage/workspace sync flows
+            try { saveToStorage(); } catch (e) {}
+            try {
+                if (window.AuthWorkspace && typeof window.AuthWorkspace.queueSave === 'function') {
+                    window.AuthWorkspace.queueSave();
+                }
+            } catch (e) {}
+
+            try { showToast('Saved', 'Transcription updated', 'success'); } catch (e) {}
+        }
+
+
         function showToast(title, message, type = 'info') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
+            toast.style.cursor = 'pointer';
 
             toast.innerHTML = `
                 <div class="toast-title">${title}</div>
@@ -4787,6 +4879,15 @@
 
             container.appendChild(toast);
 
+            // Dismiss on click
+            toast.addEventListener('click', () => {
+                if (toast.parentNode) {
+                    toast.style.animation = 'slideIn 0.3s ease reverse';
+                    setTimeout(() => container.removeChild(toast), 300);
+                }
+            });
+
+            // Auto-dismiss after 2.5 seconds (instead of 5)
             setTimeout(() => {
                 if (toast.parentNode) {
                     toast.style.animation = 'slideIn 0.3s ease reverse';
@@ -4794,7 +4895,7 @@
                         container.removeChild(toast);
                     }, 300);
                 }
-            }, 5000);
+            }, 2500);
         }
 
         // Sidebar Functions
