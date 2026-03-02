@@ -3445,6 +3445,10 @@
                     throw new Error(`HTTP ${resp.status}: ${errText}`);
                 }
                 const job = await resp.json();
+                // Store job ID in lastServiceRetry for ribbon retry
+                if (typeof lastServiceRetry !== 'undefined' && lastServiceRetry) {
+                    lastServiceRetry.jobId = job.id;
+                }
                 // Transform to same format as loadQueue() for consistent display
                 const mappedJob = {
                     id: job.id,
