@@ -3388,6 +3388,13 @@
                 console.warn('[Queue] No file provided');
                 return;
             }
+            // Avoid duplicate queue entries for same file & type
+            const existing = app.requestQueue.find(j => j.data?.fileName === maybeFile.name && j.type === type);
+            if (existing) {
+                console.log('[Queue] Duplicate job already queued:', existing);
+                showToast('Already Queued', `${maybeFile.name} is already in the queue`, 'info');
+                return;
+            }
             // Upload to server queue
             const formData = new FormData();
             formData.append('type', type);
@@ -3469,6 +3476,7 @@
 
             for (const request of queue) {
                 try {
+                    console.log('[Queue] Processing job:', request);
                     const resp = await fetch(`/api/queue/${request.id}/process`, {
                         method: 'POST',
                         headers: { 'Authorization': `Bearer ${token}` }
@@ -3478,6 +3486,7 @@
                         throw new Error(`Process failed: HTTP ${resp.status} ${errText}`);
                     }
                     const data = await resp.json();
+                    console.log('[Queue] Process response:', data);
 
                     if (request.type === 'ocr') {
                         const existing = setChartDataValue();
@@ -3601,21 +3610,26 @@
                 });
                 if (resp.ok) {
                     const jobs = await resp.json();
+                    console.log('[Queue] Loaded server jobs:', jobs);
                     // Transform server jobs to match existing UI expectations
-                    app.requestQueue = jobs.map(job => ({
-                        id: job.id,
-                        type: job.type,
-                        data: {
-                            fileName: job.file_name,
-                            fileSize: job.file_size,
-                            mimeType: job.mime_type,
-                            serverFileKey: job.server_file_key,
-                            // compatibility fields
-                            fileKey: job.id, // used for download endpoint
-                            storageState: 'stored'
-                        },
-                        timestamp: job.created_at
-                    }));
+                    app.requestQueue = jobs.map(job => {
+                        const mapped = {
+                            id: job.id,
+                            type: job.type,
+                            data: {
+                                fileName: job.file_name || 'unknown',
+                                fileSize: job.file_size,
+                                mimeType: job.mime_type,
+                                serverFileKey: job.server_file_key,
+                                // compatibility fields
+                                fileKey: job.id, // used for download endpoint
+                                storageState: 'stored'
+                            },
+                            timestamp: job.created_at
+                        };
+                        console.log('[Queue] Mapped job:', mapped);
+                        return mapped;
+                    });
                 } else {
                     console.warn('[Queue] Failed to load server queue:', resp.status);
                     app.requestQueue = [];
