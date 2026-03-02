@@ -6,9 +6,7 @@ import uuid
 from pathlib import Path
 from typing import List, Dict, Any
 
-from fastapi import APIRouter, Depends, HTTPException, status, Form
-from fastapi import File
-from starlette.datastructures import UploadFile
+from fastapi import APIRouter, Depends, HTTPException, status, Form, File, UploadFile
 from sqlmodel import Session, select
 
 from server.core.db import get_session
