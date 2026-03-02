@@ -70,9 +70,9 @@ def _create_uploadfile_from_disk(file_path: Path, filename: str, content_type: s
     # UploadFile constructor accepts content_type as third positional argument
     # Use empty string if content_type is None
     return UploadFile(
-        filename=filename,
-        file=io.BytesIO(file_data),
-        content_type=content_type or ""
+        filename,
+        io.BytesIO(file_data),
+        content_type or ""
     )
 
 
