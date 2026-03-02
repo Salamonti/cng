@@ -3469,52 +3469,36 @@
 
             for (const request of queue) {
                 try {
-                    // Download file from server
-                    const downloadResp = await fetch(`/api/queue/${request.id}/download`, {
+                    const resp = await fetch(`/api/queue/${request.id}/process`, {
+                        method: 'POST',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
-                    if (!downloadResp.ok) {
-                        throw new Error(`Download failed: ${downloadResp.status}`);
+                    if (!resp.ok) {
+                        const errText = await resp.text();
+                        throw new Error(`Process failed: HTTP ${resp.status} ${errText}`);
                     }
-                    const blob = await downloadResp.blob();
-                    const file = new File(
-                        [blob],
-                        request.data?.fileName || `${request.type}_${request.id}.bin`,
-                        { type: request.data?.mimeType || blob.type || 'application/octet-stream' }
-                    );
+                    const data = await resp.json();
 
-                    switch (request.type) {
-                        case 'transcribe':
-                            await transcribeAudio(file, { skipQueueOnError: true });
-                            showToast('Processed', 'Audio transcription completed', 'success');
-                            break;
-                        case 'ocr': {
-                            const out = await ocrOnServer(file);
-                            const existing = setChartDataValue();
-                            const addition = sanitizeClinicalText(out.text || '');
-                            const suffix = out.confidence != null ? ` (OCR, conf ${out.confidence})` : ' (OCR)';
-                            const block = addition || '[No text detected]';
-                            const newVal = existing
-                                ? `${existing}\n\nExtracted Text:\n\n${block}`
-                                : `Extracted Text:\n\n${block}`;
-                            setChartDataValue(newVal);
-                            try { saveToStorage && saveToStorage(); } catch(e) {}
-                            showToast('Processed', `OCR complete${suffix}`, 'success');
-                            break;
-                        }
-                        default:
-                            console.warn(`Unknown queue request type: ${request.type}`);
-                            continue;
+                    if (request.type === 'ocr') {
+                        const existing = setChartDataValue();
+                        const addition = sanitizeClinicalText(data.text || '');
+                        const block = addition || '[No text detected]';
+                        const newVal = existing
+                            ? `${existing}\n\nExtracted Text:\n\n${block}`
+                            : `Extracted Text:\n\n${block}`;
+                        setChartDataValue(newVal);
+                        try { saveToStorage && saveToStorage(); } catch(e) {}
+                        showToast('Processed', 'OCR complete (queued)', 'success');
+                    } else if (request.type === 'transcribe') {
+                        // Append transcription text to transcriptionData
+                        const existing = document.getElementById('transcriptionData')?.value || '';
+                        const sep = existing ? (existing.endsWith('\n') ? '\n' : '\n\n') : '';
+                        document.getElementById('transcriptionData').value = existing + sep + (data.text || '');
+                        try { saveToStorage && saveToStorage(); } catch(e) {}
+                        showToast('Processed', 'Transcription complete (queued)', 'success');
                     }
-
-                    // On success, delete the job from server queue
-                    await fetch(`/api/queue/${request.id}`, {
-                        method: 'DELETE',
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
                 } catch (error) {
                     console.error(`[Queue] Failed to process job ${request.id}:`, error);
-                    // Keep in local queue for retry
                     app.requestQueue.push(request);
                     showToast('Error', `Failed to process ${request.type} request. Will retry.`, 'error');
                 }
