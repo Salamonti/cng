@@ -6,7 +6,9 @@ import uuid
 from pathlib import Path
 from typing import List, Dict, Any
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status, Form
+from fastapi import APIRouter, Depends, HTTPException, status, Form
+from fastapi import File
+from starlette.datastructures import UploadFile
 from sqlmodel import Session, select
 
 from server.core.db import get_session
@@ -67,11 +69,12 @@ def delete_queued_file(server_file_key: str) -> None:
 def _create_uploadfile_from_disk(file_path: Path, filename: str, content_type: str) -> UploadFile:
     """Create an UploadFile object from a disk file."""
     file_data = file_path.read_bytes()
-    return UploadFile(
+    upload = UploadFile(
         filename=filename,
-        file=io.BytesIO(file_data),
-        content_type=content_type
+        file=io.BytesIO(file_data)
     )
+    upload.content_type = content_type or ""
+    return upload
 
 
 @router.post("", response_model=QueuedJobResponse)

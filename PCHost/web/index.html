@@ -2394,6 +2394,12 @@
                     btn.classList.remove('recording-active');
                     btn.classList.add('recording-ready');
                 }
+                // Update label text if present (skip icon-only round button)
+                const isRound = btn.id === 'recordBtnInlineRound' || btn.classList.contains('record-round-btn');
+                if (!isRound) {
+                    const label = btn.querySelector('.rec-label');
+                    if (label) label.textContent = isRecording ? 'Stop' : 'Record';
+                }
             });
         }
 
