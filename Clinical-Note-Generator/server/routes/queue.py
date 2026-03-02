@@ -14,7 +14,7 @@ from server.models.queued_job import QueuedJob
 from server.models.user import User
 from server.schemas.queue import QueuedJobCreate, QueuedJobResponse
 
-router = APIRouter(prefix="/api/queue", tags=["queue"])
+router = APIRouter(prefix="/api/queue", tags=["queue"], redirect_slashes=False)
 
 
 def get_queue_storage_root() -> Path:
