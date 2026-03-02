@@ -6,7 +6,7 @@ import uuid
 from pathlib import Path
 from typing import List, Dict, Any
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status, Form
 from sqlmodel import Session, select
 
 from server.core.db import get_session
@@ -77,7 +77,7 @@ def _create_uploadfile_from_disk(file_path: Path, filename: str, content_type: s
 @router.post("", response_model=QueuedJobResponse)
 async def create_queued_job(
     file: UploadFile = File(...),
-    type: str = "ocr",  # default, could also be passed as form field
+    type: str = Form("ocr"),  # form field, default "ocr"
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
 ):
