@@ -3341,26 +3341,25 @@
         }
 
         async function downloadQueuedFile(request) {
-            if (!request?.data?.fileKey) {
-                showToast('Error', 'No stored file for this request', 'error');
+            const token = getAuthToken();
+            if (!token) {
+                showToast('Sign In Required', 'Log in to download queued files.', 'warning');
                 return;
             }
+            const jobId = request.id;
             try {
-                const stored = await queueStorage.getFile(request.data.fileKey);
-                if (!stored) {
-                    request.data.storageState = 'missing';
-                    saveQueue();
-                    updateQueueDisplay();
-                    showToast('Error', 'Stored file is no longer available', 'error');
-                    return;
+                const resp = await fetch(`/api/queue/${jobId}/download`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!resp.ok) {
+                    throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
                 }
-                const name = request.data.fileName || `${request.type}_${request.id}.bin`;
-                const mime = request.data.mimeType || (stored.type || 'application/octet-stream');
-                const blob = stored instanceof Blob ? stored : new Blob([stored], { type: mime });
+                const blob = await resp.blob();
+                const fileName = request.data?.fileName || `${request.type}_${jobId}.bin`;
                 const url = URL.createObjectURL(blob);
                 const anchor = document.createElement('a');
                 anchor.href = url;
-                anchor.download = name;
+                anchor.download = fileName;
                 document.body.appendChild(anchor);
                 anchor.click();
                 setTimeout(() => {
@@ -3374,67 +3373,49 @@
         }
 
         async function reconcileQueueStorage() {
-            if (!queueStorage.supported) return;
-            try {
-                await queueStorage.init();
-                const items = app.requestQueue.filter(req => req?.data?.fileKey);
-                for (const request of items) {
-                    try {
-                        const exists = await queueStorage.hasFile(request.data.fileKey);
-                        request.data.storageState = exists ? 'stored' : 'missing';
-                    } catch (err) {
-                        request.data.storageState = 'missing';
-                        console.warn('[QueueStorage] failed to verify file:', err);
-                    }
-                }
-                saveQueue();
-                updateQueueDisplay();
-            } catch (err) {
-                console.error('[QueueStorage] reconcile failed:', err);
-            }
+            // No-op: queue storage is server-side
         }
 
-        function queueRequest(type, data) {
-            const request = {
-                id: Date.now(),
-                type: type,
-                data: { ...(data || {}) },
-                timestamp: new Date().toISOString()
-            };
-
-            const maybeFile = request.data && request.data.file instanceof File ? request.data.file : null;
-            if (maybeFile) {
-                const key = `${request.id}_${Math.random().toString(16).slice(2)}`;
-                request.data.fileKey = key;
-                request.data.fileName = request.data.fileName || maybeFile.name || `${type}_${request.id}.bin`;
-                request.data.mimeType = maybeFile.type || 'application/octet-stream';
-                request.data.fileSize = typeof maybeFile.size === 'number' ? maybeFile.size : null;
-                request.data.storageState = queueStorage.supported ? 'pending' : 'unsupported';
-                delete request.data.file;
-
-                if (queueStorage.supported) {
-                    queueStorage.storeFile(key, maybeFile)
-                        .then(() => {
-                            request.data.storageState = 'stored';
-                            saveQueue();
-                            updateQueueDisplay();
-                        })
-                        .catch((error) => {
-                            console.error('[QueueStorage] store failed:', error);
-                            request.data.storageState = 'missing';
-                            saveQueue();
-                            updateQueueDisplay();
-                            showToast('Warning', 'Unable to persist queued file. Download a copy before refreshing.', 'warning');
-                        });
-                } else {
-                    showToast('Warning', 'Browser cannot persist queued files. Download a copy before refreshing.', 'warning');
-                }
+        async function queueRequest(type, data) {
+            // Guard: must be authenticated to queue on server
+            const token = getAuthToken();
+            if (!token) {
+                showToast('Sign In Required', 'Log in to queue files.', 'warning');
+                return;
             }
-
-            app.requestQueue.push(request);
-            updateConnectionStatus('queued');
-            saveQueue();
-            updateQueueDisplay();
+            const maybeFile = data && data.file instanceof File ? data.file : null;
+            if (!maybeFile) {
+                console.warn('[Queue] No file provided');
+                return;
+            }
+            // Upload to server queue
+            const formData = new FormData();
+            formData.append('type', type);
+            formData.append('file', maybeFile, data.fileName || maybeFile.name);
+            try {
+                const resp = await fetch('/api/queue', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+                if (!resp.ok) {
+                    const errText = await resp.text();
+                    throw new Error(`HTTP ${resp.status}: ${errText}`);
+                }
+                const job = await resp.json();
+                // Add to local cache
+                if (!app.requestQueue.find(j => j.id === job.id)) {
+                    app.requestQueue.push(job);
+                }
+                updateConnectionStatus('queued');
+                updateQueueDisplay();
+                showToast('Queued', `${maybeFile.name} added to queue`, 'success');
+            } catch (error) {
+                console.error('[Queue] Upload failed:', error);
+                showToast('Queue Failed', 'Could not add file to server queue', 'error');
+            }
         }
 
         async function sendFeedback(rating) {
@@ -3477,56 +3458,37 @@
             if (app.connection.status !== 'connected' || app.requestQueue.length === 0) {
                 return;
             }
+            const token = getAuthToken();
+            if (!token) {
+                showToast('Sign In Required', 'Log in to process queued files.', 'warning');
+                return;
+            }
 
             const queue = [...app.requestQueue];
             app.requestQueue = [];
 
             for (const request of queue) {
-                let file = null;
-
-                if (request?.data?.fileKey) {
-                    try {
-                        file = await queueStorage.getFile(request.data.fileKey);
-                        if (file && !(file instanceof File) && typeof File === 'function') {
-                            try {
-                                file = new File(
-                                    [file],
-                                    request.data.fileName || `${request.type}_${request.id}.bin`,
-                                    { type: request.data.mimeType || (file.type || 'application/octet-stream') }
-                                );
-                            } catch (wrapError) {
-                                console.warn('[Queue] Unable to wrap blob in File:', wrapError);
-                            }
-                        }
-                    } catch (loadError) {
-                        console.error('[Queue] Failed to load stored file:', loadError);
-                        file = null;
-                    }
-                }
-
                 try {
+                    // Download file from server
+                    const downloadResp = await fetch(`/api/queue/${request.id}/download`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (!downloadResp.ok) {
+                        throw new Error(`Download failed: ${downloadResp.status}`);
+                    }
+                    const blob = await downloadResp.blob();
+                    const file = new File(
+                        [blob],
+                        request.data?.fileName || `${request.type}_${request.id}.bin`,
+                        { type: request.data?.mimeType || blob.type || 'application/octet-stream' }
+                    );
+
                     switch (request.type) {
-                        case 'transcribe': {
-                            const missingLabel = request.data.fileName || 'queued audio';
-                            if (!file) {
-                                request.data.storageState = 'missing';
-                                showToast('Error', `${missingLabel} is unavailable. Download a copy before refreshing next time.`, 'error');
-                                break;
-                            }
+                        case 'transcribe':
                             await transcribeAudio(file, { skipQueueOnError: true });
                             showToast('Processed', 'Audio transcription completed', 'success');
-                            if (request.data.fileKey) {
-                                try { await queueStorage.deleteFile(request.data.fileKey); } catch (cleanupErr) { console.warn('[Queue] Failed to delete stored audio:', cleanupErr); }
-                            }
                             break;
-                        }
                         case 'ocr': {
-                            const missingLabel = request.data.fileName || 'queued document';
-                            if (!file) {
-                                request.data.storageState = 'missing';
-                                showToast('Error', `${missingLabel} is unavailable. Download a copy before refreshing next time.`, 'error');
-                                break;
-                            }
                             const out = await ocrOnServer(file);
                             const existing = setChartDataValue();
                             const addition = sanitizeClinicalText(out.text || '');
@@ -3538,20 +3500,23 @@
                             setChartDataValue(newVal);
                             try { saveToStorage && saveToStorage(); } catch(e) {}
                             showToast('Processed', `OCR complete${suffix}`, 'success');
-                            if (request.data.fileKey) {
-                                try { await queueStorage.deleteFile(request.data.fileKey); } catch (cleanupError) { console.warn('[Queue] Failed to delete stored document:', cleanupError); }
-                            }
                             break;
                         }
                         default:
                             console.warn(`Unknown queue request type: ${request.type}`);
-                            break;
+                            continue;
                     }
+
+                    // On success, delete the job from server queue
+                    await fetch(`/api/queue/${request.id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
                 } catch (error) {
-                    if (request.type === 'transcribe' || request.type === 'ocr') {
-                        app.requestQueue.push(request);
-                        showToast('Error', `Failed to process ${request.type} request. Will retry.`, 'error');
-                    }
+                    console.error(`[Queue] Failed to process job ${request.id}:`, error);
+                    // Keep in local queue for retry
+                    app.requestQueue.push(request);
+                    showToast('Error', `Failed to process ${request.type} request. Will retry.`, 'error');
                 }
             }
 
@@ -3579,8 +3544,8 @@
             app.requestQueue.forEach(request => {
                 const item = document.createElement('div');
                 item.className = 'queue-item';
-                const fileLabel = request?.data?.fileName || 'Text data';
-                const sizeLabel = request?.data?.fileSize ? ` (${formatBytes(request.data.fileSize)})` : '';
+                const fileLabel = request.data?.fileName || 'Text data';
+                const sizeLabel = request.data?.fileSize ? ` (${formatBytes(request.data.fileSize)})` : '';
 
                 item.innerHTML = `
                     <strong>${request.type.toUpperCase()}</strong><br>
@@ -3588,7 +3553,8 @@
                     <small class="text-muted">${new Date(request.timestamp).toLocaleString()}</small>
                 `;
 
-                if (request?.data?.fileKey) {
+                // Show download button for all server jobs (they have fileKey = job.id)
+                if (request.data?.fileKey) {
                     const actions = document.createElement('div');
                     actions.className = 'queue-actions';
 
@@ -3600,14 +3566,6 @@
                     actions.appendChild(downloadBtn);
 
                     item.appendChild(actions);
-
-                    const storageMessage = getQueueStorageMessage(request.data.storageState);
-                    if (storageMessage) {
-                        const warning = document.createElement('div');
-                        warning.className = 'queue-warning';
-                        warning.textContent = storageMessage;
-                        item.appendChild(warning);
-                    }
                 }
 
                 queueList.appendChild(item);
@@ -3615,21 +3573,7 @@
         }
 
         function saveQueue() {
-            try {
-                const queueData = app.requestQueue.map(req => {
-                    const sanitized = {
-                        ...req,
-                        data: { ...(req.data || {}) }
-                    };
-                    if (sanitized.data) {
-                        delete sanitized.data.file;
-                    }
-                    return sanitized;
-                });
-                localStorage.setItem('clinicalNoteQueue', JSON.stringify(queueData));
-            } catch (error) {
-                console.error('Error saving queue:', error);
-            }
+            // No-op: queue now stored server-side
         }
 
         function clearTranscription() {
@@ -3660,40 +3604,45 @@
             }
         }
 
-        function loadQueue() {
-            const stored = localStorage.getItem('clinicalNoteQueue');
-            if (!stored) {
-                queueStorage.init().catch(() => {});
+        async function loadQueue() {
+            const token = getAuthToken();
+            if (!token) {
+                app.requestQueue = [];
+                updateQueueDisplay();
                 return;
             }
-
             try {
-                const parsed = JSON.parse(stored);
-                if (Array.isArray(parsed)) {
-                    app.requestQueue = parsed.map(req => {
-                        const data = { ...((req && req.data) || {}) };
-                        delete data.file;
-                        if (data.fileKey && !data.storageState) {
-                            data.storageState = 'pending';
-                        }
-                        return {
-                            ...req,
-                            data
-                        };
-                    });
+                const resp = await fetch('/api/queue', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (resp.ok) {
+                    const jobs = await resp.json();
+                    // Transform server jobs to match existing UI expectations
+                    app.requestQueue = jobs.map(job => ({
+                        id: job.id,
+                        type: job.type,
+                        data: {
+                            fileName: job.file_name,
+                            fileSize: job.file_size,
+                            mimeType: job.mime_type,
+                            serverFileKey: job.server_file_key,
+                            // compatibility fields
+                            fileKey: job.id, // used for download endpoint
+                            storageState: 'stored'
+                        },
+                        timestamp: job.created_at
+                    }));
                 } else {
+                    console.warn('[Queue] Failed to load server queue:', resp.status);
                     app.requestQueue = [];
                 }
             } catch (error) {
-                console.error('Error loading queue:', error);
+                console.error('[Queue] Load failed:', error);
                 app.requestQueue = [];
             }
-
             updateQueueDisplay();
-
-            queueStorage.init()
-                .then(() => reconcileQueueStorage())
-                .catch((err) => console.warn('[QueueStorage] init after load failed:', err));
+            // Keep queueStorage.init for any leftover local cleanup (will be unused)
+            queueStorage.init().catch(() => {});
         }
 
         let pendingTemplate = null;
@@ -4032,6 +3981,19 @@
                     stopSpeechRecognition();
                 }
 
+                // Clear server queue if authenticated
+                const token = getAuthToken();
+                if (token) {
+                    try {
+                        await fetch('/api/queue', {
+                            method: 'DELETE',
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+                    } catch (error) {
+                        console.warn('[Queue] Failed to clear server queue:', error);
+                    }
+                }
+
                 app.requestQueue = [];
                 saveQueue();
                 updateQueueDisplay();
@@ -4061,6 +4023,20 @@
                 return;
             }
 
+            // Clear server queue if authenticated
+            const token = getAuthToken();
+            if (token) {
+                try {
+                    await fetch('/api/queue', {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                } catch (error) {
+                    console.warn('[Queue] Failed to clear server queue:', error);
+                }
+            }
+
+            // Clear local queue and IndexedDB leftovers
             const keys = app.requestQueue
                 .map(req => (req && req.data && req.data.fileKey) ? req.data.fileKey : null)
                 .filter(Boolean);
