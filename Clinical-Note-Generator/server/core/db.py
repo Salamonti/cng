@@ -26,6 +26,7 @@ def init_db() -> None:
     from ..models import refresh_token  # noqa: F401
     from ..models import user  # noqa: F401
     from ..models import workspace  # noqa: F401
+    from ..models import queued_job  # noqa: F401
 
     SQLModel.metadata.create_all(engine)
 
