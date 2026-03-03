@@ -3409,6 +3409,27 @@
             // No-op: queue storage is server-side
         }
 
+        async function saveFileLocally(file, suggestedName = null) {
+            const fileName = suggestedName || file.name || `${file.type || 'unknown'}_${Date.now()}.bin`;
+            try {
+                const url = URL.createObjectURL(file);
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.download = fileName;
+                document.body.appendChild(anchor);
+                anchor.click();
+                setTimeout(() => {
+                    URL.revokeObjectURL(url);
+                    document.body.removeChild(anchor);
+                }, 200);
+                return true;
+            } catch (error) {
+                console.error('[SaveLocal] Failed:', error);
+                showToast('Error', 'Could not save file locally', 'error');
+                return false;
+            }
+        }
+
         async function queueRequest(type, data) {
             // Guard: must be authenticated to queue on server
             const token = getAuthToken();
@@ -3428,6 +3449,20 @@
                 showToast('Already Queued', `${maybeFile.name} is already in the queue`, 'info');
                 return;
             }
+            // Check if server is reachable
+            if (app.connection.status === 'disconnected') {
+                const save = confirm(`Server is unreachable. Save "${maybeFile.name}" locally to process later when connection restored?\n\nClick OK to download file, Cancel to skip.`);
+                if (save) {
+                    const saved = await saveFileLocally(maybeFile, data.fileName || maybeFile.name);
+                    if (saved) {
+                        showToast('File Saved', 'Download started. Upload manually when back online.', 'info');
+                    }
+                } else {
+                    showToast('Skipped', 'File not saved. Try again when connection restored.', 'warning');
+                }
+                return; // Don't attempt server upload
+            }
+
             // Upload to server queue
             const formData = new FormData();
             formData.append('type', type);
@@ -3472,7 +3507,22 @@
                 showToast('Queued', `${maybeFile.name} added to queue`, 'success');
             } catch (error) {
                 console.error('[Queue] Upload failed:', error);
-                showToast('Queue Failed', 'Could not add file to server queue', 'error');
+                // Check if it's a network error (server unreachable mid-upload)
+                const isNetworkError = error.message.includes('Failed to fetch') || error.name === 'TypeError' || error.message.includes('NetworkError');
+                if (isNetworkError) {
+                    // Server might have gone offline during upload
+                    const save = confirm(`Connection lost. Save "${maybeFile.name}" locally to process later?\n\nClick OK to download file, Cancel to skip.`);
+                    if (save) {
+                        const saved = await saveFileLocally(maybeFile, data.fileName || maybeFile.name);
+                        if (saved) {
+                            showToast('File Saved', 'Download started. Upload manually when back online.', 'info');
+                        }
+                    } else {
+                        showToast('Upload Failed', 'Could not reach server and file not saved.', 'error');
+                    }
+                } else {
+                    showToast('Queue Failed', 'Could not add file to server queue', 'error');
+                }
             }
         }
 
