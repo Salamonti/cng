@@ -20,6 +20,17 @@ from server.schemas.queue import QueuedJobCreate, QueuedJobResponse
 from server.routes.ocr import ocr as ocr_endpoint
 from server.routes.asr import transcribe_diarized as asr_endpoint
 
+# Import ASR helpers for whisper.cpp integration
+from server.routes.asr import (
+    _candidate_urls,
+    _asr_url,
+    _asr_api_key,
+    _whispercpp_vad,
+    _whispercpp_no_speech_thold,
+    _extract_whisper_text,
+    _mark_primary_down,
+)
+
 router = APIRouter(prefix="/api/queue", tags=["queue"], redirect_slashes=False)
 
 
@@ -239,26 +250,64 @@ def process_queued_job(
             }
 
         if job.type == "transcribe":
-            # Use internal HTTP to reuse existing ASR proxy behavior.
-            # Forward the caller's Authorization header so the ASR
-            # endpoint's bearer-token middleware doesn't reject us.
+            # Use same whisper.cpp endpoint as live transcription (ASR_URL / ASR_URL_FALLBACK)
             import requests
-
-            auth_header = request.headers.get("authorization", "")
-            internal_headers = {}
-            if auth_header:
-                internal_headers["Authorization"] = auth_header
-
+            import json
+            import time
+            
+            candidates = _candidate_urls()
+            if not candidates:
+                raise RuntimeError("No ASR endpoints available (ASR_URL not set)")
+            
+            api_key = _asr_api_key()
+            vad = _whispercpp_vad()
+            no_speech_thold = _whispercpp_no_speech_thold()
+            
             upload_file.file.seek(0)
-            resp = requests.post(
-                "http://127.0.0.1:7860/api/transcribe_diarized",
-                files={"audio": (job.file_name, upload_file.file, job.mime_type)},
-                headers=internal_headers,
-                timeout=180,
-            )
-            if resp.status_code != 200:
-                raise RuntimeError(f"ASR HTTP {resp.status_code}: {resp.text[:200]}")
-
+            file_data = upload_file.file.read()
+            
+            errors = []
+            text = ""
+            for base_url in candidates:
+                try:
+                    headers = {}
+                    if api_key:
+                        headers["Authorization"] = f"Bearer {api_key}"
+                    
+                    form_data = {
+                        "file": (job.file_name, file_data, job.mime_type),
+                        "response_format": (None, "json"),
+                        "vad": (None, vad),
+                        "no_speech_thold": (None, no_speech_thold),
+                    }
+                    
+                    resp = requests.post(
+                        f"{base_url}/inference",
+                        files=form_data,
+                        headers=headers,
+                        timeout=180,
+                    )
+                    if resp.status_code == 200:
+                        # Success
+                        payload = resp.json()
+                        text = _extract_whisper_text(payload)
+                        if not text:
+                            text = resp.text.strip()
+                        break
+                    else:
+                        if base_url == _asr_url() and resp.status_code >= 500:
+                            _mark_primary_down()
+                        errors.append(f"{base_url}: HTTP {resp.status_code}")
+                        continue
+                except Exception as e:
+                    if base_url == _asr_url():
+                        _mark_primary_down()
+                    errors.append(f"{base_url}: {str(e)[:200]}")
+                    continue
+            else:
+                # All candidates failed
+                raise RuntimeError(f"ASR failed: {'; '.join(errors)}")
+            
             delete_queued_file(job.server_file_key)
             session.delete(job)
             session.commit()
@@ -266,7 +315,7 @@ def process_queued_job(
                 "success": True,
                 "job_id": str(job_id),
                 "type": "transcribe",
-                "text": resp.text,
+                "text": text,
             }
 
         raise HTTPException(status_code=400, detail=f"Unsupported job type: {job.type}")
