@@ -133,12 +133,20 @@ def _normalize_audio_to_wav(data: bytes, filename: str, content_type: str) -> tu
             "-hide_banner",
             "-loglevel",
             "error",
+            "-threads",
+            "0",  # Use all CPU cores
             "-i",
             src_path,
+            "-c:a",
+            "pcm_s16le",  # Explicit PCM codec
             "-ar",
             "16000",
             "-ac",
             "1",
+            "-af",
+            "aresample=async=1000",  # Faster resampling
+            "-f",
+            "wav",
             dst_path,
         ]
         proc = subprocess.run(cmd, capture_output=True, text=True, timeout=30)

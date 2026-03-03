@@ -283,7 +283,7 @@ class WhisperXASREngine:
         if not ffmpeg_bin:
             return src_path
         dst_path = src_path + ".tmp.wav"
-        cmd = [ffmpeg_bin, "-y", "-hide_banner", "-loglevel", "error", "-i", src_path, "-ar", "16000", "-ac", "1", dst_path]
+        cmd = [ffmpeg_bin, "-y", "-hide_banner", "-loglevel", "error", "-threads", "0", "-i", src_path, "-c:a", "pcm_s16le", "-ar", "16000", "-ac", "1", "-af", "aresample=async=1000", "-f", "wav", dst_path]
         try:
             subprocess.check_call(cmd)
             return dst_path
