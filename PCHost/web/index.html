@@ -1634,6 +1634,11 @@
             .mobile-bottom-nav .nav-item.active{color:#667eea;}
             .mobile-bottom-nav .nav-item.danger{color:#dc3545;}
         }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
 </style>
 
     <script src="universal_audio_handler.js">
@@ -1956,6 +1961,13 @@
                 <div class="progress-bar indeterminate" id="noteProgressBar"></div>
             </div>
             <div id="noteStatus" class="note-status hidden">Generating note...</div>
+            <div class="streaming-controls hidden" id="streamingControls" style="display: flex; align-items: center; justify-content: space-between; background: #f8f9fa; padding: 8px 12px; border-radius: 6px; margin-top: 8px; border: 1px solid #dee2e6;">
+                <div class="streaming-status" style="display: flex; align-items: center; gap: 8px;">
+                    <span class="typing-cursor" style="animation: blink 1s infinite;">▌</span>
+                    <span class="token-count">Generating...</span>
+                </div>
+                <button class="btn btn-sm btn-danger" onclick="stopGeneration()" style="padding: 4px 10px; font-size: 0.85rem;">Stop</button>
+            </div>
 
             <div class="btn-group" style="gap:10px;margin-top:8px;">
                 <button class="btn btn-secondary btn-full hidden" id="openOrderRequestsBtn" onclick="handleOrderRequestsClick()">Order & Referral Requests</button>
@@ -3009,6 +3021,12 @@
         }
 
         async function generateNote() {
+            // Prevent multiple concurrent generations
+            if (app.isStreaming) {
+                showToast('Already Generating', 'A note is already being generated. Please wait or stop the current generation.', 'warning');
+                return;
+            }
+
             const noteType = document.getElementById('noteType').value;
 
             // V7 API: Check if any of the 3 input fields has content
@@ -3045,6 +3063,20 @@
             } catch (error) {
                 console.error('Error in generateNote:', error);
                 showToast('Generation Error', `Failed to generate note: ${error.message}`, 'error');
+            }
+        }
+
+        let generationAbortController = null;
+
+        async function stopGeneration() {
+            if (generationAbortController) {
+                generationAbortController.abort();
+                generationAbortController = null;
+                showToast('Stopped', 'Note generation stopped', 'info');
+                // Hide streaming controls
+                const streamingControls = document.getElementById('streamingControls');
+                if (streamingControls) streamingControls.classList.add('hidden');
+                app.isStreaming = false;
             }
         }
 
@@ -3123,12 +3155,23 @@
                 app.isStreaming = true;
                 lastServiceRetry = () => generateNoteOnline(chartData, noteType);
 
+                // Show streaming controls
+                const streamingControls = document.getElementById('streamingControls');
+                if (streamingControls) {
+                    streamingControls.classList.remove('hidden');
+                    streamingControls.style.display = 'flex';
+                }
+
+                // Create abort controller for streaming
+                generationAbortController = new AbortController();
+
                 // Use direct streaming endpoint
                 const apiBase = getApiBase(app.settings.serverUrl || '/api');
                 const response = await fetch(`${apiBase}/generate_v8_stream`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` },
-                    body: formData
+                    body: formData,
+                    signal: generationAbortController.signal
                 });
 
                 if (!response.ok) {
@@ -3224,10 +3267,24 @@
                 }
 
         } catch (error) {
-            console.error('Generate note error:', error);
-            showToast('Error', `Failed to generate note: ${error.message}`, 'error');
+            if (error.name === 'AbortError') {
+                console.log('Generation aborted by user');
+                // No need to show error toast for user-initiated abort
+            } else {
+                console.error('Generate note error:', error);
+                showToast('Error', `Failed to generate note: ${error.message}`, 'error');
+            }
             // Don't queue - user can retry manually
         } finally {
+            // Hide streaming controls
+            const streamingControls = document.getElementById('streamingControls');
+            if (streamingControls) {
+                streamingControls.classList.add('hidden');
+                streamingControls.style.display = 'none';
+            }
+            // Reset abort controller and streaming flag
+            generationAbortController = null;
+            app.isStreaming = false;
             hideProgress('noteProgress');
             setGeneratedNoteBusy(false);
             updateNoteStatus('');

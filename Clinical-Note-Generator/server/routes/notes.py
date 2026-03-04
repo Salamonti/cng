@@ -2472,26 +2472,49 @@ async def generate_v8_stream(request: Request):
             },
         }
 
-        try:
-            note_text = await note_gen.collect_completion(
-                prompt,
-                temperature=temp,
-                max_tokens=max_tokens,
-                stop=NOTE_STOP_TOKENS,
-            )
-        except ExternalServiceError as e:
-            return JSONResponse(status_code=503, content={"error": "service_unavailable", "detail": _service_error_detail(e)})
-
         async def gen():
             nonlocal token_count
+            streamed_any = False
             try:
-                # Clean and yield the output
-                cleaned_text = _strip_note_end_marker(note_text)
-                cleaned = clean_model_output_chunk(cleaned_text)
-                if cleaned:
-                    output_buf.append(cleaned)
-                    token_count += len(cleaned.split())
-                    yield cleaned
+                try:
+                    async for chunk in note_gen.stream_completion(
+                        prompt,
+                        temperature=temp,
+                        max_tokens=max_tokens,
+                        stop=NOTE_STOP_TOKENS,
+                    ):
+                        streamed_any = True
+                        cleaned = clean_model_output_chunk(chunk or "")
+                        if not cleaned:
+                            continue
+                        # Handle END_MARKER if it appears mid-chunk
+                        if END_MARKER in cleaned:
+                            cleaned = cleaned.split(END_MARKER, 1)[0]
+                            if cleaned:
+                                output_buf.append(cleaned)
+                                token_count += len(cleaned.split())
+                                yield cleaned
+                            yield END_MARKER + "\n"
+                            return
+                        if cleaned:
+                            output_buf.append(cleaned)
+                            token_count += len(cleaned.split())
+                            yield cleaned
+                except ExternalServiceError:
+                    if streamed_any:
+                        raise
+                    # Fallback to collect_completion if streaming fails early
+                    note_text = await note_gen.collect_completion(
+                        prompt,
+                        temperature=temp,
+                        max_tokens=max_tokens,
+                        stop=NOTE_STOP_TOKENS,
+                    )
+                    cleaned = clean_model_output_chunk(_strip_note_end_marker(note_text))
+                    if cleaned:
+                        output_buf.append(cleaned)
+                        token_count += len(cleaned.split())
+                        yield cleaned
 
                 yield END_MARKER + "\n"
 
