@@ -26,6 +26,52 @@
     #error { display:none; color:#991b1b; background:#fee2e2; border:1px solid #fecaca; border-radius:8px; padding:8px; margin-bottom:8px; }
     h2,h3,h4{margin:.4rem 0}
     ul{margin:.3rem 0 .3rem 1.1rem}
+    /* Vision QA additions */
+    .thumbnail-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+      padding: 8px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .thumbnail-info {
+      flex: 1;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+    .thumbnail-info strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    .remove-thumbnail {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    .remove-thumbnail:hover {
+      color: #ef4444;
+    }
+    .streaming-cursor {
+      display: inline-block;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -61,6 +107,11 @@
     const fileInput = document.getElementById('fileInput');
     const fileMeta = document.getElementById('fileMeta');
     const errorEl = document.getElementById('error');
+
+    // State for vision QA
+    let attachedImage = null;
+    let attachedImageUrl = null;
+    let currentAbortController = null;
 
     function getAuthToken(){
       try {
@@ -131,7 +182,13 @@
     function showError(msg){ errorEl.textContent=msg; errorEl.style.display='block'; }
     function clearError(){ errorEl.style.display='none'; errorEl.textContent=''; }
 
-    
+    function removeAttachedImage() {
+      if (attachedImageUrl) URL.revokeObjectURL(attachedImageUrl);
+      attachedImage = null;
+      attachedImageUrl = null;
+      fileMeta.textContent = '';
+      questionEl.placeholder = 'Ask a medical question...';
+    }
 
     async function extractFileText(file){
       const token=getAuthToken();
@@ -139,8 +196,16 @@
       const name=(file?.name||'').toLowerCase();
       const type=(file?.type||'').toLowerCase();
       const isAudio = type.startsWith('audio/') || /\.(mp3|wav|m4a|ogg|webm)$/i.test(name);
-      const isImageOrPdf = type.startsWith('image/') || type==='application/pdf' || /\.(pdf|png|jpg|jpeg|webp|heic)$/i.test(name);
-      if(!isAudio && !isImageOrPdf) throw new Error('Unsupported file type');
+      const isImage = type.startsWith('image/') || /\.(png|jpg|jpeg|webp|bmp|gif)$/i.test(name);
+      const isPdf = type==='application/pdf' || /\.pdf$/i.test(name);
+      
+      if(!isAudio && !isImage && !isPdf) throw new Error('Unsupported file type');
+      
+      // For images: do NOT extract text; handle in vision QA path
+      if (isImage) {
+        throw new Error('Images are now handled via vision QA. Upload image and ask your question.');
+      }
+      
       const fd=new FormData();
       const endpoint=isAudio?'/api/transcribe_diarized':'/api/ocr';
       fd.append(isAudio?'audio':'file', file);
@@ -155,53 +220,162 @@
     fileInput.addEventListener('change', async (e)=>{
       const f=e.target.files && e.target.files[0];
       if(!f) return;
-      fileMeta.textContent=`Extracting from: ${f.name}...`;
-      try{
-        const txt=await extractFileText(f);
-        questionEl.value = (questionEl.value ? questionEl.value + '\n\n' : '') + txt;
-        fileMeta.textContent=`Attached: ${f.name} · extracted ${txt.length} chars`;
+      
+      const name=f.name.toLowerCase();
+      const type=f.type.toLowerCase();
+      const isAudio = type.startsWith('audio/') || /\.(mp3|wav|m4a|ogg|webm)$/i.test(name);
+      const isImage = type.startsWith('image/') || /\.(png|jpg|jpeg|webp|bmp|gif)$/i.test(name);
+      const isPdf = type==='application/pdf' || /\.pdf$/i.test(name);
+      
+      if (isAudio || isPdf) {
+        // Existing OCR/ASR flow
+        fileMeta.textContent=`Extracting from: ${f.name}...`;
+        try{
+          const txt=await extractFileText(f);
+          questionEl.value = (questionEl.value ? questionEl.value + '\n\n' : '') + txt;
+          fileMeta.textContent=`Attached: ${f.name} · extracted ${txt.length} chars`;
+          questionEl.focus();
+        }catch(err){
+          fileMeta.textContent='';
+          showError(err.message||String(err));
+        }
+      } else if (isImage) {
+        // NEW: Store image for vision QA
+        attachedImage = f;
+        attachedImageUrl = URL.createObjectURL(f);
+        
+        // Show thumbnail preview
+        fileMeta.innerHTML = `
+          <div class="thumbnail-container">
+            <img src="${attachedImageUrl}" class="thumbnail" alt="Preview">
+            <div class="thumbnail-info">
+              <strong>Image attached</strong>
+              ${esc(f.name)} (${(f.size/1024).toFixed(1)} KB)
+            </div>
+            <button type="button" class="remove-thumbnail" title="Remove image">×</button>
+          </div>
+        `;
+        
+        // Add click handler to remove button
+        fileMeta.querySelector('.remove-thumbnail').addEventListener('click', removeAttachedImage);
+        
+        // Auto‑focus question field with placeholder hint
+        questionEl.placeholder = 'Ask about this image...';
         questionEl.focus();
-      }catch(err){
-        fileMeta.textContent='';
-        showError(err.message||String(err));
-      }finally{
-        fileInput.value='';
+      } else {
+        showError('Unsupported file type. Please upload audio, image, or PDF.');
       }
+      
+      fileInput.value = '';
     });
 
     async function sendQuestion(){
-      const q=(questionEl.value||'').trim();
-      if(!q) return;
-      const token=getAuthToken();
-      if(!token){ showError('Not signed in. Please open from main app session.'); return; }
+      const q = (questionEl.value || '').trim();
+      const token = getAuthToken();
+      
+      // If no question but image attached, auto‑generate a generic question
+      const effectiveQuestion = q || (attachedImage ? 'Describe this medical image.' : '');
+      
+      if (!effectiveQuestion) return;
+      if (!token) { showError('Not signed in. Please open from main app session.'); return; }
 
-      // Clear immediately on send (industry-standard chat behavior)
-      questionEl.value='';
+      // Clear UI
+      questionEl.value = '';
       clearError();
-      addMsg('user', md(q));
-      const pending=addMsg('assistant','<em>Generating...</em>');
-      sendBtn.disabled=true;
+      addMsg('user', q ? md(q) : (attachedImage ? '<em>[Image question]</em>' : ''));
+      const pending = addMsg('assistant', '<em>Analyzing...<span class="streaming-cursor">▌</span></em>');
+      sendBtn.disabled = true;
+      
+      // Cancel any previous request
+      if (currentAbortController) currentAbortController.abort();
+      currentAbortController = new AbortController();
 
-      try{
-        const r=await fetch('/api/qa/chat',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+token},body:JSON.stringify({message:q,session_id:'default'})});
-        if(!r.ok){ const t=await r.text(); throw new Error(`HTTP ${r.status}: ${t.slice(0,180)}`); }
-        const d=await r.json();
-        let refs='';
-        const src=Array.isArray(d.sources)?d.sources:[];
-        const info=`Evidence: RAG ${Number(d.rag_results_count||0)} · Web ${Number(d.web_results_count||0)}${d.evidence_max_year?` · Max year ${d.evidence_max_year}`:''}`;
-        if(src.length){
-          refs='<div class="refs"><div><strong>'+esc(info)+'</strong></div>'+src.slice(0,8).map((s,i)=>`<div>[${i+1}] ${esc((s.kind||'src').toUpperCase())}: ${esc(s.title||'Untitled')} ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">link</a>`:''}</div>`).join('')+'</div>';
+      try {
+        let response;
+        
+        if (attachedImage) {
+          // VISION QA PATH (streaming)
+          const formData = new FormData();
+          formData.append('question', effectiveQuestion);
+          formData.append('image', attachedImage);
+          
+          response = await fetch('/api/qa/vision', {
+            method: 'POST',
+            headers: { 'authorization': 'Bearer ' + token },
+            body: formData,
+            signal: currentAbortController.signal
+          });
         } else {
-          refs='<div class="refs"><strong>'+esc(info)+'</strong></div>';
+          // REGULAR TEXT QA PATH (non‑streaming)
+          response = await fetch('/api/qa/chat', {
+            method: 'POST',
+            headers: { 
+              'content-type': 'application/json',
+              'authorization': 'Bearer ' + token 
+            },
+            body: JSON.stringify({ message: effectiveQuestion, session_id: 'default' }),
+            signal: currentAbortController.signal
+          });
         }
-        const answerText = d.answer||'No answer returned.';
-        pending.innerHTML=md(answerText)+refs;
-        addCopyButton(pending, answerText);
-      }catch(e){
-        pending.innerHTML='<span style="color:#991b1b">Failed to generate response.</span>';
-        showError(e.message||String(e));
-      }finally{
-        sendBtn.disabled=false;
+        
+        if (!response.ok) {
+          const t = await response.text();
+          throw new Error(`HTTP ${response.status}: ${t.slice(0,180)}`);
+        }
+        
+        // Handle streaming response for vision, JSON for regular QA
+        if (attachedImage) {
+          // Streaming text/plain
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let answerText = '';
+          
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const chunk = decoder.decode(value, { stream: true });
+            answerText += chunk;
+            
+            // Update UI incrementally
+            pending.innerHTML = md(answerText) + '<span class="streaming-cursor">▌</span>';
+            chat.scrollTop = chat.scrollHeight;
+          }
+          
+          // Remove blinking cursor when done
+          pending.innerHTML = md(answerText);
+          addCopyButton(pending, answerText);
+          
+          // Clear attached image after successful send
+          removeAttachedImage();
+        } else {
+          // Regular JSON response
+          const d = await response.json();
+          let refs = '';
+          const src = Array.isArray(d.sources) ? d.sources : [];
+          const info = `Evidence: RAG ${Number(d.rag_results_count||0)} · Web ${Number(d.web_results_count||0)}${d.evidence_max_year?` · Max year ${d.evidence_max_year}`:''}`;
+          if (src.length) {
+            refs = '<div class="refs"><div><strong>' + esc(info) + '</strong></div>' +
+              src.slice(0,8).map((s,i) => 
+                `<div>[${i+1}] ${esc((s.kind||'src').toUpperCase())}: ${esc(s.title||'Untitled')} ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">link</a>`:''}</div>`
+              ).join('') + '</div>';
+          } else {
+            refs = `<div class="refs"><strong>${esc(info)}</strong></div>`;
+          }
+          const answerText = d.answer || 'No answer returned.';
+          pending.innerHTML = md(answerText) + refs;
+          addCopyButton(pending, answerText);
+        }
+      } catch(e) {
+        if (e.name === 'AbortError') {
+          pending.innerHTML = '<em>Cancelled</em>';
+        } else {
+          pending.innerHTML = '<span style="color:#991b1b">Failed to generate response.</span>';
+          showError(e.message || String(e));
+        }
+      } finally {
+        sendBtn.disabled = false;
+        currentAbortController = null;
       }
     }
 
@@ -209,7 +383,13 @@
       if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendQuestion(); }
     });
     sendBtn.addEventListener('click', sendQuestion);
-    clearChatBtn.addEventListener('click', ()=>{ chat.innerHTML=''; questionEl.value=''; fileMeta.textContent=''; clearError(); questionEl.focus(); });
+    clearChatBtn.addEventListener('click', ()=>{
+      chat.innerHTML='';
+      questionEl.value='';
+      removeAttachedImage();
+      clearError();
+      questionEl.focus();
+    });
     window.addEventListener('load', ()=>{ setTimeout(()=>questionEl.focus(), 50); });
   </script>
 </body>
