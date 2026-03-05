@@ -20,22 +20,10 @@ class UniversalAudioHandler {
         this.onAudioFileCallback = null;
         this.wakeLock = null; // screen wake lock handle
         
-        // WebSocket streaming (legacy naming)
-        this.ws = null;
-        this.wsConnected = false;
-        this.wsSessionId = null;
-        this.useWebSocket = false;
-        this.wsFallbackEnabled = true; // fallback to HTTP POST if WS fails
-        
-        // New ASR streaming (Codex architecture)
-        this.asrSocket = null;
-        this.asrConnected = false;
-        this.asrFailed = false;
         this.onAsrStatusCallback = null;
-        this.liveAudioContext = null;
-        this.liveProcessor = null;
-        this.liveSource = null;
         this.liveStream = null;
+        this._chunkWindow = [];
+        this._chunkTick = 0;
     }
 
     _extensionFromMime(mimeType) {
@@ -53,84 +41,6 @@ class UniversalAudioHandler {
 
     _asrStatus(state, detail = '') {
         if (this.onAsrStatusCallback) this.onAsrStatusCallback(state, detail);
-    }
-
-    _buildAsrWsUrl(token) {
-        const apiBase = (window.getApiBase ? window.getApiBase(window.app?.settings?.serverUrl || '/api') : '/api');
-        const base = new URL(apiBase, window.location.origin);
-        const proto = base.protocol === 'https:' ? 'wss:' : 'ws:';
-        return `${proto}//${base.host}${base.pathname.replace(/\/$/, '')}/asr/ws?access_token=${encodeURIComponent(token)}`;
-    }
-
-    _connectAsrSocket(token) {
-        return new Promise((resolve, reject) => {
-            const ws = new WebSocket(this._buildAsrWsUrl(token), ['cng.asr.v1']);
-            const timeout = setTimeout(() => reject(new Error('asr_ws_timeout')), 8000);
-            let settled = false;
-            let gotReady = false;
-            let readyWatchdog = null;
-
-            ws.onopen = () => {
-                clearTimeout(timeout);
-                this.asrSocket = ws;
-                this.asrConnected = true;
-                this.asrFailed = false;
-                if (!settled) {
-                    settled = true;
-                    resolve();
-                }
-                // If backend opens then closes without ready, drop to fallback quickly.
-                readyWatchdog = setTimeout(() => {
-                    if (!gotReady && this.isListening) {
-                        this.asrConnected = false;
-                        this.asrFailed = true;
-                        this._asrStatus('fallback', 'Live stream not ready, using HTTP fallback');
-                        try { ws.close(); } catch (_) {}
-                    }
-                }, 2000);
-            };
-            ws.onmessage = (event) => {
-                try {
-                    const msg = JSON.parse(event.data);
-                    if (msg.type === 'ready') {
-                        gotReady = true;
-                        this._asrStatus('streaming', 'Live transcription connected');
-                        return;
-                    }
-                    if (msg.type === 'error') {
-                        this.asrConnected = false;
-                        this.asrFailed = true;
-                        this._asrStatus('fallback', msg.detail || 'Live stream failed, using HTTP fallback');
-                        try { ws.close(); } catch (_) {}
-                        return;
-                    }
-                    if ((msg.type === 'partial' || msg.type === 'final') && msg.text && this.onTranscriptionCallback) {
-                        this.onTranscriptionCallback(msg.text, msg.type === 'final' ? 'final' : 'interim');
-                    }
-                } catch (_) {}
-            };
-            ws.onerror = () => {
-                this.asrConnected = false;
-                this.asrFailed = true;
-                this._asrStatus('fallback', 'Live stream failed, using HTTP fallback');
-                if (!settled) {
-                    settled = true;
-                    reject(new Error('asr_ws_error'));
-                }
-            };
-            ws.onclose = () => {
-                this.asrConnected = false;
-                if (readyWatchdog) clearTimeout(readyWatchdog);
-                if (this.isListening) {
-                    this.asrFailed = true;
-                    this._asrStatus('fallback', gotReady ? 'Live stream disconnected, using HTTP fallback' : 'Live stream unavailable, using HTTP fallback');
-                }
-                if (!settled) {
-                    settled = true;
-                    reject(new Error('asr_ws_closed'));
-                }
-            };
-        });
     }
 
     // Detect browser and platform capabilities
@@ -285,77 +195,60 @@ class UniversalAudioHandler {
         return { available: true, method: 'media_recorder' };
     }
 
-    // Start speech recognition - NOW USES SERVER-SIDE TRANSCRIPTION
+    // Start speech recognition - chunked HTTP progressive mode (no WebSocket)
     async startSpeechRecognition() {
-        console.log('[AudioHandler] Using WebSocket ASR with HTTP fallback');
+        console.log('[AudioHandler] Using chunked HTTP ASR mode');
 
         try {
             this.shouldKeepListening = true;
             this.isListening = true;
             this.dictationChunks = [];
+            this._chunkWindow = [];
+            this._chunkTick = 0;
 
             try { if ('wakeLock' in navigator) { this._requestWakeLock && this._requestWakeLock(); } } catch (e) {}
-
-            const token = (window.getAuthToken && window.getAuthToken()) || '';
-            if (token) {
-                this._asrStatus('connecting', 'Connecting live transcription...');
-                try { await this._connectAsrSocket(token); } catch (_) { this.asrFailed = true; }
-            }
+            this._asrStatus('chunking', 'Live chunk transcription active');
 
             const stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true,
-                    sampleRate: 16000  // Whisper prefers 16kHz
+                    sampleRate: 16000
                 }
             });
             this.liveStream = stream;
 
-            this.dictationChunks = [];
-
-            // Use WAV format for best compatibility
             let options = { mimeType: 'audio/webm' };
             if (!MediaRecorder.isTypeSupported('audio/webm')) {
-                if (MediaRecorder.isTypeSupported('audio/wav')) {
-                    options = { mimeType: 'audio/wav' };
-                } else {
-                    options = {};
-                }
+                if (MediaRecorder.isTypeSupported('audio/wav')) options = { mimeType: 'audio/wav' };
+                else options = {};
             }
 
             this.dictationRecorder = new MediaRecorder(stream, options);
+            const CHUNK_SLICE_MS = 2000;      // recorder cadence
+            const CHUNK_WINDOW_PARTS = 5;     // 10s total
+            const CHUNK_STEP_PARTS = 4;       // 8s step => 2s overlap
 
             this.dictationRecorder.ondataavailable = async (event) => {
-                if (event.data.size > 0) {
-                    this.dictationChunks.push(event.data);
-                    if (this.useWebSocket && this.wsConnected) {
-                        await this.sendAudioChunk(event.data, this.dictationChunks);
-                    }
+                if (!event || event.data.size <= 0) return;
+                this._chunkWindow.push(event.data);
+                if (this._chunkWindow.length > CHUNK_WINDOW_PARTS) this._chunkWindow.shift();
+                this._chunkTick += 1;
+
+                // Upload every 8s once we have enough context (10s rolling window)
+                if (this._chunkWindow.length === CHUNK_WINDOW_PARTS && (this._chunkTick % CHUNK_STEP_PARTS === 0)) {
+                    const outType = this.dictationRecorder.mimeType || event.data.type || 'audio/webm';
+                    const ext = this._extensionFromMime(outType);
+                    const blob = new Blob(this._chunkWindow, { type: outType });
+                    const file = new File([blob], `dictation_chunk_${Date.now()}.${ext}`, { type: outType });
+                    if (this.onAudioFileCallback) this.onAudioFileCallback(file, { chunkMode: true });
                 }
             };
 
-            this.dictationRecorder.start(1000); // keep fallback recording
-
-            // Send PCM chunks over WS (~256 ms)
-            if (this.asrConnected) {
-                this.liveAudioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
-                this.liveSource = this.liveAudioContext.createMediaStreamSource(stream);
-                this.liveProcessor = this.liveAudioContext.createScriptProcessor(4096, 1, 1);
-                this.liveProcessor.onaudioprocess = (e) => {
-                    if (!this.asrSocket || this.asrSocket.readyState !== WebSocket.OPEN) return;
-                    const f32 = e.inputBuffer.getChannelData(0);
-                    const i16 = new Int16Array(f32.length);
-                    for (let i = 0; i < f32.length; i++) i16[i] = Math.max(-32768, Math.min(32767, f32[i] * 32767));
-                    this.asrSocket.send(i16.buffer);
-                };
-                this.liveSource.connect(this.liveProcessor);
-                this.liveProcessor.connect(this.liveAudioContext.destination);
-            }
-
+            this.dictationRecorder.start(CHUNK_SLICE_MS);
             this.onSpeechStart();
-
         } catch (error) {
-            console.error('Failed to start server-side speech recognition:', error);
+            console.error('Failed to start chunked speech recognition:', error);
             this.isListening = false;
             throw error;
         }
@@ -365,53 +258,32 @@ class UniversalAudioHandler {
     async stopSpeechRecognition() {
         this.shouldKeepListening = false;
         this.isListening = false;
-        
-        if (this.asrSocket && this.asrSocket.readyState === WebSocket.OPEN) {
-            this.asrSocket.send(JSON.stringify({ type: 'stop' }));
-            this.asrSocket.close();
-        }
-        this.asrSocket = null;
-        this.asrConnected = false;
-        
-        if (this.liveProcessor) this.liveProcessor.disconnect();
-        if (this.liveSource) this.liveSource.disconnect();
-        if (this.liveAudioContext) await this.liveAudioContext.close();
-        this.liveProcessor = null;
-        this.liveSource = null;
-        this.liveAudioContext = null;
 
         if (this.dictationRecorder && this.dictationRecorder.state !== 'inactive') {
-            // Stop recorder and send final chunk
             this.dictationRecorder.stop();
-
-            // Wait for final chunk and transcribe
             await new Promise(resolve => {
                 this.dictationRecorder.onstop = async () => {
-                    if (this.dictationChunks.length > 0 && (!this.asrConnected || this.asrFailed)) {
-                        const outType = this.dictationRecorder.mimeType || this.dictationChunks[0]?.type || 'audio/webm';
+                    // Final tail flush only (no full final pass)
+                    if (this._chunkWindow && this._chunkWindow.length > 0) {
+                        const outType = this.dictationRecorder.mimeType || this._chunkWindow[0]?.type || 'audio/webm';
                         const ext = this._extensionFromMime(outType);
-                        const audioBlob = new Blob(this.dictationChunks, { type: outType });
-                        const audioFile = new File([audioBlob], `dictation_${Date.now()}.${ext}`, {
-                            type: outType
-                        });
-
-                        // HTTP fallback path (existing queue-on-failure remains in index.html)
-                        if (this.onAudioFileCallback) {
-                            this.onAudioFileCallback(audioFile);
-                        }
+                        const tailBlob = new Blob(this._chunkWindow, { type: outType });
+                        const tailFile = new File([tailBlob], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
+                        if (this.onAudioFileCallback) this.onAudioFileCallback(tailFile, { chunkMode: true, finalTail: true });
                     }
 
-                    // Clean up stream
                     if (this.dictationRecorder && this.dictationRecorder.stream) {
                         this.dictationRecorder.stream.getTracks().forEach(track => track.stop());
                     }
-
                     this.dictationChunks = [];
+                    this._chunkWindow = [];
+                    this._chunkTick = 0;
                     resolve();
                 };
             });
         }
 
+        this._asrStatus('idle', 'Stopped');
         this.onSpeechStop();
         try { this._releaseWakeLock && this._releaseWakeLock(); } catch (e) {}
     }
@@ -451,12 +323,7 @@ class UniversalAudioHandler {
 
             this.mediaRecorder.ondataavailable = async (event) => {
                 if (event.data.size > 0) {
-                    // Always accumulate for fallback
                     this.audioChunks.push(event.data);
-                    // Try to send via WebSocket if connected
-                    if (this.useWebSocket && this.wsConnected) {
-                        await this.sendAudioChunk(event.data, this.audioChunks);
-                    }
                 }
             };
 
@@ -682,174 +549,6 @@ UniversalAudioHandler.prototype._requestWakeLock = async function() {
 UniversalAudioHandler.prototype._releaseWakeLock = function() {
     try { if (this.wakeLock) { this.wakeLock.release(); this.wakeLock = null; } } catch (e) { }
     document.removeEventListener('visibilitychange', this._reacquireWakeLock);
-};
-
-// WebSocket streaming methods
-UniversalAudioHandler.prototype.connectWebSocket = async function(token) {
-        if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-            console.log('[ASR WS] Already connected');
-            return;
-        }
-        
-        // Build WebSocket URL with token
-        const apiBase = window.app?.settings?.serverUrl || '/api';
-        const wsUrl = apiBase.replace(/^http/, 'ws') + '/asr/ws';
-        const url = new URL(wsUrl, window.location.href);
-        url.searchParams.set('access_token', token);
-        
-        try {
-            this.ws = new WebSocket(url.toString(), ['cng.asr.v1']);
-            this.ws.binaryType = 'arraybuffer';
-            this.ws.onopen = this._handleWebSocketOpen.bind(this);
-            this.ws.onmessage = this._handleWebSocketMessage.bind(this);
-            this.ws.onerror = this._handleWebSocketError.bind(this);
-            this.ws.onclose = this._handleWebSocketClose.bind(this);
-            
-            // Wait for connection or timeout
-            await new Promise((resolve, reject) => {
-                const timeout = setTimeout(() => {
-                    reject(new Error('WebSocket connection timeout'));
-                }, 5000);
-                this.ws.onopen = () => {
-                    clearTimeout(timeout);
-                    resolve();
-                };
-                this.ws.onerror = (err) => {
-                    clearTimeout(timeout);
-                    reject(err);
-                };
-            });
-            
-            this.wsConnected = true;
-            this.useWebSocket = true;
-            console.log('[ASR WS] Connected successfully');
-        } catch (error) {
-            console.error('[ASR WS] Connection failed:', error);
-            this.wsConnected = false;
-            this.useWebSocket = false;
-            if (this.wsFallbackEnabled) {
-                console.log('[ASR WS] Falling back to HTTP POST');
-            }
-            throw error;
-        }
-    }
-
-UniversalAudioHandler.prototype._handleWebSocketOpen = function(event) {
-    console.log('[ASR WS] Connection opened');
-    this.wsConnected = true;
-};
-
-UniversalAudioHandler.prototype._handleWebSocketMessage = function(event) {
-    try {
-        const data = JSON.parse(event.data);
-        if (data.type === 'partial' && data.text && this.onTranscriptionCallback) {
-            // Send interim transcription to callback
-            this.onTranscriptionCallback(data.text, 'interim');
-        } else if (data.type === 'ready') {
-            console.log('[ASR WS] Whisper stream ready');
-        }
-    } catch (e) {
-        console.error('[ASR WS] Failed to parse message:', e);
-    }
-};
-
-UniversalAudioHandler.prototype._handleWebSocketError = function(event) {
-    console.error('[ASR WS] WebSocket error:', event);
-    this.wsConnected = false;
-    this.useWebSocket = false;
-};
-
-UniversalAudioHandler.prototype._handleWebSocketClose = function(event) {
-    console.log('[ASR WS] Connection closed:', event.code, event.reason);
-    this.wsConnected = false;
-    this.useWebSocket = false;
-    this.ws = null;
-};
-
-UniversalAudioHandler.prototype.disconnectWebSocket = async function() {
-    if (this.ws) {
-        this.ws.close(1000, 'normal');
-        this.ws = null;
-    }
-    this.wsConnected = false;
-    this.useWebSocket = false;
-};
-
-UniversalAudioHandler.prototype.sendAudioChunk = async function(chunk, fallbackArray = this.audioChunks) {
-        if (!this.wsConnected || !this.ws || this.ws.readyState !== WebSocket.OPEN) {
-            // Fallback: accumulate chunk for HTTP POST
-            if (!fallbackArray) fallbackArray = [];
-            fallbackArray.push(chunk);
-            return false;
-        }
-        
-        try {
-            // Convert Blob to ArrayBuffer for WebSocket
-            const arrayBuffer = await chunk.arrayBuffer();
-            this.ws.send(arrayBuffer);
-            return true;
-        } catch (error) {
-            console.error('[ASR WS] Failed to send chunk:', error);
-            this.wsConnected = false;
-            this.useWebSocket = false;
-            // Fallback: accumulate chunk
-            if (!fallbackArray) fallbackArray = [];
-            fallbackArray.push(chunk);
-            return false;
-        }
-    };
-
-UniversalAudioHandler.prototype._startPcmStreaming = function(stream) {
-    if (!this.asrConnected || !this.asrSocket) return;
-    
-    try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)({
-            sampleRate: 16000
-        });
-        this.liveAudioContext = audioContext;
-        
-        const source = audioContext.createMediaStreamSource(stream);
-        this.liveSource = source;
-        
-        const processor = audioContext.createScriptProcessor(4096, 1, 1);
-        this.liveProcessor = processor;
-        
-        // Create a silent gain node to avoid output to speakers
-        const gainNode = audioContext.createGain();
-        gainNode.gain.value = 0;
-        
-        processor.onaudioprocess = (event) => {
-            const inputData = event.inputBuffer.getChannelData(0);
-            const pcmData = new Int16Array(inputData.length);
-            for (let i = 0; i < inputData.length; i++) {
-                pcmData[i] = Math.max(-32768, Math.min(32767, inputData[i] * 32768));
-            }
-            if (this.asrSocket.readyState === WebSocket.OPEN) {
-                this.asrSocket.send(pcmData.buffer);
-            }
-        };
-        
-        source.connect(processor);
-        processor.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-    } catch (error) {
-        console.error('[PCM Streaming] Failed to start:', error);
-    }
-};
-
-UniversalAudioHandler.prototype._stopPcmStreaming = function() {
-    if (this.liveProcessor) {
-        this.liveProcessor.disconnect();
-        this.liveProcessor = null;
-    }
-    if (this.liveSource) {
-        this.liveSource.disconnect();
-        this.liveSource = null;
-    }
-    if (this.liveAudioContext) {
-        this.liveAudioContext.close();
-        this.liveAudioContext = null;
-    }
 };
 
 UniversalAudioHandler.prototype._reacquireWakeLock = async function() {

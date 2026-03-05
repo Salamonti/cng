@@ -2449,10 +2449,14 @@
                     s.textContent = `ASR: ${state}${detail ? ` (${detail})` : ''}`;
                 });
             } else {
-                console.warn('[ASR] audioHandler.setAsrStatusCallback missing; likely stale universal_audio_handler.js loaded');
+                console.warn('[ASR] audioHandler.setAsrStatusCallback missing in audio handler');
             }
 
-            audioHandler.setAudioFileCallback((audioFile) => {
+            audioHandler.setAudioFileCallback((audioFile, meta = {}) => {
+                if (meta && meta.chunkMode) {
+                    transcribeAudio(audioFile, { chunkMode: true, skipQueueOnError: true });
+                    return;
+                }
                 handleAudioFile({ files: [audioFile] });
             });
 
@@ -2848,6 +2852,24 @@
         }
 
         // API Functions
+        function appendChunkTranscript(tx, chunkText) {
+            const incoming = (chunkText || '').trim();
+            if (!tx || !incoming) return;
+            const existing = tx.value || '';
+            if (!existing) {
+                appendToTextarea(tx, incoming);
+                return;
+            }
+            const tail = existing.slice(-400);
+            let overlap = 0;
+            const maxCheck = Math.min(tail.length, incoming.length, 200);
+            for (let i = maxCheck; i >= 20; i--) {
+                if (tail.slice(-i) === incoming.slice(0, i)) { overlap = i; break; }
+            }
+            const merged = incoming.slice(overlap).trim();
+            if (merged) appendToTextarea(tx, merged);
+        }
+
         async function transcribeAudio(file, options = {}) {
             if (!file) {
                 showToast('Error', 'No audio file available for transcription', 'error');
@@ -2856,8 +2878,9 @@
 
             const opts = options || {};
             const skipQueueOnError = !!opts.skipQueueOnError;
+            const chunkMode = !!opts.chunkMode;
 
-            showProgress('audioProgress', 'audioProgressBar');
+            if (!chunkMode) showProgress('audioProgress', 'audioProgressBar');
 
             try {
                 const token = getAuthToken();
@@ -2880,15 +2903,19 @@
                 if (response.ok) {
                     const text = await response.text();
                     const tx = document.getElementById('transcriptionDisplay');
-                    appendToTextarea(tx, text);
+                    if (chunkMode) {
+                        appendChunkTranscript(tx, text);
+                    } else {
+                        appendToTextarea(tx, text);
+                    }
                     if (typeof updateCharacterCounter === 'function') {
                         updateCharacterCounter();
                     }
                     saveToStorage();
                     hideServiceErrorBanner();
-                    showToast('Success', 'Audio transcribed with speaker labels', 'success');
+                    if (!chunkMode) showToast('Success', 'Audio transcribed with speaker labels', 'success');
 
-                    if (app.pendingGenerateAfterTranscription) {
+                    if (!chunkMode && app.pendingGenerateAfterTranscription) {
                         clearPendingGenerateAfterTranscription();
                         showToast('Generating', 'Transcription complete — generating note now...', 'info');
                         generateNote();
@@ -2902,15 +2929,15 @@
                     throw new Error(`Server error: ${response.status}`);
                 }
             } catch (error) {
-                showToast('Error', 'Failed to transcribe audio', 'error');
+                if (!chunkMode) showToast('Error', 'Failed to transcribe audio', 'error');
                 if (app.pendingGenerateAfterTranscription) {
                     clearPendingGenerateAfterTranscription();
                 }
-                if (!skipQueueOnError) {
+                if (!chunkMode && !skipQueueOnError) {
                     queueRequest('transcribe', { file: file, fileName: file.name });
                 }
             } finally {
-                hideProgress('audioProgress');
+                if (!chunkMode) hideProgress('audioProgress');
             }
         }
 
