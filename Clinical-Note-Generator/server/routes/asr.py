@@ -8,11 +8,139 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, WebSocket
+from fastapi.websockets import WebSocketDisconnect
 from fastapi.responses import PlainTextResponse, JSONResponse
 import aiohttp
+import asyncio
+import threading
+import signal
 
 router = APIRouter()
+
+
+class WhisperStreamSession:
+    """Manages a single whisper.cpp stream process for a WebSocket connection."""
+    
+    def __init__(self, websocket: WebSocket, session_id: str):
+        self.websocket = websocket
+        self.session_id = session_id
+        self.process: Optional[asyncio.subprocess.Process] = None
+        self.running = False
+        self._stdout_task: Optional[asyncio.Task] = None
+        self._stderr_task: Optional[asyncio.Task] = None
+        
+    async def start(self):
+        """Start whisper.cpp stream subprocess."""
+        # Determine whisper.cpp binary path
+        whisper_cpp_path = os.environ.get("WHISPER_CPP_PATH", "C:/projects/whisper.cpp")
+        model = os.environ.get("WHISPER_MODEL", "ggml-large-v3-turbo.bin")
+        model_path = os.path.join(whisper_cpp_path, "models", model)
+        stream_bin = os.path.join(whisper_cpp_path, "build", "bin", "stream")
+        if not os.path.exists(stream_bin):
+            stream_bin = stream_bin + ".exe"
+        
+        if not os.path.exists(stream_bin):
+            raise RuntimeError(f"whisper.cpp stream binary not found at {stream_bin}")
+        
+        # Build command using environment variables for VAD/threshold
+        cmd = [
+            stream_bin,
+            "-m", model_path,
+            "-t", "4",  # threads
+            "--step", "500",  # step size in ms
+            "--length", "5000",  # length in ms
+            "-vth", _whispercpp_vad(),
+            "-f", "16000:1:2"  # sample rate:channels:sample width (16-bit PCM)
+        ]
+        
+        # Add no-speech threshold if configured
+        no_speech_thold = _whispercpp_no_speech_thold()
+        if no_speech_thold and no_speech_thold != "1.0":
+            cmd.extend(["-vth", no_speech_thold])
+        
+        print(f"[WhisperStream] Starting process: {' '.join(cmd)}")
+        self.process = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdin=asyncio.subprocess.PIPE,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            limit=1024 * 1024  # 1MB buffer
+        )
+        self.running = True
+        
+        # Start stdout/stderr readers
+        self._stdout_task = asyncio.create_task(self._read_stdout())
+        self._stderr_task = asyncio.create_task(self._read_stderr())
+        
+        await self.websocket.send_json({
+            "type": "session_started",
+            "session_id": self.session_id
+        })
+    
+    async def _read_stdout(self):
+        """Read whisper.cpp stdout and send transcriptions via WebSocket."""
+        while self.running and self.process and self.process.stdout:
+            try:
+                line = await self.process.stdout.readline()
+                if not line:
+                    break
+                line = line.decode('utf-8', errors='ignore').strip()
+                if line and not line.startswith('whisper_'):
+                    # Parse whisper.cpp output format: [timestamp] text
+                    if ']' in line:
+                        text = line.split(']', 1)[-1].strip()
+                        if text:
+                            await self.websocket.send_json({
+                                "type": "transcription",
+                                "text": text,
+                                "session_id": self.session_id
+                            })
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                print(f"[WhisperStream] Error reading stdout: {e}")
+                break
+    
+    async def _read_stderr(self):
+        """Read stderr for debugging."""
+        while self.running and self.process and self.process.stderr:
+            try:
+                line = await self.process.stderr.readline()
+                if line:
+                    print(f"[WhisperStream stderr] {line.decode('utf-8', errors='ignore').strip()}")
+            except asyncio.CancelledError:
+                break
+            except Exception:
+                break
+    
+    async def write_audio(self, chunk: bytes):
+        """Write audio chunk to whisper.cpp stdin."""
+        if self.running and self.process and self.process.stdin:
+            try:
+                self.process.stdin.write(chunk)
+                await self.process.stdin.drain()
+            except Exception as e:
+                print(f"[WhisperStream] Error writing audio: {e}")
+                self.running = False
+    
+    async def stop(self):
+        """Stop the whisper.cpp process."""
+        self.running = False
+        if self._stdout_task:
+            self._stdout_task.cancel()
+        if self._stderr_task:
+            self._stderr_task.cancel()
+        if self.process:
+            try:
+                self.process.terminate()
+                await asyncio.wait_for(self.process.wait(), timeout=5.0)
+            except asyncio.TimeoutError:
+                self.process.kill()
+                await self.process.wait()
+            except ProcessLookupError:
+                pass
+            self.process = None
 
 
 def _asr_url() -> Optional[str]:
@@ -42,6 +170,11 @@ def _normalize_to_wav_enabled() -> bool:
 
 _primary_down_until = 0.0
 _cooldown_sec = 20.0
+
+# WebSocket streaming
+_whisper_stream_semaphore = asyncio.Semaphore(2)  # max 2 concurrent whisper processes
+_whisper_stream_sessions: Dict[str, "WhisperStreamSession"] = {}
+_whisper_stream_lock = asyncio.Lock()
 
 
 def _candidate_urls() -> List[str]:
@@ -296,3 +429,55 @@ async def asr_engine_info() -> Dict[str, Optional[str]]:
             return {"engine": "whisper.cpp", "error": "; ".join(errors)[:200]}
     except Exception as e:
         return {"engine": "whisper.cpp", "error": str(e)[:160]}
+
+
+@router.websocket("/asr/ws")
+async def websocket_asr(websocket: WebSocket):
+    """
+    WebSocket endpoint for real‑time ASR streaming.
+    Expects token as query parameter `?token=...`.
+    """
+    # Validate token
+    token = websocket.query_params.get("token")
+    if not token:
+        await websocket.close(code=1008, reason="Missing token")
+        return
+    
+    # Simple validation: check against ASR_API_KEY (admin key) or JWT
+    # For now, accept ASR_API_KEY (same as HTTP proxy uses)
+    expected_key = _asr_api_key()
+    if token != expected_key:
+        # Try JWT validation
+        try:
+            from server.core.security import decode_access_token
+            decode_access_token(token)  # will raise if invalid
+        except Exception:
+            await websocket.close(code=1008, reason="Invalid token")
+            return
+    
+    await websocket.accept()
+    
+    # Limit concurrent whisper processes
+    async with _whisper_stream_semaphore:
+        session_id = str(hash(websocket))
+        session = WhisperStreamSession(websocket, session_id)
+        
+        async with _whisper_stream_lock:
+            _whisper_stream_sessions[session_id] = session
+        
+        try:
+            await session.start()
+            
+            # Handle incoming audio chunks
+            while True:
+                try:
+                    data = await websocket.receive_bytes()
+                    await session.write_audio(data)
+                except WebSocketDisconnect:
+                    break
+                except RuntimeError:
+                    break
+        finally:
+            async with _whisper_stream_lock:
+                _whisper_stream_sessions.pop(session_id, None)
+            await session.stop()

@@ -19,6 +19,13 @@ class UniversalAudioHandler {
         this.onTranscriptionCallback = null;
         this.onAudioFileCallback = null;
         this.wakeLock = null; // screen wake lock handle
+        
+        // WebSocket streaming
+        this.ws = null;
+        this.wsConnected = false;
+        this.wsSessionId = null;
+        this.useWebSocket = false;
+        this.wsFallbackEnabled = true; // fallback to HTTP POST if WS fails
     }
 
     _extensionFromMime(mimeType) {
