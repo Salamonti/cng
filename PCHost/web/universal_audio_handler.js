@@ -59,7 +59,7 @@ class UniversalAudioHandler {
         const apiBase = (window.getApiBase ? window.getApiBase(window.app?.settings?.serverUrl || '/api') : '/api');
         const base = new URL(apiBase, window.location.origin);
         const proto = base.protocol === 'https:' ? 'wss:' : 'ws:';
-        return `${proto}//${base.host}${base.pathname.replace(/\\/$/, '')}/asr/ws?access_token=${encodeURIComponent(token)}`;
+        return `${proto}//${base.host}${base.pathname.replace(/\/$/, '')}/asr/ws?access_token=${encodeURIComponent(token)}`;
     }
 
     _connectAsrSocket(token) {
@@ -642,10 +642,10 @@ UniversalAudioHandler.prototype._requestWakeLock = async function() {
 UniversalAudioHandler.prototype._releaseWakeLock = function() {
     try { if (this.wakeLock) { this.wakeLock.release(); this.wakeLock = null; } } catch (e) { }
     document.removeEventListener('visibilitychange', this._reacquireWakeLock);
-    }
+};
 
-    // WebSocket streaming methods
-    async connectWebSocket(token) {
+// WebSocket streaming methods
+UniversalAudioHandler.prototype.connectWebSocket = async function(token) {
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             console.log('[ASR WS] Already connected');
             return;
@@ -693,49 +693,49 @@ UniversalAudioHandler.prototype._releaseWakeLock = function() {
             throw error;
         }
     }
-    
-    _handleWebSocketOpen(event) {
-        console.log('[ASR WS] Connection opened');
-        this.wsConnected = true;
-    }
-    
-    _handleWebSocketMessage(event) {
-        try {
-            const data = JSON.parse(event.data);
-            if (data.type === 'partial' && data.text && this.onTranscriptionCallback) {
-                // Send interim transcription to callback
-                this.onTranscriptionCallback(data.text, 'interim');
-            } else if (data.type === 'ready') {
-                console.log('[ASR WS] Whisper stream ready');
-            }
-        } catch (e) {
-            console.error('[ASR WS] Failed to parse message:', e);
+
+UniversalAudioHandler.prototype._handleWebSocketOpen = function(event) {
+    console.log('[ASR WS] Connection opened');
+    this.wsConnected = true;
+};
+
+UniversalAudioHandler.prototype._handleWebSocketMessage = function(event) {
+    try {
+        const data = JSON.parse(event.data);
+        if (data.type === 'partial' && data.text && this.onTranscriptionCallback) {
+            // Send interim transcription to callback
+            this.onTranscriptionCallback(data.text, 'interim');
+        } else if (data.type === 'ready') {
+            console.log('[ASR WS] Whisper stream ready');
         }
+    } catch (e) {
+        console.error('[ASR WS] Failed to parse message:', e);
     }
-    
-    _handleWebSocketError(event) {
-        console.error('[ASR WS] WebSocket error:', event);
-        this.wsConnected = false;
-        this.useWebSocket = false;
-    }
-    
-    _handleWebSocketClose(event) {
-        console.log('[ASR WS] Connection closed:', event.code, event.reason);
-        this.wsConnected = false;
-        this.useWebSocket = false;
+};
+
+UniversalAudioHandler.prototype._handleWebSocketError = function(event) {
+    console.error('[ASR WS] WebSocket error:', event);
+    this.wsConnected = false;
+    this.useWebSocket = false;
+};
+
+UniversalAudioHandler.prototype._handleWebSocketClose = function(event) {
+    console.log('[ASR WS] Connection closed:', event.code, event.reason);
+    this.wsConnected = false;
+    this.useWebSocket = false;
+    this.ws = null;
+};
+
+UniversalAudioHandler.prototype.disconnectWebSocket = async function() {
+    if (this.ws) {
+        this.ws.close(1000, 'normal');
         this.ws = null;
     }
-    
-    async disconnectWebSocket() {
-        if (this.ws) {
-            this.ws.close(1000, 'normal');
-            this.ws = null;
-        }
-        this.wsConnected = false;
-        this.useWebSocket = false;
-    }
-    
-    async sendAudioChunk(chunk, fallbackArray = this.audioChunks) {
+    this.wsConnected = false;
+    this.useWebSocket = false;
+};
+
+UniversalAudioHandler.prototype.sendAudioChunk = async function(chunk, fallbackArray = this.audioChunks) {
         if (!this.wsConnected || !this.ws || this.ws.readyState !== WebSocket.OPEN) {
             // Fallback: accumulate chunk for HTTP POST
             if (!fallbackArray) fallbackArray = [];
@@ -757,59 +757,58 @@ UniversalAudioHandler.prototype._releaseWakeLock = function() {
             fallbackArray.push(chunk);
             return false;
         }
-    }
+    };
 
-    _startPcmStreaming(stream) {
-        if (!this.asrConnected || !this.asrSocket) return;
-        
-        try {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)({
-                sampleRate: 16000
-            });
-            this.liveAudioContext = audioContext;
-            
-            const source = audioContext.createMediaStreamSource(stream);
-            this.liveSource = source;
-            
-            const processor = audioContext.createScriptProcessor(4096, 1, 1);
-            this.liveProcessor = processor;
-            
-            // Create a silent gain node to avoid output to speakers
-            const gainNode = audioContext.createGain();
-            gainNode.gain.value = 0;
-            
-            processor.onaudioprocess = (event) => {
-                const inputData = event.inputBuffer.getChannelData(0);
-                const pcmData = new Int16Array(inputData.length);
-                for (let i = 0; i < inputData.length; i++) {
-                    pcmData[i] = Math.max(-32768, Math.min(32767, inputData[i] * 32768));
-                }
-                if (this.asrSocket.readyState === WebSocket.OPEN) {
-                    this.asrSocket.send(pcmData.buffer);
-                }
-            };
-            
-            source.connect(processor);
-            processor.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-        } catch (error) {
-            console.error('[PCM Streaming] Failed to start:', error);
-        }
-    }
+UniversalAudioHandler.prototype._startPcmStreaming = function(stream) {
+    if (!this.asrConnected || !this.asrSocket) return;
     
-    _stopPcmStreaming() {
-        if (this.liveProcessor) {
-            this.liveProcessor.disconnect();
-            this.liveProcessor = null;
-        }
-        if (this.liveSource) {
-            this.liveSource.disconnect();
-            this.liveSource = null;
-        }
-        if (this.liveAudioContext) {
-            this.liveAudioContext.close();
-            this.liveAudioContext = null;
-        }
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)({
+            sampleRate: 16000
+        });
+        this.liveAudioContext = audioContext;
+        
+        const source = audioContext.createMediaStreamSource(stream);
+        this.liveSource = source;
+        
+        const processor = audioContext.createScriptProcessor(4096, 1, 1);
+        this.liveProcessor = processor;
+        
+        // Create a silent gain node to avoid output to speakers
+        const gainNode = audioContext.createGain();
+        gainNode.gain.value = 0;
+        
+        processor.onaudioprocess = (event) => {
+            const inputData = event.inputBuffer.getChannelData(0);
+            const pcmData = new Int16Array(inputData.length);
+            for (let i = 0; i < inputData.length; i++) {
+                pcmData[i] = Math.max(-32768, Math.min(32767, inputData[i] * 32768));
+            }
+            if (this.asrSocket.readyState === WebSocket.OPEN) {
+                this.asrSocket.send(pcmData.buffer);
+            }
+        };
+        
+        source.connect(processor);
+        processor.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+    } catch (error) {
+        console.error('[PCM Streaming] Failed to start:', error);
+    }
+};
+
+UniversalAudioHandler.prototype._stopPcmStreaming = function() {
+    if (this.liveProcessor) {
+        this.liveProcessor.disconnect();
+        this.liveProcessor = null;
+    }
+    if (this.liveSource) {
+        this.liveSource.disconnect();
+        this.liveSource = null;
+    }
+    if (this.liveAudioContext) {
+        this.liveAudioContext.close();
+        this.liveAudioContext = null;
     }
 };
 
