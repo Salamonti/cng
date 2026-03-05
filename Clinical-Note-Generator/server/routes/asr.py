@@ -33,10 +33,12 @@ def _asr_api_key() -> Optional[str]:
     return os.environ.get("ASR_API_KEY") or "notegenadmin"
 
 def _whispercpp_vad() -> str:
-    return (os.environ.get("ASR_WHISPERCPP_VAD") or "0").strip() or "0"
+    # Gentle VAD default: enabled, but avoid aggressive speech dropping.
+    return (os.environ.get("ASR_WHISPERCPP_VAD") or "1").strip() or "1"
 
 def _whispercpp_no_speech_thold() -> str:
-    return (os.environ.get("ASR_WHISPERCPP_NO_SPEECH_THOLD") or "1.0").strip() or "1.0"
+    # Higher threshold = less aggressive no-speech suppression (better for low-volume speakers).
+    return (os.environ.get("ASR_WHISPERCPP_NO_SPEECH_THOLD") or "0.90").strip() or "0.90"
 
 def _normalize_to_wav_enabled() -> bool:
     val = (os.environ.get("ASR_NORMALIZE_TO_WAV") or "1").strip().lower()
@@ -44,18 +46,41 @@ def _normalize_to_wav_enabled() -> bool:
 
 _primary_down_until = 0.0
 _cooldown_sec = 20.0
+_rr_counter = 0
 
 
 def _candidate_urls() -> List[str]:
-    urls: List[str] = []
+    """Return candidate ASR URLs with light load-spread + fallback behavior.
+
+    - If primary is in cooldown, prefer fallback only.
+    - If both are healthy, alternate starting URL per request (round-robin).
+    - Always include both unique URLs so failures can fall through.
+    """
+    global _rr_counter
     now = time.time()
     primary = _asr_url()
     fallback = _asr_fallback_url()
-    if primary and now >= _primary_down_until:
+
+    if not primary and not fallback:
+        return []
+
+    # Primary cooling down: use fallback path only (if available)
+    if primary and now < _primary_down_until:
+        return [fallback] if fallback else []
+
+    urls: List[str] = []
+    if primary:
         urls.append(primary)
     if fallback and fallback not in urls:
         urls.append(fallback)
-    return urls
+
+    if len(urls) <= 1:
+        return urls
+
+    # Two-node round-robin start index
+    idx = _rr_counter % len(urls)
+    _rr_counter += 1
+    return urls[idx:] + urls[:idx]
 
 
 def _mark_primary_down() -> None:
