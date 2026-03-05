@@ -77,6 +77,17 @@ class UniversalAudioHandler {
             ws.onmessage = (event) => {
                 try {
                     const msg = JSON.parse(event.data);
+                    if (msg.type === 'ready') {
+                        this._asrStatus('streaming', 'Live transcription connected');
+                        return;
+                    }
+                    if (msg.type === 'error') {
+                        this.asrConnected = false;
+                        this.asrFailed = true;
+                        this._asrStatus('fallback', msg.detail || 'Live stream failed, using HTTP fallback');
+                        try { ws.close(); } catch (_) {}
+                        return;
+                    }
                     if ((msg.type === 'partial' || msg.type === 'final') && msg.text && this.onTranscriptionCallback) {
                         this.onTranscriptionCallback(msg.text, msg.type === 'final' ? 'final' : 'interim');
                     }

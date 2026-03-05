@@ -2441,12 +2441,16 @@
                 }
             });
 
-            audioHandler.setAsrStatusCallback((state, detail) => {
-                const s = document.getElementById('asrStreamStatus');
-                if (!s) return;
-                s.classList.remove('hidden');
-                s.textContent = `ASR: ${state}${detail ? ` (${detail})` : ''}`;
-            });
+            if (typeof audioHandler.setAsrStatusCallback === 'function') {
+                audioHandler.setAsrStatusCallback((state, detail) => {
+                    const s = document.getElementById('asrStreamStatus');
+                    if (!s) return;
+                    s.classList.remove('hidden');
+                    s.textContent = `ASR: ${state}${detail ? ` (${detail})` : ''}`;
+                });
+            } else {
+                console.warn('[ASR] audioHandler.setAsrStatusCallback missing; likely stale universal_audio_handler.js loaded');
+            }
 
             audioHandler.setAudioFileCallback((audioFile) => {
                 handleAudioFile({ files: [audioFile] });
