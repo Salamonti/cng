@@ -33,15 +33,14 @@ def _asr_api_key() -> Optional[str]:
     return os.environ.get("ASR_API_KEY") or "notegenadmin"
 
 def _whispercpp_vad() -> str:
-    # Gentle VAD default: enabled, but avoid aggressive speech dropping.
-    return (os.environ.get("ASR_WHISPERCPP_VAD") or "1").strip() or "1"
+    return (os.environ.get("ASR_WHISPERCPP_VAD") or "0").strip() or "0"
 
 def _whispercpp_no_speech_thold() -> str:
-    # Higher threshold = less aggressive no-speech suppression (better for low-volume speakers).
-    return (os.environ.get("ASR_WHISPERCPP_NO_SPEECH_THOLD") or "0.90").strip() or "0.90"
+    return (os.environ.get("ASR_WHISPERCPP_NO_SPEECH_THOLD") or "1.0").strip() or "1.0"
 
 def _normalize_to_wav_enabled() -> bool:
-    val = (os.environ.get("ASR_NORMALIZE_TO_WAV") or "1").strip().lower()
+    # Default OFF: whisper.cpp handles webm/mp3 natively; avoid unnecessary re-encoding side-effects.
+    val = (os.environ.get("ASR_NORMALIZE_TO_WAV") or "0").strip().lower()
     return val not in {"0", "false", "no", "off"}
 
 _primary_down_until = 0.0
