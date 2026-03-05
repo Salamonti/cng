@@ -202,7 +202,7 @@ def _validate_user_token(token: str) -> str:
 
 def _whisper_stream_cmd_candidates() -> List[List[str]]:
     """Build compatible whisper.cpp stream command candidates across versions."""
-    stream_bin = os.environ.get("ASR_WHISPERCPP_STREAM_BIN") or "C:/projects/whisper.cpp/build/bin/stream"
+    stream_bin = os.environ.get("ASR_WHISPERCPP_STREAM_BIN") or "C:/Projects/whisper.cpp/build/bin/Release/whisper-stream.exe"
     model = os.environ.get("ASR_WHISPERCPP_MODEL") or "C:/projects/whisper.cpp/models/ggml-large-v3-turbo.bin"
     step = os.environ.get("ASR_STREAM_STEP_MS", "300")
     length = os.environ.get("ASR_STREAM_LENGTH_MS", "3000")
