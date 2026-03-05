@@ -200,18 +200,67 @@ def _validate_user_token(token: str) -> str:
             raise ValueError("user_not_authorized")
         return sub
 
-def _whisper_stream_cmd() -> List[str]:
-    # Keep using existing ASR env knobs for VAD/no_speech thresholds
+def _whisper_stream_cmd_candidates() -> List[List[str]]:
+    """Build compatible whisper.cpp stream command candidates across versions."""
     stream_bin = os.environ.get("ASR_WHISPERCPP_STREAM_BIN") or "C:/projects/whisper.cpp/build/bin/stream"
     model = os.environ.get("ASR_WHISPERCPP_MODEL") or "C:/projects/whisper.cpp/models/ggml-large-v3-turbo.bin"
+    step = os.environ.get("ASR_STREAM_STEP_MS", "300")
+    length = os.environ.get("ASR_STREAM_LENGTH_MS", "3000")
+    vad = _whispercpp_vad()
+    no_speech = _whispercpp_no_speech_thold()
+
+    base = [stream_bin, "-m", model, "--step", step, "--length", length, "-vth", vad]
+
+    # Some builds use -nth, some use --no-speech-thold, and stdin support varies.
     return [
-        stream_bin, "-m", model,
-        "--step", os.environ.get("ASR_STREAM_STEP_MS", "300"),
-        "--length", os.environ.get("ASR_STREAM_LENGTH_MS", "3000"),
-        "-vth", _whispercpp_vad(),
-        "-nth", _whispercpp_no_speech_thold(),
-        "--stdin", # verify exact flag against your local stream --help
+        [*base, "-nth", no_speech, "--stdin"],
+        [*base, "--no-speech-thold", no_speech, "--stdin"],
+        [*base, "-nth", no_speech],
+        [*base, "--no-speech-thold", no_speech],
     ]
+
+def _whisper_stream_cmd() -> List[str]:
+    """Backward-compatible single command (legacy callers)."""
+    candidates = _whisper_stream_cmd_candidates()
+    return candidates[0] if candidates else []
+
+
+async def _spawn_whisper_stream() -> tuple[asyncio.subprocess.Process, List[str], str]:
+    """Try compatible whisper.cpp stream command variants; return (proc, cmd, startup_note)."""
+    errors: List[str] = []
+    for candidate in _whisper_stream_cmd_candidates():
+        cmd = list(candidate)
+        stream_bin = cmd[0]
+        if not os.path.exists(stream_bin):
+            if not stream_bin.endswith(".exe") and os.path.exists(stream_bin + ".exe"):
+                cmd[0] = stream_bin + ".exe"
+            else:
+                errors.append(f"missing_binary:{stream_bin}")
+                continue
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                *cmd,
+                stdin=asyncio.subprocess.PIPE,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+            await asyncio.sleep(0.20)
+            if proc.returncode is None:
+                return proc, cmd, ""
+
+            # Process exited immediately; capture short stderr for diagnostics.
+            err = ""
+            try:
+                if proc.stderr:
+                    err = (await proc.stderr.read(512)).decode("utf-8", errors="ignore").strip()
+            except Exception:
+                pass
+            errors.append(f"cmd={' '.join(cmd)} rc={proc.returncode} err={err[:180]}")
+        except Exception as e:
+            errors.append(f"cmd={' '.join(cmd)} ex={str(e)[:180]}")
+
+    raise RuntimeError("whisper_stream_start_failed: " + " | ".join(errors[:4]))
+
 
 def _extract_stream_text(line: str) -> str:
     s = (line or "").strip()
@@ -512,14 +561,14 @@ async def websocket_asr(websocket: WebSocket):
     try:
         await asyncio.wait_for(_ASR_WS_SEM.acquire(), timeout=1.0)
         sem_acquired = True
-        cmd = _whisper_stream_cmd()
-        proc = await asyncio.create_subprocess_exec(
-            *cmd,
-            stdin=asyncio.subprocess.PIPE,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
-        await websocket.send_json({"type": "ready"})
+        try:
+            proc, cmd, _ = await _spawn_whisper_stream()
+        except Exception as e:
+            await websocket.send_json({"type": "error", "detail": str(e)[:300]})
+            await websocket.close(code=1011, reason="whisper_stream_start_failed")
+            return
+
+        await websocket.send_json({"type": "ready", "cmd": " ".join(cmd[:6])})
         
         async def _pump_stdout():
             nonlocal last_sent

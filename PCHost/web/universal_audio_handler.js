@@ -65,7 +65,7 @@ class UniversalAudioHandler {
     _connectAsrSocket(token) {
         return new Promise((resolve, reject) => {
             const ws = new WebSocket(this._buildAsrWsUrl(token), ['cng.asr.v1']);
-            const timeout = setTimeout(() => reject(new Error('asr_ws_timeout')), 3000);
+            const timeout = setTimeout(() => reject(new Error('asr_ws_timeout')), 8000);
             ws.onopen = () => {
                 clearTimeout(timeout);
                 this.asrSocket = ws;
@@ -89,6 +89,10 @@ class UniversalAudioHandler {
             };
             ws.onclose = () => {
                 this.asrConnected = false;
+                if (this.isListening) {
+                    this.asrFailed = true;
+                    this._asrStatus('fallback', 'Live stream disconnected, using HTTP fallback');
+                }
             };
         });
     }
