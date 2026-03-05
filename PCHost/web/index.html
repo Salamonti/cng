@@ -1855,6 +1855,7 @@
                 <div class="progress hidden" id="audioProgress">
                     <div class="progress-bar" id="audioProgressBar"></div>
                 </div>
+                <div id="asrStreamStatus" class="asr-status hidden" style="font-size:0.85rem;margin-top:4px;color:#666;"></div>
             </div>
 
             <!-- Section 2: Prior Visits (HISTORICAL) -->
@@ -2425,6 +2426,11 @@
 
             audioHandler.setTranscriptionCallback((transcript, type) => {
                 const tx = document.getElementById('transcriptionData');
+                if (type === 'interim') {
+                    const s = document.getElementById('asrStreamStatus');
+                    if (s) { s.classList.remove('hidden'); s.textContent = 'ASR: streaming...'; }
+                    return;
+                }
                 if (type === 'final') {
                     appendToTextarea(tx, transcript);
                     if (typeof updateCharacterCounter === 'function') {
@@ -2433,6 +2439,13 @@
                     saveToStorage();
                     showToast('Success', 'Speech transcribed', 'success');
                 }
+            });
+
+            audioHandler.setAsrStatusCallback((state, detail) => {
+                const s = document.getElementById('asrStreamStatus');
+                if (!s) return;
+                s.classList.remove('hidden');
+                s.textContent = `ASR: ${state}${detail ? ` (${detail})` : ''}`;
             });
 
             audioHandler.setAudioFileCallback((audioFile) => {
@@ -2472,7 +2485,7 @@
             }
         }
 
-        function toggleSpeechRecognition() {
+        async function toggleSpeechRecognition() {
             console.log('[Audio] toggleSpeechRecognition called');
             const audioHandler = window.universalAudio;
             if (!audioHandler) {
@@ -2484,19 +2497,19 @@
             console.log('[Audio] recordingAvailable:', guidance.recordingAvailable);
 
             if (guidance.recordingAvailable) {
-                const wasRecording = audioHandler.isRecording;
-                console.log('[Audio] wasRecording:', wasRecording);
+                const wasListening = audioHandler.isListening;
+                console.log('[Audio] wasListening:', wasListening);
 
-                if (wasRecording) {
-                    console.log('[Audio] stopping recording');
-                    audioHandler.stopAudioRecording();
+                if (wasListening) {
+                    console.log('[Audio] stopping speech recognition');
+                    await audioHandler.stopSpeechRecognition();
                 } else {
                     try {
-                        console.log('[Audio] starting recording');
-                        audioHandler.startAudioRecording();
+                        console.log('[Audio] starting speech recognition');
+                        await audioHandler.startSpeechRecognition();
                     } catch (error) {
-                        console.error('[Audio] startAudioRecording failed:', error);
-                        showToast('Recording Error', 'Failed to start recording', 'error');
+                        console.error('[Audio] startSpeechRecognition failed:', error);
+                        showToast('Speech Error', 'Failed to start speech recognition', 'error');
                         // Ensure button state reflects that we are not recording
                         setRecordingButtonsState(false);
                         return;
@@ -2504,9 +2517,7 @@
                 }
 
                 // Keep all recording buttons in sync
-                const nowRecording = !wasRecording;
-                console.log('[Audio] nowRecording:', nowRecording);
-                setRecordingButtonsState(nowRecording);
+                setRecordingButtonsState(audioHandler.isListening);
             } else {
                 const suggestions = guidance.recommendations.join('. ');
                 console.log('[Audio] recording not available:', suggestions);

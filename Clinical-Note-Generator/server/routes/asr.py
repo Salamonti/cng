@@ -485,80 +485,100 @@ async def websocket_asr(websocket: WebSocket):
     """
     global _ASR_WS_ACTIVE_TOTAL
     
-    # Extract token using Codex's improved method
     token = _extract_ws_token(websocket)
     if not token:
         await websocket.close(code=4401, reason="missing_bearer")
         return
     
-    user_id = None
-    # Try JWT validation first
     try:
         user_id = _validate_user_token(token)
-    except ValueError as e:
-        if str(e) == "user_not_authorized":
-            await websocket.close(code=4403, reason="user_not_authorized")
-            return
-        # If JWT validation fails, fall back to ASR_API_KEY (for backward compatibility)
-        expected_key = _asr_api_key()
-        if token != expected_key:
-            await websocket.close(code=4401, reason="invalid_token")
-            return
     except Exception:
-        # Any other error
-        await websocket.close(code=4401, reason="invalid_token")
+        await websocket.close(code=4401, reason="invalid_bearer")
         return
     
-    # Check global and per-user connection limits
     async with _ASR_WS_LOCK:
-        if _ASR_WS_ACTIVE_TOTAL >= _ASR_WS_MAX_CONNECTIONS:
-            await websocket.close(code=4429, reason="too_many_connections")
+        if _ASR_WS_ACTIVE_TOTAL >= _ASR_WS_MAX_CONNECTIONS or _ASR_WS_ACTIVE_BY_USER[user_id] >= _ASR_WS_MAX_PER_USER:
+            await websocket.close(code=4429, reason="connection_limit")
             return
-        if user_id and _ASR_WS_ACTIVE_BY_USER.get(user_id, 0) >= _ASR_WS_MAX_PER_USER:
-            await websocket.close(code=4429, reason="user_connection_limit")
-            return
-        
-        # Update counters
         _ASR_WS_ACTIVE_TOTAL += 1
-        if user_id:
-            _ASR_WS_ACTIVE_BY_USER[user_id] = _ASR_WS_ACTIVE_BY_USER.get(user_id, 0) + 1
+        _ASR_WS_ACTIVE_BY_USER[user_id] += 1
     
-    await websocket.accept()
-    
+    await websocket.accept(subprotocol="cng.asr.v1")
+    proc = None
+    stdout_task = None
+    stderr_task = None
+    sem_acquired = False
+    last_sent = ""
     try:
-        # Limit concurrent whisper processes using semaphore
-        async with _ASR_WS_SEM:
-            session_id = str(hash(websocket))
-            session = WhisperStreamSession(websocket, session_id)
-            
-            async with _ASR_WS_LOCK:
-                _whisper_stream_sessions[session_id] = session
-            
-            try:
-                await session.start()
-                
-                # Handle incoming audio chunks
-                while True:
-                    try:
-                        data = await websocket.receive_bytes()
-                        # Basic message size limit
-                        if len(data) > _ASR_WS_MAX_MSG_BYTES:
-                            print(f"[ASR_WS] Message too large: {len(data)} bytes")
-                            continue
-                        await session.write_audio(data)
-                    except WebSocketDisconnect:
-                        break
-                    except RuntimeError:
-                        break
-            finally:
-                async with _ASR_WS_LOCK:
-                    _whisper_stream_sessions.pop(session_id, None)
-                await session.stop()
+        await asyncio.wait_for(_ASR_WS_SEM.acquire(), timeout=1.0)
+        sem_acquired = True
+        cmd = _whisper_stream_cmd()
+        proc = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdin=asyncio.subprocess.PIPE,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        await websocket.send_json({"type": "ready"})
+        
+        async def _pump_stdout():
+            nonlocal last_sent
+            while proc and proc.stdout:
+                line = await proc.stdout.readline()
+                if not line:
+                    break
+                text = _extract_stream_text(line.decode("utf-8", errors="ignore"))
+                if text and text != last_sent:
+                    last_sent = text
+                    await websocket.send_json({"type": "partial", "text": text})
+        
+        async def _pump_stderr():
+            while proc and proc.stderr:
+                line = await proc.stderr.readline()
+                if not line:
+                    break
+        
+        stdout_task = asyncio.create_task(_pump_stdout())
+        stderr_task = asyncio.create_task(_pump_stderr())
+        
+        while True:
+            msg = await websocket.receive()
+            if msg.get("type") == "websocket.disconnect":
+                break
+            data = msg.get("bytes")
+            if data is not None:
+                if len(data) > _ASR_WS_MAX_MSG_BYTES:
+                    await websocket.close(code=1009, reason="chunk_too_large")
+                    break
+                if proc and proc.stdin:
+                    proc.stdin.write(data)
+                    await proc.stdin.drain()
+                continue
+            text_msg = msg.get("text")
+            if text_msg:
+                if text_msg == '{"type":"stop"}':
+                    break
+                if text_msg == '{"type":"ping"}':
+                    await websocket.send_json({"type": "pong"})
+    except WebSocketDisconnect:
+        pass
     finally:
-        # Decrement connection counters
+        for t in (stdout_task, stderr_task):
+            if t:
+                t.cancel()
+        if proc:
+            try:
+                if proc.stdin:
+                    proc.stdin.close()
+                proc.terminate()
+                await asyncio.wait_for(proc.wait(), timeout=2.0)
+            except Exception:
+                try:
+                    proc.kill()
+                except Exception:
+                    pass
+        if sem_acquired:
+            _ASR_WS_SEM.release()
         async with _ASR_WS_LOCK:
-            _ASR_WS_ACTIVE_TOTAL -= 1
-            if user_id and user_id in _ASR_WS_ACTIVE_BY_USER:
-                _ASR_WS_ACTIVE_BY_USER[user_id] -= 1
-                if _ASR_WS_ACTIVE_BY_USER[user_id] <= 0:
-                    del _ASR_WS_ACTIVE_BY_USER[user_id]
+            _ASR_WS_ACTIVE_TOTAL = max(0, _ASR_WS_ACTIVE_TOTAL - 1)
+            _ASR_WS_ACTIVE_BY_USER[user_id] = max(0, _ASR_WS_ACTIVE_BY_USER[user_id] - 1)
