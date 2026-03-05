@@ -6,17 +6,35 @@ import json
 import shutil
 import subprocess
 import tempfile
+import uuid
+import asyncio
+from collections import defaultdict
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request, WebSocket
 from fastapi.websockets import WebSocketDisconnect
 from fastapi.responses import PlainTextResponse, JSONResponse
 import aiohttp
-import asyncio
-import threading
-import signal
+from sqlmodel import Session, select
+
+from server.core.db import engine
+from server.core.security import decode_access_token
+from server.models.user import User
 
 router = APIRouter()
+
+# WebSocket streaming configuration
+_ASR_WS_MAX_CONNECTIONS = int(os.environ.get("ASR_WS_MAX_CONNECTIONS", "8"))
+_ASR_WS_MAX_PER_USER = int(os.environ.get("ASR_WS_MAX_PER_USER", "1"))
+_ASR_WS_MAX_MSG_BYTES = int(os.environ.get("ASR_WS_MAX_MSG_BYTES", str(512 * 1024)))
+_ASR_WS_MAX_PROCESSES = int(os.environ.get("ASR_WS_MAX_PROCESSES", "2"))
+_ASR_WS_SEM = asyncio.Semaphore(_ASR_WS_MAX_PROCESSES)
+_ASR_WS_ACTIVE_TOTAL = 0
+_ASR_WS_ACTIVE_BY_USER: Dict[str, int] = defaultdict(int)
+_ASR_WS_LOCK = asyncio.Lock()
+
+# WebSocket streaming sessions (legacy, will be migrated)
+_whisper_stream_sessions: Dict[str, "WhisperStreamSession"] = {}
 
 
 class WhisperStreamSession:
@@ -32,32 +50,22 @@ class WhisperStreamSession:
         
     async def start(self):
         """Start whisper.cpp stream subprocess."""
-        # Determine whisper.cpp binary path
-        whisper_cpp_path = os.environ.get("WHISPER_CPP_PATH", "C:/projects/whisper.cpp")
-        model = os.environ.get("WHISPER_MODEL", "ggml-large-v3-turbo.bin")
-        model_path = os.path.join(whisper_cpp_path, "models", model)
-        stream_bin = os.path.join(whisper_cpp_path, "build", "bin", "stream")
+        cmd = _whisper_stream_cmd()
+        if not cmd:
+            raise RuntimeError("Failed to build whisper stream command")
+        
+        # Check if binary exists
+        stream_bin = cmd[0]
         if not os.path.exists(stream_bin):
-            stream_bin = stream_bin + ".exe"
-        
-        if not os.path.exists(stream_bin):
-            raise RuntimeError(f"whisper.cpp stream binary not found at {stream_bin}")
-        
-        # Build command using environment variables for VAD/threshold
-        cmd = [
-            stream_bin,
-            "-m", model_path,
-            "-t", "4",  # threads
-            "--step", "500",  # step size in ms
-            "--length", "5000",  # length in ms
-            "-vth", _whispercpp_vad(),
-            "-f", "16000:1:2"  # sample rate:channels:sample width (16-bit PCM)
-        ]
-        
-        # Add no-speech threshold if configured
-        no_speech_thold = _whispercpp_no_speech_thold()
-        if no_speech_thold and no_speech_thold != "1.0":
-            cmd.extend(["-vth", no_speech_thold])
+            # Try with .exe extension on Windows
+            if not stream_bin.endswith(".exe"):
+                stream_bin_exe = stream_bin + ".exe"
+                if os.path.exists(stream_bin_exe):
+                    cmd[0] = stream_bin_exe
+                else:
+                    raise RuntimeError(f"whisper.cpp stream binary not found at {stream_bin} or {stream_bin_exe}")
+            else:
+                raise RuntimeError(f"whisper.cpp stream binary not found at {stream_bin}")
         
         print(f"[WhisperStream] Starting process: {' '.join(cmd)}")
         self.process = await asyncio.create_subprocess_exec(
@@ -86,16 +94,13 @@ class WhisperStreamSession:
                 if not line:
                     break
                 line = line.decode('utf-8', errors='ignore').strip()
-                if line and not line.startswith('whisper_'):
-                    # Parse whisper.cpp output format: [timestamp] text
-                    if ']' in line:
-                        text = line.split(']', 1)[-1].strip()
-                        if text:
-                            await self.websocket.send_json({
-                                "type": "transcription",
-                                "text": text,
-                                "session_id": self.session_id
-                            })
+                text = _extract_stream_text(line)
+                if text:
+                    await self.websocket.send_json({
+                        "type": "transcription",
+                        "text": text,
+                        "session_id": self.session_id
+                    })
             except asyncio.CancelledError:
                 break
             except Exception as e:
@@ -171,10 +176,50 @@ def _normalize_to_wav_enabled() -> bool:
 _primary_down_until = 0.0
 _cooldown_sec = 20.0
 
-# WebSocket streaming
-_whisper_stream_semaphore = asyncio.Semaphore(2)  # max 2 concurrent whisper processes
-_whisper_stream_sessions: Dict[str, "WhisperStreamSession"] = {}
-_whisper_stream_lock = asyncio.Lock()
+# WebSocket streaming (legacy - using new constants after router)
+
+def _extract_ws_token(ws: WebSocket) -> str:
+    auth = ws.headers.get("authorization") or ""
+    if auth.lower().startswith("bearer "):
+        return auth.split(" ", 1)[1].strip()
+    # preferred browser path: subprotocol "bearer."
+    proto = ws.headers.get("sec-websocket-protocol") or ""
+    for p in [x.strip() for x in proto.split(",") if x.strip()]:
+        if p.startswith("bearer."):
+            return p[len("bearer."):]
+    # fallback path
+    return (ws.query_params.get("access_token") or "").strip()
+
+def _validate_user_token(token: str) -> str:
+    payload = decode_access_token(token)
+    sub = str(payload.get("sub") or "")
+    user_uuid = uuid.UUID(sub)
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.id == user_uuid)).one_or_none()
+        if not user or not user.is_active or not user.is_approved:
+            raise ValueError("user_not_authorized")
+        return sub
+
+def _whisper_stream_cmd() -> List[str]:
+    # Keep using existing ASR env knobs for VAD/no_speech thresholds
+    stream_bin = os.environ.get("ASR_WHISPERCPP_STREAM_BIN") or "C:/projects/whisper.cpp/build/bin/stream"
+    model = os.environ.get("ASR_WHISPERCPP_MODEL") or "C:/projects/whisper.cpp/models/ggml-large-v3-turbo.bin"
+    return [
+        stream_bin, "-m", model,
+        "--step", os.environ.get("ASR_STREAM_STEP_MS", "300"),
+        "--length", os.environ.get("ASR_STREAM_LENGTH_MS", "3000"),
+        "-vth", _whispercpp_vad(),
+        "-nth", _whispercpp_no_speech_thold(),
+        "--stdin", # verify exact flag against your local stream --help
+    ]
+
+def _extract_stream_text(line: str) -> str:
+    s = (line or "").strip()
+    if not s or s.startswith("whisper_"):
+        return ""
+    if "]" in s:
+        s = s.split("]", 1)[1].strip()
+    return s
 
 
 def _candidate_urls() -> List[str]:
@@ -435,49 +480,85 @@ async def asr_engine_info() -> Dict[str, Optional[str]]:
 async def websocket_asr(websocket: WebSocket):
     """
     WebSocket endpoint for real‑time ASR streaming.
-    Expects token as query parameter `?token=...`.
+    Accepts token via Authorization header, Sec-WebSocket-Protocol: bearer.<token>,
+    or access_token query parameter.
     """
-    # Validate token
-    token = websocket.query_params.get("token")
+    global _ASR_WS_ACTIVE_TOTAL
+    
+    # Extract token using Codex's improved method
+    token = _extract_ws_token(websocket)
     if not token:
-        await websocket.close(code=1008, reason="Missing token")
+        await websocket.close(code=4401, reason="missing_bearer")
         return
     
-    # Simple validation: check against ASR_API_KEY (admin key) or JWT
-    # For now, accept ASR_API_KEY (same as HTTP proxy uses)
-    expected_key = _asr_api_key()
-    if token != expected_key:
-        # Try JWT validation
-        try:
-            from server.core.security import decode_access_token
-            decode_access_token(token)  # will raise if invalid
-        except Exception:
-            await websocket.close(code=1008, reason="Invalid token")
+    user_id = None
+    # Try JWT validation first
+    try:
+        user_id = _validate_user_token(token)
+    except ValueError as e:
+        if str(e) == "user_not_authorized":
+            await websocket.close(code=4403, reason="user_not_authorized")
             return
+        # If JWT validation fails, fall back to ASR_API_KEY (for backward compatibility)
+        expected_key = _asr_api_key()
+        if token != expected_key:
+            await websocket.close(code=4401, reason="invalid_token")
+            return
+    except Exception:
+        # Any other error
+        await websocket.close(code=4401, reason="invalid_token")
+        return
+    
+    # Check global and per-user connection limits
+    async with _ASR_WS_LOCK:
+        if _ASR_WS_ACTIVE_TOTAL >= _ASR_WS_MAX_CONNECTIONS:
+            await websocket.close(code=4429, reason="too_many_connections")
+            return
+        if user_id and _ASR_WS_ACTIVE_BY_USER.get(user_id, 0) >= _ASR_WS_MAX_PER_USER:
+            await websocket.close(code=4429, reason="user_connection_limit")
+            return
+        
+        # Update counters
+        _ASR_WS_ACTIVE_TOTAL += 1
+        if user_id:
+            _ASR_WS_ACTIVE_BY_USER[user_id] = _ASR_WS_ACTIVE_BY_USER.get(user_id, 0) + 1
     
     await websocket.accept()
     
-    # Limit concurrent whisper processes
-    async with _whisper_stream_semaphore:
-        session_id = str(hash(websocket))
-        session = WhisperStreamSession(websocket, session_id)
-        
-        async with _whisper_stream_lock:
-            _whisper_stream_sessions[session_id] = session
-        
-        try:
-            await session.start()
+    try:
+        # Limit concurrent whisper processes using semaphore
+        async with _ASR_WS_SEM:
+            session_id = str(hash(websocket))
+            session = WhisperStreamSession(websocket, session_id)
             
-            # Handle incoming audio chunks
-            while True:
-                try:
-                    data = await websocket.receive_bytes()
-                    await session.write_audio(data)
-                except WebSocketDisconnect:
-                    break
-                except RuntimeError:
-                    break
-        finally:
-            async with _whisper_stream_lock:
-                _whisper_stream_sessions.pop(session_id, None)
-            await session.stop()
+            async with _ASR_WS_LOCK:
+                _whisper_stream_sessions[session_id] = session
+            
+            try:
+                await session.start()
+                
+                # Handle incoming audio chunks
+                while True:
+                    try:
+                        data = await websocket.receive_bytes()
+                        # Basic message size limit
+                        if len(data) > _ASR_WS_MAX_MSG_BYTES:
+                            print(f"[ASR_WS] Message too large: {len(data)} bytes")
+                            continue
+                        await session.write_audio(data)
+                    except WebSocketDisconnect:
+                        break
+                    except RuntimeError:
+                        break
+            finally:
+                async with _ASR_WS_LOCK:
+                    _whisper_stream_sessions.pop(session_id, None)
+                await session.stop()
+    finally:
+        # Decrement connection counters
+        async with _ASR_WS_LOCK:
+            _ASR_WS_ACTIVE_TOTAL -= 1
+            if user_id and user_id in _ASR_WS_ACTIVE_BY_USER:
+                _ASR_WS_ACTIVE_BY_USER[user_id] -= 1
+                if _ASR_WS_ACTIVE_BY_USER[user_id] <= 0:
+                    del _ASR_WS_ACTIVE_BY_USER[user_id]
