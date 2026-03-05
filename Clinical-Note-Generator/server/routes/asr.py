@@ -212,12 +212,10 @@ def _whisper_stream_cmd_candidates() -> List[List[str]]:
 
     base = [stream_bin, "-m", model, "--step", step, "--length", length, "-vth", vad]
 
-    # Some builds use -nth, some use --no-speech-thold, and stdin support varies.
+    # Browser-audio WS pipeline requires stdin-capable stream binary.
     return [
         [*base, "-nth", no_speech, "--stdin"],
         [*base, "--no-speech-thold", no_speech, "--stdin"],
-        [*base, "-nth", no_speech],
-        [*base, "--no-speech-thold", no_speech],
     ]
 
 def _whisper_stream_cmd() -> List[str]:
@@ -611,7 +609,9 @@ async def websocket_asr(websocket: WebSocket):
                 if text_msg == '{"type":"ping"}':
                     await websocket.send_json({"type": "pong"})
     except WebSocketDisconnect:
-        pass
+        print("[ASR_WS] client disconnected")
+    except Exception as e:
+        print(f"[ASR_WS] unhandled error: {type(e).__name__}: {e}")
     finally:
         for t in (stdout_task, stderr_task):
             if t:

@@ -66,18 +66,34 @@ class UniversalAudioHandler {
         return new Promise((resolve, reject) => {
             const ws = new WebSocket(this._buildAsrWsUrl(token), ['cng.asr.v1']);
             const timeout = setTimeout(() => reject(new Error('asr_ws_timeout')), 8000);
+            let settled = false;
+            let gotReady = false;
+            let readyWatchdog = null;
+
             ws.onopen = () => {
                 clearTimeout(timeout);
                 this.asrSocket = ws;
                 this.asrConnected = true;
                 this.asrFailed = false;
-                this._asrStatus('streaming', 'Live transcription connected');
-                resolve();
+                if (!settled) {
+                    settled = true;
+                    resolve();
+                }
+                // If backend opens then closes without ready, drop to fallback quickly.
+                readyWatchdog = setTimeout(() => {
+                    if (!gotReady && this.isListening) {
+                        this.asrConnected = false;
+                        this.asrFailed = true;
+                        this._asrStatus('fallback', 'Live stream not ready, using HTTP fallback');
+                        try { ws.close(); } catch (_) {}
+                    }
+                }, 2000);
             };
             ws.onmessage = (event) => {
                 try {
                     const msg = JSON.parse(event.data);
                     if (msg.type === 'ready') {
+                        gotReady = true;
                         this._asrStatus('streaming', 'Live transcription connected');
                         return;
                     }
@@ -97,12 +113,21 @@ class UniversalAudioHandler {
                 this.asrConnected = false;
                 this.asrFailed = true;
                 this._asrStatus('fallback', 'Live stream failed, using HTTP fallback');
+                if (!settled) {
+                    settled = true;
+                    reject(new Error('asr_ws_error'));
+                }
             };
             ws.onclose = () => {
                 this.asrConnected = false;
+                if (readyWatchdog) clearTimeout(readyWatchdog);
                 if (this.isListening) {
                     this.asrFailed = true;
-                    this._asrStatus('fallback', 'Live stream disconnected, using HTTP fallback');
+                    this._asrStatus('fallback', gotReady ? 'Live stream disconnected, using HTTP fallback' : 'Live stream unavailable, using HTTP fallback');
+                }
+                if (!settled) {
+                    settled = true;
+                    reject(new Error('asr_ws_closed'));
                 }
             };
         });
