@@ -64,9 +64,12 @@ def _candidate_urls() -> List[str]:
     if not primary and not fallback:
         return []
 
-    # Primary cooling down: use fallback path only (if available)
+    # Primary cooling down: prefer fallback first, but still try primary second
+    # to avoid hard failure when fallback is unhealthy.
     if primary and now < _primary_down_until:
-        return [fallback] if fallback else []
+        if fallback and fallback != primary:
+            return [fallback, primary]
+        return [primary]
 
     urls: List[str] = []
     if primary:
