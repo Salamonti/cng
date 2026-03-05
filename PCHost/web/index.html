@@ -2452,13 +2452,13 @@
                 console.warn('[ASR] audioHandler.setAsrStatusCallback missing in audio handler');
             }
 
-            audioHandler.setAudioFileCallback((audioFile, meta = {}) => {
+            audioHandler.setAudioFileCallback(async (audioFile, meta = {}) => {
                 if (meta && meta.chunkMode) {
                     const isFinalTail = !!meta.finalTail;
-                    transcribeAudio(audioFile, { chunkMode: true, skipQueueOnError: !isFinalTail });
-                    return;
+                    return await transcribeAudio(audioFile, { chunkMode: true, skipQueueOnError: !isFinalTail });
                 }
-                handleAudioFile({ files: [audioFile] });
+                // Old behavior (full upload path)
+                return await transcribeAudio(audioFile, { chunkMode: false, skipQueueOnError: false });
             });
 
             audioHandler.onSpeechStart = () => {
@@ -2874,7 +2874,7 @@
         async function transcribeAudio(file, options = {}) {
             if (!file) {
                 showToast('Error', 'No audio file available for transcription', 'error');
-                return;
+                return false;
             }
 
             const opts = options || {};
@@ -2887,7 +2887,7 @@
                 const token = getAuthToken();
                 if (!token) {
                     showToast('Sign In Required', 'Please sign in to transcribe audio.', 'warning');
-                    return;
+                    return false;
                 }
                 lastServiceRetry = () => transcribeAudio(file, options);
                 const formData = new FormData();
@@ -2921,6 +2921,7 @@
                         showToast('Generating', 'Transcription complete — generating note now...', 'info');
                         generateNote();
                     }
+                    return true;
                 } else {
                     let detail = null;
                     try { detail = await response.json(); } catch (e) {}
@@ -2937,6 +2938,7 @@
                 if (!skipQueueOnError) {
                     queueRequest('transcribe', { file: file, fileName: file.name });
                 }
+                return false;
             } finally {
                 if (!chunkMode) hideProgress('audioProgress');
             }

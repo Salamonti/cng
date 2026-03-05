@@ -205,6 +205,8 @@ class UniversalAudioHandler {
             this.dictationChunks = [];
             this._chunkWindow = [];
             this._chunkTick = 0;
+            this._chunkFailed = false;
+            this._chunkDisabled = false;
 
             try { if ('wakeLock' in navigator) { this._requestWakeLock && this._requestWakeLock(); } } catch (e) {}
             this._asrStatus('chunking', 'Live chunk transcription active');
@@ -231,17 +233,25 @@ class UniversalAudioHandler {
 
             this.dictationRecorder.ondataavailable = async (event) => {
                 if (!event || event.data.size <= 0) return;
+                this.dictationChunks.push(event.data);
                 this._chunkWindow.push(event.data);
                 if (this._chunkWindow.length > CHUNK_WINDOW_PARTS) this._chunkWindow.shift();
                 this._chunkTick += 1;
 
                 // Upload every 8s once we have enough context (10s rolling window)
-                if (this._chunkWindow.length === CHUNK_WINDOW_PARTS && (this._chunkTick % CHUNK_STEP_PARTS === 0)) {
+                if (!this._chunkDisabled && this._chunkWindow.length === CHUNK_WINDOW_PARTS && (this._chunkTick % CHUNK_STEP_PARTS === 0)) {
                     const outType = this.dictationRecorder.mimeType || event.data.type || 'audio/webm';
                     const ext = this._extensionFromMime(outType);
                     const blob = new Blob(this._chunkWindow, { type: outType });
                     const file = new File([blob], `dictation_chunk_${Date.now()}.${ext}`, { type: outType });
-                    if (this.onAudioFileCallback) this.onAudioFileCallback(file, { chunkMode: true });
+                    if (this.onAudioFileCallback) {
+                        const ok = await this.onAudioFileCallback(file, { chunkMode: true });
+                        if (ok === false) {
+                            this._chunkFailed = true;
+                            this._chunkDisabled = true;
+                            this._asrStatus('fallback', 'Chunk failed, switching to full-upload mode');
+                        }
+                    }
                 }
             };
 
@@ -266,15 +276,24 @@ class UniversalAudioHandler {
                     // Short stop delay helps MediaRecorder finalize last opus packet boundary.
                     await new Promise(r => setTimeout(r, 250));
 
-                    // Final tail flush only (no full final pass).
-                    // Use the most recent media chunk to avoid invalid container artifacts
-                    // from concatenating partially finalized webm segments.
-                    if (this._chunkWindow && this._chunkWindow.length > 0) {
-                        const lastPart = this._chunkWindow[this._chunkWindow.length - 1];
-                        const outType = this.dictationRecorder.mimeType || lastPart?.type || 'audio/webm';
-                        const ext = this._extensionFromMime(outType);
-                        const tailFile = new File([lastPart], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
-                        if (this.onAudioFileCallback) this.onAudioFileCallback(tailFile, { chunkMode: true, finalTail: true });
+                    if (this._chunkFailed) {
+                        // Fallback mode: upload full local recording once (old behavior).
+                        if (this.dictationChunks && this.dictationChunks.length > 0) {
+                            const outType = this.dictationRecorder.mimeType || this.dictationChunks[0]?.type || 'audio/webm';
+                            const ext = this._extensionFromMime(outType);
+                            const fullBlob = new Blob(this.dictationChunks, { type: outType });
+                            const fullFile = new File([fullBlob], `dictation_full_${Date.now()}.${ext}`, { type: outType });
+                            if (this.onAudioFileCallback) await this.onAudioFileCallback(fullFile, { chunkMode: false, fullFallback: true });
+                        }
+                    } else {
+                        // Final tail flush only (no full final pass).
+                        if (this._chunkWindow && this._chunkWindow.length > 0) {
+                            const lastPart = this._chunkWindow[this._chunkWindow.length - 1];
+                            const outType = this.dictationRecorder.mimeType || lastPart?.type || 'audio/webm';
+                            const ext = this._extensionFromMime(outType);
+                            const tailFile = new File([lastPart], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
+                            if (this.onAudioFileCallback) await this.onAudioFileCallback(tailFile, { chunkMode: true, finalTail: true });
+                        }
                     }
 
                     if (this.dictationRecorder && this.dictationRecorder.stream) {
@@ -283,6 +302,8 @@ class UniversalAudioHandler {
                     this.dictationChunks = [];
                     this._chunkWindow = [];
                     this._chunkTick = 0;
+                    this._chunkFailed = false;
+                    this._chunkDisabled = false;
                     resolve();
                 };
             });
