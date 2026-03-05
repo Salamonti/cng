@@ -3113,15 +3113,33 @@
 
         let generationAbortController = null;
 
+        function syncStreamingControlsVisibility() {
+            const streamingControls = document.getElementById('streamingControls');
+            const isActive = !!generationAbortController || !!app?.isStreaming;
+            if (!streamingControls) return;
+            if (isActive) {
+                streamingControls.classList.remove('hidden');
+                streamingControls.style.display = 'flex';
+            } else {
+                streamingControls.classList.add('hidden');
+                streamingControls.style.display = 'none';
+            }
+        }
+
+        // Defensive reset on load: never show stop bar unless actively streaming.
+        document.addEventListener('DOMContentLoaded', () => {
+            generationAbortController = null;
+            if (window.app) app.isStreaming = false;
+            syncStreamingControlsVisibility();
+        });
+
         async function stopGeneration() {
             if (generationAbortController) {
                 generationAbortController.abort();
                 generationAbortController = null;
                 showToast('Stopped', 'Note generation stopped', 'info');
-                // Hide streaming controls
-                const streamingControls = document.getElementById('streamingControls');
-                if (streamingControls) streamingControls.classList.add('hidden');
                 app.isStreaming = false;
+                syncStreamingControlsVisibility();
             }
         }
 
@@ -3200,15 +3218,9 @@
                 app.isStreaming = true;
                 lastServiceRetry = () => generateNoteOnline(chartData, noteType);
 
-                // Show streaming controls
-                const streamingControls = document.getElementById('streamingControls');
-                if (streamingControls) {
-                    streamingControls.classList.remove('hidden');
-                    streamingControls.style.display = 'flex';
-                }
-
                 // Create abort controller for streaming
                 generationAbortController = new AbortController();
+                syncStreamingControlsVisibility();
 
                 // Use direct streaming endpoint
                 const apiBase = getApiBase(app.settings.serverUrl || '/api');
@@ -3321,15 +3333,10 @@
             }
             // Don't queue - user can retry manually
         } finally {
-            // Hide streaming controls
-            const streamingControls = document.getElementById('streamingControls');
-            if (streamingControls) {
-                streamingControls.classList.add('hidden');
-                streamingControls.style.display = 'none';
-            }
             // Reset abort controller and streaming flag
             generationAbortController = null;
             app.isStreaming = false;
+            syncStreamingControlsVisibility();
             hideProgress('noteProgress');
             setGeneratedNoteBusy(false);
             updateNoteStatus('');
