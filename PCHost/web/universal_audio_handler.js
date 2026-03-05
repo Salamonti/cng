@@ -205,6 +205,7 @@ class UniversalAudioHandler {
             this.dictationChunks = [];
             this._chunkWindow = [];
             this._chunkTick = 0;
+            this._chunkInitPart = null;
 
             try { if ('wakeLock' in navigator) { this._requestWakeLock && this._requestWakeLock(); } } catch (e) {}
             this._asrStatus('chunking', 'Live chunk transcription active');
@@ -231,6 +232,8 @@ class UniversalAudioHandler {
 
             this.dictationRecorder.ondataavailable = async (event) => {
                 if (!event || event.data.size <= 0) return;
+                if (!this._chunkInitPart) this._chunkInitPart = event.data; // keep init segment for valid webm
+
                 this._chunkWindow.push(event.data);
                 if (this._chunkWindow.length > CHUNK_WINDOW_PARTS) this._chunkWindow.shift();
                 this._chunkTick += 1;
@@ -239,7 +242,8 @@ class UniversalAudioHandler {
                 if (this._chunkWindow.length === CHUNK_WINDOW_PARTS && (this._chunkTick % CHUNK_STEP_PARTS === 0)) {
                     const outType = this.dictationRecorder.mimeType || event.data.type || 'audio/webm';
                     const ext = this._extensionFromMime(outType);
-                    const blob = new Blob(this._chunkWindow, { type: outType });
+                    const parts = this._chunkInitPart ? [this._chunkInitPart, ...this._chunkWindow] : [...this._chunkWindow];
+                    const blob = new Blob(parts, { type: outType });
                     const file = new File([blob], `dictation_chunk_${Date.now()}.${ext}`, { type: outType });
                     if (this.onAudioFileCallback) this.onAudioFileCallback(file, { chunkMode: true });
                 }
@@ -270,7 +274,8 @@ class UniversalAudioHandler {
                         const lastPart = this._chunkWindow[this._chunkWindow.length - 1];
                         const outType = this.dictationRecorder.mimeType || lastPart?.type || 'audio/webm';
                         const ext = this._extensionFromMime(outType);
-                        const tailFile = new File([lastPart], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
+                        const tailParts = this._chunkInitPart ? [this._chunkInitPart, lastPart] : [lastPart];
+                        const tailFile = new File(tailParts, `dictation_tail_${Date.now()}.${ext}`, { type: outType });
                         if (this.onAudioFileCallback) this.onAudioFileCallback(tailFile, { chunkMode: true, finalTail: true });
                     }
 
@@ -280,6 +285,7 @@ class UniversalAudioHandler {
                     this.dictationChunks = [];
                     this._chunkWindow = [];
                     this._chunkTick = 0;
+                    this._chunkInitPart = null;
                     resolve();
                 };
             });
