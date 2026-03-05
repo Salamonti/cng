@@ -263,12 +263,14 @@ class UniversalAudioHandler {
             this.dictationRecorder.stop();
             await new Promise(resolve => {
                 this.dictationRecorder.onstop = async () => {
-                    // Final tail flush only (no full final pass)
+                    // Final tail flush only (no full final pass).
+                    // Use the most recent media chunk to avoid invalid container artifacts
+                    // from concatenating partially finalized webm segments.
                     if (this._chunkWindow && this._chunkWindow.length > 0) {
-                        const outType = this.dictationRecorder.mimeType || this._chunkWindow[0]?.type || 'audio/webm';
+                        const lastPart = this._chunkWindow[this._chunkWindow.length - 1];
+                        const outType = this.dictationRecorder.mimeType || lastPart?.type || 'audio/webm';
                         const ext = this._extensionFromMime(outType);
-                        const tailBlob = new Blob(this._chunkWindow, { type: outType });
-                        const tailFile = new File([tailBlob], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
+                        const tailFile = new File([lastPart], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
                         if (this.onAudioFileCallback) this.onAudioFileCallback(tailFile, { chunkMode: true, finalTail: true });
                     }
 

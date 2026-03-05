@@ -2454,7 +2454,8 @@
 
             audioHandler.setAudioFileCallback((audioFile, meta = {}) => {
                 if (meta && meta.chunkMode) {
-                    transcribeAudio(audioFile, { chunkMode: true, skipQueueOnError: true });
+                    const isFinalTail = !!meta.finalTail;
+                    transcribeAudio(audioFile, { chunkMode: true, skipQueueOnError: !isFinalTail });
                     return;
                 }
                 handleAudioFile({ files: [audioFile] });
@@ -2933,7 +2934,7 @@
                 if (app.pendingGenerateAfterTranscription) {
                     clearPendingGenerateAfterTranscription();
                 }
-                if (!chunkMode && !skipQueueOnError) {
+                if (!skipQueueOnError) {
                     queueRequest('transcribe', { file: file, fileName: file.name });
                 }
             } finally {
