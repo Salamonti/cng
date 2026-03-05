@@ -226,9 +226,9 @@ class UniversalAudioHandler {
             }
 
             this.dictationRecorder = new MediaRecorder(stream, options);
-            const CHUNK_SLICE_MS = 4000;      // recorder cadence
-            const CHUNK_WINDOW_PARTS = 3;     // 12s total
-            const CHUNK_STEP_PARTS = 2;       // 8s step => 4s overlap
+            const CHUNK_SLICE_MS = 3000;      // recorder cadence
+            const CHUNK_WINDOW_PARTS = 2;     // 6s total
+            const CHUNK_STEP_PARTS = 2;       // 6s step => 0s overlap
 
             this.dictationRecorder.ondataavailable = async (event) => {
                 if (!event || event.data.size <= 0) return;
