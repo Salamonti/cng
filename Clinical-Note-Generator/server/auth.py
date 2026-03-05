@@ -5,7 +5,7 @@ import uuid
 from functools import lru_cache
 from typing import Optional
 
-from fastapi import Depends, HTTPException, status, Request, WebSocket
+from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlmodel import Session, select
 
@@ -51,28 +51,10 @@ def _get_token_from_env_or_cfg(env_name: str, cfg_key: str, default: Optional[st
 
 
 def require_api_bearer(
-    request: Optional[Request] = None,
-    websocket: Optional[WebSocket] = None,
+    creds: Optional[HTTPAuthorizationCredentials] = Depends(security),
     session: Session = Depends(get_session),
 ):
-    """Auth dependency that works for both HTTP and WebSocket routes."""
-    token: Optional[str] = None
-
-    headers = None
-    if request is not None:
-        headers = request.headers
-    elif websocket is not None:
-        headers = websocket.headers
-
-    if headers is not None:
-        auth = (headers.get("authorization") or "").strip()
-        if auth.lower().startswith("bearer "):
-            token = auth.split(" ", 1)[1].strip()
-
-    # WS/browser fallback path
-    if not token and websocket is not None:
-        token = (websocket.query_params.get("access_token") or "").strip() or None
-
+    token = creds.credentials if creds else None
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Missing bearer token')
 

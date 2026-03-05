@@ -106,7 +106,7 @@ Make health open (no auth). Admin endpoints remain protected by admin token.
 Also include backward-compatible routes at root (no /api) to avoid 404s from old pages.
 """
 app.include_router(ocr_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
-app.include_router(asr_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
+app.include_router(asr_router, prefix="/api")
 app.include_router(notes_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
 app.include_router(rag_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
 app.include_router(qa_chat_router, prefix="/api", dependencies=[Depends(require_api_bearer)])

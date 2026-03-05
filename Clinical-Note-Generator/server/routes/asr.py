@@ -11,13 +11,14 @@ import asyncio
 from collections import defaultdict
 from pathlib import Path
 
-from fastapi import APIRouter, HTTPException, Request, WebSocket
+from fastapi import APIRouter, HTTPException, Request, WebSocket, Depends
 from fastapi.websockets import WebSocketDisconnect
 from fastapi.responses import PlainTextResponse, JSONResponse
 import aiohttp
 from sqlmodel import Session, select
 
 from server.core.db import engine
+from server.auth import require_api_bearer
 from server.core.security import decode_access_token
 from server.models.user import User
 
@@ -395,8 +396,8 @@ def _normalize_audio_to_wav(data: bytes, filename: str, content_type: str) -> tu
                 pass
 
 
-@router.post("/transcribe_diarized")
-@router.post("/transcribe_diarized/")
+@router.post("/transcribe_diarized", dependencies=[Depends(require_api_bearer)])
+@router.post("/transcribe_diarized/", dependencies=[Depends(require_api_bearer)])
 async def transcribe_diarized(request: Request):
     """
     Proxy transcription to whisper.cpp server(s).
@@ -478,7 +479,7 @@ async def transcribe_diarized(request: Request):
         )
 
 
-@router.get("/asr_engine")
+@router.get("/asr_engine", dependencies=[Depends(require_api_bearer)])
 async def asr_engine_info() -> Dict[str, Optional[str]]:
     primary = _asr_url()
     fallback = _asr_fallback_url()
