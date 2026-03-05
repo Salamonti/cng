@@ -226,9 +226,9 @@ class UniversalAudioHandler {
             }
 
             this.dictationRecorder = new MediaRecorder(stream, options);
-            const CHUNK_SLICE_MS = 2000;      // recorder cadence
-            const CHUNK_WINDOW_PARTS = 5;     // 10s total
-            const CHUNK_STEP_PARTS = 4;       // 8s step => 2s overlap
+            const CHUNK_SLICE_MS = 4000;      // recorder cadence
+            const CHUNK_WINDOW_PARTS = 3;     // 12s total
+            const CHUNK_STEP_PARTS = 2;       // 8s step => 4s overlap
 
             this.dictationRecorder.ondataavailable = async (event) => {
                 if (!event || event.data.size <= 0) return;
@@ -267,6 +267,9 @@ class UniversalAudioHandler {
             this.dictationRecorder.stop();
             await new Promise(resolve => {
                 this.dictationRecorder.onstop = async () => {
+                    // Short stop delay helps MediaRecorder finalize last opus packet boundary.
+                    await new Promise(r => setTimeout(r, 250));
+
                     // Final tail flush only (no full final pass).
                     // Use the most recent media chunk to avoid invalid container artifacts
                     // from concatenating partially finalized webm segments.
