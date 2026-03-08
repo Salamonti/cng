@@ -3,6 +3,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 import json
+from server.core.preprocessing import PreprocessingPipeline, TokenBudgetTruncator
 
 CONFIG_PATH = Path(__file__).resolve().parents[3] / "config" / "config.json"
 
@@ -74,6 +75,35 @@ def _cfg_text(val: Any) -> str:
     return str(val).strip()
 
 
+def _apply_preprocessing(
+    cfg: Dict,
+    transcription_text: str,
+    old_visits_text: str,
+    mixed_other_text: str,
+) -> tuple[str, str, str]:
+    trans_clean = _sanitize_transcription_text(transcription_text).strip()
+    old_clean = _sanitize_chart_text(old_visits_text).strip()
+    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
+
+    preprocessing_cfg = (cfg or {}).get("preprocessing") or {}
+    if not bool(preprocessing_cfg.get("enabled", False)):
+        return trans_clean, old_clean, mixed_clean
+
+    pipeline = PreprocessingPipeline(cfg)
+    truncator = TokenBudgetTruncator(cfg)
+
+    trans_clean = pipeline.normalize_whitespace(trans_clean).strip()
+    old_clean = pipeline.process(old_clean).strip()
+    mixed_clean = pipeline.process(mixed_clean).strip()
+
+    if old_clean:
+        old_clean = truncator.truncate_section(old_clean, section="prior_visits").strip()
+    if mixed_clean:
+        mixed_clean = truncator.truncate_section(mixed_clean, section="labs_imaging_other").strip()
+
+    return trans_clean, old_clean, mixed_clean
+
+
 def build_prompt_v8(
     transcription_text: str,
     old_visits_text: str,
@@ -101,7 +131,9 @@ def build_prompt_v8(
         )
 
     sections = []
-    trans_clean = _sanitize_transcription_text(transcription_text).strip()
+    trans_clean, old_clean, mixed_clean = _apply_preprocessing(
+        cfg, transcription_text, old_visits_text, mixed_other_text
+    )
     if trans_clean:
         sections.append(
             "<CURRENT_ENCOUNTER>\n"
@@ -112,7 +144,6 @@ def build_prompt_v8(
             "</CURRENT_ENCOUNTER>"
         )
 
-    old_clean = _sanitize_chart_text(old_visits_text).strip()
     if old_clean:
         sections.append(
             "<PRIOR_VISITS>\n"
@@ -122,7 +153,6 @@ def build_prompt_v8(
             "</PRIOR_VISITS>"
         )
 
-    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
     if mixed_clean:
         sections.append(
             "<LABS_IMAGING_OTHER>\n"
@@ -190,9 +220,9 @@ def build_prompt_other(
             "Generate the requested clinical document based on the provided patient data.\n"
         )
 
-    trans_clean = _sanitize_transcription_text(transcription_text).strip()
-    old_clean = _sanitize_chart_text(old_visits_text).strip()
-    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
+    trans_clean, old_clean, mixed_clean = _apply_preprocessing(
+        cfg, transcription_text, old_visits_text, mixed_other_text
+    )
 
     data_blocks = [b for b in [trans_clean, old_clean, mixed_clean] if b]
     raw_data = "\n\n".join(data_blocks) if data_blocks else "[No patient data provided]"
