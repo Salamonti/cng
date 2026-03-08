@@ -11,7 +11,8 @@ _DATE_PATTERN = re.compile(
 _PATTERNS = {
     "name": re.compile(
         r"\b(?:patient|pt|name|doctor|dr\.?|provider)\s*[:\-]\s*"
-        r"([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})"
+        r"([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})",
+        re.IGNORECASE,
     ),
     "date": _DATE_PATTERN,
     "mrn": re.compile(
