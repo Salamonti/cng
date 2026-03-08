@@ -8,7 +8,7 @@ def test_auth_register_login_me_refresh(client):
     from server.models.user import User
 
     email = f"smoke-{uuid.uuid4().hex[:8]}@example.com"
-    password = "Passw0rd!"
+    password = "Passw0rd!1234"  # 12 characters minimum
 
     register_resp = client.post(
         "/api/auth/register",
