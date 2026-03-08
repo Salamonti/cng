@@ -18,6 +18,25 @@ if not logger.handlers:
     logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
+
+def _safe_payload_summary(payload: Dict) -> Dict[str, object]:
+    """Return a PHI-safe payload summary for logs."""
+    summary = {
+        "stream": bool(payload.get("stream")),
+        "max_tokens": payload.get("max_tokens", payload.get("n_predict")),
+        "temperature": payload.get("temperature"),
+        "stop_count": len(payload.get("stop") or []),
+    }
+    prompt = payload.get("prompt")
+    if isinstance(prompt, str):
+        summary["prompt_chars"] = len(prompt)
+    messages = payload.get("messages")
+    if isinstance(messages, list):
+        summary["messages"] = len(messages)
+        summary["message_chars"] = sum(len(str(m.get("content", ""))) for m in messages if isinstance(m, dict))
+    return summary
+
+
 class SimpleNoteGenerator:
     """Minimal llama-server client with a single streaming code path."""
 
@@ -123,7 +142,7 @@ class SimpleNoteGenerator:
         payload, endpoint, _ = self._build_payload(
             prompt, temperature, max_tokens, stream=True, stop=stop
         )
-        logger.info("[SMPL] streaming payload (%s): %s", endpoint, payload)
+        logger.info("[SMPL] streaming request (%s): %s", endpoint, _safe_payload_summary(payload))
 
         errors: List[str] = []
         for base_url in self._candidate_urls():
@@ -160,7 +179,7 @@ class SimpleNoteGenerator:
                                     had_output = True
                                     yield content
                                 else:
-                                    logger.info("[SMPL] empty stream chunk: %s", data)
+                                    logger.info("[SMPL] empty stream chunk")
                 await self._reset_context(base_url)
                 return
             except Exception as exc:
@@ -184,7 +203,7 @@ class SimpleNoteGenerator:
         payload, endpoint, used_chat = self._build_payload(
             prompt, temperature, max_tokens, stream=False, stop=stop
         )
-        logger.info("[SMPL] collect payload (%s): %s", endpoint, payload)
+        logger.info("[SMPL] collect request (%s): %s", endpoint, _safe_payload_summary(payload))
 
         used_url = None
         try:
@@ -204,14 +223,14 @@ class SimpleNoteGenerator:
                     stop=stop,
                     force_chat=False,
                 )
-                logger.info("[SMPL] fallback payload (%s): %s", fallback_endpoint, fallback_payload)
+                logger.info("[SMPL] fallback request (%s): %s", fallback_endpoint, _safe_payload_summary(fallback_payload))
                 fallback_data, used_url = await self._collect_json_response(fallback_payload, fallback_endpoint)
                 fallback_content = self._extract_stream_content(fallback_data)
                 if not fallback_content:
                     logger.info("[SMPL] fallback empty response: %s", fallback_data)
                 return fallback_content or ""
 
-            logger.info("[SMPL] collect empty response: %s", response_data)
+            logger.info("[SMPL] collect returned empty content")
             return ""
         finally:
             if used_url:

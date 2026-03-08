@@ -1,28 +1,36 @@
 # C:\Clinical-Note-Generator\server\routes\notes.py
 import asyncio
 from datetime import date
+from datetime import datetime, timezone
+import logging
 import time
 import re
 import json
 import os
-import csv
 import uuid
 import threading
 from typing import Dict, Optional, Any, List, Tuple
 from pathlib import Path
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import StreamingResponse, JSONResponse
+from sqlmodel import Session, select
 
 from services.note_generator_clean import get_simple_note_generator, SimpleNoteGenerator, ExternalServiceError
 from services.rag_http_client import RAGHttpClient
 from services.clinical_text_normalizer import normalize_clinical_note_output
 from metrics import metrics as global_metrics
+from core.db import get_session
+from core.deid.v1 import deidentify_text
+from core.logging.dataset_logger import log_case_event, log_case_record
+from core.security import decode_access_token
+from models.user import User
 
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Simple CSV logger for prompt/output/rating and an in-memory cache
+# In-memory cache for generation feedback + metadata
 # ---------------------------------------------------------------------------
 
 _cache_lock = threading.Lock()
@@ -32,21 +40,6 @@ _generation_cache: Dict[str, Dict[str, str]] = {}
 _generation_meta: Dict[str, Dict[str, Any]] = {}
 _consult_comment_store: Dict[str, Dict[str, Any]] = {}
 _order_request_store: Dict[str, Dict[str, Any]] = {}
-
-def _feedback_csv_path() -> str:
-    logs_dir = Path(__file__).resolve().parents[1] / "logs"
-    os.makedirs(logs_dir, exist_ok=True)
-    return str(logs_dir / "notes_feedback.csv")
-
-def _append_feedback_csv(prompt: str, output: str, rating: int) -> None:
-    path = _feedback_csv_path()
-    new_file = not os.path.exists(path)
-    # Only 3 columns per request: prompt, output, rating
-    with open(path, "a", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        if new_file:
-            w.writerow(["prompt", "output", "rating"])  # header with only 3 fields
-        w.writerow([prompt, output, rating])
 
 # ---------------------------------------------------------------------------
 # Config loading
@@ -150,6 +143,128 @@ def _append_missed_question(record: Dict[str, Any]) -> None:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
     except Exception:
         pass
+
+
+def _extract_actor(request: Request, session: Session) -> Dict[str, Optional[str]]:
+    actor: Dict[str, Optional[str]] = {"user_id": None, "user_email": None}
+    auth = (request.headers.get("authorization") or "").strip()
+    if not auth.lower().startswith("bearer "):
+        return actor
+    token = auth.split(" ", 1)[1].strip()
+    if not token:
+        return actor
+    try:
+        payload = decode_access_token(token)
+    except Exception:
+        return actor
+
+    user_id = str(payload.get("sub") or "").strip()
+    if not user_id:
+        return actor
+    actor["user_id"] = user_id
+    try:
+        user_uuid = uuid.UUID(user_id)
+        user = session.exec(select(User).where(User.id == user_uuid)).one_or_none()
+        if user and user.email:
+            actor["user_email"] = str(user.email)
+    except Exception:
+        pass
+    return actor
+
+
+def _split_prompt(prompt: str) -> Dict[str, str]:
+    text = prompt or ""
+    system = ""
+    user = text
+
+    if "SYSTEM:\n" in text:
+        after = text.split("SYSTEM:\n", 1)[1]
+        if "\n\nUSER:\n" in after:
+            system, user = after.split("\n\nUSER:\n", 1)
+        else:
+            system = after
+            user = ""
+    elif "USER:\n" in text:
+        user = text.split("USER:\n", 1)[1]
+
+    if "\n\nASSISTANT:" in user:
+        user = user.split("\n\nASSISTANT:", 1)[0]
+
+    return {"system": system.strip(), "user": user.strip()}
+
+
+def _deid_fields(fields: Dict[str, str]) -> Dict[str, Any]:
+    out_fields: Dict[str, Any] = {}
+    totals: Dict[str, int] = {}
+    leak_any = False
+    for key, raw_val in fields.items():
+        result = deidentify_text(raw_val or "")
+        out_fields[key] = result
+        counts = result.get("redaction_counts", {}) or {}
+        for cname, cval in counts.items():
+            totals[cname] = int(totals.get(cname, 0)) + int(cval or 0)
+        leak_flags = result.get("leak_flags", {}) or {}
+        leak_any = leak_any or bool(leak_flags.get("raw_has_any"))
+    return {
+        "fields": out_fields,
+        "redaction_counts_total": totals,
+        "leak_flags": {"raw_has_any": leak_any},
+    }
+
+
+def _model_meta() -> Dict[str, str]:
+    endpoint = "/v1/chat/completions" if bool(getattr(note_gen, "use_chat_api", False)) else "/completion"
+    return {
+        "chat_model_name": str(getattr(note_gen, "chat_model_name", "") or ""),
+        "model_path": str(getattr(note_gen, "model_path", "") or ""),
+        "endpoint_used": endpoint,
+    }
+
+
+def _log_case_completion(
+    *,
+    case_id: str,
+    created_at: str,
+    duration_s: float,
+    note_type: str,
+    pipeline: str,
+    prompt: str,
+    input_fields: Dict[str, str],
+    output_text: str,
+    prompt_tokens: int,
+    completion_tokens: int,
+    actor: Dict[str, Optional[str]],
+) -> None:
+    prompt_parts = _split_prompt(prompt)
+    prompt_deid = {
+        "system": deidentify_text(prompt_parts.get("system", "")).get("text", ""),
+        "user": deidentify_text(prompt_parts.get("user", "")).get("text", ""),
+    }
+    output_deid = deidentify_text(output_text or "")
+    case_record = {
+        "case_id": case_id,
+        "created_at": created_at,
+        "duration_s": round(float(duration_s), 3),
+        "note_type": note_type,
+        "pipeline": pipeline,
+        "user_id": actor.get("user_id"),
+        "user_email": actor.get("user_email"),
+        "model": _model_meta(),
+        "prompt": prompt_deid,
+        "input_deid": _deid_fields(input_fields),
+        "output_deid": {
+            "note": output_deid.get("text", ""),
+            "redaction_counts": output_deid.get("redaction_counts", {}),
+            "leak_flags": output_deid.get("leak_flags", {}),
+        },
+        "tokens": {
+            "prompt_tokens": int(prompt_tokens),
+            "completion_tokens": int(completion_tokens),
+            "method": "approx_word_count",
+        },
+        "feedback_snapshot": None,
+    }
+    log_case_record(case_record)
 
 
 def truncate_to_context_length_tokens(text: str, max_tokens: int) -> str:
@@ -1829,7 +1944,7 @@ def build_note_prompt_legacy(
 # Canonical note route is /generate_v8_stream
 # ---------------------------------------------------------------------------
 
-async def generate_stream(request: Request):
+async def generate_stream(request: Request, session: Session = Depends(get_session)):
     try:
         chart = trans = custom_prompt = ""
         note_type = "consult"
@@ -1895,13 +2010,14 @@ async def generate_stream(request: Request):
         else:
             prompt = build_note_prompt_legacy(chart, trans, note_type, custom_prompt, user_speciality)
         if note_type != "qa":
-            print(f"[NOTE_PROMPT_DEBUG] prompt start: {prompt[:160]!r}")
-            print(f"[NOTE_PROMPT_DEBUG] chart_len={len(chart)}, trans_len={len(trans)}")
+            print(f"[NOTE_PROMPT_DEBUG] chart_len={len(chart)}, trans_len={len(trans)}, prompt_len={len(prompt)}")
         t0 = time.perf_counter()
         token_count = 0
         generation_id = uuid.uuid4().hex
+        created_at = datetime.now(timezone.utc).isoformat()
         output_buf: list[str] = []
         raw_note_buf: list[str] = []
+        actor = _extract_actor(request, session)
 
         # seed cache entry for later feedback
         with _cache_lock:
@@ -2098,7 +2214,6 @@ async def generate_stream(request: Request):
                     yield END_MARKER + "\n"
                     return
 
-                debug_seed_logged = False
                 stop_phrases = []
                 note_text = await note_gen.collect_completion(
                     prompt,
@@ -2150,7 +2265,6 @@ async def generate_stream(request: Request):
                     duration = time.perf_counter() - t0
                     # Note: NoteGeneratorServer may not expose model_path; use getattr guard
                     global_metrics.record_note(duration, token_count, getattr(note_gen, 'model_path', None))
-                # Persist neutral rating (1) at completion - only for notes, not Q&A
                 try:
                     combined_output = "".join(output_buf)
                     raw_final_output = "".join(raw_note_buf).strip()
@@ -2158,15 +2272,29 @@ async def generate_stream(request: Request):
                         final_output = clean_model_output_final(combined_output)
                     else:
                         final_output = combined_output
-                    # Only log clinical notes, not Q&A interactions
                     if not is_qa:
-                        _append_feedback_csv(prompt, raw_final_output or final_output, 1)
-                        consult_source = clean_model_output_final(final_output)
+                        _log_case_completion(
+                            case_id=generation_id,
+                            created_at=created_at,
+                            duration_s=(time.perf_counter() - t0),
+                            note_type=note_type,
+                            pipeline="legacy_stream",
+                            prompt=prompt,
+                            input_fields={
+                                "chart_data": chart,
+                                "transcription": trans,
+                                "custom_prompt": custom_prompt,
+                            },
+                            output_text=(raw_final_output or final_output),
+                            prompt_tokens=len((prompt or "").split()),
+                            completion_tokens=token_count,
+                            actor=actor,
+                        )
                     with _cache_lock:
                         if generation_id in _generation_cache:
                             _generation_cache[generation_id]["output"] = final_output
                 except Exception as e:
-                    print(f"Feedback CSV write failed: {e}")
+                    print(f"Dataset case logging failed: {e}")
 
         return StreamingResponse(gen(), media_type="text/plain", headers={"X-Generation-Id": generation_id})
 
@@ -2336,12 +2464,17 @@ async def get_note_prompts() -> JSONResponse:
 # ---------------------------------------------------------------------------
 
 @router.post("/feedback")
-async def record_feedback(payload: Dict):
+async def record_feedback(payload: Dict, request: Request, session: Session = Depends(get_session)):
     try:
         gen_id = (payload.get("generation_id") or "").strip()
+        if not gen_id:
+            raise HTTPException(status_code=400, detail="generation_id is required")
         rating = int(payload.get("rating", 1))
         if rating not in (0, 1, 2):
             raise HTTPException(status_code=400, detail="rating must be 0, 1, or 2")
+        suggestion_raw = str(payload.get("suggestion") or "").strip()
+        skip_rating_event = bool(payload.get("skip_rating_event", False))
+        actor = _extract_actor(request, session)
 
         # Prefer cache (authoritative prompt/output captured at generation)
         prompt = output = None
@@ -2357,10 +2490,36 @@ async def record_feedback(payload: Dict):
         if output is None:
             output = payload.get("output")
 
-        if not prompt or output is None:
-            raise HTTPException(status_code=404, detail="generation not found and no prompt/output provided")
+        if not skip_rating_event:
+            event_type = "thumbs_up" if rating == 2 else ("thumbs_down" if rating == 0 else "neutral")
+            log_case_event(
+                {
+                    "event_id": uuid.uuid4().hex,
+                    "case_id": gen_id,
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                    "event_type": event_type,
+                    "rating": rating,
+                    "user_id": actor.get("user_id"),
+                    "user_email": actor.get("user_email"),
+                    "has_cached_generation": bool(prompt) and output is not None,
+                }
+            )
 
-        _append_feedback_csv(prompt, output, rating)
+        if suggestion_raw:
+            suggestion_deid = deidentify_text(suggestion_raw)
+            log_case_event(
+                {
+                    "event_id": uuid.uuid4().hex,
+                    "case_id": gen_id,
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                    "event_type": "suggestion",
+                    "user_id": actor.get("user_id"),
+                    "user_email": actor.get("user_email"),
+                    "suggestion": suggestion_deid.get("text", ""),
+                    "redaction_counts": suggestion_deid.get("redaction_counts", {}),
+                    "leak_flags": suggestion_deid.get("leak_flags", {}),
+                }
+            )
         return {"ok": True}
     except HTTPException:
         raise
@@ -2371,7 +2530,7 @@ async def record_feedback(payload: Dict):
 # ---------------------------------------------------------------------------
 
 @router.post("/generate_v8_stream")
-async def generate_v8_stream(request: Request):
+async def generate_v8_stream(request: Request, session: Session = Depends(get_session)):
     """
     Generate a clinical note using a SIMPLE DIRECT approach (v8).
 
@@ -2449,7 +2608,9 @@ async def generate_v8_stream(request: Request):
         generation_id = uuid.uuid4().hex
         t0 = time.perf_counter()
         token_count = 0
+        created_at = datetime.now(timezone.utc).isoformat()
         output_buf: list[str] = []
+        actor = _extract_actor(request, session)
 
         # Seed cache entry for later feedback
         with _cache_lock:
@@ -2548,7 +2709,24 @@ async def generate_v8_stream(request: Request):
 
                 try:
                     combined_output = "".join(output_buf)
-                    _append_feedback_csv(prompt, combined_output, 1)
+                    _log_case_completion(
+                        case_id=generation_id,
+                        created_at=created_at,
+                        duration_s=duration,
+                        note_type=note_type,
+                        pipeline="v8_direct",
+                        prompt=prompt,
+                        input_fields={
+                            "transcription_text": str(transcription_text or ""),
+                            "old_visits_text": str(old_visits_text or ""),
+                            "mixed_other_text": str(mixed_other_text or ""),
+                            "custom_prompt": str(custom_prompt or ""),
+                        },
+                        output_text=combined_output,
+                        prompt_tokens=len((prompt or "").split()),
+                        completion_tokens=token_count,
+                        actor=actor,
+                    )
 
                     with _cache_lock:
                         if generation_id in _generation_cache:
@@ -2557,7 +2735,7 @@ async def generate_v8_stream(request: Request):
                     _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type)
                     _maybe_autostart_order_requests(generation_id, combined_output, cfg)
                 except Exception as e:
-                    print(f"Feedback CSV write failed: {e}")
+                    print(f"Dataset case logging failed: {e}")
 
         return StreamingResponse(
             gen(),
@@ -2572,7 +2750,7 @@ async def generate_v8_stream(request: Request):
         raise HTTPException(status_code=503, detail=error_detail)
 
 
-async def generate_v8(request: Request):
+async def generate_v8(request: Request, session: Session = Depends(get_session)):
     """
     Non-streaming version of the v8 direct note generation.
     Returns JSON with the complete note.
@@ -2637,6 +2815,8 @@ async def generate_v8(request: Request):
             )
 
         generation_id = uuid.uuid4().hex
+        created_at = datetime.now(timezone.utc).isoformat()
+        actor = _extract_actor(request, session)
         with _cache_lock:
             _generation_cache[generation_id] = {"prompt": prompt, "output": ""}
 
@@ -2667,6 +2847,25 @@ async def generate_v8(request: Request):
         with _cache_lock:
             if generation_id in _generation_cache:
                 _generation_cache[generation_id]["output"] = cleaned
+
+        _log_case_completion(
+            case_id=generation_id,
+            created_at=created_at,
+            duration_s=duration,
+            note_type=note_type,
+            pipeline="v8_direct",
+            prompt=prompt,
+            input_fields={
+                "transcription_text": str(transcription_text or ""),
+                "old_visits_text": str(old_visits_text or ""),
+                "mixed_other_text": str(mixed_other_text or ""),
+                "custom_prompt": str(custom_prompt or ""),
+            },
+            output_text=cleaned,
+            prompt_tokens=len((prompt or "").split()),
+            completion_tokens=len((cleaned or "").split()),
+            actor=actor,
+        )
 
         _maybe_autostart_consult_comment(generation_id, cleaned, cfg, note_type)
         _maybe_autostart_order_requests(generation_id, cleaned, cfg)

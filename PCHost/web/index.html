@@ -1952,7 +1952,7 @@
                         <textarea id="generatedNote" class="form-control" rows="12" placeholder="Generated note will appear here..."></textarea>
                         <div class="note-feedback-icons note-feedback-float" title="Rate output">
                             <button class="fb-ic" onclick="sendFeedback(2)" title="Good">&#128077;</button>
-                            <button class="fb-ic" onclick="sendFeedback(0)" title="Needs work">&#128078;</button>
+                            <button class="fb-ic" onclick="openFeedbackSuggestionModal()" title="Needs work">&#128078;</button>
                         </div>
                     </div>
 
@@ -2018,6 +2018,25 @@
                 <div class="modal-footer">
                     <button class="btn btn-outline" id="retryOrderRequests" onclick="retryOrderRequests()">Retry</button>
                     <button class="btn btn-secondary" onclick="closeOrderRequestsModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="feedbackSuggestionModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="feedbackSuggestionTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <div class="modal-title" id="feedbackSuggestionTitle">What should be improved?</div>
+                        <div class="modal-subtitle">Optional suggestion for this case</div>
+                    </div>
+                    <button class="modal-close" onclick="closeFeedbackSuggestionModal()" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="feedbackSuggestionText" class="form-control" rows="4" placeholder="Optional: describe what was missing or incorrect..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline" onclick="closeFeedbackSuggestionModal()">Skip</button>
+                    <button class="btn btn-primary" onclick="submitFeedbackSuggestion()">Submit</button>
                 </div>
             </div>
         </div>
@@ -3635,7 +3654,7 @@
             }
         }
 
-        async function sendFeedback(rating) {
+        async function sendFeedback(rating, suggestion = '', skipRatingEvent = false) {
             try {
                 const genId = window.lastGenerationId;
                 if (!genId) {
@@ -3646,7 +3665,9 @@
                 const body = {
                     generation_id: genId,
                     rating: rating,
-                    output: noteTextarea ? noteTextarea.value : ''
+                    output: noteTextarea ? noteTextarea.value : '',
+                    suggestion: suggestion,
+                    skip_rating_event: skipRatingEvent
                 };
                 const token = getAuthToken();
                 if (!token) {
@@ -3662,13 +3683,44 @@
                     body: JSON.stringify(body)
                 });
                 if (r.ok) {
-                    showToast('Thanks', rating === 2 ? 'Marked as good' : 'Marked as not good', 'success');
+                    if (suggestion) {
+                        showToast('Thanks', 'Suggestion submitted', 'success');
+                    } else {
+                        showToast('Thanks', rating === 2 ? 'Marked as good' : 'Marked as not good', 'success');
+                    }
                 } else {
                     showToast('Error', 'Failed to record feedback', 'error');
                 }
             } catch (e) {
                 showToast('Error', 'Failed to record feedback', 'error');
             }
+        }
+
+        async function openFeedbackSuggestionModal() {
+            await sendFeedback(0);
+            const modal = document.getElementById('feedbackSuggestionModal');
+            const input = document.getElementById('feedbackSuggestionText');
+            if (input) input.value = '';
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('show');
+            }
+        }
+
+        function closeFeedbackSuggestionModal() {
+            const modal = document.getElementById('feedbackSuggestionModal');
+            if (!modal) return;
+            modal.classList.remove('show');
+            modal.classList.add('hidden');
+        }
+
+        async function submitFeedbackSuggestion() {
+            const input = document.getElementById('feedbackSuggestionText');
+            const text = (input && input.value ? input.value : '').trim();
+            if (text) {
+                await sendFeedback(0, text, true);
+            }
+            closeFeedbackSuggestionModal();
         }
 
         async function processQueue() {
