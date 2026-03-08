@@ -95,6 +95,7 @@ from server.routes.admin_users import router as admin_users_router  # noqa: E402
 from server.routes.qa_chat import router as qa_chat_router  # noqa: E402
 from server.routes.qa_vision import router as qa_vision_router  # noqa: E402
 from server.routes.queue import router as queue_router  # noqa: E402
+from server.routes.version import router as version_router  # noqa: E402
 #from server.routes.services import router as services_router # noqa: E402
 from server.auth import require_api_bearer  # noqa: E402
 from server.core.db import init_db  # noqa: E402
@@ -112,6 +113,7 @@ app.include_router(rag_router, prefix="/api", dependencies=[Depends(require_api_
 app.include_router(qa_chat_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
 app.include_router(qa_vision_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
 app.include_router(perf_router, prefix="/api")  # /api/health open
+app.include_router(version_router, prefix="/api")  # /api/version open
 app.include_router(auth_router)
 app.include_router(workspace_router)
 app.include_router(admin_users_router)

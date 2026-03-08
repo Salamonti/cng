@@ -2064,7 +2064,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        <div class="version">Clinical Note Generator - Version 6.0</div>
+        <div class="version" id="appVersionLabel">Clinical Note Generator - Version 6.0</div>
         <div class="copyright">&copy; 2026 Eissa Internal Medicine Inc. All rights reserved.</div>
         <div class="acknowledgment" style="font-size: 0.75rem; line-height: 1.4;">
             This application utilizes open-source language models and tools including but not limited to:
@@ -6245,6 +6245,26 @@ function closeQAPanel(){
           }
         } catch {}
       }
+    </script>
+    <script>
+      (function loadRuntimeVersion() {
+        const label = document.getElementById('appVersionLabel');
+        if (!label) return;
+        fetch(`/api/version?ts=${Date.now()}`, { cache: 'no-store' })
+          .then((resp) => {
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            return resp.json();
+          })
+          .then((data) => {
+            const commit = String(data?.commit_hash || 'unknown');
+            const shortCommit = commit === 'unknown' ? 'unknown' : commit.slice(0, 7);
+            const buildTs = String(data?.build_timestamp_utc || 'unknown');
+            label.textContent = `Clinical Note Generator - ${shortCommit} - Built ${buildTs}`;
+          })
+          .catch(() => {
+            // Keep static fallback text on network/error conditions.
+          });
+      })();
     </script>
 </body>
 </html>
