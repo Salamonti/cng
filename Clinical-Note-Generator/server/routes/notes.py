@@ -1,6 +1,5 @@
 # C:\Clinical-Note-Generator\server\routes\notes.py
 import asyncio
-from datetime import date
 from datetime import datetime, timezone
 import logging
 import time
@@ -23,6 +22,23 @@ from core.db import get_session
 from core.deid.v1 import deidentify_text
 from core.logging.dataset_logger import log_case_event, log_case_record
 from core.security import decode_access_token
+from core.stores.generation_store import (
+    _generation_cache,
+    _generation_meta,
+    _consult_comment_store,
+    _order_request_store,
+)
+from core.prompt.builder import (
+    build_prompt_v8 as _build_prompt_v8_impl,
+    build_prompt_other as _build_prompt_other_impl,
+    build_note_prompt_legacy as _build_note_prompt_legacy_impl,
+    _fill_template as _fill_template_impl,
+    _cfg_text as _cfg_text_impl,
+)
+from core.streaming.helpers import _stream_response, _stream_response_v8, _stream_qa_response
+from core.consult.pipeline import _generate_consult_comment as _generate_consult_comment_impl
+from core.order.pipeline import _generate_order_requests as _generate_order_requests_impl
+from core.qa_rag.helpers import _qa_rewrite_with_rag
 from models.user import User
 
 
@@ -34,12 +50,6 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 _cache_lock = threading.Lock()
-_generation_cache: Dict[str, Dict[str, str]] = {}
-
-# RAG / metadata stores
-_generation_meta: Dict[str, Dict[str, Any]] = {}
-_consult_comment_store: Dict[str, Dict[str, Any]] = {}
-_order_request_store: Dict[str, Dict[str, Any]] = {}
 
 # ---------------------------------------------------------------------------
 # Config loading
@@ -1072,248 +1082,22 @@ async def _generate_consult_comment(
     *,
     strategy: str = "sections",
 ) -> None:
-    """Derive a brief evidence-backed comment from contextual sections."""
-    try:
-        _consult_comment_store[gen_id] = {"status": "pending"}
-        # Extract Impression/Plan heuristically
-        imp = ""
-        plan = ""
-        m_imp = re.search(r"(?im)^\s*Impression\s*:\s*(.+?)(?:\n\S|\Z)", note_text, flags=re.DOTALL)
-        if m_imp:
-            imp = m_imp.group(1).strip()
-        m_plan = re.search(r"(?im)^\s*Plan\s*:\s*(.+?)(?:\n\S|\Z)", note_text, flags=re.DOTALL)
-        if m_plan:
-            plan = m_plan.group(1).strip()
-        focus = ""
-        used_sections: List[str] = []
-        raw_focus_source = ""
-        confirmed_markers = cfg.get("consult_confirmed_markers", ["confirmed", "biopsy", "pathology", "definitive"])
-        ruledout_markers = cfg.get("consult_ruledout_markers", ["ruled out", "excluded", "negative for", "not consistent with"])
-        confirmed_statements = _extract_marker_sentences(f"{imp}\n{plan}", confirmed_markers)
-        ruledout_statements = _extract_marker_sentences(f"{imp}\n{plan}", ruledout_markers)
-        if strategy == "full_note":
-            focus = _rag_tail_window(note_text, max_tokens=500, min_tokens=300)
-            used_sections = ["Tail Window"]
-        elif strategy == "llm_query":
-            rag_llm = _get_rag_comment_llm(cfg)
-            query_prompt = (
-                "Generate a short search query for clinical evidence retrieval.\n"
-                "Return a single line (8-20 words) capturing main diagnoses, key symptoms, and key tests.\n"
-                "Do not include quotes or extra text.\n\n"
-                f"NOTE:\n{note_text}\n\n"
-                "QUERY:\n"
-            )
-            query_text = await rag_llm.collect_completion(
-                query_prompt,
-                temperature=0.12,
-                max_tokens=80,
-                stop=[],
-            )
-            focus = clean_model_output_final(query_text).strip()
-            used_sections = ["LLM Query"]
-        else:
-            focus, used_sections = _extract_rag_focus_sections(note_text)
-
-        if not focus.strip():
-            focus = _fallback_focus_from_note(note_text)
-            used_sections = ["Heuristic Fallback"]
-
-        raw_focus_source = focus
-        if not focus.strip():
-            focus = _rag_tail_window(note_text, max_tokens=300, min_tokens=140)
-            used_sections = ["Tail Window Fallback"]
-
-        if not focus.strip():
-            _consult_comment_store[gen_id] = {
-                "status": "error",
-                "error": "Unable to derive focus for RAG query.",
-            }
-            return
-        focus_summary = focus
-
-        # Query RAG for focused evidence with timeout; error on failure
-        ctx = ""
-        norm_refs: List[Dict[str, Any]] = []
-        used: Dict[str, Any] = {}
-        try:
-            rag = _rag_client_from_cfg(cfg)
-            rag_kws: List[str] = []
-            rag_timeout = int(cfg.get("rag_timeout_ms", 25000)) / 1000.0
-            focus_words = focus.split()
-            focus_word_count = len(focus_words)
-            focus_summary_words = int(cfg.get("rag_focus_summary_words", 150))
-            consult_cap = max(3, int(cfg.get("rag_consult_top_k_cap", 5)))
-            base_top_k = int(cfg.get("rag_top_k", 16))
-            requested_top_k = base_top_k
-            if focus_word_count >= max(90, focus_summary_words):
-                requested_top_k = min(base_top_k, consult_cap)
-            requested_top_k = max(3, requested_top_k)
-            specialty_hint = (cfg.get("consult_default_specialty") or "").strip() or None
-
-            async def _do():
-                return await rag.query(
-                    focus,
-                    top_k=requested_top_k,
-                    include_keywords=rag_kws if rag_kws else None,
-                    date_from="2018-01-01",
-                    specialty=specialty_hint,
-                )
-            ctx, rag_refs, used = await asyncio.wait_for(_do(), timeout=rag_timeout)
-            used["requested_top_k"] = requested_top_k
-            norm_refs, _ = _normalize_reference_items(
-                (rag_refs or [])[:requested_top_k],
-                cap=requested_top_k,
-                sort_key=lambda x: x.get("score", 0.0),
-            )
-        except Exception as e:
-            print(f"[RAG] Consult comment evidence unavailable: {e}")
-            _consult_comment_store[gen_id] = {
-                "status": "error",
-                "error": str(e)[:160],
-            }
-            return
-
-        if not ctx.strip():
-            _consult_comment_store[gen_id] = {
-                "status": "error",
-                "error": "No evidence returned for the RAG query.",
-            }
-            return
-
-        # Build short comment prompt - only proceeds if we have substantial evidence
-        note_excerpt_parts: List[str] = []
-        if imp:
-            note_excerpt_parts.append(f"Impression:\n{imp}")
-        if plan:
-            note_excerpt_parts.append(f"Plan:\n{plan}")
-        note_excerpt = "\n\n".join(note_excerpt_parts) or raw_focus_source
-
-        assertions_lines: List[str] = []
-        if confirmed_statements:
-            assertions_lines.append("Confirmed findings/diagnoses:")
-            assertions_lines.extend(f"- {s}" for s in confirmed_statements)
-        if ruledout_statements:
-            assertions_lines.append("Ruled-out or excluded items:")
-            assertions_lines.extend(f"- {s}" for s in ruledout_statements)
-        assertions_text = "\n".join(assertions_lines) if assertions_lines else "No explicit confirmed or ruled-out statements were identified in the note."
-
-        prompt = (
-            "You are a senior consultant writing an evidence-grounded consult addendum for this note.\n"
-            "Use ONLY Evidence Context. Do not invent facts or cite outside knowledge.\n"
-            "If evidence is limited, provide best-effort guidance with confidence qualifiers instead of refusing.\n"
-            "Respect confirmed diagnoses and ruled-out conditions from the original note.\n\n"
-            "OUTPUT REQUIREMENTS (plain text only):\n"
-            "- Target about 350-500 tokens (hard cap is system-side).\n"
-            "- Keep concise and clinically actionable.\n"
-            "- Use clear section headers exactly as below.\n\n"
-            "Sections:\n"
-            "1) Differential to Consider (ranked, brief rationale)\n"
-            "2) Workup to Add Now\n"
-            "3) Management Adjustments to Consider\n"
-            "4) Safety / Red Flags\n"
-            "5) What Is Already Appropriate in Current Plan\n\n"
-            "Rules:\n"
-            "- Every recommendation must be traceable to Evidence Context.\n"
-            "- Mark uncertain items as low confidence.\n"
-            "- Do not repeat the same point across sections.\n"
-            "- Avoid generic textbook phrasing.\n\n"
-            f"Original Note Excerpt:\n{note_excerpt}\n\n"
-            f"Confirmed / Ruled Statements:\n{assertions_text}\n\n"
-            f"Evidence Context:\n{ctx}\n\n"
-            f"Focus Summary:\n{focus_summary}\n\n"
-            "Comment:\n"
-        )
-
-        # Generate via llama-server (collect in background)
-        rag_llm = _get_rag_comment_llm(cfg)
-        consult_temp = float(cfg.get("consult_comment_temperature", 0.4))
-        comment_text = await rag_llm.collect_completion(
-            prompt,
-            temperature=consult_temp,
-            max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
-            stop=[],
-        )
-        comment = clean_model_output_final(comment_text).replace("'''", "").replace('"""', '').strip()
-
-        # If model omits required sections, force a structured retry once.
-        required_headers = [
-            "Differential to Consider",
-            "Workup to Add Now",
-            "Management Adjustments to Consider",
-            "Safety / Red Flags",
-            "What Is Already Appropriate in Current Plan",
-        ]
-        if not all(h.lower() in comment.lower() for h in required_headers[:3]):
-            structure_retry_prompt = (
-                "Rewrite the following comment using the REQUIRED section headers exactly.\n"
-                "Keep content evidence-grounded and concise.\n\n"
-                "Required headers:\n"
-                "1) Differential to Consider (ranked, brief rationale)\n"
-                "2) Workup to Add Now\n"
-                "3) Management Adjustments to Consider\n"
-                "4) Safety / Red Flags\n"
-                "5) What Is Already Appropriate in Current Plan\n\n"
-                f"Evidence Context:\n{ctx}\n\n"
-                f"Draft Comment:\n{comment}\n\n"
-                "Rewritten Comment:\n"
-            )
-            structure_retry = await rag_llm.collect_completion(
-                structure_retry_prompt,
-                temperature=consult_temp,
-                max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
-                stop=[],
-            )
-            structure_clean = clean_model_output_final(structure_retry).replace("'''", "").replace('"""', '').strip()
-            if structure_clean:
-                comment = structure_clean
-
-        if ctx.strip() and "insufficient evidence available" in comment.lower():
-            retry_prompt = (
-                "Evidence Context is available below.\n"
-                "Do not refuse. Provide best-effort clinical guidance with explicit confidence qualifiers where needed.\n"
-                "If evidence is weak, still provide conservative next steps and safety checks.\n\n"
-                "Use required headers exactly:\n"
-                "1) Differential to Consider (ranked, brief rationale)\n"
-                "2) Workup to Add Now\n"
-                "3) Management Adjustments to Consider\n"
-                "4) Safety / Red Flags\n"
-                "5) What Is Already Appropriate in Current Plan\n\n"
-                f"Original Note Excerpt:\n{note_excerpt}\n\n"
-                f"Confirmed / Ruled Statements:\n{assertions_text}\n\n"
-                f"Evidence Context:\n{ctx}\n\n"
-                f"Focus Summary:\n{focus_summary}\n\n"
-                "Comment:\n"
-            )
-            retry_text = await rag_llm.collect_completion(
-                retry_prompt,
-                temperature=consult_temp,
-                max_tokens=int(cfg.get("consult_comment_max_tokens", 700)),
-                stop=[],
-            )
-            retry_clean = clean_model_output_final(retry_text).replace("'''", "").replace('"""', '').strip()
-            if retry_clean and "insufficient evidence available" not in retry_clean.lower():
-                comment = retry_clean
-
-        # Store consult metadata for UI consumption
-        m = _generation_meta.get(gen_id, {}).copy()
-        # Expose RAG artifacts under generic keys too so index.html can find them
-        m.update({
-            "consult_refs": norm_refs,
-            "consult_used": used,
-            "refs": norm_refs,
-            "context": ctx,
-            "consult_focus_raw": raw_focus_source,
-            "consult_focus_summary": focus_summary,
-            "consult_focus_sections": used_sections,
-            "consult_assertions": {
-                "confirmed": confirmed_statements,
-                "ruled_out": ruledout_statements,
-            },
-        })
-        _generation_meta[gen_id] = m
-        _consult_comment_store[gen_id] = {"status": "done", "comment": comment, "refs": norm_refs}
-    except Exception as e:
-        _consult_comment_store[gen_id] = {"status": "error", "error": str(e)[:200]}
+    await _generate_consult_comment_impl(
+        gen_id,
+        note_text,
+        cfg,
+        strategy=strategy,
+        consult_store=_consult_comment_store,
+        generation_meta=_generation_meta,
+        extract_marker_sentences=_extract_marker_sentences,
+        extract_focus_sections=_extract_rag_focus_sections,
+        fallback_focus_from_note=_fallback_focus_from_note,
+        rag_tail_window=_rag_tail_window,
+        rag_client_from_cfg=_rag_client_from_cfg,
+        get_rag_comment_llm=_get_rag_comment_llm,
+        normalize_reference_items=_normalize_reference_items,
+        clean_model_output_final=clean_model_output_final,
+    )
 
 # Backward-compatible alias if other modules import this name
 clean_model_output = clean_model_output_chunk
@@ -1334,36 +1118,10 @@ def truncate_to_context_length(text: str, max_tokens: int) -> str:
 
 
 def _fill_template(tpl: str, values: dict) -> str:
-    """Simple, safe template fill"""
-    out = tpl
-    for k, v in values.items():
-        out = out.replace("{" + k + "}", str(v))
-    return out
+    return _fill_template_impl(tpl, values)
 
 def _cfg_text(val: Any) -> str:
-    """
-    Normalize config text fields that may be stored as:
-      - string
-      - list of strings (your new format)
-    Returns a single trimmed string.
-    """
-    if val is None:
-        return ""
-    if isinstance(val, str):
-        return val.strip()
-    if isinstance(val, list):
-        parts: List[str] = []
-        for x in val:
-            if x is None:
-                continue
-            if isinstance(x, str):
-                parts.append(x)
-            else:
-                parts.append(str(x))
-        # Join without adding extra newlines unless you want them.
-        # If you prefer each list item as a separate line, use "\n".join(parts)
-        return "".join(parts).strip()
-    return str(val).strip()
+    return _cfg_text_impl(val)
 
 def _normalize_note_type(note_type: Optional[str]) -> str:
     nt = (note_type or "").strip().lower()
@@ -1397,238 +1155,21 @@ def _get_order_request_llm(cfg: Dict[str, Any]) -> SimpleNoteGenerator:
 
 
 async def _generate_order_requests(gen_id: str, note_text: str, cfg: Dict) -> None:
-    """Derive short order/referral request sentences from the note plan."""
-    try:
-        _order_request_store[gen_id] = {"status": "pending"}
-
-        plan_text = _extract_plan_section(note_text)
-        focus_text = plan_text or ""
-
-        if not note_text.strip():
-            _order_request_store[gen_id] = {
-                "status": "error",
-                "error": "Missing note content.",
-                "items": [],
-            }
-            return
-
-        max_items = int(cfg.get("order_request_max_items", 8))
-        max_items = max(1, min(max_items, 16))
-
-        referral_prompt = ""
-        try:
-            other_prompts = cfg.get("default_note_user_prompts_other", {}) or {}
-            if isinstance(other_prompts, dict):
-                referral_prompt = _cfg_text(other_prompts.get("referral"))
-        except Exception:
-            referral_prompt = ""
-        system_prompt_other = _cfg_text(cfg.get("default_note_system_prompt_other", ""))
-
-        if not focus_text.strip():
-            _order_request_store[gen_id] = {"status": "done", "items": []}
-            return
-
-        # Stage 1: detect requested orders/referrals from the plan only
-        detect_prompt = (
-            "Extract orders/referrals explicitly mentioned in the PLAN section.\n"
-            "Return STRICT JSON only (no prose, no markdown):\n"
-            "{\n"
-            "  \"items\": [\n"
-            "    {\n"
-            "      \"category\": \"Imaging|Lab|Referral|Medication|Procedure|Other\",\n"
-            "      \"title\": \"Short label (e.g., PET-CT chest)\",\n"
-            "      \"need_full_note\": true|false,\n"
-            "      \"use_referral_prompt\": true|false\n"
-            "    }\n"
-            "  ]\n"
-            "}\n"
-            f"Rules:\n- Max {max_items} items.\n"
-            "- If none, return {\"items\": []}.\n"
-            "- Do not invent items. Only include orders explicitly stated or clearly planned.\n"
-            "- Medication items: ONLY include meds that are planned to be started, changed, or discontinued.\n"
-            "- Exclude tentative language such as consider, may, might, could, if needed, or discuss.\n"
-            "- Imaging/Procedure (CT/MRI/PET/Echo/US/etc): category=Imaging or Procedure; need_full_note=true.\n"
-            "- Referral: ONLY if the plan explicitly says referral/consult to another service or specialist.\n"
-            "- Do NOT label tests/imaging as Referral.\n"
-            "- For actual Referral: use_referral_prompt=true and need_full_note=true.\n"
-            "- Lab/Medication: need_full_note=false.\n"
-            "- Keep titles short.\n\n"
-            "PLAN:\n"
-            f"{focus_text}\n\n"
-            "JSON:\n"
-        )
-
-        llm = _get_order_request_llm(cfg)
-        detect_raw = await llm.collect_completion(
-            detect_prompt,
-            temperature=0.05,
-            max_tokens=500,
-            stop=[],
-        )
-        detect_payload = _extract_json_payload(detect_raw) or {}
-        detected_items = detect_payload.get("items")
-        if not isinstance(detected_items, list) or not detected_items:
-            # Fallback: lightweight heuristics for explicit meds/labs in the plan
-            fallback_items: List[Dict[str, Any]] = []
-            med_unit_re = re.compile(r"\b\d+(?:\.\d+)?\s*(mg|mcg|g|kg|units|u|ml|mL)\b", re.IGNORECASE)
-            route_re = re.compile(r"\b(PO|IV|IM|SC|SQ|SUBQ|SL|PR|TOP|INH)\b", re.IGNORECASE)
-            freq_re = re.compile(r"\b(qd|bid|tid|qid|qhs|qod|q\d+h|daily|weekly|monthly|prn)\b", re.IGNORECASE)
-            lab_re = re.compile(
-                r"\b(ferritin|liver\s+panel|lft|cmp|bmp|cbc|a1c|hba1c|tsh|lipid|panel|labs?|testing)\b",
-                re.IGNORECASE,
-            )
-
-            tentative_re = re.compile(
-                r"\b(consider|considering|may|might|could|if needed|if indicated|discuss|discussion)\b",
-                re.IGNORECASE,
-            )
-
-            for raw_line in focus_text.splitlines():
-                line = raw_line.strip()
-                if not line:
-                    continue
-                line = re.sub(r"^\s*(?:[-*]|\d+[.)]|\(?[a-zA-Z]\)|[ivxlcdm]+[.)])\s+", "", line, flags=re.IGNORECASE)
-                if not line:
-                    continue
-                if tentative_re.search(line):
-                    continue
-                is_lab = bool(lab_re.search(line))
-                is_med = bool(med_unit_re.search(line) or route_re.search(line) or freq_re.search(line))
-                if is_med and not is_lab:
-                    fallback_items.append(
-                        {
-                            "category": "Medication",
-                            "title": line[:120],
-                            "need_full_note": False,
-                            "use_referral_prompt": False,
-                        }
-                    )
-                elif is_lab:
-                    fallback_items.append(
-                        {
-                            "category": "Lab",
-                            "title": line[:120],
-                            "need_full_note": False,
-                            "use_referral_prompt": False,
-                        }
-                    )
-
-            detected_items = fallback_items
-            if not detected_items:
-                _order_request_store[gen_id] = {"status": "done", "items": []}
-                return
-
-        # Stage 2: generate request text for each detected item
-        final_items: List[Dict[str, str]] = []
-        for raw_item in detected_items[:max_items]:
-            if not isinstance(raw_item, dict):
-                continue
-            category = str(raw_item.get("category") or "Other").strip() or "Other"
-            title = str(raw_item.get("title") or "").strip()
-            need_full_note = bool(raw_item.get("need_full_note"))
-            use_referral_prompt = bool(raw_item.get("use_referral_prompt"))
-
-            if not title:
-                continue
-
-            if use_referral_prompt:
-                gen_prompt = (
-                    "You are writing a referral request letter. Use the system prompt + referral prompt exactly.\n"
-                    "Output plain text only.\n\n"
-                    "SYSTEM PROMPT:\n"
-                    f"{system_prompt_other or 'No system prompt provided.'}\n\n"
-                    "REFERRAL PROMPT:\n"
-                    f"{referral_prompt or 'No referral prompt provided.'}\n\n"
-                    "FULL NOTE:\n"
-                    f"{note_text}\n\n"
-                )
-            else:
-                context_block = f"{note_text}" if need_full_note else f"{focus_text}"
-                if category.lower() == "medication":
-                    gen_prompt = (
-                        "Write medication orders in plain text, one medication per line.\n"
-                        "Include only meds explicitly planned to be started, changed, or discontinued.\n"
-                        "Preferred format: Medication Dose Unit Route Frequency.\n"
-                        "If dose/route/frequency are missing, still include the medication name and any available details.\n"
-                        "Do not add explanations, durations, or justifications.\n"
-                        "Do not include extra sentences.\n\n"
-                        f"ITEM: {title}\n"
-                        "CONTEXT:\n"
-                        f"{context_block}\n\n"
-                    )
-                elif category.lower() == "lab":
-                    gen_prompt = (
-                        "Write a concise lab order request in one line. No explanations.\n"
-                        "Use only labs explicitly documented in the plan.\n\n"
-                        f"ITEM: {title}\n"
-                        "CONTEXT:\n"
-                        f"{context_block}\n\n"
-                    )
-                elif category.lower() == "imaging":
-                    gen_prompt = (
-                        "Write a radiology-ready requisition that is clinically informative and specific.\n"
-                        "Output plain text only with these headers exactly:\n"
-                        "Study Requested:\n"
-                        "Clinical Indication:\n"
-                        "Pertinent Findings / History:\n"
-                        "Clinical Question to Answer:\n"
-                        "Prior Relevant Imaging:\n"
-                        "Urgency:\n"
-                        "Do not use directive phrasing (no 'Order a').\n"
-                        "Use only details supported by the note/context.\n\n"
-                        f"ITEM: {title}\n"
-                        "FULL NOTE:\n"
-                        f"{context_block}\n\n"
-                    )
-                else:
-                    gen_prompt = (
-                        "Write a copy-ready requisition request for the specified item.\n"
-                        "Do not use directive phrasing like 'Order a'.\n"
-                        "Use professional, neutral language and keep it concise.\n"
-                        "Output one paragraph only.\n\n"
-                        f"ITEM: {title}\n"
-                        f"CATEGORY: {category}\n\n"
-                        "CONTEXT:\n"
-                        f"{context_block}\n\n"
-                    )
-
-            max_tokens = 500
-            if use_referral_prompt:
-                max_tokens = 1200
-            elif category.lower() == "imaging":
-                max_tokens = 1200
-            gen_raw = await llm.collect_completion(
-                gen_prompt,
-                temperature=0.1,
-                max_tokens=max_tokens,
-                stop=[],
-            )
-            if category.lower() == "imaging":
-                request_text = _format_imaging_request(gen_raw)
-            else:
-                request_text = clean_model_output_final(gen_raw).strip()
-            if not request_text and category.lower() == "medication":
-                request_text = title
-            if not request_text:
-                continue
-            final_items.append(
-                {
-                    "category": category[:32],
-                    "title": clean_model_output_chunk(title)[:120],
-                    "request": clean_model_output_chunk(request_text),
-                }
-            )
-
-        _order_request_store[gen_id] = {
-            "status": "done",
-            "items": _dedupe_request_items(_merge_medication_items(final_items)),
-        }
-    except Exception as exc:
-        _order_request_store[gen_id] = {
-            "status": "error",
-            "error": str(exc)[:200],
-            "items": [],
-        }
+    await _generate_order_requests_impl(
+        gen_id,
+        note_text,
+        cfg,
+        order_store=_order_request_store,
+        extract_plan_section=_extract_plan_section,
+        cfg_text=_cfg_text,
+        get_order_request_llm=_get_order_request_llm,
+        extract_json_payload=_extract_json_payload,
+        format_imaging_request=_format_imaging_request,
+        clean_model_output_final=clean_model_output_final,
+        clean_model_output_chunk=clean_model_output_chunk,
+        merge_medication_items=_merge_medication_items,
+        dedupe_request_items=_dedupe_request_items,
+    )
 
 
 def build_prompt_v8(
@@ -1639,115 +1180,14 @@ def build_prompt_v8(
     custom_prompt: Optional[str] = None,
     user_speciality: Optional[str] = None,
 ) -> str:
-    """
-    Build a prompt from the 3-field input system WITHOUT extraction.
-
-    This is a simpler approach that organizes the raw data with clear tags
-    and passes it directly to the LLM for note generation.
-
-    The data is organized as:
-    - CURRENT ENCOUNTER: transcription from today's visit
-    - PRIOR VISITS: old visit notes (historical context)
-    - LABS/IMAGING/OTHER: mixed data that may include recent results
-    """
-    cfg = load_config()
-    today = date.today().strftime("%Y-%m-%d")
-
-    # Get system prompt from config
-    system_prompt = _cfg_text(cfg.get("default_note_system_prompt", ""))
-
-    # Get user template for the note type
-    user_templates = cfg.get("default_note_user_prompts", {}) or {}
-    raw_user_tpl = ""
-    if isinstance(user_templates, dict):
-        raw_user_tpl = user_templates.get(note_type) or ""
-    user_tpl = _cfg_text(raw_user_tpl)
-
-    if not user_tpl:
-        # Fallback for unknown note types
-        user_tpl = (
-            "Note type: {NOTE_TYPE}\n"
-            "Current date: {CURRENT_DATE}\n"
-            "Generate a clinical note based on the provided patient data.\n"
-        )
-
-    # Clean and organize the input data with clear section tags
-    sections = []
-
-    # Current encounter (transcription) - most important, always first
-    trans_clean = _sanitize_transcription_text(transcription_text).strip()
-    if trans_clean:
-        sections.append(
-            "<CURRENT_ENCOUNTER>\n"
-            "DATE: " + today + "\n"
-            "This is the transcription from today's clinical encounter.\n"
-            "Treat all information in this section as CURRENT.\n"
-            + trans_clean + "\n"
-            "</CURRENT_ENCOUNTER>"
-        )
-
-    # Prior visits (historical context)
-    old_clean = _sanitize_chart_text(old_visits_text).strip()
-    if old_clean:
-        sections.append(
-            "<PRIOR_VISITS>\n"
-            "These are notes from previous encounters.\n"
-            "Treat all information in this section as HISTORICAL unless explicitly dated as recent.\n"
-            + old_clean + "\n"
-            "</PRIOR_VISITS>"
-        )
-
-    # Mixed other data (labs, imaging, consults, etc.)
-    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
-    if mixed_clean:
-        sections.append(
-            "<LABS_IMAGING_OTHER>\n"
-            "This section contains laboratory results, imaging reports, and other clinical data.\n"
-            "Pay attention to dates on each item to determine recency.\n"
-            + mixed_clean + "\n"
-            "</LABS_IMAGING_OTHER>"
-        )
-
-    # Combine all sections
-    raw_data = "\n\n".join(sections) if sections else "[No patient data provided]"
-
-    speciality = (user_speciality or "").strip() or "internal medicine"
-    # Fill template variables
-    values = {
-        "CURRENT_DATE": today,
-        "NOTE_TYPE": note_type,
-        "USER_SPECIALITY": speciality,
-        "REASON_FOR_VISIT": "Unknown (infer from the current encounter data)",
-        "ADMISSION_DX": "Unknown (infer from the data)",
-        "DISCHARGE_DX": "Unknown (infer from the data)",
-        "RAW_DATA": raw_data,
-    }
-
-    # Fill system prompt template
-    system_prompt_filled = _fill_template(system_prompt, values).strip() if system_prompt else ""
-
-    # Fill user instructions template
-    user_instructions = _fill_template(user_tpl, values).strip()
-
-    # Build the final prompt
-    prompt_body = ""
-    if system_prompt_filled:
-        prompt_body += "SYSTEM:\n" + system_prompt_filled + "\n\n"
-
-    prompt_body += "USER:\n" + user_instructions + "\n\n"
-
-    # Add the organized patient data
-    prompt_body += "PATIENT DATA:\n" + raw_data + "\n\n"
-
-    # Add custom prompt if provided
-    if custom_prompt and custom_prompt.strip():
-        prompt_body += "ADDITIONAL INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
-
-    prompt_body += "STYLE REQUIREMENTS:\n" + NUMERIC_UNIT_STYLE_INSTRUCTION + "\n\n"
-    prompt_body += "When finished, output END_OF_NOTE on its own line and stop.\n\n"
-    prompt_body += "ASSISTANT:\n"
-
-    return prompt_body
+    return _build_prompt_v8_impl(
+        transcription_text=transcription_text,
+        old_visits_text=old_visits_text,
+        mixed_other_text=mixed_other_text,
+        note_type=note_type,
+        custom_prompt=custom_prompt,
+        user_speciality=user_speciality,
+    )
 
 
 def build_prompt_other(
@@ -1758,66 +1198,14 @@ def build_prompt_other(
     custom_prompt: Optional[str] = None,
     user_speciality: Optional[str] = None,
 ) -> str:
-    """
-    Build a prompt for non-standard note types (referral, summarize, custom, procedure).
-
-    This uses a lighter system prompt and merges all inputs into a single patient data block
-    without section tags.
-    """
-    cfg = load_config()
-    today = date.today().strftime("%Y-%m-%d")
-
-    system_prompt = _cfg_text(cfg.get("default_note_system_prompt_other", ""))
-
-    user_templates_other = cfg.get("default_note_user_prompts_other", {}) or {}
-    raw_user_tpl = ""
-    if isinstance(user_templates_other, dict):
-        raw_user_tpl = user_templates_other.get(note_type) or ""
-    user_tpl = _cfg_text(raw_user_tpl)
-
-    if not user_tpl:
-        user_tpl = (
-            "Note type: {NOTE_TYPE}\n"
-            "Current date: {CURRENT_DATE}\n"
-            "Generate the requested clinical document based on the provided patient data.\n"
-        )
-
-    trans_clean = _sanitize_transcription_text(transcription_text).strip()
-    old_clean = _sanitize_chart_text(old_visits_text).strip()
-    mixed_clean = _sanitize_chart_text(mixed_other_text).strip()
-
-    data_blocks = [b for b in [trans_clean, old_clean, mixed_clean] if b]
-    raw_data = "\n\n".join(data_blocks) if data_blocks else "[No patient data provided]"
-
-    speciality = (user_speciality or "").strip() or "internal medicine"
-    values = {
-        "CURRENT_DATE": today,
-        "NOTE_TYPE": note_type,
-        "USER_SPECIALITY": speciality,
-        "REASON_FOR_VISIT": "Unknown (infer from the provided data)",
-        "ADMISSION_DX": "Unknown (infer from the provided data)",
-        "DISCHARGE_DX": "Unknown (infer from the provided data)",
-        "RAW_DATA": raw_data,
-    }
-
-    system_prompt_filled = _fill_template(system_prompt, values).strip() if system_prompt else ""
-    user_instructions = _fill_template(user_tpl, values).strip()
-
-    prompt_body = ""
-    if system_prompt_filled:
-        prompt_body += "SYSTEM:\n" + system_prompt_filled + "\n\n"
-
-    prompt_body += "USER:\n" + user_instructions + "\n\n"
-    prompt_body += "PATIENT DATA:\n" + raw_data + "\n\n"
-
-    if custom_prompt and custom_prompt.strip():
-        prompt_body += "ADDITIONAL INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
-
-    prompt_body += "STYLE REQUIREMENTS:\n" + NUMERIC_UNIT_STYLE_INSTRUCTION + "\n\n"
-    prompt_body += "When finished, output END_OF_NOTE on its own line and stop.\n\n"
-    prompt_body += "ASSISTANT:\n"
-
-    return prompt_body
+    return _build_prompt_other_impl(
+        transcription_text=transcription_text,
+        old_visits_text=old_visits_text,
+        mixed_other_text=mixed_other_text,
+        note_type=note_type,
+        custom_prompt=custom_prompt,
+        user_speciality=user_speciality,
+    )
 
 
 def build_qa_prompt(
@@ -1845,98 +1233,13 @@ def build_note_prompt_legacy(
     custom_prompt: Optional[str] = None,
     user_speciality: Optional[str] = None,
 ) -> str:
-    cfg = load_config()
-
-    # Note generation: with system + user prompt composition
-    today = date.today().strftime("%Y-%m-%d")
-
-    chart_section = chart_data.strip()
-    trans_section = transcription.strip()
-
-    # Combine chart + transcription as raw data
-    raw_parts = []
-    if chart_section:
-        raw_parts.append("Chart Data:\n" + chart_section)
-    if trans_section:
-        raw_parts.append("Transcription:\n" + trans_section)
-    raw_data = "\n\n".join(raw_parts).strip()
-
-    system_prompt = _cfg_text(cfg.get("default_note_system_prompt", ""))
-
-    user_templates = cfg.get("default_note_user_prompts", {}) or {}
-    raw_user_tpl = ""
-    if isinstance(user_templates, dict):
-        raw_user_tpl = user_templates.get(note_type) or ""
-    user_tpl = _cfg_text(raw_user_tpl)
-
-
-    if not user_tpl:
-        # Backward-compatible fallback
-        default_prompts = cfg.get("default_prompts", {}) or {}
-        legacy = _cfg_text(default_prompts.get(note_type) or "")
-        if legacy:
-            # Treat legacy text as the "user" prompt body
-            user_tpl = (
-                f"Note type: {note_type}\n"
-                f"Current date: {{CURRENT_DATE}}\n"
-                f"{legacy}\n\n"
-                "Raw data follows:\n{RAW_DATA}\n"
-            )
-        else:
-            user_tpl = (
-                "Note type: {NOTE_TYPE}\n"
-                "Current date: {CURRENT_DATE}\n"
-                "Reason for visit/referral: {REASON_FOR_VISIT}\n"
-                "Start with patient name, age, sex, and reason.\n"
-                "Do not fabricate.\n\n"
-                "Raw data follows:\n{RAW_DATA}\n"
-            )
-
-
-# Reason fields: if you later add explicit reason in payload, wire it here.
-    # For now, keep it unknown and let the model infer from RAW_DATA.
-# Prepare all template values
-    speciality = (user_speciality or "").strip() or "internal medicine"
-    values = {
-        "CURRENT_DATE": today,
-        "NOTE_TYPE": note_type,
-        "USER_SPECIALITY": speciality,
-        "REASON_FOR_VISIT": "Unknown (infer from raw data)",
-        "ADMISSION_DX": "Unknown (infer from raw data)",
-        "DISCHARGE_DX": "Unknown (infer from raw data)",
-        "RAW_DATA": raw_data or "[No chart/transcription provided]"
-    }
-
-    # Fill template variables in BOTH system and user prompts
-    system_prompt_filled = _fill_template(system_prompt, values).strip() if system_prompt else ""
-
-    # Fill the instruction part of user template
-    user_instructions = _fill_template(user_tpl, values).strip()
-
-    # *** CRITICAL FIX: Always append RAW_DATA with clear demarcation ***
-    # This ensures chart and transcription data ALWAYS reach the model,
-    # regardless of whether {RAW_DATA} is in the user template
-    if raw_data:
-        data_section = "\n\n" + "=" * 80 + "\nPATIENT DATA\n" + "=" * 80 + "\n\n" + raw_data
-    else:
-        data_section = "\n\n[No chart or transcription data provided]"
-
-    user_prompt_filled = user_instructions + data_section
-
-    # Compose final prompt with clear separation
-    prompt_body = ""
-    if system_prompt_filled:
-        prompt_body += "SYSTEM:\n" + system_prompt_filled + "\n\n"
-    prompt_body += "USER:\n" + user_prompt_filled + "\n\n"
-
-    # Append per-user custom prompt as an extra instruction layer
-    if custom_prompt and custom_prompt.strip():
-        prompt_body += "USER CUSTOM INSTRUCTIONS:\n" + custom_prompt.strip() + "\n\n"
-
-    prompt_body += "STYLE REQUIREMENTS:\n" + NUMERIC_UNIT_STYLE_INSTRUCTION + "\n\n"
-    prompt_body += "ASSISTANT:\n"
-
-    return prompt_body
+    return _build_note_prompt_legacy_impl(
+        chart_data=chart_data,
+        transcription=transcription,
+        note_type=note_type,
+        custom_prompt=custom_prompt,
+        user_speciality=user_speciality,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -2032,8 +1335,6 @@ async def generate_stream(request: Request, session: Session = Depends(get_sessi
         qa_rewrite_temp = temp
         qa_baseline_fallback = "Insufficient information to answer this question."
         qa_enhancement_label = "\n\n[Evidence-based update]:\n"
-        qa_min_ctx_chars = 0
-        qa_allow_empty_ctx = True
         qa_rag_enabled = False
         rag_task: Optional[asyncio.Task] = None
 
@@ -2055,8 +1356,6 @@ async def generate_stream(request: Request, session: Session = Depends(get_sessi
             qa_enhancement_label = str(
                 cfg2.get("qa_rag_enhancement_label", "\n\n[Evidence-based update]:\n")
             )
-            qa_min_ctx_chars = int(cfg2.get("qa_rag_min_context_chars", 200))
-            qa_allow_empty_ctx = _as_bool(cfg2.get("qa_rag_allow_empty_context", True), True)
             qa_rag_enabled = _as_bool(cfg2.get("qa_rag_rewrite_enable", True), True)
 
             _generation_meta[generation_id] = {
@@ -2131,66 +1430,27 @@ async def generate_stream(request: Request, session: Session = Depends(get_sessi
                     qa_meta["rag_context_chars"] = 0
                     qa_meta["rag_error"] = None
 
-                    used_filters = meta_entry.get("used_filters")
-                    if not isinstance(used_filters, dict):
-                        used_filters = {}
-                    norm_refs = meta_entry.get("refs")
-                    if not isinstance(norm_refs, list):
-                        norm_refs = []
-                    full_chunks: List[str] = []
-                    rag_context_aug = meta_entry.get("context") or ""
-                    rag_error: Optional[str] = None
-                    min_ctx_chars = int(cfg2.get("qa_rag_min_context_chars", 80))
-
-                    if rag_task is not None:
-                        try:
-                            rag_result = await rag_task
-                        except Exception as rag_exc:
-                            rag_result = None
-                            rag_error = str(rag_exc)
-
-                        if rag_result:
-                            used_filters = rag_result.get("used_filters", {}) or {}
-                            norm_refs = rag_result.get("norm_refs", []) or []
-                            full_chunks = rag_result.get("full_chunks", []) or []
-                            rag_context_aug = rag_result.get("context_aug", "") or ""
-                            rag_error = rag_result.get("error")
-                            raw_refs = rag_result.get("refs_raw", []) or []
-
-                            if rag_result.get("weak_evidence") and not raw_refs:
-                                _append_missed_question(
-                                    {
-                                        "ts": int(time.time()),
-                                        "question": qa_source_excerpt,
-                                        "used_filters": used_filters,
-                                        "reason": "no_or_weak_evidence",
-                                    }
-                                )
-
-                            ctx_chars = len(rag_context_aug.strip())
-                            sufficient_ctx = ctx_chars >= max(20, min_ctx_chars) and bool(rag_context_aug.strip())
-
-                            if sufficient_ctx and not rag_error:
-                                rewrite_prompt = _qa_rewrite_prompt(
-                                    qa_question_for_verify or "",
-                                    baseline_text,
-                                    rag_context_aug,
-                                )
-                                rewritten = await _collect_note_output(
-                                    rewrite_prompt,
-                                    qa_rewrite_temp,
-                                    max_tokens,
-                                    stop_tokens=[],
-                                )
-                                rewritten_clean = clean_model_output_final(rewritten).strip()
-                                if rewritten_clean and rewritten_clean != baseline_text.strip():
-                                    rewrite_used = True
-                                    final_text = (qa_enhancement_label + rewritten_clean).strip()
-
-                            if rag_error and not used_filters.get("error"):
-                                used_filters["error"] = str(rag_error)[:160] if rag_error else None
-                            if rag_error:
-                                used_filters = {k: v for k, v in used_filters.items() if v is not None}
+                    rag_out = await _qa_rewrite_with_rag(
+                        baseline_text=baseline_text,
+                        qa_question_for_verify=qa_question_for_verify or "",
+                        cfg=cfg2,
+                        max_tokens=max_tokens,
+                        rag_task=rag_task,
+                        qa_rewrite_prompt=_qa_rewrite_prompt,
+                        collect_note_output=_collect_note_output,
+                        clean_model_output_final=clean_model_output_final,
+                        append_missed_question=_append_missed_question,
+                        qa_source_excerpt=qa_source_excerpt,
+                        qa_rewrite_temp=qa_rewrite_temp,
+                        qa_enhancement_label=qa_enhancement_label,
+                    )
+                    final_text = rag_out.get("final_text", baseline_text)
+                    rewrite_used = bool(rag_out.get("rewrite_used", False))
+                    used_filters = rag_out.get("used_filters", {}) or {}
+                    norm_refs = rag_out.get("norm_refs", []) or []
+                    full_chunks = rag_out.get("full_chunks", []) or []
+                    rag_context_aug = rag_out.get("rag_context_aug", "") or ""
+                    rag_error = rag_out.get("rag_error")
 
                     meta_entry["refs"] = norm_refs
                     meta_entry["used_filters"] = used_filters
@@ -2204,8 +1464,11 @@ async def generate_stream(request: Request, session: Session = Depends(get_sessi
                     _generation_meta[generation_id] = meta_entry
 
                     # Stream the final text (baseline or rewritten) now
-                    for segment in _chunk_text_for_stream(final_text):
-                        cleaned_segment = clean_model_output_chunk(segment)
+                    async for cleaned_segment in _stream_qa_response(
+                        final_text=final_text,
+                        chunker=_chunk_text_for_stream,
+                        clean_chunk=clean_model_output_chunk,
+                    ):
                         if cleaned_segment:
                             output_buf.append(cleaned_segment)
                             token_count += len(cleaned_segment.split())
@@ -2214,24 +1477,18 @@ async def generate_stream(request: Request, session: Session = Depends(get_sessi
                     yield END_MARKER + "\n"
                     return
 
-                stop_phrases = []
-                note_text = await note_gen.collect_completion(
-                    prompt,
+                async for cleaned_note in _stream_response(
+                    note_gen=note_gen,
+                    prompt=prompt,
                     temperature=temp,
                     max_tokens=max_tokens,
-                    stop=stop_phrases,
-                )
-                if not is_qa:
-                    raw_note_buf.append(note_text)
-                    output_buf.append(note_text)
-                    token_count += len(note_text.split())
-                    yield note_text
-                else:
-                    cleaned_note = clean_model_output_chunk(note_text)
-                    if cleaned_note:
-                        output_buf.append(cleaned_note)
-                        token_count += len(cleaned_note.split())
-                        yield cleaned_note
+                    stop_tokens=[],
+                    clean_chunk=lambda x: x,
+                ):
+                    raw_note_buf.append(cleaned_note)
+                    output_buf.append(cleaned_note)
+                    token_count += len(cleaned_note.split())
+                    yield cleaned_note
                 yield END_MARKER + "\n"
             except asyncio.CancelledError:
                 print("Client disconnected - streaming cancelled")
@@ -2638,11 +1895,13 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
             streamed_any = False
             try:
                 try:
-                    async for chunk in note_gen.stream_completion(
-                        prompt,
+                    async for chunk in _stream_response_v8(
+                        note_gen=note_gen,
+                        prompt=prompt,
                         temperature=temp,
                         max_tokens=max_tokens,
-                        stop=NOTE_STOP_TOKENS,
+                        stop_tokens=NOTE_STOP_TOKENS,
+                        clean_chunk=lambda x: x,
                     ):
                         streamed_any = True
                         cleaned = clean_model_output_chunk(chunk or "")
