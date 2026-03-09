@@ -16,11 +16,22 @@ from __future__ import annotations
 
 import os
 from functools import lru_cache
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Optional, Tuple
+
+
+_SPACY_UNAVAILABLE: Optional[str] = None
 
 
 def ner_enabled() -> bool:
-    return os.environ.get("CNG_DEID_NER", "0").strip().lower() in {"1", "true", "yes", "on"}
+    """NER is ON by default.
+
+    Set CNG_DEID_NER=0/false/off to disable.
+    """
+
+    val = os.environ.get("CNG_DEID_NER")
+    if val is None:
+        return True
+    return val.strip().lower() not in {"0", "false", "no", "off"}
 
 
 @lru_cache(maxsize=1)
@@ -47,11 +58,18 @@ def redact_person_entities(text: str) -> Tuple[str, Dict[str, Any]]:
     if not ner_enabled():
         return raw, {"ner_ran": False, "ner_person_redactions": 0}
 
+    global _SPACY_UNAVAILABLE
+
+    if _SPACY_UNAVAILABLE is not None:
+        return raw, {"ner_ran": False, "ner_person_redactions": 0, "ner_error": _SPACY_UNAVAILABLE}
+
     try:
         nlp = _load_nlp()
     except Exception:
-        # spaCy not installed, model missing, etc.
-        return raw, {"ner_ran": False, "ner_person_redactions": 0, "ner_error": "spacy_unavailable"}
+        # spaCy not installed, model missing, etc. Cache the failure to avoid
+        # repeated import/load attempts on every request.
+        _SPACY_UNAVAILABLE = "spacy_unavailable"
+        return raw, {"ner_ran": False, "ner_person_redactions": 0, "ner_error": _SPACY_UNAVAILABLE}
 
     doc = nlp(raw)
 
