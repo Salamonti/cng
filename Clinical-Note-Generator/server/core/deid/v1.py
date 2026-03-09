@@ -1,6 +1,8 @@
 import re
 from typing import Any, Dict
 
+from server.core.deid.ner_spacy import redact_person_entities
+
 
 _DATE_PATTERN = re.compile(
     r"\b(?:\d{4}-\d{2}-\d{2}|\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|"
@@ -91,6 +93,14 @@ def deidentify_text(text: str) -> Dict[str, Any]:
         redacted, n = pattern.subn(_REPLACEMENTS[key], redacted)
         counts[key] = int(n)
         leak_flags[f"residual_{key}"] = bool(pattern.search(redacted))
+
+    # --- Optional NER layer (spaCy PERSON entities) ---
+    redacted, ner_meta = redact_person_entities(redacted)
+    leak_flags["ner_ran"] = bool(ner_meta.get("ner_ran", False))
+    if ner_meta.get("ner_error"):
+        leak_flags["ner_error"] = True
+    counts["name_ner"] = int(ner_meta.get("ner_person_redactions", 0))
+    counts["name"] = int(counts.get("name", 0)) + counts["name_ner"]
 
     leak_flags["raw_has_any"] = any(v for k, v in leak_flags.items() if k.startswith("raw_has_"))
     leak_flags["residual_any"] = any(v for k, v in leak_flags.items() if k.startswith("residual_"))
