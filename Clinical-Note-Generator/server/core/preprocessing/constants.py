@@ -86,4 +86,6 @@ DATE_PATTERNS = {
         r"\b(\d{1,2})[- ](jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[- ](\d{4})\b",
         re.IGNORECASE,
     ),
+    # Month-year without day (common in imaging/labs summaries): "Jan 2026", "Oct 2025"
+    "mon_y": re.compile(r"\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(\d{4})\b", re.IGNORECASE),
 }

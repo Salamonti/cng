@@ -69,6 +69,7 @@ def test_truncation_respects_budget_and_prioritizes_dates():
             "2020-01-01 old follow up no numbers",
             "2024-03-01 BP 165/90 HR 110 chest pain 8/10",
             "2018-01-01 unrelated short",
+            "Jan 2026 CT chest: mild reticular scarring lingula",
             "2025-12-15 troponin 0.12 ng/mL ECG ST changes",
             "Some filler paragraph with very little signal",
         ]
@@ -78,6 +79,8 @@ def test_truncation_respects_budget_and_prioritizes_dates():
     assert truncator.estimate_tokens(out) <= truncator.budgets["prior_visits"]
     assert "2025-12-15" in out
     assert "troponin 0.12" in out
+    # Month-year dates should also be treated as high-signal/recency anchors.
+    assert "Jan 2026 CT chest" in out
 
 
 def test_integration_with_prompt_builder(monkeypatch):

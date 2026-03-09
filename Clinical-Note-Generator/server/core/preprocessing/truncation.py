@@ -128,6 +128,12 @@ class TokenBudgetTruncator:
             y = int(match.group(3))
             latest = self._max_date(latest, y, m, d)
 
+        # Month-year (no day): treat as the 1st of the month for recency scoring.
+        for match in DATE_PATTERNS["mon_y"].finditer(text):
+            m = month_map[match.group(1).lower()[:3]]
+            y = int(match.group(2))
+            latest = self._max_date(latest, y, m, 1)
+
         return latest.toordinal() if latest else 0
 
     @staticmethod
