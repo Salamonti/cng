@@ -33,10 +33,13 @@ def _load_nlp():
 
 
 def redact_person_entities(text: str) -> Tuple[str, Dict[str, Any]]:
-    """Redact PERSON entities using spaCy NER.
+    """Redact names using spaCy.
+
+    Primary method: NER PERSON entities.
+    Fallback (when NER misses): redact 2+ consecutive Proper Nouns (PROPN), which
+    catches many "First Last" strings while avoiding most medical terms.
 
     Returns (redacted_text, meta).
-    Meta includes count + whether NER ran.
     """
 
     raw = text or ""
@@ -53,8 +56,31 @@ def redact_person_entities(text: str) -> Tuple[str, Dict[str, Any]]:
     doc = nlp(raw)
 
     spans = [ent for ent in doc.ents if ent.label_ == "PERSON"]
+
+    # If the model fails to detect obvious names (this happens), fall back to
+    # sequences of Proper Nouns (e.g., "Gregory Leblanc").
+    used_fallback = False
     if not spans:
-        return raw, {"ner_ran": True, "ner_person_redactions": 0}
+        used_fallback = True
+        i = 0
+        while i < len(doc):
+            tok = doc[i]
+            if tok.pos_ == "PROPN" and tok.is_alpha and tok.text[:1].isupper():
+                start = i
+                i += 1
+                while i < len(doc):
+                    t2 = doc[i]
+                    if t2.pos_ == "PROPN" and t2.is_alpha and t2.text[:1].isupper():
+                        i += 1
+                        continue
+                    break
+                if (i - start) >= 2:
+                    spans.append(doc[start:i])
+                continue
+            i += 1
+
+    if not spans:
+        return raw, {"ner_ran": True, "ner_person_redactions": 0, "ner_used_fallback": used_fallback}
 
     # Replace from end to start to keep indices valid.
     out = raw
@@ -66,4 +92,8 @@ def redact_person_entities(text: str) -> Tuple[str, Dict[str, Any]]:
         out = out[: ent.start_char] + "[NAME_REDACTED]" + out[ent.end_char :]
         redactions += 1
 
-    return out, {"ner_ran": True, "ner_person_redactions": redactions}
+    return out, {
+        "ner_ran": True,
+        "ner_person_redactions": redactions,
+        "ner_used_fallback": used_fallback,
+    }
