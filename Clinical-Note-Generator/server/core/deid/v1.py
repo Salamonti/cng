@@ -16,9 +16,9 @@ _PATTERNS = {
         r"([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})",
         re.IGNORECASE,
     ),
-    # 2) "Lastname, 52 year-old ..." (common header-style demographic line)
+    # 2) "Lastname, 52 year-old ..." or "Lastname, 52-year-old ..."
     "name_comma_age": re.compile(
-        r"\b([A-Z][a-z]{2,}),\s*(\d{1,3}\s*(?:y/o|yo|years?)\s*(?:[-\s]?old)?)",
+        r"\b([A-Z][a-z]{2,}),\s*(\d{1,3}\s*[-]?\s*(?:y/?o|yo|years?|year)[-\s]*(?:old)?)",
         re.IGNORECASE,
     ),
     # 3) Sentence-style: "Gregory reports ...", "Sarah denies ..."
@@ -26,6 +26,10 @@ _PATTERNS = {
     "name_sentence_verb": re.compile(
         r"(^|[\.\n]\s*)([A-Z][a-z]{2,})\s+(reports|states|presents|presented|complains|denies|endorses|describes|notes)\b",
         re.IGNORECASE | re.MULTILINE,
+    ),
+    # 4) "Dr. Smith", "Dr Smith", "Dr. Jane Doe" (standalone, not just after label)
+    "name_doctor": re.compile(
+        r"\bDr\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)",
     ),
     "date": _DATE_PATTERN,
     "mrn": re.compile(
@@ -53,12 +57,12 @@ def deidentify_text(text: str) -> Dict[str, Any]:
     leak_flags: Dict[str, bool] = {}
 
     # --- Names (grouped) ---
-    name_keys = ["name_labeled", "name_comma_age", "name_sentence_verb"]
+    name_keys = ["name_labeled", "name_comma_age", "name_sentence_verb", "name_doctor"]
     raw_has_name = any(_PATTERNS[k].search(raw) for k in name_keys)
 
     name_total = 0
 
-    # 1) Lastname, 52 year-old
+    # 1) Lastname, 52-year-old
     redacted, n = _PATTERNS["name_comma_age"].subn(r"[NAME_REDACTED], \2", redacted)
     name_total += int(n)
 
@@ -66,7 +70,11 @@ def deidentify_text(text: str) -> Dict[str, Any]:
     redacted, n = _PATTERNS["name_sentence_verb"].subn(r"\1[NAME_REDACTED] \3", redacted)
     name_total += int(n)
 
-    # 3) Patient: John Smith
+    # 3) Dr. Smith / Dr Jane Doe
+    redacted, n = _PATTERNS["name_doctor"].subn(r"Dr. [NAME_REDACTED]", redacted)
+    name_total += int(n)
+
+    # 4) Patient: John Smith
     redacted, n = _PATTERNS["name_labeled"].subn(_REPLACEMENTS["name"], redacted)
     name_total += int(n)
 
