@@ -43,7 +43,9 @@ if not exist "server\app.py" (
     exit /b 1
 )
 
-echo Starting FastAPI server on port 7860...
+if "%FASTAPI_PORT%"=="" set "FASTAPI_PORT=7860"
+
+echo Starting FastAPI server on port %FASTAPI_PORT%...
 echo NOTEGEN_URL_PRIMARY=%NOTEGEN_URL_PRIMARY%
 echo NOTEGEN_URL_FALLBACK=%NOTEGEN_URL_FALLBACK%
 echo OCR_URL_PRIMARY=%OCR_URL_PRIMARY%
@@ -58,7 +60,7 @@ echo.
 REM Start uvicorn with proper settings
 "%PYTHON_CMD%" -m uvicorn server.app:app ^
     --host 0.0.0.0 ^
-    --port 7860 ^
+    --port %FASTAPI_PORT% ^
     --workers 1 ^
     --proxy-headers ^
     --forwarded-allow-ips 127.0.0.1,::1 ^
