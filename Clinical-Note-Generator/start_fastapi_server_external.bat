@@ -13,6 +13,9 @@ if exist ".venv\Scripts\python.exe" (
 ) else if exist "venv\Scripts\python.exe" (
     echo Using virtual environment: venv
     set PYTHON_CMD=venv\Scripts\python.exe
+) else if exist "cenv\Scripts\python.exe" (
+    echo Using virtual environment: cenv
+    set PYTHON_CMD=cenv\Scripts\python.exe
 ) else (
     echo Using system Python
     set PYTHON_CMD=python
