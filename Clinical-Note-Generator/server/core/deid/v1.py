@@ -9,10 +9,23 @@ _DATE_PATTERN = re.compile(
 )
 
 _PATTERNS = {
-    "name": re.compile(
+    # Name patterns (v1.1): keep these conservative but cover common real-world forms.
+    # 1) Labeled names: "Patient: John Smith", "Dr: Jane Doe"
+    "name_labeled": re.compile(
         r"\b(?:patient|pt|name|doctor|dr\.?|provider)\s*[:\-]\s*"
         r"([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})",
         re.IGNORECASE,
+    ),
+    # 2) "Lastname, 52 year-old ..." (common header-style demographic line)
+    "name_comma_age": re.compile(
+        r"\b([A-Z][a-z]{2,}),\s*(\d{1,3}\s*(?:y/o|yo|years?)\s*(?:[-\s]?old)?)",
+        re.IGNORECASE,
+    ),
+    # 3) Sentence-style: "Gregory reports ...", "Sarah denies ..."
+    # Only triggers for common patient-reporting verbs to avoid redacting meds/tests.
+    "name_sentence_verb": re.compile(
+        r"(^|[\.\n]\s*)([A-Z][a-z]{2,})\s+(reports|states|presents|presented|complains|denies|endorses|describes|notes)\b",
+        re.IGNORECASE | re.MULTILINE,
     ),
     "date": _DATE_PATTERN,
     "mrn": re.compile(
@@ -35,10 +48,37 @@ _REPLACEMENTS = {
 def deidentify_text(text: str) -> Dict[str, Any]:
     raw = text or ""
     redacted = raw
+
     counts: Dict[str, int] = {}
     leak_flags: Dict[str, bool] = {}
 
-    for key, pattern in _PATTERNS.items():
+    # --- Names (grouped) ---
+    name_keys = ["name_labeled", "name_comma_age", "name_sentence_verb"]
+    raw_has_name = any(_PATTERNS[k].search(raw) for k in name_keys)
+
+    name_total = 0
+
+    # 1) Lastname, 52 year-old
+    redacted, n = _PATTERNS["name_comma_age"].subn(r"[NAME_REDACTED], \2", redacted)
+    name_total += int(n)
+
+    # 2) Gregory reports ...
+    redacted, n = _PATTERNS["name_sentence_verb"].subn(r"\1[NAME_REDACTED] \3", redacted)
+    name_total += int(n)
+
+    # 3) Patient: John Smith
+    redacted, n = _PATTERNS["name_labeled"].subn(_REPLACEMENTS["name"], redacted)
+    name_total += int(n)
+
+    residual_name = any(_PATTERNS[k].search(redacted) for k in name_keys)
+
+    counts["name"] = name_total
+    leak_flags["raw_has_name"] = bool(raw_has_name)
+    leak_flags["residual_name"] = bool(residual_name)
+
+    # --- Other PHI types ---
+    for key in ["date", "mrn", "phone", "email"]:
+        pattern = _PATTERNS[key]
         leak_flags[f"raw_has_{key}"] = bool(pattern.search(raw))
         redacted, n = pattern.subn(_REPLACEMENTS[key], redacted)
         counts[key] = int(n)
