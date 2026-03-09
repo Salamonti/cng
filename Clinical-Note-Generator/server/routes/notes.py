@@ -39,7 +39,7 @@ from core.streaming.helpers import _stream_response, _stream_response_v8, _strea
 from core.consult.pipeline import _generate_consult_comment as _generate_consult_comment_impl
 from core.order.pipeline import _generate_order_requests as _generate_order_requests_impl
 from core.qa_rag.helpers import _qa_rewrite_with_rag
-from models.user import User
+from server.models.user import User
 
 
 router = APIRouter()
