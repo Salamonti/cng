@@ -53,9 +53,11 @@ CNG uses a multi-service architecture with a reverse proxy:
 ### Minimum Hardware
 - **CPU**: x64 processor with AVX2 support
 - **RAM**: 16 GB minimum, 32 GB recommended
-- **Storage**: 50 GB free space
+- **Storage**: 50 GB free space (add 10 GB for RAG embeddings + database)
 - **GPU**: NVIDIA GPU with 8+ GB VRAM (RTX 3060+ recommended)
 - **OS**: Windows 10/11, Ubuntu 20.04+, or macOS 12+
+
+**Note on RAG storage**: The RAG service requires 5-7 GB for embeddings model + 1-3 GB for ChromaDB database. You can copy these from an existing installation or build from scratch.
 
 ### Software Dependencies
 - **Python**: 3.11+ (3.14 recommended)
@@ -237,6 +239,42 @@ python query_api.py  # Simple start (defaults to port 8007)
 python -m uvicorn query_api:app --host 0.0.0.0 --port 8007
 # OR use start_rag_service.bat (Windows - starts on port 8007)
 ```
+
+#### RAG Database Setup (Embeddings + ChromaDB)
+
+**Important**: RAG requires two components to work:
+1. **Embeddings model** - Converts text to vectors (5-7GB)
+2. **ChromaDB database** - Stores vectors and enables similarity search (1-3GB)
+
+**Option A: Copy from existing installation (Recommended for production)**
+If you have an existing working RAG installation:
+```bash
+# Copy embeddings model (5-7GB)
+# From: C:\RAG\models\all-MiniLM-L6-v2 (or similar)
+# To: RAG\models\all-MiniLM-L6-v2
+
+# Copy ChromaDB database (1-3GB)  
+# From: C:\RAG\chroma_db (or similar)
+# To: RAG\chroma_db
+```
+
+**Option B: Build from scratch (For development/testing)**
+```bash
+# 1. Download embeddings model (takes time, requires 5-7GB disk)
+python -c "from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2'); model.save('models/all-MiniLM-L6-v2')"
+
+# 2. Build ChromaDB from documents
+# Edit sources_config.yaml to point to your PDF/document folders
+# Then run the ingestion pipeline:
+python process_clinical_corpus.py  # If available
+# OR manually add documents via API
+```
+
+**Option C: Start with empty RAG (No retrieval, API-only)**
+The RAG service will start with an empty database. You can:
+1. Use the API to add documents later
+2. Use external RAG service instead
+3. Run without RAG functionality (basic note generation only)
 
 #### External RAG
 Update `config/config.json` to point to your RAG endpoint:
