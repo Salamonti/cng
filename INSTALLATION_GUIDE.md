@@ -33,8 +33,8 @@ CNG uses a multi-service architecture with a reverse proxy:
                                        ┌──────────────────────────┐
                                        │   External Services      │
                                        │   • OCR (8082/8090)      │
-                                       │   • ASR (9000)           │
-                                       │   • RAG (8000)           │
+                                       │   • ASR (8095/9000)      │
+                                       │   • RAG (8007)           │
                                        │   • LLM (8081)           │
                                        └──────────────────────────┘
 ```
@@ -68,7 +68,7 @@ CNG uses a multi-service architecture with a reverse proxy:
 
 ### External Services (Optional)
 - **OCR Service**: Multimodal LLM endpoint (e.g., `http://localhost:8082`)
-- **ASR Service**: WhisperX endpoint (e.g., `http://localhost:9000`)
+- **ASR Service**: WhisperX endpoint (e.g., `http://localhost:8095` or `http://localhost:9000`)
 - **RAG Service**: Vector database endpoint
 
 ---
@@ -112,11 +112,11 @@ $env:JWT_SECRET="your-secure-jwt-secret-here"
 
 ### 5. Start Services
 
-**Method A: Using batch files (simplified)**
+**Method A: Using batch files**
 ```powershell
-# Start FastAPI backend (in new terminal)
+# Start FastAPI backend with external services (recommended)
 cd Clinical-Note-Generator
-start_fastapi_server.bat
+start_fastapi_server_external.bat
 
 # Start PCHost proxy (in new terminal)
 cd PCHost
@@ -129,9 +129,14 @@ start_rag_service.bat
 
 **Method B: Direct commands (manual control - your current workflow)**
 ```powershell
-# Terminal 1: FastAPI backend
+# Terminal 1: FastAPI backend (with external services)
 cd Clinical-Note-Generator
 .venv\Scripts\activate
+set NOTEGEN_URL_PRIMARY=http://127.0.0.1:8081
+set OCR_URL_PRIMARY=http://127.0.0.1:8090
+set RAG_URL=http://127.0.0.1:8007
+set ASR_URL=http://127.0.0.1:8095
+set ASR_API_KEY=notegenadmin
 python -m uvicorn server.app:app --host 0.0.0.0 --port 7860
 
 # Terminal 2: PCHost proxy  
@@ -141,7 +146,7 @@ node server.js
 # Terminal 3: RAG service (if using local)
 cd RAG
 .venv\Scripts\activate
-python -m uvicorn query_api:app --host 0.0.0.0 --port 8000
+python -m uvicorn query_api:app --host 0.0.0.0 --port 8007
 ```
 
 ### 6. Access Application
@@ -227,10 +232,10 @@ pip install -r requirements.txt
 # Edit sources_config.yaml for your document sources
 
 # Start service (choose one method)
-python query_api.py  # Simple start
+python query_api.py  # Simple start (defaults to port 8007)
 # OR with uvicorn for production:
-python -m uvicorn query_api:app --host 0.0.0.0 --port 8000
-# OR use start_rag_service.bat (Windows - simplified)
+python -m uvicorn query_api:app --host 0.0.0.0 --port 8007
+# OR use start_rag_service.bat (Windows - starts on port 8007)
 ```
 
 #### External RAG
@@ -266,8 +271,9 @@ Set these in your environment or `.env` file:
 | llama.cpp | 8081 | HTTP | LLM inference |
 | OCR Service | 8082 | HTTP | Document processing (primary) |
 | OCR Service | 8090 | HTTP | Document processing (fallback/alternative) |
-| ASR Service | 9000 | HTTP | Speech recognition |
-| RAG Service | 8000 | HTTP | Retrieval service |
+| ASR Service | 8095 | HTTP | Speech recognition (WhisperX) |
+| ASR Service | 9000 | HTTP | Speech recognition (alternative) |
+| RAG Service | 8007 | HTTP | Retrieval service |
 
 ### Security Configuration
 
