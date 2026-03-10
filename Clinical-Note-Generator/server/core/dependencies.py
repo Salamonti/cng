@@ -7,7 +7,7 @@ from sqlmodel import Session, select
 
 from .db import get_session
 from .security import decode_access_token
-from ..models.user import User
+from server.models.user import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 

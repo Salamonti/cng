@@ -77,6 +77,21 @@
   "default_top_p": 0.92,
   "default_min_p": 0.06,
   "default_note_max_tokens": 6144,
+  "preprocessing": {
+    "enabled": false,
+    "steps": {
+      "remove_boilerplate": true,
+      "collapse_repeated_headers": true,
+      "remove_junk_artifacts": true,
+      "deduplicate_blocks": true,
+      "normalize_whitespace": true
+    },
+    "truncation": {
+      "prior_visits_budget_tokens": 1024,
+      "labs_imaging_other_budget_tokens": 1024,
+      "current_encounter_budget_tokens": 4096
+    }
+  },
   "default_note_system_prompt": [
     "You are a clinical documentation specialist for {USER_SPECIALITY} in Nova Scotia, Canada. Current date is {CURRENT_DATE}.",
     "Input sections are delimited by tags: <CURRENT_ENCOUNTER>, <PRIOR_VISITS>, and <LABS_IMAGING_OTHER>. Treat content according to the tag description and do not merge timelines. One or more of these sections might be empty, especially if the note type does not require the distinction.",

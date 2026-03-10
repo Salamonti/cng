@@ -7,6 +7,10 @@ def test_deid_v1_redacts_common_phi():
 
     text = (
         "Patient: John Smith\n"
+        "Leblanc, 52-year-old man\n"
+        "Gregory reports worsening dyspnea.\n"
+        "Referred by Dr. Johnson for evaluation.\n"
+        "Seen by Dr Jane Doe in clinic.\n"
         "DOB: 1980-01-02\n"
         "MRN: A1234567\n"
         "Phone: 555-123-4567\n"
@@ -16,6 +20,13 @@ def test_deid_v1_redacts_common_phi():
 
     redacted = out["text"]
     assert "[NAME_REDACTED]" in redacted
+    assert "John" not in redacted and "Smith" not in redacted
+    assert "Leblanc" not in redacted
+    assert "Gregory" not in redacted
+    assert "Johnson" not in redacted
+    assert "Jane" not in redacted and "Doe" not in redacted
+    # Doctor prefix preserved but name redacted
+    assert "Dr. [NAME_REDACTED]" in redacted
     assert "[DATE_REDACTED]" in redacted
     assert "[MRN_REDACTED]" in redacted
     assert "[PHONE_REDACTED]" in redacted
