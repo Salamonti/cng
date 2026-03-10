@@ -249,25 +249,26 @@ python -m uvicorn query_api:app --host 0.0.0.0 --port 8007
 **Option A: Copy from existing installation (Recommended for production)**
 If you have an existing working RAG installation:
 ```bash
-# Copy embeddings model (5-7GB)
-# From: C:\RAG\models\all-MiniLM-L6-v2 (or similar)
-# To: RAG\models\all-MiniLM-L6-v2
+# Copy embeddings model cache (5-7GB)
+# From: C:\RAG\embeddings\ (or HuggingFace cache location)
+# To: RAG\embeddings\
 
 # Copy ChromaDB database (1-3GB)  
-# From: C:\RAG\chroma_db (or similar)
-# To: RAG\chroma_db
+# From: C:\RAG\chroma_store
+# To: RAG\chroma_store
 ```
 
 **Option B: Build from scratch (For development/testing)**
 ```bash
-# 1. Download embeddings model (takes time, requires 5-7GB disk)
-python -c "from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2'); model.save('models/all-MiniLM-L6-v2')"
+# 1. The RAG service will automatically download the embedding model
+#    (BAAI/bge-small-en-v1.5) on first run. This requires 5-7GB disk space
+#    and may take time depending on your internet connection.
 
 # 2. Build ChromaDB from documents
 # Edit sources_config.yaml to point to your PDF/document folders
-# Then run the ingestion pipeline:
-python process_clinical_corpus.py  # If available
-# OR manually add documents via API
+# Then run the ingestion pipeline (if available):
+python process_clinical_corpus.py
+# OR manually add documents via API after starting the service
 ```
 
 **Option C: Start with empty RAG (No retrieval, API-only)**
