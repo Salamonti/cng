@@ -261,7 +261,7 @@ If you have an existing working RAG installation:
 **Option B: Build from scratch (For development/testing)**
 ```bash
 # 1. The RAG service will automatically download the embedding model
-#    (BAAI/bge-small-en-v1.5) on first run. This requires 5-7GB disk space
+#    (jinaai/jina-embeddings-v5-text-nano) on first run. This requires 2-3GB disk space
 #    and may take time depending on your internet connection.
 
 # 2. Build ChromaDB from documents

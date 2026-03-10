@@ -51,5 +51,20 @@ class Embedder:
     def encode(self, texts: List[str]):
         if len(texts) == 1:
             return [_cached_single_embedding(self.model_name, texts[0])]
-        embs = self.model.encode(texts, normalize_embeddings=True, convert_to_numpy=True)
+        
+        # For Jina v5 models, use Matryoshka embeddings for speed
+        # Can specify output_dim: 768 (full), 512, 256, 128, 64, 32
+        # Smaller dimensions = faster but slightly less accurate
+        model_name_lower = self.model_name.lower()
+        if "jina" in model_name_lower and "v5" in model_name_lower:
+            # Use 512-dim for good speed/quality balance
+            embs = self.model.encode(
+                texts, 
+                normalize_embeddings=True, 
+                convert_to_numpy=True,
+                output_dim=512  # Matryoshka: 768 → 512 (33% faster)
+            )
+        else:
+            embs = self.model.encode(texts, normalize_embeddings=True, convert_to_numpy=True)
+        
         return [np.asarray(e, dtype=np.float32) for e in embs]
