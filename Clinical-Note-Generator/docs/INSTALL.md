@@ -1,32 +1,68 @@
-# Clinical Note Generator — Installation & Operations (Windows-first)
+# Clinical Note Generator — Quick Start Guide
 
-This document is the minimal runbook to install and run the system from this repo.
+> **For complete installation instructions, see the comprehensive [INSTALLATION_GUIDE.md](../../INSTALLATION_GUIDE.md)**
 
-## 1) Components
+This document provides minimal instructions to get started quickly.
 
-- **PCHost** (Node/Express) — UI + proxy layer (default: http://127.0.0.1:3000)
-- **Clinical-Note-Generator** (FastAPI) — main API (default: http://127.0.0.1:7860)
-- **RAG** (separate service) — retrieval endpoint (default: http://127.0.0.1:8007)
-- **OCR** service (separate) — multimodal OCR endpoint (default: http://127.0.0.1:8090)
-- **ASR** service (separate) — transcription endpoint (default: http://127.0.0.1:8095)
-- **NoteGen (LLM)** — llama-server compatible endpoint (default: http://127.0.0.1:8081)
+## Quick Start (Windows)
 
-## 2) Prerequisites
+### 1. Clone and Setup
+```powershell
+git clone https://github.com/your-org/cng.git
+cd cng
 
-- Python 3.11+ (Windows)
-- Node.js (for PCHost)
-- FFmpeg installed (or set `FFMPEG_BIN` / config `ffmpeg_path`)
-- GPU drivers + CUDA (if using GPU-backed services)
+# Python environment
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r Clinical-Note-Generator\requirements.txt
 
-## 3) Repo layout
+# Node.js dependencies
+cd PCHost
+npm install
+cd ..
+```
 
-- `./PCHost/` — UI + proxy
-- `./Clinical-Note-Generator/` — FastAPI backend
-- `./RAG/` — RAG service
+### 2. Configure
+```powershell
+# Set JWT secret
+$env:JWT_SECRET="your-secure-jwt-secret-here"
 
-## 4) Configuration
+# Edit config if needed
+notepad Clinical-Note-Generator\config\config.json
+```
 
-### 4.1 Backend config file
+### 3. Start Services
+```powershell
+# Terminal 1: Backend
+cd Clinical-Note-Generator
+start_fastapi_server.bat
+
+# Terminal 2: Frontend
+cd PCHost
+node server.js
+```
+
+### 4. Access
+- **UI**: http://localhost:3000
+- **API**: http://localhost:7860/docs
+- **Health**: http://localhost:7860/api/health
+
+## Components
+
+| Component | Port | Description |
+|-----------|------|-------------|
+| **PCHost** | 3000 | UI + proxy layer |
+| **FastAPI** | 7860 | Main backend API |
+| **llama.cpp** | 8081 | LLM inference |
+| **OCR Service** | 8082 | Document processing |
+| **ASR Service** | 9000 | Speech recognition |
+| **RAG Service** | 8000 | Retrieval service |
+
+## Next Steps
+1. Read the full [INSTALLATION_GUIDE.md](../../INSTALLATION_GUIDE.md)
+2. Configure external services (OCR, ASR, RAG)
+3. Set up production deployment
+4. Configure monitoring and backups
 
 Main config: `Clinical-Note-Generator/config/config.json`
 
