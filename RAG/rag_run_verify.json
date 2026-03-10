@@ -1,8 +1,0 @@
-{
-  "model": "C:\\gptoss\\out\\SleepGemma-4B-MXFP4.gguf",
-  "score": 0.9,
-  "pass": true,
-  "threshold": 0.7,
-  "issues": [],
-  "notes": "The answer is largely supported by the context provided. It correctly summarizes the treatment options for OSA, including PAP therapy, oral appliances, weight loss, bariatric surgery, positional therapy, pharmacotherapy, and oxygen administration. It also correctly notes the importance of treating underlying conditions like hypothyroidism and acromegaly. The answer aligns well with the context and does not contain unsupported claims or contradictions."
-}
