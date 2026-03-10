@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import logging
 import math
+import os
 import re
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .constants import DATE_PATTERNS, MEDICAL_TERMS
+
+logger = logging.getLogger("cng.preprocessing.truncation")
 
 
 class TokenBudgetTruncator:
@@ -23,6 +27,10 @@ class TokenBudgetTruncator:
         words = re.findall(r"\S+", text or "")
         return int(math.ceil(len(words) * 1.3))
 
+    @staticmethod
+    def _debug_enabled() -> bool:
+        return os.environ.get("CNG_TRUNCATION_DEBUG", "0").strip().lower() in {"1", "true", "yes", "on"}
+
     def truncate_section(self, text: str, section: str) -> str:
         if not text:
             return ""
@@ -32,7 +40,15 @@ class TokenBudgetTruncator:
         if budget is None or budget <= 0:
             return text
 
-        if self.estimate_tokens(text) <= budget:
+        original_tokens = self.estimate_tokens(text)
+        debug = self._debug_enabled()
+
+        if original_tokens <= budget:
+            if debug:
+                logger.info(
+                    "[TRUNC DEBUG] section=%s | tokens=%d <= budget=%d | NO TRUNCATION",
+                    key, original_tokens, budget,
+                )
             return text
 
         paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
@@ -43,13 +59,33 @@ class TokenBudgetTruncator:
         for idx, para in enumerate(paragraphs):
             scored.append((self._score_paragraph(para), idx, para))
 
+        if debug:
+            logger.info(
+                "[TRUNC DEBUG] section=%s | tokens=%d > budget=%d | %d paragraphs to score",
+                key, original_tokens, budget, len(paragraphs),
+            )
+
         selected: List[Tuple[int, str]] = []
+        dropped: List[Dict[str, Any]] = []
         tokens_used = 0
-        for _, idx, para in sorted(scored, key=lambda x: x[0], reverse=True):
+        for score, idx, para in sorted(scored, key=lambda x: x[0], reverse=True):
             para_tokens = self.estimate_tokens(para)
+            preview = para[:80].replace("\n", " ")
             if tokens_used + para_tokens <= budget:
                 selected.append((idx, para))
                 tokens_used += para_tokens
+                if debug:
+                    logger.info(
+                        "[TRUNC DEBUG]   KEPT  idx=%d score=%d tokens=%d preview='%s'",
+                        idx, score, para_tokens, preview,
+                    )
+            else:
+                dropped.append({"idx": idx, "score": score, "tokens": para_tokens, "preview": preview})
+                if debug:
+                    logger.info(
+                        "[TRUNC DEBUG]   DROP  idx=%d score=%d tokens=%d preview='%s'",
+                        idx, score, para_tokens, preview,
+                    )
 
         if not selected:
             best = max(scored, key=lambda x: x[0])[2]
@@ -59,9 +95,23 @@ class TokenBudgetTruncator:
         truncated = "\n\n".join(para for _, para in selected)
 
         removed_ratio = 1.0 - (len(truncated) / max(1, len(text)))
-        original_tokens = self.estimate_tokens(text)
         if removed_ratio > 0.8 and original_tokens < (budget * 2):
+            if debug:
+                logger.info(
+                    "[TRUNC DEBUG]   SAFETY OVERRIDE: removed_ratio=%.2f, returning original",
+                    removed_ratio,
+                )
             return text
+
+        if debug:
+            after_tokens = self.estimate_tokens(truncated)
+            logger.info(
+                "[TRUNC DEBUG] section=%s | RESULT: %d→%d tokens (%.1f%% reduction) | kept=%d dropped=%d",
+                key, original_tokens, after_tokens,
+                (1 - after_tokens / max(1, original_tokens)) * 100,
+                len(selected), len(dropped),
+            )
+
         return truncated
 
     def _clip_text_to_budget(self, text: str, budget: int) -> str:
