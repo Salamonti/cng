@@ -1,0 +1,180 @@
+{
+  "summary": {
+    "n": 15,
+    "completed_ok": 15,
+    "mean_raw_score_10": 8.733,
+    "mean_norm_pct": 87.333,
+    "mean_latency_s": 5.491,
+    "heading_violation_rate": 0.067,
+    "directive_language_rate": 0.533,
+    "thanks_presence_rate": 1.0,
+    "referral_ask_presence_rate": 1.0
+  },
+  "cases": [
+    {
+      "case_index": 6,
+      "ok": true,
+      "latency_s": 5.131,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 7,
+      "ok": true,
+      "latency_s": 5.415,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 16,
+      "ok": true,
+      "latency_s": 5.395,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 22,
+      "ok": true,
+      "latency_s": 6.46,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 23,
+      "ok": true,
+      "latency_s": 7.317,
+      "raw_score_10": 5,
+      "norm_pct": 50.0,
+      "has_headings": 1,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 26,
+      "ok": true,
+      "latency_s": 6.84,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 36,
+      "ok": true,
+      "latency_s": 4.626,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 37,
+      "ok": true,
+      "latency_s": 5.869,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 40,
+      "ok": true,
+      "latency_s": 4.889,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 45,
+      "ok": true,
+      "latency_s": 3.751,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 70,
+      "ok": true,
+      "latency_s": 5.877,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 86,
+      "ok": true,
+      "latency_s": 4.45,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 92,
+      "ok": true,
+      "latency_s": 5.706,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 98,
+      "ok": true,
+      "latency_s": 5.112,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "has_headings": 0,
+      "has_directive": 0,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    },
+    {
+      "case_index": 104,
+      "ok": true,
+      "latency_s": 5.523,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "has_headings": 0,
+      "has_directive": 1,
+      "has_thanks": 1,
+      "has_referral_ask": 1
+    }
+  ]
+}

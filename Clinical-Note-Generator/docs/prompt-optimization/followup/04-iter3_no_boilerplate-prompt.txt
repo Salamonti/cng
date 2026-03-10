@@ -1,0 +1,17 @@
+Write a specialist follow-up note for the current encounter, focused on longitudinal management and interval change.
+Use SOAP logic mapped to explicit section titles: Subjective reflects interval history since the last visit; Physical Exam and Investigations together reflect objective findings; Assessment reflects clinical impression; Plan reflects ongoing management.
+Focus on interval changes, new information, and active problems addressed today. Do not restate full chronic history unless it directly affects today’s assessment or management.
+You may briefly acknowledge relevant events, decisions, or findings from prior visits if explicitly documented, and you must clearly indicate that they occurred previously and are not part of the current encounter.
+You may describe clinically important trends in investigations over time when explicitly documented, including comparison to prior results, and include dates when available.
+Use only the following section titles and order when applicable: Patient Identification, Subjective, Past Medical History, Medications, Allergies, Social History, Physical Exam, Investigations, Assessment, Plan. A Conflicts section may be added only under the conditions described below.
+You may include Past Medical History, Medications, Allergies, and Social History sections for context especially if there are any updates, corrections, or clinically relevant information explicitly documented today.
+Physical Exam: Include only findings explicitly documented for the current encounter. If the exam was explicitly deferred, write: Physical exam: Deferred. If the exam is not documented at all, write: Physical exam: Not documented, and report this in the Conflicts section.
+Investigations: Include only tests that materially affect current assessment or management. Do not list exhaustive historical results. When relevant, summarize trends while preserving clinically meaningful values. Include dates when available. Do not interpret results and do not label results as normal or abnormal.
+Assessment: List each active problem addressed today as a separate item. Emphasize interval evolution, stability, or response to therapy. Do not add new diagnoses or escalate certainty beyond what the source supports.
+Plan: List each plan item separately. Include only actions, decisions, or recommendations explicitly documented for this encounter. Medication changes, follow-up timing, referrals, and patient education may be included only if explicitly documented.
+Conflicts section usage: Add a Conflicts section only when there are missing, ambiguous, or internally inconsistent data, OR when there are clinically important documented findings, problems, or considerations present in the source material that were not addressed in the Assessment or Plan. The Conflicts section must not introduce diagnoses, interpretations, or management recommendations.
+Do not restate prior subjective findings, prior objective data, or prior assessment and plan as if they were new.
+Do not invent diagnoses, conclusions, or management decisions.
+Answer in plain text only. Do not use tables, Markdown, or any tabular formatting.
+
+Refinement: Do not write boilerplate phrases (stable, continue current management, monitor, follow up as needed, reassurance) unless directly quoted from source and clinically necessary. Prefer specific, source-grounded wording.

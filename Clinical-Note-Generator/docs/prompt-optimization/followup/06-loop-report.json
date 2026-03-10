@@ -1,0 +1,93 @@
+{
+  "model": "Ministral-3-14B-Instruct-2512-Q5_K_M.gguf",
+  "system_prompt_sha256": "0a23d20cff06d7832b4bb3b376f9ef3e80310a99a2a256605c4a1d6cce0b7019",
+  "system_prompt_fixed": true,
+  "sample_indices": [
+    3,
+    4,
+    12,
+    14,
+    15,
+    18,
+    28,
+    29,
+    33,
+    38,
+    62,
+    83,
+    89,
+    96,
+    102
+  ],
+  "history": [
+    {
+      "iter": "baseline",
+      "summary": {
+        "n": 15,
+        "completed_ok": 14,
+        "mean_raw_score_10": 6.571,
+        "mean_norm_pct": 66.191,
+        "mean_latency_s": 7.372,
+        "generic_assessment_rate": 0.714,
+        "generic_plan_rate": 0.357,
+        "interval_ref_rate": 0.571
+      },
+      "variant": "base"
+    },
+    {
+      "iter": "iter1",
+      "variant": "vA",
+      "summary": {
+        "n": 15,
+        "completed_ok": 14,
+        "mean_raw_score_10": 7.571,
+        "mean_norm_pct": 76.191,
+        "mean_latency_s": 7.402,
+        "generic_assessment_rate": 0.714,
+        "generic_plan_rate": 0.214,
+        "interval_ref_rate": 0.786
+      }
+    },
+    {
+      "iter": "iter2",
+      "variant": "vB",
+      "summary": {
+        "n": 15,
+        "completed_ok": 14,
+        "mean_raw_score_10": 8.143,
+        "mean_norm_pct": 82.222,
+        "mean_latency_s": 7.721,
+        "generic_assessment_rate": 0.571,
+        "generic_plan_rate": 0.071,
+        "interval_ref_rate": 0.786
+      }
+    },
+    {
+      "iter": "iter3",
+      "variant": "vC",
+      "summary": {
+        "n": 15,
+        "completed_ok": 14,
+        "mean_raw_score_10": 6.714,
+        "mean_norm_pct": 67.619,
+        "mean_latency_s": 8.235,
+        "generic_assessment_rate": 0.429,
+        "generic_plan_rate": 0.286,
+        "interval_ref_rate": 0.429
+      }
+    }
+  ],
+  "best_sample": {
+    "n": 15,
+    "completed_ok": 14,
+    "mean_raw_score_10": 8.143,
+    "mean_norm_pct": 82.222,
+    "mean_latency_s": 7.721,
+    "generic_assessment_rate": 0.571,
+    "generic_plan_rate": 0.071,
+    "interval_ref_rate": 0.786
+  },
+  "full_summary": null,
+  "stop_reason": "significant_worsening",
+  "slots_all_idle": true
+}

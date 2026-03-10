@@ -1,0 +1,180 @@
+{
+  "indices": [
+    3,
+    4,
+    12,
+    14,
+    15,
+    18,
+    28,
+    29,
+    33,
+    38,
+    62,
+    83,
+    89,
+    96,
+    102
+  ],
+  "summary": {
+    "n": 15,
+    "completed_ok": 14,
+    "mean_raw_score_10": 7.571,
+    "mean_norm_pct": 76.191,
+    "mean_latency_s": 7.402,
+    "generic_assessment_rate": 0.714,
+    "generic_plan_rate": 0.214,
+    "interval_ref_rate": 0.786
+  },
+  "cases": [
+    {
+      "source_index": 3,
+      "ok": true,
+      "latency_s": 1.156,
+      "raw_score_10": 6,
+      "norm_pct": 66.67,
+      "generic_assessment": 0,
+      "generic_plan": 0,
+      "interval_ref": 0
+    },
+    {
+      "source_index": 4,
+      "ok": false,
+      "error": "HTTP Error 400: Bad Request",
+      "latency_s": 0,
+      "raw_score_10": 0,
+      "norm_pct": 0
+    },
+    {
+      "source_index": 12,
+      "ok": true,
+      "latency_s": 5.321,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 14,
+      "ok": true,
+      "latency_s": 5.097,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "generic_assessment": 0,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 15,
+      "ok": true,
+      "latency_s": 3.657,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 18,
+      "ok": true,
+      "latency_s": 1.641,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "generic_assessment": 0,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 28,
+      "ok": true,
+      "latency_s": 13.698,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 29,
+      "ok": true,
+      "latency_s": 10.021,
+      "raw_score_10": 6,
+      "norm_pct": 60.0,
+      "generic_assessment": 1,
+      "generic_plan": 1,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 33,
+      "ok": true,
+      "latency_s": 8.453,
+      "raw_score_10": 6,
+      "norm_pct": 60.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 0
+    },
+    {
+      "source_index": 38,
+      "ok": true,
+      "latency_s": 8.942,
+      "raw_score_10": 10,
+      "norm_pct": 100.0,
+      "generic_assessment": 0,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 62,
+      "ok": true,
+      "latency_s": 4.026,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 83,
+      "ok": true,
+      "latency_s": 12.066,
+      "raw_score_10": 6,
+      "norm_pct": 60.0,
+      "generic_assessment": 1,
+      "generic_plan": 1,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 89,
+      "ok": true,
+      "latency_s": 8.937,
+      "raw_score_10": 4,
+      "norm_pct": 40.0,
+      "generic_assessment": 1,
+      "generic_plan": 1,
+      "interval_ref": 0
+    },
+    {
+      "source_index": 96,
+      "ok": true,
+      "latency_s": 14.621,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 1
+    },
+    {
+      "source_index": 102,
+      "ok": true,
+      "latency_s": 5.99,
+      "raw_score_10": 8,
+      "norm_pct": 80.0,
+      "generic_assessment": 1,
+      "generic_plan": 0,
+      "interval_ref": 1
+    }
+  ],
+  "variant": "vA"
+}

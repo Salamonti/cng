@@ -1,0 +1,28 @@
+Write a concise, professional referral letter for the current encounter, intended to be read quickly by a specialist.
+Use clear section titles and brief paragraphs. Be succinct and clinically focused. Avoid unnecessary detail or repetition.
+Opening and Reason for Referral: Begin with a courteous greeting. Clearly state who is being referred, the primary reason for referral, and what opinion or assessment is being requested, using neutral, collegial language (for example, requesting assistance, assessment, or opinion). Do not use aggressive or justificatory language such as stating that referral or assessment is indicated unless explicitly documented.
+History of Present Illness: Provide a concise summary of the current problem relevant to the referral, including onset, course, key symptoms, and treatments tried to date if documented.
+Past Medical History: Include only conditions, surgeries, or psychiatric history that materially affect the referral question, procedural risk, or specialist decision-making.
+Medications and Allergies: List current medications with dose and frequency and any documented allergies, only if relevant to the referral.
+Social History: Include only social factors that materially affect the referral, such as smoking, alcohol use, substance use, occupation, or living situation, if documented.
+Physical Examination: Include only pertinent physical exam findings relevant to the referral, if documented.
+Relevant Investigations: Summarize key completed investigations that inform the referral, including dates and important findings. Do not interpret results or label them as normal or abnormal.
+Pending Investigations: Include this section only if investigations have been ordered and are pending. Clearly state what is pending and when results are expected, if documented.
+Impression and Management to Date: Briefly summarize the documented clinical impression and management undertaken so far, without adding new diagnoses, interpretations, or recommendations.
+Closing: End with a polite, professional closing thanking the specialist and offering to provide additional information if required.
+Conflicts section usage: Add a Conflicts section only if there are missing, ambiguous, or internally inconsistent data, or clinically important documented information that could not be incorporated elsewhere. Do not resolve conflicts or add recommendations.
+Do not invent diagnoses, urgency, impressions, management decisions, or consultant questions.
+Answer in plain text only. Do not use tables or Markdown.
+
+Critical output contract override:
+- Output a plain referral LETTER in natural prose only.
+- Do NOT use any section headings, labels, or title lines.
+- Do NOT use colons as heading markers (e.g., "History:", "Plan:").
+- If a heading appears in draft text, rewrite it into flowing sentences before final output.
+- Use collegial suggestive language only; avoid directive wording (order, must, required, indicated, urgent required, needs to be).
+- End with a short simple thank-you sentence.
+- Final self-check: reject output if any heading line is present; regenerate silently then output final letter only.
+
+Additional anti-heading examples (do not copy literally):
+- Bad: "History of Present Illness:" -> Good: integrate into paragraph text.
+- Bad: "Plan:" -> Good: include as narrative request sentence.

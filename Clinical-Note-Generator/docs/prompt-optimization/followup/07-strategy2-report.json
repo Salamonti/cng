@@ -1,0 +1,91 @@
+{
+  "model": "Ministral-3-14B-Instruct-2512-Q5_K_M.gguf",
+  "system_prompt_sha256": "0a23d20cff06d7832b4bb3b376f9ef3e80310a99a2a256605c4a1d6cce0b7019",
+  "system_prompt_fixed": true,
+  "hard_subset_n": 30,
+  "history": [
+    {
+      "iter": "baseline_vB_hard",
+      "summary": {
+        "n": 30,
+        "completed_ok": 30,
+        "mean_raw_score_10": 6.667,
+        "mean_norm_pct": 66.667,
+        "mean_latency_s": 9.448,
+        "generic_assessment_rate": 0.733,
+        "generic_plan_rate": 0.5,
+        "interval_ref_rate": 0.7
+      }
+    },
+    {
+      "iter": "s2_iter1",
+      "summary": {
+        "n": 30,
+        "completed_ok": 30,
+        "mean_raw_score_10": 7.2,
+        "mean_norm_pct": 72.0,
+        "mean_latency_s": 10.114,
+        "generic_assessment_rate": 0.633,
+        "generic_plan_rate": 0.333,
+        "interval_ref_rate": 0.767
+      }
+    },
+    {
+      "iter": "s2_iter2",
+      "summary": {
+        "n": 30,
+        "completed_ok": 30,
+        "mean_raw_score_10": 7.467,
+        "mean_norm_pct": 74.667,
+        "mean_latency_s": 9.2,
+        "generic_assessment_rate": 0.4,
+        "generic_plan_rate": 0.467,
+        "interval_ref_rate": 0.7
+      }
+    },
+    {
+      "iter": "s2_iter3",
+      "summary": {
+        "n": 30,
+        "completed_ok": 30,
+        "mean_raw_score_10": 7.733,
+        "mean_norm_pct": 77.333,
+        "mean_latency_s": 9.432,
+        "generic_assessment_rate": 0.267,
+        "generic_plan_rate": 0.367,
+        "interval_ref_rate": 0.6
+      }
+    }
+  ],
+  "best_hard": {
+    "n": 30,
+    "completed_ok": 30,
+    "mean_raw_score_10": 7.733,
+    "mean_norm_pct": 77.333,
+    "mean_latency_s": 9.432,
+    "generic_assessment_rate": 0.267,
+    "generic_plan_rate": 0.367,
+    "interval_ref_rate": 0.6
+  },
+  "full": {
+    "n": 109,
+    "completed_ok": 108,
+    "mean_raw_score_10": 7.574,
+    "mean_norm_pct": 79.023,
+    "mean_latency_s": 9.085,
+    "generic_assessment_rate": 0.25,
+    "generic_plan_rate": 0.306,
+    "interval_ref_rate": 0.602
+  },
+  "full_repeat": {
+    "n": 109,
+    "completed_ok": 108,
+    "mean_raw_score_10": 7.426,
+    "mean_norm_pct": 77.449,
+    "mean_latency_s": 8.994,
+    "generic_assessment_rate": 0.306,
+    "generic_plan_rate": 0.398,
+    "interval_ref_rate": 0.611
+  },
+  "slots_all_idle": true
+}
