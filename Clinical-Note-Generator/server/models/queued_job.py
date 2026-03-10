@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\models\queued_job.py
+# server/models/queued_job.py
 from __future__ import annotations
 
 import uuid

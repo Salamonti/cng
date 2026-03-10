@@ -1,4 +1,4 @@
-# C:\RAG\process_clinical_corpus.py
+# process_clinical_corpus.py
 #!/usr/bin/env python3
 """
 process_clinical_corpus.py

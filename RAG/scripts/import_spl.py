@@ -1,4 +1,4 @@
-# C:\RAG\scripts\import_spl.py
+# scripts/import_spl.py
 #!/usr/bin/env python3
 """
 import_spl.py

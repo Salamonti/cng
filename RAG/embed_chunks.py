@@ -1,4 +1,4 @@
-# C:\RAG\embed_chunks.py
+# embed_chunks.py
 #!/usr/bin/env python3
 """
 embed_chunks.py
@@ -127,7 +127,7 @@ def main():
 
     # Load config and decide model
     cfg = yaml.safe_load(open("settings.yaml", "r")) if Path("settings.yaml").exists() else {}
-    model_name = args.model or cfg.get("embedding_model", "BAAI/bge-small-en-v1.5")
+    model_name = args.model or cfg.get("embedding_model", "jinaai/jina-embeddings-v5-text-nano")
 
     # Collect chunks
     chunk_dir = Path(args.input)

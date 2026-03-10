@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\admin.py
+# server/routes/admin.py
 import json
 import os
 import subprocess

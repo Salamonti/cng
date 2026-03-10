@@ -1,4 +1,4 @@
-# C:\RAG\scripts\weekly_run.sh
+# weekly_run.sh
 #!/usr/bin/env bash
 set -euo pipefail
 

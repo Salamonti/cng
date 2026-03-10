@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\schemas\workspace.py
+# server/schemas/workspace.py
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 

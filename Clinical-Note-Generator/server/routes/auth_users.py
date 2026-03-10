@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\auth_users.py
+# server/routes/auth_users.py
 import uuid
 from datetime import datetime, timedelta
 from typing import Optional

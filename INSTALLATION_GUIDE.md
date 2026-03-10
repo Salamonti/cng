@@ -193,8 +193,8 @@ Edit `config/config.json`:
   "chat_model_path": "C:/models/ministral-3-14b.Q5_K_M.gguf",
   "note_gen_url_primary": "http://127.0.0.1:8081",
   "ocr_url_primary": "http://127.0.0.1:8082",
-  "asr_url_primary": "http://127.0.0.1:9000",
-  "rag_url": "http://127.0.0.1:8000"
+  "asr_url_primary": "http://127.0.0.1:8095",
+  "rag_url": "http://127.0.0.1:8007"
 }
 ```
 
@@ -435,7 +435,7 @@ Pre-configured batch files are provided as templates:
 ```powershell
 # FastAPI: python -m uvicorn server.app:app --host 0.0.0.0 --port 7860
 # PCHost: node server.js
-# RAG: python -m uvicorn query_api:app --host 0.0.0.0 --port 8000
+# RAG: python -m uvicorn query_api:app --host 0.0.0.0 --port 8007
 ```
 
 ### Linux/macOS (systemd)

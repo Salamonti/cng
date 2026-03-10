@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\core\dependencies.py
+# server/core/dependencies.py
 import uuid
 from typing import Optional
 

@@ -1,4 +1,4 @@
-# C:\RAG\scripts\fetch_site_pdfs.py
+# scripts/fetch_site_pdfs.py
 #!/usr/bin/env python3
 """
 Fetch all clinical guideline PDFs from a website into ./local_guidelines.

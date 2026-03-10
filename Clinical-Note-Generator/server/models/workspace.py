@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\models\workspace.py
+# server/models/workspace.py
 from __future__ import annotations
 
 import uuid

@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\core\baseline.py
+# server/core/baseline.py
 from typing import Any, Dict
 
 
