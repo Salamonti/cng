@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\app.py
+# server/app.py
 # app.py
 
 import os

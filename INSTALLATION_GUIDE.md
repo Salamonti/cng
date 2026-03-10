@@ -31,8 +31,10 @@
 - **Python**: 3.11+ (3.14 recommended)
 - **Node.js**: 18+ (for PCHost proxy)
 - **Git**: For cloning repository
-- **CUDA**: 12.1+ (for GPU acceleration)
+- **CUDA**: 12.1+ (for GPU acceleration on Windows/Linux)
 - **llama.cpp**: Local LLM server (port 8081)
+
+**Note on macOS**: This application is primarily developed and tested on Windows. macOS support is limited to basic functionality without GPU acceleration. For production use on macOS, consider using external OCR/ASR services.
 
 ### External Services (Optional)
 - **OCR Service**: Multimodal LLM endpoint (e.g., `http://localhost:8082`)
@@ -203,7 +205,8 @@ Set these in your environment or `.env` file:
 | PCHost | 3443 | HTTPS | Secure web interface |
 | FastAPI | 7860 | HTTP | Backend API |
 | llama.cpp | 8081 | HTTP | LLM inference |
-| OCR Service | 8082 | HTTP | Document processing |
+| OCR Service | 8082 | HTTP | Document processing (primary) |
+| OCR Service | 8090 | HTTP | Document processing (fallback/alternative) |
 | ASR Service | 9000 | HTTP | Speech recognition |
 | RAG Service | 8000 | HTTP | Retrieval service |
 
@@ -377,6 +380,17 @@ pip install -r requirements.txt --force-reinstall
 # Reset database (WARNING: deletes all data)
 rm Clinical-Note-Generator/data/user_data.sqlite
 # Database recreates on next startup
+```
+
+#### 4. macOS-Specific Issues
+```bash
+# If you encounter permission errors on macOS:
+xcode-select --install  # Install command line tools
+brew install python@3.14  # Install Python via Homebrew
+
+# For GPU acceleration issues on macOS (Metal):
+# Note: This application uses CUDA for GPU acceleration which is not available on macOS.
+# Use external OCR/ASR services or run on CPU-only mode.
 ```
 
 #### 4. JWT Errors

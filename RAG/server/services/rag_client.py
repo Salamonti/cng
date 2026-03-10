@@ -1,4 +1,4 @@
-# C:\RAG\server\services\rag_client.py
+# server/services/rag_client.py
 import os
 import sys
 import re

@@ -1,4 +1,4 @@
-REM C:\PCHost\New_Main_Server.bat
+REM New_Main_Server.bat
 @echo off
 REM ============================================================================
 REM  Clinical Notes - Node.js Reverse Proxy Server Launcher

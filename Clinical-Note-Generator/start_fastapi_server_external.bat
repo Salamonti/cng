@@ -1,4 +1,4 @@
-REM C:\Clinical-Note-Generator\start_fastapi_server_external.bat
+REM start_fastapi_server_external.bat
 @echo off
 echo Starting FastAPI Server (External Services)...
 echo ===========================================

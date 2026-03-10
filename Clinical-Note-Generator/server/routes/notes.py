@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\notes.py
+# server/routes/notes.py
 import asyncio
 from datetime import datetime, timezone
 import logging

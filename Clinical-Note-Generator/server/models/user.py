@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\models\user.py
+# server/models/user.py
 from __future__ import annotations
 
 import uuid
