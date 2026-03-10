@@ -18,6 +18,36 @@
 
 ---
 
+## Architecture Overview
+
+CNG uses a multi-service architecture with a reverse proxy:
+
+```
+┌─────────────────┐     ┌──────────────┐     ┌──────────────────┐
+│    User Browser │────▶│   PCHost     │────▶│   FastAPI Backend│
+│                 │     │ (Reverse     │     │   (Port 7860)    │
+│                 │     │   Proxy)     │     │                  │
+│                 │     │ Port 3000/3443│     └──────────────────┘
+└─────────────────┘     └──────────────┘              │
+                                                      ▼
+                                       ┌──────────────────────────┐
+                                       │   External Services      │
+                                       │   • OCR (8082/8090)      │
+                                       │   • ASR (9000)           │
+                                       │   • RAG (8000)           │
+                                       │   • LLM (8081)           │
+                                       └──────────────────────────┘
+```
+
+**Key Components:**
+1. **PCHost**: Reverse proxy + static file server (your entry point)
+2. **FastAPI Backend**: Main application logic (Clinical-Note-Generator)
+3. **External Services**: OCR, ASR, RAG, LLM (can be local or remote)
+
+**Note**: PCHost is NOT optional - it's the required reverse proxy that handles HTTPS, CORS, and routing.
+
+---
+
 ## System Requirements
 
 ### Minimum Hardware
@@ -81,6 +111,8 @@ $env:JWT_SECRET="your-secure-jwt-secret-here"
 ```
 
 ### 5. Start Services
+
+**Method A: Using batch files (simplified)**
 ```powershell
 # Start FastAPI backend (in new terminal)
 cd Clinical-Note-Generator
@@ -93,6 +125,23 @@ node server.js
 # Start RAG service (if using local, in new terminal)
 cd RAG
 start_rag_service.bat
+```
+
+**Method B: Direct commands (manual control - your current workflow)**
+```powershell
+# Terminal 1: FastAPI backend
+cd Clinical-Note-Generator
+.venv\Scripts\activate
+python -m uvicorn server.app:app --host 0.0.0.0 --port 7860
+
+# Terminal 2: PCHost proxy  
+cd PCHost
+node server.js
+
+# Terminal 3: RAG service (if using local)
+cd RAG
+.venv\Scripts\activate
+python -m uvicorn query_api:app --host 0.0.0.0 --port 8000
 ```
 
 ### 6. Access Application
@@ -144,20 +193,28 @@ Edit `config/config.json`:
 
 ### Frontend Proxy (PCHost)
 
-#### Node.js Setup
+#### Node.js Setup (Reverse Proxy)
 ```bash
 cd PCHost
 npm install  # Install dependencies
 
-# Configure server
+# Configure reverse proxy
 # Edit config/server_config.json for your environment
 ```
 
-#### Proxy Configuration
-Key configuration in `server.js`:
-- Port: 3000 (HTTP) and 3443 (HTTPS)
-- Backend proxy: http://127.0.0.1:7860
-- OpenWebUI proxy: :8443 (if using)
+#### Reverse Proxy Configuration
+PCHost serves as the reverse proxy with these key functions:
+- **Static file serving**: Serves web interface from `web/` directory
+- **API proxying**: Routes `/api/*` to FastAPI backend (port 7860)
+- **HTTPS termination**: Handles SSL certificates (port 3443)
+- **CORS management**: Handles cross-origin requests
+- **Request logging**: Logs all incoming requests
+
+Key settings in `server.js`:
+- HTTP Port: 3000
+- HTTPS Port: 3443  
+- Backend proxy: http://127.0.0.1:7860 (FastAPI)
+- OpenWebUI proxy: :8443 (optional, if using OpenWebUI)
 
 ### RAG Service (Optional)
 
@@ -169,9 +226,11 @@ pip install -r requirements.txt
 # Configure sources
 # Edit sources_config.yaml for your document sources
 
-# Start service
-python query_api.py
-# or use start_rag_service.bat (Windows)
+# Start service (choose one method)
+python query_api.py  # Simple start
+# OR with uvicorn for production:
+python -m uvicorn query_api:app --host 0.0.0.0 --port 8000
+# OR use start_rag_service.bat (Windows - simplified)
 ```
 
 #### External RAG
@@ -257,12 +316,19 @@ nssm start CNG-FastAPI
 nssm start CNG-PCHost
 ```
 
-#### Batch Files
-Pre-configured batch files:
-- `Clinical-Note-Generator/start_fastapi_server.bat`
-- `Clinical-Note-Generator/start_fastapi_server_external.bat` (with external services)
-- `PCHost/New_Main_Server.bat`
-- `RAG/start_rag_service.bat`
+#### Batch Files (Optional Templates)
+Pre-configured batch files are provided as templates:
+- `Clinical-Note-Generator/start_fastapi_server.bat` - Starts FastAPI with basic settings
+- `Clinical-Note-Generator/start_fastapi_server_external.bat` - With external service env vars
+- `PCHost/New_Main_Server.bat` - Starts PCHost with port checking
+- `RAG/start_rag_service.bat` - Starts RAG service
+
+**Note**: These are templates. Experienced users typically run services directly:
+```powershell
+# FastAPI: python -m uvicorn server.app:app --host 0.0.0.0 --port 7860
+# PCHost: node server.js
+# RAG: python -m uvicorn query_api:app --host 0.0.0.0 --port 8000
+```
 
 ### Linux/macOS (systemd)
 
