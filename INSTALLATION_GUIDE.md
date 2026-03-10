@@ -277,6 +277,69 @@ The RAG service will start with an empty database. You can:
 2. Use external RAG service instead
 3. Run without RAG functionality (basic note generation only)
 
+#### RAG Weekly Update Pipeline (Automatic Updates)
+
+The RAG system includes an automated weekly pipeline that:
+1. Fetches new clinical guidelines and research
+2. Processes and chunks documents
+3. Creates embeddings with Jina v5 Nano
+4. Updates the ChromaDB index
+5. Generates summaries for the UI
+
+**Windows Setup (Task Scheduler):**
+```powershell
+# 1. Test the pipeline manually first
+cd RAG
+.\scripts\weekly_run.cmd --DaysBack 7
+
+# 2. Create scheduled task (runs every Sunday at 2 AM)
+schtasks /create /tn "RAG-Weekly-Update" /tr "powershell -File 'C:\RAG\scripts\weekly_run.ps1'" /sc weekly /d SUN /st 02:00 /ru SYSTEM
+
+# 3. Monitor logs (stored in RAG\runs\YYYYMMDD_HHMMSS\)
+```
+
+**Linux Setup (cron):**
+```bash
+# 1. Test the pipeline manually first
+cd RAG
+bash scripts/weekly_run.sh 7 30 30 8
+
+# 2. Add to crontab (runs every Sunday at 2 AM)
+crontab -e
+# Add line:
+0 2 * * 0 cd /opt/cng/RAG && bash scripts/weekly_run.sh 7 30 30 8 >> /var/log/rag-weekly.log 2>&1
+
+# 3. Alternative: systemd service (recommended for production)
+# See Appendix D: Linux Service Files
+```
+
+**Pipeline Steps:**
+1. **Fetch**: Retrieves new documents from configured sources
+2. **Process**: Cleans and normalizes clinical text
+3. **Chunk**: Splits documents into searchable chunks
+4. **Embed**: Creates Jina v5 embeddings (512-dim Matryoshka)
+5. **Update**: Ingests into ChromaDB with deduplication
+6. **Summarize**: Generates UI-friendly update summaries
+
+**Configuration:**
+- Edit `RAG/sources_config.yaml` to customize data sources
+- Adjust `--DaysBack` parameter to control update window
+- Monitor `RAG/fetch_log.jsonl` for pipeline history
+
+**Troubleshooting:**
+```bash
+# Check if pipeline ran successfully
+curl http://localhost:7860/rag/weekly_summary
+
+# View recent updates
+curl http://localhost:7860/rag/recent_updates
+
+# Manual pipeline run with verbose logging
+cd RAG
+python -m uvicorn query_api:app --port 8007 &
+python scripts/weekly_run.ps1 -DaysBack 7 -Verbose
+```
+
 #### External RAG
 Update `config/config.json` to point to your RAG endpoint:
 ```json
@@ -661,6 +724,83 @@ black Clinical-Note-Generator/server/
 - Monitor GPU memory usage with `nvidia-smi`
 - Consider using `start_fastapi_server_external.bat` for external services
 - Enable response compression in PCHost config
+
+### D. Linux Service Files
+
+**RAG Service (systemd) - `/etc/systemd/system/rag.service`:**
+```ini
+[Unit]
+Description=RAG Service (Clinical Note Generator)
+After=network.target
+
+[Service]
+Type=simple
+User=raguser
+Group=raguser
+WorkingDirectory=/opt/cng/RAG
+Environment="PATH=/opt/cng/RAG/.venv/bin"
+ExecStart=/opt/cng/RAG/.venv/bin/python -m uvicorn query_api:app --host 0.0.0.0 --port 8007
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**RAG Weekly Update (systemd timer) - `/etc/systemd/system/rag-weekly.service`:**
+```ini
+[Unit]
+Description=RAG Weekly Update
+After=network.target
+
+[Service]
+Type=oneshot
+User=raguser
+Group=raguser
+WorkingDirectory=/opt/cng/RAG
+Environment="PATH=/opt/cng/RAG/.venv/bin"
+ExecStart=/opt/cng/RAG/.venv/bin/python -c "import sys; sys.path.insert(0, '.'); import scripts.weekly_run as wr; wr.main(['--days', '7'])"
+StandardOutput=journal
+StandardError=journal
+```
+
+**RAG Weekly Update Timer - `/etc/systemd/system/rag-weekly.timer`:**
+```ini
+[Unit]
+Description=Run RAG weekly update every Sunday at 2 AM
+Requires=rag-weekly.service
+
+[Timer]
+OnCalendar=Sun *-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+
+**Setup Commands:**
+```bash
+# Create service user
+sudo useradd -r -s /bin/false raguser
+sudo chown -R raguser:raguser /opt/cng/RAG
+
+# Install services
+sudo cp rag.service /etc/systemd/system/
+sudo cp rag-weekly.service /etc/systemd/system/
+sudo cp rag-weekly.timer /etc/systemd/system/
+
+# Enable and start
+sudo systemctl daemon-reload
+sudo systemctl enable rag.service rag-weekly.timer
+sudo systemctl start rag.service
+sudo systemctl start rag-weekly.timer
+
+# Check status
+sudo systemctl status rag.service
+sudo systemctl list-timers --all
+```
 
 ---
 

@@ -1,0 +1,16 @@
+[#] /etc/systemd/system/ragapi.service
+[Unit]
+Description=RAG Query API (uvicorn)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/islameissa/projects/RAG
+ExecStart=/home/islameissa/projects/RAG/.venv/bin/uvicorn query_api:app --host 0.0.0.0 --port 8007
+Restart=always
+User=islameissa
+Group=islameissa
+
+[Install]
+WantedBy=multi-user.target
