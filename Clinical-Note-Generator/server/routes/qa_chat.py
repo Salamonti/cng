@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 
 from server.core.security import decode_access_token
 from server.services.note_generator_clean import get_simple_note_generator
-from server.services.qa_deid import deidentify_text
+from server.core.deid.v1 import deidentify_text as _deid_v1
 from server.services.qa_web_search import searx_search
 from server.services.rag_http_client import RAGHttpClient
 
@@ -112,7 +112,9 @@ async def qa_chat(req: QAChatRequest, creds: Optional[HTTPAuthorizationCredentia
     if not user_id:
         raise HTTPException(status_code=401, detail="Invalid token subject")
 
-    deid_q, counts = deidentify_text(req.message)
+    _deid_result = _deid_v1(req.message)
+    deid_q = _deid_result["text"]
+    counts = _deid_result["redaction_counts"]
     state_key = (user_id, req.session_id)
     state = _QA_STATE.get(state_key) or {"summary": "", "turns": []}
 

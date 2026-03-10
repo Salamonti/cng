@@ -97,7 +97,7 @@ from server.routes.qa_vision import router as qa_vision_router  # noqa: E402
 from server.routes.queue import router as queue_router  # noqa: E402
 from server.routes.version import router as version_router  # noqa: E402
 #from server.routes.services import router as services_router # noqa: E402
-from server.auth import require_api_bearer  # noqa: E402
+from server.core.dependencies import require_api_bearer  # noqa: E402
 from server.core.db import init_db  # noqa: E402
 
 

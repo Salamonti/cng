@@ -11,7 +11,6 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, Field
 
 from server.services.vision_qa_client import VisionQAEngine
-from server.services.qa_deid import deidentify_text
 from server.core.security import decode_access_token
 
 router = APIRouter(prefix="/qa", tags=["qa-vision"])

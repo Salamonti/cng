@@ -12,7 +12,7 @@ from fastapi import APIRouter, HTTPException, Request, Depends
 from fastapi.responses import PlainTextResponse, JSONResponse
 import aiohttp
 
-from server.auth import require_api_bearer
+from server.core.dependencies import require_api_bearer
 
 router = APIRouter()
 
