@@ -1,7 +1,7 @@
 {
   "__section_auth__": "AUTH",
   "admin_api_key": "SET_IN_ENV_ADMIN_API_KEY",
-  "auth_database_url": "sqlite:///C:/Clinical-Note-Generator/data/user_data.sqlite",
+  "auth_database_url": "sqlite:///./data/user_data.sqlite",
   "jwt_secret": "SET_IN_ENV_JWT_SECRET",
   "jwt_refresh_secret": "SET_IN_ENV_JWT_REFRESH_SECRET",
   "auth_access_token_exp_minutes": 600,
