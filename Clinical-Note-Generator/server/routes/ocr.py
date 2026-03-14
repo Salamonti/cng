@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\ocr.py
+# server/routes/ocr.py
 import io
 import os
 import time

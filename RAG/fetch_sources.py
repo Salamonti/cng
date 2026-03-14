@@ -1,4 +1,4 @@
-# C:\RAG\fetch_sources.py
+# fetch_sources.py
 """
 fetch_sources.py
 

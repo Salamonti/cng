@@ -1,4 +1,4 @@
-# C:\RAG\scripts\weekly_run.ps1
+# weekly_run.ps1
 # Runs the full RAG pipeline weekly (or on demand) on Windows.
 # Steps: fetch -> process -> chunk -> embed -> update_index (ingest+prune+snapshot)
 param(

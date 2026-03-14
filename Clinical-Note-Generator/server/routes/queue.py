@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\queue.py
+# server/routes/queue.py
 import io
 import os
 import shutil

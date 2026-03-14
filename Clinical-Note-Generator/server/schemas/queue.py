@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\schemas\queue.py
+# server/schemas/queue.py
 from datetime import datetime
 from typing import Optional
 from uuid import UUID

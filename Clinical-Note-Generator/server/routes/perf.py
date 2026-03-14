@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\perf.py
+# server/routes/perf.py
 import time
 import json
 from pathlib import Path

@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\scripts\create_admin.py
+# scripts/create_admin.py
 import getpass
 import sys
 import uuid

@@ -1,4 +1,4 @@
-# C:\RAG\update_index.py
+# update_index.py
 #!/usr/bin/env python3
 """
 update_index.py

@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\services\ocr_llm_client.py
+# server/services/ocr_llm_client.py
 import base64
 import os
 import re

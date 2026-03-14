@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\services\asr_whisperx.py
+# server/services/asr_whisperx.py
 import gc
 import json
 import os

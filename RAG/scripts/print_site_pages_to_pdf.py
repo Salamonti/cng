@@ -1,4 +1,4 @@
-# C:\RAG\scripts\print_site_pages_to_pdf.py
+# scripts/print_site_pages_to_pdf.py
 #!/usr/bin/env python3
 """
 Print guideline web pages to PDF via headless Chromium (Playwright).

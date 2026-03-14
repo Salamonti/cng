@@ -1,4 +1,4 @@
-# C:\RAG\sources_config.py
+# sources_config.py
 """
 RAG Pipeline: Medical Sources and Filters Config
 

@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\models\refresh_token.py
+# server/models/refresh_token.py
 from __future__ import annotations
 
 import uuid

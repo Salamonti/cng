@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\core\config.py
+# server/core/config.py
 import json
 import os
 from functools import lru_cache

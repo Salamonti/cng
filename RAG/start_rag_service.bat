@@ -1,4 +1,4 @@
-REM C:\RAG\start_rag_service.bat
+REM start_rag_service.bat
 @echo off
 echo ========================================
 echo Starting RAG Service

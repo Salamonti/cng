@@ -1,4 +1,4 @@
-# C:\RAG\scripts\process_spl_drugs.py
+# scripts/process_spl_drugs.py
 """
 Process FDA Structured Product Label (SPL) XML files for drug information.
 

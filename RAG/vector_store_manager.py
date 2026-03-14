@@ -1,4 +1,4 @@
-# C:\RAG\vector_store_manager.py
+# vector_store_manager.py
 #!/usr/bin/env python3
 """
 vector_store_manager.py

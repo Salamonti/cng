@@ -1,4 +1,4 @@
-# C:\RAG\query_api.py
+# query_api.py
 #!/usr/bin/env python3
 """
 query_api.py

@@ -1,4 +1,4 @@
-# C:\RAG\utils_meta.py
+# utils_meta.py
 import re
 # utils_meta.py
 from collections import defaultdict

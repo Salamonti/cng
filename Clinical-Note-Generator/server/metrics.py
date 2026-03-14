@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\metrics.py
+# server/metrics.py
 import csv
 import os
 import statistics

@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\services\rag_http_client.py
+# server/services/rag_http_client.py
 import aiohttp
 import asyncio
 import json

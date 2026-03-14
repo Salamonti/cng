@@ -1,4 +1,4 @@
-# C:\RAG\bm25_index.py
+# bm25_index.py
 # bm25_index.py
 import json
 import os

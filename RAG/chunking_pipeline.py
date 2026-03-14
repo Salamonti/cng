@@ -1,4 +1,4 @@
-# C:\RAG\chunking_pipeline.py
+# chunking_pipeline.py
 #!/usr/bin/env python3
 """
 Chunking pipeline for the medical RAG project.

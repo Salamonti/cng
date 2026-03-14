@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\asr.py
+# server/routes/asr.py
 from typing import Dict, Optional, Any, cast, List
 import os
 import time
@@ -12,7 +12,7 @@ from fastapi import APIRouter, HTTPException, Request, Depends
 from fastapi.responses import PlainTextResponse, JSONResponse
 import aiohttp
 
-from server.auth import require_api_bearer
+from server.core.dependencies import require_api_bearer
 
 router = APIRouter()
 

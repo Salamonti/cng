@@ -1,4 +1,4 @@
-# C:\RAG\chunker.py
+# chunker.py
 from typing import List, Dict
 import re
 import os  # noqa: F401

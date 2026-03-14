@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\schemas\auth.py
+# server/schemas/auth.py
 from datetime import datetime
 from typing import Optional
 

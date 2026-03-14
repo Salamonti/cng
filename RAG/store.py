@@ -1,4 +1,4 @@
-# C:\RAG\store.py
+# store.py
 import os
 import threading
 import chromadb

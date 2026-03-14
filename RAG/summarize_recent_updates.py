@@ -1,4 +1,4 @@
-# C:\RAG\summarize_recent_updates.py
+# summarize_recent_updates.py
 import argparse
 import json
 import sys

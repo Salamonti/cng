@@ -1,4 +1,4 @@
-# C:\RAG\scripts\fetch_aasm_pdfs.py
+# scripts/fetch_aasm_pdfs.py
 #!/usr/bin/env python3
 """
 Fetch guideline PDFs from AASM practice guidelines page into ./local_guidelines.

@@ -1,4 +1,4 @@
-# C:\RAG\pmc_fetcher.py
+# pmc_fetcher.py
 """
 pmc_fetcher.py
 

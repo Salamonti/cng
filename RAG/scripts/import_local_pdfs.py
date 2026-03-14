@@ -1,4 +1,4 @@
-# C:\RAG\scripts\import_local_pdfs.py
+# scripts/import_local_pdfs.py
 #!/usr/bin/env python3
 """
 scripts/import_local_pdfs.py

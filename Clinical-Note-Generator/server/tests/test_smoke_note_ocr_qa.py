@@ -26,7 +26,7 @@ async def _fake_web_search(_question, limit=6):
 
 def test_smoke_note_ocr_qa(client, monkeypatch):
     from server.app import app
-    from server.auth import require_api_bearer
+    from server.core.dependencies import require_api_bearer
     from server.core.security import create_access_token
     import server.routes.notes as notes_routes
     import server.routes.ocr as ocr_routes

@@ -1,27 +1,24 @@
-# --- Python & Environment Specifics ---
-# Ignores .venv and pycache in any folder
+# === Python & Environment ===
 **/.venv/
 **/__pycache__/
 **/*.pyc
-ragvenv/
-**/__init__.py
-.gitignore
+.env
 
-# --- Project Specific Ignores ---
-
-# Clinical-Note-Generator
+# === Clinical-Note-Generator ===
 Clinical-Note-Generator/.venv/
+Clinical-Note-Generator/cenv/
 Clinical-Note-Generator/models/
 Clinical-Note-Generator/executables/
 Clinical-Note-Generator/server/temp-audio/
 Clinical-Note-Generator/temp-audio/
 Clinical-Note-Generator/server/logs/
-Clinical-Note-Generator/docs
+Clinical-Note-Generator/data/
+Clinical-Note-Generator/.pytest_cache/
 
-# PCHost
+# === PCHost ===
 PCHost/node_modules/
 
-# RAG
+# === RAG ===
 RAG/models/
 RAG/raw_docs/
 RAG/runs/
@@ -35,33 +32,24 @@ RAG/embeddings/
 RAG/logs/
 RAG/manual_ingest/
 RAG/ragvenv/
-RAG/runs/
-RAG/tmp_guidelines_chunk.txt/
-RAG/start_all.bat/
-RAG/start_fastapi.bat/
-RAG/start_llama.bat/
-RAG/scripts/weekly_run.sh/
-RAG/chroma_store/chroma.sqlite3
 RAG/chroma_store/
+RAG/fetch_log.jsonl
+RAG/tmp_guidelines_chunk.txt
 
-
-# --- General System & Tools ---
-.env
+# === General ===
 .vscode/
 *.log
 *.tmp
 *.code-workspace
 *.wav
-*.png
-*.jsonl
-*.txt
-*.md
-*.csv
-Clinical-Note-Generator/server/logs/cases.json
-Clinical-Note-Generator/server/logs/cases_dedup.json
-Clinical-Note-Generator/server/logs/cases_ultimed.json
+.pytest_cache/
 
-# --- External Tools & Cache (if they exist inside your project folders) ---
+# Local scratch / patches / phase prompts
+patches/
+phase*_prompt.txt
+phase*_spec.md
+
+# === External tools & cache ===
 unsloth_compiled_cache/
 xformers/
 vcpkg/

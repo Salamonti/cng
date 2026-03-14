@@ -1,4 +1,4 @@
-# C:\RAG\scripts\import_dpd.py
+# scripts/import_dpd.py
 #!/usr/bin/env python3
 """
 End-to-end importer for Health Canada DPD tab/CSV files, mirroring import_local_pdfs.py

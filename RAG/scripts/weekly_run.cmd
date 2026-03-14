@@ -1,4 +1,4 @@
-REM C:\RAG\scripts\weekly_run.cmd
+REM weekly_run.cmd
 @echo off
 setlocal
 set SCRIPT_DIR=%~dp0

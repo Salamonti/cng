@@ -1,4 +1,4 @@
-# C:\RAG\composer.py
+# composer.py
 """
 composer.py — richer consult comment using multiple RAG hits
 Drop-in replacement for your consult-comment builder. This keeps things

@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\admin_users.py
+# server/routes/admin_users.py
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, status

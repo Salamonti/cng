@@ -29,7 +29,11 @@ use_micro_retry: false
 stale_days_threshold: 365
 
 # model
-embedding_model: "BAAI/bge-small-en-v1.5"
+embedding_model: "jinaai/jina-embeddings-v5-text-nano"
+# Jina v5 supports Matryoshka embeddings: 768 (full), 512, 256, 128, 64, 32
+# To enable Matryoshka truncation, set env var EMBEDDER_DIM=512 (or 256, 128...)
+# Leave unset or 0 to use full native dimension (768)
+# IMPORTANT: All embeddings (indexing + queries) must use the same dimension
 
 # ranking and context tuning
 hybrid_lambda: 0.10

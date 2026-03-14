@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\core\db.py
+# server/core/db.py
 from sqlalchemy.pool import StaticPool
 from sqlmodel import SQLModel, Session, create_engine
 

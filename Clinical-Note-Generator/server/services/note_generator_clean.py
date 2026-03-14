@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\services\note_generator_clean.py
+# server/services/note_generator_clean.py
 import asyncio
 import aiohttp
 import json

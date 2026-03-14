@@ -1,4 +1,4 @@
-# C:\RAG\log_utils.py
+# log_utils.py
 """
 Helper utilities for maintaining fetch_log.jsonl.
 

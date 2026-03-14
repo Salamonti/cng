@@ -1,4 +1,4 @@
-# C:\RAG\retriever.py
+# retriever.py
 # retriever.py
 from collections import OrderedDict
 from typing import List, Dict, Any, Optional, Tuple

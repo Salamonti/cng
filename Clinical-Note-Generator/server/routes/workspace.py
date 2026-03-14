@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\workspace.py
+# server/routes/workspace.py
 from datetime import datetime
 import copy
 

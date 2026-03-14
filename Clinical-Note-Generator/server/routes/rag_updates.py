@@ -1,4 +1,4 @@
-# C:\Clinical-Note-Generator\server\routes\rag_updates.py
+# server/routes/rag_updates.py
 from __future__ import annotations
 
 import json

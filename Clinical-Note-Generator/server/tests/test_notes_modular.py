@@ -24,6 +24,10 @@ def _clear_all():
 def test_generation_meta_with_ttl(client, monkeypatch):
     import server.routes.notes as notes_routes
     from server.core.stores import ttl_store as ttl_mod
+    from server.app import app
+    from server.core.dependencies import require_api_bearer
+
+    app.dependency_overrides[require_api_bearer] = lambda: True
 
     _clear_all()
     now = [1000.0]
@@ -53,9 +57,13 @@ def test_generation_meta_with_ttl(client, monkeypatch):
 
 def test_consult_comment_pipeline_modular(client, monkeypatch):
     import server.routes.notes as notes_routes
+    from server.app import app
+    from server.core.dependencies import require_api_bearer
+
+    app.dependency_overrides[require_api_bearer] = lambda: True
 
     _clear_all()
-    _generation_cache["g-consult"] = {"prompt": "p", "output": "note output"}
+    notes_routes._generation_cache["g-consult"] = {"prompt": "p", "output": "note output"}
 
     called = {"scheduled": False}
 
@@ -74,9 +82,13 @@ def test_consult_comment_pipeline_modular(client, monkeypatch):
 
 def test_order_request_pipeline_modular(client, monkeypatch):
     import server.routes.notes as notes_routes
+    from server.app import app
+    from server.core.dependencies import require_api_bearer
+
+    app.dependency_overrides[require_api_bearer] = lambda: True
 
     _clear_all()
-    _generation_cache["g-order"] = {"prompt": "p", "output": "note output"}
+    notes_routes._generation_cache["g-order"] = {"prompt": "p", "output": "note output"}
 
     called = {"scheduled": False}
 
@@ -94,6 +106,11 @@ def test_order_request_pipeline_modular(client, monkeypatch):
 
 
 def test_prompt_builder_modular(client):
+    from server.app import app
+    from server.core.dependencies import require_api_bearer
+
+    app.dependency_overrides[require_api_bearer] = lambda: True
+
     resp = client.get("/api/note_prompts")
     assert resp.status_code == 200
     body = resp.json()

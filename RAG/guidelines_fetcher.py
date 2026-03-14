@@ -1,4 +1,4 @@
-# C:\RAG\guidelines_fetcher.py
+# guidelines_fetcher.py
 # guidelines_fetcher.py
 # Full-text fetcher for open-access clinical practice guidelines
 # - Crawls each society index you listed
