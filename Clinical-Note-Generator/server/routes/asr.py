@@ -39,8 +39,9 @@ def _whispercpp_no_speech_thold() -> str:
     return (os.environ.get("ASR_WHISPERCPP_NO_SPEECH_THOLD") or "1.0").strip() or "1.0"
 
 def _normalize_to_wav_enabled() -> bool:
-    # Default OFF: whisper.cpp handles webm/mp3 natively; avoid unnecessary re-encoding side-effects.
-    val = (os.environ.get("ASR_NORMALIZE_TO_WAV") or "0").strip().lower()
+    # Default ON: whisper.cpp's built-in decoder often fails on browser-recorded
+    # webm/opus blobs.  ffmpeg normalization to 16 kHz mono WAV is the safest path.
+    val = (os.environ.get("ASR_NORMALIZE_TO_WAV") or "1").strip().lower()
     return val not in {"0", "false", "no", "off"}
 
 _primary_down_until = 0.0
