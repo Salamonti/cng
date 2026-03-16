@@ -1,6 +1,6 @@
 // C:\PCHost\web\service_worker.js
 // service_worker.js - PWA caching for Clinical Note Generator
-const CACHE_NAME = 'clinical-notes-ocr-v14'; // Increment version to force update
+const CACHE_NAME = 'clinical-notes-ocr-v15'; // Increment version to force update
 const PRECACHE_URLS = [];
 const NEVER_CACHE = [
   '/static/index.html',
@@ -9,6 +9,8 @@ const NEVER_CACHE = [
   '/index111.html',
   '/auth_workspace.js',        // CRITICAL: Never cache auth file
   '/static/auth_workspace.js', // CRITICAL: Never cache auth file
+  '/universal_audio_handler.js',        // Never cache - must always load fresh
+  '/static/universal_audio_handler.js', // Never cache - must always load fresh
 ];
 
 self.addEventListener('install', (event) => {
