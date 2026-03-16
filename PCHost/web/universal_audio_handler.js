@@ -195,123 +195,18 @@ class UniversalAudioHandler {
         return { available: true, method: 'media_recorder' };
     }
 
-    // Start speech recognition - chunked HTTP progressive mode (no WebSocket)
+    // Start speech recognition - temporarily use reliable full-upload mode.
+    // The experimental chunked/streaming path caused invalid audio blobs after merge.
     async startSpeechRecognition() {
-        console.log('[AudioHandler] Using chunked HTTP ASR mode');
-
-        try {
-            this.shouldKeepListening = true;
-            this.isListening = true;
-            this.dictationChunks = [];
-            this._chunkWindow = [];
-            this._chunkTick = 0;
-            this._chunkFailed = false;
-            this._chunkDisabled = false;
-
-            try { if ('wakeLock' in navigator) { this._requestWakeLock && this._requestWakeLock(); } } catch (e) {}
-            this._asrStatus('chunking', 'Live chunk transcription active');
-
-            const stream = await navigator.mediaDevices.getUserMedia({
-                audio: {
-                    echoCancellation: true,
-                    noiseSuppression: true,
-                    sampleRate: 16000
-                }
-            });
-            this.liveStream = stream;
-
-            let options = { mimeType: 'audio/webm' };
-            if (!MediaRecorder.isTypeSupported('audio/webm')) {
-                if (MediaRecorder.isTypeSupported('audio/wav')) options = { mimeType: 'audio/wav' };
-                else options = {};
-            }
-
-            this.dictationRecorder = new MediaRecorder(stream, options);
-            const CHUNK_SLICE_MS = 3000;      // recorder cadence
-            const CHUNK_WINDOW_PARTS = 2;     // 6s total
-            const CHUNK_STEP_PARTS = 2;       // 6s step => 0s overlap
-
-            this.dictationRecorder.ondataavailable = async (event) => {
-                if (!event || event.data.size <= 0) return;
-                this.dictationChunks.push(event.data);
-                this._chunkWindow.push(event.data);
-                if (this._chunkWindow.length > CHUNK_WINDOW_PARTS) this._chunkWindow.shift();
-                this._chunkTick += 1;
-
-                // Upload every 8s once we have enough context (10s rolling window)
-                if (!this._chunkDisabled && this._chunkWindow.length === CHUNK_WINDOW_PARTS && (this._chunkTick % CHUNK_STEP_PARTS === 0)) {
-                    const outType = this.dictationRecorder.mimeType || event.data.type || 'audio/webm';
-                    const ext = this._extensionFromMime(outType);
-                    const blob = new Blob(this._chunkWindow, { type: outType });
-                    const file = new File([blob], `dictation_chunk_${Date.now()}.${ext}`, { type: outType });
-                    if (this.onAudioFileCallback) {
-                        const ok = await this.onAudioFileCallback(file, { chunkMode: true });
-                        if (ok === false) {
-                            this._chunkFailed = true;
-                            this._chunkDisabled = true;
-                            this._asrStatus('fallback', 'Chunk failed, switching to full-upload mode');
-                        }
-                    }
-                }
-            };
-
-            this.dictationRecorder.start(CHUNK_SLICE_MS);
-            this.onSpeechStart();
-        } catch (error) {
-            console.error('Failed to start chunked speech recognition:', error);
-            this.isListening = false;
-            throw error;
-        }
+        console.log('[AudioHandler] Using fallback full-upload ASR mode');
+        this._asrStatus('recording', 'Recording locally, will upload on stop');
+        return this.startAudioRecording();
     }
 
     // Stop speech recognition
     async stopSpeechRecognition() {
-        this.shouldKeepListening = false;
-        this.isListening = false;
-
-        if (this.dictationRecorder && this.dictationRecorder.state !== 'inactive') {
-            this.dictationRecorder.stop();
-            await new Promise(resolve => {
-                this.dictationRecorder.onstop = async () => {
-                    // Short stop delay helps MediaRecorder finalize last opus packet boundary.
-                    await new Promise(r => setTimeout(r, 250));
-
-                    if (this._chunkFailed) {
-                        // Fallback mode: upload full local recording once (old behavior).
-                        if (this.dictationChunks && this.dictationChunks.length > 0) {
-                            const outType = this.dictationRecorder.mimeType || this.dictationChunks[0]?.type || 'audio/webm';
-                            const ext = this._extensionFromMime(outType);
-                            const fullBlob = new Blob(this.dictationChunks, { type: outType });
-                            const fullFile = new File([fullBlob], `dictation_full_${Date.now()}.${ext}`, { type: outType });
-                            if (this.onAudioFileCallback) await this.onAudioFileCallback(fullFile, { chunkMode: false, fullFallback: true });
-                        }
-                    } else {
-                        // Final tail flush only (no full final pass).
-                        if (this._chunkWindow && this._chunkWindow.length > 0) {
-                            const lastPart = this._chunkWindow[this._chunkWindow.length - 1];
-                            const outType = this.dictationRecorder.mimeType || lastPart?.type || 'audio/webm';
-                            const ext = this._extensionFromMime(outType);
-                            const tailFile = new File([lastPart], `dictation_tail_${Date.now()}.${ext}`, { type: outType });
-                            if (this.onAudioFileCallback) await this.onAudioFileCallback(tailFile, { chunkMode: true, finalTail: true });
-                        }
-                    }
-
-                    if (this.dictationRecorder && this.dictationRecorder.stream) {
-                        this.dictationRecorder.stream.getTracks().forEach(track => track.stop());
-                    }
-                    this.dictationChunks = [];
-                    this._chunkWindow = [];
-                    this._chunkTick = 0;
-                    this._chunkFailed = false;
-                    this._chunkDisabled = false;
-                    resolve();
-                };
-            });
-        }
-
-        this._asrStatus('idle', 'Stopped');
-        this.onSpeechStop();
-        try { this._releaseWakeLock && this._releaseWakeLock(); } catch (e) {}
+        this._asrStatus('processing', 'Uploading recorded audio for transcription');
+        return this.stopAudioRecording();
     }
 
     // Start audio recording
@@ -333,16 +228,14 @@ class UniversalAudioHandler {
 
             this.audioChunks = [];
 
-            // Use compatible audio format
-            let options = { mimeType: 'audio/webm' };
-            if (!MediaRecorder.isTypeSupported('audio/webm')) {
-                if (MediaRecorder.isTypeSupported('audio/mp4')) {
-                    options = { mimeType: 'audio/mp4' };
-                } else if (MediaRecorder.isTypeSupported('audio/wav')) {
-                    options = { mimeType: 'audio/wav' };
-                } else {
-                    options = {}; // Use default
-                }
+            // Force WEBM/Opus only. WAV fallback was producing invalid browser-generated files.
+            let options = {};
+            if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+                options = { mimeType: 'audio/webm;codecs=opus' };
+            } else if (MediaRecorder.isTypeSupported('audio/webm')) {
+                options = { mimeType: 'audio/webm' };
+            } else {
+                options = {}; // Final browser fallback only if WEBM is unavailable.
             }
 
             this.mediaRecorder = new MediaRecorder(stream, options);
