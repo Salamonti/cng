@@ -195,18 +195,25 @@ class UniversalAudioHandler {
         return { available: true, method: 'media_recorder' };
     }
 
-    // Start speech recognition - temporarily use reliable full-upload mode.
-    // The experimental chunked/streaming path caused invalid audio blobs after merge.
+    // Start speech recognition - uses reliable full-upload mode.
+    // Records locally, uploads complete audio on stop for server-side transcription.
     async startSpeechRecognition() {
-        console.log('[AudioHandler] Using fallback full-upload ASR mode');
+        console.log('[AudioHandler] Using full-upload ASR mode');
+        this.isListening = true;
         this._asrStatus('recording', 'Recording locally, will upload on stop');
-        return this.startAudioRecording();
+        try {
+            await this.startAudioRecording();
+        } catch (e) {
+            this.isListening = false;
+            throw e;
+        }
     }
 
     // Stop speech recognition
     async stopSpeechRecognition() {
+        this.isListening = false;
         this._asrStatus('processing', 'Uploading recorded audio for transcription');
-        return this.stopAudioRecording();
+        this.stopAudioRecording();
     }
 
     // Start audio recording
