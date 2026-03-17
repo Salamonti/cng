@@ -5,10 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "ssl-setup": "node ssl-setup.js",
-    "generate-ssl": "node generate-ssl-cert.js",
-    "check-ssl": "node ssl-setup.js"
+    "dev": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -122,8 +122,7 @@ if not errorlevel 1 (
 
 if %PORT_IN_USE%==1 (
     echo.
-    echo SOLUTION: Run Kill_Old_Node_Processes.bat to clean up old processes
-    echo           Or manually kill the processes listed above
+    echo SOLUTION: Manually kill the processes listed above
     echo.
     echo Press any key to exit...
     pause >nul

@@ -282,6 +282,7 @@ def llama_status() -> Dict:
             model_info = {"error": "Could not retrieve model info"}
 
     # Check configured model existence and resolved path (without starting server)
+    cfg = _load_cfg()
     configured_model = cfg.get("llm_model", "Unknown")
     import os as _os
     model_exists = _os.path.isabs(configured_model) and _os.path.exists(configured_model)

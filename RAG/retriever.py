@@ -10,7 +10,7 @@ from bm25_index import get_bm25
 from metrics import RequestMetrics, get_current_metrics
 
 MIN_SIM = 0.15
-HYBRID_LAMBDA = 0.20  # 10% lexical, 90% semantic
+HYBRID_LAMBDA = 0.10  # 10% lexical, 90% semantic (matches settings.yaml)
 _RESULT_CACHE: "OrderedDict[Tuple[str, int, int], List[Dict[str, Any]]]" = OrderedDict()
 _CACHE_MAX = 128
 
