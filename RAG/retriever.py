@@ -14,13 +14,6 @@ HYBRID_LAMBDA = 0.20  # 10% lexical, 90% semantic
 _RESULT_CACHE: "OrderedDict[Tuple[str, int, int], List[Dict[str, Any]]]" = OrderedDict()
 _CACHE_MAX = 128
 
-def _cosine(a: np.ndarray, b: np.ndarray) -> float:
-    na = np.linalg.norm(a)
-    nb = np.linalg.norm(b)
-    if na == 0 or nb == 0:
-        return 0.0
-    return float(np.dot(a, b) / (na * nb))
-
 def _measure(name: str, metrics: Optional[RequestMetrics]):
     if metrics:
         return metrics.measure(name)

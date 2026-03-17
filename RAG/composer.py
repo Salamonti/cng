@@ -53,9 +53,6 @@ def build_cited_opinion(query: str, hits: List[Dict[str, Any]]) -> str:
         # Use top 3-5 hits to construct a structured, compact comment
         top = hits[:5]
 
-        # Optional short extracts for potential future UI use (not printed inline)
-        _extracts = [_best_lines(h.get("summary") or h.get("text", ""), 220) for h in top if h.get("text")]
-
         refs = format_references(top)
 
         body: List[str] = [

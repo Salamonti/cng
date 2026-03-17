@@ -127,10 +127,6 @@ def _resolve_llm_model_path(value: str, cfg: Dict) -> Optional[str]:
     return None
 
 
-def _configure_llama_service(cfg: Dict) -> Tuple[bool, str]:
-    """No-op: internal manager mode; skip Windows service configuration."""
-    return True, "skipped"
-
 
 @router.post("/models/select")
 @router.post("/models/select/")
@@ -378,33 +374,6 @@ def llama_status() -> Dict:
         "last_error": last_error,
     }
 
-
-@router.get("/llama/health")
-@router.get("/llama/health/")
-async def llama_health() -> Dict[str, Any]:
-    """Externalized llama-server (no internal manager)."""
-    return {"running": False, "note": "externalized"}
-
-
-@router.post("/llama/start")
-@router.post("/llama/start/")
-async def llama_start() -> Dict[str, Any]:
-    """Start llama-server via internal manager (disabled)."""
-    return {"ok": False, "note": "externalized"}
-
-
-@router.post("/llama/stop")
-@router.post("/llama/stop/")
-async def llama_stop() -> Dict[str, Any]:
-    """Stop llama-server via internal manager (disabled)."""
-    return {"ok": False, "note": "externalized"}
-
-
-@router.post("/llama/restart")
-@router.post("/llama/restart/")
-async def llama_restart() -> Dict[str, Any]:
-    """Restart llama-server via internal manager (disabled)."""
-    return {"ok": False, "note": "externalized"}
 
 
 @router.get("/config")

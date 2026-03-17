@@ -33,8 +33,15 @@ RAG/logs/
 RAG/manual_ingest/
 RAG/ragvenv/
 RAG/chroma_store/
+RAG/chroma_db/
+RAG/archive/
 RAG/fetch_log.jsonl
 RAG/tmp_guidelines_chunk.txt
+
+# === Secrets & Config ===
+Clinical-Note-Generator/config/config.json
+PCHost/config/server_config.json
+certs/
 
 # === General ===
 .vscode/
@@ -43,6 +50,10 @@ RAG/tmp_guidelines_chunk.txt
 *.code-workspace
 *.wav
 .pytest_cache/
+pytest-cache-files-*/
+*.egg-info/
+venv/
+cenv/
 
 # Local scratch / patches / phase prompts
 patches/
