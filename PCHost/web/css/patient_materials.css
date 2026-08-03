@@ -74,6 +74,12 @@
     transform: translateY(-2px);
 }
 
+.pm-category-card:focus-visible {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: var(--dc-focus-ring);
+}
+
 .pm-category-icon {
     font-size: 2rem;
     margin-bottom: 12px;

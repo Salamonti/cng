@@ -4015,6 +4015,7 @@
         .tools-item .tx{display:flex;flex-direction:column;gap:2px;}
         .tools-item .nm{font-weight:700;font-size:.85rem;color:var(--dc-text);}
         .tools-item .ds{font-weight:500;font-size:.72rem;color:var(--dc-text-muted);line-height:1.35;}
+        .tools-item:focus-visible{outline:none;box-shadow:var(--dc-focus-ring);}
 
         @media (max-width: 850px) {
             body{padding-left:0;}
@@ -4033,6 +4034,7 @@
             .mobile-bottom-nav .nav-item .ic{font-size:1.1rem;line-height:1;}
             .mobile-bottom-nav .nav-item.active{color:var(--dc-primary);}
             .mobile-bottom-nav .nav-item.danger{color:var(--dc-record);}
+            .mobile-bottom-nav .nav-item:focus-visible{outline:none;box-shadow:var(--dc-focus-ring);border-radius:6px;}
         }
 
         /* Badge overrides — purple family only */

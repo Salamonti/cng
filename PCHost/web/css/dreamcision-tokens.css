@@ -6,6 +6,7 @@
   --dc-page-elevated: #ffffff;
   --dc-card-border:   #e4ddef;
   --dc-input-border:  #d4cce0;
+  --dc-border:        var(--dc-card-border);
 
   /* ── Brand purple ── */
   --dc-primary:       #7c3aed;
@@ -13,6 +14,7 @@
   --dc-primary-dark:  #4c3370;
   --dc-primary-soft:  #ede9f6;
   --dc-primary-glow:  rgba(124, 58, 237, 0.25);
+  --dc-violet-glow:   var(--dc-primary-glow);
 
   /* ── Semantic (minimal exceptions) ── */
   --dc-record:        #c44d5e;
@@ -23,6 +25,7 @@
   /* ── Text ── */
   --dc-text:          #1a1625;
   --dc-text-muted:    #5c5669;
+  --dc-muted:         #6b5f7a;
   --dc-section-head:  #4c3370;
   --dc-on-dark:       #f0ecf5;
   --dc-on-dark-muted: rgba(240, 236, 245, 0.7);

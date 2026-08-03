@@ -3,7 +3,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- P3-5: user-scalable=no disables pinch-to-zoom -- an accessibility
+         blocker for low-vision users, and inconsistent with every other
+         page in this app (qa.html, admin.html, privacy.html), none of
+         which restrict it. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#130f1a">
     <meta name="description" content="DreamCision AI·SCRIBE — clinical documentation workspace.">
     <title>DreamCision AI&#183;SCRIBE</title>
@@ -648,32 +652,32 @@
 
                 <!-- Category Selection Grid -->
                 <div class="pm-category-grid" id="pmCategoryGrid">
-                    <div class="pm-category-card" data-category="diagnosis">
+                    <div class="pm-category-card" data-category="diagnosis" role="button" tabindex="0">
                         <div class="pm-category-icon">📋</div>
                         <div class="pm-category-title">New Diagnosis Information</div>
                         <div class="pm-category-desc">Reliable information about a newly diagnosed condition</div>
                     </div>
-                    <div class="pm-category-card" data-category="medications">
+                    <div class="pm-category-card" data-category="medications" role="button" tabindex="0">
                         <div class="pm-category-icon">💊</div>
                         <div class="pm-category-title">New Medication Information</div>
                         <div class="pm-category-desc">Full details about newly prescribed medications</div>
                     </div>
-                    <div class="pm-category-card" data-category="issues_plan">
+                    <div class="pm-category-card" data-category="issues_plan" role="button" tabindex="0">
                         <div class="pm-category-icon">📝</div>
                         <div class="pm-category-title">Current Visit Summary</div>
                         <div class="pm-category-desc">Summary of today's visit and plan</div>
                     </div>
-                    <div class="pm-category-card" data-category="diet">
+                    <div class="pm-category-card" data-category="diet" role="button" tabindex="0">
                         <div class="pm-category-icon">🥗</div>
                         <div class="pm-category-title">Diet Plan</div>
                         <div class="pm-category-desc">Personalized dietary recommendations</div>
                     </div>
-                    <div class="pm-category-card" data-category="exercise">
+                    <div class="pm-category-card" data-category="exercise" role="button" tabindex="0">
                         <div class="pm-category-icon">🏃</div>
                         <div class="pm-category-title">Exercise Plan</div>
                         <div class="pm-category-desc">Personalized exercise recommendations</div>
                     </div>
-                    <div class="pm-category-card" data-category="full_report">
+                    <div class="pm-category-card" data-category="full_report" role="button" tabindex="0">
                         <div class="pm-category-icon">📄</div>
                         <div class="pm-category-title">Comprehensive Health Report</div>
                         <div class="pm-category-desc">Comprehensive overview of your overall health and care</div>
@@ -754,11 +758,11 @@
 
     <!-- Mobile Bottom Nav (v5) -->
     <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile navigation">
-        <div class="nav-item active" data-target="chart" onclick="mobileNavGo('chart', this)"><div class="ic">&#x1F4CB;</div>Chart</div>
-        <div class="nav-item" data-target="tools" onclick="openToolsSheet(); mobileNavSetActive(this)"><div class="ic">&#x1F9F0;</div>Tools</div>
-        <div class="nav-item" data-target="note" onclick="mobileNavGo('note', this)"><div class="ic">&#x1F4DD;</div>Note</div>
-        <div class="nav-item" data-target="qa" onclick="openQAPanel(); mobileNavSetActive(this)"><div class="ic">&#x1F4AC;</div>Q&amp;A</div>
-        <div class="nav-item" data-target="encounters" onclick="openEncountersPanel(); mobileNavSetActive(this)"><div class="ic">&#x1F4C2;</div>Encounters</div>
+        <div class="nav-item active" data-target="chart" role="button" tabindex="0" aria-current="true" onclick="mobileNavGo('chart', this)"><div class="ic">&#x1F4CB;</div>Chart</div>
+        <div class="nav-item" data-target="tools" role="button" tabindex="0" onclick="openToolsSheet(); mobileNavSetActive(this)"><div class="ic">&#x1F9F0;</div>Tools</div>
+        <div class="nav-item" data-target="note" role="button" tabindex="0" onclick="mobileNavGo('note', this)"><div class="ic">&#x1F4DD;</div>Note</div>
+        <div class="nav-item" data-target="qa" role="button" tabindex="0" onclick="openQAPanel(); mobileNavSetActive(this)"><div class="ic">&#x1F4AC;</div>Q&amp;A</div>
+        <div class="nav-item" data-target="encounters" role="button" tabindex="0" onclick="openEncountersPanel(); mobileNavSetActive(this)"><div class="ic">&#x1F4C2;</div>Encounters</div>
     </nav>
 
     <!-- Tools Bottom Sheet (mobile) -->
@@ -769,13 +773,13 @@
             <button type="button" onclick="closeToolsSheet()" aria-label="Close">&times;</button>
         </header>
         <div class="tools-grid">
-            <div class="tools-item" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">&#x1F4F7;</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
-            <div class="tools-item" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">&#x1F4C1;</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
-            <div class="tools-item" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">&#x2699;&#xFE0F;</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
-            <div class="tools-item" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">&#x1F6E0;</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
-            <div class="tools-item" onclick="clearQueue(); closeToolsSheet();"><div class="ic">&#x1F6AB;</div><div class="tx"><div class="nm">Clear queue</div><div class="ds">Pending jobs — server and local</div></div></div>
-            <div class="tools-item" onclick="openEncountersPanel(); closeToolsSheet();"><div class="ic">&#x1F4C2;</div><div class="tx"><div class="nm">Encounters</div><div class="ds">Threads — new, switch, rename, delete</div></div></div>
-            <div class="tools-item" onclick="openLiteraturePanel(); closeToolsSheet();"><div class="ic">&#x1F4D6;</div><div class="tx"><div class="nm">Literature</div><div class="ds">Weekly RAG document summaries</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">&#x1F4F7;</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">&#x1F4C1;</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">&#x2699;&#xFE0F;</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">&#x1F6E0;</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="clearQueue(); closeToolsSheet();"><div class="ic">&#x1F6AB;</div><div class="tx"><div class="nm">Clear queue</div><div class="ds">Pending jobs — server and local</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="openEncountersPanel(); closeToolsSheet();"><div class="ic">&#x1F4C2;</div><div class="tx"><div class="nm">Encounters</div><div class="ds">Threads — new, switch, rename, delete</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" onclick="openLiteraturePanel(); closeToolsSheet();"><div class="ic">&#x1F4D6;</div><div class="tx"><div class="nm">Literature</div><div class="ds">Weekly RAG document summaries</div></div></div>
         </div>
     </div>
 

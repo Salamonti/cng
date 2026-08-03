@@ -13,9 +13,26 @@
       }
       function mobileNavSetActive(el) {
         if (!el || el.classList.contains('danger')) return;
-        document.querySelectorAll('#mobileBottomNav .nav-item:not(.danger)').forEach(n => n.classList.remove('active'));
+        document.querySelectorAll('#mobileBottomNav .nav-item:not(.danger)').forEach(n => {
+          n.classList.remove('active');
+          n.removeAttribute('aria-current');
+        });
         el.classList.add('active');
+        el.setAttribute('aria-current', 'true');
       }
+
+      // Bottom nav items, Tools sheet items, and patient-material category
+      // cards are divs with role="button" (their existing layout/markup
+      // isn't valid inside a native <button>), so unlike a real button they
+      // get no built-in Enter/Space activation. Delegate it here instead of
+      // wiring a keydown handler onto every element individually.
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+        const target = e.target.closest('[role="button"][tabindex]');
+        if (!target) return;
+        e.preventDefault();
+        target.click();
+      });
       function mobileNavGo(which, el) {
         try {
           if (el) mobileNavSetActive(el);
