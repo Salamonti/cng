@@ -6,6 +6,8 @@ const NEVER_CACHE = [
   '/static/index111.html',
   '/index.html',
   '/index111.html',
+  '/js/client_error_reporter.js',
+  '/static/js/client_error_reporter.js',
   '/auth_workspace.js',
   '/static/auth_workspace.js',
   '/encounters_ui.js',
