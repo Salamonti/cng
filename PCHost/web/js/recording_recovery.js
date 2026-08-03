@@ -299,6 +299,13 @@
     for (const rid of ids) {
       const assembled = await assembleFile(rid);
       if (!assembled || !assembled.file) continue;
+      // A session with zero chunks (e.g. the tab crashed before the first
+      // 5s timeslice ever fired) still assembles into a valid, truthy File
+      // object -- just an empty one. Uploading it and calling it "recovered"
+      // would tell the doctor something was saved when nothing was.
+      if (!assembled.file.size) {
+        continue;
+      }
       try {
         const res = await uploadRecording({
           file: assembled.file,

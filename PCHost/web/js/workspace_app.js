@@ -3611,11 +3611,16 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 if (!window.RecordingRecovery || typeof window.RecordingRecovery.recoverStoppedToServer !== 'function') return;
                 if (!window.AuthWorkspace || !window.AuthWorkspace.user) return;
                 if (!app || !app.activeEncounterId) return;
-                const AS = window.AsrSettings;
-                const captureMode = AS ? AS.getCaptureMode() : 'batch';
-                if (captureMode === 'chunk') {
-                    return { recovered: 0 };
-                }
+                // Recovery must go by what's actually sitting in IndexedDB, not by
+                // AsrSettings.getCaptureMode() -- that's the CURRENT persisted
+                // localStorage preference, unrelated to what mode was active when
+                // any given orphaned session was recorded. Only universal_audio_handler.js
+                // (batch mode) ever writes to this store; asr_chunk_pipeline.js
+                // (chunk mode) never touches it, so there's no double-recovery risk
+                // either way. Gating on the current mode meant a doctor who crashed
+                // mid-recording in batch mode, then had (or later switched to) 'chunk'
+                // as their default, would silently never get that audio back --
+                // it just sat until TTL cleanup deleted it.
                 await window.RecordingRecovery.cleanupExpired();
                 const res = await window.RecordingRecovery.recoverStoppedToServer({
                     userKey: window.RecordingRecovery.safeUserKey ? window.RecordingRecovery.safeUserKey() : '',
@@ -5106,6 +5111,13 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 showToast('Error', 'Missing auth token', 'error');
                 return;
             }
+            // Tag this poll with the encounter it started for. The 'encounters-refresh'
+            // handler clears window.ragPollInterval on switch, but that only stops the
+            // NEXT tick -- a fetch already in flight at the moment of the switch still
+            // resolves and, without this check, would write a different patient's
+            // evidence comment into the (DOM-id-reused) consultComment/consultRefs
+            // elements the new encounter is now showing.
+            const pollEncounterId = String((app && app.activeEncounterId) || '');
 
             if (window.ragPollInterval) {
                 clearInterval(window.ragPollInterval);
@@ -5151,6 +5163,10 @@ window.WORKSPACE_PAGE_TYPE = 'main';
 
             const poll = setInterval(async () => {
                 tries++;
+                if (String((app && app.activeEncounterId) || '') !== pollEncounterId) {
+                    clearInterval(poll);
+                    return;
+                }
                 try {
                     debugLog(`[RAG] Polling consult comment (attempt ${tries}/${maxRetries})`);
                     const encQs = encounterQueryString();
@@ -5163,6 +5179,13 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                     const r = await apiFetch(path, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
+                    // Re-check after the await: the user may have switched encounters
+                    // while this specific fetch was in flight, past the top-of-tick
+                    // check above.
+                    if (String((app && app.activeEncounterId) || '') !== pollEncounterId) {
+                        clearInterval(poll);
+                        return;
+                    }
 
                     if (r.status === 404) {
                         clearInterval(poll);
@@ -5444,6 +5467,10 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 showToast('Error', 'Missing auth token', 'error');
                 return;
             }
+            // See the matching comment in startRagGeneration: tag this poll with the
+            // encounter it started for so a switch mid-poll can't apply a different
+            // patient's order requests to the currently-shown modal.
+            const pollEncounterId = String((app && app.activeEncounterId) || '');
 
             if (window.orderRequestsPollInterval) {
                 clearInterval(window.orderRequestsPollInterval);
@@ -5466,6 +5493,10 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             let maxRetries = 30; // ~90s at 3s interval
             const poll = setInterval(async () => {
                 tries++;
+                if (String((app && app.activeEncounterId) || '') !== pollEncounterId) {
+                    clearInterval(poll);
+                    return;
+                }
                 try {
                     const encQs = encounterQueryString();
                     let path = `/generation/${genId}/order_requests`;
@@ -5477,6 +5508,12 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                     const r = await apiFetch(path, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
+                    // Re-check after the await -- see the matching comment in
+                    // startRagGeneration's poll.
+                    if (String((app && app.activeEncounterId) || '') !== pollEncounterId) {
+                        clearInterval(poll);
+                        return;
+                    }
                     if (r.ok) {
                         const data = await r.json();
                         if (data.status === 'done') {

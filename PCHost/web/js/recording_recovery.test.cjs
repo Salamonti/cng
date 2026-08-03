@@ -22,14 +22,45 @@
 const assert = require('assert');
 const path = require('path');
 
-function makeFakeIndexedDB({ sessionRows = {}, failPutInStore = null } = {}) {
+// Minimal IDBKeyRange covering exactly what recording_recovery.js's own
+// createIndex/openCursor calls use: .only() (equality, including compound
+// array keys via JSON comparison) and .upperBound() (used by cleanupExpired(),
+// which every recoverStoppedToServer() call runs first).
+class FakeKeyRange {
+    static only(value) { return { type: 'only', value }; }
+    static upperBound(value) { return { type: 'upperBound', value }; }
+}
+global.IDBKeyRange = FakeKeyRange;
+
+// Index definitions actually used by recording_recovery.js's cursor-based
+// reads (see createIndex calls in openDb()): how to derive an index key from
+// a stored row.
+const INDEX_KEY_FNS = {
+    sessions: {
+        by_status: (row) => [row.userKey, row.encounterId, row.status],
+        by_exp: (row) => row.expiresAt,
+    },
+    chunks: {
+        by_rec: (row) => row.recordingId,
+        by_exp: (row) => row.expiresAt,
+    },
+};
+
+function keyMatches(indexKey, range) {
+    if (!range) return true;
+    if (range.type === 'only') return JSON.stringify(indexKey) === JSON.stringify(range.value);
+    if (range.type === 'upperBound') return indexKey !== undefined && indexKey <= range.value;
+    return true;
+}
+
+function makeFakeIndexedDB({ sessionRows = {}, chunkRows = {}, failPutInStore = null } = {}) {
     const stores = {
         sessions: new Map(Object.entries(sessionRows)),
-        chunks: new Map(),
+        chunks: new Map(Object.entries(chunkRows)),
     };
 
     function keyFor(storeName, value) {
-        return storeName === 'sessions' ? value : `${value.recordingId}:${value.seq}`;
+        return storeName === 'sessions' ? value.recordingId || value : `${value.recordingId}:${value.seq}`;
     }
 
     function makeObjectStore(storeName, tx) {
@@ -57,6 +88,39 @@ function makeFakeIndexedDB({ sessionRows = {}, failPutInStore = null } = {}) {
             return req;
         }
 
+        // openCursor() walks matching rows synchronously across ticks, firing
+        // onsuccess once per row (result = cursor) and once more with
+        // result = null at the end -- matching real IDBCursor semantics
+        // closely enough for cur.continue()-driven iteration to work.
+        function issueCursor(indexName, range) {
+            const keyFn = INDEX_KEY_FNS[storeName] && INDEX_KEY_FNS[storeName][indexName];
+            const rows = [...stores[storeName].entries()].filter(([, row]) =>
+                keyMatches(keyFn ? keyFn(row) : undefined, range)
+            );
+            let i = 0;
+            const req = { result: undefined, onsuccess: null, onerror: null };
+            const emit = () => {
+                tx._pending++;
+                Promise.resolve().then(() => {
+                    if (i >= rows.length) {
+                        req.result = null;
+                    } else {
+                        const [primaryKey, value] = rows[i];
+                        req.result = {
+                            primaryKey,
+                            value,
+                            continue: () => { i++; emit(); },
+                            delete: () => { stores[storeName].delete(primaryKey); },
+                        };
+                    }
+                    if (typeof req.onsuccess === 'function') req.onsuccess({ target: req });
+                    tx._settle();
+                });
+            };
+            emit();
+            return req;
+        }
+
         return {
             get(key) {
                 return issue(() => stores[storeName].get(key));
@@ -69,6 +133,9 @@ function makeFakeIndexedDB({ sessionRows = {}, failPutInStore = null } = {}) {
                     stores[storeName].set(keyFor(storeName, value), value);
                     return undefined;
                 });
+            },
+            index(name) {
+                return { openCursor: (range) => issueCursor(name, range) };
             },
         };
     }
@@ -85,11 +152,18 @@ function makeFakeIndexedDB({ sessionRows = {}, failPutInStore = null } = {}) {
         tx._settle = () => {
             tx._pending--;
             if (tx._pending === 0 && !tx._aborted && !tx._completed) {
-                // Defer once more: a chained request issued synchronously inside the
-                // callback we just ran (e.g. put() called from inside get()'s
-                // onsuccess) has already incremented _pending by the time we get
-                // here, so this only fires once nothing further was queued.
-                Promise.resolve().then(() => {
+                // Defer to a macrotask, not another microtask: a chained request
+                // issued synchronously inside the callback we just ran (e.g. put()
+                // called from inside get()'s onsuccess) has already incremented
+                // _pending by the time we get here in the simple cases, but
+                // recoverStoppedToServer's Promise.all(...).then(...) chain needs
+                // several more microtask hops before its value actually lands in
+                // withTx's `out` variable. A single queued microtask here can win
+                // that race and fire oncomplete() (resolving withTx's promise) with
+                // `out` still undefined. setImmediate waits for the whole microtask
+                // queue -- including arbitrarily-chained .then()s -- to drain first,
+                // same as real IndexedDB's actual auto-commit timing.
+                setImmediate(() => {
                     if (tx._pending === 0 && !tx._aborted && !tx._completed) {
                         tx._completed = true;
                         if (typeof tx.oncomplete === 'function') tx.oncomplete();
@@ -171,6 +245,70 @@ async function run() {
         const RecordingRecovery = loadModuleWithFakeIndexedDB(makeFakeIndexedDB({}));
         assert.strictEqual(await RecordingRecovery.appendChunk(null, 0, { size: 1 }), false);
         assert.strictEqual(await RecordingRecovery.appendChunk('rec1', 0, null), false);
+    }
+
+    // 5. P2-6 zero-byte guard: a 'stopped' session with zero chunks (e.g. the
+    //    tab crashed before the first timeslice ever fired) assembles into a
+    //    valid but empty File. recoverStoppedToServer() must not upload it or
+    //    count it as recovered -- that would tell a doctor audio was saved
+    //    when nothing actually was.
+    {
+        const RecordingRecovery = loadModuleWithFakeIndexedDB(
+            makeFakeIndexedDB({
+                sessionRows: {
+                    rec1: {
+                        recordingId: 'rec1',
+                        userKey: 'u1',
+                        encounterId: 'e1',
+                        status: 'stopped',
+                        expiresAt: Date.now() + 100000,
+                        mimeType: 'audio/webm',
+                        fileName: 'rec1.webm',
+                    },
+                },
+                chunkRows: {},
+            })
+        );
+        let uploadCalls = 0;
+        const res = await RecordingRecovery.recoverStoppedToServer({
+            userKey: 'u1',
+            encounterId: 'e1',
+            uploadRecording: async () => { uploadCalls++; return { ok: true, mode: 'server' }; },
+        });
+        assert.strictEqual(uploadCalls, 0, 'expected a zero-byte recording to never be uploaded');
+        assert.strictEqual(res.recovered, 0, 'expected a zero-byte recording to not count as recovered');
+    }
+
+    // 6. Sanity check on the same path: a session WITH real chunk data must
+    //    still be recovered normally (the zero-byte guard must not swallow
+    //    genuine recordings).
+    {
+        const RecordingRecovery = loadModuleWithFakeIndexedDB(
+            makeFakeIndexedDB({
+                sessionRows: {
+                    rec2: {
+                        recordingId: 'rec2',
+                        userKey: 'u1',
+                        encounterId: 'e1',
+                        status: 'stopped',
+                        expiresAt: Date.now() + 100000,
+                        mimeType: 'audio/webm',
+                        fileName: 'rec2.webm',
+                    },
+                },
+                chunkRows: {
+                    'rec2:0': { recordingId: 'rec2', seq: 0, blob: new Blob(['real audio bytes']) },
+                },
+            })
+        );
+        let uploadedSize = null;
+        const res = await RecordingRecovery.recoverStoppedToServer({
+            userKey: 'u1',
+            encounterId: 'e1',
+            uploadRecording: async (data) => { uploadedSize = data.file.size; return { ok: true, mode: 'server' }; },
+        });
+        assert.ok(uploadedSize > 0, 'expected the non-empty recording to be uploaded');
+        assert.strictEqual(res.recovered, 1, 'expected the non-empty recording to count as recovered');
     }
 
     console.log('recording_recovery.test.cjs: all assertions passed');
