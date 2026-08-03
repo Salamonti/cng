@@ -63,6 +63,15 @@ INDEX_PATH = Path("./version_index.json")
 CURRENT_DIR.mkdir(parents=True, exist_ok=True)
 ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 
+#: P3-3: last-resort sanity floor before accepting a hash-different "update"
+#: as real. Deliberately much lower than the 5000-char quality_filter bar
+#: used at fetch time (guideline_sources.py etc.) -- this is a defense-in-
+#: depth net for whatever reaches this shared/generic versioning layer
+#: regardless of which source pipeline produced it, not a duplicate of that
+#: bar. Catches empty scrapes, error pages, and paywall stubs, which are
+#: typically well under a few hundred characters.
+MIN_UPDATE_TEXT_CHARS = 500
+
 # ---------------
 # Utilities
 # ---------------
@@ -189,6 +198,16 @@ def add_or_update_doc(item: Dict[str, Any], idx: Dict[str, IndexEntry], similari
     if existing.hash == h:
         return "unchanged"
 
+    # P3-3: a hash difference alone used to be accepted unconditionally --
+    # ANY change in content, including a paywall stub, an error page, or a
+    # truncated/empty scrape (all of which naturally hash differently from
+    # real guideline text), silently replaced a good, previously-fetched
+    # guideline with the bad new one. Reject the "update" and keep the
+    # existing version when the new content looks like exactly that.
+    new_text = str(item.get("text", "") or "")
+    if len(new_text.strip()) < MIN_UPDATE_TEXT_CHARS:
+        return "rejected_low_quality"
+
     # Different: archive the old file, write the new one
     if not simulate:
         # Archive old
@@ -271,7 +290,7 @@ def main():
     idx = load_index()
 
     # Apply new docs
-    added = updated = unchanged = 0
+    added = updated = unchanged = rejected_low_quality = 0
     applied = 0
     for doc in new_docs:
         action = add_or_update_doc(doc, idx, similarity=args.similarity, simulate=args.simulate)
@@ -281,6 +300,11 @@ def main():
         elif action == "updated":
             updated += 1
             applied += 1
+        elif action == "rejected_low_quality":
+            # Not "unchanged" -- surface this so a source silently degrading
+            # (every re-fetch producing paywall stubs, say) is visible in
+            # the report instead of blending into normal steady-state noise.
+            rejected_low_quality += 1
         else:
             unchanged += 1
 
@@ -301,6 +325,7 @@ def main():
         "added": added,
         "updated": updated,
         "unchanged": unchanged,
+        "rejected_low_quality": rejected_low_quality,
         "deleted_by_age": len(deleted_keys),
         "current_total": len(idx),
         "index_path": str(INDEX_PATH),

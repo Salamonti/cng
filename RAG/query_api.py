@@ -430,6 +430,29 @@ def hybrid_search_filtered(
     else:
         out.sort(key=lambda r: (-r["score"], r.get("id") or ""))
 
+    # P3-3: minimum relevance floor, applied before top_k truncation so a
+    # query with few genuinely relevant chunks doesn't get backfilled with
+    # near-zero-score noise just to hit a target count. Deliberately
+    # conservative (0.1) since final_score already blends similarity, BM25,
+    # temporal decay, and small tier/authority boosts -- this is a floor
+    # against near-irrelevant matches, not a quality gate that needs
+    # careful per-corpus tuning.
+    min_relevance = float(cfg.get("min_relevance_score", 0.1))
+    if min_relevance > 0:
+        out = [h for h in out if h.get("score", 0.0) >= min_relevance]
+
+    # P3-3: this dedup used to run in query() AFTER truncating to top_k --
+    # dense_n above retrieves ~4x top_k candidates specifically so there's
+    # room to dedupe from, but capping per-document chunks after the
+    # truncation instead of before it meant a query whose top_k results
+    # happened to cluster on a couple of documents would come back with
+    # FEWER than top_k results overall, silently dropping other genuinely
+    # relevant documents that were sitting just past the truncation cut.
+    # Applying it here, before truncation, lets dedup make room and get
+    # backfilled from the larger candidate pool.
+    per_doc = int(cfg.get("max_chunks_per_doc", 2))
+    out = dedupe_and_normalize_hits(out, max_per_doc=per_doc)
+
     top = out[: req.top_k]
     enriched: List[Dict[str, Any]] = []
     SUMMARIZE_THRESHOLD = int(cfg.get("summarize_threshold_words", 700))
@@ -623,6 +646,11 @@ def query(req: QueryRequest) -> QueryResponse:
                     }
                 )
 
+            # P3-3: the actual per-document cap now happens inside
+            # hybrid_search_filtered(), before its top_k truncation (see the
+            # comment there) -- hits here already satisfies max_per_doc, so
+            # this call is a no-op for dedup specifically. Kept for its
+            # other job, normalize_whitespace() on text/summary.
             per_doc = int(cfg.get("max_chunks_per_doc", 2))
             norm_hits = dedupe_and_normalize_hits(norm_hits, max_per_doc=per_doc)
             _store_cached_hits(cache_key, norm_hits)

@@ -68,12 +68,28 @@ GRADE_PATTERNS = [
 
 
 def extract_grade(text: str) -> Tuple[Optional[str], Optional[str]]:
-    """Extract GRADE evidence level from text. Returns (strength, quality) or (None, None)."""
+    """Extract GRADE evidence level from text. Returns (strength, quality) or (None, None).
+
+    P3-3: this used to return the first PATTERN in GRADE_PATTERNS to match
+    anywhere in the chunk -- i.e. priority by list order, not by where the
+    match actually sits in the text. A 100-300 word chunk spanning two
+    distinct recommendations ("...grade C evidence for X. We strongly
+    recommend Y based on high-quality data...") would get whichever pattern
+    happens to rank higher in the list, regardless of which recommendation
+    it's actually describing. Now scores every pattern that matches and
+    keeps the one appearing EARLIEST in the text -- the nearest match to
+    the start of the chunk, which is the best available proxy for "the
+    recommendation this chunk is primarily about" without deeper NLP.
+    """
     text_lower = text.lower()
+    best: Optional[Tuple[int, str, str]] = None
     for pattern, strength, quality in GRADE_PATTERNS:
-        if re.search(pattern, text_lower):
-            return strength, quality
-    return None, None
+        m = re.search(pattern, text_lower)
+        if m and (best is None or m.start() < best[0]):
+            best = (m.start(), strength, quality)
+    if best is None:
+        return None, None
+    return best[1], best[2]
 
 
 LIST_BULLET_RE = re.compile(r"^\s*(?:\d+\.|[\-\u2022\*])\s+")  # 1.  -  •  *

@@ -331,27 +331,41 @@ def run_fetch(domains: List[str], days: int) -> Dict[str, Any]:
     start = dt.datetime.now().isoformat()
     results: Dict[str, Any] = {"started": start, "domains": domains, "days": days, "batches": []}
 
-    try:
-        batches = {
-            "pubmed": fetch_pubmed(days, domains, cfg),
-            "clinicaltrials": fetch_clinicaltrials(days, domains, cfg),
-            "openfda": fetch_openfda(days, domains, cfg),
-            "drugbank": fetch_drugbank(days, domains, cfg),
-        }
-        for sid, items in batches.items():
+    # P3-3: this used to fetch all four sources inline inside one dict
+    # literal under a single try/except -- one source's transient failure
+    # (a timeout, an API change) raised before the dict literal finished
+    # evaluating, so save_batch() never ran for ANY source, discarding
+    # every other source's already-successful results for the whole run.
+    # Each source now gets its own try/except so the others' results still
+    # get saved; per-source errors are recorded rather than losing
+    # everything.
+    fetchers = {
+        "pubmed": lambda: fetch_pubmed(days, domains, cfg),
+        "clinicaltrials": lambda: fetch_clinicaltrials(days, domains, cfg),
+        "openfda": lambda: fetch_openfda(days, domains, cfg),
+        "drugbank": lambda: fetch_drugbank(days, domains, cfg),
+    }
+    any_error = False
+    for sid, fetch in fetchers.items():
+        try:
+            items = fetch()
             path = save_batch(sid, items)
             results["batches"].append({
                 "source": sid,
                 "count": len(items),
                 "file": str(path) if path else "",
             })
-        results["status"] = "ok"
-    except Exception as e:
-        results["status"] = "error"
-        results["error"] = str(e)
-    finally:
-        results["finished"] = dt.datetime.now().isoformat()
-        append_log(results)
+        except Exception as e:
+            any_error = True
+            results["batches"].append({
+                "source": sid,
+                "count": 0,
+                "file": "",
+                "error": str(e),
+            })
+    results["status"] = "partial_error" if any_error else "ok"
+    results["finished"] = dt.datetime.now().isoformat()
+    append_log(results)
 
     return results
 
