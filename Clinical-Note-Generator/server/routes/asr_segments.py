@@ -20,8 +20,8 @@ from sqlmodel import Session, select
 
 from server.core.asr_audio import _concat_webm_files_ffmpeg, _transcribe_audio_bytes_sync
 from server.core.asr_chunk import (
+    claim_next_pending_chunk,
     merged_transcript_for_encounter,
-    next_pending_chunk,
     ordered_chunk_segments,
     assert_chunk_ready_for_transcribe,
     transcribe_chunk_segment,
@@ -761,7 +761,11 @@ def drain_encounter_chunk_queue(
     drain_deadline = time.perf_counter() + float(os.environ.get("ASR_CHUNK_DRAIN_BUDGET_SEC", "600"))
 
     while time.perf_counter() < drain_deadline:
-        pending = next_pending_chunk(
+        # P3-1: claim_next_pending_chunk() atomically flips pending/failed ->
+        # transcribing (conditional UPDATE...WHERE, not a separate read then
+        # write) so a concurrent /drain call for the same encounter can't
+        # claim and transcribe the same chunk twice.
+        pending = claim_next_pending_chunk(
             session,
             user_id=current_user.id,
             encounter_id=encounter_id,
@@ -769,10 +773,6 @@ def drain_encounter_chunk_queue(
         )
         if not pending:
             break
-        pending.transcription_status = "transcribing"
-        pending.error = None
-        session.add(pending)
-        session.commit()
         try:
             transcribe_chunk_segment(
                 session,

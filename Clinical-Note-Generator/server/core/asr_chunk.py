@@ -136,6 +136,36 @@ def _prev_chunk_segment(
     ).one_or_none()
 
 
+def real_cumulative_window_start(session: Session, segment: AsrRecordingSegment) -> Optional[float]:
+    """Sum of the REAL (client-measured) duration_sec of every prior chunk in
+    this recording session, or None if any is missing (caller should fall
+    back to the theoretical chunk_index * COMMIT_STRIDE_SEC grid).
+
+    assert_chunk_ready_for_transcribe() already guarantees chunks are
+    transcribed strictly in order, so by the time chunk N is processed every
+    chunk 0..N-1 in the session is guaranteed to exist with its duration_sec
+    already populated by the upload that created it -- this is a plain sum,
+    not a recursive walk.
+    """
+    idx = int(segment.chunk_index or 0)
+    if idx <= 0:
+        return 0.0
+    if not segment.recording_session_id:
+        return None
+    prior = session.exec(
+        select(AsrRecordingSegment.duration_sec).where(
+            AsrRecordingSegment.user_id == segment.user_id,
+            AsrRecordingSegment.encounter_id == segment.encounter_id,
+            AsrRecordingSegment.recording_session_id == segment.recording_session_id,
+            AsrRecordingSegment.segment_role.in_(("chunk", "partial_tail")),
+            AsrRecordingSegment.chunk_index < idx,
+        )
+    ).all()
+    if len(prior) < idx or any(d is None for d in prior):
+        return None
+    return float(sum(prior))
+
+
 def assert_chunk_ready_for_transcribe(session: Session, segment: AsrRecordingSegment) -> None:
     """Ensure prior chunk in the same session is transcribed before chunk i > 0."""
     idx = int(segment.chunk_index or 0)
@@ -188,6 +218,8 @@ def resolve_committed_text(
     payload: Any,
     full_text: str,
     prev_text: str,
+    commit_start_sec: Optional[float] = None,
+    commit_end_sec: Optional[float] = None,
 ) -> tuple[str, str]:
     """Derive incremental committed_text for a chunk or final partial_tail segment."""
     from server.core.chunk_merge import commit_text_from_verbose, fuzzy_commit_delta, fuzzy_stitch
@@ -215,6 +247,8 @@ def resolve_committed_text(
         payload,
         window_start_sec=window_start_sec,
         chunk_index=chunk_index,
+        commit_start_sec=commit_start_sec,
+        commit_end_sec=commit_end_sec,
     )
     if not committed and inc:
         if chunk_index == 0:
@@ -243,10 +277,22 @@ def transcribe_chunk_segment(
 
     chunk_index = int(segment.chunk_index or 0)
     is_tail = segment.segment_role == "partial_tail"
+
+    # P3-1: use the REAL cumulative duration of prior chunks (client-measured,
+    # already stored as duration_sec on each segment) instead of assuming every
+    # chunk fired at exactly COMMIT_STRIDE_SEC. MediaRecorder's timeslice is a
+    # request, not a guarantee; drift compounds over a long encounter and can
+    # push boundary words outside the theoretical grid entirely. Falls back to
+    # that grid when real durations aren't available (e.g. older data).
+    real_start = real_cumulative_window_start(session, segment)
     window_start = float(
         segment.window_start_sec
         if segment.window_start_sec is not None
-        else max(0, chunk_index * COMMIT_STRIDE_SEC - (OVERLAP_SEC if chunk_index else 0))
+        else (
+            max(0.0, real_start - (OVERLAP_SEC if chunk_index else 0))
+            if real_start is not None
+            else max(0, chunk_index * COMMIT_STRIDE_SEC - (OVERLAP_SEC if chunk_index else 0))
+        )
     )
 
     prev = _prev_chunk_segment(session, segment)
@@ -265,7 +311,13 @@ def transcribe_chunk_segment(
             try:
                 with tempfile.TemporaryDirectory(prefix="asr_chunk_") as td:
                     wav_out = Path(td) / "window.wav"
-                    build_overlap_window_ffmpeg(prev_path, path, wav_out)
+                    # prev.duration_sec is already the client-measured real
+                    # duration of that chunk -- pass it through so
+                    # build_overlap_window_ffmpeg doesn't spawn a redundant
+                    # ffprobe subprocess to re-derive the same number.
+                    build_overlap_window_ffmpeg(
+                        prev_path, path, wav_out, prev_duration_sec=prev.duration_sec
+                    )
                     audio_bytes = wav_out.read_bytes()
                     filename = "chunk_window.wav"
                     content_type = "audio/wav"
@@ -278,25 +330,40 @@ def transcribe_chunk_segment(
                     exc,
                 )
 
+    # P3-1: chunks 1+ get skip_normalize=True because build_overlap_window_ffmpeg
+    # already ran the audio through ffmpeg (aresample=16000, mono s16 WAV) --
+    # skip_normalize there is skipping redundant work, not real normalization.
+    # Chunk 0 (and any chunk where overlap assembly failed above) has no such
+    # step: audio_bytes is still the browser's raw MediaRecorder blob
+    # (webm/opus, whatever codec/sample rate it produced), and skipping
+    # normalization there sent it straight to whisper.cpp's raw-decoder path
+    # unnormalized -- specifically on the encounter's opening seconds, since
+    # chunk 0 is the one chunk that can never have an overlap window.
     text, payload = transcribe_bytes_sync(
         file_data=audio_bytes,
         filename=filename,
         content_type=content_type,
         trace_id=trace_id,
         response_format="verbose_json",
-        skip_normalize=True,
+        skip_normalize=used_overlap,
         prompt=prompt or None,
         preferred_index=pool_index,
     )
 
     # FIX A: When ffmpeg overlap assembly fails, we fall back to the raw ~25s
     # segment whose Whisper timestamps start at 0.  Use the raw chunk boundary
-    # (chunk_index * STRIDE) as window_start so word timestamps fall in the
-    # correct commit window.  When overlap succeeds, use the overlap-offset.
+    # as window_start so word timestamps fall in the correct commit window.
+    # When overlap succeeds, use the overlap-offset.
     effective_window_start = (
-        chunk_index * COMMIT_STRIDE_SEC
+        (real_start if real_start is not None else chunk_index * COMMIT_STRIDE_SEC)
         if not used_overlap
         else window_start
+    )
+    commit_start_sec = real_start
+    commit_end_sec = (
+        real_start + float(segment.duration_sec)
+        if real_start is not None and segment.duration_sec is not None
+        else None
     )
 
     committed, merge_method = resolve_committed_text(
@@ -306,6 +373,8 @@ def transcribe_chunk_segment(
         payload=payload,
         full_text=text,
         prev_text=prev_text,
+        commit_start_sec=commit_start_sec,
+        commit_end_sec=commit_end_sec,
     )
 
     # Per-chunk diarization has been removed in favor of a single global
@@ -371,6 +440,58 @@ def merged_transcript_for_encounter(
         if t:
             parts.append(t)
     return merge_committed_segments(parts)
+
+
+def claim_next_pending_chunk(
+    session: Session,
+    *,
+    user_id: UUID,
+    encounter_id: UUID,
+    recording_session_id: Optional[str] = None,
+) -> Optional[AsrRecordingSegment]:
+    """Find and atomically claim the next runnable pending/failed chunk.
+
+    P3-1: next_pending_chunk() only READ status; the caller then wrote
+    transcription_status = "transcribing" as a separate step/commit. Two
+    concurrent /drain requests for the same encounter (a stuck-request retry
+    racing the original tab, e.g.) could both read the same chunk as pending
+    and both start transcribing it -- wasted duplicate work at best, an
+    undefined last-write-wins race on the result at worst. Claiming with a
+    conditional UPDATE...WHERE status = <what we just saw> makes only one
+    request win; the loser's rowcount is 0 and it looks again rather than
+    silently proceeding as if it had won.
+    """
+    from sqlalchemy import update as sa_update
+
+    chunks = ordered_chunk_segments(
+        session,
+        user_id=user_id,
+        encounter_id=encounter_id,
+        recording_session_id=recording_session_id,
+    )
+    for seg in chunks:
+        if seg.transcription_status in ("pending", "failed"):
+            idx = int(seg.chunk_index or 0)
+            if idx != 0:
+                prev = _prev_chunk_segment(session, seg)
+                if not prev or prev.transcription_status != "transcribed":
+                    continue
+            result = session.exec(
+                sa_update(AsrRecordingSegment)
+                .where(
+                    AsrRecordingSegment.id == seg.id,
+                    AsrRecordingSegment.transcription_status == seg.transcription_status,
+                )
+                .values(transcription_status="transcribing", error=None)
+            )
+            session.commit()
+            if result.rowcount:
+                session.refresh(seg)
+                return seg
+            # Lost the race to another request -- keep looking rather than
+            # returning None (which the caller treats as "nothing pending").
+            continue
+    return None
 
 
 def next_pending_chunk(
