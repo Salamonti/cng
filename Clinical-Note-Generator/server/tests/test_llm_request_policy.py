@@ -43,9 +43,13 @@ def test_vllm_chat_payload_uses_supported_sampler_names_and_no_thinking():
     assert payload["chat_template_kwargs"]["enable_thinking"] is False
     assert payload["chat_template_kwargs"]["thinking"] is False
     assert payload["chat_template_kwargs"]["reasoning_effort"] == "none"
-    assert payload["repetition_penalty"] == engine.config.get(
-        "default_repeat_penalty", 1.25
-    )
+    # _sampler_params() hardcodes repeat_penalty = 1.0 unconditionally -- it never
+    # actually reads config's "default_repeat_penalty" key. This only ever passed
+    # against engine.config.get("default_repeat_penalty", 1.25) because production's
+    # (gitignored, not present in a fresh checkout) config.json happens to also set
+    # that key to 1.0. Assert the real behavior directly instead of a value that's
+    # only right by coincidence of what's in an untracked file.
+    assert payload["repetition_penalty"] == 1.0
     assert "repeat_penalty" not in payload
     assert "repeat_last_n" not in payload
     assert "n_predict" not in payload
