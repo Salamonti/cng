@@ -1,0 +1,103 @@
+site_name: DreamCision AI·SCRIBE — User Manual
+site_description: User manual for healthcare professionals using DreamCision AI Scribe
+site_url: https://notes.ieissa.com/manual
+
+theme:
+  name: material
+  language: en
+  logo: assets/dreamcision-logo.png
+  favicon: assets/favicon-48.png
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    # Light mode (default)
+    - scheme: default
+      primary: custom
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: custom
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.index
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+
+extra_css:
+  - styles/extra.css
+
+extra:
+  social:
+    - icon: material/web
+      link: https://notes.ieissa.com
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Welcome: getting-started/welcome.md
+      - Privacy & Consent: getting-started/privacy.md
+      - Creating Your Account: getting-started/account.md
+      - Signing In: getting-started/signing-in.md
+      - Password Recovery: getting-started/password-recovery.md
+      - Your First Time: getting-started/first-time.md
+  - Daily Workflow:
+      - Overview: daily-workflow/overview.md
+      - Dictating a Note (Voice): daily-workflow/voice-recording.md
+      - ASR Settings: daily-workflow/asr-settings.md
+      - ASR Diarization: daily-workflow/asr-diarization.md
+      - Adding Chart Data: daily-workflow/chart-data.md
+      - Uploading Documents: daily-workflow/uploading.md
+      - Generating Your Note: daily-workflow/generating.md
+      - Reviewing & Editing: daily-workflow/reviewing.md
+      - Managing Encounters: daily-workflow/encounters.md
+  - Advanced Features:
+      - Customizing AI Prompts: advanced/prompts.md
+      - Custom Note Types: advanced/custom-types.md
+      - Evidence-Based Comments: advanced/evidence.md
+      - Patient Materials: advanced/patient-materials.md
+      - Order & Referral Requests: advanced/orders.md
+      - Medical Q&A: advanced/qa.md
+      - Literature Updates: advanced/literature.md
+  - Mobile Guide: mobile/mobile.md
+  - Troubleshooting:
+      - Common Issues: troubleshooting/troubleshooting.md
+      - ASR & Transcription: troubleshooting/asr-issues.md
+  - Quick Reference:
+      - Note Types: quick-reference/note-types.md
+      - Note Type Settings: quick-reference/note-type-settings.md
+      - Glossary: quick-reference/glossary.md
+      - How Do I...: quick-reference/howdoi.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg

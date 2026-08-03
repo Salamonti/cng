@@ -1,0 +1,348 @@
+
+/* Patient Materials Modal */
+.pm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.pm-modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px;
+}
+
+.pm-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pm-modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.pm-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.pm-close-btn:hover {
+    color: #1f2937;
+}
+
+/* Category Cards */
+.pm-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.pm-category-card {
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pm-category-card:hover {
+    border-color: #10b981;
+    background: #ecfdf5;
+    transform: translateY(-2px);
+}
+
+.pm-category-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.pm-category-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.pm-category-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.pm-category-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+.pm-category-badge-generated {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.pm-category-badge-new {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* Content Panel */
+.pm-content-panel {
+    margin-top: 16px;
+}
+
+.pm-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pm-back-btn, .pm-print-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pm-back-btn {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+}
+
+.pm-back-btn:hover {
+    background: #e5e7eb;
+}
+
+.pm-print-btn {
+    background: #10b981;
+    border: none;
+    color: white;
+}
+
+.pm-print-btn:hover {
+    background: #059669;
+}
+
+.pm-content-body {
+    line-height: 1.6;
+    color: #1f2937;
+}
+
+.pm-content-body h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #111827;
+}
+
+.pm-content-body h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: #1f2937;
+}
+
+.pm-content-body h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.pm-content-body p {
+    margin-bottom: 12px;
+}
+
+.pm-content-body ul, .pm-content-body ol {
+    margin-bottom: 12px;
+    padding-left: 24px;
+}
+
+.pm-content-body li {
+    margin-bottom: 4px;
+}
+
+.pm-disclaimer {
+    margin-top: 32px;
+    padding: 16px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #6b7280;
+    border-left: 4px solid #f59e0b;
+}
+
+/* Error Display */
+.pm-error {
+    margin-top: 16px;
+    padding: 16px;
+    background: #fef2f2;
+    border-radius: 6px;
+    border-left: 4px solid #dc2626;
+}
+
+.pm-error-title {
+    font-weight: 600;
+    color: #991b1b;
+    margin-bottom: 4px;
+    font-size: 0.875rem;
+}
+
+.pm-error-message {
+    color: #7f1d1d;
+    margin: 4px 0;
+    font-size: 0.8125rem;
+    word-break: break-word;
+}
+
+.pm-error-hint {
+    margin-top: 8px;
+    font-style: italic;
+    color: #991b1b;
+    opacity: 0.8;
+    font-size: 0.75rem;
+}
+
+/* Patient Data Form */
+.pm-patient-data {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+}
+
+.pm-patient-data h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+.pm-patient-data .form-group {
+    margin-bottom: 16px;
+}
+
+.pm-patient-data label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.pm-patient-data input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.pm-patient-data .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pm-patient-data .radio-option {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+}
+
+.pm-patient-data .radio-option input {
+    margin-right: 8px;
+}
+
+.pm-bmi-display {
+    font-size: 0.875rem;
+    color: #10b981;
+    font-weight: 600;
+    margin-bottom: 12px;
+    min-height: 20px;
+}
+
+/* Loading States */
+.pm-loading {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.pm-loading-spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #10b981;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.pm-loading-text {
+    margin-top: 16px;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .pm-content-panel, .pm-content-panel * {
+        visibility: visible;
+    }
+    
+    .pm-content-panel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    
+    .pm-content-header, .pm-disclaimer {
+        display: none !important;
+    }
+}

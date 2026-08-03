@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open-source licenses — DreamCision</title>
+  <link rel="icon" href="assets/dreamcision/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="stylesheet" href="css/dreamcision-tokens.css">
+  <link rel="stylesheet" href="css/legal-pages.css">
+</head>
+<body>
+  <header class="dc-legal-header">
+    <a class="dc-legal-brand" href="index.html">
+      <img class="dc-legal-wordmark" src="assets/dreamcision/logo-wordmark-h48.png" srcset="assets/dreamcision/logo-wordmark-h96.png 2x" height="48" alt="DreamCision">
+      <div>
+        <p class="sub">Open-source acknowledgments · Version 2.0</p>
+      </div>
+    </a>
+    <nav class="dc-legal-nav" aria-label="Legal navigation">
+      <a href="https://notes.ieissa.com/manual" target="_blank" rel="noopener noreferrer">Help</a>
+      <a href="privacy.html">Privacy &amp; health information</a>
+      <a href="index.html">Clinical workspace</a>
+    </nav>
+  </header>
+
+  <main class="dc-legal-wrap" id="main">
+    <p class="dc-muted" style="margin-top:0;">DreamCision includes or interoperates with open-source and third-party software. Below are representative components and their licenses. Exact versions may differ in your install; see each package’s repository for the full license text.</p>
+
+    <section class="dc-legal-card" aria-labelledby="h-py">
+      <h2 id="h-py">Python stack (DreamCision backend &amp; RAG)</h2>
+      <p>Typical packages and commonly cited licenses (verify in your environment):</p>
+      <ul>
+        <li><strong>FastAPI</strong>, <strong>Starlette</strong>, <strong>Uvicorn</strong> — MIT License</li>
+        <li><strong>Pydantic</strong> — MIT License</li>
+        <li><strong>SQLAlchemy</strong>, <strong>SQLModel</strong> — MIT License</li>
+        <li><strong>httpx</strong>, <strong>requests</strong>, <strong>aiohttp</strong> — BSD / Apache 2.0 (per package)</li>
+        <li><strong>PyTorch</strong>, <strong>torchaudio</strong> — BSD-style license (see PyTorch)</li>
+        <li><strong>Hugging Face Transformers</strong>, <strong>tokenizers</strong>, <strong>sentence-transformers</strong> — Apache License 2.0</li>
+        <li><strong>faster-whisper</strong>, <strong>whisperx</strong> — MIT License</li>
+        <li><strong>ChromaDB</strong> — Apache License 2.0</li>
+        <li><strong>NumPy</strong> — BSD License</li>
+        <li><strong>Pillow</strong>, <strong>PyMuPDF</strong> — MIT / AGPL (PyMuPDF: see project license)</li>
+        <li><strong>librosa</strong>, <strong>soundfile</strong> — ISC / BSD-style</li>
+        <li><strong>PyJWT</strong>, <strong>passlib</strong>, <strong>bcrypt</strong> — MIT / BSD</li>
+        <li><strong>python-dotenv</strong>, <strong>python-multipart</strong>, <strong>aiofiles</strong> — MIT / Apache 2.0</li>
+        <li><strong>BeautifulSoup4</strong>, <strong>lxml</strong>, <strong>PyYAML</strong>, <strong>schedule</strong> — MIT / BSD</li>
+        <li><strong>Playwright</strong> — Apache License 2.0</li>
+        <li><strong>rank-bm25</strong> — Apache License 2.0</li>
+      </ul>
+    </section>
+
+    <section class="dc-legal-card" aria-labelledby="h-cpp">
+      <h2 id="h-cpp">Native / external runtimes (optional)</h2>
+      <ul>
+        <li><strong>whisper.cpp</strong> — MIT License</li>
+        <li><strong>llama.cpp</strong> — MIT License</li>
+        <li><strong>LLaMA / LLaMA 2 / LLaMA 3</strong> weights (Meta) — subject to Meta’s license terms for the model you use</li>
+        <li>Other third-party LLM weights (e.g. Qwen, Mistral, etc.) — see each provider’s license</li>
+      </ul>
+    </section>
+
+    <section class="dc-legal-card" aria-labelledby="h-node">
+      <h2 id="h-node">Node (PCHost proxy)</h2>
+      <p>The default <code>PCHost</code> stack uses <strong>Express</strong>, <strong>cors</strong>, and <strong>http-proxy-middleware</strong> — typically <strong>MIT License</strong>. The package metadata in <code>PCHost/package.json</code> is MIT. Run <code>npm ls</code> in the <code>PCHost</code> folder for your exact dependency tree.</p>
+    </section>
+
+    <section class="dc-legal-card" aria-labelledby="h-frontend">
+      <h2 id="h-frontend">Frontend</h2>
+      <p>DreamCision web pages use standards-based HTML, CSS, and JavaScript served by PCHost. No React/Vue bundle is required for the default UI. Third-party snippets may be embedded; refer to the repository for any inline libraries.</p>
+    </section>
+
+    <section class="dc-legal-card" aria-labelledby="h-full">
+      <h2 id="h-full">Full texts</h2>
+      <p>Official license texts:</p>
+      <ul>
+        <li><a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+        <li><a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer">Apache License 2.0</a></li>
+        <li><a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank" rel="noopener noreferrer">BSD 3-Clause</a></li>
+      </ul>
+    </section>
+
+    <footer class="dc-legal-footer">
+      <p><a href="index.html">Return to workspace</a> · <a href="privacy.html">Privacy &amp; health information</a></p>
+      <p>&copy; 2026 Eissa Internal Medicine Inc. All rights reserved.</p>
+    </footer>
+  </main>
+</body>
+</html>

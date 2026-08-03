@@ -1,0 +1,154 @@
+/* Shared styles for privacy.html, licenses.html — uses dreamcision-tokens.css */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--dc-text);
+  background: var(--dc-page);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--dc-primary);
+  outline-offset: 2px;
+}
+
+.dc-legal-header {
+  background: var(--dc-header-bg);
+  color: var(--dc-on-dark);
+  padding: 0;
+  border-bottom: 1px solid var(--dc-border-violet);
+  box-shadow: 0 6px 24px rgba(10, 8, 16, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.dc-legal-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dc-legal-brand img.dc-legal-wordmark {
+  display: block;
+  width: auto;
+  max-width: min(90vw, 400px);
+  height: 48px;
+  object-fit: contain;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  background: transparent;
+}
+
+.dc-legal-brand .sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--dc-on-dark-muted);
+}
+
+.dc-legal-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dc-legal-nav a {
+  color: var(--dc-lilac);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 0.9rem;
+}
+
+.dc-legal-nav a:hover {
+  color: var(--dc-on-dark);
+}
+
+.dc-legal-wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.dc-legal-card {
+  background: var(--dc-page-elevated);
+  border: 1px solid var(--dc-border);
+  border-radius: 12px;
+  padding: 1.5rem 1.35rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--dc-shadow-soft);
+}
+
+.dc-legal-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  color: var(--dc-text);
+  border-bottom: 1px solid var(--dc-border);
+  padding-bottom: 0.5rem;
+}
+
+.dc-legal-card h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  color: var(--dc-primary-dark);
+}
+
+.dc-legal-card p,
+.dc-legal-card li {
+  color: var(--dc-text-muted);
+  font-size: 0.95rem;
+}
+
+.dc-legal-card ul {
+  margin: 0.5rem 0 0.5rem 1.25rem;
+  padding: 0;
+}
+
+.dc-legal-card li { margin: 0.35rem 0; }
+
+.dc-muted {
+  color: var(--dc-text-muted);
+  font-size: 0.9rem;
+}
+
+.dc-callout {
+  background: var(--dc-primary-soft);
+  border-left: 4px solid var(--dc-primary);
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.92rem;
+}
+
+.dc-legal-footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.85rem;
+  color: var(--dc-on-dark-muted);
+  border-top: 1px solid var(--dc-border-violet);
+  margin-top: 1rem;
+  background: var(--dc-footer-bg);
+}
+
+.dc-legal-footer p {
+  color: var(--dc-on-dark-muted);
+  margin: 0.35rem 0;
+}
+
+.dc-legal-footer a {
+  color: var(--dc-lilac);
+}

@@ -1,0 +1,31 @@
+{
+  "name": "home-pc-static-server",
+  "version": "2.0.0",
+  "description": "Simple static website server for home PC hosting",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --check server.js && node --test tests/*.mjs web/js/*.test.cjs"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "http-proxy-middleware": "^3.0.5",
+    "https": "^1.0.0"
+  },
+  "keywords": [
+    "static",
+    "server",
+    "home",
+    "hosting"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cssnano": "^8.0.2",
+    "terser": "^5.48.0"
+  }
+}

@@ -1,0 +1,9 @@
+Brand PNGs are generated from the operator asset folder D:\dream:
+
+  no-star-logo.png      -> logo-wordmark-h36.png, h48, h96 (horizontal wordmark for headers)
+  No-star-1.png         -> icon-192.png, icon-512.png, favicon-48.png (square mark for PWA / favicon)
+  no-star-logo2.png     -> logo-wordmark-alt-h48.png (optional alternate wordmark)
+
+Regenerate after updating sources:
+
+  python tools\sync_dream_logos.py

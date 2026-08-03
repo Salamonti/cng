@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#130f1a" />
+  <title>DreamCision AI&#183;SCRIBE — Medical Q&amp;A</title>
+  <link rel="icon" href="assets/dreamcision/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="stylesheet" href="css/dreamcision-tokens.css" />
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background:var(--dc-page); color:var(--dc-text); }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    .app { max-width: 980px; margin: 0 auto; height: 100%; display:flex; flex-direction:column; overflow: hidden; }
+    .top { padding:12px 14px; border-bottom:1px solid var(--dc-border-violet); background:var(--dc-header-bg); color:var(--dc-on-dark); display:flex; justify-content:space-between; align-items:center; gap:10px; box-shadow:0 6px 20px rgba(10,8,16,0.28); }
+    .top small { color:var(--dc-on-dark-muted); }
+    #chat { flex:1; overflow:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+    .msg { max-width:80%; padding:10px 12px; border-radius:12px; line-height:1.45; white-space:normal; word-wrap:break-word; }
+    .user { align-self:flex-end; background:var(--dc-primary-soft); border:1px solid rgba(123,63,174,0.28); }
+    .assistant { align-self:flex-start; background:var(--dc-page-elevated); border:1px solid var(--dc-border); }
+    .meta { font-size:12px; color:var(--dc-text-muted); margin-top:6px; }
+    .refs { font-size:12px; color:#334155; margin-top:8px; border-top:1px dashed #cbd5e1; padding-top:8px; }
+    .tier-badge { display:inline-block; font-size:10px; font-weight:600; padding:1px 5px; border-radius:3px; text-transform:uppercase; margin-right:4px; }
+    .tier-guideline { background:#dcfce7; color:#166534; }
+    .tier-trial { background:#dbeafe; color:#1e40af; }
+    .tier-pubmed { background:#fef3c7; color:#92400e; }
+    .tier-web { background:#f1f5f9; color:#64748b; }
+    .score-val { font-size:10px; color:#64748b; margin-left:4px; }
+    /* display:block breaks <table> column layout; use scroll wrapper instead */
+    .msg .cng-md-table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; margin: 0.5rem 0; }
+    .msg .cng-md-table { border-collapse: collapse; width: 100%; display: table; table-layout: auto; font-size: 13px; }
+    .msg .cng-md-table th, .msg .cng-md-table td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; white-space: normal; vertical-align: top; word-break: break-word; }
+    /* Numbered / bullet lists: stable indentation (fixes misaligned 1. 2. 3. vs plain md) */
+    .msg .cng-md-ol, .msg .cng-md-ul { margin: 0.5rem 0; padding-left: 1.35rem; }
+    .msg .cng-md-ol { list-style-position: outside; }
+    .msg .cng-md-ul { list-style-position: outside; }
+    .msg .cng-md-ol > li, .msg .cng-md-ul > li { margin: 0.35rem 0; padding-left: 0.25rem; }
+    .msg .cng-md-ol > li p, .msg .cng-md-ul > li p { margin: 0.25rem 0; }
+    .msg .cng-md-pre {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      overflow-x: auto;
+      margin: 0.5rem 0;
+      font-size: 12px;
+      line-height: 1.45;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Segoe UI Mono", monospace;
+    }
+    .msg .cng-md-pre code { white-space: pre; display: block; word-break: normal; }
+    .composer { border-top:1px solid var(--dc-border); background:var(--dc-page-elevated); padding:10px; flex-shrink:0; padding-bottom:max(12px, env(safe-area-inset-bottom)); }
+    .row { display:flex; gap:8px; align-items:flex-end; }
+    .input-wrap { position:relative; flex:1; min-width:0; }
+    #question { width:100%; min-height:100px; max-height:min(40vh, 420px); resize:vertical; border:1px solid #cbd5e1; border-radius:12px; padding:10px 52px 10px 10px; font:inherit; box-sizing:border-box; }
+    .input-actions { position:absolute; right:6px; bottom:6px; display:flex; flex-direction:column; gap:4px; }
+    .input-actions label, .input-actions button { width:36px; height:36px; border-radius:999px; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; }
+    .input-actions label { border:1px solid #cbd5e1; background:#fff; }
+    #sendBtn { background:linear-gradient(135deg,var(--dc-primary-dark),var(--dc-primary)); color:#fff; box-shadow:0 4px 12px var(--dc-violet-glow); }
+    #sendBtn:disabled { opacity:.6; cursor:not-allowed; }
+    #error { display:none; color:#991b1b; background:#fee2e2; border:1px solid #fecaca; border-radius:8px; padding:8px; margin-bottom:8px; }
+    h2,h3,h4,h5,h6{margin:.4rem 0}
+    .msg h5{font-size:1rem;font-weight:600}
+    .msg h6{font-size:0.95rem;font-weight:600;color:#334155}
+    ul{margin:.3rem 0 .3rem 1.1rem}
+    /* Vision QA additions */
+    .thumbnail-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+      padding: 8px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .thumbnail-info {
+      flex: 1;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+    .thumbnail-info strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    .remove-thumbnail {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    .remove-thumbnail:hover {
+      color: #ef4444;
+    }
+    .streaming-cursor {
+      display: inline-block;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    .qa-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .qa-brand-titles { min-width: 0; }
+    .qa-wordmark { display: block; width: auto; max-width: min(55vw, 260px); height: 36px; object-fit: contain; border:none; border-radius:0; box-shadow:none; filter:none; background:transparent; }
+    .qa-brand-titles small { display: block; color: var(--dc-on-dark-muted); font-size: 0.78rem; margin-top: 4px; }
+    .qa-footer {
+      flex-shrink: 0;
+      padding: 6px 12px 10px;
+      border-top: 1px solid var(--dc-border-violet);
+      background: var(--dc-footer-bg);
+      font-size: 11px;
+      color: var(--dc-on-dark-muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px 10px;
+    }
+    .qa-footer a { color: var(--dc-lilac); text-decoration: underline; text-underline-offset: 2px; }
+    .qa-footer a:hover { color: var(--dc-on-dark); }
+    @media print {
+      .composer, .qa-footer, #printQaBtn, #newTopicBtn, #attachBtn, #sendBtn, #fileInput, #error, .top a[href*="manual"] { display: none !important; }
+      html, body { height: auto; overflow: visible; }
+      .app { height: auto; overflow: visible; max-width: none; }
+      #chat { overflow: visible; flex: none; }
+      .top { background: #fff; color: #111; border-bottom: 1px solid #ccc; box-shadow: none; }
+      .top small, .qa-brand-titles small { color: #444; }
+      .msg { max-width: 100%; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="top">
+      <div class="qa-brand">
+        <img class="qa-wordmark" src="assets/dreamcision/logo-wordmark-h36.png" height="36" alt="DreamCision" decoding="async" />
+        <div class="qa-brand-titles">
+          <small>Medical Q&amp;A</small>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+        <a href="https://notes.ieissa.com/manual" target="_blank" rel="noopener noreferrer" style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#ede9fe;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid rgba(196,181,253,0.4);background:rgba(255,255,255,0.08);white-space:nowrap;">Help</a>
+        <button type="button" id="newTopicBtn" title="Clear the chat and start a fresh topic (new session)" style="border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:600;">New topic</button>
+        <button type="button" id="printQaBtn" title="Print the latest answer only" style="border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:600;">Print</button>
+        <small id="sessionHint" style="color:var(--dc-on-dark-muted);max-width:100%;">Enter = send • Shift+Enter = new line</small>
+      </div>
+    </div>
+
+    <div id="chat"></div>
+
+    <div class="composer">
+      <div id="error"></div>
+      <div class="row">
+        <div class="input-wrap">
+          <textarea id="question" placeholder="Ask a medical question..."></textarea>
+          <div class="input-actions">
+            <label for="fileInput" id="attachBtn" title="Attach image">📎</label>
+            <button id="sendBtn" title="Send">➤</button>
+          </div>
+        </div>
+        <input id="fileInput" type="file" style="display:none" />
+      </div>
+      <div class="meta" id="fileMeta"></div>
+      <div class="meta" id="hint">Evidence and source cards appear with each answer.</div>
+    </div>
+
+    <footer class="qa-footer" aria-label="Legal">
+      <a href="privacy.html" target="_top" rel="noopener">Privacy &amp; health information</a>
+      <span aria-hidden="true">·</span>
+      <a href="licenses.html" target="_top" rel="noopener">Open-source licenses</a>
+    </footer>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const questionEl = document.getElementById('question');
+    const sendBtn = document.getElementById('sendBtn');
+    const newTopicBtn = document.getElementById('newTopicBtn');
+    const printQaBtn = document.getElementById('printQaBtn');
+    const sessionHint = document.getElementById('sessionHint');
+
+    let qaSessionId = '';
+    function newSessionId() {
+      qaSessionId = (typeof crypto !== 'undefined' && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : ('s' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12));
+    }
+    function updateSessionHint() {
+      if (!sessionHint) return;
+      const short = qaSessionId.length > 12 ? qaSessionId.slice(0, 10) + '…' : qaSessionId;
+      sessionHint.textContent = 'Topic: ' + short + ' · Enter = send · Shift+Enter = new line';
+    }
+    newSessionId();
+    updateSessionHint();
+    const fileInput = document.getElementById('fileInput');
+    const fileMeta = document.getElementById('fileMeta');
+    const errorEl = document.getElementById('error');
+
+    // State for vision QA
+    let attachedImage = null;
+    let attachedImageUrl = null;
+    /** After a successful vision reply, server keeps the image for this session — no re-upload. */
+    let hasServerVisionImage = false;
+    let currentAbortController = null;
+
+    function getAuthToken(){
+      try {
+        if (window?.app?.settings?.apiKey) return window.app.settings.apiKey;
+      } catch {}
+      try {
+        return sessionStorage.getItem('auth_access_token') || localStorage.getItem('access_token') || '';
+      } catch { return ''; }
+    }
+
+    function esc(s){ return String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[c])); }
+
+    /** Match server-side strip so streamed answers hide [RAG #n] noise (final render). */
+    function stripQaCitationNoise(s) {
+      if (!s) return s;
+      let t = String(s);
+      t = t.replace(/\[RAG\s*#\d+\]/gi, '');
+      t = t.replace(/\[WEB\s*#\d+\]/gi, '');
+      t = t.replace(/\(\s*per\s*,\s*([^)]+)\)/g, (_, g1) => '(' + g1.replace(/^\s*,\s*/, '').trim() + ')');
+      t = t.replace(/\(\s*\)/g, '');
+      t = t.replace(/[ \t]{2,}/g, ' ');
+      return t.trim();
+    }
+
+    /** Fenced ``` blocks: preserve ASCII trees / code; must run before esc + list parsing. */
+    function mdExtractFencedCode(s) {
+      const blocks = [];
+      const re = /```([\w-]*)\s*\n?([\s\S]*?)```/g;
+      let out = '';
+      let last = 0;
+      let m;
+      let idx = 0;
+      while ((m = re.exec(s)) !== null) {
+        out += s.slice(last, m.index);
+        blocks.push(m[2]);
+        out += '\n__CNG_FENCE_' + idx++ + '__\n';
+        last = m.lastIndex;
+      }
+      out += s.slice(last);
+      return { text: out, blocks };
+    }
+
+    function mdInlineLinks(t) {
+      return t.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, (_, g1, g2) =>
+        '<a href="' + esc(g2) + '" target="_blank" rel="noopener">' + g1 + '</a>'
+      );
+    }
+
+    /** Merge adjacent <ol> blocks separated by a single line break so numbering runs 1,2,3… not 1,1,1… */
+    function mdMergeAdjacentOls(html) {
+      return html.replace(/<\/ol><br\s*\/?><ol class="cng-md-ol">/gi, '');
+    }
+
+    function mdTableSplitCols(line) {
+      return line.replace(/^\s*\|\s*/, '').replace(/\s*\|\s*$/, '').split('|').map(x => x.trim()).filter(x => x.length > 0);
+    }
+    function mdIsMdTableSep(line) {
+      const s = line.trim();
+      if (!s.includes('|')) return false;
+      const noPipe = s.replace(/\|/g, ' ');
+      return /[-:]{3,}/.test(noPipe);
+    }
+    /** GFM-style pipe tables before <hr> / lists so |---| rows are not broken. */
+    function mdParseTables(t) {
+      const lines = t.split('\n');
+      const out = [];
+      let i = 0;
+      while (i < lines.length) {
+        const cur = lines[i].trim();
+        const nxt = i + 1 < lines.length ? lines[i + 1].trim() : '';
+        if (cur.includes('|') && nxt && mdIsMdTableSep(nxt)) {
+          const head = mdTableSplitCols(cur);
+          if (head.length < 1) { out.push(lines[i]); i++; continue; }
+          i += 2;
+          const rows = [];
+          while (i < lines.length) {
+            const lnTrim = lines[i].trim();
+            if (!lnTrim) { i++; continue; }
+            if (!lnTrim.includes('|')) break;
+            if (mdIsMdTableSep(lnTrim)) { i++; continue; }
+            rows.push(mdTableSplitCols(lnTrim));
+            i++;
+          }
+          let tbl = '<div class="cng-md-table-wrap"><table class="cng-md-table"><thead><tr>';
+          tbl += head.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>';
+          for (const r of rows) {
+            const rr = r.slice();
+            while (rr.length < head.length) rr.push('');
+            tbl += '<tr>' + rr.slice(0, head.length).map(c => '<td>' + c + '</td>').join('') + '</tr>';
+          }
+          tbl += '</tbody></table></div>';
+          out.push(tbl);
+          continue;
+        }
+        out.push(lines[i]);
+        i++;
+      }
+      return out.join('\n');
+    }
+
+    /** Ordered lists: lines starting with "1. " "2. " … → real <ol> so alignment matches (text + vision QA). */
+    function mdOrderedLists(text) {
+      const lines = text.split('\n');
+      const out = [];
+      let i = 0;
+      while (i < lines.length) {
+        if (/^\s*\d+\.\s/.test(lines[i])) {
+          const items = [];
+          while (i < lines.length && /^\s*\d+\.\s/.test(lines[i])) {
+            const m = lines[i].match(/^\s*\d+\.\s+(.*)$/);
+            let body = m ? m[1] : lines[i].replace(/^\s*\d+\.\s+/, '');
+            i++;
+            while (i < lines.length && !/^\s*\d+\.\s/.test(lines[i])) {
+              const L = lines[i];
+              if (/^\s*$/.test(L) && i + 1 < lines.length && /^\s*\d+\.\s/.test(lines[i + 1])) break;
+              /* Blank line then a top-level bullet (not indented like sub-bullets under "3.") → end this <li> */
+              if (/^\s*$/.test(L) && i + 1 < lines.length) {
+                const next = lines[i + 1];
+                if (/^\s*[-•]\s/.test(next) && !/^\s{3,}[-•]\s/.test(next)) break;
+              }
+              body += '<br>' + L;
+              i++;
+            }
+            items.push('<li>' + body + '</li>');
+          }
+          out.push('<ol class="cng-md-ol">' + items.join('') + '</ol>');
+        } else {
+          out.push(lines[i]);
+          i++;
+        }
+      }
+      return out.join('\n');
+    }
+
+    function md(s){
+      const raw = String(s||'');
+      const fenced = mdExtractFencedCode(raw);
+      let t = esc(fenced.text);
+      for (let i = 0; i < fenced.blocks.length; i++) {
+        t = t.replace('__CNG_FENCE_' + i + '__', '<pre class="cng-md-pre"><code>' + esc(fenced.blocks[i]) + '</code></pre>');
+      }
+      /* Longest ATX headings first so ##### / ###### are not left as raw hashes */
+      t=t.replace(/^\s*######\s+(.+)$/gm,'<h6>$1</h6>')
+         .replace(/^\s*#####\s+(.+)$/gm,'<h5>$1</h5>')
+         .replace(/^\s*####\s+(.+)$/gm,'<h5>$1</h5>')
+         .replace(/^\s*###\s+(.+)$/gm,'<h4>$1</h4>')
+         .replace(/^\s*##\s+(.+)$/gm,'<h3>$1</h3>')
+         .replace(/^\s*#\s+(.+)$/gm,'<h2>$1</h2>');
+      t=t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+      t = mdParseTables(t);
+      t=t.replace(/^\s*---\s*$/gm,'<hr>');
+      t = mdOrderedLists(t);
+      t=t.replace(/^\s*[-•]\s+(.+)$/gm,'<li>$1</li>');
+      t=t.replace(/(<li>.*<\/li>\n?)+/gs,function(m){ return '<ul class="cng-md-ul">' + m.replace(/\n/g,'') + '</ul>'; });
+      t = mdInlineLinks(t);
+      t = t.replace(/\n\n+/g,'<br><br>').replace(/\n/g,'<br>');
+      t = mdMergeAdjacentOls(t);
+      return t;
+    }
+
+    function addMsg(kind, html){
+      const div=document.createElement('div');
+      div.className='msg '+kind;
+      div.innerHTML=html;
+      chat.appendChild(div);
+      chat.scrollTop=chat.scrollHeight;
+      return div;
+    }
+
+    function mdToPlain(s) {
+      // Strip markdown characters to produce clean plain text.
+      return (s || '')
+        .replace(/^[ \t]*#{1,6}\s*/gm, '')      // headings
+        .replace(/\*\*(.+?)\*\*/g, '$1')         // bold
+        .replace(/\*(.+?)\*/g, '$1')             // italic
+        .replace(/`{1,3}([^`]*)`{1,3}/g, '$1')  // inline code / fences
+        .replace(/^\s*[-*•]\s+/gm, '• ')        // unordered bullets → bullet char
+        .replace(/^\s*\d+\.\s+/gm, (m) => m.trimStart()) // ordered lists: keep number
+        .replace(/^[ \t]*[-=]{3,}[ \t]*$/gm, '') // horizontal rules
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → label only
+        .replace(/\r\n/g, '\n')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+    }
+
+    function addCopyButton(container, markdownText){
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.title='Copy answer';
+      btn.textContent='📑';
+      btn.style.cssText='margin-top:8px;border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:4px 8px;cursor:pointer;float:right;';
+      btn.addEventListener('click', async ()=>{
+        const plain = mdToPlain(markdownText || '');
+        const canRich = navigator.clipboard &&
+          typeof navigator.clipboard.write === 'function' &&
+          window.isSecureContext;
+        try {
+          if (canRich) {
+            const htmlBody = md(markdownText || '');
+            const htmlDoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>' + htmlBody + '</body></html>';
+            await navigator.clipboard.write([
+              new ClipboardItem({
+                'text/html': new Blob([htmlDoc], { type: 'text/html' }),
+                'text/plain': new Blob([plain], { type: 'text/plain' }),
+              })
+            ]);
+          } else {
+            await navigator.clipboard.writeText(plain);
+          }
+          btn.textContent='✅';
+          setTimeout(()=>btn.textContent='📑', 900);
+        } catch(e) {
+          // Last-resort: execCommand fallback
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = plain;
+            ta.style.cssText = 'position:fixed;opacity:0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            btn.textContent='✅';
+            setTimeout(()=>btn.textContent='📑', 900);
+          } catch(_) {}
+        }
+      });
+      container.appendChild(btn);
+    }
+
+    function showError(msg){ errorEl.textContent=msg; errorEl.style.display='block'; }
+    function clearError(){ errorEl.style.display='none'; errorEl.textContent=''; }
+
+    function removeAttachedImage() {
+      if (attachedImageUrl) URL.revokeObjectURL(attachedImageUrl);
+      attachedImage = null;
+      attachedImageUrl = null;
+      if (hasServerVisionImage) {
+        newSessionId();
+        updateSessionHint();
+      }
+      hasServerVisionImage = false;
+      fileMeta.textContent = '';
+      questionEl.placeholder = 'Ask a medical question...';
+    }
+
+    async function extractFileText(file){
+      const token=getAuthToken();
+      if(!token) throw new Error('Not signed in');
+      const name=(file?.name||'').toLowerCase();
+      const type=(file?.type||'').toLowerCase();
+      const isAudio = type.startsWith('audio/') || /\.(mp3|wav|m4a|ogg|webm)$/i.test(name);
+      const isImage = type.startsWith('image/') || /\.(png|jpg|jpeg|webp|bmp|gif)$/i.test(name);
+      const isPdf = type==='application/pdf' || /\.pdf$/i.test(name);
+      
+      if(!isAudio && !isImage && !isPdf) throw new Error('Unsupported file type');
+      
+      // For images: do NOT extract text; handle in vision QA path
+      if (isImage) {
+        throw new Error('Images are now handled via vision QA. Upload image and ask your question.');
+      }
+      
+      const fd=new FormData();
+      const endpoint=isAudio?'/api/transcribe_diarized':'/api/ocr';
+      fd.append(isAudio?'audio':'file', file);
+      const r=await fetch(endpoint,{method:'POST',headers:{'authorization':'Bearer '+token},body:fd});
+      if(!r.ok){const t=await r.text(); throw new Error(`Extraction failed HTTP ${r.status}: ${t.slice(0,120)}`);}
+      // /api/transcribe_diarized returns text/plain; /api/ocr returns JSON {text, ...}.
+      let text='';
+      if(isAudio){
+        text=(await r.text()||'').toString().trim();
+      } else {
+        const data=await r.json().catch(()=>({}));
+        text=(data.text||data.transcription||'').toString().trim();
+      }
+      if(!text) throw new Error('No text extracted');
+      return text;
+    }
+
+    fileInput.addEventListener('change', async (e)=>{
+      const f=e.target.files && e.target.files[0];
+      if(!f) return;
+      
+      const name=f.name.toLowerCase();
+      const type=f.type.toLowerCase();
+      const isAudio = type.startsWith('audio/') || /\.(mp3|wav|m4a|ogg|webm)$/i.test(name);
+      const isImage = type.startsWith('image/') || /\.(png|jpg|jpeg|webp|bmp|gif)$/i.test(name);
+      const isPdf = type==='application/pdf' || /\.pdf$/i.test(name);
+      
+      if (isAudio || isPdf) {
+        // Existing OCR/ASR flow
+        fileMeta.textContent=`Extracting from: ${f.name}...`;
+        try{
+          const txt=await extractFileText(f);
+          questionEl.value = (questionEl.value ? questionEl.value + '\n\n' : '') + txt;
+          fileMeta.textContent=`Attached: ${f.name} · extracted ${txt.length} chars`;
+          questionEl.focus();
+        }catch(err){
+          fileMeta.textContent='';
+          showError(err.message||String(err));
+        }
+      } else if (isImage) {
+        if (hasServerVisionImage) {
+          newSessionId();
+          updateSessionHint();
+          chat.innerHTML = '';
+        }
+        hasServerVisionImage = false;
+        // Store image for vision QA (first question sends file; follow-ups reuse server-side cache)
+        attachedImage = f;
+        attachedImageUrl = URL.createObjectURL(f);
+        
+        // Show thumbnail preview
+        fileMeta.innerHTML = `
+          <div class="thumbnail-container">
+            <img src="${attachedImageUrl}" class="thumbnail" alt="Preview">
+            <div class="thumbnail-info">
+              <strong>Image attached</strong>
+              ${esc(f.name)} (${(f.size/1024).toFixed(1)} KB)
+              <br><span style="font-size:0.85em;opacity:0.9">Follow-up questions use this image automatically — no need to re-upload.</span>
+            </div>
+            <button type="button" class="remove-thumbnail" title="Remove image">×</button>
+          </div>
+        `;
+        
+        // Add click handler to remove button
+        fileMeta.querySelector('.remove-thumbnail').addEventListener('click', removeAttachedImage);
+        
+        // Auto‑focus question field with placeholder hint
+        questionEl.placeholder = 'Ask about this image...';
+        questionEl.focus();
+      } else {
+        showError('Unsupported file type. Please upload audio, image, or PDF.');
+      }
+      
+      fileInput.value = '';
+    });
+
+    async function sendQuestion(){
+      const q = (questionEl.value || '').trim();
+      const token = getAuthToken();
+      const imageForRequest = attachedImage;
+      const useVision = Boolean(imageForRequest || hasServerVisionImage);
+
+      if (!q && hasServerVisionImage && !imageForRequest) {
+        showError('Type a follow-up question about the image.');
+        return;
+      }
+
+      // If no question but image attached, auto‑generate a generic question
+      const effectiveQuestion = q || (imageForRequest ? 'Describe this medical image.' : '');
+      
+      if (!effectiveQuestion) return;
+      if (!token) { showError('Not signed in. Please open from main app session.'); return; }
+
+      // Clear UI
+      questionEl.value = '';
+      clearError();
+      addMsg('user', q ? md(q) : ((imageForRequest || hasServerVisionImage) ? '<em>[Image question]</em>' : ''));
+      const pending = addMsg('assistant', '<em>Analyzing...<span class="streaming-cursor">▌</span></em>');
+      sendBtn.disabled = true;
+      
+      // Cancel any previous request
+      if (currentAbortController) currentAbortController.abort();
+      currentAbortController = new AbortController();
+
+      try {
+        let response;
+        let textMode = 'stream';
+        
+        if (useVision) {
+          // VISION QA PATH (streaming) — first request sends image; follow-ups omit file (server cache)
+          const formData = new FormData();
+          formData.append('question', effectiveQuestion);
+          formData.append('session_id', qaSessionId);
+          if (imageForRequest) {
+            formData.append('image', imageForRequest, imageForRequest.name || 'image');
+          }
+
+          response = await fetch('/api/qa/vision', {
+            method: 'POST',
+            headers: { 'authorization': 'Bearer ' + token },
+            body: formData,
+            signal: currentAbortController.signal
+          });
+        } else {
+          // REGULAR TEXT QA PATH (streaming)
+          response = await fetch('/api/qa/chat_stream', {
+            method: 'POST',
+            headers: { 
+              'content-type': 'application/json',
+              'authorization': 'Bearer ' + token 
+            },
+            body: JSON.stringify({ message: effectiveQuestion, session_id: qaSessionId }),
+            signal: currentAbortController.signal
+          });
+          if (response.status === 404) {
+            // Backward compatibility: older backend without /chat_stream
+            textMode = 'json';
+            response = await fetch('/api/qa/chat', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                'authorization': 'Bearer ' + token
+              },
+              body: JSON.stringify({ message: effectiveQuestion, session_id: qaSessionId }),
+              signal: currentAbortController.signal
+            });
+          }
+        }
+        
+        if (!response.ok) {
+          const t = await response.text();
+          throw new Error(`HTTP ${response.status}: ${t.slice(0,180)}`);
+        }
+        
+        // Handle streaming response for vision and text QA
+        if (useVision) {
+          // Two-stage vision stream with trailing evidence metadata.
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          const META_TAG = '__QA_META__';
+          let raw = '';
+          let answerText = '';
+          let metaObj = null;
+          
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            raw += decoder.decode(value, { stream: true });
+            const metaIdx = raw.indexOf(META_TAG);
+            if (metaIdx >= 0) {
+              answerText = raw.slice(0, metaIdx);
+              const metaRaw = raw.slice(metaIdx + META_TAG.length).trim();
+              try { metaObj = JSON.parse(metaRaw); } catch {}
+            } else {
+              answerText = raw;
+            }
+            
+            // Update UI incrementally
+            pending.innerHTML = md(answerText) + '<span class="streaming-cursor">▌</span>';
+            chat.scrollTop = chat.scrollHeight;
+          }
+
+          const metaIdx = raw.indexOf(META_TAG);
+          if (metaIdx >= 0) {
+            answerText = raw.slice(0, metaIdx);
+            const metaRaw = raw.slice(metaIdx + META_TAG.length).trim();
+            try { metaObj = JSON.parse(metaRaw); } catch {}
+          }
+
+          let refs = '';
+          const src = Array.isArray(metaObj?.sources) ? metaObj.sources : [];
+          const info = `Evidence: RAG ${Number(metaObj?.rag_results_count||0)} · Web ${Number(metaObj?.web_results_count||0)}${metaObj?.evidence_max_year?` · Max year ${metaObj.evidence_max_year}`:''}`;
+          if (src.length) {
+            refs = '<div class="refs"><div><strong>' + esc(info) + '</strong></div>' +
+              src.slice(0,8).map((s,i) => {
+                const tier = (s.tier || 'web').toLowerCase();
+                const tierClass = 'tier-' + (['guideline','trial','pubmed','web'].includes(tier) ? tier : 'web');
+                const tierLabel = esc(tier.charAt(0).toUpperCase() + tier.slice(1));
+                const scoreStr = s.score != null ? `<span class="score-val">(${esc(String(s.score))})</span>` : '';
+                return `<div>[${i+1}] <span class="tier-badge ${tierClass}">${tierLabel}</span> ${esc((s.kind||'src').toUpperCase())}: ${esc(s.title||'Untitled')} ${scoreStr} ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">link</a>`:''}</div>`;
+              }).join('') + '</div>';
+          } else if (metaObj) {
+            refs = `<div class="refs"><strong>${esc(info)}</strong></div>`;
+          }
+          
+          // Remove blinking cursor when done
+          const cleanedVision = stripQaCitationNoise(answerText);
+          pending.innerHTML = md(cleanedVision) + refs;
+          const visionFailed = cleanedVision.trim().startsWith('[ERROR:');
+          if (visionFailed) {
+            hasServerVisionImage = false;
+            showError(cleanedVision);
+          } else {
+            addCopyButton(pending, cleanedVision);
+            hasServerVisionImage = true;
+            attachedImage = null;
+          }
+          if (!visionFailed && fileMeta) {
+            const hint = '<span style="font-size:0.85em;color:var(--dc-on-dark-muted, #94a3b8)">Follow-ups: type the next question — image stays on the server for this topic.</span>';
+            if (fileMeta.innerHTML && fileMeta.querySelector('.thumbnail-container')) {
+              const info = fileMeta.querySelector('.thumbnail-info');
+              if (info && !info.querySelector('.vision-follow-hint')) {
+                const s = document.createElement('span');
+                s.className = 'vision-follow-hint';
+                s.style.display = 'block';
+                s.style.marginTop = '6px';
+                s.innerHTML = hint;
+                info.appendChild(s);
+              }
+            } else if (!fileMeta.textContent) {
+              fileMeta.innerHTML = '<div class="thumbnail-info">' + hint + '</div>';
+            }
+          }
+        } else if (textMode === 'stream') {
+          // Streaming text QA with trailing metadata marker
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          const META_TAG = '__QA_META__';
+          let raw = '';
+          let answerText = '';
+          let metaObj = null;
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            raw += decoder.decode(value, { stream: true });
+
+            const idx = raw.indexOf(META_TAG);
+            if (idx >= 0) {
+              answerText = raw.slice(0, idx);
+              const metaRaw = raw.slice(idx + META_TAG.length).trim();
+              try { metaObj = JSON.parse(metaRaw); } catch {}
+            } else {
+              answerText = raw;
+            }
+            pending.innerHTML = md(answerText) + '<span class="streaming-cursor">▌</span>';
+            chat.scrollTop = chat.scrollHeight;
+          }
+
+          const idx = raw.indexOf(META_TAG);
+          if (idx >= 0) {
+            answerText = raw.slice(0, idx);
+            const metaRaw = raw.slice(idx + META_TAG.length).trim();
+            try { metaObj = JSON.parse(metaRaw); } catch {}
+          } else {
+            answerText = raw;
+          }
+
+          let refs = '';
+          const src = Array.isArray(metaObj?.sources) ? metaObj.sources : [];
+          const info = `Evidence: RAG ${Number(metaObj?.rag_results_count||0)} · Web ${Number(metaObj?.web_results_count||0)}${metaObj?.evidence_max_year?` · Max year ${metaObj.evidence_max_year}`:''}`;
+          if (src.length) {
+            refs = '<div class="refs"><div><strong>' + esc(info) + '</strong></div>' +
+              src.slice(0,8).map((s,i) => {
+                const tier = (s.tier || 'web').toLowerCase();
+                const tierClass = 'tier-' + (['guideline','trial','pubmed','web'].includes(tier) ? tier : 'web');
+                const tierLabel = esc(tier.charAt(0).toUpperCase() + tier.slice(1));
+                const scoreStr = s.score != null ? `<span class="score-val">(${esc(String(s.score))})</span>` : '';
+                return `<div>[${i+1}] <span class="tier-badge ${tierClass}">${tierLabel}</span> ${esc((s.kind||'src').toUpperCase())}: ${esc(s.title||'Untitled')} ${scoreStr} ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">link</a>`:''}</div>`;
+              }).join('') + '</div>';
+          } else {
+            refs = `<div class="refs"><strong>${esc(info)}</strong></div>`;
+          }
+
+          const cleanedStream = stripQaCitationNoise(answerText);
+          pending.innerHTML = md(cleanedStream) + refs;
+          addCopyButton(pending, cleanedStream);
+        } else {
+          // JSON fallback for older backend deployments
+          const d = await response.json();
+          let refs = '';
+          const src = Array.isArray(d.sources) ? d.sources : [];
+          const info = `Evidence: RAG ${Number(d.rag_results_count||0)} · Web ${Number(d.web_results_count||0)}${d.evidence_max_year?` · Max year ${d.evidence_max_year}`:''}`;
+          if (src.length) {
+            refs = '<div class="refs"><div><strong>' + esc(info) + '</strong></div>' +
+              src.slice(0,8).map((s,i) => {
+                const tier = (s.tier || 'web').toLowerCase();
+                const tierClass = 'tier-' + (['guideline','trial','pubmed','web'].includes(tier) ? tier : 'web');
+                const tierLabel = esc(tier.charAt(0).toUpperCase() + tier.slice(1));
+                const scoreStr = s.score != null ? `<span class="score-val">(${esc(String(s.score))})</span>` : '';
+                return `<div>[${i+1}] <span class="tier-badge ${tierClass}">${tierLabel}</span> ${esc((s.kind||'src').toUpperCase())}: ${esc(s.title||'Untitled')} ${scoreStr} ${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">link</a>`:''}</div>`;
+              }).join('') + '</div>';
+          } else {
+            refs = `<div class="refs"><strong>${esc(info)}</strong></div>`;
+          }
+          const answerText = d.answer || 'No answer returned.';
+          const cleanedJson = stripQaCitationNoise(answerText);
+          pending.innerHTML = md(cleanedJson) + refs;
+          addCopyButton(pending, cleanedJson);
+        }
+      } catch(e) {
+        if (e.name === 'AbortError') {
+          pending.innerHTML = '<em>Cancelled</em>';
+        } else {
+          pending.innerHTML = '<span style="color:#991b1b">Failed to generate response.</span>';
+          showError(e.message || String(e));
+        }
+      } finally {
+        sendBtn.disabled = false;
+        currentAbortController = null;
+      }
+    }
+
+    questionEl.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendQuestion(); }
+    });
+    sendBtn.addEventListener('click', sendQuestion);
+    newTopicBtn.addEventListener('click', ()=>{
+      newSessionId();
+      updateSessionHint();
+      chat.innerHTML='';
+      questionEl.value='';
+      hasServerVisionImage = false;
+      removeAttachedImage();
+      clearError();
+      questionEl.focus();
+    });
+    function printLastQaAnswer() {
+      const answers = chat.querySelectorAll('.msg.assistant');
+      if (!answers.length) {
+        showError('No answer to print yet — ask a question first.');
+        return;
+      }
+      const last = answers[answers.length - 1];
+      const clone = last.cloneNode(true);
+      clone.querySelectorAll('button').forEach((b) => b.remove());
+      const printCss = [
+        'body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px;color:#111;line-height:1.45;}',
+        '.msg{max-width:100%;}',
+        '.cng-md-table-wrap{overflow-x:auto;margin:.5rem 0;}',
+        '.cng-md-table{border-collapse:collapse;width:100%;font-size:13px;}',
+        '.cng-md-table th,.cng-md-table td{border:1px solid #d1d5db;padding:6px 8px;text-align:left;vertical-align:top;}',
+        '.cng-md-ol,.cng-md-ul{margin:.5rem 0;padding-left:1.35rem;}',
+        '.cng-md-pre{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12px;}',
+        'h2,h3,h4,h5,h6{margin:.4rem 0;}',
+      ].join('');
+      const html = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Q&amp;A answer</title>'
+        + '<style>' + printCss + '</style></head><body><div class="msg assistant">'
+        + clone.innerHTML + '</div></body></html>';
+      const win = window.open('', '_blank');
+      if (!win) {
+        showError('Allow popups for this site to print the answer.');
+        return;
+      }
+      win.document.open();
+      win.document.write(html);
+      win.document.close();
+      win.focus();
+      const done = () => { try { win.close(); } catch (_) {} };
+      if (win.matchMedia) {
+        win.matchMedia('print').addListener((m) => { if (!m.matches) done(); });
+      }
+      win.addEventListener('afterprint', done);
+      setTimeout(() => {
+        try { win.print(); } catch (e) {
+          console.warn('[QA] print failed', e);
+          showError('Could not open the print dialog.');
+          done();
+        }
+      }, 250);
+    }
+    window.printLastQaAnswer = printLastQaAnswer;
+
+    if (printQaBtn) {
+      printQaBtn.addEventListener('click', printLastQaAnswer);
+    }
+    window.addEventListener('load', ()=>{ setTimeout(()=>questionEl.focus(), 50); });
+
+    // iOS keyboard: keep composer visible by resizing to visual viewport
+    (function(){
+      const appEl = document.querySelector('.app');
+      const vv = window.visualViewport;
+      if (!vv) return;
+      function onResize(){
+        appEl.style.height = vv.height + 'px';
+      }
+      vv.addEventListener('resize', onResize);
+    })();
+  </script>
+</body>
+</html>

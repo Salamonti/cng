@@ -1,0 +1,2119 @@
+<!-- C:\PCHost\web\admin.html -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#130f1a" />
+    <title>DreamCision AI&#183;SCRIBE — Admin</title>
+    <link rel="icon" href="assets/dreamcision/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="stylesheet" href="css/dreamcision-tokens.css" />
+    <script>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search || '');
+          var t = q.get('access_token');
+          if (t) {
+            sessionStorage.setItem('admin_workspace_token', t);
+            q.delete('access_token');
+            var next = location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash;
+            history.replaceState(null, '', next);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 1.5rem;
+        background-color: var(--dc-page);
+        color: var(--dc-text);
+      }
+      .container {
+        background: var(--dc-page-elevated);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: var(--dc-shadow-soft);
+        margin-bottom: 2rem;
+        border: 1px solid var(--dc-border);
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: -2rem -2rem 2rem -2rem;
+        padding: 1.15rem 2rem;
+        background: var(--dc-header-bg);
+        color: var(--dc-on-dark);
+        border-bottom: 1px solid var(--dc-border-violet);
+        box-shadow: 0 6px 24px rgba(10, 8, 16, 0.35);
+      }
+      .header h1 { color: var(--dc-on-dark); }
+      .nav-links a {
+        margin-left: 1rem;
+        color: var(--dc-lilac);
+        text-decoration: none;
+      }
+      .nav-links a:hover {
+        text-decoration: underline;
+        color: var(--dc-on-dark);
+      }
+      .row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+      .col {
+        flex: 1;
+        min-width: 280px;
+      }
+      .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: white;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      .card h3 {
+        margin-top: 0;
+        color: #495057;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 0.5rem;
+      }
+      .info-panel {
+        background: #eef2ff;
+        border: 1px solid #cbd5ff;
+        border-radius: 4px;
+        padding: 1rem;
+        margin-top: 1rem;
+        white-space: pre-wrap;
+      }
+      .info-panel.loading {
+        opacity: 0.6;
+      }
+      .info-panel h4 {
+        margin-top: 0;
+        color: #374151;
+      }
+      .info-panel table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.75rem;
+      }
+      .info-panel th,
+      .info-panel td {
+        border: 1px solid #d1d5f0;
+        padding: 0.5rem;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .updates-list {
+        max-height: 420px;
+        overflow-y: auto;
+        background: #ffffff;
+        border: 1px solid #d1d5f0;
+        border-radius: 4px;
+        padding: 0.75rem;
+      }
+      .updates-list details {
+        margin-bottom: 0.5rem;
+      }
+      .updates-list summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      pre {
+        background: #f8f9fa;
+        padding: 1rem;
+        max-height: 40vh;
+        overflow: auto;
+        border-radius: 4px;
+        border: 1px solid #e9ecef;
+        font-size: 0.9rem;
+      }
+      label {
+        display: block;
+        margin: 0.5rem 0 0.25rem 0;
+        font-weight: 500;
+        color: #495057;
+      }
+      input, select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 0.5rem;
+      }
+      button {
+        background: linear-gradient(135deg, var(--dc-primary-dark), var(--dc-primary));
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 0.25rem 0.25rem 0.25rem 0;
+      }
+      button:hover {
+        background: linear-gradient(135deg, var(--dc-primary), #945fc9);
+        box-shadow: 0 4px 12px var(--dc-violet-glow);
+      }
+      .btn-secondary {
+        background: var(--dc-text-muted);
+      }
+      .btn-secondary:hover {
+        background: #545b62;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-row {
+        display: flex;
+        gap: 1rem;
+      }
+      .form-row .form-group {
+        flex: 1;
+      }
+      .status-message {
+        padding: 0.5rem;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        font-size: 0.9rem;
+      }
+      .status-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .status-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .status-warning {
+        background: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+      }
+      .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem;
+        color: var(--dc-text-muted);
+        font-size: 0.85rem;
+        border-top: 1px solid #e9ecef;
+      }
+      .hidden {
+        display: none;
+      }
+      .hidden-config {
+        display: none !important;
+      }
+      .service-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        background: #f8f9fa;
+      }
+      .service-info {
+        flex: 1;
+      }
+      .service-name {
+        font-weight: 600;
+        color: #495057;
+      }
+      .service-details {
+        font-size: 0.85rem;
+        color: var(--dc-text-muted);
+        margin-top: 0.25rem;
+      }
+      .service-status {
+        margin: 0 1rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .status-running {
+        background: #d4edda;
+        color: #155724;
+      }
+      .status-stopped {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      .service-controls {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+      }
+      .btn-success {
+        background: var(--dc-primary);
+      }
+      .btn-success:hover {
+        background: #218838;
+      }
+      .btn-danger {
+        background: var(--dc-danger);
+      }
+      .btn-danger:hover {
+        background: #c82333;
+      }
+      .btn-warning {
+        background: #ffc107;
+        color: #212529;
+      }
+      .btn-warning:hover {
+        background: #e0a800;
+      }
+      .collapsible-content {
+        transition: max-height 0.3s ease-out;
+        overflow: visible;
+      }
+      .collapsible-content.collapsed {
+        max-height: 0 !important;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+      }
+      #admin_fs_modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(15, 23, 42, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      #admin_fs_modal.hidden {
+        display: none !important;
+      }
+      .admin-fs-dialog {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+        max-width: min(720px, 100vw);
+        width: 100%;
+        max-height: min(80vh, 900px);
+        display: flex;
+        flex-direction: column;
+      }
+      .admin-fs-dialog header {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .admin-fs-dialog .admin-fs-body {
+        padding: 0.75rem 1rem;
+        overflow: auto;
+        flex: 1;
+        font-size: 0.875rem;
+      }
+      .admin-fs-path {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem;
+        color: #374151;
+        word-break: break-all;
+      }
+      .admin-fs-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .admin-fs-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.25rem;
+        border-radius: 4px;
+      }
+      .admin-fs-list li:hover {
+        background: #f3f4f6;
+      }
+      .admin-fs-list button.linklike {
+        background: none;
+        border: none;
+        color: #2563eb;
+        cursor: pointer;
+        text-align: left;
+        padding: 0;
+        font: inherit;
+      }
+      .admin-fs-list .meta {
+        color: #6b7280;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <img src="assets/dreamcision/logo-wordmark-h48.png" srcset="assets/dreamcision/logo-wordmark-h96.png 2x" height="44" alt="DreamCision" style="max-width:min(85vw,380px);width:auto;object-fit:contain;border:none;border-radius:0;box-shadow:none;filter:none;background:transparent;" />
+          <div>
+            <h1 style="margin:0;">Admin</h1>
+            <div style="font-size:0.88rem;color:var(--dc-on-dark-muted);margin-top:4px;">Version 1.0 · Operator console</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="https://notes.ieissa.com/manual" target="_blank" rel="noopener noreferrer">Help</a>
+          <a href="index.html">Clinical workspace</a>
+          <a href="qa.html">Medical Q&amp;A</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="licenses.html">Licenses</a>
+        </div>
+      </div>
+
+      <!-- Configuration Section -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3 onclick="toggleSection('server_configuration')" style="cursor: pointer;">
+          <span id="server_configuration_toggle">▼</span> Server Configuration
+        </h3>
+        <div id="server_configuration" class="collapsible-content">
+          <div class="form-row">
+            <div class="form-group hidden-config">
+              <label for="admin_api_base" class="hidden-config">Server URL:</label>
+              <input id="admin_api_base" class="hidden-config" type="text" value="/api" />
+            </div>
+          </div>
+          <p style="font-size:0.85rem; color:var(--dc-text-muted);">
+            Admin API defaults to <code>/api</code>. Override via localStorage <code>admin_config.apiBase</code> if needed.
+          </p>
+          <button type="button" class="btn-secondary" onclick="saveAdminConfig()">Save API base</button>
+          <div id="token_status" class="status-message hidden"></div>
+          <div class="form-row" style="margin-top:1rem;">
+            <div class="form-group">
+              <label for="admin_login_email">Admin Email:</label>
+              <input id="admin_login_email" type="email" placeholder="admin@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="admin_login_password">Admin Password:</label>
+              <input id="admin_login_password" type="password" placeholder="Enter admin password" />
+            </div>
+          </div>
+          <button class="btn-secondary" onclick="adminLogin()">Sign in (admin)</button>
+          <p style="margin-top:0.75rem;font-size:0.85rem;"><a href="index.html">Open clinical app</a></p>
+          <div id="admin_login_status" class="status-message hidden"></div>
+          <div id="admin_notice" class="status-message hidden"></div>
+
+          <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--dc-border);">
+            <h4 style="margin:0 0 0.5rem 0;color:#374151;">Clinical app — <code>config.json</code></h4>
+            <p style="font-size:0.85rem;color:var(--dc-text-muted);margin:0 0 0.5rem 0;">
+              Read/write <code>Clinical-Note-Generator/config/config.json</code>. JWT and API keys are shown as <code>__REDACTED__</code> until you replace them; saving keeps on-disk secrets when those placeholders are unchanged. Post-save validation rejects empty or clearly truncated JSON. Changing auth secrets usually requires restarting the FastAPI process; other keys may hot-reload where supported (see runbook).
+            </p>
+            <div id="clinical_config_path" style="font-size:0.8rem;color:var(--dc-text-muted);margin:0 0 0.5rem 0;"></div>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+              <button type="button" class="btn-secondary" onclick="loadClinicalConfig()">Load config</button>
+              <button type="button" onclick="saveClinicalConfig()">Save config</button>
+              <button type="button" class="btn-secondary" onclick="formatClinicalConfig()">Format JSON</button>
+            </div>
+            <textarea id="clinical_config_editor" style="width:100%;min-height:200px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;padding:10px;border-radius:6px;border:1px solid #d1d5f0;" placeholder="Sign in and click Load config…"></textarea>
+            <div id="clinical_config_status" class="status-message hidden" style="margin-top:0.5rem;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Management Section -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3 onclick="toggleSection('service_management')" style="cursor: pointer;">
+          <span id="service_management_toggle">▼</span> Service Management
+        </h3>
+        <div id="service_management" class="collapsible-content">
+          <div style="margin-bottom: 1rem;">
+            <button onclick="refreshServiceStatus()">🔄 Refresh service table</button>
+            <button class="btn-secondary" onclick="refreshAllHealth()">🩺 Refresh all health</button>
+            <button class="btn-secondary" onclick="loadServiceEndpoints()">📄 Load service_endpoints.json</button>
+            <div style="background: #eef2ff; padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem; font-size: 0.82rem; border: 1px solid #c7d2fe;">
+              <strong style="cursor:pointer;" onclick="toggleSection('admin_three_controls')"><span id="admin_three_controls_toggle">▶</span> Three control mechanisms (read once)</strong>
+              <div id="admin_three_controls" class="collapsible-content collapsed" style="margin-top:0.5rem;max-height:0;">
+                <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+                  <thead><tr style="text-align:left;border-bottom:1px solid #c7d2fe;">
+                    <th style="padding:0.25rem 0.35rem;">Mechanism</th>
+                    <th style="padding:0.25rem 0.35rem;">What you control</th>
+                    <th style="padding:0.25rem 0.35rem;">Env gate</th>
+                  </tr></thead>
+                  <tbody>
+                    <tr><td style="padding:0.35rem;vertical-align:top;"><strong>NSSM / Windows</strong></td><td style="padding:0.35rem;">Service table: allowlisted Windows service names (same host).</td><td style="padding:0.35rem;"><code>ADMIN_SERVICE_CONTROL_ENABLED=1</code></td></tr>
+                    <tr><td style="padding:0.35rem;vertical-align:top;"><strong>Office stack</strong></td><td style="padding:0.35rem;">PCHost / FastAPI / RAG child processes from <code>office_stack_processes</code>.</td><td style="padding:0.35rem;"><code>ADMIN_PROCESS_CONTROL_ENABLED=1</code></td></tr>
+                    <tr><td style="padding:0.35rem;vertical-align:top;"><strong>AI native</strong></td><td style="padding:0.35rem;"><code>llama-server</code> / <code>whisper-server</code> instances.</td><td style="padding:0.35rem;"><code>ADMIN_PROCESS_CONTROL_ENABLED=1</code></td></tr>
+                  </tbody>
+                </table>
+                <p style="margin:0.5rem 0 0 0;color:var(--dc-text-muted);">Reference only — env gates apply if you call admin APIs directly. This UI hides Windows/AI start-stop. Full checklist: <code>docs/OPERATOR_RUNBOOK_WINDOWS.md</code>.</p>
+              </div>
+            </div>
+            <div style="background: #e9ecef; padding: 0.75rem; border-radius: 4px; margin-top: 0.5rem; font-size: 0.875rem;">
+              <strong>Local services:</strong> FastAPI, LLaMA (main/secondary), ASR, OCR (external + in-app proxy), RAG, PCHost proxies.
+              <div style="margin-top:0.35rem;">
+                <strong>Health only:</strong> The table below shows TCP reachability and NSSM status lines. There are <strong>no</strong> Start/Stop/Restart buttons here — use <strong>NSSM</strong> or <strong>Services</strong> for Windows services; start <strong>llama-server</strong> and <strong>whisper-server</strong> manually (or your own scripts).
+              </div>
+            </div>
+            <div id="admin_service_health_only_note" style="font-size:0.82rem;color:var(--dc-text-muted);margin-top:0.75rem;padding:0.6rem 0.75rem;border:1px solid var(--dc-border);border-radius:6px;background:var(--dc-page-elevated);">
+              <strong>Operator mode</strong> — This page is for monitoring and editing JSON/config. Lifecycle stays on the host (NSSM, manual processes).
+            </div>
+          </div>
+
+          <div id="services_container" class="info-panel" style="margin-top:0.75rem;padding:0;">
+            <div style="text-align: center; color: var(--dc-text-muted); padding: 2rem;">
+              Click "Refresh Status" to load the service table...
+            </div>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <h4 style="margin: 0 0 0.5rem 0; color:#374151;">Single source of truth: <code>service_endpoints.json</code></h4>
+            <p style="margin:0 0 0.5rem 0; font-size:0.85rem; color:var(--dc-text-muted);">
+              Edit endpoints, ports, and per-service llama-server profiles here. Saving updates the file on disk; restart affected services to apply.
+            </p>
+            <div style="margin:0.75rem 0 1rem 0;padding:0.75rem;border:1px solid #d1d5f0;border-radius:8px;background:#fafbff;">
+              <h4 style="margin:0 0 0.5rem 0;color:#374151;">LLM / Whisper instances (structured form)</h4>
+              <p style="margin:0 0 0.5rem 0;font-size:0.85rem;color:var(--dc-text-muted);">
+                Use <strong>Form ← JSON</strong> after editing the file, adjust models and sampler fields, then <strong>JSON ← form</strong> before save.
+                <strong>Browse…</strong> opens the server file explorer; <strong>models ▸ llama</strong> / <strong>models ▸ whisper</strong> jump to the first matching <code>models/&lt;folder&gt;</code> under the checkout. Default note/QA temperatures and related keys also live in <strong>Server Configuration → Clinical app — config.json</strong> above.
+                <strong>Refresh AI status</strong> probes listening ports only — it does not start or stop servers. Run <strong>llama-server</strong> and <strong>whisper-server</strong> yourself (or NSSM). Saving JSON still writes <code>service_endpoints.json</code>; restart those processes to apply changes.
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <button type="button" class="btn-secondary" onclick="renderAiInstancesFormFromEditor()">Form ← JSON</button>
+                <button type="button" class="btn-secondary" onclick="applyAiFormToEditor()">JSON ← form</button>
+                <button type="button" class="btn-secondary" onclick="refreshAiProcessStatus()">Refresh AI status</button>
+              </div>
+              <div id="ai_process_status_line" style="font-size:0.8rem;margin:0 0 0.5rem 0;color:var(--dc-text-muted);"></div>
+              <div id="ai_instances_form_container"></div>
+              <h5 style="margin:1rem 0 0.5rem 0;color:#374151;">Whisper (ASR) instances</h5>
+              <div id="whisper_instances_form_container"></div>
+              <h5 style="margin:1rem 0 0.5rem 0;color:#374151;">Feature routing</h5>
+              <p style="margin:0 0 0.5rem 0;font-size:0.85rem;color:var(--dc-text-muted);">
+                Maps each workload to a <code>llama_instances</code> id (primary / optional fallback). Saving runs the same <code>sync_env_from_structure</code> step as the JSON editor — <code>env.NOTEGEN_*</code>, <code>LLM_*</code>, <code>OCR_*</code>, etc. Use <strong>Form ← JSON</strong> after editing raw JSON, then <strong>JSON ← form</strong> before save.
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <button type="button" class="btn-secondary" onclick="renderFeatureRoutingFromEditor()">Routing form ← JSON</button>
+                <button type="button" class="btn-secondary" onclick="applyFeatureRoutingFormToEditor()">JSON ← routing form</button>
+              </div>
+              <div id="feature_routing_form_container"></div>
+              <p style="font-size:0.85rem;color:var(--dc-text-muted);margin:1rem 0 0 0;">
+                <strong>Office stack</strong> (Node, FastAPI, RAG) is configured in <code>office_stack_processes</code> / <code>office_stack_order</code> in <code>service_endpoints.json</code> and started via NSSM (e.g. <code>startup/start-office-stack.ps1</code>). Use the <strong>Service Management</strong> table above for Windows/NSSM lifecycle — this section avoids duplicating those controls.
+              </p>
+            </div>
+            <div id="service_endpoints_path" style="font-size:0.8rem;color:var(--dc-text-muted);margin:0 0 0.5rem 0;"></div>
+            <textarea id="service_endpoints_editor" style="width:100%; min-height: 240px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px; border-radius: 6px; border: 1px solid #d1d5f0;"></textarea>
+            <div style="margin-top:0.5rem;">
+              <button onclick="saveServiceEndpoints()">💾 Save service_endpoints.json</button>
+              <button class="btn-secondary" onclick="formatServiceEndpoints()">✨ Format JSON</button>
+            </div>
+            <div id="service_endpoints_status" class="status-message hidden"></div>
+            <pre id="service_endpoints_warnings" class="status-message status-warning hidden" style="white-space:pre-wrap;margin-top:0.5rem;font-size:0.8rem;"></pre>
+          </div>
+
+      <div id="service_status" class="status-message hidden"></div>
+    </div>
+  </div>
+
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3 onclick="toggleSection('user_management')" style="cursor: pointer;">
+          <span id="user_management_toggle"></span> User Approvals
+        </h3>
+        <div id="user_management" class="collapsible-content">
+          <p style="color:#495057; font-size:0.95rem;">
+            Review pending registrations and change approval status. Sign in as admin above first.
+          </p>
+          <div style="margin-bottom: 1rem;">
+            <button onclick="fetchUsers()">Refresh Users</button>
+          </div>
+          <div id="user_status" class="status-message hidden"></div>
+          <div id="user_table_container" class="info-panel">
+            Sign in as admin above, then click &quot;Refresh Users&quot; to load registrations.
+          </div>
+        </div>
+      </div>
+
+    <div class="card" style="margin-bottom: 2rem;">
+      <h3>RAG Insights</h3>
+      <p style="margin-bottom: 1rem; color: #495057;">
+        Review the most recent RAG ingestion run and clinician-facing summaries of newly retrieved literature.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <button id="weeklySummaryBtn" class="btn-secondary">Show Weekly Run Summary</button>
+      </div>
+      <div id="weeklySummaryPanel" class="info-panel hidden"></div>
+      <p style="margin-top: 1rem; color: #495057; font-size: 0.9rem;">
+        Clinician-facing “Recent Updates” summaries are available directly in the QA interface.
+      </p>
+    </div>
+
+      <div class="copyright" style="margin-top:2rem;padding-top:1.25rem;border-top:1px solid #e9ecef;">
+        <div style="margin-bottom:0.85rem;display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;">
+          <a href="privacy.html" style="color:#007bff;">Privacy &amp; health information</a>
+          <a href="licenses.html" style="color:#007bff;">Open-source licenses</a>
+        </div>
+        <span>&copy; 2026 Eissa Internal Medicine Inc. DreamCision Admin Console. All rights reserved.</span>
+      </div>
+    </div>
+
+    <div id="admin_fs_modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="admin_fs_title">
+      <div class="admin-fs-dialog">
+        <header>
+          <strong id="admin_fs_title">Choose file (server)</strong>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <button type="button" class="btn-secondary" id="admin_fs_btn_roots">Roots</button>
+            <button type="button" class="btn-secondary" id="admin_fs_btn_up">Up</button>
+            <button type="button" class="btn-secondary" id="admin_fs_btn_close">Close</button>
+          </div>
+        </header>
+        <div class="admin-fs-body">
+          <div class="admin-fs-path" id="admin_fs_current"></div>
+          <ul class="admin-fs-list" id="admin_fs_list"></ul>
+          <p id="admin_fs_err" style="color:#b91c1c;font-size:0.85rem;margin-top:0.5rem;display:none;"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const ADMIN_CONFIG_KEY = 'admin_config';
+      const adminState = { profile: null };
+
+      function getAdminConfig(){
+        try { return JSON.parse(localStorage.getItem(ADMIN_CONFIG_KEY)||'{}') } catch(e){ return {} }
+      }
+
+      function getWorkspaceToken() {
+        try {
+          // Use separate storage key to avoid conflict with main workspace (index.html)
+          return sessionStorage.getItem('admin_workspace_token') || '';
+        } catch {
+          // fall through
+        }
+        return '';
+      }
+
+      function getApiBase(){
+        const cfg = getAdminConfig();
+        let base = (cfg.apiBase || '/api').trim();
+        if (!base) base = '/api';
+        if (!base.startsWith('http://') && !base.startsWith('https://') && !base.startsWith('/')) {
+          base = `/${base}`;
+        }
+        return base.replace(/\/+$/, '') || '/api';
+      }
+
+      function uniqueList(values) {
+        const seen = new Set();
+        const result = [];
+        for (const value of values) {
+          if (!value) continue;
+          const key = value.replace(/\/+$/, '');
+          if (seen.has(key)) continue;
+          seen.add(key);
+          result.push(value);
+        }
+        return result;
+      }
+
+      function resolveServerBases(){
+        const preferred = getApiBase();
+        return [preferred || '/api'];
+      }
+
+      function buildUrl(base, path){
+        const trimmedPath = path.startsWith('/') ? path : `/${path}`;
+        if (!base || base === '/') {
+          return trimmedPath;
+        }
+        if (base.startsWith('http://') || base.startsWith('https://')) {
+          return `${base.replace(/\/+$/, '')}${trimmedPath}`
+            .replace(/(?<!:)\/{2,}/g, '/')
+            .replace(':/', '://');
+        }
+        return `${base.replace(/\/+$/, '')}${trimmedPath}`.replace(/\/{2,}/g, '/');
+      }
+
+      function authHeaders(extra={}) {
+        const headers = { ...extra };
+        const cfg = getAdminConfig();
+        const workspaceToken = (getWorkspaceToken() || '').trim();
+        const legacy = (cfg.adminToken || '').trim();
+        const token = workspaceToken || legacy;
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+        return headers;
+      }
+
+      function hasAdminSession() {
+        return Boolean(adminState.profile && adminState.profile.is_admin);
+      }
+
+      function requireAdminHeaders(extra = {}, notice) {
+        if (!hasAdminSession()) {
+          setAdminNotice(notice || 'Sign in with an admin workspace account to manage these settings.', 'warning');
+          return null;
+        }
+        const headers = authHeaders(extra);
+        if (!headers['Authorization']) {
+          setAdminNotice(notice || 'Sign in with an admin workspace account to manage these settings.', 'warning');
+          return null;
+        }
+        setAdminNotice('');
+        return headers;
+      }
+
+      async function verifyAdminToken(token) {
+        if (!token) return { ok: false };
+        try {
+          const resp = await fetch(buildUrl(getApiBase(), '/auth/me'), {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` },
+          });
+          if (!resp.ok) {
+            return { ok: false, status: resp.status };
+          }
+          const profile = await resp.json();
+          return {
+            ok: true,
+            profile,
+            isAdmin: Boolean(profile?.is_admin),
+          };
+        } catch (error) {
+          return { ok: false, error };
+        }
+      }
+
+      async function ensureAdminSession(options = {}) {
+        const cfg = getAdminConfig();
+        const stored = (cfg.adminToken || '').trim();
+        const workspaceToken = (getWorkspaceToken() || '').trim();
+
+        const orderedTokens = [];
+        if (workspaceToken) orderedTokens.push({ token: workspaceToken, source: 'workspace' });
+        if (stored && stored !== workspaceToken) orderedTokens.push({ token: stored, source: 'stored' });
+
+        const tryToken = async (token, source) => {
+          const result = await verifyAdminToken(token);
+          if (!result.ok) {
+            return false;
+          }
+          if (!result.isAdmin) {
+            setAdminNotice('The signed-in workspace account is not an administrator.', 'warning');
+            if (source === 'stored') {
+              cfg.adminToken = '';
+              storeAdminConfig(cfg);
+            }
+            showLoggedOutState();
+            return false;
+          }
+          const profile = result.profile;
+          adminState.profile = profile;
+          try {
+            sessionStorage.setItem('admin_workspace_token', token);
+          } catch (e) {}
+          if (cfg.adminToken) {
+            cfg.adminToken = '';
+            storeAdminConfig(cfg);
+          }
+          showLoggedInState(profile, source);
+          setAdminNotice('');
+          return true;
+        };
+
+        for (const entry of orderedTokens) {
+          if (await tryToken(entry.token, entry.source)) {
+            return true;
+          }
+        }
+
+        adminState.profile = null;
+        showLoggedOutState();
+        if (!options.silent) {
+          setLoginStatus('Sign in with an admin account to manage settings.', true);
+        }
+        setAdminNotice('Sign in with an admin workspace account to use the console.', 'warning');
+        return false;
+      }
+
+      function showStatus(message, isError = false) {
+        const statusEl = document.getElementById('token_status');
+        statusEl.textContent = message;
+        statusEl.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+        statusEl.classList.remove('hidden');
+        setTimeout(() => {
+          statusEl.classList.add('hidden');
+        }, 3000);
+      }
+
+      function setLoginStatus(message, isError = false) {
+        const statusEl = document.getElementById('admin_login_status');
+        if (!statusEl) return;
+        statusEl.textContent = message;
+        statusEl.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+        statusEl.classList.remove('hidden');
+        if (!isError) {
+          setTimeout(() => statusEl.classList.add('hidden'), 4000);
+        }
+      }
+
+      function setAdminNotice(message, tone = 'info') {
+        const noticeEl = document.getElementById('admin_notice');
+        if (!noticeEl) return;
+        if (!message) {
+          noticeEl.textContent = '';
+          noticeEl.classList.add('hidden');
+          return;
+        }
+        let toneClass = 'status-success';
+        if (tone === 'error') toneClass = 'status-error';
+        else if (tone === 'warning') toneClass = 'status-error';
+        noticeEl.textContent = message;
+        noticeEl.className = `status-message ${toneClass}`;
+        noticeEl.classList.remove('hidden');
+      }
+
+      function storeAdminConfig(cfg) {
+        localStorage.setItem(ADMIN_CONFIG_KEY, JSON.stringify(cfg));
+      }
+
+      function saveAdminConfig() {
+        const base = document.getElementById('admin_api_base').value.trim();
+        const email = document.getElementById('admin_login_email').value.trim();
+        const cfg = getAdminConfig();
+        cfg.apiBase = base || '/api';
+        cfg.adminEmail = email || '';
+        if (cfg.adminToken) cfg.adminToken = '';
+        storeAdminConfig(cfg);
+        showStatus('API base saved.');
+      }
+
+      function showLoggedInState(profile) {
+        document.querySelectorAll('#server_configuration .form-row').forEach((row) => {
+          row.style.display = 'none';
+        });
+        const saveBtn = document.querySelector('button[onclick="saveAdminConfig()"]');
+        const loginBtn = document.querySelector('button[onclick="adminLogin()"]');
+        
+        if (saveBtn) saveBtn.style.display = 'none';
+        if (loginBtn) loginBtn.style.display = 'none';
+        
+        // Show logout button
+        let logoutBtn = document.getElementById('admin_logout_btn');
+        if (!logoutBtn) {
+          logoutBtn = document.createElement('button');
+          logoutBtn.id = 'admin_logout_btn';
+          logoutBtn.className = 'btn-danger';
+          logoutBtn.textContent = 'Logout';
+          logoutBtn.onclick = adminLogout;
+          document.getElementById('server_configuration').appendChild(logoutBtn);
+        }
+        logoutBtn.style.display = 'inline-block';
+
+        if (profile?.email) {
+          setLoginStatus(`Signed in as ${profile.email}`, false);
+        } else {
+          setLoginStatus('Signed in.', false);
+        }
+        setAdminNotice('');
+      }
+
+      function showLoggedOutState() {
+        document.querySelectorAll('#server_configuration .form-row').forEach((row) => {
+          row.style.display = 'flex';
+        });
+        const saveBtn = document.querySelector('button[onclick="saveAdminConfig()"]');
+        const loginBtn = document.querySelector('button[onclick="adminLogin()"]');
+        const logoutBtn = document.getElementById('admin_logout_btn');
+        
+        if (saveBtn) saveBtn.style.display = 'inline-block';
+        if (loginBtn) loginBtn.style.display = 'inline-block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+        setAdminNotice('Sign in with an admin workspace account to manage the console.', 'warning');
+      }
+
+      function adminLogout() {
+        adminState.profile = null;
+        try {
+          sessionStorage.removeItem('admin_workspace_token');
+        } catch (e) {}
+        const cfg = getAdminConfig();
+        cfg.adminToken = '';
+        cfg.apiBase = cfg.apiBase || '/api';
+        storeAdminConfig(cfg);
+        const pw = document.getElementById('admin_login_password');
+        if (pw) pw.value = '';
+        showStatus('Logged out successfully!');
+        showLoggedOutState();
+      }
+
+      async function adminLogin() {
+        const emailInput = document.getElementById('admin_login_email');
+        const passwordInput = document.getElementById('admin_login_password');
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        if (!email || !password) {
+          setLoginStatus('Enter admin email and password.', true);
+          return;
+        }
+        setLoginStatus('Authenticating...');
+        try {
+          const response = await makeApiRequest('/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+          if (!response.ok) {
+            const detail = await response.text();
+            throw new Error(detail || 'Login failed');
+          }
+          const data = await response.json();
+          try {
+            sessionStorage.setItem('admin_workspace_token', data.access_token);
+          } catch (e) {}
+          const cfg = getAdminConfig();
+          cfg.adminEmail = email;
+          cfg.adminToken = '';
+          storeAdminConfig(cfg);
+          const hasSession = await ensureAdminSession({ silent: true });
+          if (!hasSession) {
+            setLoginStatus('Account is not an administrator.', true);
+            showLoggedOutState();
+            return;
+          }
+          weeklySummaryState.cache = null;
+          showStatus('Signed in. Session stored for this browser tab.');
+          await Promise.allSettled([
+            refreshServiceStatus(),
+            fetchUsers()
+          ]);
+        } catch (error) {
+          setLoginStatus(error.message || 'Login failed', true);
+        }
+      }
+
+      async function makeApiRequest(endpoint, options = {}) {
+        const serverBases = resolveServerBases();
+        let lastError = null;
+        for (const baseUrl of serverBases) {
+          const fullUrl = `${baseUrl}${endpoint}`;
+          try {
+            const response = await fetch(fullUrl, options);
+            if (response.ok) {
+              return response;
+            }
+            let detailMsg = '';
+            try {
+              const ct = (response.headers.get('content-type') || '').toLowerCase();
+              if (ct.includes('application/json')) {
+                const j = await response.json();
+                if (j && j.detail !== undefined && j.detail !== null) {
+                  detailMsg = typeof j.detail === 'string' ? j.detail : JSON.stringify(j.detail);
+                }
+              } else {
+                detailMsg = (await response.text()).trim();
+              }
+            } catch (e) {}
+            const msg = (detailMsg || `HTTP ${response.status}: ${response.statusText}`) + ` (${fullUrl})`;
+            if (response.status < 500) {
+              const err = new Error(msg);
+              err.isApiClientError = true;
+              throw err;
+            }
+            lastError = new Error(msg);
+          } catch (error) {
+            if (error && error.isApiClientError) {
+              throw error;
+            }
+            lastError = error;
+            continue;
+          }
+        }
+        throw lastError || new Error('All endpoints failed');
+      }
+
+
+
+      let adminFsTarget = null;
+      let adminFsLastData = null;
+
+      function closeAdminFsModal() {
+        const m = document.getElementById('admin_fs_modal');
+        if (m) m.classList.add('hidden');
+        adminFsTarget = null;
+        adminFsLastData = null;
+      }
+
+      function openAdminFsBrowser(group, id, field, preset) {
+        if (!hasAdminSession()) {
+          showStatus('Sign in as admin to browse server files.', true);
+          return;
+        }
+        adminFsTarget = { group, id, field };
+        const m = document.getElementById('admin_fs_modal');
+        if (m) m.classList.remove('hidden');
+        const err = document.getElementById('admin_fs_err');
+        if (err) { err.style.display = 'none'; err.textContent = ''; }
+        adminFsBrowsePath(null, preset || null);
+      }
+
+      async function adminFsBrowsePath(path, preset) {
+        const errEl = document.getElementById('admin_fs_err');
+        const curEl = document.getElementById('admin_fs_current');
+        const listEl = document.getElementById('admin_fs_list');
+        if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+        const headers = requireAdminHeaders({'Content-Type': 'application/json'}, 'Sign in to browse server.');
+        if (!headers) {
+          if (errEl) { errEl.textContent = 'Not signed in.'; errEl.style.display = 'block'; }
+          return;
+        }
+        try {
+          const qp = [];
+          if (preset) qp.push('preset=' + encodeURIComponent(preset));
+          if (path != null && path !== '') qp.push('path=' + encodeURIComponent(path));
+          const q = qp.length ? ('?' + qp.join('&')) : '';
+          const r = await makeApiRequest('/admin/fs/browse' + q, { headers });
+          const data = await r.json();
+          adminFsLastData = data;
+          if (curEl) {
+            curEl.textContent = data.path ? data.path : '(choose a root folder — server paths)';
+          }
+          if (listEl) {
+            listEl.innerHTML = '';
+            if (data.roots && data.roots.length && !data.path) {
+              const li = document.createElement('li');
+              li.innerHTML = '<span class="meta">Quick roots:</span>';
+              listEl.appendChild(li);
+              data.roots.forEach(root => {
+                const li2 = document.createElement('li');
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'linklike';
+                b.textContent = root.label + ' → ' + root.path;
+                b.onclick = () => adminFsBrowsePath(root.path, null);
+                li2.appendChild(b);
+                listEl.appendChild(li2);
+              });
+            }
+            (data.directories || []).forEach(d => {
+              const li = document.createElement('li');
+              const b = document.createElement('button');
+              b.type = 'button';
+              b.className = 'linklike';
+              b.textContent = '📁 ' + d.name + '/';
+              b.onclick = () => adminFsBrowsePath(d.path, null);
+              li.appendChild(b);
+              listEl.appendChild(li);
+            });
+            (data.files || []).forEach(f => {
+              const li = document.createElement('li');
+              const b = document.createElement('button');
+              b.type = 'button';
+              b.className = 'linklike';
+              const sz = f.size != null ? ' (' + f.size + ' B)' : '';
+              b.textContent = '📄 ' + f.name + sz;
+              b.onclick = () => adminFsApplyFile(f.path);
+              li.appendChild(b);
+              listEl.appendChild(li);
+            });
+            if (!listEl.children.length && data.path) {
+              const li = document.createElement('li');
+              li.textContent = '(empty folder)';
+              listEl.appendChild(li);
+            }
+          }
+        } catch (e) {
+          if (errEl) {
+            errEl.textContent = e.message || String(e);
+            errEl.style.display = 'block';
+          }
+        }
+      }
+
+      function adminFsBrowseUp() {
+        if (!adminFsLastData || !adminFsLastData.parent) {
+          adminFsBrowsePath(null, null);
+          return;
+        }
+        adminFsBrowsePath(adminFsLastData.parent, null);
+      }
+
+      function adminFsApplyFile(absPath) {
+        if (!adminFsTarget || !absPath) return;
+        const { group, id, field } = adminFsTarget;
+        const card =
+          group === 'whisper_instances'
+            ? document.querySelector('.ai-whisper-card[data-group="whisper_instances"][data-id="' + CSS.escape(id) + '"]')
+            : document.querySelector('.ai-inst-card[data-group="llama_instances"][data-id="' + CSS.escape(id) + '"]');
+        if (!card) {
+          showStatus('Could not find instance card; refresh the form.', true);
+          return;
+        }
+        let inp = null;
+        if (group === 'whisper_instances') {
+          inp = card.querySelector('.w-model');
+        } else if (field === 'mmproj') {
+          inp = card.querySelector('.ai-mmproj');
+        } else {
+          inp = card.querySelector('.ai-model');
+        }
+        if (inp) inp.value = absPath;
+        closeAdminFsModal();
+        setServiceEndpointsStatus('Model path set from server browse. Use JSON ← form if you want to sync before save.');
+      }
+
+      function initAdminFsModal() {
+        const m = document.getElementById('admin_fs_modal');
+        const closeBtn = document.getElementById('admin_fs_btn_close');
+        const rootsBtn = document.getElementById('admin_fs_btn_roots');
+        const upBtn = document.getElementById('admin_fs_btn_up');
+        if (closeBtn) closeBtn.onclick = () => closeAdminFsModal();
+        if (rootsBtn) rootsBtn.onclick = () => adminFsBrowsePath(null, null);
+        if (upBtn) upBtn.onclick = () => adminFsBrowseUp();
+        if (m) {
+          m.addEventListener('click', (e) => {
+            if (e.target === m) closeAdminFsModal();
+          });
+        }
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && m && !m.classList.contains('hidden')) closeAdminFsModal();
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAdminFsModal);
+      } else {
+        initAdminFsModal();
+      }
+
+      // Service Management Functions
+      async function refreshServiceStatus() {
+        if (!hasAdminSession()) {
+          showServiceStatus('Sign in to check service status.', true);
+          return;
+        }
+        const headers = requireAdminHeaders();
+        if (!headers) {
+          showServiceStatus('Sign in to check service status.', true);
+          return;
+        }
+        try {
+          const r = await makeApiRequest('/admin/services/status/', { headers });
+          const data = await r.json();
+          displayServices(data.services);
+        } catch (error) {
+          showServiceStatus(`Error refreshing services: ${error.message}`, true);
+        }
+      }
+
+      async function refreshAllHealth() {
+        if (!hasAdminSession()) {
+          showServiceStatus('Sign in to refresh health.', true);
+          return;
+        }
+        const headers = requireAdminHeaders();
+        if (!headers) return;
+        showServiceStatus('Refreshing service table and AI probes…');
+        try {
+          await Promise.all([
+            refreshServiceStatus(),
+            refreshAiProcessStatus(),
+          ]);
+          showServiceStatus('Health refresh complete.');
+        } catch (e) {
+          showServiceStatus(`Health refresh: ${e.message || e}`, true);
+        }
+      }
+
+      function displayServices(services) {
+        const container = document.getElementById('services_container');
+        if (!container || !services) {
+          return;
+        }
+        const order = [
+          'fastapi', 'text_llm', 'vision_llm', 'asr_primary', 'asr_fallback',
+          'ocr_in_app', 'rag', 'searxng', 'notes_proxy',
+        ];
+        const entries = Object.entries(services).sort((a, b) => {
+          const ia = order.indexOf(a[0]);
+          const ib = order.indexOf(b[0]);
+          const va = ia === -1 ? 999 : ia;
+          const vb = ib === -1 ? 999 : ib;
+          return va - vb;
+        });
+        const esc = (s) => String(s ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+        const rows = entries.map(([id, svc]) => {
+          const label = svc.display || svc.name || id;
+          const port = svc.port != null ? String(svc.port) : (svc.port_hint ? `→ ${svc.port_hint}` : '—');
+          const nssmName = svc.name && svc.name !== 'internal' ? String(svc.name) : '';
+          const st = (svc.status || '—').toString();
+          const winCell = nssmName ? `${esc(nssmName)} · ${esc(st)}` : esc(st);
+          const reach = svc.reachable === true ? 'Yes' : svc.reachable === false ? 'No' : '—';
+          const note = esc(svc.note || '');
+          const reachClass = svc.reachable === true ? 'status-running' : 'status-stopped';
+          return `<tr>
+            <td><strong>${esc(label)}</strong><div style="font-size:0.8rem;color:var(--dc-text-muted);">${esc(id)}</div></td>
+            <td>${esc(port)}</td>
+            <td style="font-size:0.9rem;">${winCell}</td>
+            <td><span class="service-status ${reachClass}" style="margin:0;">${esc(reach)}</span></td>
+            <td style="font-size:0.85rem;">${note || '—'}</td>
+          </tr>`;
+        }).join('');
+        container.innerHTML = `
+          <table style="width:100%;margin:0;">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Port</th>
+                <th>Service state</th>
+                <th>Reachable</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+          <p style="font-size:0.85rem;color:var(--dc-text-muted);margin:0.75rem 0 0 0;">
+            “Reachable” is a TCP probe on <code>127.0.0.1</code>. Production service lifecycle is managed by systemd on userver.
+          </p>`;
+      }
+
+      function setServiceEndpointsStatus(message, isError = false, isWarning = false) {
+        const el = document.getElementById('service_endpoints_status');
+        if (!el) return;
+        el.textContent = message;
+        let tone = 'status-success';
+        if (isError) tone = 'status-error';
+        else if (isWarning) tone = 'status-warning';
+        el.className = `status-message ${tone}`;
+        el.classList.remove('hidden');
+        const hideMs = isError ? 8000 : isWarning ? 12000 : 5000;
+        if (!isError) setTimeout(() => el.classList.add('hidden'), hideMs);
+      }
+
+      async function loadServiceEndpoints() {
+        if (!hasAdminSession()) {
+          setServiceEndpointsStatus('Sign in to load service_endpoints.json.', true);
+          return;
+        }
+        const headers = requireAdminHeaders();
+        if (!headers) return;
+        try {
+          const r = await makeApiRequest('/admin/service_endpoints/', { headers });
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          const data = await r.json();
+          const p = document.getElementById('service_endpoints_path');
+          if (p) p.textContent = data.path ? `Path: ${data.path}` : '';
+          const ed = document.getElementById('service_endpoints_editor');
+          if (ed) ed.value = JSON.stringify(data.data || {}, null, 2);
+          const wEl = document.getElementById('service_endpoints_warnings');
+          if (wEl) {
+            wEl.textContent = '';
+            wEl.classList.add('hidden');
+          }
+          setServiceEndpointsStatus('Loaded service_endpoints.json.');
+          renderAiInstancesFormFromEditor(true);
+        } catch (e) {
+          setServiceEndpointsStatus(`Load failed: ${e.message || e}`, true);
+        }
+      }
+
+      function formatServiceEndpoints() {
+        const ed = document.getElementById('service_endpoints_editor');
+        if (!ed) return;
+        try {
+          const obj = JSON.parse(ed.value || '{}');
+          ed.value = JSON.stringify(obj, null, 2);
+          setServiceEndpointsStatus('Formatted JSON.');
+        } catch (e) {
+          setServiceEndpointsStatus('Invalid JSON; cannot format.', true);
+        }
+      }
+
+      async function saveServiceEndpoints() {
+        if (!hasAdminSession()) {
+          setServiceEndpointsStatus('Sign in to save service_endpoints.json.', true);
+          return;
+        }
+        const headers = requireAdminHeaders({'Content-Type':'application/json'});
+        if (!headers) return;
+        const ed = document.getElementById('service_endpoints_editor');
+        if (!ed) return;
+        let obj;
+        try { obj = JSON.parse(ed.value || '{}'); } catch (e) {
+          setServiceEndpointsStatus('Invalid JSON; fix before saving.', true);
+          return;
+        }
+        try {
+          const r = await makeApiRequest('/admin/service_endpoints/', {
+            method: 'PUT',
+            headers,
+            body: JSON.stringify(obj),
+          });
+          const data = await r.json().catch(()=> ({}));
+          if (!r.ok) throw new Error(data.detail || `HTTP ${r.status}`);
+          if (data.data && typeof data.data === 'object') {
+            ed.value = JSON.stringify(data.data, null, 2);
+          }
+          const warn = Array.isArray(data.warnings) && data.warnings.length > 0;
+          let msg = data.note || 'Saved. Restart affected services to apply changes.';
+          if (warn) msg += ' Review warnings below.';
+          setServiceEndpointsStatus(msg, false, warn);
+          if (warn) {
+            const wEl = document.getElementById('service_endpoints_warnings');
+            if (wEl) {
+              wEl.textContent = data.warnings.join('\n');
+              wEl.classList.remove('hidden');
+            }
+          } else {
+            const wEl = document.getElementById('service_endpoints_warnings');
+            if (wEl) {
+              wEl.textContent = '';
+              wEl.classList.add('hidden');
+            }
+          }
+          renderAiInstancesFormFromEditor(true);
+        } catch (e) {
+          setServiceEndpointsStatus(`Save failed: ${e.message || e}`, true);
+        }
+      }
+
+      function setClinicalConfigStatus(message, isError = false) {
+        const el = document.getElementById('clinical_config_status');
+        if (!el) return;
+        el.textContent = message;
+        el.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+        el.classList.remove('hidden');
+        if (!isError) setTimeout(() => el.classList.add('hidden'), 6000);
+      }
+
+      async function loadClinicalConfig() {
+        if (!hasAdminSession()) {
+          setClinicalConfigStatus('Sign in to load config.json.', true);
+          return;
+        }
+        const headers = requireAdminHeaders();
+        if (!headers) return;
+        try {
+          const r = await makeApiRequest('/admin/config/', { headers });
+          const payload = await r.json();
+          const pathEl = document.getElementById('clinical_config_path');
+          if (pathEl) pathEl.textContent = payload.path ? `Path: ${payload.path}` : '';
+          const ed = document.getElementById('clinical_config_editor');
+          if (ed) ed.value = JSON.stringify(payload.data || {}, null, 2);
+          setClinicalConfigStatus('Loaded config.json (secrets may show as __REDACTED__).');
+        } catch (e) {
+          setClinicalConfigStatus(`Load failed: ${e.message || e}`, true);
+        }
+      }
+
+      async function saveClinicalConfig() {
+        if (!hasAdminSession()) {
+          setClinicalConfigStatus('Sign in to save config.json.', true);
+          return;
+        }
+        const headers = requireAdminHeaders({ 'Content-Type': 'application/json' });
+        if (!headers) return;
+        const ed = document.getElementById('clinical_config_editor');
+        if (!ed) return;
+        let obj;
+        try {
+          obj = JSON.parse(ed.value || '{}');
+        } catch (e) {
+          setClinicalConfigStatus('Invalid JSON; fix before saving.', true);
+          return;
+        }
+        try {
+          const r = await makeApiRequest('/admin/config/save/', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ data: obj }),
+          });
+          const data = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(data.detail || `HTTP ${r.status}`);
+          setClinicalConfigStatus(data.path ? `Saved. ${data.path}` : 'Saved config.json.');
+          await loadClinicalConfig();
+        } catch (e) {
+          setClinicalConfigStatus(`Save failed: ${e.message || e}`, true);
+        }
+      }
+
+      function formatClinicalConfig() {
+        const ed = document.getElementById('clinical_config_editor');
+        if (!ed) return;
+        try {
+          const obj = JSON.parse(ed.value || '{}');
+          ed.value = JSON.stringify(obj, null, 2);
+          setClinicalConfigStatus('Formatted JSON.');
+        } catch (e) {
+          setClinicalConfigStatus('Invalid JSON; cannot format.', true);
+        }
+      }
+
+      const userListState = { users: [], loading: false };
+
+      function upsertUserInState(user) {
+        if (!user) return;
+        const idx = userListState.users.findIndex((entry) => entry.id === user.id);
+        if (idx >= 0) {
+          userListState.users[idx] = user;
+        } else {
+          userListState.users.push(user);
+        }
+        renderUserTable(userListState.users);
+      }
+
+      function removeUserFromState(userId) {
+        if (!userId) return;
+        userListState.users = userListState.users.filter((user) => user.id !== userId);
+        renderUserTable(userListState.users);
+      }
+
+      function setUserStatus(message, isError = false) {
+        const statusEl = document.getElementById('user_status');
+        if (!statusEl) return;
+        statusEl.textContent = message;
+        statusEl.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+        statusEl.classList.remove('hidden');
+        if (!isError) {
+          setTimeout(() => statusEl.classList.add('hidden'), 4000);
+        }
+      }
+
+      function renderUserTable(users) {
+        const container = document.getElementById('user_table_container');
+        if (!container) return;
+        if (!Array.isArray(users) || users.length === 0) {
+          container.innerHTML = '<div style="color:var(--dc-text-muted);">No users found. Awaiting new registrations.</div>';
+          return;
+        }
+        const rows = users
+          .map((user) => {
+            const created = user.created_at ? new Date(user.created_at).toLocaleString() : 'n/a';
+            const approved = user.is_approved ? 'Approved' : 'Pending';
+            const adminBadge = user.is_admin ? 'Admin' : 'User';
+            const approveDisabled = (user.is_approved || user.is_admin) ? 'disabled' : '';
+            const rejectDisabled = user.is_admin ? 'disabled' : '';
+            const encodedEmailAttr = encodeURIComponent(user.email || 'user account');
+
+            // Hide delete button for admin users, show "Protected" label instead
+            const deleteButton = user.is_admin
+              ? '<span style="color:var(--dc-text-muted);font-size:0.8rem;">Protected</span>'
+              : `<button class="btn-sm btn-warning"
+                   onclick="handleDeleteUser('${user.id}', decodeURIComponent('${encodedEmailAttr}'))">Delete</button>`;
+
+            return `
+              <tr>
+                <td>${escapeHtml(user.email || '')}</td>
+                <td>${escapeHtml(adminBadge)}</td>
+                <td>${escapeHtml(approved)}</td>
+                <td>${escapeHtml(created)}</td>
+                <td>
+                  <button class="btn-sm btn-success" ${approveDisabled}
+                    onclick="handleUserAction('${user.id}', 'approve')">Approve</button>
+                  <button class="btn-sm btn-danger" ${rejectDisabled}
+                    onclick="handleUserAction('${user.id}', 'reject')">Reject</button>
+                  ${deleteButton}
+                </td>
+              </tr>
+            `;
+          })
+          .join('');
+        container.innerHTML = `
+          <div class="updates-list" style="max-height:none;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      async function fetchUsers() {
+        if (!hasAdminSession()) {
+          setAdminNotice('Sign in with an admin workspace account to view users.', 'warning');
+          return;
+        }
+        const container = document.getElementById('user_table_container');
+        if (!container) return;
+        const headers = requireAdminHeaders();
+        if (!headers) {
+          container.innerHTML = '<div style="color:#b91c1c;">Sign in with an admin account to load users.</div>';
+          setUserStatus('Sign in as admin to load users.', true);
+          return;
+        }
+        
+        // ADD: Disable refresh button during load
+        const refreshBtn = document.querySelector('button[onclick="fetchUsers()"]');
+        if (refreshBtn) {
+          refreshBtn.disabled = true;
+          refreshBtn.textContent = 'Loading...';
+        }
+        
+        userListState.loading = true;
+        container.innerHTML = '<div style="color:var(--dc-text-muted);">Loading users...</div>';
+        try {
+          const response = await makeApiRequest('/admin/users/', {
+            headers,
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          const data = await response.json();
+          userListState.users = data;
+          renderUserTable(data);
+          setUserStatus(`Loaded ${data.length} user(s).`);
+        } catch (error) {
+          console.warn('Failed to load users:', error);
+          container.innerHTML = '<div style="color:#b91c1c;">Unable to load users. Sign in as admin or retry.</div>';
+          setUserStatus(`Error loading users: ${error.message}`, true);
+        } finally {
+          userListState.loading = false;
+          // ADD: Re-enable refresh button
+          if (refreshBtn) {
+            refreshBtn.disabled = false;
+            refreshBtn.textContent = 'Refresh Users';
+          }
+        }
+      }
+
+      async function handleUserAction(userId, action) {
+        if (!userId) return;
+        const endpoint =
+          action === 'approve'
+            ? `/admin/users/${userId}/approve/`
+            : `/admin/users/${userId}/reject/`;
+        const headers = requireAdminHeaders({ 'Content-Type': 'application/json' });
+        if (!headers) {
+          setUserStatus('Sign in as admin to update users.', true);
+          return;
+        }
+        try {
+          setUserStatus(`${action === 'approve' ? 'Approving' : 'Rejecting'} user...`);
+          const response = await makeApiRequest(endpoint, {
+            method: 'PATCH',
+            headers,
+          });
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText || response.statusText}`);
+          }
+          const updatedUser = await response.json();
+          upsertUserInState(updatedUser);
+          setUserStatus(`User ${action === 'approve' ? 'approved' : 'rejected'} successfully.`);
+        } catch (error) {
+          console.error('User action failed:', error);
+          setUserStatus(`Failed to update user: ${error.message}`, true);
+        }
+      }
+
+      async function handleDeleteUser(userId, emailLabel = 'this user') {
+        if (!userId) return;
+
+        // Double-check if user is an admin (defense in depth)
+        const user = userListState.users.find(u => u.id === userId);
+        if (user && user.is_admin) {
+          setUserStatus('Cannot delete admin users. Admin accounts are protected.', true);
+          return;
+        }
+
+        const confirmed = window.confirm(
+          `⚠️ DELETE USER ACCOUNT?\n\n` +
+          `Email: ${emailLabel}\n\n` +
+          `This will permanently:\n` +
+          `• Delete the user account\n` +
+          `• Delete their workspace data\n` +
+          `• Revoke all refresh tokens\n\n` +
+          `This action CANNOT be undone.\n\n` +
+          `Click OK to confirm deletion.`
+        );
+        
+        if (!confirmed) return;
+        
+        const headers = requireAdminHeaders();
+        if (!headers) {
+          setUserStatus('Sign in as admin to delete users.', true);
+          return;
+        }
+        try {
+          setUserStatus(`Deleting user ${emailLabel}...`);
+          const response = await makeApiRequest(`/admin/users/${userId}`, {
+            method: 'DELETE',
+            headers,
+          });
+          
+          if (!response.ok && response.status !== 204) {
+            const errorText = await response.text();
+            // Parse backend error message if JSON
+            let errorMsg = errorText || response.statusText;
+            try {
+              const json = JSON.parse(errorText);
+              errorMsg = json.detail || json.message || errorMsg;
+            } catch {}
+            throw new Error(errorMsg);
+          }
+          
+          removeUserFromState(userId);
+          setUserStatus(`User ${emailLabel} deleted successfully.`);
+        } catch (error) {
+          console.error('Delete user failed:', error);
+          setUserStatus(`Failed to delete user: ${error.message}`, true);
+        }
+      }
+
+      // Server control functions removed - use batch files to manage services
+
+      function showServiceStatus(message, isError = false) {
+        const statusEl = document.getElementById('service_status');
+        statusEl.textContent = message;
+        statusEl.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+        statusEl.classList.remove('hidden');
+        setTimeout(() => {
+          statusEl.classList.add('hidden');
+        }, 5000);
+      }
+
+      function escapeHtml(value) {
+        if (value === null || value === undefined) return '';
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function _parseNum(v) {
+        if (v === '' || v === undefined || v === null) return undefined;
+        const n = Number(v);
+        return Number.isFinite(n) ? n : undefined;
+      }
+
+      /** P1: matches server/core/service_endpoints_sync.py feature keys → env URL pairs. */
+      const FEATURE_ROUTING_ROWS = [
+        { key: 'note_gen', label: 'note_gen', env: 'NOTEGEN_URL_*' },
+        { key: 'qa_text', label: 'qa_text', env: 'LLM_QA_TEXT_URL_*' },
+        { key: 'qa_vision', label: 'qa_vision', env: 'LLM_QA_VISION_URL_*' },
+        { key: 'ocr', label: 'ocr', env: 'OCR_URL_*' },
+        { key: 'rag_comment', label: 'rag_comment', env: 'LLM_RAG_COMMENT_URL_*' },
+        { key: 'order_request', label: 'order_request', env: 'LLM_ORDER_REQUEST_URL_* (orders / referrals)' },
+      ];
+
+      function mergeFeatureRoutingIntoObj(obj) {
+        const box = document.getElementById('feature_routing_form_container');
+        if (!box || !box.querySelector('tr[data-feature]')) return;
+        obj.feature_routing = obj.feature_routing && typeof obj.feature_routing === 'object' ? obj.feature_routing : {};
+        FEATURE_ROUTING_ROWS.forEach(({ key }) => {
+          const row = box.querySelector(`tr[data-feature="${key}"]`);
+          if (!row) return;
+          const prEl = row.querySelector('.fr-primary');
+          const fbEl = row.querySelector('.fr-fallback');
+          const pr = prEl && prEl.value ? String(prEl.value).trim() : '';
+          const fb = fbEl && fbEl.value ? String(fbEl.value).trim() : '';
+          obj.feature_routing[key] = { primary: pr, fallback: fb };
+        });
+      }
+
+      function renderFeatureRoutingFromEditor(silent) {
+        const ed = document.getElementById('service_endpoints_editor');
+        const box = document.getElementById('feature_routing_form_container');
+        if (!ed || !box) return;
+        let obj;
+        try {
+          obj = JSON.parse(ed.value || '{}');
+        } catch (e) {
+          if (!silent) setServiceEndpointsStatus('Invalid JSON; fix before using the routing form.', true);
+          return;
+        }
+        const li = obj.llama_instances || {};
+        const instanceIds = Object.keys(li).filter((k) => !k.startsWith('_')).sort();
+        const optOptions = (selected) => {
+          let html = '<option value="">—</option>';
+          instanceIds.forEach((id) => {
+            const sel = id === selected ? ' selected' : '';
+            html += `<option value="${escapeHtml(id)}"${sel}>${escapeHtml(id)}</option>`;
+          });
+          return html;
+        };
+        const fr = obj.feature_routing || {};
+        const rows = FEATURE_ROUTING_ROWS.map(({ key, label, env }) => {
+          const block = fr[key] || {};
+          const pr = (block.primary != null ? String(block.primary) : '').trim();
+          const fb = (block.fallback != null ? String(block.fallback) : '').trim();
+          return `<tr data-feature="${escapeHtml(key)}"><td style="padding:0.35rem;vertical-align:top;font-weight:600;">${escapeHtml(label)}<div style="font-size:0.72rem;color:var(--dc-text-muted);font-weight:400;">${escapeHtml(env)}</div></td><td style="padding:0.35rem;"><select class="fr-primary" style="width:100%;max-width:280px;">${optOptions(pr)}</select></td><td style="padding:0.35rem;"><select class="fr-fallback" style="width:100%;max-width:280px;">${optOptions(fb)}</select></td></tr>`;
+        }).join('');
+        let inner = `<table style="width:100%;border-collapse:collapse;font-size:0.88rem;"><thead><tr style="text-align:left;border-bottom:1px solid #d1d5f0;"><th style="padding:0.35rem;">Feature</th><th style="padding:0.35rem;">Primary</th><th style="padding:0.35rem;">Fallback</th></tr></thead><tbody>${rows}</tbody></table>`;
+        if (instanceIds.length === 0) {
+          inner += '<p style="font-size:0.8rem;color:#b45309;margin:0.5rem 0 0 0;">No <code>llama_instances</code> keys — add instances in JSON or use <strong>Form ← JSON</strong> on LLM cards first.</p>';
+        }
+        box.innerHTML = inner;
+        if (!silent) setServiceEndpointsStatus('Feature routing form loaded from JSON.');
+      }
+
+      function applyFeatureRoutingFormToEditor() {
+        const ed = document.getElementById('service_endpoints_editor');
+        if (!ed) return;
+        let obj;
+        try {
+          obj = JSON.parse(ed.value || '{}');
+        } catch (e) {
+          setServiceEndpointsStatus('Invalid JSON; fix before merging routing.', true);
+          return;
+        }
+        mergeFeatureRoutingIntoObj(obj);
+        ed.value = JSON.stringify(obj, null, 2);
+        setServiceEndpointsStatus('Merged feature routing into JSON editor (not saved to disk yet).');
+      }
+
+      function renderAiInstancesFormFromEditor(silent) {
+        const ed = document.getElementById('service_endpoints_editor');
+        if (!ed) return;
+        let obj;
+        try { obj = JSON.parse(ed.value || '{}'); } catch (e) {
+          setServiceEndpointsStatus('Invalid JSON; fix before using the form.', true);
+          return;
+        }
+        const li = obj.llama_instances || {};
+        const wi = obj.whisper_instances || {};
+        const box = document.getElementById('ai_instances_form_container');
+        const wbox = document.getElementById('whisper_instances_form_container');
+        if (!box || !wbox) return;
+        const ids = Object.keys(li).filter(k => !k.startsWith('_')).sort();
+        if (ids.length === 0) {
+          box.innerHTML = '<p style="font-size:0.85rem;color:var(--dc-text-muted);">No <code>llama_instances</code> keys. Add them in JSON or save defaults from repo.</p>';
+        } else {
+          box.innerHTML = ids.map(id => _renderLlamaCard(id, li[id])).join('');
+        }
+        const wids = ['primary', 'fallback'].filter(k => wi[k]);
+        if (wids.length === 0) {
+          wbox.innerHTML = '<p style="font-size:0.85rem;color:var(--dc-text-muted);">Optional <code>whisper_instances.primary</code> / <code>fallback</code> for ASR.</p>';
+        } else {
+          wbox.innerHTML = wids.map(id => _renderWhisperCard(id, wi[id])).join('');
+        }
+        renderFeatureRoutingFromEditor(true);
+        refreshAiProcessStatus();
+        if (!silent) setServiceEndpointsStatus('Form loaded from JSON.');
+      }
+
+      function _renderLlamaCard(id, inst) {
+        inst = inst || {};
+        const s = inst.sampler || {};
+        const launch = inst.launch || {};
+        const env = launch.env || {};
+        const argsStr = JSON.stringify(launch.arguments || []);
+        const extraStr = JSON.stringify(inst.extra_llama_args || []);
+        const bind0 = (inst.bind_host != null && String(inst.bind_host).trim() !== '') ? String(inst.bind_host).trim()
+          : ((launch.bind_host != null && String(launch.bind_host).trim() !== '') ? String(launch.bind_host).trim() : '0.0.0.0');
+        const ctk0 = (inst.ctk != null && String(inst.ctk).trim() !== '') ? String(inst.ctk) : (launch.ctk != null ? String(launch.ctk) : 'q8_0');
+        const ctv0 = (inst.ctv != null && String(inst.ctv).trim() !== '') ? String(inst.ctv) : (launch.ctv != null ? String(launch.ctv) : 'q8_0');
+        const chat0 = inst.chat_template_kwargs != null ? String(inst.chat_template_kwargs) : (launch.chat_template_kwargs != null ? String(launch.chat_template_kwargs) : '');
+        const faChk = inst.flash_attention === false ? '' : 'checked';
+        const mmapChk = inst.mmap === false ? '' : 'checked';
+        const dioChk = inst.direct_io === false ? '' : 'checked';
+        return `
+<div class="ai-inst-card" data-group="llama_instances" data-id="${escapeHtml(id)}" style="border:1px solid #d1d5f0;border-radius:8px;padding:0.75rem;margin-bottom:0.75rem;background:#fff;">
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
+    <strong>${escapeHtml(id)}</strong>
+    <span class="ai-listen-line" style="font-size:0.8rem;color:#666;"></span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;">
+    <label style="font-size:0.8rem;">kind<br/><select class="ai-kind" style="width:100%;">
+      <option value="llama" ${(inst.kind || 'llama') === 'llama' ? 'selected' : ''}>llama</option>
+      <option value="custom" ${inst.kind === 'custom' ? 'selected' : ''}>custom</option>
+    </select></label>
+    <label style="font-size:0.8rem;">base_url<br/><input class="ai-base_url" type="text" value="${escapeHtml(inst.base_url || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">bind_host (--host)<br/><input class="ai-bind" type="text" value="${escapeHtml(bind0)}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">model path<br/><div style="display:flex;flex-wrap:wrap;gap:0.25rem;align-items:center;width:100%;"><input class="ai-model" type="text" value="${escapeHtml(inst.model || '')}" style="width:100%;flex:1;min-width:120px;" /><button type="button" class="btn-secondary" style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.72rem;" onclick="openAdminFsBrowser('llama_instances', ${JSON.stringify(id)}, 'model')">Browse…</button><button type="button" class="btn-secondary" style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.72rem;" onclick="openAdminFsBrowser('llama_instances', ${JSON.stringify(id)}, 'model', 'llama_models')">models ▸ llama</button></div></label>
+    <label style="font-size:0.8rem;">mmproj<br/><div style="display:flex;flex-wrap:wrap;gap:0.25rem;align-items:center;width:100%;"><input class="ai-mmproj" type="text" value="${escapeHtml(inst.mmproj || '')}" style="width:100%;flex:1;min-width:120px;" /><button type="button" class="btn-secondary" style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.72rem;" onclick="openAdminFsBrowser('llama_instances', ${JSON.stringify(id)}, 'mmproj')">Browse…</button><button type="button" class="btn-secondary" style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.72rem;" onclick="openAdminFsBrowser('llama_instances', ${JSON.stringify(id)}, 'mmproj', 'llama_models')">models ▸ llama</button></div></label>
+    <label style="font-size:0.8rem;">CUDA_VISIBLE_DEVICES<br/><input class="ai-cuda" type="text" value="${escapeHtml(env.CUDA_VISIBLE_DEVICES || '')}" placeholder="0" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">context_slots (-c)<br/><input class="ai-ctx" type="text" value="${inst.context_slots != null ? escapeHtml(String(inst.context_slots)) : ''}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">-ctk (KV cache type)<br/><input class="ai-ctk" type="text" value="${escapeHtml(ctk0)}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">-ctv (vision cache)<br/><input class="ai-ctv" type="text" value="${escapeHtml(ctv0)}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">ngl (-ngl)<br/><input class="ai-ngl" type="text" value="${inst.ngl != null ? escapeHtml(String(inst.ngl)) : '999'}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">parallel<br/><input class="ai-par" type="text" value="${inst.parallel != null ? escapeHtml(String(inst.parallel)) : '2'}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">launch.working_dir<br/><input class="ai-workdir" type="text" value="${escapeHtml(launch.working_dir || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">log_file<br/><input class="ai-log" type="text" value="${escapeHtml(launch.log_file || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">executable override<br/><input class="ai-exe" type="text" value="${escapeHtml(launch.executable || '')}" style="width:100%;" /></label>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-top:0.5rem;font-size:0.78rem;">
+    <label style="margin:0;"><input type="checkbox" class="ai-fa" ${faChk} /> flash attention (-fa on)</label>
+    <label style="margin:0;"><input type="checkbox" class="ai-mmap" ${mmapChk} /> --mmap</label>
+    <label style="margin:0;"><input type="checkbox" class="ai-dio" ${dioChk} /> --direct-io</label>
+  </div>
+  <label style="display:block;margin-top:0.5rem;font-size:0.8rem;">--chat-template-kwargs</label>
+  <input class="ai-chatkw" type="text" value="${escapeHtml(chat0)}" style="width:100%;font-size:0.85rem;" placeholder="JSON string for llama-server" />
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-top:0.5rem;">
+    <label style="font-size:0.8rem;">temp<br/><input class="ai-temp" type="text" value="${s.temp != null ? escapeHtml(String(s.temp)) : (s.temperature != null ? escapeHtml(String(s.temperature)) : '')}" /></label>
+    <label style="font-size:0.8rem;">min_p<br/><input class="ai-minp" type="text" value="${s.min_p != null ? escapeHtml(String(s.min_p)) : ''}" /></label>
+    <label style="font-size:0.8rem;">top_p<br/><input class="ai-topp" type="text" value="${s.top_p != null ? escapeHtml(String(s.top_p)) : ''}" /></label>
+    <label style="font-size:0.8rem;">top_k<br/><input class="ai-topk" type="text" value="${s.top_k != null ? escapeHtml(String(s.top_k)) : ''}" /></label>
+  </div>
+  <label style="display:block;margin-top:0.5rem;font-size:0.8rem;">extra_llama_args (JSON array; appended after sampler flags)</label>
+  <textarea class="ai-extra" rows="2" style="width:100%;font-family:ui-monospace,monospace;font-size:11px;">${escapeHtml(extraStr)}</textarea>
+  <label style="display:block;margin-top:0.5rem;font-size:0.8rem;">launch.arguments (JSON array; if non-empty, overrides entire auto argv)</label>
+  <textarea class="ai-args" rows="2" style="width:100%;font-family:ui-monospace,monospace;font-size:11px;">${escapeHtml(argsStr)}</textarea>
+</div>`;
+      }
+
+      function _renderWhisperCard(id, inst) {
+        inst = inst || {};
+        const launch = inst.launch || {};
+        const env = launch.env || {};
+        const argsStr = JSON.stringify(launch.arguments || []);
+        const wThreads = inst.threads != null ? String(inst.threads) : (launch.threads != null ? String(launch.threads) : '8');
+        const wProc = inst.whisper_processors != null ? String(inst.whisper_processors) : (launch.processors != null ? String(launch.processors) : '4');
+        const wExtraStr = JSON.stringify(inst.whisper_extra_args || []);
+        return `
+<div class="ai-whisper-card" data-group="whisper_instances" data-id="${escapeHtml(id)}" style="border:1px solid #d1d5f0;border-radius:8px;padding:0.75rem;margin-bottom:0.75rem;background:#fff;">
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
+    <strong>whisper.${escapeHtml(id)}</strong>
+    <span class="ai-listen-line" style="font-size:0.8rem;color:#666;"></span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;">
+    <label style="font-size:0.8rem;">base_url<br/><input class="w-base_url" type="text" value="${escapeHtml(inst.base_url || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">model path<br/><div style="display:flex;flex-wrap:wrap;gap:0.25rem;align-items:center;width:100%;"><input class="w-model" type="text" value="${escapeHtml(inst.model || '')}" style="width:100%;flex:1;min-width:120px;" /><button type="button" class="btn-secondary" style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.72rem;" onclick="openAdminFsBrowser('whisper_instances', ${JSON.stringify(id)}, 'model')">Browse…</button><button type="button" class="btn-secondary" style="flex-shrink:0;padding:0.2rem 0.45rem;font-size:0.72rem;" onclick="openAdminFsBrowser('whisper_instances', ${JSON.stringify(id)}, 'model', 'whisper_models')">models ▸ whisper</button></div></label>
+    <label style="font-size:0.8rem;">language (-l)<br/><input class="w-lang" type="text" value="${escapeHtml(inst.language || 'en')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">threads (-t)<br/><input class="w-threads" type="text" value="${escapeHtml(wThreads)}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">processors (-p)<br/><input class="w-proc" type="text" value="${escapeHtml(wProc)}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">CUDA_VISIBLE_DEVICES<br/><input class="w-cuda" type="text" value="${escapeHtml(env.CUDA_VISIBLE_DEVICES || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">launch.working_dir<br/><input class="w-workdir" type="text" value="${escapeHtml(launch.working_dir || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">log_file<br/><input class="w-log" type="text" value="${escapeHtml(launch.log_file || '')}" style="width:100%;" /></label>
+    <label style="font-size:0.8rem;">executable override<br/><input class="w-exe" type="text" value="${escapeHtml(launch.executable || '')}" style="width:100%;" /></label>
+  </div>
+  <label style="display:block;margin-top:0.5rem;font-size:0.8rem;">whisper_extra_args (JSON array; appended to auto argv)</label>
+  <textarea class="w-wextra" rows="2" style="width:100%;font-family:ui-monospace,monospace;font-size:11px;">${escapeHtml(wExtraStr)}</textarea>
+  <label style="display:block;margin-top:0.5rem;font-size:0.8rem;">launch.arguments (JSON array; if non-empty, overrides auto argv)</label>
+  <textarea class="w-args" rows="2" style="width:100%;font-family:ui-monospace,monospace;font-size:11px;">${escapeHtml(argsStr)}</textarea>
+</div>`;
+      }
+
+      function applyAiFormToEditor() {
+        const ed = document.getElementById('service_endpoints_editor');
+        if (!ed) return;
+        let obj;
+        try { obj = JSON.parse(ed.value || '{}'); } catch (e) {
+          setServiceEndpointsStatus('Invalid JSON; fix before merging the form.', true);
+          return;
+        }
+        try {
+        obj.llama_instances = obj.llama_instances || {};
+        document.querySelectorAll('.ai-inst-card').forEach(card => {
+          const id = card.getAttribute('data-id');
+          if (!id) return;
+          const cur = obj.llama_instances[id] || {};
+          const launch = { ...(cur.launch || {}) };
+          const env = { ...(launch.env || {}) };
+          const cuda = card.querySelector('.ai-cuda') && card.querySelector('.ai-cuda').value.trim();
+          if (cuda) env.CUDA_VISIBLE_DEVICES = cuda; else delete env.CUDA_VISIBLE_DEVICES;
+          launch.env = Object.keys(env).length ? env : undefined;
+          const lf = card.querySelector('.ai-log') && card.querySelector('.ai-log').value.trim();
+          if (lf) launch.log_file = lf; else delete launch.log_file;
+          const ex = card.querySelector('.ai-exe') && card.querySelector('.ai-exe').value.trim();
+          if (ex) launch.executable = ex; else delete launch.executable;
+          const wd = card.querySelector('.ai-workdir') && card.querySelector('.ai-workdir').value.trim();
+          if (wd) launch.working_dir = wd; else delete launch.working_dir;
+          let args = [];
+          const argsRaw = card.querySelector('.ai-args') && card.querySelector('.ai-args').value.trim();
+          if (argsRaw) {
+            try { args = JSON.parse(argsRaw); } catch (e) {
+              setServiceEndpointsStatus('launch.arguments must be valid JSON array for ' + id, true);
+              throw new Error('args');
+            }
+          }
+          if (Array.isArray(args) && args.length) launch.arguments = args; else delete launch.arguments;
+
+          const sampler = {};
+          const t = card.querySelector('.ai-temp') && card.querySelector('.ai-temp').value.trim();
+          const minp = card.querySelector('.ai-minp') && card.querySelector('.ai-minp').value.trim();
+          const topp = card.querySelector('.ai-topp') && card.querySelector('.ai-topp').value.trim();
+          const topk = card.querySelector('.ai-topk') && card.querySelector('.ai-topk').value.trim();
+          if (t !== '') sampler.temp = _parseNum(t);
+          if (minp !== '') sampler.min_p = _parseNum(minp);
+          if (topp !== '') sampler.top_p = _parseNum(topp);
+          if (topk !== '') sampler.top_k = _parseNum(topk);
+
+          const next = { ...cur };
+          next.kind = (card.querySelector('.ai-kind') && card.querySelector('.ai-kind').value) || 'llama';
+          next.base_url = (card.querySelector('.ai-base_url') && card.querySelector('.ai-base_url').value.trim()) || '';
+          next.model = (card.querySelector('.ai-model') && card.querySelector('.ai-model').value.trim()) || '';
+          next.mmproj = (card.querySelector('.ai-mmproj') && card.querySelector('.ai-mmproj').value.trim()) || '';
+          const bindH = card.querySelector('.ai-bind') && card.querySelector('.ai-bind').value.trim();
+          if (bindH && bindH !== '0.0.0.0') next.bind_host = bindH; else delete next.bind_host;
+          const ctx = card.querySelector('.ai-ctx') && card.querySelector('.ai-ctx').value.trim();
+          if (ctx !== '') next.context_slots = _parseNum(ctx); else delete next.context_slots;
+          const ctk = card.querySelector('.ai-ctk') && card.querySelector('.ai-ctk').value.trim();
+          if (ctk !== '') next.ctk = ctk; else delete next.ctk;
+          const ctv = card.querySelector('.ai-ctv') && card.querySelector('.ai-ctv').value.trim();
+          if (ctv !== '') next.ctv = ctv; else delete next.ctv;
+          const ngl = card.querySelector('.ai-ngl') && card.querySelector('.ai-ngl').value.trim();
+          if (ngl !== '') next.ngl = _parseNum(ngl); else delete next.ngl;
+          const par = card.querySelector('.ai-par') && card.querySelector('.ai-par').value.trim();
+          if (par !== '') next.parallel = _parseNum(par); else delete next.parallel;
+          next.flash_attention = !!(card.querySelector('.ai-fa') && card.querySelector('.ai-fa').checked);
+          if (next.flash_attention) delete next.flash_attention;
+          next.mmap = !!(card.querySelector('.ai-mmap') && card.querySelector('.ai-mmap').checked);
+          if (next.mmap) delete next.mmap;
+          next.direct_io = !!(card.querySelector('.ai-dio') && card.querySelector('.ai-dio').checked);
+          if (next.direct_io) delete next.direct_io;
+          const chatKw = card.querySelector('.ai-chatkw') && card.querySelector('.ai-chatkw').value.trim();
+          if (chatKw) next.chat_template_kwargs = chatKw; else delete next.chat_template_kwargs;
+          let extraLl = [];
+          const extraRaw = card.querySelector('.ai-extra') && card.querySelector('.ai-extra').value.trim();
+          if (extraRaw) {
+            try { extraLl = JSON.parse(extraRaw); } catch (e) {
+              setServiceEndpointsStatus('extra_llama_args must be valid JSON array for ' + id, true);
+              throw new Error('args');
+            }
+          }
+          if (Array.isArray(extraLl) && extraLl.length) next.extra_llama_args = extraLl; else delete next.extra_llama_args;
+          if (Object.keys(sampler).length) next.sampler = sampler; else delete next.sampler;
+          const envN = launch.env && typeof launch.env === 'object' ? Object.keys(launch.env).length : 0;
+          const argN = Array.isArray(launch.arguments) ? launch.arguments.length : 0;
+          const wdN = launch.working_dir && String(launch.working_dir).trim();
+          if (launch.log_file || launch.executable || envN || argN || wdN) next.launch = launch;
+          else delete next.launch;
+          obj.llama_instances[id] = next;
+        });
+
+        obj.whisper_instances = obj.whisper_instances || {};
+        document.querySelectorAll('.ai-whisper-card').forEach(card => {
+          const id = card.getAttribute('data-id');
+          if (!id) return;
+          const cur = obj.whisper_instances[id] || {};
+          const launch = { ...(cur.launch || {}) };
+          const env = { ...(launch.env || {}) };
+          const cuda = card.querySelector('.w-cuda') && card.querySelector('.w-cuda').value.trim();
+          if (cuda) env.CUDA_VISIBLE_DEVICES = cuda; else delete env.CUDA_VISIBLE_DEVICES;
+          launch.env = Object.keys(env).length ? env : undefined;
+          const lf = card.querySelector('.w-log') && card.querySelector('.w-log').value.trim();
+          if (lf) launch.log_file = lf; else delete launch.log_file;
+          const ex = card.querySelector('.w-exe') && card.querySelector('.w-exe').value.trim();
+          if (ex) launch.executable = ex; else delete launch.executable;
+          const wwd = card.querySelector('.w-workdir') && card.querySelector('.w-workdir').value.trim();
+          if (wwd) launch.working_dir = wwd; else delete launch.working_dir;
+          let args = [];
+          const argsRaw = card.querySelector('.w-args') && card.querySelector('.w-args').value.trim();
+          if (argsRaw) {
+            try { args = JSON.parse(argsRaw); } catch (e) {
+              setServiceEndpointsStatus('Whisper launch.arguments must be valid JSON array for ' + id, true);
+              throw new Error('args');
+            }
+          }
+          if (Array.isArray(args) && args.length) launch.arguments = args; else delete launch.arguments;
+
+          const next = { ...cur, kind: 'whisper' };
+          next.base_url = (card.querySelector('.w-base_url') && card.querySelector('.w-base_url').value.trim()) || '';
+          next.model = (card.querySelector('.w-model') && card.querySelector('.w-model').value.trim()) || '';
+          next.language = (card.querySelector('.w-lang') && card.querySelector('.w-lang').value.trim()) || 'en';
+          const wTh = card.querySelector('.w-threads') && card.querySelector('.w-threads').value.trim();
+          if (wTh !== '') next.threads = wTh; else delete next.threads;
+          const wPc = card.querySelector('.w-proc') && card.querySelector('.w-proc').value.trim();
+          if (wPc !== '') next.whisper_processors = wPc; else delete next.whisper_processors;
+          let wExtra = [];
+          const wExRaw = card.querySelector('.w-wextra') && card.querySelector('.w-wextra').value.trim();
+          if (wExRaw) {
+            try { wExtra = JSON.parse(wExRaw); } catch (e) {
+              setServiceEndpointsStatus('whisper_extra_args must be valid JSON array for ' + id, true);
+              throw new Error('args');
+            }
+          }
+          if (Array.isArray(wExtra) && wExtra.length) next.whisper_extra_args = wExtra; else delete next.whisper_extra_args;
+          const wEnvN = launch.env && typeof launch.env === 'object' ? Object.keys(launch.env).length : 0;
+          const wArgN = Array.isArray(launch.arguments) ? launch.arguments.length : 0;
+          const wWdN = launch.working_dir && String(launch.working_dir).trim();
+          if (launch.log_file || launch.executable || wEnvN || wArgN || wWdN) next.launch = launch;
+          else delete next.launch;
+          obj.whisper_instances[id] = next;
+        });
+
+        mergeFeatureRoutingIntoObj(obj);
+        ed.value = JSON.stringify(obj, null, 2);
+        setServiceEndpointsStatus('Merged form into JSON editor (not saved to disk yet).');
+        } catch (err) {
+          if (err && err.message !== 'args') console.warn(err);
+        }
+      }
+
+      async function refreshAiProcessStatus() {
+        const line = document.getElementById('ai_process_status_line');
+        if (!hasAdminSession()) {
+          if (line) line.textContent = '';
+          return;
+        }
+        const headers = requireAdminHeaders();
+        if (!headers) return;
+        try {
+          const r = await makeApiRequest('/admin/ai/processes/status/', { headers });
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          const data = await r.json();
+          if (line) {
+            line.textContent =
+              'Listening lines below are TCP probes only — start/stop llama-server and whisper-server outside this UI (NSSM or manual).';
+          }
+          const apply = (block, prefix) => {
+            if (!block) return;
+            Object.keys(block).forEach(id => {
+              document.querySelectorAll('.ai-inst-card, .ai-whisper-card').forEach(card => {
+                if (card.getAttribute('data-group') !== prefix || card.getAttribute('data-id') !== id) return;
+                const st = block[id];
+                const el = card.querySelector('.ai-listen-line');
+                if (!el || !st) return;
+                const p = st.port != null ? st.port : '';
+                el.textContent = p !== '' ? (st.listening ? 'listening on :' + p : 'not listening on :' + p) : '';
+              });
+            });
+          };
+          apply(data.llama_instances, 'llama_instances');
+          apply(data.whisper_instances, 'whisper_instances');
+        } catch (e) {
+          if (line) line.textContent = 'Could not load AI status: ' + (e.message || e);
+        }
+      }
+
+      function renderWeeklySummary(data) {
+        const windowStart = escapeHtml(data.window_start || 'n/a');
+        const windowEnd = escapeHtml(data.window_end || 'n/a');
+        const runCount = escapeHtml(data.run_count ?? 0);
+        const totals = data.totals || {};
+        const rows = Object.keys(totals).length
+          ? Object.entries(totals)
+              .map(([src, count]) => `<tr><td>${escapeHtml(src)}</td><td>${escapeHtml(count)}</td></tr>`)
+              .join('')
+          : '<tr><td colspan="2">No documents recorded.</td></tr>';
+        const files = (data.recent_files || [])
+          .map(file => {
+            const status = file.exists ? '' : ' (missing)';
+            const link = file.path ? escapeHtml(file.path) : 'unknown path';
+            const size = typeof file.size_bytes === 'number' ? ` — ${file.size_bytes.toLocaleString()} bytes` : '';
+            return `<li>${escapeHtml(file.source || 'unknown')}: ${link}${status}${size}</li>`;
+          })
+          .join('');
+        const summaryText = escapeHtml(data.summary_text || 'No summary available.');
+        const fileMarkup = files ? `<h4>Latest Run Files</h4><ul>${files}</ul>` : '';
+        return `
+          <h4>Weekly RAG Run Summary</h4>
+          <p><strong>Window:</strong> ${windowStart} – ${windowEnd}</p>
+          <p><strong>Runs:</strong> ${runCount}</p>
+          <pre>${summaryText}</pre>
+          <table>
+            <thead><tr><th>Source</th><th>Documents</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+          ${fileMarkup}
+        `;
+      }
+
+
+      const weeklySummaryState = { cache: null, visible: false };
+
+      async function toggleWeeklySummary() {
+        const panel = document.getElementById('weeklySummaryPanel');
+        const button = document.getElementById('weeklySummaryBtn');
+        if (!panel || !button) return;
+
+        if (weeklySummaryState.visible) {
+          panel.classList.add('hidden');
+          button.textContent = 'Show Weekly Run Summary';
+          weeklySummaryState.visible = false;
+          return;
+        }
+
+        panel.classList.remove('hidden');
+        panel.classList.add('loading');
+        panel.textContent = 'Loading weekly summary...';
+        button.disabled = true;
+
+        try {
+            if (!weeklySummaryState.cache) {
+              const headers = requireAdminHeaders({ 'Accept': 'application/json' }, 'Sign in to view weekly summaries.');
+              if (!headers) {
+                throw new Error('Sign in as admin to view weekly summaries.');
+              }
+              const response = await makeApiRequest('/rag/weekly_summary', { headers });
+              if (!response.ok) {
+                const details = await response.text();
+                throw new Error(`Weekly summary failed: ${response.status} ${details || response.statusText}`);
+              }
+              weeklySummaryState.cache = await response.json();
+            }
+          panel.innerHTML = renderWeeklySummary(weeklySummaryState.cache);
+          weeklySummaryState.visible = true;
+          button.textContent = 'Hide Weekly Run Summary';
+        } catch (error) {
+                  console.warn('Failed to load weekly summary:', error);
+                  panel.innerHTML = `<p style="color:#b91c1c;">Unable to load weekly summary: ${escapeHtml(error.message || String(error))}</p>`;
+                } finally {
+                  panel.classList.remove('loading');
+                  button.disabled = false;
+                }
+              }
+
+      // Collapsible sections functionality
+      function toggleSection(sectionId) {
+        const content = document.getElementById(sectionId);
+        const toggle = document.getElementById(sectionId + '_toggle');
+        
+        if (!content || !toggle) return;
+
+        if (content.classList.contains('collapsed')) {
+          content.classList.remove('collapsed');
+          content.style.maxHeight = 'none';
+          toggle.textContent = '▼';
+        } else {
+          content.style.maxHeight = '0px';
+          content.classList.add('collapsed');
+          toggle.textContent = '▶';
+        }
+      }
+
+      async function initAdminPage() {
+        const cfg = getAdminConfig();
+        if (cfg.adminEmail) document.getElementById('admin_login_email').value = cfg.adminEmail;
+        document.getElementById('admin_api_base').value = cfg.apiBase || '/api';
+
+        const weeklyBtn = document.getElementById("weeklySummaryBtn");
+        if (weeklyBtn) weeklyBtn.addEventListener("click", toggleWeeklySummary);
+
+        const sections = ['server_configuration', 'service_management'];
+        sections.forEach(sectionId => {
+          const content = document.getElementById(sectionId);
+          if (content) {
+            content.style.maxHeight = 'none';
+          }
+        });
+
+        const hasSession = await ensureAdminSession({ silent: true });
+        if (hasSession && hasAdminSession()) {
+          await Promise.allSettled([
+            refreshServiceStatus(),
+            fetchUsers()
+          ]);
+        } else {
+          setAdminNotice('Sign in with an admin workspace account to begin.', 'warning');
+        }
+      }
+
+      window.addEventListener('storage', async () => {
+        // Tokens are session-only; no cross-tab sync required
+      });
+
+      initAdminPage();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompt template library</title>
+  <link rel="stylesheet" href="css/dreamcision-tokens.css" />
+  <style>
+    :root {
+      font-family: system-ui, Segoe UI, Roboto, sans-serif;
+      background: var(--dc-page, #f6f2fb);
+      color: var(--dc-text, #1a1226);
+    }
+    body { margin: 0; padding: 16px; max-width: 880px; margin-inline: auto; }
+    h1 { font-size: 1.15rem; margin: 0 0 4px; }
+    .sub { font-size: 0.85rem; color: var(--dc-muted, #6b5f7a); margin-bottom: 14px; }
+    .search-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    input[type="search"] {
+      flex: 1; min-width: 200px; padding: 10px 12px; border-radius: 8px;
+      border: 1px solid var(--dc-input-border, #d4c8e0); background: #fff;
+      font-size: 1rem;
+    }
+    .status { font-size: 0.85rem; color: var(--dc-muted); min-height: 1.2em; margin-bottom: 8px; }
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      border: 1px solid var(--dc-card-border, #e8dff2); border-radius: 10px;
+      padding: 12px 14px; background: var(--dc-page-elevated, #fff);
+    }
+    .card h2 { font-size: 0.95rem; margin: 0 0 6px; font-weight: 600; }
+    .card h3 {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em;
+      margin: 10px 0 6px; color: var(--dc-muted, #6b5f7a); font-weight: 600;
+    }
+    .card h3:first-of-type { margin-top: 0; }
+    .example-missing {
+      font-size: 0.8rem; color: var(--dc-muted); font-style: italic;
+      padding: 8px 0;
+    }
+    .preview { font-size: 0.8rem; color: #4a3f58; max-height: 4.5em; overflow: hidden;
+      line-height: 1.35; word-break: break-word; }
+    details.prompt-expand {
+      margin-top: 8px; border-radius: 8px; border: 1px solid var(--dc-input-border, #d4c8e0);
+      background: #faf8fc; padding: 0 10px;
+    }
+    details.prompt-expand summary {
+      cursor: pointer; font-size: 0.85rem; font-weight: 600; padding: 8px 0;
+      list-style-position: outside; color: var(--dc-primary, #6b4dff);
+    }
+    details.prompt-expand[open] summary { padding-bottom: 4px; }
+    pre.prompt-full {
+      margin: 0 0 10px; padding: 10px; font-size: 0.78rem; line-height: 1.4;
+      white-space: pre-wrap; word-break: break-word; max-height: min(55vh, 420px);
+      overflow: auto; background: #fff; border-radius: 6px; border: 1px solid #e8dff2;
+      color: #2d2438;
+    }
+    pre.prompt-full.example { border-color: #c8e6d4; background: #f6fcf8; }
+    .actions { margin-top: 10px; display: flex; gap: 8px; align-items: center; }
+    button.use {
+      padding: 8px 14px; border-radius: 8px; border: none; cursor: pointer;
+      background: var(--dc-primary, #6b4dff); color: #fff; font-weight: 600; font-size: 0.9rem;
+    }
+    button.use:hover { filter: brightness(1.05); }
+    .err { color: #b00020; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
+    <h1 style="margin:0;">Prompt template library</h1>
+    <a href="https://notes.ieissa.com/manual" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem;font-weight:600;color:var(--dc-primary,#6b4dff);text-decoration:underline;text-underline-offset:3px;white-space:nowrap;margin-top:2px;">Help</a>
+  </div>
+  <p class="sub">Each card lists the <strong>example note</strong> first, then the generation prompt. Expand <strong>View full example</strong> / <strong>View full prompt</strong> to read the full text. The best 10 matches are shown. Pick one to fill &ldquo;Add custom note type&rdquo; in the main window — then edit and click <strong>Add type</strong>.</p>
+  <div class="search-row">
+    <input type="search" id="q" placeholder="Search title, example, or prompt…" autocomplete="off" autofocus />
+  </div>
+  <div id="status" class="status"></div>
+  <div id="err" class="err"></div>
+  <div id="list" class="list"></div>
+  <script>
+(function () {
+  'use strict';
+  var DATA = [];
+  var MAX = 10;
+
+  function tokenize(s) {
+    var m = String(s || '').toLowerCase().match(/[a-z0-9]+/g);
+    return m || [];
+  }
+
+  function scoreRow(row, tokens) {
+    var tit = String(row.t || '').toLowerCase();
+    var pr = String(row.p || '').toLowerCase();
+    var ex = String(row.e || '').toLowerCase();
+    if (!tokens.length) return 1;
+    var sc = 0;
+    for (var i = 0; i < tokens.length; i++) {
+      var tok = tokens[i];
+      if (tit.indexOf(tok) !== -1) sc += 4;
+      if (ex.indexOf(tok) !== -1) sc += 2;
+      if (pr.indexOf(tok) !== -1) sc += 1;
+    }
+    return sc;
+  }
+
+  function topMatches(query) {
+    var tokens = tokenize(query);
+    var rows = DATA.map(function (row, idx) {
+      return { row: row, idx: idx, score: scoreRow(row, tokens) };
+    });
+    if (tokens.length) {
+      rows = rows.filter(function (r) { return r.score > 0; });
+      rows.sort(function (a, b) {
+        if (b.score !== a.score) return b.score - a.score;
+        return String(a.row.t).localeCompare(String(b.row.t));
+      });
+    } else {
+      rows.sort(function (a, b) {
+        return String(a.row.t).localeCompare(String(b.row.t));
+      });
+    }
+    return rows.slice(0, MAX).map(function (r) { return r.row; });
+  }
+
+  function previewText(p) {
+    var s = String(p || '').replace(/\s+/g, ' ').trim();
+    if (s.length > 220) return s.slice(0, 217) + '…';
+    return s;
+  }
+
+  function sendToOpener(row) {
+    if (!window.opener || window.opener.closed) {
+      alert('This page must be opened from Customize AI Prompts (use the link there).');
+      return;
+    }
+    var origin = window.location.origin;
+    try {
+      window.opener.postMessage({
+        type: 'DREAMCISION_PROMPT_TEMPLATE',
+        title: String(row.t || '').trim(),
+        prompt: String(row.p || '').trim()
+      }, origin);
+      window.close();
+    } catch (e) {
+      alert('Could not send template to the main window.');
+    }
+  }
+
+  function render() {
+    var qEl = document.getElementById('q');
+    var listEl = document.getElementById('list');
+    var st = document.getElementById('status');
+    var query = (qEl && qEl.value) ? qEl.value : '';
+    var tokens = tokenize(query);
+    var matches = topMatches(query);
+    st.textContent = DATA.length
+      ? ('Showing ' + matches.length + ' of ' + MAX + ' max · ' + DATA.length + ' templates loaded')
+      : '';
+    listEl.innerHTML = '';
+    if (!matches.length && DATA.length) {
+      var empty = document.createElement('div');
+      empty.className = 'card';
+      empty.textContent = tokens.length
+        ? 'No matches — try fewer or broader keywords.'
+        : 'No templates to show.';
+      listEl.appendChild(empty);
+      return;
+    }
+    if (!DATA.length) return;
+    for (var i = 0; i < matches.length; i++) {
+      var row = matches[i];
+      var card = document.createElement('div');
+      card.className = 'card';
+      var h2 = document.createElement('h2');
+      h2.textContent = row.t || '(untitled)';
+      card.appendChild(h2);
+
+      var hEx = document.createElement('h3');
+      hEx.textContent = 'Example note';
+      card.appendChild(hEx);
+      if (row.e && String(row.e).trim()) {
+        var prevEx = document.createElement('div');
+        prevEx.className = 'preview';
+        prevEx.textContent = previewText(row.e);
+        var detEx = document.createElement('details');
+        detEx.className = 'prompt-expand';
+        var sumEx = document.createElement('summary');
+        sumEx.textContent = 'View full example';
+        var preEx = document.createElement('pre');
+        preEx.className = 'prompt-full example';
+        preEx.textContent = String(row.e);
+        detEx.appendChild(sumEx);
+        detEx.appendChild(preEx);
+        card.appendChild(prevEx);
+        card.appendChild(detEx);
+      } else {
+        var miss = document.createElement('div');
+        miss.className = 'example-missing';
+        miss.textContent = 'No sample note in the library for this template.';
+        card.appendChild(miss);
+      }
+
+      var hPr = document.createElement('h3');
+      hPr.textContent = 'Generation prompt';
+      card.appendChild(hPr);
+      var prev = document.createElement('div');
+      prev.className = 'preview';
+      prev.textContent = previewText(row.p);
+      var detP = document.createElement('details');
+      detP.className = 'prompt-expand';
+      var sumP = document.createElement('summary');
+      sumP.textContent = 'View full prompt';
+      var preP = document.createElement('pre');
+      preP.className = 'prompt-full';
+      preP.textContent = String(row.p || '');
+      detP.appendChild(sumP);
+      detP.appendChild(preP);
+      card.appendChild(prev);
+      card.appendChild(detP);
+
+      var act = document.createElement('div');
+      act.className = 'actions';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'use';
+      btn.textContent = 'Use this template';
+      (function (r) {
+        btn.addEventListener('click', function () { sendToOpener(r); });
+      })(row);
+      act.appendChild(btn);
+      card.appendChild(act);
+      listEl.appendChild(card);
+    }
+  }
+
+  function load() {
+    var errEl = document.getElementById('err');
+    errEl.textContent = '';
+    var url = new URL('prompt_templates.jsonl', window.location.href);
+    document.getElementById('status').textContent = 'Loading templates…';
+    fetch(url.href, { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function (text) {
+        DATA = [];
+        var lines = text.split(/\r?\n/);
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (!line) continue;
+          try {
+            var o = JSON.parse(line);
+            if (o && (o.t || o.p)) DATA.push({
+              t: o.t || '',
+              p: o.p || '',
+              e: typeof o.e === 'string' ? o.e : ''
+            });
+          } catch (e) { /* skip bad line */ }
+        }
+        document.getElementById('status').textContent = DATA.length + ' templates · search to narrow';
+        render();
+      })
+      .catch(function (e) {
+        errEl.textContent = 'Could not load prompt_templates.jsonl. Ensure the file is deployed next to this page.';
+        document.getElementById('status').textContent = '';
+      });
+  }
+
+  document.getElementById('q').addEventListener('input', function () { render(); });
+  load();
+})();
+  </script>
+</body>
+</html>

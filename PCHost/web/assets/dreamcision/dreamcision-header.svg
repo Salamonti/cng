@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 88" role="img" aria-labelledby="dcTitle">
+  <title id="dcTitle">DreamCision AI Scribe</title>
+  <defs>
+    <linearGradient id="featherFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0abfc"/>
+      <stop offset="55%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="0.8" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Quill / feather mark (vector, no raster box) -->
+  <g filter="url(#soft)">
+    <path fill="url(#featherFill)" d="M8 72c12-28 28-52 52-66 4-2 8-3 12-4-8 14-14 30-18 48-2 8-3 16-3 24-10-4-18-12-24-22-6 6-12 14-16 22l-3-2z"/>
+    <path fill="url(#shine)" opacity="0.9" d="M18 58c10-18 22-34 38-46-6 12-10 26-12 40-8-2-16-6-26-14z"/>
+    <path fill="#ede9fe" opacity="0.5" d="M62 14c6 4 10 10 12 18-8 6-16 14-22 24-2-12 2-28 10-42z"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="78" y="42" font-family="Segoe UI, ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700" fill="#f5f2f8" letter-spacing="0.12em">DREAM</text>
+  <text x="212" y="42" font-family="Segoe UI, ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700" fill="#c4b5fd" letter-spacing="0.12em">CISION</text>
+  <text x="78" y="68" font-family="Segoe UI, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" letter-spacing="0.28em">AI � SCRIBE � V1.0</text>
+  <!-- Subtle scribble underline -->
+  <path fill="none" stroke="#7c3aed" stroke-width="1.2" stroke-linecap="round" opacity="0.45" d="M76 74h280"/>
+</svg>

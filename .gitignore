@@ -1,0 +1,157 @@
+# === OS & editor noise ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+*.code-workspace
+
+# === IDEs (optional: remove .vscode/ if you want shared settings committed) ===
+.vscode/
+.idea/
+*.sublime-*
+
+# === Python (any subfolder) ===
+**/.venv/
+**/venv/
+**/cenv/
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/.Python
+**/.mypy_cache/
+**/.ruff_cache/
+**/.tox/
+**/.hypothesis/
+**/.pytest_cache/
+.pytest_cache/
+pytest-cache-files-*/
+**/*.egg-info/
+**/dist/
+**/build/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.tox/
+.hypothesis/
+
+# === Node (any subfolder) ===
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# === Environment & secrets ===
+.env
+.env.*
+!.env.example
+*.pem
+certs/
+Clinical-Note-Generator/config/config.json
+PCHost/config/server_config.json
+
+# === Clinical-Note-Generator (app + data) ===
+Clinical-Note-Generator/.venv/
+Clinical-Note-Generator/cenv/
+Clinical-Note-Generator/models/
+Clinical-Note-Generator/executables/
+Clinical-Note-Generator/server/temp-audio/
+Clinical-Note-Generator/temp-audio/
+Clinical-Note-Generator/server/logs/
+# Entire data dir: SQLite, queue_files/, datasets/ (PHI / patient exports), etc.
+Clinical-Note-Generator/data/
+# Explicit: patient / sensitive datasets (also under data/ — listed for clarity)
+Clinical-Note-Generator/data/datasets/
+# Runtime ASR diagnostics (operator host): incidents, digests, purge logs — all runtime data
+Clinical-Note-Generator/asr_diagnostics/
+
+# === PCHost ===
+# (node_modules covered by **/node_modules/ above)
+
+# === RAG (large / generated) ===
+RAG/models/
+RAG/raw_docs/
+RAG/runs/
+RAG/snapshots/
+RAG/nul
+RAG/medical_corpus.jsonl
+RAG/chunks/
+RAG/clean_corpus/
+RAG/current_corpus/
+RAG/embeddings/
+RAG/logs/
+RAG/manual_ingest/
+RAG/ragvenv/
+RAG/chroma_store/
+RAG/chroma_db/
+RAG/chroma_data/
+RAG/archive/
+RAG/fetch_log.jsonl
+RAG/tmp_guidelines_chunk.txt
+RAG/scripts/clean_corpus/local_guidelines.clean.json
+
+# === General build / cache / scratch ===
+*.log
+*.tmp
+unsloth_compiled_cache/
+xformers/
+vcpkg/
+
+# Generated / runtime outputs (not source)
+graphify-out/
+RAG/recent_updates.json
+*.xlsx
+
+# Local config backups (e.g. cloudflared config snapshots before edits)
+startup/cloudflared.config.bak.*.yml
+
+# Docker image tar exports (entire folder — not part of DreamCision source)
+startup/docker-images/
+
+# WSL/OpenClaw/Dal-Schedule workstation archive (not DreamCision; contained secrets)
+startup/archive/wsl-legacy/
+
+# Local scratch / patches / phase prompts
+patches/
+phase*_prompt.txt
+phase*_spec.md
+
+# === Clinical audio & PHI exports (solo repo: no patient media in git) ===
+# Block typical recording/queue formats. Only exception: consent prompt MP3.
+**/*.webm
+**/*.mp3
+!PCHost/web/media/consent_recording.mp3
+**/*.m4a
+**/*.aac
+**/*.flac
+**/*.ogg
+**/*.opus
+*.wav
+
+# Large / model-weight blobs (in addition to Clinical-Note-Generator/models/, RAG/)
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# === Backup files ===
+*.bak
+*.bak.*
+
+# MkDocs venv
+**/mkdocs-venv/
+
+# Local OpenCode workspace
+/.opencode/
+
+# Hand-made backup snapshots (should never be committed)
+*.bak-*
+*.pre-prompt-v2-*
+
+# Old ChromaDB archive snapshots (5GB+, accidentally committed 2026-07-19)
+_archive/snapshots-old/

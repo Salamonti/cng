@@ -1,0 +1,21 @@
+[Unit]
+Description=DreamCision RAG API
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=600
+StartLimitBurst=3
+OnFailure=telegram-alert@%n.service
+
+[Service]
+User=eissa
+WorkingDirectory=/opt/dreamcision/RAG
+Environment=EMBEDDER_DEVICE=cpu
+Environment=OMP_NUM_THREADS=8
+Environment=MKL_NUM_THREADS=8
+Environment=TOKENIZERS_PARALLELISM=false
+ExecStart=/opt/dreamcision/RAG/venv/bin/uvicorn query_api:app --host 127.0.0.1 --port 8007
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

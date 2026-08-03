@@ -1,0 +1,1008 @@
+{
+  "_description": "ASR Medication Correction Dictionary \u2014 curated list of known ASR transcription errors",
+  "_usage": "Each entry: wrong_word -> {correct, context_keywords}. Only corrects when context keywords are present within \u00b15 words.",
+  "_safety": "Context window prevents false positives. 'trilogy' without context is NOT corrected.",
+  "trilogy": {
+    "correct": "Trelegy",
+    "context": [
+      "inhaler",
+      "COPD",
+      "puff",
+      "respiratory",
+      "asthma",
+      "maintenance",
+      "GOLD",
+      "bronchodilator",
+      "ICS",
+      "LABA",
+      "LAMA",
+      "fluticasone",
+      "umeclidinium",
+      "vilanterol",
+      "Ellipta"
+    ]
+  },
+  "trilegy": {
+    "correct": "Trelegy",
+    "context": [
+      "inhaler",
+      "COPD",
+      "puff",
+      "respiratory",
+      "asthma",
+      "maintenance",
+      "GOLD",
+      "bronchodilator",
+      "ICS",
+      "LABA",
+      "LAMA",
+      "fluticasone",
+      "umeclidinium",
+      "vilanterol",
+      "Ellipta"
+    ]
+  },
+  "triology": {
+    "correct": "Trelegy",
+    "context": [
+      "inhaler",
+      "COPD",
+      "puff",
+      "respiratory",
+      "asthma",
+      "maintenance",
+      "GOLD",
+      "bronchodilator",
+      "ICS",
+      "LABA",
+      "LAMA",
+      "fluticasone",
+      "umeclidinium",
+      "vilanterol",
+      "Ellipta"
+    ]
+  },
+  "cotiapine": {
+    "correct": "quetiapine",
+    "context": [
+      "antipsychotic",
+      "psychosis",
+      "bipolar",
+      "depression",
+      "sleep",
+      "anxiety",
+      "mood",
+      "mental",
+      "psychiatric",
+      "Seroquel",
+      "tablet",
+      "capsule",
+      "mg",
+      "daily",
+      "night",
+      "bedtime"
+    ]
+  },
+  "sporiova": {
+    "correct": "Spiriva",
+    "context": [
+      "inhaler",
+      "COPD",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "bronchodilator",
+      "anticholinergic",
+      "tiotropium",
+      "HandiHaler",
+      "Respimat"
+    ]
+  },
+  "spriova": {
+    "correct": "Spiriva",
+    "context": [
+      "inhaler",
+      "COPD",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "bronchodilator",
+      "anticholinergic",
+      "tiotropium",
+      "HandiHaler",
+      "Respimat"
+    ]
+  },
+  "sprirova": {
+    "correct": "Spiriva",
+    "context": [
+      "inhaler",
+      "COPD",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "bronchodilator",
+      "anticholinergic",
+      "tiotropium",
+      "HandiHaler",
+      "Respimat"
+    ]
+  },
+  "prendoprol": {
+    "correct": "perindopril",
+    "context": [
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "ACE inhibitor",
+      "tablet",
+      "mg",
+      "daily",
+      "cardiovascular",
+      "heart failure",
+      "Coversyl"
+    ]
+  },
+  "proair": {
+    "correct": "ProAir",
+    "context": [
+      "inhaler",
+      "albuterol",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "rescue",
+      "bronchodilator",
+      "SABA",
+      "short-acting"
+    ]
+  },
+  "ventolin": {
+    "correct": "Ventolin",
+    "context": [
+      "inhaler",
+      "albuterol",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "rescue",
+      "bronchodilator",
+      "SABA",
+      "short-acting"
+    ]
+  },
+  "advair": {
+    "correct": "Advair",
+    "context": [
+      "inhaler",
+      "COPD",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "ICS",
+      "LABA",
+      "fluticasone",
+      "salmeterol"
+    ]
+  },
+  "symbicort": {
+    "correct": "Symbicort",
+    "context": [
+      "inhaler",
+      "COPD",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "ICS",
+      "LABA",
+      "budesonide",
+      "formoterol"
+    ]
+  },
+  "flovent": {
+    "correct": "Flovent",
+    "context": [
+      "inhaler",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "ICS",
+      "corticosteroid",
+      "fluticasone"
+    ]
+  },
+  "pulmicort": {
+    "correct": "Pulmicort",
+    "context": [
+      "inhaler",
+      "asthma",
+      "respiratory",
+      "breathing",
+      "puff",
+      "maintenance",
+      "ICS",
+      "corticosteroid",
+      "budesonide"
+    ]
+  },
+  "metformin": {
+    "correct": "metformin",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food"
+    ]
+  },
+  "glimepiride": {
+    "correct": "glimepiride",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food",
+      "sulfonylurea"
+    ]
+  },
+  "glyburide": {
+    "correct": "glyburide",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food",
+      "sulfonylurea"
+    ]
+  },
+  "sitagliptin": {
+    "correct": "sitagliptin",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food",
+      "DPP-4",
+      "Januvia"
+    ]
+  },
+  "linagliptin": {
+    "correct": "linagliptin",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food",
+      "DPP-4",
+      "Tradjenta"
+    ]
+  },
+  "empagliflozin": {
+    "correct": "empagliflozin",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food",
+      "SGLT2",
+      "Jardiance"
+    ]
+  },
+  "dapagliflozin": {
+    "correct": "dapagliflozin",
+    "context": [
+      "diabetes",
+      "blood sugar",
+      "glucose",
+      "insulin",
+      "Type 2",
+      "oral",
+      "tablet",
+      "mg",
+      "daily",
+      "meal",
+      "food",
+      "SGLT2",
+      "Farxiga"
+    ]
+  },
+  "lisinopril": {
+    "correct": "lisinopril",
+    "context": [
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "ACE inhibitor",
+      "tablet",
+      "mg",
+      "daily",
+      "cardiovascular"
+    ]
+  },
+  "amlodipine": {
+    "correct": "amlodipine",
+    "context": [
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "calcium channel blocker",
+      "tablet",
+      "mg",
+      "daily",
+      "cardiovascular"
+    ]
+  },
+  "atorvastatin": {
+    "correct": "atorvastatin",
+    "context": [
+      "cholesterol",
+      "lipid",
+      "statin",
+      "heart",
+      "cardiovascular",
+      "tablet",
+      "mg",
+      "daily",
+      "Lipitor"
+    ]
+  },
+  "simvastatin": {
+    "correct": "simvastatin",
+    "context": [
+      "cholesterol",
+      "lipid",
+      "statin",
+      "heart",
+      "cardiovascular",
+      "tablet",
+      "mg",
+      "daily",
+      "Zocor"
+    ]
+  },
+  "rosuvastatin": {
+    "correct": "rosuvastatin",
+    "context": [
+      "cholesterol",
+      "lipid",
+      "statin",
+      "heart",
+      "cardiovascular",
+      "tablet",
+      "mg",
+      "daily",
+      "Crestor"
+    ]
+  },
+  "omeprazole": {
+    "correct": "omeprazole",
+    "context": [
+      "stomach",
+      "acid",
+      "GERD",
+      "ulcer",
+      "PPI",
+      "proton pump inhibitor",
+      "capsule",
+      "mg",
+      "daily"
+    ]
+  },
+  "pantoprazole": {
+    "correct": "pantoprazole",
+    "context": [
+      "stomach",
+      "acid",
+      "GERD",
+      "ulcer",
+      "PPI",
+      "proton pump inhibitor",
+      "tablet",
+      "mg",
+      "daily"
+    ]
+  },
+  "esomeprazole": {
+    "correct": "esomeprazole",
+    "context": [
+      "stomach",
+      "acid",
+      "GERD",
+      "ulcer",
+      "PPI",
+      "proton pump inhibitor",
+      "capsule",
+      "mg",
+      "daily",
+      "Nexium"
+    ]
+  },
+  "levothyroxine": {
+    "correct": "levothyroxine",
+    "context": [
+      "thyroid",
+      "hypothyroidism",
+      "TSH",
+      "hormone",
+      "tablet",
+      "mcg",
+      "daily",
+      "Synthroid"
+    ]
+  },
+  "methimazole": {
+    "correct": "methimazole",
+    "context": [
+      "thyroid",
+      "hyperthyroidism",
+      "TSH",
+      "hormone",
+      "tablet",
+      "mg",
+      "daily",
+      "Graves",
+      "toxic"
+    ]
+  },
+  "warfarin": {
+    "correct": "warfarin",
+    "context": [
+      "anticoagulant",
+      "blood thinner",
+      "INR",
+      "clot",
+      "stroke",
+      "atrial fibrillation",
+      "tablet",
+      "mg",
+      "daily",
+      "Coumadin"
+    ]
+  },
+  "apixaban": {
+    "correct": "apixaban",
+    "context": [
+      "anticoagulant",
+      "blood thinner",
+      "clot",
+      "stroke",
+      "atrial fibrillation",
+      "tablet",
+      "mg",
+      "daily",
+      "Eliquis"
+    ]
+  },
+  "rivaroxaban": {
+    "correct": "rivaroxaban",
+    "context": [
+      "anticoagulant",
+      "blood thinner",
+      "clot",
+      "stroke",
+      "atrial fibrillation",
+      "tablet",
+      "mg",
+      "daily",
+      "Xarelto"
+    ]
+  },
+  "clopidogrel": {
+    "correct": "clopidogrel",
+    "context": [
+      "antiplatelet",
+      "blood thinner",
+      "clot",
+      "stroke",
+      "heart attack",
+      "stent",
+      "tablet",
+      "mg",
+      "daily",
+      "Plavix"
+    ]
+  },
+  "sertraline": {
+    "correct": "sertraline",
+    "context": [
+      "antidepressant",
+      "SSRI",
+      "depression",
+      "anxiety",
+      "mood",
+      "mental",
+      "psychiatric",
+      "tablet",
+      "mg",
+      "daily",
+      "Zoloft"
+    ]
+  },
+  "escitalopram": {
+    "correct": "escitalopram",
+    "context": [
+      "antidepressant",
+      "SSRI",
+      "depression",
+      "anxiety",
+      "mood",
+      "mental",
+      "psychiatric",
+      "tablet",
+      "mg",
+      "daily",
+      "Lexapro"
+    ]
+  },
+  "fluoxetine": {
+    "correct": "fluoxetine",
+    "context": [
+      "antidepressant",
+      "SSRI",
+      "depression",
+      "anxiety",
+      "mood",
+      "mental",
+      "psychiatric",
+      "capsule",
+      "mg",
+      "daily",
+      "Prozac"
+    ]
+  },
+  "venlafaxine": {
+    "correct": "venlafaxine",
+    "context": [
+      "antidepressant",
+      "SNRI",
+      "depression",
+      "anxiety",
+      "mood",
+      "mental",
+      "psychiatric",
+      "tablet",
+      "mg",
+      "daily",
+      "Effexor"
+    ]
+  },
+  "olanzapine": {
+    "correct": "olanzapine",
+    "context": [
+      "antipsychotic",
+      "psychosis",
+      "bipolar",
+      "depression",
+      "mood",
+      "mental",
+      "psychiatric",
+      "tablet",
+      "mg",
+      "daily",
+      "Zyprexa"
+    ]
+  },
+  "risperidone": {
+    "correct": "risperidone",
+    "context": [
+      "antipsychotic",
+      "psychosis",
+      "bipolar",
+      "depression",
+      "mood",
+      "mental",
+      "psychiatric",
+      "tablet",
+      "mg",
+      "daily",
+      "Risperdal"
+    ]
+  },
+  "aripiprazole": {
+    "correct": "aripiprazole",
+    "context": [
+      "antipsychotic",
+      "psychosis",
+      "bipolar",
+      "depression",
+      "mood",
+      "mental",
+      "psychiatric",
+      "tablet",
+      "mg",
+      "daily",
+      "Abilify"
+    ]
+  },
+  "gabapentin": {
+    "correct": "gabapentin",
+    "context": [
+      "neuropathy",
+      "pain",
+      "seizure",
+      "epilepsy",
+      "nerve",
+      "tablet",
+      "mg",
+      "daily",
+      "Neurontin"
+    ]
+  },
+  "pregabalin": {
+    "correct": "pregabalin",
+    "context": [
+      "neuropathy",
+      "pain",
+      "seizure",
+      "epilepsy",
+      "nerve",
+      "capsule",
+      "mg",
+      "daily",
+      "Lyrica"
+    ]
+  },
+  "carbamazepine": {
+    "correct": "carbamazepine",
+    "context": [
+      "seizure",
+      "epilepsy",
+      "bipolar",
+      "nerve",
+      "pain",
+      "tablet",
+      "mg",
+      "daily",
+      "Tegretol"
+    ]
+  },
+  "valproate": {
+    "correct": "valproate",
+    "context": [
+      "seizure",
+      "epilepsy",
+      "bipolar",
+      "mood",
+      "tablet",
+      "mg",
+      "daily",
+      "Depakote"
+    ]
+  },
+  "amoxicillin": {
+    "correct": "amoxicillin",
+    "context": [
+      "antibiotic",
+      "infection",
+      "bacterial",
+      "capsule",
+      "mg",
+      "daily",
+      "Amoxil"
+    ]
+  },
+  "azithromycin": {
+    "correct": "azithromycin",
+    "context": [
+      "antibiotic",
+      "infection",
+      "bacterial",
+      "tablet",
+      "mg",
+      "daily",
+      "Zithromax",
+      "Z-Pak"
+    ]
+  },
+  "doxycycline": {
+    "correct": "doxycycline",
+    "context": [
+      "antibiotic",
+      "infection",
+      "bacterial",
+      "tablet",
+      "mg",
+      "daily",
+      "Vibramycin"
+    ]
+  },
+  "ciprofloxacin": {
+    "correct": "ciprofloxacin",
+    "context": [
+      "antibiotic",
+      "infection",
+      "bacterial",
+      "tablet",
+      "mg",
+      "daily",
+      "Cipro"
+    ]
+  },
+  "prednisone": {
+    "correct": "prednisone",
+    "context": [
+      "steroid",
+      "inflammation",
+      "autoimmune",
+      "allergy",
+      "asthma",
+      "COPD",
+      "tablet",
+      "mg",
+      "daily"
+    ]
+  },
+  "methylprednisolone": {
+    "correct": "methylprednisolone",
+    "context": [
+      "steroid",
+      "inflammation",
+      "autoimmune",
+      "allergy",
+      "asthma",
+      "COPD",
+      "tablet",
+      "mg",
+      "daily",
+      "Medrol"
+    ]
+  },
+  "dexamethasone": {
+    "correct": "dexamethasone",
+    "context": [
+      "steroid",
+      "inflammation",
+      "autoimmune",
+      "allergy",
+      "asthma",
+      "COPD",
+      "tablet",
+      "mg",
+      "daily",
+      "Decadron"
+    ]
+  },
+  "furosemide": {
+    "correct": "furosemide",
+    "context": [
+      "diuretic",
+      "water pill",
+      "heart failure",
+      "edema",
+      "swelling",
+      "tablet",
+      "mg",
+      "daily",
+      "Lasix"
+    ]
+  },
+  "hydrochlorothiazide": {
+    "correct": "hydrochlorothiazide",
+    "context": [
+      "diuretic",
+      "water pill",
+      "blood pressure",
+      "hypertension",
+      "tablet",
+      "mg",
+      "daily",
+      "HCTZ"
+    ]
+  },
+  "spironolactone": {
+    "correct": "spironolactone",
+    "context": [
+      "diuretic",
+      "potassium-sparing",
+      "heart failure",
+      "alcoholism",
+      "tablet",
+      "mg",
+      "daily",
+      "Aldactone"
+    ]
+  },
+  "metoprolol": {
+    "correct": "metoprolol",
+    "context": [
+      "beta blocker",
+      "blood pressure",
+      "heart",
+      "angina",
+      "arrhythmia",
+      "tablet",
+      "mg",
+      "daily",
+      "Lopressor",
+      "Toprol"
+    ]
+  },
+  "atenolol": {
+    "correct": "atenolol",
+    "context": [
+      "beta blocker",
+      "blood pressure",
+      "heart",
+      "angina",
+      "arrhythmia",
+      "tablet",
+      "mg",
+      "daily",
+      "Tenormin"
+    ]
+  },
+  "carvedilol": {
+    "correct": "carvedilol",
+    "context": [
+      "beta blocker",
+      "blood pressure",
+      "heart",
+      "angina",
+      "arrhythmia",
+      "tablet",
+      "mg",
+      "daily",
+      "Coreg"
+    ]
+  },
+  "bisoprolol": {
+    "correct": "bisoprolol",
+    "context": [
+      "beta blocker",
+      "blood pressure",
+      "heart",
+      "angina",
+      "arrhythmia",
+      "tablet",
+      "mg",
+      "daily",
+      "Zebeta"
+    ]
+  },
+  "losartan": {
+    "correct": "losartan",
+    "context": [
+      "ARB",
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "kidney",
+      "tablet",
+      "mg",
+      "daily",
+      "Cozaar"
+    ]
+  },
+  "valsartan": {
+    "correct": "valsartan",
+    "context": [
+      "ARB",
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "kidney",
+      "tablet",
+      "mg",
+      "daily",
+      "Diovan"
+    ]
+  },
+  "candesartan": {
+    "correct": "candesartan",
+    "context": [
+      "ARB",
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "kidney",
+      "tablet",
+      "mg",
+      "daily",
+      "Atacand"
+    ]
+  },
+  "irbesartan": {
+    "correct": "irbesartan",
+    "context": [
+      "ARB",
+      "blood pressure",
+      "hypertension",
+      "heart",
+      "kidney",
+      "tablet",
+      "mg",
+      "daily",
+      "Avapro"
+    ]
+  },
+  "eplerenone": {
+    "correct": "eplerenone",
+    "context": [
+      "potassium-sparing",
+      "heart failure",
+      "blood pressure",
+      "tablet",
+      "mg",
+      "daily",
+      "Inspra"
+    ]
+  },
+  "amiloride": {
+    "correct": "amiloride",
+    "context": [
+      "potassium-sparing",
+      "diuretic",
+      "blood pressure",
+      "tablet",
+      "mg",
+      "daily"
+    ]
+  },
+  "triamterene": {
+    "correct": "triamterene",
+    "context": [
+      "potassium-sparing",
+      "diuretic",
+      "blood pressure",
+      "tablet",
+      "mg",
+      "daily",
+      "Dyrenium"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=Open WebUI + rag-tool-server (Docker)
+Requires=docker.service
+After=docker.service network-online.target dreamcision-rag.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=eissa
+WorkingDirectory=/opt/dreamcision-docker
+ExecStart=/usr/bin/docker compose -f dreamcision-satellite.compose.yml up -d --remove-orphans
+ExecStop=/usr/bin/docker compose -f dreamcision-satellite.compose.yml down
+TimeoutStartSec=600
+
+[Install]
+WantedBy=multi-user.target

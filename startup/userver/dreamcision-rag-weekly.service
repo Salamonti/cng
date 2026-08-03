@@ -1,0 +1,24 @@
+[Unit]
+Description=DreamCision RAG weekly corpus/index pipeline
+After=network-online.target dreamcision-rag.service vllm-deepseek-v4-flash-0731.service
+Wants=network-online.target
+OnFailure=telegram-alert@%n.service
+
+[Service]
+Type=oneshot
+User=eissa
+WorkingDirectory=/opt/dreamcision/RAG
+Environment=RAG_ROOT=/opt/dreamcision/RAG
+Environment=EMBEDDER_DEVICE=cpu
+Environment=OMP_NUM_THREADS=12
+Environment=MKL_NUM_THREADS=12
+Environment=TOKENIZERS_PARALLELISM=false
+ExecStart=/opt/dreamcision/RAG/scripts/weekly_run.sh
+TimeoutStartSec=12h
+Nice=10
+CPUQuota=1200%
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target

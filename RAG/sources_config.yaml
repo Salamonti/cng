@@ -1,0 +1,290 @@
+# C:\RAG\sources_config.yaml
+domains:
+- cardiology
+- pulmonology
+- endocrinology
+- infectious_diseases
+- nephrology
+- gastroenterology
+- hematology
+- oncology
+- neurology
+- rheumatology
+- geriatrics
+- emergency_medicine
+- critical_care
+- primary_care
+- pharmacology
+- diagnostics
+trusted_sources:
+- id: pubmed
+  name: PubMed
+  base_url: https://pubmed.ncbi.nlm.nih.gov/
+  type: literature
+  notes: ''
+- id: who_iris
+  name: WHO IRIS
+  base_url: https://iris.who.int/
+  type: literature
+  notes: ''
+- id: clinicaltrials
+  name: ClinicalTrials.gov
+  base_url: https://clinicaltrials.gov/
+  type: registry
+  notes: ''
+- id: drugbank
+  name: DrugBank
+  base_url: https://go.drugbank.com/
+  type: drugdb
+  notes: ''
+- id: openfda
+  name: OpenFDA
+  base_url: https://open.fda.gov/
+  type: regulatory
+  notes: ''
+- id: nice
+  name: NICE Guidance
+  base_url: https://www.nice.org.uk/guidance
+  type: guideline
+  notes: ''
+- id: ada
+  name: American Diabetes Association
+  base_url: https://diabetes.org/
+  type: guideline
+  notes: ''
+- id: acc
+  name: American College of Cardiology
+  base_url: https://www.acc.org/
+  type: guideline
+  notes: ''
+filters:
+  include:
+    global:
+      mesh:
+      - Practice Guidelines as Topic
+      - Meta-Analysis as Topic
+      - Randomized Controlled Trials as Topic
+      - Systematic Reviews as Topic
+      - Drug-Related Side Effects and Adverse Reactions
+      keywords:
+      - guideline
+      - consensus
+      - systematic review
+      - meta-analysis
+      - randomized
+      - controlled
+      - cohort
+      - case-control
+      - sensitivity
+      - specificity
+      - likelihood ratio
+      - predictive value
+      - first-line
+      - second-line
+      - contraindicated
+      - dose
+      - dosing
+      - renal dose
+    by_domain:
+      cardiology:
+        mesh:
+        - Myocardial Infarction
+        - Heart Failure
+        - Atrial Fibrillation
+        - Hypertension
+        keywords:
+        - NSTEMI
+        - STEMI
+        - troponin
+        - PCI
+        - stent
+        - ACE inhibitor
+        - beta-blocker
+        - ACC/AHA guideline
+        - statin intensity
+        - HFpEF
+        - HFrEF
+      pulmonology:
+        mesh:
+        - Asthma
+        - Pulmonary Disease, Chronic Obstructive
+        - Pulmonary Embolism
+        - Interstitial Lung Diseases
+        keywords:
+        - FEV1
+        - GOLD guideline
+        - oxygen therapy
+        - DLCO
+        - VTE
+        - anticoagulation
+      endocrinology:
+        mesh:
+        - Diabetes Mellitus, Type 2
+        - Hypothyroidism
+        - Hyperthyroidism
+        - Obesity
+        keywords:
+        - A1C target
+        - ADA Standards of Care
+        - SGLT2
+        - GLP-1
+        - DKA
+        - insulin titration
+      infectious_diseases:
+        mesh:
+        - Anti-Bacterial Agents
+        - COVID-19
+        - Bacteremia
+        - Sepsis
+        keywords:
+        - IDSA guideline
+        - antimicrobial stewardship
+        - MRSA
+        - C. difficile
+        - pip-tazo
+        - ceftriaxone
+      nephrology:
+        mesh:
+        - Chronic Kidney Disease
+        - Acute Kidney Injury
+        - Renal Dialysis
+        keywords:
+        - eGFR
+        - albuminuria
+        - KDIGO
+        - renal replacement therapy
+        - hyperkalemia
+      gastroenterology:
+        mesh:
+        - Cirrhosis
+        - Gastrointestinal Hemorrhage
+        - Inflammatory Bowel Diseases
+        keywords:
+        - MELD
+        - portal hypertension
+        - UGIB
+        - H. pylori
+        - pancreatitis
+      hematology:
+        mesh:
+        - Anemia
+        - Thrombocytopenia
+        - Venous Thromboembolism
+        keywords:
+        - anticoagulation
+        - DOAC
+        - warfarin
+        - HIT
+        - transfusion threshold
+      oncology:
+        mesh:
+        - Neoplasms
+        - Chemotherapy, Adjuvant
+        - Immunotherapy
+        keywords:
+        - staging
+        - TNM
+        - EGFR
+        - PD-1
+        - adverse events
+        - RECIST
+      neurology:
+        mesh:
+        - Stroke
+        - Epilepsy
+        - Parkinson Disease
+        keywords:
+        - tPA
+        - thrombectomy
+        - seizure
+        - antiepileptic
+        - NIHSS
+      rheumatology:
+        mesh:
+        - Arthritis, Rheumatoid
+        - Spondylarthropathies
+        - Gout
+        keywords:
+        - DMARD
+        - biologic
+        - treat-to-target
+        - uric acid
+        - flare
+      geriatrics:
+        mesh:
+        - Geriatric Assessment
+        - Frail Elderly
+        keywords:
+        - deprescribing
+        - BEERS criteria
+        - falls
+        - delirium
+      critical_care:
+        mesh:
+        - Respiration, Artificial
+        - Shock, Septic
+        - Acute Respiratory Distress Syndrome
+        keywords:
+        - vasopressor
+        - ventilator settings
+        - ARDSnet
+        - sedation
+        - analgesia
+      primary_care:
+        mesh:
+        - Preventive Health Services
+        - Vaccination
+        - Hypertension
+        keywords:
+        - screening
+        - USPSTF
+        - immunization schedule
+        - ASCVD risk
+      pharmacology:
+        mesh:
+        - Drug Interactions
+        - Pharmacokinetics
+        - Renal Insufficiency
+        keywords:
+        - renal dosing
+        - hepatic dosing
+        - contraindication
+        - black box warning
+      diagnostics:
+        mesh:
+        - Diagnostic Tests, Routine
+        - Biomarkers
+        keywords:
+        - reference range
+        - positive predictive value
+        - negative predictive value
+        - cutoff
+  exclude:
+    global:
+      keywords:
+      - insurance
+      - reimbursement
+      - billing
+      - coding
+      - CPT
+      - ICD-10
+      - economics
+      - cost-effectiveness
+      - coverage
+      - policy
+      - legislation
+      - malpractice
+      - legal
+      - marketing
+      - advertorial
+      - press release
+      - newsroom
+      - opinion
+      - editorial
+      - commentary
+ingest:
+  dedupe_by:
+  - title
+  - doi
+  - trial_id
+  min_year: 2015

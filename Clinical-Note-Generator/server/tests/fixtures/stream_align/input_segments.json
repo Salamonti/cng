@@ -1,0 +1,10 @@
+[
+  {"start": 0.0, "end": 5.0, "text": "How are you feeling today?"},
+  {"start": 5.0, "end": 10.0, "text": "I've been having chest pain for"},
+  {"start": 10.0, "end": 15.0, "text": "chest pain for the last two weeks."},
+  {"start": 15.0, "end": 20.0, "text": "I'm sorry to hear that. Patient:"},
+  {"start": 20.0, "end": 25.0, "text": "It's getting worse every day."},
+  {"start": 35.0, "end": 45.0, "text": "two weeks now. Doctor: I'll order some tests to check further."},
+  {"start": 38.0, "end": 48.0, "text": "check further. Patient: That sounds good, thank you doctor."},
+  {"start": 45.0, "end": 55.0, "text": "thank you doctor. Doctor: We'll get started right away."}
+]

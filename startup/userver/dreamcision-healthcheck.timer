@@ -1,0 +1,10 @@
+[Unit]
+Description=DreamCision health check every 5 minutes
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=5m
+Persistent=false
+
+[Install]
+WantedBy=timers.target

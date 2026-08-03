@@ -1,0 +1,50 @@
+/* DreamCision AI Scribe — Manual Custom Styles */
+
+/* DreamCision purple primary color */
+:root {
+  --md-primary-fg-color: #6d28d9;
+  --md-primary-fg-color--light: #a855f7;
+  --md-primary-fg-color--dark: #4c1d95;
+  --md-accent-fg-color: #7c3aed;
+}
+
+/* Make screenshots render nicely */
+.md-typeset img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Improve table readability */
+.md-typeset table:not([class]) {
+  font-size: 0.9rem;
+}
+
+/* Callout boxes */
+.md-typeset .admonition {
+  border-radius: 8px;
+}
+
+/* Search bar more prominent */
+.md-search__input {
+  border-radius: 8px;
+}
+
+/* Navigation sidebar */
+.md-nav--primary .md-nav__item--nested {
+  border-radius: 4px;
+}
+
+/* Footer */
+.md-footer {
+  background-color: #4c1d95;
+}
+
+/* Code blocks */
+.md-typeset code {
+  background-color: #f3e8ff;
+  border-radius: 4px;
+}
+
+[data-md-color-scheme="slate"] .md-typeset code {
+  background-color: #2d1b69;
+}

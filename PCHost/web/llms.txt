@@ -1,0 +1,25 @@
+# DreamCision AI·SCRIBE
+# Clinical documentation workspace for healthcare providers
+
+## Overview
+DreamCision AI·SCRIBE is an internal clinical documentation tool that assists healthcare providers with generating clinical notes, managing patient encounters, and providing evidence-based medical Q&A.
+
+## Features
+- Clinical note generation (consultation, follow-up, SOAP, etc.)
+- Patient encounter management
+- Medical literature Q&A with evidence citations
+- Audio transcription (ASR)
+- Image/PDF upload for chart data
+- RAG-powered medical knowledge retrieval
+
+## API Endpoints
+- `/api/generate_v8_stream` - Note generation (SSE)
+- `/api/transcribe_diarized` - Audio transcription
+- `/api/qa_chat` - Medical Q&A
+- `/api/ocr` - Image/PDF text extraction
+
+## Authentication
+All API endpoints require authentication via session tokens.
+
+## Privacy
+This is an internal clinical tool. All patient data is protected under PHIA. No external API exposure.

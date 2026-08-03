@@ -1,0 +1,90 @@
+# C:\RAG\settings.yaml
+# where we persist the vector store
+persist_directory: "./chroma_store"
+
+
+corpus_version: 1
+# chunking
+chunk_size_chars: 1800         # ~500-900 tokens for guidelines ~ OK
+chunk_overlap_chars: 200
+
+# retrieval
+bm25_candidates: 50
+dense_top_k: 16
+final_top_k: 10
+
+# rerank (optional—enabled later)
+use_reranker: false
+use_rrf: true
+rrf_k: 60
+use_diversify_cap: true
+diversify_cap_limit: 3
+use_mmr: false
+mmr_lambda: 0.7
+use_windowing: false
+use_adaptive_lambda: false
+use_micro_retry: false
+
+# metadata freshness (informational only in Step 1)
+stale_days_threshold: 365
+
+
+# PubMed API configuration
+pubmed_api_key: "fa2b1e42c0c608665464ff73230035e90f07"
+pubmed_rate_limit: 3  # requests per second with API key
+
+# model
+embedding_model: "microsoft/harrier-oss-v1-0.6b"
+# Harrier-0.6B: MIT license, 1024 dims, top medical retrieval (nDCG@3=0.8911)
+
+# ranking and context tuning
+hybrid_lambda: 0.10
+keyword_overlap_lambda: 0.15
+max_chunks_per_doc: 2
+summarize_threshold_words: 700
+summary_target_words: 220
+
+# Evidence threshold - minimum character count for a chunk to be considered valid evidence
+# Must be lower than chunk_size_chars (1800) to allow chunks through
+evidence_min_chars: 500
+
+# Source tiering - boost scores based on source authority
+# Tier 1: Guidelines (highest authority)
+# Tier 2: Clinical trials
+# Tier 3: PubMed articles / systematic reviews
+# Tier 4: Web sources (lowest)
+tier_boosts:
+  guideline: 0.15
+  trial: 0.10
+  pubmed: 0.05
+  web: 0.0
+
+# Tier source mappings
+tier_sources:
+  guideline:
+    - "GOLD"
+    - "GINA"
+    - "NICE"
+    - "WHO"
+    - "EAN"
+    - "AAOS"
+    - "GIN"
+    - "ATS"
+    - "ERS"
+    - "ACC"
+    - "AHA"
+    - "ASCO"
+    - "IDSA"
+    - "thoracic"
+    - "chest"
+  trial:
+    - "ClinicalTrials"
+    - "trial"
+    - "RCT"
+  pubmed:
+    - "PubMed"
+    - "PMC"
+    - "pubmed"
+  web:
+    - "web"
+    - "crawl4ai"

@@ -1,0 +1,9 @@
+[Unit]
+Description=Weekly RAG update (Mon 03:00)
+
+[Timer]
+OnCalendar=Mon *-*-* 00:00:00 America/Halifax
+Persistent=true
+
+[Install]
+WantedBy=timers.target

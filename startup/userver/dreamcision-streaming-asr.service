@@ -1,0 +1,15 @@
+[Unit]
+Description=DreamCision Streaming ASR (lab :8098)
+After=network.target
+
+[Service]
+Type=simple
+User=eissa
+WorkingDirectory=/opt/dreamcision/Clinical-Note-Generator
+ExecStart=/opt/dreamcision/Clinical-Note-Generator/.venv/bin/python -m uvicorn server.streaming_asr.app:app --host 127.0.0.1 --port 8098
+Restart=on-failure
+RestartSec=3
+Environment=STREAMING_ASR_STANDALONE_PORT=8098
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Nightly DreamCision ASR retention enforcement (03:15 America/Halifax)
+
+[Timer]
+OnCalendar=*-*-* 03:15:00 America/Halifax
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

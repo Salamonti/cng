@@ -1,0 +1,56 @@
+/* DreamCision — unified design tokens (purple-first brand).
+   Every color on the page derives from the logo palette. */
+:root {
+  /* ── Page surfaces (faint purple-gray, NOT pure white) ── */
+  --dc-page:          #f5f2f8;
+  --dc-page-elevated: #ffffff;
+  --dc-card-border:   #e4ddef;
+  --dc-input-border:  #d4cce0;
+
+  /* ── Brand purple ── */
+  --dc-primary:       #7c3aed;
+  --dc-primary-hover: #6d28d9;
+  --dc-primary-dark:  #4c3370;
+  --dc-primary-soft:  #ede9f6;
+  --dc-primary-glow:  rgba(124, 58, 237, 0.25);
+
+  /* ── Semantic (minimal exceptions) ── */
+  --dc-record:        #c44d5e;
+  --dc-record-glow:   rgba(196, 77, 94, 0.35);
+  --dc-danger:        #b91c1c;
+  --dc-connected-dot: #22c55e;  /* only as 8px dot */
+
+  /* ── Text ── */
+  --dc-text:          #1a1625;
+  --dc-text-muted:    #5c5669;
+  --dc-section-head:  #4c3370;
+  --dc-on-dark:       #f0ecf5;
+  --dc-on-dark-muted: rgba(240, 236, 245, 0.7);
+
+  /* ── Sidebar icon tones ── */
+  --dc-icon-active:   #a855f7;
+  --dc-icon-inactive: #6b5a85;
+
+  /* ── Dark chrome (header / sidebar / footer) — lightened a touch ── */
+  --dc-chrome-dark:   #1b1528;
+  --dc-chrome-mid:    #271d3e;
+  --dc-header-bg:     linear-gradient(90deg, #1b1528 0%, #221a38 45%, #271d3e 100%);
+  /* Match header color stops so rail + bar read as one chrome system */
+  --dc-sidebar-bg:    linear-gradient(180deg, #1b1528 0%, #221a38 45%, #271d3e 100%);
+  --dc-footer-bg:     linear-gradient(180deg, #271d3e 0%, #1b1528 100%);
+  --dc-chrome-bar:    linear-gradient(135deg, #271d3e 0%, #352454 50%, #452d6e 100%);
+
+  /* ── Violet accents ── */
+  --dc-lilac:         #c4b5fd;
+  --dc-border-violet: rgba(124, 58, 237, 0.2);
+
+  /* ── Focus ring ── */
+  --dc-focus-ring:    0 0 0 3px rgba(168, 85, 247, 0.25);
+
+  /* ── Shadows ── */
+  --dc-shadow-soft:   0 4px 20px rgba(26, 18, 48, 0.08);
+  --dc-shadow-medium: 0 8px 28px rgba(26, 18, 48, 0.14);
+
+  /* ── EKG decorative motif (inline SVG data URI) ── */
+  --dc-ekg-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 30' preserveAspectRatio='none'%3E%3Cpath d='M0 15 L120 15 L140 15 L160 5 L175 25 L190 2 L205 28 L220 15 L240 15 L600 15' fill='none' stroke='%23d4cce0' stroke-width='1.5' stroke-linecap='round' opacity='0.55'/%3E%3C/svg%3E");
+}

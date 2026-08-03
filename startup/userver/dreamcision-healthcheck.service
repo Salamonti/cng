@@ -1,0 +1,14 @@
+[Unit]
+Description=DreamCision health check (services, AI backends, disk)
+After=network-online.target
+OnFailure=telegram-alert@%n.service
+
+[Service]
+Type=oneshot
+User=eissa
+WorkingDirectory=/opt/dreamcision
+ExecStart=/usr/bin/python3 ops/health_check.py
+TimeoutStartSec=1m
+
+[Install]
+WantedBy=multi-user.target

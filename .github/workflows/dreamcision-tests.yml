@@ -1,0 +1,48 @@
+name: DreamCision test suites
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: dreamcision-tests
+  cancel-in-progress: true
+
+# Runs on a self-hosted runner on the production box itself, deliberately.
+# The test-time dependencies here include torch/whisperx/chromadb/playwright --
+# far too heavy to reinstall from scratch on a hosted runner every push. Rather
+# than maintain a second venv that duplicates production's, each step below
+# points the ALREADY-INSTALLED production interpreter
+# (/opt/dreamcision/<service>/.venv or /venv) at the freshly checked-out code
+# in this job's own workspace (a separate directory from /opt/dreamcision --
+# this never touches the live checkout or its venv). That gets fast runs on
+# every push using real production dependencies, and still genuinely tests
+# the pushed commit rather than whatever happens to be on disk.
+#
+# If a push adds a new dependency to a requirements.txt, this will fail with
+# an ImportError until someone installs it into the production venv -- that's
+# intentional, matching how dependencies have been added by hand throughout
+# this project rather than auto-installed by CI against a shared prod venv.
+jobs:
+  test:
+    runs-on: [self-hosted, dreamcision-userver]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clinical-Note-Generator suite
+        working-directory: Clinical-Note-Generator
+        run: /opt/dreamcision/Clinical-Note-Generator/.venv/bin/python -m pytest server/tests -q
+
+      - name: RAG suite
+        working-directory: RAG
+        run: /opt/dreamcision/RAG/venv/bin/python -m pytest tests -q
+
+      - name: PCHost dependencies
+        working-directory: PCHost
+        run: npm ci --silent
+
+      - name: PCHost suite
+        working-directory: PCHost
+        run: npm test --silent

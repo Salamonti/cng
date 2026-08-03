@@ -1,0 +1,134 @@
+# === OS & editor noise ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+*.code-workspace
+
+# === IDEs ===
+.vscode/
+.idea/
+*.sublime-*
+
+# === Python (any subfolder) ===
+**/.venv/
+**/venv/
+**/cenv/
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/.Python
+**/.mypy_cache/
+**/.ruff_cache/
+**/.tox/
+**/.hypothesis/
+**/.pytest_cache/
+.pytest_cache/
+pytest-cache-files-*/
+**/*.egg-info/
+**/dist/
+**/build/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.tox/
+.hypothesis/
+
+# === Node (any subfolder) ===
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# === Environment & secrets ===
+.env
+.env.*
+!.env.example
+*.pem
+certs/
+Clinical-Note-Generator/config/config.json
+PCHost/config/server_config.json
+
+# === Clinical-Note-Generator (app + data) ===
+Clinical-Note-Generator/.venv/
+Clinical-Note-Generator/cenv/
+Clinical-Note-Generator/models/
+Clinical-Note-Generator/executables/
+Clinical-Note-Generator/server/temp-audio/
+Clinical-Note-Generator/temp-audio/
+Clinical-Note-Generator/server/logs/
+Clinical-Note-Generator/data/
+Clinical-Note-Generator/data/datasets/
+Clinical-Note-Generator/asr_diagnostics/incidents.jsonl
+Clinical-Note-Generator/asr_diagnostics/last_incident.json
+
+# === PCHost ===
+
+# === RAG (large / generated) ===
+RAG/models/
+RAG/raw_docs/
+RAG/runs/
+RAG/snapshots/
+RAG/nul
+RAG/medical_corpus.jsonl
+RAG/chunks/
+RAG/clean_corpus/
+RAG/current_corpus/
+RAG/embeddings/
+RAG/logs/
+RAG/manual_ingest/
+RAG/ragvenv/
+RAG/chroma_store/
+RAG/chroma_db/
+RAG/chroma_data/
+RAG/archive/
+RAG/fetch_log.jsonl
+RAG/tmp_guidelines_chunk.txt
+
+# === General build / cache / scratch ===
+*.log
+*.tmp
+unsloth_compiled_cache/
+xformers/
+vcpkg/
+
+# Local scratch / patches / phase prompts
+patches/
+phase*_prompt.txt
+phase*_spec.md
+
+# === Clinical audio & PHI exports ===
+**/*.webm
+**/*.mp3
+!PCHost/web/media/consent_recording.mp3
+**/*.m4a
+**/*.aac
+**/*.flac
+**/*.ogg
+**/*.opus
+*.wav
+
+# Large / model-weight blobs
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# === Images (skip for graphify — UI assets/icons, low semantic value) ===
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.webp
+
+# === Graphify temp files ===
+graphify-out/
+.graphify_*

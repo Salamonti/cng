@@ -1,0 +1,17 @@
+[Unit]
+Description=DreamCision ASR segment retention enforcement (delete expired audio)
+After=network-online.target dreamcision-fastapi.service
+OnFailure=telegram-alert@%n.service
+
+[Service]
+Type=oneshot
+User=eissa
+WorkingDirectory=/opt/dreamcision/Clinical-Note-Generator
+ExecStart=/opt/dreamcision/Clinical-Note-Generator/.venv/bin/python tools/purge_expired_asr_segments.py
+TimeoutStartSec=30m
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target

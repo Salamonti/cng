@@ -1,0 +1,5 @@
+# DreamCision AI·SCRIBE robots.txt
+# Internal clinical tool - no public indexing
+
+User-agent: *
+Disallow: /
