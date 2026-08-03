@@ -2068,7 +2068,15 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
 
                 try:
                     combined_output = "".join(output_buf)
-                    _log_case_completion(
+                    # P2-7: _log_case_completion de-identifies the prompt/output
+                    # (regex-heavy) and then does a blocking file append
+                    # (dataset_logger.py, under threading.Lock) -- both on the
+                    # event loop otherwise. This runs at the end of every single
+                    # note generation, the hottest path in the app; off-load the
+                    # whole call rather than block every other doctor's
+                    # in-flight request behind one note's cleanup work.
+                    await asyncio.to_thread(
+                        _log_case_completion,
                         case_id=generation_id,
                         created_at=created_at,
                         duration_s=duration,

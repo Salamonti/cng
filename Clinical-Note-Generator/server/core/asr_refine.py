@@ -21,9 +21,22 @@ logger = logging.getLogger(__name__)
 DEFAULT_TIMEOUT_SEC = float(os.environ.get("ASR_REFINE_TIMEOUT_SEC", "120"))
 _MODEL_ID_CACHE: dict[str, str] = {}
 
-# Thread pool for blocking HTTP calls — keeps sync handlers from hogging
-# the FastAPI worker thread for up to 120s.
-_thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=4, thread_name_prefix="asr_refine")
+# P2-7: this pool does NOT free the calling FastAPI worker thread -- the call
+# sites below do future.result() right after submit(), a synchronous blocking
+# wait, from plain `def` (not async) route handlers that FastAPI already runs
+# in its own threadpool. What this pool actually does is cap how many
+# asr_refine HTTP calls can be in flight to the refine LLM backend at once,
+# system-wide. At the old hardcoded max_workers=4, a 5th/6th/etc. concurrent
+# diarize-refine call (plausible with ~50 doctors, e.g. several finishing
+# dictation within the same few seconds) queued here even though FastAPI's
+# own (larger) worker pool had threads free -- an unnecessary serialization
+# point sitting in front of a backend (vLLM) that's built for genuine request
+# concurrency via continuous batching. Configurable so it can be tuned
+# without a code change, same pattern as ASR_REFINE_TIMEOUT_SEC above.
+ASR_REFINE_MAX_WORKERS = max(1, int(os.environ.get("ASR_REFINE_MAX_WORKERS", "8")))
+_thread_pool = concurrent.futures.ThreadPoolExecutor(
+    max_workers=ASR_REFINE_MAX_WORKERS, thread_name_prefix="asr_refine"
+)
 
 _SYSTEM_PROMPT = (
     "You refine clinical encounter dictation transcripts produced by speech recognition. "

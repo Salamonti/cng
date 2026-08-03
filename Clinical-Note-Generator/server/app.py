@@ -1,6 +1,7 @@
 # server/app.py
 # app.py
 
+import asyncio
 import os
 import time
 import logging # type: ignore  # noqa: F401
@@ -121,11 +122,20 @@ async def http_logger(request, call_next):
         except Exception:
             out_len = 0
         ms = (time.perf_counter() - t0) * 1000
-        _metrics.record_http(request.method, request.url.path, getattr(response, 'status_code', 0), ms, in_len, out_len)
+        # P2-7: record_http() does a blocking file append (http_requests.csv)
+        # under a threading.Lock -- on the event loop thread, that's not
+        # confined to this one request; it stalls every other in-flight
+        # request being served by this event loop for the duration of the
+        # disk write, on EVERY single HTTP request the app handles.
+        # asyncio.to_thread keeps the lock+write semantics identical (still
+        # one real Lock serializing concurrent writers, just off the loop).
+        await asyncio.to_thread(
+            _metrics.record_http, request.method, request.url.path, getattr(response, 'status_code', 0), ms, in_len, out_len
+        )
         return response
     except Exception:
         ms = (time.perf_counter() - t0) * 1000
-        _metrics.record_http(request.method, request.url.path, 500, ms, in_len, 0)
+        await asyncio.to_thread(_metrics.record_http, request.method, request.url.path, 500, ms, in_len, 0)
         raise
     finally:
         try:
