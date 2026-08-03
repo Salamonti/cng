@@ -20,6 +20,7 @@
 
 
     <script src="js/client_error_reporter.js"></script>
+    <script src="js/client_usage_reporter.js"></script>
     <script src="js/recording_recovery.js?v=20260711a"></script>
     <script src="js/recording_durability.js"></script>
     <script src="universal_audio_handler.js?v=20260622d">
@@ -773,13 +774,13 @@
             <button type="button" onclick="closeToolsSheet()" aria-label="Close">&times;</button>
         </header>
         <div class="tools-grid">
-            <div class="tools-item" role="button" tabindex="0" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">&#x1F4F7;</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
-            <div class="tools-item" role="button" tabindex="0" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">&#x1F4C1;</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
-            <div class="tools-item" role="button" tabindex="0" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">&#x2699;&#xFE0F;</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
-            <div class="tools-item" role="button" tabindex="0" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">&#x1F6E0;</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
-            <div class="tools-item" role="button" tabindex="0" onclick="clearQueue(); closeToolsSheet();"><div class="ic">&#x1F6AB;</div><div class="tx"><div class="nm">Clear queue</div><div class="ds">Pending jobs — server and local</div></div></div>
-            <div class="tools-item" role="button" tabindex="0" onclick="openEncountersPanel(); closeToolsSheet();"><div class="ic">&#x1F4C2;</div><div class="tx"><div class="nm">Encounters</div><div class="ds">Threads — new, switch, rename, delete</div></div></div>
-            <div class="tools-item" role="button" tabindex="0" onclick="openLiteraturePanel(); closeToolsSheet();"><div class="ic">&#x1F4D6;</div><div class="tx"><div class="nm">Literature</div><div class="ds">Weekly RAG document summaries</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_camera" onclick="useFileCamera(); closeToolsSheet();"><div class="ic">&#x1F4F7;</div><div class="tx"><div class="nm">Camera</div><div class="ds">Capture photo/PDF into the app</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_files" onclick="document.getElementById('filePicker').click(); closeToolsSheet();"><div class="ic">&#x1F4C1;</div><div class="tx"><div class="nm">Files</div><div class="ds">Upload audio, images, PDFs</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_ai_prompts" onclick="showPromptSettings(); closeToolsSheet();"><div class="ic">&#x2699;&#xFE0F;</div><div class="tx"><div class="nm">AI Prompts</div><div class="ds">Customize prompts per note type</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_settings" onclick="openSettingsDrawer(); closeToolsSheet();"><div class="ic">&#x1F6E0;</div><div class="tx"><div class="nm">Settings</div><div class="ds">Connection / sync / account</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_clear_queue" onclick="clearQueue(); closeToolsSheet();"><div class="ic">&#x1F6AB;</div><div class="tx"><div class="nm">Clear queue</div><div class="ds">Pending jobs — server and local</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_encounters" onclick="openEncountersPanel(); closeToolsSheet();"><div class="ic">&#x1F4C2;</div><div class="tx"><div class="nm">Encounters</div><div class="ds">Threads — new, switch, rename, delete</div></div></div>
+            <div class="tools-item" role="button" tabindex="0" data-usage="tools_literature" onclick="openLiteraturePanel(); closeToolsSheet();"><div class="ic">&#x1F4D6;</div><div class="tx"><div class="nm">Literature</div><div class="ds">Weekly RAG document summaries</div></div></div>
         </div>
     </div>
 

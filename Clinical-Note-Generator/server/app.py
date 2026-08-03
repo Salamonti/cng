@@ -165,6 +165,7 @@ from server.routes.profile import router as profile_router  # noqa: E402
 from server.routes.encounters import router as encounters_router  # noqa: E402
 from server.routes.patient_materials import router as patient_materials_router  # noqa: E402
 from server.routes.client_errors import router as client_errors_router  # noqa: E402
+from server.routes.client_usage import router as client_usage_router  # noqa: E402
 from server.core.dependencies import require_api_bearer  # noqa: E402
 from server.core.db import init_db  # noqa: E402
 from server.core.bootstrap_admin import ensure_bootstrap_admin  # noqa: E402
@@ -196,6 +197,7 @@ app.include_router(profile_router, prefix="/api", dependencies=[Depends(require_
 app.include_router(encounters_router, dependencies=[Depends(require_api_bearer)])
 app.include_router(patient_materials_router, prefix="/api", dependencies=[Depends(require_api_bearer)])
 app.include_router(client_errors_router, prefix="/api")  # open: report telemetry even with a broken/expired session
+app.include_router(client_usage_router, prefix="/api")  # open: same reasoning as client_errors_router
 
 """
 Serve static files for the web UI.

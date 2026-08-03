@@ -2892,6 +2892,17 @@ window.WORKSPACE_PAGE_TYPE = 'main';
 
                         const genId = window.lastGenerationId;
                         if (genId) {
+                            // P4-4 pilot instrumentation: snapshot the freshly
+                            // generated text so we can report an edit-distance
+                            // ratio later (on pagehide) without ever sending
+                            // raw note text off the client -- see
+                            // client_usage_reporter.js.
+                            try {
+                                const baselineText = (typeof window.getMergedGeneratedNoteText === 'function')
+                                    ? (window.getMergedGeneratedNoteText() || '').trim()
+                                    : (document.getElementById('generatedNote')?.value || '').trim();
+                                window.__pilotEditBaseline = { genId: genId, text: baselineText };
+                            } catch (_) {}
                             const commentEl = document.getElementById('consultComment');
                             const refsEl = document.getElementById('consultRefs');
                             const ragHintCard = document.getElementById('ragHint');
@@ -6260,6 +6271,17 @@ Contact Information:`,
                 if (hasUnsavedNote()) {
                     localStorage.setItem('clinicalNoteUnsavedExit', '1');
                 }
+                // P4-4 pilot instrumentation: report how much the generated
+                // note was edited before the doctor moved on. Best-effort,
+                // never blocks unload.
+                try {
+                    const baseline = window.__pilotEditBaseline;
+                    if (baseline && baseline.genId && window.DreamCisionUsage) {
+                        window.DreamCisionUsage.reportEditDistance(
+                            baseline.genId, baseline.text, currentNoteText(), { beacon: true }
+                        );
+                    }
+                } catch (_) {}
             });
 
             document.addEventListener('visibilitychange', () => {
