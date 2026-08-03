@@ -1,7 +1,7 @@
 # server/core/db.py
 import logging
 
-from sqlalchemy import inspect, text
+from sqlalchemy import event, inspect, text
 from sqlalchemy.pool import StaticPool
 from sqlmodel import SQLModel, Session, create_engine
 
@@ -26,23 +26,33 @@ engine = create_engine(
 logger = logging.getLogger(__name__)
 
 
-def _configure_sqlite_wal() -> None:
-    """G2: WAL + busy_timeout for concurrent workspace writes (skip :memory: tests)."""
-    try:
-        if getattr(engine.dialect, "name", "") != "sqlite":
-            return
-        if ":memory:" in settings.database_url:
-            return
-        with engine.connect() as conn:
-            conn.execute(text("PRAGMA journal_mode=WAL"))
-            conn.execute(text("PRAGMA busy_timeout=5000"))
-            conn.execute(text("PRAGMA synchronous=NORMAL"))
-            conn.commit()
-    except Exception:
-        pass
+def configure_sqlite_pragmas(target_engine, database_url: str) -> None:
+    """G2: WAL + busy_timeout for concurrent workspace writes.
+
+    journal_mode is persisted in the database file itself, but busy_timeout
+    and synchronous are per-connection -- a one-shot PRAGMA at import time
+    only ever reached whichever single connection happened to run it,
+    leaving every other connection the pool opens (QueuePool defaults to 5)
+    on SQLite's own defaults (busy_timeout=0, synchronous=FULL). Registering
+    this on the "connect" event guarantees every physical connection gets
+    configured, not just the first one. Skipped for :memory: (each
+    connection is already its own isolated, non-contending database).
+    """
+    if getattr(target_engine.dialect, "name", "") != "sqlite" or ":memory:" in database_url:
+        return
+
+    @event.listens_for(target_engine, "connect")
+    def _set_sqlite_pragmas(dbapi_connection, connection_record) -> None:
+        cursor = dbapi_connection.cursor()
+        try:
+            cursor.execute("PRAGMA journal_mode=WAL")
+            cursor.execute("PRAGMA busy_timeout=5000")
+            cursor.execute("PRAGMA synchronous=NORMAL")
+        finally:
+            cursor.close()
 
 
-_configure_sqlite_wal()
+configure_sqlite_pragmas(engine, settings.database_url)
 
 
 def _migrate_sqlite_user_columns() -> None:
