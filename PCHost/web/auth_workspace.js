@@ -1020,7 +1020,16 @@
       const localExtras = local.extras || {};
       merged.extras = { ...serverExtras };
       const dirty = this._dirtyFields;
-      const isDirty = (key) => !dirty || dirty.size === 0 || dirty.has(key);
+      // P3-4: `dirty.size === 0` used to also return true (treat as dirty).
+      // A Set existing but empty means dirty-tracking correctly recorded
+      // "nothing has been locally edited since the last sync" -- treating
+      // that as "everything is dirty" made this 409 merge overwrite EVERY
+      // server field with local (stale) values, including fields a
+      // concurrent session had legitimately just changed. Only the
+      // genuinely-untracked case (dirty is null -- tracking was never set
+      // up) keeps the old safe-fallback "assume dirty" behavior; an empty
+      // Set must mean nothing is dirty.
+      const isDirty = (key) => (dirty ? dirty.has(key) : true);
 
       if (isDirty('draft') || isDirty('generatedNote')) {
         merged.draft = local.draft;
@@ -1058,6 +1067,27 @@
 
     async pullWorkspaceIfNewer(force = false) {
       if (!this.isWorkspaceReady()) return;
+
+      // P3-4: this check used to run AFTER the server-version comparison
+      // below, which early-returns whenever serverVersion <= localVersion.
+      // A failed save never advances either version -- the server never
+      // got the write, and workspaceVersion is only bumped on a
+      // successful save -- so that early-return fired every single time
+      // for exactly the case this check exists to catch, and a failed
+      // autosave was only ever retried if the user happened to edit again
+      // (which re-triggers the debounced save timer through a totally
+      // separate path). Checking hasUnsavedLocalEdits() first means this
+      // periodic loop (runs every syncIntervalMs) can actually retry.
+      if (this.hasUnsavedLocalEdits()) {
+        this.setSyncPill('warn', 'Not synced');
+        if (!this.saveInFlight && !this.saveTimer) {
+          this.saveWorkspace().catch((err) => {
+            console.warn('[WorkspaceSync] retry save failed:', err?.message || err);
+          });
+        }
+        return;
+      }
+
       let serverVersion = 0;
       const verResp = await this.request('/api/workspace/version');
       if (verResp.ok) {
@@ -1071,16 +1101,6 @@
       }
       const localVersion = Number(this.workspaceVersion || 0);
       if (!serverVersion || serverVersion <= localVersion) return;
-
-      if (this.hasUnsavedLocalEdits()) {
-        this.setSyncPill('warn', 'Not synced');
-        if (!this.saveInFlight && !this.saveTimer) {
-          this.saveWorkspace().catch((err) => {
-            console.warn('[WorkspaceSync] retry save failed:', err?.message || err);
-          });
-        }
-        return;
-      }
 
       const recentlyEdited = Date.now() - Number(this.lastLocalEditAt || 0) < 3000;
       if (!force && recentlyEdited) return;
@@ -1265,6 +1285,25 @@
           : noteEl
             ? noteEl.value
             : '';
+      const transcriptionValue = transDisplayEl ? transDisplayEl.value : '';
+      const currentEncounterValue = transEl ? transEl.value : '';
+      // P3-4: server's merge_incoming_workspace_state() has always checked
+      // for extras.transcriptionCleared before deciding whether an empty
+      // transcription/currentEncounter payload means "the user deliberately
+      // cleared this" vs. "a stale/partial payload accidentally omitted
+      // it" (and restores the server's existing text in the latter case) --
+      // but no client code ever actually SET that flag, so the guard's
+      // restore-path fired unconditionally on empty fields including the
+      // completely ordinary case of a doctor selecting all and deleting
+      // their transcription by hand: their deliberate edit was silently
+      // undone by the very next save. Send the flag whenever these are the
+      // fields the user just dirtied AND they're now empty -- using the
+      // same dirty-field tracking the 409 merge already relies on.
+      const dirty = this._dirtyFields;
+      const transcriptionClearedByUser = !!(
+        dirty && !transcriptionValue && !currentEncounterValue &&
+        (dirty.has('transcription') || dirty.has('currentEncounter'))
+      );
       return {
         settings: {
           theme: 'light',
@@ -1273,8 +1312,9 @@
         documents: [],
         draft: mergedNote,
         extras: {
-          transcription: transDisplayEl ? transDisplayEl.value : '',
-          currentEncounter: transEl ? transEl.value : '',
+          transcription: transcriptionValue,
+          currentEncounter: currentEncounterValue,
+          transcriptionCleared: transcriptionClearedByUser,
           // V7 API: 3-field system
           oldVisits: oldVisitsEl ? oldVisitsEl.value : '',
           mixedOther: mixedOtherEl ? mixedOtherEl.value : '',

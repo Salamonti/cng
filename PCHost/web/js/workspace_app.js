@@ -6217,6 +6217,21 @@ Contact Information:`,
         function hasUnsavedNote() {
             const text = currentNoteText();
             if (!text) return false;
+            // P3-4: app.noteState.lastSavedHash only ever updates inside
+            // saveNote() -- the LOCAL FILE export action (download/Web
+            // Share/File System API), not the actual server auto-sync that
+            // runs continuously in the background. Almost nobody manually
+            // exports their note to a .txt file, so this hash comparison
+            // was permanently stale for virtually every real session: the
+            // "unsaved note" warning fired on notes that were already
+            // safely synced to the server seconds after every edit. Defer
+            // to the real sync state (AuthWorkspace's dirty-field tracking,
+            // which covers the note/draft along with the rest of the
+            // workspace) when it's available; fall back to the old
+            // hash-based check only if this file is ever loaded standalone.
+            if (window.AuthWorkspace && typeof window.AuthWorkspace.hasUnsavedLocalEdits === 'function') {
+                return window.AuthWorkspace.hasUnsavedLocalEdits();
+            }
             const currentHash = simpleHash(text);
             return currentHash !== app.noteState.lastSavedHash;
         }
