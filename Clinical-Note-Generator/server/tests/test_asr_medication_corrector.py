@@ -1,4 +1,4 @@
-"""Unit tests for ASR Medication Corrector (Layer 1 of hybrid correction)."""
+"""Unit tests for ASR Medication Corrector (the only medication-correction layer in production)."""
 import sys
 import tempfile
 import unittest

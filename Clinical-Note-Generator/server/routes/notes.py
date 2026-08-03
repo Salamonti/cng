@@ -675,17 +675,6 @@ def clean_model_output_final(text: str) -> str:
         cleaned = nxt
     cleaned = cleaned.replace("**", "")
 
-    # Conservative clinical normalization pass:
-    # - number words + units -> compact numeric notation
-    # - optional RxNorm medication name canonicalization (confidence-gated)
-    # NOTE: Skip normalization for order requests — it iterates over all RxNorm terms
-    # and blocks the event loop for 6-20s on short text. Order items don't need RxNorm.
-    # try:
-    #     norm = normalize_clinical_note_output(cleaned)
-    #     cleaned = norm.text
-    # except Exception:
-    #     pass
-
     cleaned = _sanitize_age_omitted_placeholders(cleaned)
     cleaned = _prune_physical_exam_filler_lines(cleaned)
 

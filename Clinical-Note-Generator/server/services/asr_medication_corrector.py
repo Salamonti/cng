@@ -1,7 +1,12 @@
 """
-ASR Medication Corrector — Layer 1 of hybrid medication correction.
+ASR Medication Corrector.
 
 Curated dictionary of known ASR transcription errors with context guards.
+This is the only medication-correction layer in production — a prior
+RxNorm-based canonicalization pass was removed after it was found to block
+the event loop for 6-20s per note (a linear scan over all RxNorm terms per
+word), and the decision was to accept this dictionary's coverage rather
+than rebuild it as a properly-indexed, non-blocking lookup.
 Runs programmatically on raw ASR transcripts before the LLM sees them.
 Zero hallucination risk — each correction is a hard-coded, auditable mapping.
 """
