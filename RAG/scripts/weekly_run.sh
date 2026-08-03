@@ -89,6 +89,17 @@ run_tool guidelines_fetcher guidelines_fetcher.py \
   --fetch-pdf \
   --pdf-max-mb "${PDF_MAX_MB}"
 
+# P3-3: this used to run AFTER the raw_files scan/chunk/embed/index steps
+# below (was near the metadata-enrichment block, well past update_index).
+# That meant cross_specialty.jsonl -- 207 guidelines/week, confirmed --
+# never made it into the SAME run's corpus: the raw_files scan below had
+# already completed by the time this wrote fresh output, so it sat until
+# the following week's scan, and was only picked up then if this run's
+# write time still happened to fall within that later scan's DAYS_BACK
+# mtime window -- otherwise silently dropped, not just delayed. Moved
+# ahead of the raw_files scan so its output is included in this same run.
+run_tool_optional cross_specialty fetch_cross_specialty_guidelines.py --specialty all --output ./raw_docs/cross_specialty.jsonl
+
 # --- Clean up old timestamped raw_docs to prevent duplication ---
 # Each weekly run creates new timestamped files (pubmed_YYYYMMDD_HHMMSS.json, etc.).
 # Old files from previous weeks accumulate and get re-processed every time,
@@ -136,9 +147,6 @@ done
 run_tool chunking_pipeline chunking_pipeline.py --input ./clean_corpus --pattern '*.processed.jsonl' --output ./chunks
 run_tool embed_chunks embed_chunks.py --input ./chunks --output ./embeddings --batch 64
 run_tool update_index update_index.py --emb-dir ./embeddings --chunk-dir ./chunks --snapshots both
-
-# Cross-specialty PubMed fetch
-run_tool_optional cross_specialty fetch_cross_specialty_guidelines.py --specialty all --output ./raw_docs/cross_specialty.jsonl
 
 # Metadata enrichment (specialty, year, DOI, GRADE)
 run_tool_optional metadata_enrich metadata_enricher.py --enrich

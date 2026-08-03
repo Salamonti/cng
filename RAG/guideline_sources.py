@@ -279,14 +279,27 @@ def scrape_who(max_guidelines=50):
                 except Exception:
                     pass
 
+            # P3-3: this used to append every guideline with text="" hardcoded
+            # -- titles and PDF links were collected, but the actual guideline
+            # text was never fetched at all, so every WHO entry was empty and
+            # contributed nothing to the corpus (confirmed empty in
+            # production logs). Fetch it the same way every other PDF-based
+            # scraper in this file does (scrape_gold, scrape_gina, etc.).
+            if not pdf_url:
+                continue
+            text = fetch_pdf_text(pdf_url)
+            if not text or not passes_quality_filter(text, min_chars=5000):
+                continue
+            doi = extract_doi(text)
             guidelines.append({
                 "title": title,
                 "source": "WHO",
                 "source_url": pub_url or url,
                 "publication_url": pdf_url,
-                "text": "",
-                "doi": "",
+                "text": text,
+                "doi": doi or "",
             })
+            time.sleep(REQUEST_DELAY)
 
         print(f"  Collected {len(guidelines)} WHO guidelines")
 

@@ -241,8 +241,16 @@ def is_valid_year(val):
 
 
 def extract_year(title, text, doc_id=""):
+    # P3-3: every branch below used to search for r'20[0-9]{3}' -- "20" plus
+    # exactly THREE more digits, a 5-character match. A real 4-digit year
+    # like "2023" is only 4 characters and can never match a 5-digit
+    # pattern, so this function's content-based extraction has never
+    # actually matched a realistic year anywhere in this file; every year
+    # ever set came from the doc_id-to-fetch-date fallback map below (which
+    # reflects when a document was scraped, not when it was published) or
+    # not at all. Fixed to r'20[0-9]{2}' (4 digits total, 2000-2099).
     # First try title
-    match = re.search(r'(20[0-9]{3})', title)
+    match = re.search(r'(20[0-9]{2})', title)
     if match:
         year = match.group(1)
         if is_valid_year(year):
@@ -253,26 +261,26 @@ def extract_year(title, text, doc_id=""):
         if is_valid_year(candidate):
             return candidate
     # Then try doc_id directly
-    match = re.search(r'(20[0-9]{3})', doc_id)
+    match = re.search(r'(20[0-9]{2})', doc_id)
     if match:
         year = match.group(1)
         if is_valid_year(year):
             return year
     # Look for publication year patterns in text
     # "Published: 2023", "Copyright © 2022", "© 2021"
-    pub_match = re.search(r'(?:published|copyright|©|date|year|edition|version)[:\s]+(20[0-9]{3})', text[:1000], re.IGNORECASE)
+    pub_match = re.search(r'(?:published|copyright|©|date|year|edition|version)[:\s]+(20[0-9]{2})', text[:1000], re.IGNORECASE)
     if pub_match:
         year = pub_match.group(1)
         if is_valid_year(year):
             return year
     # Look for guideline year in title/text: "2023 Guidelines", "Guidelines 2022"
-    guide_match = re.search(r'(20[0-9]{3})\s+(?:guideline|recommendation|consensus|statement|update|report|position)', text[:500], re.IGNORECASE)
+    guide_match = re.search(r'(20[0-9]{2})\s+(?:guideline|recommendation|consensus|statement|update|report|position)', text[:500], re.IGNORECASE)
     if guide_match:
         year = guide_match.group(1)
         if is_valid_year(year):
             return year
     # Finally try text — but only if it looks like a standalone year
-    match = re.search(r'(?:^|\s)(20[0-9]{3})(?:\s|$|[,;])', text[:500])
+    match = re.search(r'(?:^|\s)(20[0-9]{2})(?:\s|$|[,;])', text[:500])
     if match:
         year = match.group(1)
         if is_valid_year(year):
@@ -293,7 +301,23 @@ def extract_grade(text):
     return None, None
 
 
-def enrich_chunk(text, metadata):
+def enrich_chunk(text, metadata, doc_caches=None):
+    """Enrich one chunk's metadata.
+
+    P3-3: year/DOI/GRADE used to be inferred from each chunk's own local
+    text independently -- a document split into 50 chunks could get 50
+    different (each individually plausible-looking) answers for what is
+    actually a single document-level property, since a mid-document chunk's
+    text might mention an unrelated cited year, dosage number, or a
+    different paper's DOI/evidence grade entirely. Confirmed in production
+    logs as nonsense year values on some chunks of documents whose title
+    correctly resolved a real year on others.
+
+    doc_caches (optional, keyed by doc_id) makes extraction happen once per
+    document and reused for every other chunk sharing that doc_id, instead
+    of re-derived per chunk. Defaults to None (per-chunk behavior, same as
+    before) so existing callers/tests that don't pass it are unaffected.
+    """
     enriched = dict(metadata) if metadata else {}
     source = str(enriched.get("source") or enriched.get("society") or "").strip()
     title = str(enriched.get("title") or "").strip()
@@ -309,23 +333,44 @@ def enrich_chunk(text, metadata):
             specialty = "general"
         enriched["specialty"] = specialty
 
+    year_cache = doi_cache = grade_cache = None
+    if doc_id and doc_caches is not None:
+        year_cache = doc_caches.setdefault("year", {})
+        doi_cache = doc_caches.setdefault("doi", {})
+        grade_cache = doc_caches.setdefault("grade", {})
+
     # Validate existing year — reject invalid values (ISO timestamps, garbage numbers)
     if not existing_year or not is_valid_year(existing_year):
         # Clear invalid year values — ChromaDB upsert keeps old values if key is missing,
         # so we must set to "N/A" to clear
         if existing_year and not is_valid_year(existing_year):
             enriched["year"] = "N/A"
-        year = extract_year(title, text, doc_id)
+        if year_cache is not None and doc_id in year_cache:
+            year = year_cache[doc_id]
+        else:
+            year = extract_year(title, text, doc_id)
+            if year_cache is not None and year:
+                year_cache[doc_id] = year
         if year:
             enriched["year"] = year
 
     if not enriched.get("doi"):
-        doi = extract_doi(text)
+        if doi_cache is not None and doc_id in doi_cache:
+            doi = doi_cache[doc_id]
+        else:
+            doi = extract_doi(text)
+            if doi_cache is not None and doi:
+                doi_cache[doc_id] = doi
         if doi:
             enriched["doi"] = doi
 
     if not enriched.get("grade") and not enriched.get("evidence_level"):
-        strength, quality = extract_grade(text)
+        if grade_cache is not None and doc_id in grade_cache:
+            strength, quality = grade_cache[doc_id]
+        else:
+            strength, quality = extract_grade(text)
+            if grade_cache is not None and strength:
+                grade_cache[doc_id] = (strength, quality)
         if strength:
             enriched["grade"] = strength
             enriched["evidence_level"] = quality
@@ -409,6 +454,11 @@ def enrich_and_upsert(col, batch_size=1000):
     results = {"total": total, "enriched_specialty": 0, "enriched_year": 0,
                "enriched_doi": 0, "enriched_grade": 0, "unchanged": 0, "errors": 0}
 
+    # P3-3: shared across every batch/offset in this run (not reset per
+    # batch) so chunks of the same document processed in different 5000-row
+    # batches still land on the same year/DOI/GRADE -- see enrich_chunk().
+    doc_caches = {"year": {}, "doi": {}, "grade": {}}
+
     for offset in range(0, total, 5000):
         batch = col.get(limit=5000, offset=offset, include=["metadatas", "documents"])
         ids = batch["ids"]
@@ -421,7 +471,7 @@ def enrich_and_upsert(col, batch_size=1000):
             old_doi = str((meta or {}).get("doi", "")).strip()
             old_grade = str((meta or {}).get("grade", "") or (meta or {}).get("evidence_level", "")).strip()
 
-            enriched = enrich_chunk(doc or "", meta)
+            enriched = enrich_chunk(doc or "", meta, doc_caches=doc_caches)
 
             new_spec = str(enriched.get("specialty", "")).strip()
             new_year = str(enriched.get("year", "")).strip()

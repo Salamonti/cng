@@ -161,6 +161,37 @@ def fetch_oa_subset(since_iso: str, max_items: int = 1000) -> List[Dict[str, Any
     return items
 
 
+def _extract_pmc_body_text(xml_text: str) -> str:
+    """Parse PMC JATS full-text XML and return the article's readable text.
+
+    P3-3: extracting via p.text only captures text BEFORE the first inline
+    child element -- everything after a <bold>/<italic>/<xref> (citation
+    marker)/<sup> tag lives in that child's .tail, not in p.text. Since
+    inline markup around dosages, units, and citations is routine in PMC's
+    JATS XML, that silently truncated most paragraphs at their first piece
+    of formatting. itertext() walks the whole subtree (text + every child's
+    tail), matching the pattern the abstract fallback below already used
+    correctly.
+    """
+    from xml.etree import ElementTree as ET
+
+    root = ET.fromstring(xml_text)
+    text_parts = []
+    body = root.find(".//body")
+    if body is not None:
+        for p in body.findall(".//p"):
+            p_text = "".join(p.itertext()).strip()
+            if p_text:
+                text_parts.append(p_text)
+    result = " ".join(text_parts)
+    # If no <p> tags found, try to get abstract
+    if not result:
+        abstract = root.find(".//abstract")
+        if abstract is not None:
+            result = "".join(abstract.itertext()).strip()
+    return result
+
+
 def _fetch_pmc_fulltext(pmc_id: str) -> str:
     """Fetch full-text XML for a PMC article and extract readable text."""
     url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id={pmc_id}&retmode=xml&rettype=full&tool={TOOL_NAME}&email={CONTACT_EMAIL}"
@@ -168,22 +199,7 @@ def _fetch_pmc_fulltext(pmc_id: str) -> str:
         r = SESSION.get(url, timeout=30)
         if r.status_code != 200:
             return ""
-        from xml.etree import ElementTree as ET
-        root = ET.fromstring(r.text)
-        # Extract text from <p> tags in the body
-        text_parts = []
-        body = root.find(".//body")
-        if body is not None:
-            for p in body.findall(".//p"):
-                if p.text:
-                    text_parts.append(p.text.strip())
-        result = " ".join(text_parts)
-        # If no <p> tags found, try to get abstract
-        if not result:
-            abstract = root.find(".//abstract")
-            if abstract is not None:
-                result = "".join(abstract.itertext()).strip()
-        return result
+        return _extract_pmc_body_text(r.text)
     except Exception:
         return ""
 

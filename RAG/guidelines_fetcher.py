@@ -29,7 +29,7 @@ import logging
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
-from typing import Dict, Any, List, Tuple, Set
+from typing import Dict, Any, List, Optional, Tuple, Set
 
 from log_utils import append_recent_log
 
@@ -214,6 +214,28 @@ def extract_pdf_text_bytes(pdf_bytes: bytes) -> str:
         )
     return ""
 
+def find_pdf_link_in_html(html: str, base_url: str) -> Optional[str]:
+    """Return the first plausible PDF link on the page, or None.
+
+    P3-3: matching on href.endswith(".pdf") alone missed WHO entirely -- its
+    actual repository (iris.who.int, a DSpace/bitstream system) serves PDFs
+    via opaque handle/bitstream URLs with no .pdf extension in the path at
+    all (content type is signaled by the HTTP header, not the URL).
+    Confirmed in production: every WHO entry in
+    raw_docs/guidelines_who.jsonl had text="" because this scan never found
+    a PDF candidate to even try. "bitstream"/"iris.who.int" match the same
+    heuristic the separate, dedicated WHO scraper in guideline_sources.py
+    already uses successfully.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    for a in soup.find_all("a"):
+        href = a.get("href") or ""
+        href_lower = href.lower()
+        if href_lower.endswith(".pdf") or "bitstream" in href_lower or "iris.who.int" in href_lower:
+            return urljoin(base_url, href)
+    return None
+
+
 def fetch_fulltext_from_url(url: str, timeout=45, prefer_pdf: bool = False, pdf_max_bytes: int = PDF_MAX_BYTES):
     r = get(url, timeout=timeout, stream=True)
     if not r:
@@ -246,13 +268,7 @@ def fetch_fulltext_from_url(url: str, timeout=45, prefer_pdf: bool = False, pdf_
         # If requested, fetch linked PDF (with size cap)
         if prefer_pdf:
             try:
-                soup = BeautifulSoup(html, "html.parser")
-                pdf_link = None
-                for a in soup.find_all("a"):
-                    href = a.get("href") or ""
-                    if href.lower().endswith(".pdf"):
-                        pdf_link = urljoin(url, href)
-                        break
+                pdf_link = find_pdf_link_in_html(html, url)
                 if pdf_link:
                     rp = get(pdf_link, timeout=timeout, stream=True)
                     if rp and rp.status_code == 200:

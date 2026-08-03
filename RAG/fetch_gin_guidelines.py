@@ -174,7 +174,15 @@ def fetch_guideline_text(session, pub_url):
         response.raise_for_status()
         content_type = response.headers.get("Content-Type", "")
         if "pdf" in content_type:
-            return f"[PDF: {pub_url}]"
+            # P3-3: this used to return the literal string f"[PDF: {pub_url}]"
+            # instead of the PDF's actual text -- every GIN guideline behind
+            # a PDF publication link got that placeholder as its "content."
+            import io
+            import pdfplumber
+            with pdfplumber.open(io.BytesIO(response.content)) as pdf:
+                pages = [p.extract_text() for p in pdf.pages]
+            text = "\n\n".join(p for p in pages if p)
+            return text[:200000] if text else None
         soup = BeautifulSoup(response.text, "html.parser")
         for elem in soup.find_all(["script", "style", "nav", "footer", "header"]):
             elem.decompose()
