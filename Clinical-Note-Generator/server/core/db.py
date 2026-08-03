@@ -54,6 +54,18 @@ def configure_sqlite_pragmas(target_engine, database_url: str) -> None:
 
 configure_sqlite_pragmas(engine, settings.database_url)
 
+# P2-5: Postgres migration trigger point. WAL mode means readers never block
+# writers, but SQLite still serializes writers one at a time -- busy_timeout
+# just controls how long a second writer queues (5s) before giving up. At
+# current scale (~50 doctors, workspace saves are occasional, not
+# continuous) that queue essentially never fills. The concrete signal to
+# watch, not a guessed doctor-count: workspace PUT 409s (see
+# record_sync_incident() outcomes in routes/workspace.py) or literal
+# "database is locked" exceptions in `journalctl -u dreamcision-fastapi`
+# trending up over time. Either one showing up with any regularity means
+# writers are actually queuing behind each other in practice, not just in
+# theory -- that's the point to plan the Postgres migration, not before.
+
 
 def _migrate_sqlite_user_columns() -> None:
     # Use the active engine (tests swap db.engine for an isolated SQLite file).

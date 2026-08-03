@@ -105,5 +105,14 @@ def get_bm25(col) -> Tuple[BM25Helper, List[str]]:
     # sanity: if collection size changed (e.g., re-ingest), rebuild
     current = col.count() if hasattr(col, "count") else None
     if current is not None and current != _cache["count"]:
+        # The weekly pipeline's rebuild_bm25.py runs right after a corpus
+        # update, in its own process, and persists a fresh index to disk --
+        # but this (the live query service's) in-memory _cache doesn't know
+        # about that. Without this check, the first live query after every
+        # weekly update pays for a full synchronous rebuild here (retokenizing
+        # every document) even though a matching rebuild already happened
+        # and was persisted moments earlier. Try that first.
+        if _load_persisted() and _cache["count"] == current:
+            return _cache["bm25"], _cache["ids"]
         return warm_bm25(col)
     return _cache["bm25"], _cache["ids"]

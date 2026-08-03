@@ -179,4 +179,9 @@ else
   fi
 fi
 
+# Bump corpus_version so the live query service's result caches (which key
+# on it) actually invalidate now that the index has changed -- see
+# bump_corpus_version.py for why this was previously a silent no-op.
+run_tool bump_corpus_version bump_corpus_version.py
+
 log_step "Weekly run completed. Logs in ${run_dir}"
