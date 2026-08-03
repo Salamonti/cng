@@ -232,6 +232,16 @@ def _apply_preprocessing(
     if mixed_clean:
         mixed_clean = truncator.truncate_section(mixed_clean, section="labs_imaging_other").strip()
 
+    # P3-2: each section above was independently kept within its OWN budget,
+    # but nothing checked the sum of all three against the model's real
+    # context window -- a complex patient with all three sections near their
+    # individual maximums could still exceed it. current_encounter (today's
+    # live dictation) keeps its full allotment; the two historical-context
+    # sections give up space if the aggregate is over.
+    trans_clean, old_clean, mixed_clean = truncator.enforce_aggregate_budget(
+        current_encounter=trans_clean, prior_visits=old_clean, labs_imaging_other=mixed_clean
+    )
+
     return trans_clean, old_clean, mixed_clean
 
 

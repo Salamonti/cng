@@ -21,6 +21,18 @@ from .constants import DATE_PATTERNS, MEDICAL_TERMS
 logger = logging.getLogger("cng.preprocessing.truncation")
 
 
+#: P3-2: backstop for the SUM of all three chart sections, not any one of them.
+#: Per-section budgets are the primary control, but truncate_section() has its
+#: own safety override (returns the FULL original section, untruncated, when
+#: trimming it to budget would remove >80% of it and it's under 2x budget) --
+#: that alone can let one section land up to ~2x its nominal budget, and
+#: nothing was checking the total across all three. Generous on purpose: this
+#: is a backstop against the "coupled constants silently clamp each other"
+#: failure mode this whole roadmap warns about, not a routine constraint --
+#: it should essentially never fire against reasonable per-section configs.
+AGGREGATE_BUDGET_TOKENS_DEFAULT = 100_000
+
+
 class TokenBudgetTruncator:
     def __init__(self, cfg: Optional[Dict] = None):
         preprocessing = (cfg or {}).get("preprocessing") or {}
@@ -34,6 +46,44 @@ class TokenBudgetTruncator:
                 trunc.get("current_encounter_budget_tokens", DEFAULT_SECTION_BUDGET_TOKENS)
             ),
         }
+        self.aggregate_budget = int(trunc.get("aggregate_budget_tokens", AGGREGATE_BUDGET_TOKENS_DEFAULT))
+
+    def enforce_aggregate_budget(
+        self, *, current_encounter: str, prior_visits: str, labs_imaging_other: str
+    ) -> Tuple[str, str, str]:
+        """Apply a final cross-section trim if the SUM of all three (each
+        already independently truncated to its own budget) still exceeds the
+        aggregate ceiling. current_encounter is today's live dictation and
+        keeps its full per-section allotment untouched; prior_visits and
+        labs_imaging_other split whatever aggregate budget remains,
+        proportional to their current size, hard-clipped line-by-line
+        (the same fallback truncate_section itself uses when paragraph
+        selection can't fit anything).
+        """
+        if self.aggregate_budget <= 0:
+            return current_encounter, prior_visits, labs_imaging_other
+
+        cur_tokens = self.estimate_tokens(current_encounter)
+        prior_tokens = self.estimate_tokens(prior_visits)
+        labs_tokens = self.estimate_tokens(labs_imaging_other)
+        total = cur_tokens + prior_tokens + labs_tokens
+        if total <= self.aggregate_budget:
+            return current_encounter, prior_visits, labs_imaging_other
+
+        remaining = max(0, self.aggregate_budget - cur_tokens)
+        other_total = prior_tokens + labs_tokens
+        if other_total <= 0 or other_total <= remaining:
+            return current_encounter, prior_visits, labs_imaging_other
+
+        prior_share = int(remaining * (prior_tokens / other_total))
+        labs_share = max(0, remaining - prior_share)
+
+        if prior_share < prior_tokens:
+            prior_visits = self._clip_text_to_budget(prior_visits, prior_share)
+        if labs_share < labs_tokens:
+            labs_imaging_other = self._clip_text_to_budget(labs_imaging_other, labs_share)
+
+        return current_encounter, prior_visits, labs_imaging_other
 
     @staticmethod
     def estimate_tokens(text: str) -> int:

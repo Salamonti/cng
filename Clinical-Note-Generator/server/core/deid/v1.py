@@ -4,9 +4,21 @@ from typing import Any, Dict
 from server.core.deid.ner_spacy import redact_person_entities
 
 
+#: P3-2: the old pattern only covered ISO, numeric, and month-first
+#: ("January 1, 2024") dates -- day-first month-name dates ("25 January
+#: 2024") and ordinal suffixes ("1st"/"25th") matched nothing at all and
+#: leaked through un-redacted. Day-first with a month NAME is the standard
+#: Canadian/British form; ordinals show up constantly in spoken dictation
+#: ("the twenty-fifth" transcribes as "25th").
+_MONTH_NAME = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*"
+_ORDINAL_SUFFIX = r"(?:st|nd|rd|th)?"
 _DATE_PATTERN = re.compile(
-    r"\b(?:\d{4}-\d{2}-\d{2}|\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|"
-    r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s+\d{4})\b",
+    r"\b(?:"
+    r"\d{4}-\d{2}-\d{2}"
+    r"|\d{1,2}[/-]\d{1,2}[/-]\d{2,4}"
+    rf"|{_MONTH_NAME}\s+\d{{1,2}}{_ORDINAL_SUFFIX},?\s+\d{{4}}"
+    rf"|\d{{1,2}}{_ORDINAL_SUFFIX}\s+(?:of\s+)?{_MONTH_NAME}\s*,?\s*\d{{4}}"
+    r")\b",
     re.IGNORECASE,
 )
 
@@ -30,8 +42,13 @@ _PATTERNS = {
         re.IGNORECASE | re.MULTILINE,
     ),
     # 4) "Dr. Smith", "Dr Smith", "Dr. Jane Doe" (standalone, not just after label)
+    # P3-2: this was the one name pattern missing re.IGNORECASE -- ASR
+    # transcripts of spoken dictation routinely produce all-lowercase text
+    # ("dr smith ordered..."), and every other name_* pattern here already
+    # handles that via IGNORECASE; this one silently didn't.
     "name_doctor": re.compile(
         r"\bDr\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)",
+        re.IGNORECASE,
     ),
     "date": _DATE_PATTERN,
     "mrn": re.compile(

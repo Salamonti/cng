@@ -114,7 +114,15 @@ class PreprocessingPipeline:
         kept = []
         for block in blocks:
             norm = re.sub(r"\s+", " ", block).strip().lower()
-            key = norm[:80]
+            # P3-2: was norm[:80] -- two DIFFERENT blocks sharing an 80-char
+            # boilerplate header (e.g. two distinct lab panels, same
+            # "LABORATORY RESULTS - Patient: ... - Collected:" preamble)
+            # collided on that truncated key and the second one was silently
+            # dropped, even though its actual results differed entirely.
+            # This function's job is deduping near-identical blocks, not
+            # blocks that merely start the same way -- key on the full
+            # normalized text.
+            key = norm
             if key in recent_hashes:
                 continue
             recent_hashes.append(key)

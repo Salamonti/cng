@@ -63,6 +63,33 @@ def test_preprocessing_pipeline_steps():
     assert "WBC 10.2 10e9/L" in out
 
 
+def test_deduplicate_blocks_keeps_distinct_reports_sharing_a_header():
+    # P3-2: deduplicate_near_identical_blocks() used to key on only the first
+    # 80 characters of each normalized block. Two genuinely different lab
+    # panels sharing an 80+ char preamble collided on that truncated key and
+    # the second one -- with real, different results -- was silently dropped.
+    #
+    # Tests the function directly rather than through pipeline.process():
+    # collapse_repeated_headers() (an earlier, deliberately separate step)
+    # already strips a *repeated header line* on its own, which would mask
+    # this bug if routed through the full pipeline -- this finding is about
+    # deduplicate_near_identical_blocks() specifically, on blocks whose
+    # shared prefix isn't a recognized "headerish" line.
+    pipeline = PreprocessingPipeline(_cfg(True))
+    preamble = "Result Name Results Units Reference Range Flag Prior Value Prior Date Ordering Provider"
+    assert len(preamble) > 80  # the bug's key length
+    text = (
+        f"{preamble}\nWBC 10.2 10e9/L\n"
+        "\n"
+        f"{preamble}\nHemoglobin 145 g/L\n"
+    )
+
+    out = pipeline.deduplicate_near_identical_blocks(text)
+
+    assert "WBC 10.2" in out
+    assert "Hemoglobin 145" in out
+
+
 def test_truncation_respects_budget_and_prioritizes_dates():
     truncator = TokenBudgetTruncator(_cfg(True))
     text = "\n\n".join(

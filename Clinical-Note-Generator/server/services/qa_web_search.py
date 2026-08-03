@@ -82,13 +82,31 @@ def _allowed(url: str) -> bool:
     return _matches_allowlist(url, _ALLOWED_DOMAINS)
 
 
-async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
-    preferred = os.environ.get("SEARXNG_URL", "https://ieissa.com:3443/searxng/search").rstrip("/")
-    # Prefer local SearXNG path on workstation first (fast + no remote ACL issues).
-    bases = []
+def _candidate_search_bases() -> List[str]:
+    """Ordered list of SearXNG base URLs to try, local-first.
+
+    P3-2: this used to default SEARXNG_URL to an EXTERNAL domain
+    (https://ieissa.com:3443/...) as a silent fallback -- if the local
+    SearXNG instance was ever unreachable, the consult clinical focus text
+    got sent as a GET query string to a server outside the local network,
+    undermining the "PHI never leaves your building" positioning this whole
+    app is built on. Nothing in production actually sets SEARXNG_URL, so
+    that external default was live, not theoretical. SEARXNG_URL remains
+    operator-configurable for anyone who explicitly wants a non-default
+    endpoint; only the silent default changed, to another local candidate
+    that's a harmless no-op against the list below.
+    """
+    preferred = os.environ.get("SEARXNG_URL", "http://127.0.0.1:8083/searxng/search").rstrip("/")
+    bases: List[str] = []
     for b in ["http://127.0.0.1:8083/search", preferred, "http://127.0.0.1:8083/searxng/search", "http://127.0.0.1:3443/searxng/search"]:
         if b and b not in bases:
             bases.append(b.rstrip('/'))
+    return bases
+
+
+async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
+    # Prefer local SearXNG path on workstation first (fast + no remote ACL issues).
+    bases = _candidate_search_bases()
 
     api_key = os.environ.get("SEARXNG_API_KEY", "")
     params = {"q": query, "format": "json"}
