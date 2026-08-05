@@ -22,6 +22,20 @@ _DATE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+#: De-id incident (2026-08): every one of these name_* patterns except
+#: name_labeled captured only a SINGLE Title-Case word, on the assumption
+#: that names in these contexts are one word. In practice multi-word real
+#: names ("Roger Blithroy Nickerson", "Mary Marguerite Amero") only had
+#: their LAST word caught -- the leading word(s) leaked through completely
+#: unredacted. This was found repeatedly in production data via manual
+#: audit; extending each pattern to swallow up to two additional
+#: Title-Case words (matching name_labeled's existing {0,2} behaviour)
+#: closes that gap. name_doctor additionally needed to tolerate a bare
+#: middle initial ("Dr. Islam R Eissa"), which no [A-Z][a-z]+ token can
+#: ever match since it requires a lowercase letter after the capital.
+_EXTRA_NAME_WORDS = r"(?:\s+[A-Z][a-z]{1,}){0,2}"
+_MIDDLE_INITIAL = r"(?:\s+[A-Z]\.?)?"
+
 _PATTERNS = {
     # Name patterns (v1.1): keep these conservative but cover common real-world forms.
     # 1) Labeled names: "Patient: John Smith", "Dr: Jane Doe"
@@ -32,13 +46,13 @@ _PATTERNS = {
     ),
     # 2) "Lastname, 52 year-old ..." or "Lastname, 52-year-old ..."
     "name_comma_age": re.compile(
-        r"\b([A-Z][a-z]{2,}),\s*(\d{1,3}\s*[-]?\s*(?:y/?o|yo|years?|year)[-\s]*(?:old)?)",
+        rf"\b([A-Z][a-z]{{2,}}{_EXTRA_NAME_WORDS}),\s*(\d{{1,3}}\s*[-]?\s*(?:y/?o|yo|years?|year)[-\s]*(?:old)?)",
         re.IGNORECASE,
     ),
     # 3) Sentence-style: "Gregory reports ...", "Sarah denies ..."
     # Only triggers for common patient-reporting verbs to avoid redacting meds/tests.
     "name_sentence_verb": re.compile(
-        r"(^|[\.\n]\s*)([A-Z][a-z]{2,})\s+(reports|states|presents|presented|complains|denies|endorses|describes|notes)\b",
+        rf"(^|[\.\n]\s*)([A-Z][a-z]{{2,}}{_EXTRA_NAME_WORDS})\s+(reports|states|presents|presented|complains|denies|endorses|describes|notes)\b",
         re.IGNORECASE | re.MULTILINE,
     ),
     # 4) "Dr. Smith", "Dr Smith", "Dr. Jane Doe" (standalone, not just after label)
@@ -47,7 +61,7 @@ _PATTERNS = {
     # ("dr smith ordered..."), and every other name_* pattern here already
     # handles that via IGNORECASE; this one silently didn't.
     "name_doctor": re.compile(
-        r"\bDr\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)",
+        rf"\bDr\.?\s+([A-Z][a-z]+{_MIDDLE_INITIAL}(?:\s+[A-Z][a-z]+)?)",
         re.IGNORECASE,
     ),
     "date": _DATE_PATTERN,
@@ -97,11 +111,8 @@ def deidentify_text(text: str) -> Dict[str, Any]:
     redacted, n = _PATTERNS["name_labeled"].subn(_REPLACEMENTS["name"], redacted)
     name_total += int(n)
 
-    residual_name = any(_PATTERNS[k].search(redacted) for k in name_keys)
-
     counts["name"] = name_total
     leak_flags["raw_has_name"] = bool(raw_has_name)
-    leak_flags["residual_name"] = bool(residual_name)
 
     # --- Other PHI types ---
     for key in ["date", "mrn", "phone", "email"]:
@@ -112,12 +123,22 @@ def deidentify_text(text: str) -> Dict[str, Any]:
         leak_flags[f"residual_{key}"] = bool(pattern.search(redacted))
 
     # --- Optional NER layer (spaCy PERSON entities) ---
+    # De-id incident (2026-08): residual_name used to be computed here,
+    # BEFORE this NER pass ran -- meaning it could never reflect anything
+    # NER found (or failed to find), regardless of whether NER succeeded,
+    # errored, or left names behind. Moved below so it checks the text
+    # NER actually produced.
     redacted, ner_meta = redact_person_entities(redacted)
     leak_flags["ner_ran"] = bool(ner_meta.get("ner_ran", False))
     if ner_meta.get("ner_error"):
         leak_flags["ner_error"] = True
     counts["name_ner"] = int(ner_meta.get("ner_person_redactions", 0))
     counts["name"] = int(counts.get("name", 0)) + counts["name_ner"]
+
+    # residual_name now reflects the FINAL text (post-regex AND post-NER),
+    # which is what "did we actually miss something" needs to mean.
+    residual_name = any(_PATTERNS[k].search(redacted) for k in name_keys)
+    leak_flags["residual_name"] = bool(residual_name)
 
     leak_flags["raw_has_any"] = any(v for k, v in leak_flags.items() if k.startswith("raw_has_"))
     leak_flags["residual_any"] = any(v for k, v in leak_flags.items() if k.startswith("residual_"))
@@ -127,4 +148,3 @@ def deidentify_text(text: str) -> Dict[str, Any]:
         "redaction_counts": counts,
         "leak_flags": leak_flags,
     }
-

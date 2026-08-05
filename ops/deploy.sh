@@ -16,6 +16,20 @@ cd "${REPO}"
 
 log() { echo "[$(date '+%H:%M:%S')] $*"; }
 
+# De-id incident (2026-08): spacy>=3.7.0 sat in requirements.txt for an
+# unknown amount of time without ever actually being installed -- nothing
+# in this script (or anywhere else) ran `pip install -r requirements.txt`
+# after it was added, so the NER de-id backstop silently no-oped on 100%
+# of records the whole time. Syncing dependencies here, as part of every
+# deploy, closes that class of gap for good instead of just this one
+# package.
+log "Syncing Clinical-Note-Generator Python dependencies..."
+(cd Clinical-Note-Generator && .venv/bin/pip install -q -r requirements.txt)
+
+log "Verifying spaCy de-id model is installed..."
+(cd Clinical-Note-Generator && .venv/bin/python -c "import spacy; spacy.load('en_core_web_sm')" 2>/dev/null) \
+  || (cd Clinical-Note-Generator && .venv/bin/python -m spacy download en_core_web_sm)
+
 log "Running Clinical-Note-Generator test suite..."
 (cd Clinical-Note-Generator && .venv/bin/python -m pytest server/tests -q)
 

@@ -193,6 +193,8 @@ def _deid_fields(fields: Dict[str, str]) -> Dict[str, Any]:
     out_fields: Dict[str, Any] = {}
     totals: Dict[str, int] = {}
     leak_any = False
+    residual_any = False
+    ner_error_any = False
     for key, raw_val in fields.items():
         result = deidentify_text(raw_val or "")
         out_fields[key] = result
@@ -201,10 +203,21 @@ def _deid_fields(fields: Dict[str, str]) -> Dict[str, Any]:
             totals[cname] = int(totals.get(cname, 0)) + int(cval or 0)
         leak_flags = result.get("leak_flags", {}) or {}
         leak_any = leak_any or bool(leak_flags.get("raw_has_any"))
+        # De-id incident (2026-08): this aggregate used to drop residual_any
+        # and ner_error entirely -- a field could have leak_flags.residual_any
+        # = True (something is STILL exposed after redaction) and nothing at
+        # this level, where monitoring/audit tooling actually looks, would
+        # ever know. Propagate both so a downstream alert can fire on either.
+        residual_any = residual_any or bool(leak_flags.get("residual_any"))
+        ner_error_any = ner_error_any or bool(leak_flags.get("ner_error"))
     return {
         "fields": out_fields,
         "redaction_counts_total": totals,
-        "leak_flags": {"raw_has_any": leak_any},
+        "leak_flags": {
+            "raw_has_any": leak_any,
+            "residual_any": residual_any,
+            "ner_error_any": ner_error_any,
+        },
     }
 
 
