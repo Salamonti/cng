@@ -229,9 +229,16 @@ class RAGHttpClient:
             except Exception:
                 min_score = 0.0
             if min_score > 0:
-                filtered = [r for r in norm_results if float(r.get("score", 0.0)) >= min_score]
-                if filtered:
-                    norm_results = filtered
+                # When nothing clears the relevance bar, send NO context rather
+                # than falling back to the entire low-scoring set. Handing the
+                # model irrelevant snippets labelled "evidence" makes it refuse
+                # to answer at all (observed 2026-08-05: "causes of mood swings"
+                # retrieved an unrelated SSRI-seizure case report at score 0.51
+                # and the assistant declined). With no context, the prompt's
+                # established-practice path runs normally.
+                norm_results = [
+                    r for r in norm_results if float(r.get("score", 0.0)) >= min_score
+                ]
             context = self._compose_context(norm_results[:top_k], cap_words)
             used["min_score"] = min_score
             return context, norm_results, used
