@@ -1,0 +1,941 @@
+[
+  {
+    "case_id": "a66b681a0e094d0bb9c7e246df485474",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-18.jsonl",
+    "focus_query": "Impression:\n1. **Nephrotic Syndrome secondary to proteinuric kidney disease**\nThe patient presents with significant proteinuria (5.55 g in 24-hour urine) and clinical features of nephrotic syndrome, including edema, hypertension, and hyperlipidemia. The underlying etiology of the protein leakage is currently unknown but may be primary (e.g., membranous nephropathy, focal segmental glomerulosclerosis (FSGS), or minimal change disease) or secondary (e.g., lupus, given family history, or amyloidosis). I explained to the patient that the kidney's filters have \"opened up,\" allowing protein to leak into the urine. This loss of protein reduces oncotic pressure, leading to fluid leakage into the tissues (edema) and triggering a compensatory mechanism that increases blood pressure and cholesterol.\n\n2. **Hypertension**\nThe patient's hypertension is likely secondary to the nephrotic syndrome, as the loss of protein and subsequent fluid retention increase hydrostatic pressure. His blood pressure was recently recorded at 183/128. He reports some improvement in headaches since starting a new medication regimen.\n\n3. **Hyperlipidemia**\nThe patient's high cholesterol (LDL 5.9) is a component of the nephrotic syndrome, as the body attempts to synthesize lipoproteins to replace the proteins lost in the urine.\n\nPlan:\n1. **Initiate General Protein Reduction Therapy**\nI am adding Empagliflozin to the patient's regimen to help reduce the amount of protein leaking through the kidneys. I explained that while this is a general treatment for protein leakage rather than a specific treatment for his underlying diagnosis, it is a safe and effective way to manage the condition while we investigate the cause. The patient expressed understanding and agreement.\n2. **Diagnostic Workup for Proteinuria Etiology**\nI will order a series of tests to identify the specific cause of the kidney protein leakage. This includes testing for anti-PLA2R antibodies (to screen for membranous nephropathy), viral infection screening (to screen for FSGS), and testing for amyloidosis and lupus.\n3. **Follow-up and Potential Biopsy**\nI instructed the patient to complete the ordered blood work as soon as possible. I will review the results in approximately 6 weeks. I informed the patient that if the initial tests remain inconclusive, a kidney biopsy may be considered to provide a definitive diagnosis.\n4. **Lifestyle and Monitoring**\nI discussed the importance of weight management and regular exercise as part of his long-term health goals, noting that obesity can exacerbate kidney issues. I advised him to continue his current healthy habits, such as increased water intake and smoking cessation.\n\nConflicts\n1. Medication dosages and frequencies for all pre-encounter medications were not specified in the transcription.\n2. Physical examination findings for most systems were not documented for today's encounter.\n3. The specific dose and route for the \"needle\" (injection) given in the emergency room on May 29 were not documented.\n4. The specific dose and route for the \"fluid pill\" and \"blood pressure meds\" mentioned in the narrative were not specified.\n\nHistory of Present Illness:\n[NAME_REDACTED] reports that symptoms began in early May, specifically around May 7, when he first noticed sweating. He denies other initial symptoms. He visited a virtual clinic on May 15, where he was told his blood pressure was high and a urinalysis showed protein. Following this, he experienced worsening headaches, particularly in the shoulders when moving his head, which he attempted to manage with Advil. He saw his primary physician, Dr. [NAME_REDACTED], during the same week, who confirmed high blood pressure.\n\nOn May 29, the patient presented to the emergency room feeling \"brutally sick\" with a \"cloudy\" head. His blood pressure was recorded at 183/128. He was treated with an injection and discharged. Since that time, symptoms have progressed. He kept a journal noting shortness of breath, neck pain, muscle sensations, blurry vision (May 31), mid-back pain, and severe calf soreness (June 3) that made walking difficult. He describes current symptoms as including fatigue, slow movement, and a constant, unique pain in his neck. He also reports a metallic taste in his throat and occasional blurry/fuzzy vision.\n\nHe notes that while he felt \"perfect\" two months ago, he has experienced increased swelling in his legs, which he is currently managing with compression socks. He reports that his headache has improved since starting new blood pressure medications, and he feels some improvement in swelling with fluid medications. He also reports a new, severe leg cramp on June 17 and several days of frequent urination with \"beer-colored\" urine. He describes random sharp pains in various locations. He notes a history of similar symptoms last year that lasted for 2 weeks.\n\nInvestigations:\n*   Urinalysis (2021): No protein.\n*   Urinalysis (Recent): $\\ge$ 3 g/L protein.\n*   24-hour urine: 5.55 g protein.\n*   Blood work (Current): CBC normal; Electrolytes normal (Potassium 4.3); Creatinine 75; eGFR > 90; HbA1c 5.7%; Fasting glucose 5.5; Ferritin 168; Liver enzymes normal; Cholesterol 7.7; LDL 5.9.\n*   Blood work (2014): LDL 5.\n*   Ultrasound (Kidney): Cyst in right mid-kidney; possible new calcification; otherwise unremarkable.\n*   Chest X-ray: Clear.\n\nPast Medical History:\n*   High blood pressure\n*   High cholesterol (newly diagnosed)\n*   Asthma\n*   Generalized anxiety disorder\n\nMedications:\nAmlodipine (Dose Unknown) Unit Route Frequency\nOlmesartan (Dose Unknown) Unit Route Frequency\nLisinopril (Dose Unknown) Unit Route Frequency\nFurosemide (Dose Unknown) Unit Route Frequency\nClonazepam (Dose Unknown) Unit Route Frequency\nPaxil (Dose Unknown) Unit Route Frequency\nBupropion (Dose Unknown) Unit Route Frequency\nSimbicort (Dose Unknown) Unit Route Frequency\nSalbutamol (Dose Unknown) Unit Route Frequency\nC-PAP (Dose Unknown) Unit Route Frequency\n\nPhysical Exam:\n*   Legs: Swelling noted in bilateral lower extremities.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "nephrotic",
+        "syndrome",
+        "secondary",
+        "proteinuric",
+        "kidney",
+        "disease",
+        "patient",
+        "presents",
+        "significant",
+        "proteinuria",
+        "hour",
+        "urine",
+        "clinical",
+        "features",
+        "including"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/gd/",
+        "tier": "web",
+        "score": 0.6361886893899115,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 In light of this, the Work Group felt that SGLT2i should be considered for people with IgAN and proteinuria $0.5 g/d, in distinction to the recommendations in the KDIGO 2024 Clinical Practice Guideline for the Evaluationand Management of Chronic Kidney Disease 81for kidney dis- ease with and without diabetes. SGLT2i should not be used as areplacement for diseas"
+      },
+      {
+        "title": "KDIGO 2024 CLINICAL PRACTICE GUIDELINE",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/lupus-nephritis/",
+        "tier": "web",
+        "score": 0.6053740382194519,
+        "text_preview": "KDIGO 2024 CLINICAL PRACTICE GUIDELINE Results from post hoc analysis suggested that belimumab might not be as effective inpatients who presented with nephrotic-range proteinuriacompared to those with less-severe proteinuria, although itmight still reduce the incidence of adverse kidney outcomes. The overall increase in PERR and complete response rate (CRR) when belimumab was added to standard the"
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/iga-nephropathy",
+        "tier": "web",
+        "score": 0.6361886893899115,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 In light of this, the Work Group felt that SGLT2i should be considered for people with IgAN and proteinuria $0.5 g/d, in distinction to the recommendations in the KDIGO 2024 Clinical Practice Guideline for the Evaluationand Management of Chronic Kidney Disease 81for kidney dis- ease with and without diabetes. SGLT2i should not be used as areplacement for diseas"
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/gd/",
+        "tier": "web",
+        "score": 0.6361886893899115,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 In light of this, the Work Group felt that SGLT2i should be considered for people with IgAN and proteinuria $0.5 g/d, in distinction to the recommendations in the KDIGO 2024 Clinical Practice Guideline for the Evaluationand Management of Chronic Kidney Disease 81for kidney dis- ease with and without diabetes. SGLT2i should not be used as areplacement for diseas"
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/iga-nephropathy/",
+        "tier": "web",
+        "score": 0.6361886893899115,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 In light of this, the Work Group felt that SGLT2i should be considered for people with IgAN and proteinuria $0.5 g/d, in distinction to the recommendations in the KDIGO 2024 Clinical Practice Guideline for the Evaluationand Management of Chronic Kidney Disease 81for kidney dis- ease with and without diabetes. SGLT2i should not be used as areplacement for diseas"
+      }
+    ]
+  },
+  {
+    "case_id": "aa2bd4474ecc4d119a0f972bf25f457c",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-15.jsonl",
+    "focus_query": "Impression:\n1. **Severe COPD with persistent hypoxia**\nThe patient has very severe obstructive lung disease as evidenced by PFTs showing an FEV1 of 18% predicted and a history of significant functional limitation. He is currently experiencing persistent hypoxia with an SpO2 of 87% and reports significant dyspnea with minimal exertion. I have discussed the current management with the patient, noting that while he is on Trelegy, his symptoms remain poorly controlled. I explained that we are currently pursuing a palliative approach to manage his symptoms.\n\n2. **Smoking Cessation**\nThe patient is currently smoking 5 cigarettes a day. I have discussed the importance of complete cessation with him, as his current smoking status precludes me from initiating a home oxygen assessment at this time.\n\nPlan:\n1. **Prescribe Theophylline**\nI am starting the patient on theophylline 200 mg Oral BID (morning and night) as a palliative measure to help widen the airways and improve his breathing. I explained to the patient that this is a small dose and should not interfere with his other medications.\n2. **Follow-up and Imaging**\nI will see the patient again in 6 weeks. By that time, I hope to have the results of his rescheduled CT scan to further evaluate his lung status.\n3. **Future Management Options**\nI informed the patient that we will evaluate his response to theophylline and the upcoming CT results before deciding on long-term options, which may include either chronic prednisone or morphine for symptom palliation.\n4. **Oxygen Therapy Deferral**\nI have decided to defer the home oxygen assessment until the patient is able to completely quit smoking.\n\nConflicts:\n1. Allergies: Not documented in the source material.\n2. Physical Exam: Several systems (e.g., HEENT, Abdomen, Neurological) were not documented in the current encounter transcription.\n3. Medication Normalization: \"Trilogy\" was normalized to \"Trelegy\" based on clinical context and prior records.\n\nHistory of Present Illness:\nThe patient is a 71-year-old male with a history of very severe COPD, referred for optimization of medical management due to significant dyspnea with minimal exertion and persistent hypoxia. He reports that his breathing is not well-controlled on his current regimen of Trelegy Ellipta. He describes his current smoking status as having reduced from 20 cigarettes a day to 5 cigarettes a day. \n\nThe patient reports that he has never taken prednisone, though he mentions a relative who took it for breathing and noted increased alertness. He expresses a desire for improved breathing and is aware that morphine is sometimes used for shortness of breath, though he is currently unaware of its specific uses. He reports that his current medications are helping, but he is seeking further optimization. He was recently hospitalized from Jan. 31 to Feb. 4, 2026, for a COPD exacerbation characterized by confusion and hypoxia. He continues to report a chronic productive cough with white sputum, though he denies chest tightness.\n\nInvestigations:\n*   PFT (Aug. 2023): FEV1 18% predicted, FVC 43% predicted, FEV1/FVC ratio 127%.\n*   Oxygen Saturation: 76% on arrival after ambulation, 85% at rest after several minutes seated (per referral).\n*   SpO2: 87% (current encounter).\n\nPast Medical History:\n*   Severe COPD\n*   Hypertension\n*   Multiple TIA\n*   Epilepsy\n*   Cerebral aneurysm\n*   Depression\n*   Dyslipidemia\n*   Gastric ulcer (antrum)\n*   Alcohol use disorder (in remission)\n*   Right sided heart failure\n*   Progressive ataxic disorder (cerebellar tremor, peripheral neuropathy in setting of cerebrovascular disease)\n*   Congenital patent foramen ovale\n*   Carotid artery plaque\n\nMedications:\nTrelegy Ellipta 100/62.5/25 mcg 1 Puff Oral QD\nSalbutamol sulphate 100 mcg HFA Aerosol 2 Puffs Q4H PRN\nLamotrigine 150 mg Oral BID\nGabapentin 400 mg Oral TID\nMirtazapine 15 mg Oral QHS\nPropranolol HCI 40 mg Oral 4 Tablet BID\nRosuvastatin calcium 10 mg Oral QD\nAspirin 81 mg Oral QD\nNasonex 50 mcg Nasal Spray 2 Spray BID\n\nPhysical Exam:\nChest: Completely silent.\nHeart: Sounds are distant.\nNeck: No jugular venous distention.\nExtremities: No lower limb edema.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "severe",
+        "copd",
+        "persistent",
+        "hypoxia",
+        "patient",
+        "very",
+        "obstructive",
+        "lung",
+        "disease",
+        "evidenced",
+        "pfts",
+        "showing",
+        "fev1",
+        "18%",
+        "predicted"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "A Real-World Evaluation of Therapeutic Inertia in Patients with Severe Uncontrolled Chronic Obstructive Pulmonary Disease.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13264988/",
+        "tier": "pubmed",
+        "score": 0.6505914920568466,
+        "text_preview": "A Real-World Evaluation of Therapeutic Inertia in Patients with Severe Uncontrolled Chronic Obstructive Pulmonary Disease. RESULTS: Uncontrolled COPD was present in 3479 of 4801 patients (72.5%) and controlled COPD in 1322 (27.5%). Among patients with uncontrolled COPD, no treatment adjustments were made in 1519, with a rate of TI of 43.7%. In the multivariate analysis, former smokers, lower exace"
+      },
+      {
+        "title": "A Real-World Evaluation of Therapeutic Inertia in Patients with Severe Uncontrolled Chronic Obstructive Pulmonary Disease.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13264988/",
+        "tier": "pubmed",
+        "score": 0.6536467557031069,
+        "text_preview": "A Real-World Evaluation of Therapeutic Inertia in Patients with Severe Uncontrolled Chronic Obstructive Pulmonary Disease. METHODS: This was a post hoc analysis of data of 4801 patients with severe COPD (FEV1 < 50% predicted) included in an observational cross-sectional multicenter nationwide study conducted in Spain. Controlled vs. uncontrolled disease was considered according to COPD assessment "
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.6832662574160081,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use CHAPTER 3: EVIDENCE SUPPORTING PREVENTION AND MAINTENANCE THERAPY OVERALL KEY POINTS: \u2022 Smoking cessation is key. Pharmacotherapy and nicotine replacement reliably increase long-term smoking abstinence rates. Legislative smoking bans and counseling, delivered by healthcare professionals, improve quit rates. \u2022 The effectiveness and safety of e-cigarettes"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.6832662574160081,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use CHAPTER 3: EVIDENCE SUPPORTING PREVENTION AND MAINTENANCE THERAPY OVERALL KEY POINTS: \u2022 Smoking cessation is key. Pharmacotherapy and nicotine replacement reliably increase long-term smoking abstinence rates. Legislative smoking bans and counseling, delivered by healthcare professionals, improve quit rates. \u2022 The effectiveness and safety of e-cigarettes"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.6832661206233485,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use CHAPTER 3: EVIDENCE SUPPORTING PREVENTION AND MAINTENANCE THERAPY OVERALL KEY POINTS: \u2022 Smoking cessation is key. Pharmacotherapy and nicotine replacement reliably increase long-term smoking abstinence rates. Legislative smoking bans and counseling, delivered by healthcare professionals, improve quit rates. \u2022 The effectiveness and safety of e-cigarettes"
+      }
+    ]
+  },
+  {
+    "case_id": "f3834f3c7d2945cdaa63960615df1bb4",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-19.jsonl",
+    "focus_query": "Impression:\n1. **Type 1 Diabetes Management**\nThe patient is a long-term user of an insulin pump and a FreeStyle Libre 3 sensor. His current A1C is approximately 8.0% based on recent sensor data, which is an improvement from his historical 8.0-9.0% range but remains above target. The primary clinical challenge identified is high glycemic variability, particularly postprandial spikes. The patient acknowledges a tendency to eat before bolusing, which contributes to these spikes. I discussed the importance of bolusing before meals to ensure insulin peaks coincide with glucose rise. We reviewed his current pump settings (basal rates 1.5-1.85 units/hr, carb ratios 5-8, ISF 1.4). I explained that while the sensor improves awareness, the goal is to reduce variability to safely lower his average glucose.\n\n2. **Insulin Pump Therapy Optimization**\nThe patient currently uses an older Medtronic pump and expresses a desire to upgrade. I reviewed several options with him, including the Omnipod, Tandem, and Insulect (iPod), as well as the Medtronic Excellent pump. I discussed the pros and cons of each, noting that Medtronic's algorithms are highly mature and intuitive. We agreed on pursuing a new Medtronic pump. I explained the clinical eligibility and financial approval process. The patient will complete the required forms to initiate the replacement process.\n\nPlan:\n1. **Clinical Eligibility for Insulin Pump**\nI provided the clinical eligibility form for a new Medtronic pump. The patient will complete the personal information section and sign the form today. I will sign the clinical portion and submit both forms to the funding body. Once financial approval is received, the patient will notify me via email, and I will then submit the final clinical eligibility form to Medtronic to initiate the replacement.\n2. **Sensor Coverage and Prescription**\nI will provide a prescription for NovoRapid and a prescription for FreeStyle Libre sensors to ensure the patient has continuous coverage while awaiting the new pump. I informed the patient that if Pharmacare denies coverage for NovoRapid, I will switch the prescription to TruRapid.\n3. **Diabetes Education and Follow-up**\nI advised the patient on the importance of bolusing before meals to mitigate postprandial spikes. We will follow up in approximately 2 months, or sooner if the patient receives notification of pump approval, to review new settings and sensor data.\n\nConflicts\n1. Patient's age is not explicitly stated in the transcription, though the transcription header notes 28 years old.\n2. Medications: The transcription mentions \"Novo Rapid\" but the specific dose, route, and frequency were not provided in the source.\n3. Allergies: Not documented in the source.\n4. Physical Exam: Specific findings for HEENT, Abdomen, and Neurological systems were not documented.\n\nHistory of Present Illness:\nPatient is a 28-year-old male with a history of type 1 diabetes, first diagnosed at 1.5 years of age following significant weight loss and polyuria. He was managed by the IWK until age 18. He reports that his blood sugar control has historically been suboptimal, with A1C values typically in the 8.0-9.0% range, though he achieved an A1C of 7.2-7.3% approximately 2-3 years ago while in university. \n\nHe began using an insulin pump (Medtronic) at age 11. He currently uses an older Medtronic pump, which he describes as \"bulky\" and \"outdated,\" having owned it since approximately 2016-2017. He reports that he does not have a regular follow-up clinic and manages his own settings occasionally. He recently moved back to Yarmouth 4-5 years ago and has seen various providers, including a previous provider who was opposed to his use of an insulin pump. He recently started working with the diabetes center in Yarmouth about 1 year ago.\n\nHe currently uses a FreeStyle Libre 3 sensor, which he received from the diabetes center. He reports that the sensor has helped him identify \"highs\" where his blood sugar spikes and then declines rapidly, though he does not experience many \"lows.\" He admits to struggling with bolusing before meals, noting that he often eats first and then administers insulin, which leads to delayed coverage and subsequent spikes.\n\nHe is currently living alone and works as a lobster fisherman during the season and does perform carpentry and other manual labor during the off-season. He denies any other significant health problems. He reports high eye pressure and is being monitored for early glaucoma. He denies any recent kidney issues.\n\nInvestigations:\n* A1C: 10% (reported 3-4 months ago).\n* Average Glucose (via LibreView): 10.7 mg/dL (estimated A1C ~8.0%).\n* Time in Range (last 7 days): 48%.\n* Time Below Range: 4%.\n\nPast Medical History:\n* Type 1 Diabetes\n\nMedications:\nNovoRapid not documented\n\nPhysical Exam:\n* Heart: Regular rate and rhythm, no murmurs, gallops, or rubs.\n* Pulses: Good.\n* Lungs: Clear.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "type",
+        "diabetes",
+        "management",
+        "patient",
+        "long",
+        "term",
+        "user",
+        "insulin",
+        "pump",
+        "freestyle",
+        "libre",
+        "sensor",
+        "his",
+        "current",
+        "a1c"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.5808232414934381,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 The technology continues toquickly develop with multiple permutations and functional-ities, including real-time and intermittently scanned CGM,alarms for low and high values, direct cell phone linkage,factory calibration, new metrics such as GMI and ambulatoryglucose pro \ufb01les, and integration into closed-loop insulin de- livery systems. Multiple devices allowi"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.5808232414934381,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 The technology continues toquickly develop with multiple permutations and functional-ities, including real-time and intermittently scanned CGM,alarms for low and high values, direct cell phone linkage,factory calibration, new metrics such as GMI and ambulatoryglucose pro \ufb01les, and integration into closed-loop insulin de- livery systems. Multiple devices allowi"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.536794910869888,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 Glucose-lowering agents not associated with hypoglycemia are preferable therapies forpatients with diabetes and CKD who do not use CGM orSMBG, such as those without access to these technologies or Glossary of glucose monitoring terms Time in range (TIR) This is a metric of glycemic control that assesses the percentage of CGM readings within a certain range. Co"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.536794910869888,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 Glucose-lowering agents not associated with hypoglycemia are preferable therapies forpatients with diabetes and CKD who do not use CGM orSMBG, such as those without access to these technologies or Glossary of glucose monitoring terms Time in range (TIR) This is a metric of glycemic control that assesses the percentage of CGM readings within a certain range. Co"
+      },
+      {
+        "title": "Teplizumab for delaying the onset of stage 3 type 1 diabetes in people 8 years and over with stage 2 type 1 diabetes",
+        "source": "guidelines",
+        "year": "N/A",
+        "section": null,
+        "link": "https://www.nice.org.uk/guidance/ta1176",
+        "tier": "web",
+        "score": 0.5438614672422409,
+        "text_preview": "Teplizumab for delaying the onset of stage 3 type 1 diabetes in people 8 years and over with stage 2 type 1 diabetes Teplizumab for delaying the onset of stage 3 type 1 diabetes in people 8 years and over with stage 2 type 1 diabetes Technology appraisal guidance Reference number: TA1176 Published: 09 July 2026 Overview Evidence-based recommendation on teplizumab (Tzield) for delaying the onset of"
+      }
+    ]
+  },
+  {
+    "case_id": "e767671ecba84285848f4dabbe56701b",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-18.jsonl",
+    "focus_query": "Impression:\n1. **Anticoagulation Management in Atrial Fibrillation**\nI discussed the long-term necessity of the patient's blood thinner with him. I explained that because AFib can be difficult to monitor continuously and because structural heart issues may contribute to stroke risk independently of the rhythm, maintaining the current medication is the safest strategy for the foreseeable future. I addressed his question regarding lifestyle changes, clarifying that while healthy habits are important, they do not provide a reliable way to discontinue anticoagulation at this time.\n\n2. **Safety Education on Anticoagulation**\nI provided the patient with specific safety instructions regarding his use of blood thinners. I clarified that these medications prolong bleeding rather than causing it. I advised him on the importance of applying direct pressure to any cuts and instructed him to avoid high-risk activities alone, such as rock climbing or using power tools. We discussed his history of hockey and determined that playing on the outside of the net is generally acceptable, provided he remains mindful of head impacts.\n\nPlan:\n1. **Continue Current Anticoagulation**\nI advised the patient to remain on his current blood thinner regimen as prescribed. We discussed that this is the safest approach given the current clinical understanding of stroke risk in AFib.\n2. **Laboratory Evaluation**\nI ordered 3 tests to be completed to further assess his clinical status. I informed the patient that I would prefer to have all 3 results back at the same time to facilitate a comprehensive review of the data.\n3. **Safety Counseling**\nI provided the patient with instructions on managing minor injuries while on anticoagulation, emphasizing the need for firm pressure and seeking medical attention for persistent bleeding. I also advised him to avoid high-risk solo activities.\n\nConflicts\n1. Physical examination was not documented for today's encounter.\n2. Medications: Pre-encounter medication list was not provided in the source material.\n3. Age: DOB was not provided, so age was not calculated.\n\nHistory of Present Illness:\nThe patient presents for a consultation to discuss his anticoagulation regimen in the context of atrial fibrillation (AFib) and his risk of stroke. He specifically inquired about the possibility of reversing his AFib through lifestyle modifications, such as improved diet and increased exercise. \n\nI discussed the complexities of AFib management with the patient, explaining that while lifestyle changes are beneficial, it is often difficult to determine if AFib has truly resolved. I shared information regarding the \"rate vs. rhythm\" control debate, noting that studies like the AFFIRM and RACE trials showed no significant superiority of rhythm control over rate control in terms of stroke prevention, and that rhythm control can sometimes lead to the premature discontinuation of necessary anticoagulation. \n\nWe also discussed the evolving understanding of stroke etiology in patients with AFib. I explained that while AFib is a known risk factor, some data from pacemaker recordings suggest that underlying structural heart issues might be the primary driver of stroke risk, meaning that even if AFib is successfully managed or resolved, the underlying risk may persist. Based on this, I advised the patient that he should remain on his current blood thinner for the foreseeable future.\n\nThe patient also sought guidance on safety while on anticoagulation. He reported playing hockey for 25 years and asked about the risks of head impacts or cuts. I advised him that while playing on the outside of the net is likely fine, he should be cautious with high-impact shots to the head. I explained that anticoagulants do not cause bleeding but rather prolong it; therefore, he should apply firm pressure to any cuts and seek medical attention if bleeding is persistent. I advised him to avoid high-risk activities alone, such as rock climbing or using power tools like chainsaws, and to ensure he has a companion for such activities. He denied any history of gastrointestinal bleeding or blood in his stool.\n\nInvestigations:\n* Three tests are planned to be completed to further evaluate his status.\n\nPast Medical History:\n* Atrial fibrillation\n* History of concussion (1)\n\nMedications:\n* Not documented\n\nPhysical Exam:\nPhysical exam: Not documented",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "anticoagulation",
+        "management",
+        "atrial",
+        "fibrillation",
+        "discussed",
+        "long",
+        "term",
+        "necessity",
+        "patient",
+        "blood",
+        "thinner",
+        "him",
+        "explained",
+        "because",
+        "afib"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "2017  Edition",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.aan.com/practice/what-are-clinical-practice-guidelines",
+        "tier": "web",
+        "score": 0.5924575234699209,
+        "text_preview": "2017 Edition References Clinical Practice Guideline Process Manual Appendices 65Appendix 12: Sample Data Extraction Forms Atrial Fibrillation Rx Data Extraction Form-DRAFT Patient Population: For patients with nonvalvular atrial fibrillation (including these special populations: patients with intracranial hemorrhages [spontaneous transformation, posttraumatic, hypertensive, vascular malformation])"
+      },
+      {
+        "title": "Clinical Patterns and Appropriateness of Apixaban Dosing in Patients With Atrial Fibrillation.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13332000/",
+        "tier": "pubmed",
+        "score": 0.575307350995214,
+        "text_preview": "Clinical Patterns and Appropriateness of Apixaban Dosing in Patients With Atrial Fibrillation. Title Clinical Patterns and Appropriateness of Apixaban Dosing in Patients With Atrial Fibrillation. Abstract BACKGROUND: Apixaban is a direct oral anticoagulant for stroke prevention in patients with atrial fibrillation (AF) or atrial flutter (AFL), with dose reduction being recommended based on age, bo"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.549682062879021,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Recent cardiology guidelines recommend a risk factor \u2013based approach to stroke thromboprophylaxis decisions in atrial\ufb01brillation using the Congestive heart failure, Hypertension,Age$75 (doubled), Diabetes, Stroke (doubled), Vascular disease, Age 65 to 74, and Sex category (female) (CHA 2DS2- VASc) stroke risk score. They recommend that only people at\u201clow stroke r"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5682073232531547,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Recommendation 3.16.1: We recommend use of non \u2013vitamin K antagonist oral anticoagulants (NOACs) in preference to vitamin K antagonists (e.g., warfarin) for thromboprophylaxis in atrial \ufb01brillation in people with CKD G1\u2013 G4(1C). Practice Point 3.16.2: NOAC dose adjustment for GFR is required, with caution needed at CKD G4 \u2013G5. Practice Point 3.16.3: Duration of N"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.549682062879021,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Recent cardiology guidelines recommend a risk factor \u2013based approach to stroke thromboprophylaxis decisions in atrial\ufb01brillation using the Congestive heart failure, Hypertension,Age$75 (doubled), Diabetes, Stroke (doubled), Vascular disease, Age 65 to 74, and Sex category (female) (CHA 2DS2- VASc) stroke risk score. They recommend that only people at\u201clow stroke r"
+      }
+    ]
+  },
+  {
+    "case_id": "14aa748608334c9fb0bb4ae5f8e5ee27",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-17.jsonl",
+    "focus_query": "Impression:\n1. **Recurrent Pulmonary Embolism**\nThe patient is a 61-year-old woman with a history of extensive bilateral pulmonary embolism in April 2024 and a more recent event in January 2026. The recent event occurred following shoulder surgery and a concurrent bladder infection. She is currently asymptomatic, denying chest pain, leg swelling, or shortness of breath. I have assessed her heart and lungs today, which are stable with no signs of pulmonary hypertension. Given the recurrent nature of these events, she requires long-term anticoagulation.\n\n2. **Chronic Anticoagulation Management**\nThe patient is currently on apixaban 5 mg BID. I discussed the necessity of indefinite anticoagulation with her due to the recurrence of pulmonary emboli. She expressed understanding and agreement with this plan. I noted that apixaban is a preferred agent due to its low risk of bleeding.\n\nPlan:\n1. **Indefinite Anticoagulation**\nI have decided to maintain the patient on apixaban 5 mg BID indefinitely. I explained to the patient that because she has had a second pulmonary embolism, she will need to remain on blood thinners for the rest of her life. She expressed that she is fine with this plan.\n2. **Ongoing Monitoring**\nI advised the patient to monitor for any new symptoms of pulmonary embolism. No further blood work or imaging is required at this time as she is stable on her current regimen.\n\nHistory of Present Illness:\n[NAME_REDACTED] reports having a second bout of blood clots in her lungs approximately 2 years ago. [NAME_REDACTED] states she was seen previously for the first event and underwent surgery on January 27th on her shoulder. [NAME_REDACTED] describes feeling good now that she has resumed apixaban. [NAME_REDACTED] denies any current swelling in her legs, denies chest pain, and reports that her breathing is fine. [NAME_REDACTED] notes that the second pulmonary embolism likely occurred around the time of her surgery, which was also associated with a bad bladder infection that resulted in a 4-day hospital stay.\n\nInvestigations:\nCT pulmonary angiogram ([DATE_REDACTED]): Extensive bilateral pulmonary emboli involving the 2nd, 3rd, and 4th order branches of the pulmonary arteries. No pulmonary infarct. No right heart strain.\nEchocardiography (December 2024): Normal biventricular size and systolic function, EF 60-65%. Insufficient tricuspid regurg to assess for RV systolic pressure.\nHypercoagulable workup (April 2025): Negative for Lupus, Factor V Leiden, prothrombin, protein C, C3, C4, anticardiolipin, and ANA.\nLaboratory (April 2025): HgB 105, HcT 0.367, Plts 394, Iron 4.7, TIBC 80, %sat 0.05.\n\nPast Medical History:\n* Back pain\n* Neck pain\n* Insomnia\n* Depression\n* Hypothyroidism\n* Iron deficiency anemia\n* Pulmonary embolism (April 2024 and January 2026)\n\nMedications:\nAgpantoprazole DR 40 mg PO QD\nApixaban 5 mg PO BID\nApr trazodone 50 mg PO QHS PRN\nCelebrex 100 mg PO QD PRN\nLotriderm 1% 0.05% Cream BID PRN\nPristiq 100 mg PO QD\nSynthroid 137 mcg PO QD\nSeptra DS PO BID\n\nPhysical Exam:\nHeart: Normal S1 and S2, no additional sounds or murmurs. No signs of pulmonary hypertension.\nRespiratory: Normal breathing, chest clear with adequate air entry bilaterally.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "recurrent",
+        "pulmonary",
+        "embolism",
+        "patient",
+        "year",
+        "old",
+        "woman",
+        "history",
+        "extensive",
+        "bilateral",
+        "april",
+        "2024",
+        "more",
+        "recent",
+        "event"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5363645688708519,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Consult the relevant summaries of product characteristics for the latestinformation on dosing (Chapter 4). Practice Point 3.16.3: Duration of NOAC discontinuation before elective procedures needs to consider procedural bleeding risk, NOAC prescribed, and level of GFR (Figure 44 ). 710,724eCrCl (ml/min)aWarfarin ApixabanbDabigatran EdoxabancRivaroxaban >95 Adjuste"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5363645688708519,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Consult the relevant summaries of product characteristics for the latestinformation on dosing (Chapter 4). Practice Point 3.16.3: Duration of NOAC discontinuation before elective procedures needs to consider procedural bleeding risk, NOAC prescribed, and level of GFR (Figure 44 ). 710,724eCrCl (ml/min)aWarfarin ApixabanbDabigatran EdoxabancRivaroxaban >95 Adjuste"
+      },
+      {
+        "title": "Long-Term Outcomes of Antithrombotic Treatment in a Cohort of 864 Patients With Fontan Circulation.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279224/",
+        "tier": "pubmed",
+        "score": 0.5395103989125406,
+        "text_preview": "Long-Term Outcomes of Antithrombotic Treatment in a Cohort of 864 Patients With Fontan Circulation. METHODS: We retrospectively included patients with univentricular heart born in Sweden between January 1, 1970, and December 31, 2017. Data from the National Patient Register, the Cause of Death Register, and the Prescribed Drug Register were used. Patients who underwent total cavopulmonary connecti"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5358972099423409,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 This is an Open Access article distributed under the terms of the Creative Commons Attribution Non-Commercial License ( http://creativecommons.o rg/licenses/by-nc/4.0/ ).chapter 3 www.kidney-international.org S244 Kidney International (2024) 105 (Suppl 4S), S117\u2013S314 Apixaban\u2013Edoxaban\u2013Rivaroxaban Dabigatran Low risk High riskNo important bleeding risk and/or adeq"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5358972099423409,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 This is an Open Access article distributed under the terms of the Creative Commons Attribution Non-Commercial License ( http://creativecommons.o rg/licenses/by-nc/4.0/ ).chapter 3 www.kidney-international.org S244 Kidney International (2024) 105 (Suppl 4S), S117\u2013S314 Apixaban\u2013Edoxaban\u2013Rivaroxaban Dabigatran Low risk High riskNo important bleeding risk and/or adeq"
+      }
+    ]
+  },
+  {
+    "case_id": "ff1b282119a1400fa3e6612b2241c96b",
+    "note_type": "followup",
+    "source_file": "cases_2026-06-16.jsonl",
+    "focus_query": "Impression:\n1.  Sarcoidosis: Stable pulmonary disease with elevated ACE level (58 U/L).\n2.  Cardiac Sarcoidosis: Rule out via repeat echocardiogram; currently asymptomatic with stable heart rate and oxygen saturation.\n3.  Arrhythmia: History of frequent PVCs and RBBB; currently stable on metoprolol.\n\nPlan:\n1.  Order repeat echocardiogram to rule out cardiac sarcoidosis infiltration.\n2.  If echocardiogram is negative and patient remains asymptomatic, defer cardiac MRI and further aggressive cardiac workup.\n3.  If echocardiogram shows signs of sarcoidosis, initiate cardiac-specific treatment and consider cardiac MRI.\n4.  Patient to notify me of results as soon as available.\n5.  Patient is cleared for planned travel in October, pending stable results from the repeat echocardiogram.\n\nConflicts\n1. Patient age: DOB [DATE_REDACTED] provided in prior records, but age 72 used in identification based on [DATE_REDACTED] date.\n2. Physical examination: Only cardiovascular vitals were documented in the current encounter; other systems were not examined.\n\nInvestigations:\n*   ACE level: 58 U/L (30 Apr 2026).\n*   CBC (30 Apr 2026): WBC 4.7 x109/L, Hb 149 g/L, Hct 0.451 L/L, Platelets 221 x109/L.\n*   Electrolytes (30 Apr 2026): Na 142 mmol/L, K 4.0 mmol/L, Cl 102 mmol/L.\n*   Renal/Liver (30 Apr 2026): Cr 90 umol/L, eGFR 78 ml/min/1.73m2, Bilirubin 19.4 umol/L, ALT 19 U/L, AST 34 U/L, Alk Phos 80 U/L.\n*   Inflammatory Markers (30 Apr 2026): ESR 21 mm/Hr.\n*   ECG (28 Oct 2025): Sinus tachycardia 105 bpm, frequent PVCs, left axis deviation, RBBB, QTc 486 ms.\n*   Echocardiogram (25 Mar 2025): Normal LV systolic function (EF 53.7%), no regional wall motion abnormalities, no significant valvular disease, normal RV function.\n*   Stress Test (16 Apr 2025): Negative for ischemia, PVCs decreased with exertion.\n\nPast Medical History:\n*   Sarcoidosis (pulmonary, ocular, and suspected cardiac involvement)\n*   Anxiety\n*   GERD\n*   Osteoarthritis\n*   C5C6 disc protrusion (cervical spine)\n*   Hyperlipidemia\n\nMedications:\n*   APOLORAZEPAM 1 mg PO BID PRN\n*   PARIET EC 20 mg PO QD\n*   Prednisolone 40 mg/mL IM q3mo\n*   Metoprolol 25 mg PO BID\n*   Rosuvastatin 20 mg PO QD\n*   Triamcinolone acetonide 40 mg/mL topical as directed\n\nPhysical Exam:\n*   Cardiovascular: HR 76, SpO2 99% on room air.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "sarcoidosis",
+        "stable",
+        "pulmonary",
+        "disease",
+        "elevated",
+        "ace",
+        "level",
+        "cardiac",
+        "rule",
+        "out",
+        "via",
+        "repeat",
+        "echocardiogram",
+        "currently",
+        "asymptomatic"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279051/",
+        "tier": "pubmed",
+        "score": 0.6323299267888071,
+        "text_preview": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function. RESULTS: We identified 101 patients with CS, 15 EPS positive and 86 EPS negative. A higher proportion of patients with an EPS-positive study was associated with antiarrhythmic therapy (P=0.005) and v"
+      },
+      {
+        "title": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279051/",
+        "tier": "pubmed",
+        "score": 0.6207906842683476,
+        "text_preview": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function. METHODS: In this retrospective cohort study, we analyzed patients with CS (aged >18 years) with highly probable or probable sarcoidosis according to the World Association of Sarcoidosis and Other Gra"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/Guidelines",
+        "tier": "web",
+        "score": 0.5292106280929038,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/tools-and-practice-support/mobile-resources/features/guideline-clinical-app",
+        "tier": "web",
+        "score": 0.5292106280929038,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/guidelines/about-guidelines-and-clinical-documents",
+        "tier": "web",
+        "score": 0.5292106280929038,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      }
+    ]
+  },
+  {
+    "case_id": "2536b702a4e64baf9d461d08a17fe6fc",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-18.jsonl",
+    "focus_query": "Impression:\n1. **Congestive Heart Failure and Atrial Fibrillation**\nMr. Rose's heart failure is currently stable on his current medication regimen. I have reviewed his recent history of tachycardia and the subsequent management in the hospital. His heart rate is currently well-controlled on bisoprolol 5 mg, with fluctuations between 67 and 80 bpm. I discussed his current status with him and determined that his heart strength remains good. Given that his heart rate is well-controlled, I do not intend to make any changes to his heart failure or atrial fibrillation medications at this time. I explained to him that while we could increase his bisoprolol to 7.5 mg or 10 mg if needed, his current dose is appropriate for his clinical status.\n\n2. **Sinusitis and Respiratory Symptoms**\nThe patient continues to have sinus issues but reports that medicinal saline spray is effective. He mentioned a history of nasal reconstruction which complicates his sinus management. I suggested that a neti pot might be a helpful option for clearing his sinuses, though I noted this is outside my primary area of expertise.\n\n3. **Neurological Symptoms**\nThe patient reports new symptoms in his limbs that began following a series of three vaccines. I explained that I am not his family doctor and that these symptoms should be assessed by his primary physician, Dr. [NAME_REDACTED], who can provide a formal assessment and refer him to a neurologist, such as Dr. [NAME_REDACTED], if necessary.\n\nPlan:\n1. **Maintain Current Cardiac Medication Regimen**\nI have decided to maintain his current medications for heart failure and atrial fibrillation without changes. I explained to the patient that his heart rate is well-controlled on bisoprolol 5 mg and that no further titration is required at this time.\n2. **Continue CPAP Therapy**\nThe patient will continue with his current CPAP therapy as tolerated.\n3. **Sinus Management**\nThe patient may consider using a neti pot for sinus clearance as a suggestion, but he will continue with his medicinal saline spray as well.\n4. **Neurological Follow-up**\nThe patient was advised to discuss his new limb symptoms with Dr. [NAME_REDACTED] for a formal neurological evaluation.\n\nConflicts\n1. Medication dose for Pixaban was not explicitly stated in the transcription.\n2. Physical examination was not fully documented for today's encounter (only leg swelling was mentioned).\n\nHistory of Present Illness:\nMr. [NAME_REDACTED] presents for a focused assessment of his heart failure and associated cardiac symptoms. He reports that he is currently using a CPAP machine, stating that while it seems to work, he finds it difficult to sleep with it lying down and often sleeps in his chair instead. \n\nRegarding his cardiac history, he describes a recent hospital encounter approximately 3 to 4 weeks ago where he experienced severe pain and a heart rate between 115 and 201 bpm. He notes that during this time, his platelets were recorded at approximately 140 x 10^9/L. He mentions that they were eventually able to slow his heart rate using metoprolol, and later a combination of bisoprolol and digoxin was administered. He is currently not taking digoxin but remains on bisoprolol, which was increased from 2.5 mg to 5 mg during his recent stay. He reports that his current heart rate fluctuates between 67 and 80 bpm, and he notes that his last ECG in the hospital showed a heart rate of 88 bpm.\n\nHe also mentions a history of sinus issues, noting that he uses a medicinal saline spray which he finds helpful. He describes a history of having his nose reattached twice, which has caused some issues with sinus clearance. He reports that his symptoms of limb swelling began around the time he received a series of three vaccines.\n\nInvestigations:\n* Echocardiogram ([DATE_REDACTED]): Normal biventricular size/function, normal LV systolic function (EF estimated 55-60%), mildly dilated aortic root (4.1 cm), concentric remodeling.\n* Laboratory studies ([DATE_REDACTED]): Platelets 96 x 10^9/L, eGFR 67 mL/min/1.73m^2, Potassium 5.2 mmol/L, Urea 5.0 mmol/L, Albumin 41 g/L.\n* CT scan (prior): Pulmonary edema, mediastinal lymphadenopathy, paralyzed right diaphragm, atrial enlargement, pancreatic lesions, and renal lesion.\n\nPast Medical History:\n* Idiopathic thrombocytopenic purpura (ITP)\n* Congestive heart failure with preserved ejection fraction\n* Chronic sinusitis/sinus bleeding tendency\n* Multiple pancreatic cysts (one 2.9 cm)\n* Renal lesion\n* History of pneumonia\n* Bowel resection in 2012\n\nMedications:\nPantoprazole 40 mg PO daily\nBisoprolol 5 mg PO daily\nSpironolactone 12.5 mg PO daily\nCyclomen 200 mg PO twice daily\nDapagliflozin 10 mg PO daily\nPixaban (dose not specified) PO daily\n\nPhysical Exam:\nNo swelling in legs.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "congestive",
+        "heart",
+        "failure",
+        "atrial",
+        "fibrillation",
+        "rose",
+        "currently",
+        "stable",
+        "his",
+        "current",
+        "medication",
+        "regimen",
+        "reviewed",
+        "recent",
+        "history"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5506114567551101,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Step 1 Diagnosis\u2022 In people with CKD, use opportunistic pulse-based screening (e.g., taking at when measuring BP), followed by a wearable device or Holter ECG testing Step 2 Prophylaxis against stroke and systemic thromboembolism (they are likely to have an increased CHA2DS2-VASc risk factor for stroke and are at high risk even with a score of 0\u20131) managed (e.g.,"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5506114567551101,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Step 1 Diagnosis\u2022 In people with CKD, use opportunistic pulse-based screening (e.g., taking at when measuring BP), followed by a wearable device or Holter ECG testing Step 2 Prophylaxis against stroke and systemic thromboembolism (they are likely to have an increased CHA2DS2-VASc risk factor for stroke and are at high risk even with a score of 0\u20131) managed (e.g.,"
+      },
+      {
+        "title": "Eculizumab-Induced Acute Heart Failure Decompensation in a Patient with Clinically Suspected Complement-Mediated Thrombotic Microangiopathy: A Case Report.",
+        "source": "pubmed",
+        "year": 2026,
+        "section": null,
+        "link": "https://pubmed.ncbi.nlm.nih.gov/42502762/",
+        "tier": "pubmed",
+        "score": 0.5470252034068108,
+        "text_preview": "Eculizumab-Induced Acute Heart Failure Decompensation in a Patient with Clinically Suspected Complement-Mediated Thrombotic Microangiopathy: A Case Report. Abstract Eculizumab is a highly effective and generally safe therapy for atypical hemolytic uremic syndrome (aHUS), a rare subtype of thrombotic microangiopathy (TMA). This report presents a case of recurrent episodes of acute decompensated hea"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5556640189359546,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Recommendation 3.16.1: We recommend use of non \u2013vitamin K antagonist oral anticoagulants (NOACs) in preference to vitamin K antagonists (e.g., warfarin) for thromboprophylaxis in atrial \ufb01brillation in people with CKD G1\u2013 G4(1C). Practice Point 3.16.2: NOAC dose adjustment for GFR is required, with caution needed at CKD G4 \u2013G5. Practice Point 3.16.3: Duration of N"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5556640189359546,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Recommendation 3.16.1: We recommend use of non \u2013vitamin K antagonist oral anticoagulants (NOACs) in preference to vitamin K antagonists (e.g., warfarin) for thromboprophylaxis in atrial \ufb01brillation in people with CKD G1\u2013 G4(1C). Practice Point 3.16.2: NOAC dose adjustment for GFR is required, with caution needed at CKD G4 \u2013G5. Practice Point 3.16.3: Duration of N"
+      }
+    ]
+  },
+  {
+    "case_id": "ccc10db55a3e43c0a0796243edd0f0d3",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-17.jsonl",
+    "focus_query": "Impression:\n1. **Monoclonal gammopathy of undetermined significance (MGUS)**\nThe patient has a confirmed monoclonal protein (IgG kappa 2.1) in the gamma region. He is currently asymptomatic and denies systemic symptoms such as weight loss or lymphadenopathy. Given the presence of the monoclonal protein and the associated rib lesion, further characterization is required to rule out progression to a plasma cell dyscrasia.\n\n2. **Lytic lesion of the right 4th rib**\nImaging from [DATE_REDACTED] demonstrates a stable but expansile lytic lesion with marked cortical thinning. While stable since December 2025, the presence of the monoclonal protein in the context of this lesion necessitates a definitive tissue diagnosis to guide management and surveillance.\n\nPlan:\n1. **Bone marrow biopsy**\nI discussed the need for a bone marrow biopsy with the patient to further evaluate the monoclonal protein and the rib lesion. The patient expressed interest and agreed to the procedure. I will coordinate with the hospital to find an available slot, with the goal of completing this before his travel commitments in July.\n2. **Follow-up and surveillance**\nI will arrange for the patient to be contacted by my secretary once a biopsy slot is secured. We will continue to monitor the situation based on the biopsy results and serial blood work/imaging as indicated.\n\nConflicts:\n1. Age calculation: DOB [DATE_REDACTED] provided in imaging report; calculated age as of [DATE_REDACTED] is 71.\n2. Physical examination: Several systems (e.g., HEENT, skin, musculoskeletal) were not explicitly documented in the transcription.\n3. Allergies: Not documented in the source material.\n\nHistory of Present Illness:\nThe patient is a 70-year-old male referred for evaluation of monoclonal gammopathy of undetermined significance (MGUS) following the discovery of a lytic lesion on the right fourth rib. He was previously evaluated by Dr. [NAME_REDACTED], who ordered investigations after the incidental finding of two chest lesions.\n\nThe patient reports feeling good and describes himself as active. He denies any shortness of breath, unintentional weight loss, lymphadenopathy, or other systemic symptoms. He states he is not entirely sure why the investigations were performed as he has not had any specific complaints. He notes a history of a long-standing sports injury to his leg and mentions experiencing some burning sensations in his feet, which he believes may be a side effect of his blood pressure medication.\n\nInvestigations:\nSerum protein electrophoresis and immunofixation (dated [DATE_REDACTED]): IgG kappa 2.1 monoclonal protein migrating in the gamma region.\nChest CT with contrast (dated [DATE_REDACTED]): Shows an expansile lytic lesion in the posterior medial aspect of the right 4th rib (3.9 cm x 2.5 cm x 3.0 cm). The lesion is relatively unchanged since [DATE_REDACTED] with marked thinning of the bony cortex but no extraosseous soft tissue mass. No thoracic lymphadenopathy. Stable subpleural opacity in the right lower lobe (0.6 cm) most likely benign.\n\nPast Medical History:\n* Monoclonal gammopathy of undetermined significance (MGUS)\n* Hypertension\n* Sports injury (leg)\n\nMedications:\namlodipine 10 mg PO QD\nsodium phosphate 500 mg PO QD\ncandesartan cilexetil 8 mg PO QD\n\nPhysical Exam:\nChest: Clear with adequate air entry bilaterally.\nCardiovascular: Normal S1 and S2 with no additional sounds or murmurs.\nAbdomen: Soft with no palpable organomegaly.\nNeurological: Unremarkable.\nOther: No Jugular venous distention or lower limb edema.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "monoclonal",
+        "gammopathy",
+        "undetermined",
+        "significance",
+        "mgus",
+        "patient",
+        "confirmed",
+        "protein",
+        "igg",
+        "kappa",
+        "gamma",
+        "region",
+        "currently",
+        "asymptomatic",
+        "denies"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.5496883128950509,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and Criteria for the classification of monoclonal gammopathies, multiple myeloma and related dis- orders: a report of the International Myeloma Working Group. Br J Haematol. 2003; 121: 749\u2013757. 515. Rajkumar SV, Dimopoulos MA, Palumbo A, et al. International Myeloma Working Group updated criteria for the diagnosis of multi-ple myeloma. Lancet Onc"
+      },
+      {
+        "title": "Progressive Macroglossia and Dysphagia as the Initial Manifestation of Systemic Amyloid Light-Chain (AL) Amyloidosis Associated With Multiple Myeloma: A Case Report and Literature Review.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13265085/",
+        "tier": "pubmed",
+        "score": 0.6003464572681522,
+        "text_preview": "Progressive Macroglossia and Dysphagia as the Initial Manifestation of Systemic Amyloid Light-Chain (AL) Amyloidosis Associated With Multiple Myeloma: A Case Report and Literature Review. Abstract Systemic amyloid light-chain (AL) amyloidosis is characterized by the extracellular deposition of misfolded immunoglobulin light chains in tissues and is often associated with plasma cell dyscrasias, inc"
+      },
+      {
+        "title": "Sciatica as an atypical initial presentation of multiple myeloma: a case report.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13264771/",
+        "tier": "pubmed",
+        "score": 0.5820494654774666,
+        "text_preview": "Sciatica as an atypical initial presentation of multiple myeloma: a case report. CASE DESCRIPTION: A middle-aged male with no significant medical history presented with a two-month history of progressive sciatica radiating bilaterally to the lower limbs, without preceding trauma, fever, or infection. Imaging revealed multiple vertebral compression fractures, and laboratory studies demonstrated ane"
+      },
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.5496883128950509,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and Criteria for the classification of monoclonal gammopathies, multiple myeloma and related dis- orders: a report of the International Myeloma Working Group. Br J Haematol. 2003; 121: 749\u2013757. 515. Rajkumar SV, Dimopoulos MA, Palumbo A, et al. International Myeloma Working Group updated criteria for the diagnosis of multi-ple myeloma. Lancet Onc"
+      },
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.5614364164512239,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and Patient survival was 82.5% at 5 years, with death-censored graft survival of 92.8% at 5 years. 263 There were 3 cases of renal crisis, and cardiac and gastrointestinal disease worsened in 45% and 26% of patients, respectively. 9.13 Plasma cell dyscrasias (PCDs) Please consult Section 17.6 Hematologic Disorders for recommendations related to m"
+      }
+    ]
+  },
+  {
+    "case_id": "0e86968a0dc24a47a926e4eb82ba091e",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-14.jsonl",
+    "focus_query": "Impression:\n1. **Acute symptomatic anemia**\n   The patient is presenting with significant anemia (Hb 71 g/L) and elevated troponin, which is the primary driver of his current chest pain and shortness of breath.\n\n2. **Gastrointestinal bleeding**\n   The patient has chronic iron deficiency anemia and is currently presenting with acute symptoms likely related to ongoing blood loss, potentially from a gastrointestinal source such as his known sigmoid colitis or hiatal hernia.\n\n3. **Aortic stenosis**\n   The patient has known moderate to severe aortic stenosis, which has shown progression on recent echocardiography.\n\n4. **COPD**\n   Chronic obstructive pulmonary disease.\n\nPlan:\n1. **Stabilize hemoglobin and bleeding**\n   I will provide blood transfusions to correct the anemia and stabilize the patient. I will also initiate acid suppression (proton pump inhibitor) to help control potential bleeding from the stomach.\n\n2. **Investigate gastrointestinal source**\n   I will arrange for an endoscopic evaluation (scope) of the gastrointestinal tract to identify the source of the bleeding.\n\n3. **Cardiac management**\n   I will monitor the patient's cardiac enzymes and symptoms following blood transfusion. If chest pain persists despite correcting the hemoglobin, I will proceed with cardiac catheterization.\n\n4. **Medication adjustment**\n   I will continue the patient's aspirin but will withhold plavix at this time, as the current presentation is driven by anemia rather than an acute myocardial infarction.\n\nConflicts\n\n1. Physical examination: Only cardiovascular findings were documented; other systems were not documented.\n2. Allergies: Not documented in the provided source material.\n\nHistory of Present Illness:\nThe patient presents with acute shortness of breath and chest pain that was most severe on Friday. He reports having had intermittent chest pains for some time prior to the recent worsening. He denies any vomiting of blood or active bleeding from other sites. He reports a history of acid reflux. He denies leg swelling.\n\nThe patient's current presentation is driven by a significant anemia, with a hemoglobin of 71 g/L. I explained to the patient that this low hemoglobin is the primary driver of his chest pain and shortness of breath, and that correcting the blood levels should normalize these symptoms. I noted that his troponin is elevated. I discussed that if symptoms persist after stabilization of the bleeding and hemoglobin, he may require cardiac catheterization. I also discussed the need for further investigation of the gastrointestinal source of his bleeding, noting he will likely require an endoscopic procedure.\n\nInvestigations:\n* Laboratory Results ([DATE_REDACTED]):\n    * Hemoglobin: 71 g/L\n    * Hematocrit: 0.239 L/L\n    * Troponin T: 737 ng/L\n    * Iron: 2.5 umol/L\n    * Ferritin: Not documented\n    * Total Iron Binding Capacity: 64 umol/L\n    * RBC: 2.99 x10^12/L\n    * MCV: 79.9 fl\n    * MCH: 23.7 pg\n    * MCHC: 297 g/L\n    * RDW: 0.155\n    * Glucose (random): 8.7 mmol/L\n    * Creatinine: 91 umol/L\n    * eGFR: 74 mL/min/1.73m2\n    * Potassium: 4.1 mmol/L\n    * Sodium: 142 mmol/L\n    * Chloride: 105 mmol/L\n    * Platelets: 222 x10^9/L\n    * WBC: 9.0 x10^9/L\n    * Neutrophils: 6.6 x10^9/L\n    * Monocytes: 1.1 x10^9/L\n    * Lymphocytes: 1.1 x10^9/L\n* Imaging:\n    * Echocardiogram ([DATE_REDACTED]): Severe aortic stenosis; increased valve gradients compared to previous; normal LV systolic function (EF 65%); mild concentric LV hypertrophy; mild left atrial dilation.\n    * Chest X-ray: B-lines suggesting volume overload.\n\nPast Medical History:\n* COPD\n* Chronic iron deficiency anemia\n* Type 2 diabetes (DM2)\n* Dyslipidemia\n* Sigmoid colitis\n* Hypertension (HTN)\n* Dilated left pulmonary artery (DLPD)\n* Aortic stenosis (moderate to severe)\n* Hiatal hernia\n* Allergic rhinitis\n* Recurrent nasal polyposis\n\nMedications:\nRosuvastatin 40 mg PO daily\nTamsulosin 0.4 mg PO daily\nTadalafil 10 mg PO as needed\nMepolizumab 100 mg/mL SC every 4 weeks\nTrelegy 100 mcg/62.5 mcg/25 mcg inhalation daily\nFerrous gluconate 300 mg PO daily\n\nPhysical Exam:\n* Cardiovascular: Distant heart sounds; no additional sounds or murmurs noted during current encounter.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "acute",
+        "symptomatic",
+        "anemia",
+        "patient",
+        "presenting",
+        "significant",
+        "elevated",
+        "troponin",
+        "which",
+        "primary",
+        "driver",
+        "his",
+        "current",
+        "chest",
+        "pain"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "Compound Heterozygous Sickle Cell-Beta Thalassemia Presenting As Chronic Hemolytic Anemia With Microcytosis and Prominent Left Ventricular Trabeculation: A Case Report.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13262902/",
+        "tier": "pubmed",
+        "score": 0.5988674992975952,
+        "text_preview": "Compound Heterozygous Sickle Cell-Beta Thalassemia Presenting As Chronic Hemolytic Anemia With Microcytosis and Prominent Left Ventricular Trabeculation: A Case Report. Abstract Sickle cell-beta thalassemia, a compound heterozygous hemoglobinopathy, can be difficult to diagnose because clinical features and laboratory findings often overlap with other hematological disorders. We report a 26-year-o"
+      },
+      {
+        "title": "Beyond Hemoglobin Levels: Integrating Anemia Phenotyping Into Prognostic Models for Patients With Stroke Following Intravenous Thrombolysis.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279450/",
+        "tier": "pubmed",
+        "score": 0.524734809594174,
+        "text_preview": "Beyond Hemoglobin Levels: Integrating Anemia Phenotyping Into Prognostic Models for Patients With Stroke Following Intravenous Thrombolysis. RESULTS: Among 1367 patients (median age 66 years, 64.7% male), 379 (27.7%) had anemia: 123 (8.9%) microcytic, 202 (14.7%) normocytic, and 54 (3.9%) macrocytic. After full adjustment, microcytic and normocytic anemia were independently associated with increas"
+      },
+      {
+        "title": "SUPPLEMENT 3 \u2022VOL 9 \u20222009",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/transplant-recipient/",
+        "tier": "web",
+        "score": 0.5051763993501663,
+        "text_preview": "SUPPLEMENT 3 \u2022VOL 9 \u20222009 (1C) ACE-I, angiotensin-converting enzyme inhibitor; ARB, angiotensin II receptor blocker; CKD, chronic kidney disease. Background Hematologic abnormalities are common adverse effectsof immunosuppressive medications and of transplant- or immunosuppression-related comorbidities. In addi-tion, hematologic abnormalities can cause potentially life-threatening complications. T"
+      },
+      {
+        "title": "From Septic Shock to Hemorrhagic Shock: A Rare Presentation of Ischemic Rectal Ulcer in a Critically Ill Patient.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13265048/",
+        "tier": "pubmed",
+        "score": 0.562608212769935,
+        "text_preview": "From Septic Shock to Hemorrhagic Shock: A Rare Presentation of Ischemic Rectal Ulcer in a Critically Ill Patient. Abstract Acute hemorrhagic rectal ulcer (AHRU) is an uncommon but clinically significant cause of lower gastrointestinal bleeding in critically ill patients. While stress-related mucosal disease is a well-recognized cause of upper gastrointestinal bleeding in the intensive care unit (I"
+      },
+      {
+        "title": "Inactive ACP Guidelines",
+        "source": "guidelines",
+        "year": "N/A",
+        "section": null,
+        "link": "https://www.acponline.org/node/291162",
+        "tier": "web",
+        "score": 0.5017284300752685,
+        "text_preview": "Inactive ACP Guidelines Activated Partial Thromboplastin Time and Prothrombin Time Guideline: Activated Partial Thromboplastin Time and Prothrombin Time (1990) Evidence Review: Common Uses of the Activated Partial Thromboplastin Time and Prothrombin Time Acute Pain from Musculoskeletal Injuries Guideline: Non-Pharmacological and Pharmacological Management of Acute Pain from Non-Low Back, Musculosk"
+      }
+    ]
+  },
+  {
+    "case_id": "7eed06b829d74a1ead3b13479c8a2bc0",
+    "note_type": "consult",
+    "source_file": "cases_2026-06-18.jsonl",
+    "focus_query": "Impression:\n1. **Ovarian cancer with recurrent ascites**\nThe patient has a known history of ovarian cancer and is currently experiencing a recurrence of significant abdominal fluid (ascites). [NAME_REDACTED] describes symptoms of increased pressure, dyspnea, and \"sour\" reflux, which are consistent with the accumulation of fluid in the abdominal cavity. She was recently drained of 1.7 L of fluid in the emergency department, but the fluid has returned within 2 weeks. I discussed with the patient that while the current chemotherapy is not curative, the goal is to manage the disease and extend her time.\n\n2. **Reflux/Dyspepsia secondary to abdominal pressure**\nThe patient reports constant sour stomach acid and belching. I believe this is likely due to the abdominal pressure from the ascites preventing the normal drainage of gastric contents, rather than a primary gastric issue.\n\nPlan:\n1. **Follow-up for paracentesis**\nI will see the patient on Monday at 15:30 to address the recurring fluid. I will attempt to schedule this in the ambulatory care clinic to avoid the emergency department, but I instructed the patient to present to the emergency department if her condition becomes disastrous before then. If she presents to the emergency department, I will see her there to review the ultrasound and arrange for fluid drainage.\n2. **Symptom management**\nI discussed the patient's symptoms of \"coming up\" liquid and explained that this is likely related to the abdominal pressure. We will continue to monitor her symptoms as the fluid is managed.\n\nConflicts\n1. Medications: Doses, routes, and frequencies for all medications were not explicitly documented in the transcription.\n2. Medications: The specific chemotherapy regimen currently being administered was not named in the transcription.\n3. Physical Exam: Specific objective findings (vitals, heart/lung sounds, abdominal exam details) were not documented in the transcription.\n4. [MRN_REDACTED]: Age was not explicitly provided in the transcription but was inferred from the provided data.\n\nHistory of Present Illness:\n[NAME_REDACTED] reports a history of ovarian cancer diagnosed approximately 6 years ago in October 2020, following a period of significant back pain and abdominal swelling. She underwent surgery in December 2019 and has been receiving various chemotherapy regimens since, including carboplatinum and \"red devil.\" She is currently on a different chemotherapy regimen.\n\nThe patient describes a one-year history of intermittent abdominal swelling that has worsened significantly over the last few weeks. [NAME_REDACTED] reports a sensation of pressure, similar to an \"elastoplast bandage,\" and difficulty breathing. [NAME_REDACTED] describes \"coming up\" business, which she describes as feeling like throwing liquid into her throat, accompanied by constant sour stomach acid and belching. \n\nTwo weeks ago, she presented to the emergency department where Dr. [NAME_REDACTED] performed an ultrasound, identified approximately 4 L of fluid, and drained 1.7 L. She felt improved for a couple of weeks, but the symptoms returned this past Monday. [NAME_REDACTED] reports a prior episode of vomiting liquid for an entire night, which she believes may have been fluid being pushed back up due to the abdominal pressure preventing gastric drainage. [NAME_REDACTED] notes significant weight loss and that her glasses no longer stay on her face.\n\nInvestigations:\n* Ultrasound (2 weeks prior): Identified approximately 4 L of fluid in the abdomen; 1.7 L was drained.\n* CT scan: Performed periodically (most recent approximately 6 months ago).\n\nPast Medical History:\n* Ovarian cancer\n* History of back pain\n\nMedications:\nDanzatron (dose/route/frequency not documented)\nPantoprazole (dose/route/frequency not documented)\nCetirizine (dose/route/frequency not documented)\nOlanzapine (dose/route/frequency not documented)\nVentolin (dose/route/frequency not documented)\nMetoclopramide (dose/route/frequency not documented)\nDexamethasone (dose/route/frequency not documented)\nPotassium supplement (dose/route/frequency not documented)\n\nPhysical Exam:\nThe patient was examined to assess the abdomen, heart, and lungs.",
+    "used_sections": [
+      "impression",
+      "plan",
+      "history_of_present_illness",
+      "investigations",
+      "past_medical_history",
+      "medications",
+      "physical_exam"
+    ],
+    "top_k_requested": 5,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 5,
+      "keywords": [
+        "impression",
+        "ovarian",
+        "cancer",
+        "recurrent",
+        "ascites",
+        "patient",
+        "known",
+        "history",
+        "currently",
+        "experiencing",
+        "recurrence",
+        "significant",
+        "abdominal",
+        "fluid",
+        "name",
+        "redacted"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 5,
+    "results": [
+      {
+        "title": "Low-grade appendiceal mucinous neoplasms combined with incidental gallbladder cancer: a case report.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13264712/",
+        "tier": "pubmed",
+        "score": 0.5557658502459526,
+        "text_preview": "Low-grade appendiceal mucinous neoplasms combined with incidental gallbladder cancer: a case report. CASE DESCRIPTION: A 73-year-old man presented with 2 days of intermittent right lower abdominal pain, diagnosed as \"acute appendicitis\" in the outpatient clinic, and subsequently hospitalized. Following further operation, he was found to have two primary cancers. After discussing the treatment plan"
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.6558625567829824,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      },
+      {
+        "title": "Opioid-Induced Nausea and Vomiting in Patients With Cancer: A Narrative Review.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13263113/",
+        "tier": "pubmed",
+        "score": 0.5506255787800773,
+        "text_preview": "Opioid-Induced Nausea and Vomiting in Patients With Cancer: A Narrative Review. Abstract Opioid-induced nausea and vomiting (OINV) represent a frequent and clinically significant complication in patients with cancer. They negatively affect adherence to analgesic therapy, pain control, and overall quality of life. Their pathophysiology is multifactorial and involves activation of the chemoreceptor "
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.6558625567829824,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.6558625567829824,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      }
+    ]
+  }
+]

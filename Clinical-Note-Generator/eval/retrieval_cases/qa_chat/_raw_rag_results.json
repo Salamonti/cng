@@ -1,0 +1,982 @@
+[
+  {
+    "key": "q01_bisoprolol_max_dose_hf",
+    "question": "what is the max dose of bisoprolol in heart failure",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "what",
+        "max",
+        "dose",
+        "bisoprolol",
+        "heart",
+        "failure"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "Left Atrial Volume Index and Left Ventricular Mass Index Determine the Benefits of Spironolactone in Patients With Heart Failure With Preserved Ejection Fraction.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279093/",
+        "tier": "pubmed",
+        "score": 0.6133575436926026,
+        "text_preview": "Left Atrial Volume Index and Left Ventricular Mass Index Determine the Benefits of Spironolactone in Patients With Heart Failure With Preserved Ejection Fraction. Title Left Atrial Volume Index and Left Ventricular Mass Index Determine the Benefits of Spironolactone in Patients With Heart Failure With Preserved Ejection Fraction. Abstract BACKGROUND: It is unclear whether patients with heart failu"
+      },
+      {
+        "title": "Frequency and Risk Factors for Diuretic Resistance in Patients with Decompensated Heart Failure: A Retrospective Single-Center Study in Western Mexico.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13304282/",
+        "tier": "pubmed",
+        "score": 0.611242701996037,
+        "text_preview": "Frequency and Risk Factors for Diuretic Resistance in Patients with Decompensated Heart Failure: A Retrospective Single-Center Study in Western Mexico. Abstract BACKGROUND/OBJECTIVES: Diuretic resistance is a recognized complication in patients with heart failure (HF) and is associated with worse clinical outcomes; however, information regarding its frequency and associated factors in hospitalized"
+      },
+      {
+        "title": "Incremental effects of vericiguat added to sacubitril/valsartan in heart failure with nonpreserved ejection fraction: a real-world study.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279516/",
+        "tier": "pubmed",
+        "score": 0.5898054287858319,
+        "text_preview": "Incremental effects of vericiguat added to sacubitril/valsartan in heart failure with nonpreserved ejection fraction: a real-world study. Title Incremental effects of vericiguat added to sacubitril/valsartan in heart failure with nonpreserved ejection fraction: a real-world study. Abstract BACKGROUND: Vericiguat and sacubitril/valsartan both modulate the nitric oxide-soluble guanylate cyclase-cycl"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.6094135442376136,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 CrCl <10 ml/min: administer 50% of normal dose every 24 hours. Hemodialysis: administer after dialysis. About 40% of drug is removed by hemodialysis CrCl \u226430 ml/min: In adult patients, reduce initial dose to 2.5 mg PO once daily. 2.5 mg PO after hemodialysis on dialysis days; dosage on non-dialysis days should be adjusted based on clinical response No dosage a"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.6094135442376136,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 CrCl <10 ml/min: administer 50% of normal dose every 24 hours. Hemodialysis: administer after dialysis. About 40% of drug is removed by hemodialysis CrCl \u226430 ml/min: In adult patients, reduce initial dose to 2.5 mg PO once daily. 2.5 mg PO after hemodialysis on dialysis days; dosage on non-dialysis days should be adjusted based on clinical response No dosage a"
+      },
+      {
+        "title": "Incremental effects of vericiguat added to sacubitril/valsartan in heart failure with nonpreserved ejection fraction: a real-world study.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279516/",
+        "tier": "pubmed",
+        "score": 0.5770194555259907,
+        "text_preview": "Incremental effects of vericiguat added to sacubitril/valsartan in heart failure with nonpreserved ejection fraction: a real-world study. RESULTS: At 1 year, LVEF significantly improved in both the vericiguat group (p = 0.02) and the sacubitril/valsartan group (p < 0.001). There was no significant difference in \u0394LVEF between these two groups (p = 0.25). In contrast, the add-vericiguat group demons"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.5660743835435278,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Bots SH, Onland-Moret NC, Tulevski II, et al. Heart failure medication dosage and survival in women and men seen at outpatient clinics. Heart . 2021;107:1748\u2013 1755. 766. Santema BT, Ouwerkerk W, Tromp J, et al. Identifying optimal doses ofheart failure medications in men compared with women: aprospective, observational, cohort study. Lancet . 2019;394:1254\u2013 1263."
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.4931858750436423,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 (Continued)www.kidney-international.org chapter 1 Kidney International (2022) 102 (Suppl 5S), S1\u2013S127 S39 DECLARE-TIMI 58 once dailyDrug Total of participants Kidney outcome resultsKidney outcomeCV outcome resultsPrimary outcome(s)Follow-up (yr)ACR% with eGFR <60Mean eGFR at enrollment (ml/min per 1.73 m2)eGFR criteria for enrollment (ml/min per 1.73 m2)% with"
+      }
+    ]
+  },
+  {
+    "key": "q02_home_oxygen_copd_criteria",
+    "question": "when do you start home oxygen in COPD",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "when",
+        "start",
+        "home",
+        "oxygen",
+        "copd"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8321830001473427,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use OTHER TREATMENTS Oxygen therapy and ventilatory support Oxygen therapy. The long-term administration of oxygen (> 15 hours per day) to patients with chronic respiratory failure has been shown to increase survival in patients with severe resting hypoxemia.221 Breathlessness may be relieved in COPD patients who are either mildly hypoxemic, or non-hy"
+      }
+    ]
+  },
+  {
+    "key": "q03_gold_severe_copd_exacerbation",
+    "question": "GOLD criteria for severe COPD exacerbation",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "gold",
+        "criteria",
+        "severe",
+        "copd",
+        "exacerbation"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      },
+      {
+        "title": "2020 GOLD Pocket Guide \u2014 Download for Personal Use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.7578322895711179,
+        "text_preview": "2020 GOLD Pocket Guide \u2014 Download for Personal Use E T U B RI T S DI R O Y P O C T O N O Example: Consider two patients - both patients with FEDV 1 < 30% of predicted, CAT\u2122 scores of 18 and one with no exacerbations in the past year and the other with t L h r-e e moderate exacerbations in the past year. Both would have A been labelled GOLD D in the prior classification R sIcheme. However, with the"
+      },
+      {
+        "title": "2020 GOLD Report \u2014 Download for personal use",
+        "source": "GOLD",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.8504604601860046,
+        "text_preview": "2020 GOLD Report \u2014 Download for personal use comprehensive symptom score cut-point. The great majority of patients with an SGRQ of \u2265 25 will have an mMRC of \u2265 1; however patients with mMRC < 1 may also have a number of other COPD symptoms.62 For this reason, the use of a comprehensive symptom assessment is recommended. However, because use of the mMRC is widespread, an mMRC of \u2265 2 is still include"
+      }
+    ]
+  },
+  {
+    "key": "q04_apixaban_vs_warfarin_ckd_afib",
+    "question": "apixaban vs warfarin in atrial fibrillation with CKD",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "apixaban",
+        "warfarin",
+        "atrial",
+        "fibrillation",
+        "ckd"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 6,
+    "results": [
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.7272876994847856,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Bohula E, Giugliano R, Ruff C, et al. Impact of renal function on outcomes with edoxaban in the ENGAGE AF-TIMI 48 trial. Circulation . 2016;134:24 \u201336716; Fox KA, Piccini JP, Wojdyla D, et al. Prevention of stroke and systemic embolism with rivaroxaban compared with warfarin in patients with non-valvular atrial \ufb01brillation and moderate renal impairment. Eur Heart"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.7272876994847856,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Bohula E, Giugliano R, Ruff C, et al. Impact of renal function on outcomes with edoxaban in the ENGAGE AF-TIMI 48 trial. Circulation . 2016;134:24 \u201336716; Fox KA, Piccini JP, Wojdyla D, et al. Prevention of stroke and systemic embolism with rivaroxaban compared with warfarin in patients with non-valvular atrial \ufb01brillation and moderate renal impairment. Eur Heart"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.691325388284177,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Impact of renal dysfunction on clinicaloutcome in patients with low risk of atrial \ufb01brillation. Circ J . 2014;78: 853\u2013858. 712. Szymanski FM, Lip GY, Filipiak KJ, et al. Stroke risk factors beyond the CHA(2)DS(2)-VASc score: can we improve our identi \ufb01cation of \"high stroke risk\" patients with atrial \ufb01brillation? Am J Cardiol . 2015;116:1781 \u20131788. 713. de Jong Y"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.691325388284177,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Impact of renal dysfunction on clinicaloutcome in patients with low risk of atrial \ufb01brillation. Circ J . 2014;78: 853\u2013858. 712. Szymanski FM, Lip GY, Filipiak KJ, et al. Stroke risk factors beyond the CHA(2)DS(2)-VASc score: can we improve our identi \ufb01cation of \"high stroke risk\" patients with atrial \ufb01brillation? Am J Cardiol . 2015;116:1781 \u20131788. 713. de Jong Y"
+      },
+      {
+        "title": "Clinical Patterns and Appropriateness of Apixaban Dosing in Patients With Atrial Fibrillation.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13332000/",
+        "tier": "pubmed",
+        "score": 0.7046321359276772,
+        "text_preview": "Clinical Patterns and Appropriateness of Apixaban Dosing in Patients With Atrial Fibrillation. Title Clinical Patterns and Appropriateness of Apixaban Dosing in Patients With Atrial Fibrillation. Abstract BACKGROUND: Apixaban is a direct oral anticoagulant for stroke prevention in patients with atrial fibrillation (AF) or atrial flutter (AFL), with dose reduction being recommended based on age, bo"
+      },
+      {
+        "title": "Impact of Atrial Fibrillation Pattern on Edoxaban Antithrombotic Therapy in Patients With Atrial Fibrillation and Stable Coronary Artery Disease: A Secondary Analysis of the EPIC-CAD Randomized Clinical Trial.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279072/",
+        "tier": "pubmed",
+        "score": 0.6669854986454788,
+        "text_preview": "Impact of Atrial Fibrillation Pattern on Edoxaban Antithrombotic Therapy in Patients With Atrial Fibrillation and Stable Coronary Artery Disease: A Secondary Analysis of the EPIC-CAD Randomized Clinical Trial. CONCLUSIONS: In patients with AF and stable coronary artery disease, edoxaban monotherapy significantly reduced net adverse clinical events at 12 months compared with dual antithrombotic the"
+      }
+    ]
+  },
+  {
+    "key": "q05_anticoag_duration_unprovoked_pe",
+    "question": "how long to anticoagulate after unprovoked PE",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "how",
+        "long",
+        "anticoagulate",
+        "unprovoked"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "4F-PCC = four-factor prothrombin complex concentrate; aPCC = activated prothrombin complex concentrate; h = hours; IV = intravenous; PCC = prothrombin complex concentrate; INR = interna -",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/-/media/Non-Clinical/Images/Tools-and-Practice-Support/Mobile-Resources/ManageAnticoag/B20115-Reversal-Agent-Fact-Sheet.pdf",
+        "tier": "web",
+        "score": 0.4952362827574148,
+        "text_preview": "4F-PCC = four-factor prothrombin complex concentrate; aPCC = activated prothrombin complex concentrate; h = hours; IV = intravenous; PCC = prothrombin complex concentrate; INR = interna - CONSIDERATIONS FOR ANTICOAGULATION REVERSAL/HEMOSTASIS* Factor Xa Inhibitor (apixaban) Reversal Strategy Dosage Andexanet alfa II \u00b6Last dose of apixabanTiming of last dose Low/High Initlal IV Bolus Follow-On IV I"
+      },
+      {
+        "title": "",
+        "source": "PubMed",
+        "year": 2020,
+        "section": null,
+        "link": "",
+        "tier": "pubmed",
+        "score": 0.4120456990068011,
+        "text_preview": "A Structured Literature Review and International Consensus Validation of FORTA Labels of Oral Anticoagulants for Long-Term Treatment of Atrial Fibrillation in Older Patients (OAC-FORTA 2019).. Evidence regarding safety and efficacy of oral anticoagulants for the treatment of atrial fibrillation (AFib) in older adults has been assessed regarding the age appropriateness of oral anticoagulants (OAC) "
+      },
+      {
+        "title": "",
+        "source": "PubMed",
+        "year": 2020,
+        "section": null,
+        "link": "",
+        "tier": "pubmed",
+        "score": 0.4120456990068011,
+        "text_preview": "A Structured Literature Review and International Consensus Validation of FORTA Labels of Oral Anticoagulants for Long-Term Treatment of Atrial Fibrillation in Older Patients (OAC-FORTA 2019).. Evidence regarding safety and efficacy of oral anticoagulants for the treatment of atrial fibrillation (AFib) in older adults has been assessed regarding the age appropriateness of oral anticoagulants (OAC) "
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.47233493401512183,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Practice Point 4.2.3: Where more accuracy is required for drug-related decision-making (e.g., dosing due to narrow ther- apeutic or toxic range), drug toxicity, or clinical situations where eGFRcr estimates may be unreliable, use of equations that combine both creatinine and cystatin C, or measured GFR may be indicated.Apixaban\u2013Edoxaban\u2013Rivaroxaban Dabigatran Low"
+      },
+      {
+        "title": "",
+        "source": "PubMed",
+        "year": 2020,
+        "section": null,
+        "link": "",
+        "tier": "pubmed",
+        "score": 0.4120456990068011,
+        "text_preview": "A Structured Literature Review and International Consensus Validation of FORTA Labels of Oral Anticoagulants for Long-Term Treatment of Atrial Fibrillation in Older Patients (OAC-FORTA 2019).. Evidence regarding safety and efficacy of oral anticoagulants for the treatment of atrial fibrillation (AFib) in older adults has been assessed regarding the age appropriateness of oral anticoagulants (OAC) "
+      },
+      {
+        "title": "4F-PCC = four-factor prothrombin complex concentrate; aPCC = activated prothrombin complex concentrate; h = hours; IV = intravenous; PCC = prothrombin complex concentrate; INR = interna -",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/-/media/Non-Clinical/Images/Tools-and-Practice-Support/Mobile-Resources/ManageAnticoag/B20115-Reversal-Agent-Fact-Sheet.pdf",
+        "tier": "web",
+        "score": 0.47032286881494023,
+        "text_preview": "4F-PCC = four-factor prothrombin complex concentrate; aPCC = activated prothrombin complex concentrate; h = hours; IV = intravenous; PCC = prothrombin complex concentrate; INR = interna - 4F-PCC = four-factor prothrombin complex concentrate; aPCC = activated prothrombin complex concentrate; h = hours; IV = intravenous; PCC = prothrombin complex concentrate; INR = interna - tional normalized ratio "
+      },
+      {
+        "title": "i KDIGO 2026 CLINICAL PRACTICE GUIDELINE FOR ACUTE KIDNEY",
+        "source": "guidelines",
+        "year": "",
+        "section": "DRAFT",
+        "link": "http://kdigo.org/guidelines/acute-kidney-injury/",
+        "tier": "web",
+        "score": 0.5114632761308958,
+        "text_preview": "i KDIGO 2026 CLINICAL PRACTICE GUIDELINE FOR ACUTE KIDNEY DRAFT 284 Table 50 | Summary of the pharmacokinetics profiles of anticoagulants used to maintain circuit patency in CRRT Anticoagulant Molecular weight Mechanism Dose Route/dose Onset of action Clearance Monitoring Pros Cons Contraindic ation Notes Regional citrate 192 Da (trisodium citrate; dilute citrate; ACD -A) Chelates Ca, inhibits clo"
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 4S | APRIL 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "tier": "web",
+        "score": 0.47233493401512183,
+        "text_preview": "VOLUME 105 | ISSUE 4S | APRIL 2024 Practice Point 4.2.3: Where more accuracy is required for drug-related decision-making (e.g., dosing due to narrow ther- apeutic or toxic range), drug toxicity, or clinical situations where eGFRcr estimates may be unreliable, use of equations that combine both creatinine and cystatin C, or measured GFR may be indicated.Apixaban\u2013Edoxaban\u2013Rivaroxaban Dabigatran Low"
+      }
+    ]
+  },
+  {
+    "key": "q06_sarcoid_cardiac_workup",
+    "question": "sarcoidosis cardiac involvement workup",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "sarcoidosis",
+        "cardiac",
+        "involvement",
+        "workup"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279051/",
+        "tier": "pubmed",
+        "score": 0.6922917997078567,
+        "text_preview": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function. METHODS: In this retrospective cohort study, we analyzed patients with CS (aged >18 years) with highly probable or probable sarcoidosis according to the World Association of Sarcoidosis and Other Gra"
+      },
+      {
+        "title": "Cardiac sarcoidosis: new insights beyond the granuloma using spatial proteomics.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13286639/",
+        "tier": "pubmed",
+        "score": 0.6660652433934219,
+        "text_preview": "Cardiac sarcoidosis: new insights beyond the granuloma using spatial proteomics. Abstract BACKGROUND AND AIMS: Cardiac sarcoidosis (CS) is poorly understood, challenging to diagnose, and portends a poor prognosis. A lack of animal models necessitates the use of residual human samples to study sarcoidosis, which in turn necessitates the use of analytical tools compatible with archival, fixed tissue"
+      },
+      {
+        "title": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279051/",
+        "tier": "pubmed",
+        "score": 0.6591008260484517,
+        "text_preview": "Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Function. Title Clinical and Imaging Abnormalities Associated With Inducible Ventricular Arrhythmias During Electrophysiologic Study in Patients With Cardiac Sarcoidosis and Mildly Impaired Left Ventricular Fu"
+      },
+      {
+        "title": "Cardiac sarcoidosis: new insights beyond the granuloma using spatial proteomics.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13286639/",
+        "tier": "pubmed",
+        "score": 0.6157414846440974,
+        "text_preview": "Cardiac sarcoidosis: new insights beyond the granuloma using spatial proteomics. RESULTS: Spatial profiling demonstrated marked heterogeneity within and between sarcoidosis granulomas. Inflammation-free ROIs from CS hearts exhibited a 'distance gradient', with protein abundance varying by proximity to granulomatous inflammation. The seven-protein predictive model achieved 95.9% accuracy and an are"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/Guidelines",
+        "tier": "web",
+        "score": 0.4811837151024331,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/tools-and-practice-support/mobile-resources/features/guideline-clinical-app",
+        "tier": "web",
+        "score": 0.4811837151024331,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/guidelines/about-guidelines-and-clinical-documents",
+        "tier": "web",
+        "score": 0.4811837151024331,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      },
+      {
+        "title": "2026",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.acc.org/guidelines/guidelines-and-clinical-documents-in-progress",
+        "tier": "web",
+        "score": 0.4811837151024331,
+        "text_preview": "2026 This year\u2019s updates include: Guidelines \u2022 2025 Guidelines For the Management of Patients With Acute Coronary Syndromes \u2022 2025 Guidelines on High Blood Pressure in Adults \u2022 2024 ISHLT Guidelines For the Evaluation and Care of Cardiac Transplant Candidates \u2022 2024 ESC Guidelines For the Management of Atrial Fibrillation Expert Consensus Statements & Clinical Guidance \u2022 2025 Concise Clinical Guid"
+      }
+    ]
+  },
+  {
+    "key": "q07_kdigo_nephrotic_referral",
+    "question": "KDIGO criteria for nephrotic syndrome referral to nephrology",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "kdigo",
+        "criteria",
+        "nephrotic",
+        "syndrome",
+        "referral",
+        "nephrology"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "KDIGO 2024 CLINICAL PRACTICE GUIDELINE",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/lupus-nephritis/",
+        "tier": "web",
+        "score": 0.6817634114623069,
+        "text_preview": "KDIGO 2024 CLINICAL PRACTICE GUIDELINE Gordon, MD, MS, Associate Professor of Medicine, Tufts University School of Medicine, Division of Nephrology, Tufts Medical Center; Assistant Project Director, Evidence Review Team Associate Director Gaelen Adam, MLIS, MPH, Information Specialist and Research Associatewww.kidney-international.org Work Group membership Kidney International (2024) 105 (Suppl 1S"
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/gd/",
+        "tier": "web",
+        "score": 0.6425399369321739,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 The mission of Kidney Disease: Improving Global Outcomes (KDIGO) is to \u201cimprove the care and outcomes of people with kidney disease worldwide through promoting coordi-nation, collaboration, and integration of initiatives to developand implement clinical practice guidelines. \u201dSince the publi- cation in 2008 of the very \ufb01rst KDIGO guideline, devoted to hepatitis "
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/iga-nephropathy",
+        "tier": "web",
+        "score": 0.6425399369321739,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 The mission of Kidney Disease: Improving Global Outcomes (KDIGO) is to \u201cimprove the care and outcomes of people with kidney disease worldwide through promoting coordi-nation, collaboration, and integration of initiatives to developand implement clinical practice guidelines. \u201dSince the publi- cation in 2008 of the very \ufb01rst KDIGO guideline, devoted to hepatitis "
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/iga-nephropathy/",
+        "tier": "web",
+        "score": 0.6425399369321739,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 The mission of Kidney Disease: Improving Global Outcomes (KDIGO) is to \u201cimprove the care and outcomes of people with kidney disease worldwide through promoting coordi-nation, collaboration, and integration of initiatives to developand implement clinical practice guidelines. \u201dSince the publi- cation in 2008 of the very \ufb01rst KDIGO guideline, devoted to hepatitis "
+      },
+      {
+        "title": "KDIGO 2024 CLINICAL PRACTICE GUIDELINE",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/lupus-nephritis/",
+        "tier": "web",
+        "score": 0.5889604696574341,
+        "text_preview": "KDIGO 2024 CLINICAL PRACTICE GUIDELINE KDIGO 2024 CLINICAL PRACTICE GUIDELINE FOR THE MANAGEMENT OF LUPUS NEPHRITIS Kidney International (2024) 105 (Suppl 1S), S1\u2013S69 S1 KDIGO 2024 Clinical Practice Guideline for the Management of Lupus Nephritis S3 Tables, \ufb01gures, and Supplementary Materials S6 KDIGO Executive CommitteeS7 Reference keysS8 CKD nomenclatureS9 Conversion factors S10 Abbreviations an"
+      },
+      {
+        "title": "VOLUME 108 | ISSUE 4S | OCTOBER 2025",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/gd/",
+        "tier": "web",
+        "score": 0.6425399369321739,
+        "text_preview": "VOLUME 108 | ISSUE 4S | OCTOBER 2025 The mission of Kidney Disease: Improving Global Outcomes (KDIGO) is to \u201cimprove the care and outcomes of people with kidney disease worldwide through promoting coordi-nation, collaboration, and integration of initiatives to developand implement clinical practice guidelines. \u201dSince the publi- cation in 2008 of the very \ufb01rst KDIGO guideline, devoted to hepatitis "
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 3S | MARCH 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/antineutrophilic-cytoplasmic-antibody-anca-associated-vasculitis-aav/",
+        "tier": "web",
+        "score": 0.5804600380451894,
+        "text_preview": "VOLUME 105 | ISSUE 3S | MARCH 2024 Neither KDIGO, Kidney International , the Publisher, nor the authors, contributors, or editors shall have or assume any liability for any direct, indirect, incidental, special, exemplary, or consequential damages (including without limitation lostpro\ufb01ts) or any injury and/or damage to persons or property, however caused and on any theory of liability, whether in "
+      },
+      {
+        "title": "VOLUME 105 | ISSUE 3S | MARCH 2024",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/antineutrophilic-cytoplasmic-antibody-anca-associated-vasculitis-aav/",
+        "tier": "web",
+        "score": 0.5702856956242661,
+        "text_preview": "VOLUME 105 | ISSUE 3S | MARCH 2024 We are thrilled at the pace ofscienti \ufb01c advancement and we are exceptionally grateful to the Work Group Co-Chairs, Work Group members, andother contributors to this very important KDIGO activity. Morgan E. Grams, MD, PhD, MHS Michel Jadoul, MD KDIGO Co-Chairswww.kidney-international.org foreword Kidney International (2024) 105 (Suppl 3S), S71\u2013S116 S81 Work Group"
+      }
+    ]
+  },
+  {
+    "key": "q08_t1d_pump_exercise_settings",
+    "question": "insulin pump settings for exercise in type 1 diabetes",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "insulin",
+        "pump",
+        "settings",
+        "exercise",
+        "type",
+        "diabetes"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 6,
+    "results": [
+      {
+        "title": "i",
+        "source": "guidelines",
+        "year": "",
+        "section": "DRAFT",
+        "link": "http://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.5881443406888024,
+        "text_preview": "i DRAFT 136 102. Daly AB, Boughton CK, Nwokolo M , et al. Fully automated closed -loop insulin delivery in adults with type 2 diabetes: an open- label, single -center, randomized crossover trial. Nat Med 2023; 29: 203-208. 103. Lind M, Polonsky W, Hirsch IB , et al. Continuous Glucose Monitoring vs Conventional Therapy for Glycemic Control in Adults With Type 1 Diabetes Treated With Multiple Daily"
+      },
+      {
+        "title": "i",
+        "source": "guidelines",
+        "year": "",
+        "section": "DRAFT",
+        "link": "https://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.5878971107550636,
+        "text_preview": "i DRAFT 136 102. Daly AB, Boughton CK, Nwokolo M , et al. Fully automated closed -loop insulin delivery in adults with type 2 diabetes: an open- label, single -center, randomized crossover trial. Nat Med 2023; 29: 203-208. 103. Lind M, Polonsky W, Hirsch IB , et al. Continuous Glucose Monitoring vs Conventional Therapy for Glycemic Control in Adults With Type 1 Diabetes Treated With Multiple Daily"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.5771640348434448,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 Population Adults with CKD (G1 \u2013G5, G5D) and diabetes (T1D and T2D) Intervention Glucose monitoring (CGM, SMBG)Comparator HbA1cOutcomes All-cause mortality, kidney failure, CKD progression \u2014doubling of SCr, $40% decline in eGFR, mean blood glucose (HbA1c) Study design RCT, observational studiesCochrane systematicreviewsNone relevant SoF tables Supplementary Ta"
+      },
+      {
+        "title": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/diabetes-ckd/",
+        "tier": "web",
+        "score": 0.5771640348434448,
+        "text_preview": "VOLUME 102 | ISSUE 5S | NOVEMBER 2022 Population Adults with CKD (G1 \u2013G5, G5D) and diabetes (T1D and T2D) Intervention Glucose monitoring (CGM, SMBG)Comparator HbA1cOutcomes All-cause mortality, kidney failure, CKD progression \u2014doubling of SCr, $40% decline in eGFR, mean blood glucose (HbA1c) Study design RCT, observational studiesCochrane systematicreviewsNone relevant SoF tables Supplementary Ta"
+      },
+      {
+        "title": "Obesity in pediatric type 1 diabetes: an underestimated health problem.",
+        "source": "pubmed",
+        "year": 2026,
+        "section": null,
+        "link": "https://pubmed.ncbi.nlm.nih.gov/42501805/",
+        "tier": "pubmed",
+        "score": 0.5949571597024584,
+        "text_preview": "Obesity in pediatric type 1 diabetes: an underestimated health problem. RESULTS: Overall, 70.5% of participants had BMI < 85th percentile, while 29.5% had BMI \u2265 85th percentile, including 10.7% with obesity (BMI > 95th percentile). Higher weight-adjusted total daily insulin dose was independently associated with BMI \u2265 85th percentile. However, when analyses were restricted to participants with obe"
+      },
+      {
+        "title": "Intensive Care Med (2021) 47:1181\u20131247",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://www.idsociety.org/practice-guideline/surviving-sepsis-campaign-adult-guidelines-2021/",
+        "tier": "web",
+        "score": 0.5310010635484863,
+        "text_preview": "Intensive Care Med (2021) 47:1181\u20131247 For adults with sepsis or septic shock, we recommend initiating insulin therapy at a glucose level of \u2265 180 mg/dL (10 mmol/L) Strong recommendation; moderate quality of evidence Remark Following initiation of an insulin therapy, a typical target blood glucose range is 144\u2013180 mg/dL (8\u201310 mmol/L) Rationale Hyperglycemia (> 180 mg/dL), hypoglycemia and increase"
+      }
+    ]
+  },
+  {
+    "key": "q09_mgus_vs_smoldering_myeloma",
+    "question": "MGUS vs smoldering myeloma monitoring",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "mgus",
+        "smoldering",
+        "myeloma",
+        "monitoring"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.6995301568508148,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and The main risk factors for progression to multiple myeloma include a non-IgG isotype, an M protein concentration of more than 15 g/l and an abnormal serum free-light-chain ratio. Smouldering multiple myeloma (also termed smoul- dering myeloma) follows the next stage of MGUS in the spectrum of plasma cell dyscrasias. While it is considered a pr"
+      },
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.6995301568508148,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and The main risk factors for progression to multiple myeloma include a non-IgG isotype, an M protein concentration of more than 15 g/l and an abnormal serum free-light-chain ratio. Smouldering multiple myeloma (also termed smoul- dering myeloma) follows the next stage of MGUS in the spectrum of plasma cell dyscrasias. While it is considered a pr"
+      },
+      {
+        "title": "Nuanced treatment decision in newly diagnosed multiple myeloma patients aged 65-75 years: a real-world study.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13309587/",
+        "tier": "pubmed",
+        "score": 0.5641304147373951,
+        "text_preview": "Nuanced treatment decision in newly diagnosed multiple myeloma patients aged 65-75 years: a real-world study. Title Nuanced treatment decision in newly diagnosed multiple myeloma patients aged 65-75 years: a real-world study. Abstract PURPOSE: The optimal treatment strategy for patients aged 65-75 years with multiple myeloma (MM) remains undefined, as most clinical trials involving transplant-elig"
+      },
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "http://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.4900096179561226,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and Criteria for the classification of monoclonal gammopathies, multiple myeloma and related dis- orders: a report of the International Myeloma Working Group. Br J Haematol. 2003; 121: 749\u2013757. 515. Rajkumar SV, Dimopoulos MA, Palumbo A, et al. International Myeloma Working Group updated criteria for the diagnosis of multi-ple myeloma. Lancet Onc"
+      },
+      {
+        "title": "Nuanced treatment decision in newly diagnosed multiple myeloma patients aged 65-75 years: a real-world study.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13309587/",
+        "tier": "pubmed",
+        "score": 0.524280742316272,
+        "text_preview": "Nuanced treatment decision in newly diagnosed multiple myeloma patients aged 65-75 years: a real-world study. CONCLUSION: Intensive treatment strategies-including ASCT and quadruplet therapy-are both feasible and beneficial for selected patients with MM aged \u2265 65 years. Therefore, chronological age alone should not be used to determine treatment eligibility. These findings provide real-world evide"
+      },
+      {
+        "title": "KDIGO Clinical Practice Guideline on the Evaluation and",
+        "source": "guidelines",
+        "year": "",
+        "section": null,
+        "link": "https://kdigo.org/guidelines/transplant-candidate/",
+        "tier": "web",
+        "score": 0.4900096179561226,
+        "text_preview": "KDIGO Clinical Practice Guideline on the Evaluation and Criteria for the classification of monoclonal gammopathies, multiple myeloma and related dis- orders: a report of the International Myeloma Working Group. Br J Haematol. 2003; 121: 749\u2013757. 515. Rajkumar SV, Dimopoulos MA, Palumbo A, et al. International Myeloma Working Group updated criteria for the diagnosis of multi-ple myeloma. Lancet Onc"
+      },
+      {
+        "title": "Prognostic Value of Next-Generation Flow Cytometry Versus Dual-Tracer PET/CT for Minimal Residual Disease Assessment in Multiple Myeloma.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13279452/",
+        "tier": "pubmed",
+        "score": 0.5646047664240319,
+        "text_preview": "Prognostic Value of Next-Generation Flow Cytometry Versus Dual-Tracer PET/CT for Minimal Residual Disease Assessment in Multiple Myeloma. Abstract To evaluate the comparative prognostic utility of next-generation flow cytometry (NGF) and dual-tracer PET/CT in measuring minimal residual disease (MRD), this prospective real-world study enrolled 118 newly diagnosed multiple myeloma (NDMM) patients. P"
+      },
+      {
+        "title": "Real-World Retrospective Analysis of Daratumumab for Relapsed or Refractory Multiple Myeloma in Regional Australia.",
+        "source": "pubmed",
+        "year": 2026,
+        "section": null,
+        "link": "https://pubmed.ncbi.nlm.nih.gov/42542562/",
+        "tier": "pubmed",
+        "score": 0.5134119705300283,
+        "text_preview": "Real-World Retrospective Analysis of Daratumumab for Relapsed or Refractory Multiple Myeloma in Regional Australia. Abstract Daratumumab is widely used for relapsed or refractory multiple myeloma, yet outcomes from regional Australian centers remain underreported. This retrospective study evaluated real-world treatment patterns between 2018 and 2023 and survival outcomes among patients receiving d"
+      }
+    ]
+  },
+  {
+    "key": "q10_malignant_ascites_ovarian_ca",
+    "question": "management of malignant ascites in ovarian cancer",
+    "top_k_requested": 8,
+    "used_filters": {
+      "specialty": null,
+      "date_from": null,
+      "date_to": null,
+      "top_k": 8,
+      "keywords": [
+        "management",
+        "malignant",
+        "ascites",
+        "ovarian",
+        "cancer"
+      ],
+      "min_score": 0.05
+    },
+    "num_results": 8,
+    "results": [
+      {
+        "title": "",
+        "source": "PubMed",
+        "year": 2022,
+        "section": null,
+        "link": "",
+        "tier": "pubmed",
+        "score": 0.46123648562374253,
+        "text_preview": "The Potential Effect of Lidocaine, Ropivacaine, Levobupivacaine and Morphine on Breast Cancer Pre-Clinical Models: A Systematic Review.. Breast cancer (BC) is one of the most common types of cancer and the second leading cause of death in women. Local anaesthetics (LAs) and opioids have been shown to influence cancer progression and metastasis formation in several pre-clinical studies. However, th"
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.702939738144434,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.702939738144434,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      },
+      {
+        "title": "Neoadjuvant tislelizumab (anti-PD-1 antibody) plus chemotherapy in patients with advanced epithelial ovarian cancer: the exploratory NAIVE trial.",
+        "source": "pmc",
+        "year": 2026,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13332029/",
+        "tier": "pubmed",
+        "score": 0.5829112897493129,
+        "text_preview": "Neoadjuvant tislelizumab (anti-PD-1 antibody) plus chemotherapy in patients with advanced epithelial ovarian cancer: the exploratory NAIVE trial. Abstract The clinical efficacy and immune modulation of neoadjuvant immunochemotherapy for epithelial ovarian cancer (EOC) remain uncertain. To clarify these effects, the NAIVE trial (NCT04815408), a prospective phase II study, evaluated the efficacy of "
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.702939738144434,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.702939738144434,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      },
+      {
+        "title": "Exosome Component 4 Promotes Epithelial Ovarian Cancer Cell Proliferation, Migration, and Invasion via the Wnt Pathway.",
+        "source": "pmc",
+        "year": 2021,
+        "section": null,
+        "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8692763/",
+        "tier": "pubmed",
+        "score": 0.4554073234983046,
+        "text_preview": "Exosome Component 4 Promotes Epithelial Ovarian Cancer Cell Proliferation, Migration, and Invasion via the Wnt Pathway. Title Exosome Component 4 Promotes Epithelial Ovarian Cancer Cell Proliferation, Migration, and Invasion via the Wnt Pathway. Abstract BACKGROUND: Of gynecologic malignancies, ovarian cancer is the leading cause of death, mainly due to the lack of sensitive tumor markers, which m"
+      },
+      {
+        "title": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer",
+        "source": "NICE",
+        "year": "",
+        "section": null,
+        "link": "",
+        "tier": "guideline",
+        "score": 0.702939738144434,
+        "text_preview": "Mirvetuximab soravtansine for treating folate receptor-alpha-positive platinum-resistant epithelial ovarian, fallopian tube or primary peritoneal cancer Overview Evidence-based recommendation on mirvetuximab soravtansine (Elahere) for treating folate receptor-alpha (FR\u2011alpha)-positive, platinum-resistant, high-grade serous epithelial ovarian, fallopian tube or primary peritoneal cancer in adults. "
+      }
+    ]
+  }
+]
