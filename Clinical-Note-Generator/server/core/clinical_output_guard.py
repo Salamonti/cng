@@ -22,6 +22,32 @@ _MEASUREMENT_RE = re.compile(
     re.IGNORECASE,
 )
 _AGE_RE = re.compile(r"\b(\d{1,3})[ -]year[ -]old\b", re.IGNORECASE)
+
+# Spoken ages reach the transcript either as digits ("45") or as words
+# ("forty-five"), depending on how Whisper rendered them. The age grounding
+# check below compares the note's digits against number tokens found in the
+# source, so without word->digit expansion a perfectly correct note is
+# rejected whenever the clinician's speech was transcribed as words.
+# Expanding the SOURCE side only makes the check more permissive, never less
+# safe: a genuinely fabricated age still matches neither representation.
+_UNIT_WORDS = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+    "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+}
+_TENS_WORDS = {
+    "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50,
+    "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90,
+}
+_TENS_UNIT_RE = re.compile(
+    r"\b(" + "|".join(_TENS_WORDS) + r")[\s-]+(" + "|".join(_UNIT_WORDS) + r")\b",
+    re.IGNORECASE,
+)
+_NUMBER_WORD_RE = re.compile(
+    r"\b(" + "|".join(list(_TENS_WORDS) + list(_UNIT_WORDS)) + r")\b",
+    re.IGNORECASE,
+)
 _PLACEHOLDER_RE = re.compile(
     r"(?:\[(?:name|age|sex|gender|dob|date of birth|patient)[^\]]*\]|"
     r"\bxx[ -]year[ -]old\b|\b(?:mr|mrs|ms)\.?\s+(?:patient|unknown|unspecified)\b)",
@@ -118,6 +144,23 @@ class OutputGuardResult:
 
 def _normalized_words(text: str) -> List[str]:
     return [match.group(0).lower() for match in _WORD_RE.finditer(text or "")]
+
+
+def _spelled_number_tokens(text: str) -> set:
+    """Return digit strings for spelled-out numbers 0-99 present in text.
+
+    "forty-five" and "forty five" both yield "45" (and, harmlessly, "40" and
+    "5" from the standalone pass — extra tokens only widen the match).
+    """
+    found = set()
+    lowered = str(text or "").lower()
+    for tens, unit in _TENS_UNIT_RE.findall(lowered):
+        found.add(str(_TENS_WORDS[tens] + _UNIT_WORDS[unit]))
+    for word in _NUMBER_WORD_RE.findall(lowered):
+        value = _TENS_WORDS.get(word, _UNIT_WORDS.get(word))
+        if value is not None:
+            found.add(str(value))
+    return found
 
 
 def _has_repeated_ngram(words: List[str]) -> bool:
@@ -307,8 +350,9 @@ def validate_clinical_note(prompt: str, output: str) -> OutputGuardResult:
         reasons.append("draft is disproportionate to the supplied clinical source")
 
     source_number_tokens = set(re.findall(r"\b\d{1,3}\b", source))
+    source_number_tokens |= _spelled_number_tokens(source)
     for age in _AGE_RE.findall(value):
-        if age not in source_number_tokens:
+        if age.lstrip("0") not in {t.lstrip("0") for t in source_number_tokens}:
             reasons.append(f"unsupported patient age detected: {age}")
             break
 

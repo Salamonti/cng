@@ -155,3 +155,7 @@ phase*_spec.md
 
 # Old ChromaDB archive snapshots (5GB+, accidentally committed 2026-07-19)
 _archive/snapshots-old/
+
+# Whole archive tree — snapshots, hand-backups, Windows-era scripts, stale docs.
+# Untracked 2026-08-05; snapshots-old kept on disk as data, never in git.
+_archive/

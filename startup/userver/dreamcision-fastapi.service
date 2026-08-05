@@ -9,7 +9,12 @@ OnFailure=telegram-alert@%n.service
 [Service]
 User=eissa
 WorkingDirectory=/opt/dreamcision/Clinical-Note-Generator
-Environment=ASR_API_KEY=notegenadmin
+# Secrets live outside the repo in /etc/dreamcision/secrets.env (mode 600).
+# Leading "-" so the unit still starts if the file is absent (e.g. a fresh
+# clone on a new box) rather than failing with a confusing systemd error.
+# Put RESEND_API_KEY and ASR_API_KEY there — never inline here, this file is
+# committed to the repository.
+EnvironmentFile=-/etc/dreamcision/secrets.env
 Environment=RXNORM_DIR=/opt/dreamcision/Clinical-Note-Generator/data/RxNorm
 ExecStart=/opt/dreamcision/Clinical-Note-Generator/.venv/bin/uvicorn server.app:app --host 127.0.0.1 --port 7860 --workers 1 --proxy-headers --forwarded-allow-ips 127.0.0.1,::1 --log-level info
 Restart=on-failure
