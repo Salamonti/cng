@@ -2032,19 +2032,40 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                     )
             except RuntimeError as e:
                 error_msg = str(e).lower()
-                if any(keyword in error_msg for keyword in [
+                # Telling a clinician "the input is too long, reduce your data"
+                # is actively harmful advice when it is not true -- it sends
+                # them to delete good chart context chasing a problem that does
+                # not exist. The keyword list below matches generic words
+                # ("limit", "exceeds", "slot") that appear in plenty of
+                # unrelated runtime errors, so keywords alone are not evidence
+                # of a context overflow. Require the prompt to actually be big
+                # enough for the claim to be plausible before making it.
+                try:
+                    context_floor = int(cfg.get("context_overflow_warn_tokens", 100_000))
+                except Exception:
+                    context_floor = 100_000
+                approx_prompt_tokens = len(prompt or "") // 4
+                looks_like_context_error = any(keyword in error_msg for keyword in [
                     "context", "ctx", "kv", "slot", "too long", "too large",
                     "exceeds", "limit", "overflow", "n_ctx"
-                ]):
-                    print(f"Context length error: {e}")
+                ])
+                if looks_like_context_error and approx_prompt_tokens >= context_floor:
+                    print(f"Context length error (~{approx_prompt_tokens} tok): {e}")
                     yield (
                         "ERROR: The input is too long for the model's context window.\n\n"
+                        f"This request was roughly {approx_prompt_tokens:,} tokens. "
                         "Please try reducing the amount of input data.\n\n"
                         f"Technical details: {str(e)}\n"
                     )
                 else:
-                    print(f"Runtime error during streaming: {e}")
-                    yield f"Error: {str(e)}\n"
+                    print(
+                        f"Runtime error during streaming "
+                        f"(~{approx_prompt_tokens} prompt tok): {e}"
+                    )
+                    yield (
+                        "ERROR: Note generation failed.\n\n"
+                        f"Technical details: {str(e)}\n"
+                    )
             except Exception as e:
                 print(f"Error during v8 streaming: {e}")
                 yield f"Error: {str(e)}\n"
