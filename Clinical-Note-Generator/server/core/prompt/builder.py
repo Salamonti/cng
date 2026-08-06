@@ -176,8 +176,42 @@ def _cfg_text(val: Any) -> str:
     return str(val).strip()
 
 
+#: Note types whose CURRENT_ENCOUNTER block is not a dictated encounter at
+#: all -- the clinician pastes material to be reviewed (an incoming referral
+#: letter, an outside report, a chart extract). Framing that content as
+#: "the transcription from today's clinical encounter" made the model write
+#: in the treating clinician's voice about a visit that never happened
+#: ("I evaluated Lucy Dugas...") and impose encounter-note structure on a
+#: request for a summary.
+DOCUMENT_ORIENTED_NOTE_TYPES = {"summarize", "pre_encounter_prep", "custom"}
+
+
+def is_document_oriented_note_type(note_type: str) -> bool:
+    return (note_type or "").strip().lower() in DOCUMENT_ORIENTED_NOTE_TYPES
+
+
+def _source_block_framing(note_type: str) -> tuple[str, str]:
+    """Return (opening line, currency line) for the primary source block."""
+    if is_document_oriented_note_type(note_type):
+        return (
+            "This is source material supplied for review. It may be a document "
+            "written by another clinician or service.\n",
+            "Do not assume it describes an encounter you conducted. Do not write "
+            "in the first person as the treating clinician unless the source "
+            "documents your own actions.\n",
+        )
+    return (
+        "This is the transcription from today's clinical encounter.\n",
+        "Treat all information in this section as CURRENT.\n",
+    )
+
+
 def _current_encounter_data_preamble(note_type: str) -> str:
     nt = (note_type or "").strip().lower()
+    if nt in DOCUMENT_ORIENTED_NOTE_TYPES:
+        # No note sections to file findings into -- these produce prose or a
+        # review list, so any section-routing instruction is noise at best.
+        return ""
     if nt == "multi_issue_soap":
         return (
             "Subjective: document the patient's statements in third person only (Patient reports…; "
@@ -185,15 +219,26 @@ def _current_encounter_data_preamble(note_type: str) -> str:
             "Objective: examination findings, vitals, labs, and imaging from this block belong under "
             "## Objective under the numbered issue they relate to—not in Subjective.\n"
         )
+    # Deliberately does NOT name "Physical Exam": under prompt policy v2 no
+    # note type emits that heading. It is "Objective Findings" (progress),
+    # "Relevant Examination and Results" (followup), "Examination"
+    # (admission), "Current Findings" (referral), "Findings" (procedure), and
+    # absent entirely from discharge/transfer/consult. Naming a heading the
+    # selected template does not define either invents a stray section or
+    # gets ignored, so defer to the note-type instruction instead.
     return (
         "Physical examination: any vitals, examiner observations, or system-specific "
-        "objective findings in this block belong in the note's Physical Exam section. "
-        "List only systems with explicit findings and omit unmentioned systems.\n"
+        "objective findings in this block belong in whichever examination or objective "
+        "section the selected note type defines. If it defines none, omit them rather "
+        "than inventing a section. List only systems with explicit findings and omit "
+        "unmentioned systems.\n"
     )
 
 
 def _labs_imaging_data_preamble(note_type: str) -> str:
     nt = (note_type or "").strip().lower()
+    if nt in DOCUMENT_ORIENTED_NOTE_TYPES:
+        return ""
     if nt == "multi_issue_soap":
         return (
             "Laboratory and imaging results here are objective data. Place each under the matching "
@@ -201,8 +246,9 @@ def _labs_imaging_data_preamble(note_type: str) -> str:
             "results that apply to an active problem.\n"
         )
     return (
-        "Laboratory and imaging results in this section may belong in Objective, Investigations, "
-        "or Physical Exam per note-type instructions—not only in Subjective or HPI.\n"
+        "Laboratory and imaging results in this section belong in whichever objective, "
+        "investigations, or results section the selected note type defines—not only in "
+        "Subjective or HPI.\n"
     )
 
 
@@ -263,8 +309,8 @@ def _build_patient_data(
         sections.append(
             "<CURRENT_ENCOUNTER>\n"
             "DATE: " + today + "\n"
-            "This is the transcription from today's clinical encounter.\n"
-            "Treat all information in this section as CURRENT.\n"
+            + _source_block_framing(note_type)[0]
+            + _source_block_framing(note_type)[1]
             + _current_encounter_data_preamble(note_type)
             + trans_clean
             + "\n</CURRENT_ENCOUNTER>"
