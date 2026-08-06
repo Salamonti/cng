@@ -159,7 +159,14 @@
             // If the backend reports an error, render it as a styled error box
             // (HTTP 200 is always returned; the error lives in data.error).
             if (data.error) {
-                contentBody.innerHTML = buildErrorPanel(data.error, MATERIAL_TYPES[category]);
+                // contentBody was referenced here without ever being declared in
+                // this scope (every other use does getElementById first), so the
+                // error-DISPLAY path threw ReferenceError and masked the real
+                // backend error with "contentBody is not defined".
+                const errorBody = document.getElementById('pmContentBody');
+                if (errorBody) {
+                    errorBody.innerHTML = buildErrorPanel(data.error, MATERIAL_TYPES[category]);
+                }
                 showContentPanel();
                 return;
             }
