@@ -6207,7 +6207,14 @@ Contact Information:`,
                 return window.app.settings.apiKey;
             }
             try {
-                return sessionStorage.getItem('auth_access_token') || '';
+                // admin_workspace_token holds the same access_token under a
+                // second key, written by auth_workspace.js when login redirects
+                // to admin.html. Reading both here is what lets this be the
+                // single definition rather than each consumer reimplementing
+                // the lookup.
+                return sessionStorage.getItem('auth_access_token')
+                    || sessionStorage.getItem('admin_workspace_token')
+                    || '';
             } catch (err) {
                 console.warn('[Auth] unable to read auth token:', err);
                 return '';

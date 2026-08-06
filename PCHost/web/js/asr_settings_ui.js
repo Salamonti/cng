@@ -18,28 +18,32 @@
     btn.disabled = !!disabled;
   }
 
-  // No global getAuthToken() is ever defined in this app -- every reference
-  // to it is a consumer guarded by typeof, so this resolved to null and the
+  // Delegates to the single global definition in workspace_app.js
+  // (window.getAuthToken), which reads both auth_access_token and
+  // admin_workspace_token. An earlier version of this comment claimed no
+  // global existed and this function reimplemented the sessionStorage lookup;
+  // the global has been there all along, and the duplicate has been removed so
+  // there is one place to change when token storage changes.
+  //
+  // Safe despite this file loading before workspace_app.js: both entry points
+  // into this module (initAsrSettingsUi, refreshAsrCapabilities) are called
+  // from workspace_app.js itself, so the global is always defined by the time
+  // this runs.
+  //
+  // The original bug is still worth stating. When this resolved to null the
   // request went out as "Authorization: Bearer null". Once /asr/modes and
-  // /asr/capabilities began requiring auth, that 401'd, capabilities stayed
+  // /asr/capabilities began requiring auth that 401'd, capabilities stayed
   // null, shouldShowToggles(null) returned false, and BOTH the streaming and
-  // diarization toggles silently disappeared from Settings. Read the same
-  // session token the rest of the app uses, and omit the header entirely
-  // when there is no token rather than sending a literal "null".
+  // diarization toggles silently disappeared from Settings. Return null rather
+  // than a token-shaped string so the caller omits the header entirely instead
+  // of sending a literal "null".
   function authToken() {
     try {
       if (typeof global.getAuthToken === 'function') {
-        var fromFn = global.getAuthToken();
-        if (fromFn) return fromFn;
+        return global.getAuthToken() || null;
       }
     } catch (_) {}
-    try {
-      return global.sessionStorage.getItem('auth_access_token')
-        || global.sessionStorage.getItem('admin_workspace_token')
-        || null;
-    } catch (_) {
-      return null;
-    }
+    return null;
   }
 
   async function refreshAsrCapabilities() {
