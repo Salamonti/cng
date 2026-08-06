@@ -67,6 +67,29 @@
         }
     }
 
+    // Explicit reporting path for errors that are CAUGHT.
+    //
+    // The two listeners below only ever see errors that escape to the top --
+    // that is what those events mean. This app catches almost everything: 175
+    // of its 331 catch blocks swallow the error entirely. So the listeners were
+    // installed correctly, POSTed correctly, and the backend recorded correctly,
+    // and still not one real browser error had been captured -- the only
+    // client_error records in a 10,279-record incident store were an auditor's
+    // own probes.
+    //
+    // Both of the UI bugs found today were caught-and-displayed, never uncaught,
+    // so neither would have produced a report no matter how well this file
+    // worked. A catch block that has decided something went wrong should say so
+    // here rather than rely on the error escaping, which it never will.
+    //
+    // Deliberately tolerant of its arguments: a reporting call must never be the
+    // thing that throws inside a catch block.
+    window.reportClientError = function (message, stack, kind) {
+        try {
+            report(kind || 'caught', message, stack);
+        } catch (_) {}
+    };
+
     window.addEventListener('error', function (event) {
         if (!event) return;
         var err = event.error;

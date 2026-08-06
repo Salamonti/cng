@@ -190,8 +190,23 @@
 
         } catch (error) {
             console.error('Patient material generation failed:', error);
+            // Report explicitly. This error is caught, so it never reaches
+            // window.onerror and produced no telemetry at all -- and this is the
+            // exact branch that rendered "contentBody is not defined" to
+            // clinicians while the backend was healthy. A console line on the
+            // clinician's own machine is not somewhere an operator can look.
+            if (typeof window.reportClientError === 'function') {
+                window.reportClientError(
+                    'patient materials (' + category + '): ' + ((error && error.message) || String(error)),
+                    error && error.stack,
+                    'caught'
+                );
+            }
             hideLoading();
-            safeToast('Error', 'Failed to generate ' + MATERIAL_TYPES[category] + ': ' + error.message, 'error');
+            // Reading .message off a null/undefined throw would throw again here,
+            // inside the handler whose only job is to report the first failure.
+            var detail = (error && error.message) || 'Unexpected error';
+            safeToast('Error', 'Failed to generate ' + MATERIAL_TYPES[category] + ': ' + detail, 'error');
         }
     }
 
