@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "node server.js",
     "lint": "eslint .",
-    "test": "node --check server.js && node --test tests/*.mjs web/js/*.test.cjs"
+    "test": "npm run lint && node --check server.js && node --test tests/*.mjs web/js/*.test.cjs"
   },
   "dependencies": {
     "compression": "^1.8.1",
