@@ -168,7 +168,7 @@ async def qa_vision(
                 if (turn.get("channel") or "text").lower() != "vision"
             ]
             state = {"summary": "", "turns": text_turns[-12:]}
-            _QA_STATE[state_key] = state
+            _QA_STATE.set(state_key, state)
             prior_turns = text_turns
             vision_prior = []
     else:
@@ -248,7 +248,7 @@ async def qa_vision(
             summary_tokens,
             summary_chars,
         )
-        _QA_STATE[state_key] = new_state
+        _QA_STATE.set(state_key, new_state)
 
         meta = {
             "summary": new_state.get("summary", ""),
