@@ -41,7 +41,6 @@ from server.core.stores.generation_store import (
 from server.core.prompt.builder import (
     build_prompt_v8 as _build_prompt_v8_impl,
     build_prompt_other as _build_prompt_other_impl,
-    build_note_prompt_legacy as _build_note_prompt_legacy_impl,
     _fill_template as _fill_template_impl,
     _cfg_text as _cfg_text_impl,
 )
@@ -1490,38 +1489,6 @@ def build_prompt_other(
         user_display_name=user_display_name,
         user_email=user_email,
     )
-
-
-
-
-
-def build_note_prompt_legacy(
-    chart_data: str,
-    transcription: str,
-    note_type: str,
-    custom_prompt: Optional[str] = None,
-    user_speciality: Optional[str] = None,
-    merged_user_prompts: Optional[Dict[str, Any]] = None,
-    user_location: Optional[str] = None,
-    user_display_name: Optional[str] = None,
-    user_email: Optional[str] = None,
-) -> str:
-    return _build_note_prompt_legacy_impl(
-        chart_data=chart_data,
-        transcription=transcription,
-        note_type=note_type,
-        custom_prompt=custom_prompt,
-        user_speciality=user_speciality,
-        merged_user_prompts=merged_user_prompts,
-        user_location=user_location,
-        user_display_name=user_display_name,
-        user_email=user_email,
-    )
-# ---------------------------------------------------------------------------
-# New endpoints: generation meta, consult_comment
-# ---------------------------------------------------------------------------
-
-
 def _maybe_autostart_order_requests(gen_id: str, note_text: str, cfg: Dict[str, Any]) -> None:
     """Start order/referral extraction in background right after note generation."""
     try:
@@ -2137,5 +2104,3 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
         error_detail = f"Generation failed: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
         print(f"Error in generate_v8_stream: {error_detail}")
         raise HTTPException(status_code=503, detail=error_detail)
-
-
