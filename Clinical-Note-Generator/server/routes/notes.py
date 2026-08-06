@@ -760,17 +760,37 @@ def _extract_marker_sentences(text: str, markers: List[str]) -> List[str]:
 
 
 def _extract_plan_section(note_text: str) -> str:
-    """Try to isolate the Plan (or Assessment & Plan) section for downstream helpers."""
+    """Isolate the plan-like section of a note for downstream helpers.
+
+    Prompt policy v2 emits a different plan heading per note type and omits
+    any section it cannot support, so the v1 assumption of a literal "Plan"
+    heading no longer holds. Missing this section used to make the order
+    pipeline report "done" with zero items -- a silent no-op that looked
+    like "this encounter needed no orders". The alternation below covers the
+    v2 headings; callers must additionally handle the empty return (see
+    core/order/pipeline.py, which now falls back to the whole note body).
+    """
     if not note_text:
         return ""
 
     # Accept common variants: "Plan:", "## Plan", "## Assessment & Plan", "A/P:", etc.
     # #{0,3}\s* handles markdown ATX headings (##, ###) as well as plain text headers.
+    # v1: Plan / Assessment & Plan / A-P.  v2 adds per-note-type variants:
+    # "Admission Plan" (admission), "Receiving-Team Plan" (transfer),
+    # "Management" / "Plan of Care" / "Treatment Plan" (consult, progress),
+    # "Recommendations" (consult, referral), "Disposition" / "Follow-up"
+    # (discharge, procedure, follow-up).
+    _PLAN_HEADINGS = (
+        r"assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p"
+        r"|(?:admission|discharge|receiving[\s-]*team|management|treatment|care)?\s*plan"
+        r"|plan\s*of\s*care|management|recommendations?|disposition"
+        r"|follow[\s-]*up(?:\s*plan)?"
+    )
     header_re = re.compile(
-        r"(?im)^\s*#{0,3}\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*(?::|-)?\s*$"
+        r"(?im)^\s*#{0,3}\s*(?:\d+[.)]\s*)?(" + _PLAN_HEADINGS + r")\s*(?::|-)?\s*$"
     )
     header_inline_re = re.compile(
-        r"(?im)^\s*#{0,3}\s*(assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p|plan)\s*(?::|-)\s*"
+        r"(?im)^\s*#{0,3}\s*(?:\d+[.)]\s*)?(" + _PLAN_HEADINGS + r")\s*(?::|-)\s*"
     )
 
     # Any new section heading (## ...) ends the Plan body — e.g. ## Conflicts after ## Plan.

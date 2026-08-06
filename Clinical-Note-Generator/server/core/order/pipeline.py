@@ -211,7 +211,20 @@ async def _generate_order_requests(
 
         note_body = strip_conflicts_section(note_text)
         plan_text = extract_plan_section(note_body)
-        focus_text = plan_text or ""
+        # Fall back to the whole note when no plan-like heading is found.
+        # Prompt policy v2 varies the plan heading per note type and omits
+        # sections it cannot support, so "no Plan heading" no longer implies
+        # "no orders" -- it used to short-circuit to status=done/items=[],
+        # which is indistinguishable from a genuinely order-free encounter
+        # and silently disabled the whole feature. Extracting from the full
+        # note is strictly better than extracting from nothing.
+        used_plan_section = bool(plan_text.strip())
+        focus_text = plan_text if used_plan_section else note_body
+        if not used_plan_section:
+            _logger.info(
+                "[ORDER] gen_id=%s no plan heading found; using full note body",
+                gen_id,
+            )
 
         if not note_body.strip():
             order_store[gen_id] = {
@@ -236,7 +249,14 @@ async def _generate_order_requests(
         )
 
         if not focus_text.strip():
-            order_store[gen_id] = {"status": "done", "items": []}
+            # Genuinely nothing to read (empty note body). Report it as an
+            # error rather than "done with zero items" so the UI can tell
+            # "nothing to extract from" apart from "no orders needed".
+            order_store[gen_id] = {
+                "status": "error",
+                "error": "No note content available to extract orders from.",
+                "items": [],
+            }
             return
 
         detect_max = int(cfg.get("order_detect_max_tokens", ORDER_DETECT_MAX_TOKENS_DEFAULT))

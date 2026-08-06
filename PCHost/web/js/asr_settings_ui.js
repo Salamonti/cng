@@ -18,11 +18,35 @@
     btn.disabled = !!disabled;
   }
 
+  // No global getAuthToken() is ever defined in this app -- every reference
+  // to it is a consumer guarded by typeof, so this resolved to null and the
+  // request went out as "Authorization: Bearer null". Once /asr/modes and
+  // /asr/capabilities began requiring auth, that 401'd, capabilities stayed
+  // null, shouldShowToggles(null) returned false, and BOTH the streaming and
+  // diarization toggles silently disappeared from Settings. Read the same
+  // session token the rest of the app uses, and omit the header entirely
+  // when there is no token rather than sending a literal "null".
+  function authToken() {
+    try {
+      if (typeof global.getAuthToken === 'function') {
+        var fromFn = global.getAuthToken();
+        if (fromFn) return fromFn;
+      }
+    } catch (_) {}
+    try {
+      return global.sessionStorage.getItem('auth_access_token')
+        || global.sessionStorage.getItem('admin_workspace_token')
+        || null;
+    } catch (_) {
+      return null;
+    }
+  }
+
   async function refreshAsrCapabilities() {
     if (!global.app) global.app = {};
     var base = apiBase();
-    var token = typeof global.getAuthToken === 'function' ? global.getAuthToken() : null;
-    var headers = { 'Authorization': 'Bearer ' + token };
+    var token = authToken();
+    var headers = token ? { 'Authorization': 'Bearer ' + token } : {};
     try {
       var resp = await fetch(base + '/asr/modes', { credentials: 'same-origin', headers: headers });
       if (resp.ok) {

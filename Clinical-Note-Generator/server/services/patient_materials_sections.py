@@ -14,7 +14,13 @@ from typing import Dict, List, Optional
 SECTION_VARIANTS: Dict[str, List[str]] = {
     "patient_identification": ["Patient Identification", "Patient Identity", "Patient"],
     "chief_complaint": ["Chief Complaint", "CC", "Presenting Problem", "Presenting Complaint"],
-    "hpi": ["History of Present Illness", "HPI", "History"],
+    "hpi": [
+        "History of Present Illness", "HPI", "History",
+        # prompt policy v2 note-type variants
+        "Interval History", "Presenting Concern", "Reason for Follow-up",
+        "Reason for Transfer", "Referral Reason", "Hospital Course",
+        "Current Clinical Status", "Visit Context",
+    ],
     "past_medical_history": [
         "Past Medical History", "PMH", "Medical History", "Past History",
         "Past Medical & Surgical History", "PM&SH",
@@ -22,6 +28,8 @@ SECTION_VARIANTS: Dict[str, List[str]] = {
     "medications": [
         "Medications", "Current Medications", "Medication List",
         "Medications (Current)", "Home Medications",
+        # prompt policy v2 note-type variants
+        "Discharge Medications", "Medications and Allergies",
     ],
     "allergies": ["Allergies", "Allergies/Adverse Reactions", "A/R", "Known Allergies"],
     "social_history": ["Social History", "SH", "Social Hx"],
@@ -35,10 +43,15 @@ SECTION_VARIANTS: Dict[str, List[str]] = {
         "Assessment", "Assessment/Impression", "Assessment & Impression",
         "A&I", "Impression", "Assessments", "Assessment and Impression",
         "Diagnosis", "Assessment (Problems)",
+        # prompt policy v2 note-type variants
+        "Diagnoses", "Active Problems", "Findings",
     ],
     "plan": [
         "Plan", "Plan of Care", "Treatment Plan", "Management Plan",
         "Treatment & Plan", "Plan of Action",
+        # prompt policy v2 note-type variants
+        "Admission Plan", "Receiving-Team Plan", "Receiving Team Plan",
+        "Management", "Recommendations", "Recommendation", "Disposition",
     ],
     "follow_up": ["Follow-up", "Follow Up", "Follow Up Plan", "Follow-Up Plan"],
     "conflicts": ["Conflicts", "Conflicts Section", "Conflict"],
@@ -50,10 +63,16 @@ for canonical, variants in SECTION_VARIANTS.items():
     for variant in variants:
         _HEADING_TO_CANONICAL[variant.lower()] = canonical
 
-# Compile regex for section headings
-# Require at least one '#' so that lines like "Weight: 85kg" are not mistaken
-# for heading candidates. Only lines starting with #, ##, or ### are headings.
-_HEADING_RE = re.compile(r"^\s*#{1,3}\s+(.+?)\s*:?\s*$", re.MULTILINE)
+# Compile regex for section headings.
+# The '#' prefix is OPTIONAL: the production note prompts (v1 and prompt
+# policy v2 alike) emit PLAIN-TEXT headings with no markdown, so requiring
+# a hash matched nothing and every section came back empty -- patient
+# materials then reported "no information found" for fully documented
+# notes. False positives are not a concern here because parse_note_sections
+# only treats a line as a heading when _match_heading() maps it to a known
+# canonical section; anything else falls through and is kept as content
+# (so "Weight: 85kg" stays content, as intended by the original guard).
+_HEADING_RE = re.compile(r"^\s*(?:#{1,3}\s+)?(.+?)\s*:?\s*$", re.MULTILINE)
 
 
 def _match_heading(heading_text: str) -> Optional[str]:
