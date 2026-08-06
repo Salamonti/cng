@@ -784,8 +784,17 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 btn.textContent = 'Releasing...';
                 try {
                     if (_stuckTranscriptTimerId) { clearTimeout(_stuckTranscriptTimerId); _stuckTranscriptTimerId = null; }
-                    if (typeof audioHandler.forceResetRecording === 'function') {
-                        audioHandler.forceResetRecording();
+                    // The live handler is window.universalAudio. The `audioHandler`
+                    // local in initUniversalAudio() is not in scope here, and
+                    // reading a property off an undeclared name throws a
+                    // ReferenceError -- `typeof x.y` does not guard the way
+                    // `typeof x` does. That threw before anything below ran, so
+                    // this button always fell through to the catch and told the
+                    // clinician to refresh, losing the recording it exists to
+                    // release. It has never once succeeded.
+                    var handler = window.universalAudio;
+                    if (handler && typeof handler.forceResetRecording === 'function') {
+                        handler.forceResetRecording();
                     }
                     // Invalidate session ID so any detached old pipeline's callbacks
                     // are rejected by the capturedSessionId guard in onStatus/onTranscript.
@@ -6205,6 +6214,31 @@ Contact Information:`,
             }
         }
         window.getAuthToken = getAuthToken;
+
+        /**
+         * Report a client-side ASR incident to the operator incident store.
+         *
+         * The implementation is a method on the UniversalAudioHandler instance
+         * (universal_audio_handler.js). Three call sites in this file invoked it
+         * as a bare `_reportAsrIncident(...)`, where no such binding exists, so
+         * each threw a ReferenceError. Every one of those calls sits inside
+         * `try { ... } catch (_) {}`, so the throw was swallowed in silence and
+         * the incident never left the browser.
+         *
+         * The three affected paths were the ones most worth reporting: chunk
+         * worker error during finalization, merged-transcript fetch after retries
+         * were exhausted, and drain POST timeout. Delegating here keeps those
+         * sites unchanged and best-effort while making the call actually land.
+         */
+        function _reportAsrIncident(payload) {
+            try {
+                var handler = window.universalAudio;
+                if (handler && typeof handler._reportAsrIncident === 'function') {
+                    handler._reportAsrIncident(payload);
+                }
+            } catch (_) {}
+        }
+        window._reportAsrIncident = _reportAsrIncident;
 
         // Safe-Exit Guard functions
         function simpleHash(str) {
