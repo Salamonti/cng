@@ -306,6 +306,17 @@ def validate_clinical_note(prompt: str, output: str) -> OutputGuardResult:
     value = str(output or "").strip()
     source = extract_patient_data(prompt)
     reasons = detect_degenerate_output(value, max_chars=MAX_OUTPUT_CHARS)
+    # FATAL vs NON-FATAL contract (two production outages taught this):
+    #   2026-08-01 the guard rejected every note; 2026-08-06 it rejected a
+    #   correct consult because a faxed chart wrote "71year old" and the age
+    #   token regex could not see it. Every grounding heuristic has now been
+    #   demoted to non-fatal. Fatal is reserved for model FAILURE modes that
+    #   are self-evident from the output alone and never depend on comparing
+    #   it to the source: empty output, degeneration/runaway n-grams, leaked
+    #   reasoning, meta-commentary, placeholder demographics, and grossly
+    #   disproportionate length. Anything that asks "is this fact IN the
+    #   source?" is a heuristic on messy OCR/ASR text and must only be
+    #   logged -- clinicians review and sign every note.
     # Grounding heuristics that assume the note is lexically contained in the
     # structured "PATIENT DATA:" block are NON-FATAL: DreamCision is a dictation
     # scribe, so a note legitimately synthesizes spoken content (diagnoses,
@@ -349,11 +360,16 @@ def validate_clinical_note(prompt: str, output: str) -> OutputGuardResult:
     if len(value) > allowed_chars:
         reasons.append("draft is disproportionate to the supplied clinical source")
 
-    source_number_tokens = set(re.findall(r"\b\d{1,3}\b", source))
+    # (?<!\d)...(?!\d) instead of \b...\b: faxed/OCR'd charts routinely lose
+    # the space in "71 year old" -> "71year old", and \b requires a non-word
+    # char after the digits, so the age was invisible in the source and a
+    # correct note was rejected. Digit-adjacency is the real constraint here.
+    source_number_tokens = set(re.findall(r"(?<!\d)\d{1,3}(?!\d)", source))
     source_number_tokens |= _spelled_number_tokens(source)
+    _source_ages = {t.lstrip("0") for t in source_number_tokens}
     for age in _AGE_RE.findall(value):
-        if age.lstrip("0") not in {t.lstrip("0") for t in source_number_tokens}:
-            reasons.append(f"unsupported patient age detected: {age}")
+        if age.lstrip("0") not in _source_ages:
+            soft.append(f"unsupported patient age detected: {age}")
             break
 
     if _GENDER_TERMS_RE.search(value) and not _GENDER_TERMS_RE.search(source):
@@ -362,11 +378,11 @@ def validate_clinical_note(prompt: str, output: str) -> OutputGuardResult:
     for field_value in _IDENTITY_FIELD_RE.findall(value):
         normalized = field_value.strip().strip("*_").lower()
         if normalized and normalized not in source_lower:
-            reasons.append("unsupported patient identity field detected")
+            soft.append("unsupported patient identity field detected")
             break
     for surname in _HONORIFIC_NAME_RE.findall(value):
         if surname.lower() not in source_lower:
-            reasons.append("unsupported patient identity detected")
+            soft.append("unsupported patient identity detected")
             break
 
     assessment_match = _ASSESSMENT_SECTION_RE.search(value)
@@ -397,7 +413,7 @@ def validate_clinical_note(prompt: str, output: str) -> OutputGuardResult:
         source_vocabulary = set(source_words)
         grounded_ratio = sum(word in source_vocabulary for word in output_words) / len(output_words)
         if grounded_ratio < 0.18:
-            reasons.append("draft vocabulary is weakly grounded in the supplied source")
+            soft.append("draft vocabulary is weakly grounded in the supplied source")
 
     if soft:
         logging.getLogger(__name__).info(
