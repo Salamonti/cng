@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "lint": "eslint .",
     "test": "node --check server.js && node --test tests/*.mjs web/js/*.test.cjs"
   },
   "dependencies": {
@@ -26,6 +27,8 @@
   "license": "MIT",
   "devDependencies": {
     "cssnano": "^8.0.2",
+    "eslint": "^9.39.5",
+    "globals": "^17.9.0",
     "terser": "^5.48.0"
   }
 }
