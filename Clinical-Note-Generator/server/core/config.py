@@ -48,20 +48,36 @@ def get_settings() -> Settings:
     load_env_file()
     cfg = _load_config()
     db_url = os.environ.get("DATABASE_URL") or cfg.get("auth_database_url") or _default_db_url()
-    jwt_secret = os.environ.get("JWT_SECRET") or cfg.get("jwt_secret")
-    jwt_refresh = os.environ.get("JWT_REFRESH_SECRET") or cfg.get("jwt_refresh_secret")
     access_exp = int(os.environ.get("JWT_ACCESS_TOKEN_EXP_MINUTES") or cfg.get("auth_access_token_exp_minutes") or 600)
     refresh_exp = int(os.environ.get("JWT_REFRESH_TOKEN_EXP_DAYS") or cfg.get("auth_refresh_token_exp_days") or 30)
-    resend_key = os.environ.get("RESEND_API_KEY") or cfg.get("resend_api_key") or ""
-    resend_from = os.environ.get("RESEND_FROM_EMAIL") or cfg.get("resend_from_email") or "DreamCision <noreply@support.dreamcision.com>"
-    # No hardcoded personal-email fallback: set ADMIN_NOTIFICATION_EMAIL or
-    # config.json's admin_notification_email (gitignored, unlike this file).
-    # Admin registration notifications are simply not sent if unconfigured
-    # (send_email already degrades gracefully -- see email_service.py).
-    admin_email = os.environ.get("ADMIN_NOTIFICATION_EMAIL") or cfg.get("admin_notification_email") or ""
+    resend_from = os.environ.get("RESEND_FROM_EMAIL") or "DreamCision <noreply@support.dreamcision.com>"
+    admin_email = os.environ.get("ADMIN_NOTIFICATION_EMAIL", "")
 
-    if not jwt_secret or not jwt_refresh:
-        raise RuntimeError("JWT secrets are not configured. Set JWT_SECRET and JWT_REFRESH_SECRET or update config.json.")
+    # Secrets MUST come from the environment (systemd EnvironmentFile/.env) --
+    # NEVER from config.json, which ships public "SET_IN_ENV_*" placeholders.
+    # Reading them from env ensures we fail closed instead of silently signing
+    # tokens with a known key if a deploy forgets to set them.
+    jwt_secret = os.environ.get("JWT_SECRET")
+    jwt_refresh = os.environ.get("JWT_REFRESH_SECRET")
+    resend_key = os.environ.get("RESEND_API_KEY", "")
+
+    def _require_secret(name: str, val: "str | None") -> str:
+        if not val:
+            raise RuntimeError(
+                "Missing required JWT secrets in environment: "
+                + f"{name}. Set it via the systemd EnvironmentFile/.env. "
+                "Refusing to boot with a placeholder or missing secret."
+            )
+        if len(val.encode("utf-8")) < 32:
+            raise RuntimeError(
+                f"{name} is too short ({len(val.encode('utf-8'))} bytes); "
+                "need at least 32 random bytes for HMAC-SHA256."
+            )
+        return val
+
+    jwt_secret = _require_secret("JWT_SECRET", jwt_secret)
+    jwt_refresh = _require_secret("JWT_REFRESH_SECRET", jwt_refresh)
+
 
     return Settings(
         auth_database_url=db_url,

@@ -30,7 +30,7 @@ stale_days_threshold: 365
 
 
 # PubMed API configuration
-pubmed_api_key: "fa2b1e42c0c608665464ff73230035e90f07"
+pubmed_api_key: ""  # sourced from PUBMED_API_KEY env (secrets.env) — never commit a literal
 pubmed_rate_limit: 3  # requests per second with API key
 
 # model

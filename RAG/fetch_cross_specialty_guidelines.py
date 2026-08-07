@@ -31,7 +31,10 @@ REQUEST_DELAY = 2.0
 
 # PubMed API key for rate-limited fetching (3 req/sec)
 def _load_pubmed_api_key():
-    """Load PubMed API key from settings.yaml."""
+    """Load PubMed API key from env (PUBMED_API_KEY), falling back to settings.yaml."""
+    key = os.environ.get("PUBMED_API_KEY", "")
+    if key:
+        return key
     try:
         settings_path = os.path.join(os.path.dirname(__file__), "settings.yaml")
         with open(settings_path, "r") as f:
@@ -41,8 +44,6 @@ def _load_pubmed_api_key():
         return ""
 PUBMED_API_KEY = _load_pubmed_api_key()
 
-
-PUBMED_API_KEY = _load_pubmed_api_key()
 
 # Major clinical specialties and their guideline keywords
 SPECIALTIES = {

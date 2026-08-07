@@ -13,8 +13,8 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 # Test-safe auth defaults.
-os.environ.setdefault("JWT_SECRET", "test-jwt-secret")
-os.environ.setdefault("JWT_REFRESH_SECRET", "test-jwt-refresh-secret")
+os.environ.setdefault("JWT_SECRET", "test-jwt-secret-0123456789abcdef0123456789abcdef")
+os.environ.setdefault("JWT_REFRESH_SECRET", "test-jwt-refresh-secret-0123456789abcdef0123456789abc")
 
 
 @pytest.fixture(autouse=True)
