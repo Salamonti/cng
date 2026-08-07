@@ -76,8 +76,16 @@ def load_config() -> Dict:
         try:
             with open(CONFIG_PATH, "r", encoding="utf-8") as f:
                 return json.load(f)
-        except Exception:
-            pass
+        except Exception as e:
+            # A corrupt/unreadable config must not be silently ignored: callers
+            # (note generation, etc.) would run with empty defaults and produce
+            # subtly different output with no trace. Log it but keep the {}
+            # fallback so the process never crashes over a config file.
+            logger.warning(
+                "config load failed (using empty defaults) | path=%s | err=%s",
+                CONFIG_PATH,
+                e,
+            )
     return {}
 
 
@@ -163,8 +171,16 @@ def _append_missed_question(record: Dict[str, Any]) -> None:
         p = _missed_q_path()
         with open(p, "a", encoding="utf-8") as f:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
-    except Exception:
-        pass
+    except Exception as e:
+        # Best-effort append: must never propagate (missed-question logging is
+        # off the request hot path). But silently dropping the record loses
+        # QA/coverage data used to tune RAG answering -- log path + error so
+        # the loss is at least visible and greppable in the journal.
+        logger.warning(
+            "failed to append missed-question record (dropped) | path=%s | err=%s",
+            _missed_q_path(),
+            e,
+        )
 
 
 def _split_prompt(prompt: str) -> Dict[str, str]:
@@ -309,12 +325,18 @@ def truncate_to_context_length_tokens(text: str, max_tokens: int) -> str:
 
 
 def _meta_year(meta: Dict[str, Any]) -> int:
-    """Extract a four-digit year from common metadata fields."""
+    """Extract a four-digit year from common metadata fields.
+
+    Best-effort and on the hot path: returns 0 when no usable year is present
+    or when metadata is malformed. A missing year is a normal condition (not an
+    error), so this intentionally does not log -- avoid chatty logging here.
+    """
     try:
         y = str(meta.get("timestamp") or meta.get("year") or meta.get("date") or "").strip()
         if len(y) >= 4 and y[:4].isdigit():
             return int(y[:4])
     except Exception:
+        # Non-dict / non-str metadata: treat as "no year" rather than crash.
         pass
     return 0
 
@@ -641,8 +663,10 @@ def clean_model_output_chunk(chunk: str) -> str:
     s = s.replace('\u2007', ' ')   # Figure space
     s = s.replace('\u2008', ' ')   # Punctuation space
 
-    # Post-processing for display: strip formatting markers and note tags
-    # Keep whitespace as-is; do not trim newlines.
+    # Post-processing for display: strip note markup tags.
+    # Best-effort + low-risk: if this transform ever fails, return the already
+    # cleaned string unchanged rather than drop the whole chunk. No logging --
+    # runs on every streamed chunk and a failure here just falls back to input.
     try:
         s = s.replace("<note>", "").replace("</note>", "")
         # Only remove standalone formatting markers, not content markers
@@ -1518,39 +1542,45 @@ def build_prompt_other(
         user_email=user_email,
     )
 def _maybe_autostart_order_requests(gen_id: str, note_text: str, cfg: Dict[str, Any]) -> None:
-    """Start order/referral extraction in background right after note generation."""
-    try:
-        if not bool(cfg.get("order_request_autostart", True)):
-            return
-        if not (note_text or "").strip():
-            return
-        st = _order_request_store.get(gen_id) or {}
-        status = str(st.get("status") or "").lower()
-        if status in {"pending", "done"}:
-            return
-        _order_request_store[gen_id] = {"status": "pending", "autostart": True, "items": []}
-        asyncio.create_task(_generate_order_requests(gen_id, note_text, cfg))
-    except Exception:
-        pass
+    """Start order/referral extraction in background right after note generation.
+
+    Intentionally no try/except here: the only caller, _run_postgen_sidework,
+    owns fault-isolated logging under the "[note.postgen] order-request autostart
+    failed" label. Letting an exception propagate there yields exactly ONE warning
+    (no double-logging) instead of a silent swallow that would defeat that wrapper.
+    """
+    if not bool(cfg.get("order_request_autostart", True)):
+        return
+    if not (note_text or "").strip():
+        return
+    st = _order_request_store.get(gen_id) or {}
+    status = str(st.get("status") or "").lower()
+    if status in {"pending", "done"}:
+        return
+    _order_request_store[gen_id] = {"status": "pending", "autostart": True, "items": []}
+    asyncio.create_task(_generate_order_requests(gen_id, note_text, cfg))
 
 
 def _maybe_autostart_consult_comment(gen_id: str, note_text: str, cfg: Dict[str, Any], note_type: str, user_speciality: Optional[str] = None) -> None:
-    """Start consult comment generation in background right after note generation (any note type)."""
-    try:
-        if not bool(cfg.get("consult_comment_autostart", True)):
-            return
-        if not (note_text or "").strip():
-            return
+    """Start consult comment generation in background right after note generation (any note type).
 
-        st = _consult_comment_store.get(gen_id) or {}
-        status = str(st.get("status") or "").lower()
-        if status in {"pending", "done"}:
-            return
+    Intentionally no try/except here: the only caller, _run_postgen_sidework,
+    owns fault-isolated logging under the "[note.postgen] consult-comment autostart
+    failed" label. Letting an exception propagate there yields exactly ONE warning
+    (no double-logging) instead of a silent swallow that would defeat that wrapper.
+    """
+    if not bool(cfg.get("consult_comment_autostart", True)):
+        return
+    if not (note_text or "").strip():
+        return
 
-        _consult_comment_store[gen_id] = {"status": "pending", "autostart": True}
-        asyncio.create_task(_generate_consult_comment(gen_id, note_text, cfg, strategy="sections", user_speciality=user_speciality))
-    except Exception:
-        pass
+    st = _consult_comment_store.get(gen_id) or {}
+    status = str(st.get("status") or "").lower()
+    if status in {"pending", "done"}:
+        return
+
+    _consult_comment_store[gen_id] = {"status": "pending", "autostart": True}
+    asyncio.create_task(_generate_consult_comment(gen_id, note_text, cfg, strategy="sections", user_speciality=user_speciality))
 
 
 async def _run_postgen_sidework(
