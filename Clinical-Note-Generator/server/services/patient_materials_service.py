@@ -446,11 +446,11 @@ Diet cautions specific to the patient's conditions and medications (for example 
 
 ## Meal Plan
 Provide Breakfast, Lunch, Dinner, and a Snack section.
-- For EACH of the three meals give AT LEAST 3 distinct options.
-- For the Snack give AT LEAST 3 distinct options.
-- For each option list the foods and approximate portions and its estimated calories. Give the full macronutrient breakdown (protein/carbs/fat in grams) for ONE representative option in each meal and for the snack, so the plan stays concise and print-friendly.
-- Options should fit the per-meal share of the daily calorie target and respect the patient's allergies and restrictions.
-- Use clean tables or bullet lists so it prints well.
+- For EACH of the three meals give AT LEAST 7 distinct options; for the Snack give AT LEAST 7 distinct options (about 28 options in total).
+- Present each meal's options as a single compact markdown table with these columns and ONE header row: `Option | Foods & portions | Calories | Protein (g) | Carbs (g) | Fat (g)`. Put each option on its own row. Write the column header only once at the top of each meal's table — do NOT repeat the header or the words "calories protein carbs fat" for every option.
+- For the Snack use the same table format (portions and macros for one typical serving).
+- Options should fit the per-meal share of the daily calorie target and respect the patient's allergies and restrictions; make most options fit the patient's relevant dietary theme (e.g. heart-healthy, diabetes-appropriate, low-sodium).
+- Keep tables clean so they print well.
 
 If weight, height, or goal is missing, state the assumption you used.""",
             "exercise": """
