@@ -1,6 +1,7 @@
 # server/services/rag_http_client.py
 import aiohttp
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -140,16 +141,25 @@ class RAGHttpClient:
                 p["specialty"] = specialty
             return p
 
-        async def _post(session: aiohttp.ClientSession, pld: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-            url = f"{self.base_url}/query"
-            async with session.post(url, json=pld) as resp:
-                if resp.status != 200:
-                    txt = await resp.text()
-                    raise RuntimeError(f"RAG /query failed: HTTP {resp.status}: {txt[:200]}")
-                data = await resp.json()
-                results: List[Dict[str, Any]] = data.get("results", []) or []
-                used: Dict[str, Any] = data.get("used_filters", {}) or {}
-                return results, used
+    def _auth_headers(self) -> Dict[str, str]:
+        # Shared-key auth with the RAG service. Key lives server-side in
+        # secrets.env (RAG_API_KEY); never exposed to the browser.
+        headers: Dict[str, str] = {}
+        key = os.environ.get("RAG_API_KEY", "")
+        if key:
+            headers["X-API-Key"] = key
+        return headers
+
+    async def _post(self, session: aiohttp.ClientSession, pld: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+        url = f"{self.base_url}/query"
+        async with session.post(url, json=pld, headers=self._auth_headers()) as resp:
+            if resp.status != 200:
+                txt = await resp.text()
+                raise RuntimeError(f"RAG /query failed: HTTP {resp.status}: {txt[:200]}")
+            data = await resp.json()
+            results: List[Dict[str, Any]] = data.get("results", []) or []
+            used: Dict[str, Any] = data.get("used_filters", {}) or {}
+            return results, used
 
         cfg = self._load_cfg()
         cap_words = int(cfg.get("rag_max_context_words", 600))
@@ -157,7 +167,7 @@ class RAGHttpClient:
 
         # First attempt
         async with aiohttp.ClientSession(timeout=self.timeout) as session:
-            results, used = await _post(session, _payload(top_k, include_keywords))
+            results, used = await self._post(session, _payload(top_k, include_keywords))
 
             # Normalize metadata and compute quick strength signal
             norm_results: List[Dict[str, Any]] = []
@@ -202,7 +212,7 @@ class RAGHttpClient:
                         if kk and kk not in seen:
                             kws.append(k)
                             seen.add(kk)
-                    results2, used2 = await _post(session, _payload(min(20, max(10, top_k * 2)), kws))
+                    results2, used2 = await self._post(session, _payload(min(20, max(10, top_k * 2)), kws))
                     # Use fallback only if it improves coverage
                     if results2:
                         used = {**used, "client_fallback": "keywords"}

@@ -23,11 +23,13 @@ from functools import lru_cache
 from threading import Lock
 from typing import Any, Dict, List, Optional, Tuple, cast
 import copy
+import os
+import re
 
 import numpy as np
 import uvicorn
 import yaml
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel, Field
@@ -588,11 +590,63 @@ def _package(hits: List[Dict[str, Any]], query: str, used_filters: Dict[str, Any
     return context_block, refs, meta
 
 
+# ---------------------------------------------------------------------------
+# Step 4 (H-5/H-6): shared-key auth + PHI egress gate
+# The RAG API is reached server-side by FastAPI (RAGHttpClient). It is NOT
+# called directly by the browser, so we require a shared X-API-Key on the
+# business endpoints. The key lives in secrets.env (RAG_API_KEY); the backend
+# (RAGHttpClient) injects it so it never reaches the browser.
+# ---------------------------------------------------------------------------
+_RAG_API_KEY = os.environ.get("RAG_API_KEY", "")
+
+
+async def require_api_key(x_api_key: str = Header(default="", alias="X-API-Key")) -> None:
+    if not _RAG_API_KEY:
+        raise HTTPException(status_code=503, detail="RAG API key not configured on server")
+    if not x_api_key or x_api_key != _RAG_API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+
+
+# Strong PHI patterns for the web-query egress gate. These are the explicit,
+# machine-checkable identifiers we refuse to send to external search engines.
+_PHI_EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_PHI_DOB = re.compile(r"\b(19|20)\d{2}[-/](0[1-9]|1[0-2])[-/](0[1-9]|[12]\d|3[01])\b")
+_PHI_SIN = re.compile(r"\b\d{3}-\d{3}-\d{3}\b")
+_PHI_POSTAL = re.compile(r"\b[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d\b")
+_PHI_ID_KW = re.compile(r"\b(PHN|MCP|health card|healthcare number|medical record number|patient id)\b", re.IGNORECASE)
+
+
+def _phi_in_query(query: str) -> Optional[str]:
+    """Return the name of the first PHI indicator found in a query, else None."""
+    q = query or ""
+    for name, pat in (
+        ("email", _PHI_EMAIL),
+        ("date-of-birth", _PHI_DOB),
+        ("SIN/SSN", _PHI_SIN),
+        ("postal-code", _PHI_POSTAL),
+        ("patient-identifier-keyword", _PHI_ID_KW),
+    ):
+        if pat.search(q):
+            return name
+    return None
+
+
 app = FastAPI(title="RAG Query API", version="1.0.0", default_response_class=ORJSONResponse)
+# Strict CORS: RAG is called server-side; this only covers accidental direct
+# browser access. Explicit origins only, credentials off (no wildcard + cookies).
+_RAG_ALLOWED_ORIGINS = [
+    o.strip()
+    for o in os.environ.get(
+        "RAG_ALLOWED_ORIGINS",
+        "http://127.0.0.1:3000,http://localhost:3000,http://192.168.0.108:3000,"
+        "https://notes.ieissa.com,https://dreamcision.com,https://www.dreamcision.com",
+    ).split(",")
+    if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_RAG_ALLOWED_ORIGINS,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -608,7 +662,7 @@ def health() -> Dict[str, Any]:
         return {"status": "error", "detail": str(e)}
 
 
-@app.post("/query", response_model=QueryResponse)
+@app.post("/query", response_model=QueryResponse, dependencies=[Depends(require_api_key)])
 def query(req: QueryRequest) -> QueryResponse:
     cfg = _load_settings()
     corpus_version = int(cfg.get("corpus_version", 0))
@@ -693,7 +747,7 @@ def query(req: QueryRequest) -> QueryResponse:
 class WebQueryRequest(BaseModel):
     query: str = Field(..., description="Natural language query")
     top_k: int = Field(6, ge=1, le=50, description="Number of results from each source")
-    web_search: bool = Field(True, description="Include web search results")
+    web_search: bool = Field(False, description="Include web search results (opt-in; off by default to avoid PHI egress)")
     crawl_depth: int = Field(8, ge=0, le=20, description="Number of web pages to crawl for full text")
     include_local: bool = Field(True, description="Include local RAG index results")
 
@@ -761,7 +815,7 @@ def _score_web_result(url: str, title: str, snippet: str, cfg: Dict[str, Any]) -
     return min(score, 0.95)  # Cap at 0.95
 
 
-@app.post("/web_query", response_model=QueryResponse)
+@app.post("/web_query", response_model=QueryResponse, dependencies=[Depends(require_api_key)])
 def web_query(req: WebQueryRequest) -> QueryResponse:
     """
     Hybrid query that combines local RAG index with web search + full-text extraction.
@@ -771,6 +825,14 @@ def web_query(req: WebQueryRequest) -> QueryResponse:
     3. Extracts full text from top web results using Crawl4AI
     4. Combines and ranks all results with proper tier classification
     """
+    # PHI egress gate: never forward patient-identifying text to external services.
+    phi_hit = _phi_in_query(req.query)
+    if phi_hit:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Query blocked: contains {phi_hit} (patient-identifying data) and "
+                   "cannot be sent to external search services.",
+        )
     cfg = _load_settings()
     
     # Get local RAG results
