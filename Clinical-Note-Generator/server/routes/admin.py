@@ -1,6 +1,7 @@
 # server/routes/admin.py
 import copy
 import json
+import logging
 import os
 import subprocess
 from pathlib import Path
@@ -18,6 +19,9 @@ router = APIRouter(
     tags=["admin"],
     dependencies=[Depends(get_current_admin)],
 )
+
+logger = logging.getLogger("cng.admin")
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 LOGS_DIR = BASE_DIR / ".." / "logs"
@@ -110,6 +114,9 @@ def _pchost_stack_proxy_row(service_id: str, display: str, allowlist_key: str) -
             prev = (row.get("note") or "").strip()
             row["note"] = ("reachable — " + prev) if prev else "reachable"
     except Exception:
+        # Best-effort status enrichment: a live port overrides a stale OS
+        # status. If the merge fails for any reason, return the row (and status)
+        # as already computed rather than error the whole services list.
         pass
     return row
 
@@ -419,13 +426,19 @@ def _reload_llm_clients_from_disk() -> None:
         if hasattr(note_gen, "reload_config"):
             note_gen.reload_config()
     except Exception:
-        pass
+        # Best-effort hot-reload after a config.json save. If the running note
+        # generator can't reload, the saved config still applies on next service
+        # restart -- but the operator's action did NOT take effect live, so say
+        # so instead of silently claiming success.
+        logger.warning("note_gen.reload_config() failed after config save", exc_info=True)
     try:
         from services.note_generator_clean import get_simple_note_generator
 
         get_simple_note_generator("qa_text").reload_config()
     except Exception:
-        pass
+        # Same rationale as above: the QA-text client failed to hot-reload the
+        # saved config; surface it so the operator knows to restart to apply.
+        logger.warning("qa_text.reload_config() failed after config save", exc_info=True)
 
 
 @router.get("/logs/tail")
@@ -505,6 +518,9 @@ def _fs_allowed_roots() -> List[Path]:
             if e.exists() and e.is_dir():
                 roots.append(e.resolve())
         except Exception:
+            # Best-effort root discovery: skip any candidate dir that can't be
+            # resolved/inspected (gone, perms); the filesystem browser stays
+            # usable with whatever roots it did collect.
             pass
     seen: set[str] = set()
     out: List[Path] = []
@@ -574,6 +590,8 @@ def _fs_browse_resolve_preset(preset: Optional[str]) -> Optional[str]:
                     seen_paths.add(sp)
                     candidates.append(r)
         except Exception:
+            # Best-effort preset foldering: skip this candidate on any failure
+            # and keep scanning the other roots.
             pass
         for rel in (
             ("models", seg),
@@ -695,6 +713,8 @@ def ocr_status(url: Optional[str] = None) -> Dict:
         else:
             host = parts
     except Exception:
+        # Best-effort host:port parse of the probe URL for the reachability
+        # check; on any malformed URL fall through to the pre-set host/port.
         pass
     ok = _port_open(host, port)
 
@@ -727,6 +747,9 @@ def ocr_status(url: Optional[str] = None) -> Dict:
                                     if name:
                                         names.append(str(name))
                         except Exception:
+                            # Best-effort model-name extraction for the status
+                            # hint; if it trips, still keep the http_models
+                            # block with the model_count already computed.
                             pass
                         http_models = {"status": r2.status_code, "ok": 200 <= r2.status_code < 500, "model_count": model_count, "models": names}
                     else:
@@ -768,6 +791,8 @@ def llama_status() -> Dict:
         else:
             host = host_port
     except Exception:
+        # Best-effort host:port parse of the configured text URL for the status
+        # view; fall through to the default 127.0.0.1:8004 on malformed input.
         pass
 
     # Check if port is open
@@ -829,6 +854,9 @@ def llama_status() -> Dict:
                         if isinstance(caps, list):
                             active_caps = [str(x) for x in caps]
     except Exception:
+        # Best-effort normalization of the upstream model-info response. If the
+        # fields don't match either schema, leave active_* unset (UI degrades to
+        # 'unknown') rather than fail the whole llama status endpoint.
         pass
 
     # Compute in_sync between configured/resolved and active model
@@ -1000,7 +1028,11 @@ def _load_cfg() -> Dict:
             with open(CONFIG_PATH, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception:
-            pass
+            # Corrupt/unreadable *present* admin config: fall back to plan
+            # defaults rather than break the admin UI, but surface the
+            # misconfiguration instead of swallowing it silently. (Missing
+            # config stays silent - defaults are the normal baseline.)
+            logger.warning("Failed to load admin config/config.json; using defaults", exc_info=True)
     # Defaults per plan
     return {
         "save_audio": True,
@@ -1051,6 +1083,8 @@ def _parse_port_from_url(url: Optional[str], default: int) -> int:
         if ":" in host_port:
             return int(host_port.rsplit(":", 1)[1])
     except Exception:
+        # Malformed URL -> fall through and report the default port; safe parse
+        # guard (a bad enum can't abort the services status computation).
         pass
     return default
 
@@ -1159,6 +1193,8 @@ def _service_action_win(name: str, action: str) -> Tuple[bool, str]:
                                 if kill_code == 0:
                                     return True, f"Process killed directly (PID: {pid})"
                         except Exception:
+                            # Best-effort PID parse from the tasklist scan; on
+                            # failure fall through to the next fallback strategy.
                             pass
 
             # 4. Last resort: try to kill by process name
@@ -1225,6 +1261,8 @@ def services_status() -> Dict:
                 prev = (st.get("note") or "").strip()
                 st["note"] = ("reachable — " + prev) if prev else "reachable"
         except Exception:
+            # Best-effort status enrichment (same as services row builder): the
+            # finalize merge must not abort the whole services status response.
             pass
 
     services: Dict[str, Dict] = {}
