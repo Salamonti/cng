@@ -104,6 +104,9 @@ def sync_env_from_structure(data: Dict[str, Any]) -> Dict[str, Any]:
             if isinstance(pch, dict):
                 pch["backend_url"] = f"http://127.0.0.1:{port}"
         except (TypeError, ValueError):
+            # Legitimately safe to swallow: on a non-integer fastapi_port we just
+            # leave backend_url unset (defaults apply); nothing operator-visible
+            # regresses.
             pass
 
     return data

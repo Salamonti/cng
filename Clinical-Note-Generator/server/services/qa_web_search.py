@@ -125,6 +125,8 @@ async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
                         data = await r.json()
                         break
                 except Exception:
+                    # Legitimate failover: SearXNG is multi-endpoint; a failure on
+                    # one base simply tries the next (and ultimately returns []).
                     continue
             if data is not None:
                 break
@@ -192,8 +194,12 @@ async def searx_search(query: str, *, limit: int = 8) -> List[Dict[str, Any]]:
                                         "source": "pubmed",
                                     })
                             except ET.ParseError:
+                                # Legitimately safe: a malformed PubMed abstract XML
+                                # for one batch is skipped; other batches still parse.
                                 pass
                 except Exception:
+                    # Legitimate failover: efetch for one PMID batch failing just
+                    # omits those abstracts; non-PubMed results still surface.
                     pass
     
     # Then add non-PubMed results that pass allowlist

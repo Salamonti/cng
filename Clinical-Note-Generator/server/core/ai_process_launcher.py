@@ -24,6 +24,8 @@ def parse_port_from_url(url: str) -> Optional[int]:
         if ":" in rest:
             return int(rest.rsplit(":", 1)[1])
     except (ValueError, IndexError):
+        # Legitimately safe: an unparsable URL yields no port; caller falls back
+        # to an explicit port field or raises a clear "set port" error.
         pass
     return None
 
@@ -265,6 +267,9 @@ def _windows_listen_pids(port: int) -> List[int]:
                     if pid > 0:
                         out.append(pid)
     except Exception:
+        # Best-effort Windows-only netstat probe: if it fails we simply report
+        # "no listener found" (stop_listeners_on_port already returns a message).
+        # Retaining silence here avoids flapping on non-English netstat output.
         pass
     return sorted(set(out))
 

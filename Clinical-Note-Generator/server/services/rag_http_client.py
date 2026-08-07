@@ -18,14 +18,20 @@ class RAGHttpClient:
     def _load_cfg(self) -> Dict[str, Any]:
         if self._cfg is not None:
             return self._cfg
+        cfg_path = Path(__file__).resolve().parents[2] / "config" / "config.json"
         try:
-            cfg_path = Path(__file__).resolve().parents[2] / "config" / "config.json"
             if cfg_path.exists():
                 with open(cfg_path, "r", encoding="utf-8") as f:
                     self._cfg = json.load(f)
                     return self._cfg
         except Exception:
-            pass
+            # Unsafe to swallow fully: a corrupt config.json silently drops the
+            # operator's RAG settings (URLs, min_score). The client still runs
+            # with defaults, but the loss must be visible.
+            import logging
+            logging.getLogger("cng.rag_http_client").warning(
+                "Failed to load RAG config.json (%s); using defaults", cfg_path, exc_info=True
+            )
         self._cfg = {}
         return self._cfg
 
@@ -35,6 +41,8 @@ class RAGHttpClient:
             if len(y) >= 4 and y[:4].isdigit():
                 return int(y[:4])
         except Exception:
+            # Legitimately safe: an unparseable date simply yields no year; the
+            # caller renders without one.
             return None
         return None
 
@@ -173,6 +181,8 @@ class RAGHttpClient:
                     scs = [float(x.get("score", 0.0)) for x in res]
                     return (sum(scs) / max(1, len(scs))) < 0.12 or len(" ".join([x.get("text", "") for x in res]).split()) < 40
                 except Exception:
+                    # Legitimately safe: if scores won't coerce, treat the set as
+                    # "not weak" (don't trigger a keyword fallback spuriously).
                     return False
 
             # Fallback: broaden recall using keywords if weak
@@ -209,6 +219,8 @@ class RAGHttpClient:
                                 norm_r["tier"] = r["tier"]
                             norm_results.append(norm_r)
                 except Exception:
+                    # Legitimately safe: the keyword-recall fallback is best-effort
+                    # enrichment. If it fails we keep the original results.
                     pass
 
             # Compose context from normalized results

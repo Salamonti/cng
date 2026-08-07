@@ -3,9 +3,12 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 import json
+import logging
 from server.core.preprocessing import PreprocessingPipeline, TokenBudgetTruncator
 from server.core.preprocessing.constants import effective_preprocessing_config
 from server.core.prompt.policy_v2 import canonical_system_prompt
+
+logger = logging.getLogger("cng.prompt.builder")
 
 CONFIG_PATH = Path(__file__).resolve().parents[3] / "config" / "config.json"
 
@@ -18,8 +21,11 @@ def load_config() -> Dict:
         try:
             with open(CONFIG_PATH, "r", encoding="utf-8") as f:
                 return json.load(f)
-        except Exception:
-            pass
+        except Exception as exc:
+            # Unsafe to swallow silently: prompt building reads config.json
+            # (note-type prompts, specialty text). A corrupt/missing parse
+            # silently degrades every generated prompt. Log it explicitly.
+            logger.warning("Failed to load config.json (%s): %r", CONFIG_PATH, exc)
     return {}
 
 

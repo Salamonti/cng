@@ -146,6 +146,8 @@ class VisionQAEngine:
                                 self._model_id_cache[base_url] = (mid, now + self._model_cache_ttl_sec)
                                 return mid
         except Exception:
+            # Legitimately safe: a model-id probe failure falls back to the
+            # configured model name / "auto"; the real call reports failures.
             pass
 
         return self.model_name or "auto"
@@ -183,6 +185,7 @@ class VisionQAEngine:
         try:
             max_tokens = int(os.environ.get("VISION_EVIDENCE_MAX_TOKENS", "2048"))
         except (TypeError, ValueError):
+            # Legitimately safe: a non-integer env token cap keeps the default 2048.
             max_tokens = 2048
         payload: Dict[str, Any] = {
             "model": self.model_name,
@@ -231,6 +234,9 @@ class VisionQAEngine:
                 try:
                     return normalize_visual_evidence(json.loads(cleaned[start : end + 1]), cleaned)
                 except (TypeError, ValueError, json.JSONDecodeError):
+                    # Legitimately safe: falling back to an empty evidence dict
+                    # below (normalize_visual_evidence({}, ...)) is the designed
+                    # degraded output when the model emits no parseable JSON.
                     pass
         return normalize_visual_evidence({}, cleaned)
 
@@ -542,4 +548,6 @@ class VisionQAEngine:
                 ):
                     pass
         except Exception:
+            # Cleanup-guard: resetting the llama.cpp context cache is best-effort;
+            # failure leaves stale KV but never invalidates the returned evidence.
             pass

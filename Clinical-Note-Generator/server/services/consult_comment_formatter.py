@@ -230,6 +230,9 @@ def parse_consult_json(raw_output: str) -> Dict[str, Any]:
     try:
         return json.loads(text)
     except (json.JSONDecodeError, ValueError):
+        # Legitimately safe: falling through to the substring parse / raw-text
+        # fallback rendering ({'raw':..., 'parse_error':True}) is the designed
+        # tolerant path for model output.
         pass
 
     # Try to find JSON object within the text
@@ -238,6 +241,7 @@ def parse_consult_json(raw_output: str) -> Dict[str, Any]:
         try:
             return json.loads(m.group(0))
         except (json.JSONDecodeError, ValueError):
+            # Legitimately safe: same tolerant fallback as above.
             pass
 
     # Return raw text for fallback rendering

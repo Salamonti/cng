@@ -7,6 +7,7 @@ from typing import Dict
 
 from fastapi import APIRouter
 from server.metrics import metrics as global_metrics
+from server.core.asr_incident_store import incident_store_degraded_count
 
 
 router = APIRouter()
@@ -21,6 +22,7 @@ def health() -> Dict:
     return {
         "status": "ok",
         "uptime_sec": int(time.time() - start_time),
+        "asr_incident_store_degraded": incident_store_degraded_count(),
     }
 
 

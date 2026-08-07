@@ -42,6 +42,8 @@ def _ports_from_spec(spec: Dict[str, Any]) -> List[int]:
         try:
             out.append(int(p))
         except (TypeError, ValueError):
+            # Legitimately safe: an unparsable port entry is skipped; the process
+            # simply gets fewer explicit ports to probe/clean.
             pass
     return out
 
@@ -80,6 +82,8 @@ def build_office_argv(
             try:
                 fp = int(str(os.environ["FASTAPI_PORT"]).strip())
             except ValueError:
+                # Legitimately safe: a non-integer FASTAPI_PORT env keeps the
+                # resolved config/default port.
                 pass
         argv = [
             py,
@@ -111,6 +115,7 @@ def build_office_argv(
         try:
             port = int(port)
         except (TypeError, ValueError):
+            # Legitimately safe: non-integer port falls back to the default 8007.
             port = 8007
         argv = [
             py,
@@ -186,6 +191,7 @@ def stack_listen_ports(data: Dict[str, Any]) -> List[int]:
             try:
                 ports.append(int(p))
             except (TypeError, ValueError):
+                # Legitimately safe: an unparsable cleanup port entry is skipped.
                 pass
     return sorted(set(ports))
 

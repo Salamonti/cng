@@ -51,6 +51,9 @@ class OCRLLMEngine:
             response = requests.get(f"{self.primary_url}/health", timeout=5)
             return response.status_code == 200
         except Exception:
+            # Legitimate: a down/unreachable server is signalled to the caller via
+            # the False return (primary/failover routing); False is the designed
+            # state, not an error.
             return False
 
     def _resolve_model_id_for_url(self, base_url: str) -> str:
@@ -82,6 +85,9 @@ class OCRLLMEngine:
                         self._model_id_cache[base_url] = (mid, now + self._model_cache_ttl_sec)
                         return mid
         except Exception:
+            # Legitimately safe: a model-id probe failure falls back to the
+            # configured model name / "auto"; the server endpoint itself is still
+            # exercised on the real call where failures are reported.
             pass
 
         return self.model_name or "auto"
@@ -90,7 +96,8 @@ class OCRLLMEngine:
         if self._warmed:
             return
         try:
-            # cheap health check; ignore errors
+            # cheap health check; ignore errors (a failed warmup just means the
+            # first real call pays the connection cost — no state is corrupted)
             self._session.get(f"{self.primary_url}/health", timeout=3)
         except Exception:
             pass
@@ -101,6 +108,8 @@ class OCRLLMEngine:
         try:
             self._session.post(f"{base_url}/command", json={"cmd": "reset"}, timeout=3)
         except Exception:
+            # Cleanup-guard: flushing server KV cache is best-effort; failure
+            # leaves stale cache but never affects the returned OCR text.
             pass
 
     def ocr_image_bytes(

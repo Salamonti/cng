@@ -115,8 +115,8 @@ def _migrate_sqlite_queued_jobs_columns() -> None:
         with engine.begin() as conn:
             for stmt in alters:
                 conn.execute(text(stmt))
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("SQLite queued_jobs column migration failed: %s", exc)
 
 
 def _migrate_sqlite_asr_segment_columns() -> None:

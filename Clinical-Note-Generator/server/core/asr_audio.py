@@ -63,6 +63,9 @@ def _resolve_ffmpeg_bin() -> Optional[str]:
             if fp and Path(fp).exists():
                 return fp
     except Exception:
+        # Safe to swallow: config.json ffmpeg_path is only the last-resort
+        # resolution; FFMPEG_BIN env and PATH are checked first, and callers
+        # handle "no ffmpeg" explicitly.
         pass
     return None
 

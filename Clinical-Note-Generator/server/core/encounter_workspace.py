@@ -215,6 +215,8 @@ def _delete_queued_file_safely(server_file_key: str) -> None:
         if file_path.exists():
             file_path.unlink()
     except OSError:
+        # Cleanup guard: best-effort delete of a queued file; a leftover/locked
+        # file is not user-visible (the DB row is removed by the caller).
         pass
 
 
@@ -231,6 +233,8 @@ def _delete_asr_segment_file_safely(server_file_key: str) -> None:
         if file_path.exists():
             file_path.unlink()
     except OSError:
+        # Cleanup guard: best-effort delete of an ASR segment file; an orphan
+        # is not user-visible and the DB row removal is the caller's concern.
         pass
 
 

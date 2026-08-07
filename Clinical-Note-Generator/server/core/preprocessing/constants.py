@@ -42,6 +42,8 @@ def effective_preprocessing_config(cfg: Optional[Dict[str, Any]] = None) -> Dict
             try:
                 base["truncation"][key] = int(trunc_user[key])
             except (TypeError, ValueError):
+                # Legitimately safe to swallow: a non-integer user override for a
+                # token budget keeps the validated default already in `base`.
                 pass
 
     # Safe chart cleaning always on; section truncation only when over budget (see truncator).

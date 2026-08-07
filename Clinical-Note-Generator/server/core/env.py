@@ -37,5 +37,9 @@ def load_env_file() -> Path:
                 import os
                 os.environ.setdefault(key, value)
         except Exception:
-            pass
+            # Safe to swallow: this is only the no-python-dotenv fallback; a
+            # malformed .env here leaves env vars simply unset, and explicit
+            # process env still wins everywhere. Debug-level for diagnosability.
+            import logging
+            logging.getLogger("cng.env").debug("Failed to parse .env fallback at %s", env_path)
     return env_path

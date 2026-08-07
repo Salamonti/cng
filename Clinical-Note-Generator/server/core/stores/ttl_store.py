@@ -31,7 +31,13 @@ class TTLStore(Generic[K, V]):
         try:
             self.evict_expired()
         except Exception:
-            pass  # don't crash the daemon thread
+            # This runs on a daemon thread; a guard must never let a sweep take
+            # down the process. But a sweep failure means entries are NOT being
+            # evicted (memory/accumulation), so it must not be fully silent.
+            import logging
+            logging.getLogger("cng.ttl_store").warning(
+                "TTLStore sweep failed for ttl_seconds=%s; entries may not be evicted", self._ttl_seconds, exc_info=True
+            )
         self._start_sweep()
 
     def _is_expired(self, key: K, now: Optional[float] = None) -> bool:

@@ -7,9 +7,12 @@ Override with real environment variables when needed (CI, containers).
 from __future__ import annotations
 
 import json
+import logging
 import os
 from pathlib import Path
 from typing import Any, Dict
+
+logger = logging.getLogger("cng.service_endpoints")
 
 
 def _project_root() -> Path:
@@ -32,7 +35,11 @@ def load_service_endpoints() -> Dict[str, Any]:
         with p.open(encoding="utf-8") as f:
             data = json.load(f)
         return data if isinstance(data, dict) else {}
-    except Exception:
+    except Exception as exc:
+        # Unsafe to swallow silently: a malformed service_endpoints.json means
+        # operator-configured URLs/ports are silently ignored and the app falls
+        # back to defaults. Surface it so config corruption is caught early.
+        logger.warning("Failed to parse service_endpoints.json (%s): %r", p, exc)
         return {}
 
 
@@ -56,4 +63,6 @@ def apply_service_endpoints() -> None:
         try:
             os.environ["FASTAPI_PORT"] = str(int(fp))
         except (TypeError, ValueError):
+            # Legitimately safe: a non-integer fastapi_port is left unset, and
+            # the app's default port resolution applies.
             pass
