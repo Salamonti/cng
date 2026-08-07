@@ -78,6 +78,18 @@ _HEADING_RE = re.compile(r"^\s*(?:#{1,3}\s+)?(.+?)\s*:?\s*$", re.MULTILINE)
 def _match_heading(heading_text: str) -> Optional[str]:
     """Match a heading text to a canonical section name."""
     text = heading_text.strip().lower()
+    # The note producer (v8 / prompt-policy) wraps section headings in bold
+    # markdown, e.g. "**Assessment:**", "**Plan:**",
+    # "**History of Present Illness:**". Strip the **/* emphasis wrapper AND any
+    # trailing colon (the _HEADING_RE colon-strip only fires for plain headings,
+    # so bold headings keep it) so all of "**Assessment**", "**Assessment**:",
+    # "Assessment:", "Assessment" collapse to canonical "assessment". This is the
+    # same producer/consumer mismatch as the leading-'#' fix (05bb4a8b): unwrap
+    # whatever the note emits before matching. Safe: a line only becomes a heading
+    # when the unwrapped text still maps to a known canonical section, so content
+    # lines (e.g. "Weight: 85kg", "BP: 130/80") still fall through as content.
+    text = re.sub(r"^\*{1,3}\s*|\s*\*{1,3}$", "", text)
+    text = text.rstrip(":").strip()
     # Exact match first
     if text in _HEADING_TO_CANONICAL:
         return _HEADING_TO_CANONICAL[text]

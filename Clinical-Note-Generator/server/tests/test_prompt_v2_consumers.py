@@ -93,6 +93,27 @@ class TestPatientMaterialSectionsAcrossNoteTypes:
         sections = parse_note_sections("## Medications\nAspirin 81mg.\n\n## Plan\n1. Continue.\n")
         assert "Aspirin" in sections.get("medications", "")
 
+    def test_bold_markdown_headings_parse(self):
+        """Production v8 notes emit **Bold:** section headings; unwrap before matching."""
+        sections = parse_note_sections(
+            "**History of Present Illness:**\n6 weeks dry cough and fatigue.\n\n"
+            "**Physical Examination:**\nMild expiratory wheeze.\n\n"
+            "**Assessment:**\nAsthma.\n\n"
+            "**Plan:**\n1. Fluticasone inhaler.\n"
+        )
+        assert "Asthma" in sections.get("assessments", ""), sections
+        assert "Fluticasone" in sections.get("plan", ""), sections
+        assert "cough" in sections.get("hpi", ""), sections
+
+    def test_bold_join_markdown_headings_parse(self):
+        """Combined '## **Assessment**' and '**Assessment/Impression**' forms."""
+        sections = parse_note_sections(
+            "## **Assessment/Impression**\nCOPD exacerbation.\n\n"
+            "**Medications and Allergies**\nAmoxicillin.\n"
+        )
+        assert "COPD" in sections.get("assessments", "")
+        assert "Amoxicillin" in sections.get("medications", "")
+
     def test_content_lines_are_not_mistaken_for_headings(self):
         """The original '#'-required guard existed to stop this; keep it true."""
         sections = parse_note_sections(

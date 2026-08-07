@@ -361,7 +361,12 @@
     }
 
     function gatherPatientData() {
-        const data = {};
+        // Start from the last-saved patient data (if any) so that re-clicking
+        // Diet/Exercise after a successful generation still sends valid vitals,
+        // even though the form inputs were replaced by the rendered material (so
+        // they are no longer in the DOM). Overlay any inputs still present so the
+        // form path (first click / submitPatientDataForm) works unchanged.
+        const data = Object.assign({}, window.patientMaterialsState.patientData || {});
 
         // Weight
         const weightInput = document.getElementById('pmWeightKg');
