@@ -106,7 +106,7 @@ app.use((req, res, next) => {
   res.set('X-Content-Type-Options', 'nosniff');
   res.set('X-Frame-Options', 'DENY');
   res.set('Referrer-Policy', 'no-referrer');
-  res.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  res.set('Permissions-Policy', 'camera=(self), microphone=(self), geolocation=()');
   if (req.secure || req.get('x-forwarded-proto') === 'https') {
     res.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
   }
