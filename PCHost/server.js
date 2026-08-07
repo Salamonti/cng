@@ -395,16 +395,23 @@ app.get('/', (req, res) => res.sendFile(path.join(webDir, 'index.html')));
 app.get('/qa', (req, res) => res.sendFile(path.join(webDir, 'qa.html')));
 
 // User manual (static site served at /manual)
-const manualDir = path.join(__dirname, '..', 'docs', 'manual', 'site');
+const manualDir = path.resolve(__dirname, '..', 'docs', 'manual', 'site');
 if (fs.existsSync(manualDir)) {
-  app.use('/manual', express.static(manualDir, { index: 'index.html' }));
+  app.use('/manual', express.static(manualDir, { index: 'index.html', dotfiles: 'deny' }));
   app.get('/manual', (req, res) => res.sendFile(path.join(manualDir, 'index.html')));
   app.get('/manual/*', (req, res) => {
-    const p = path.join(manualDir, req.path.replace(/^\/manual/, ''));
-    if (req.path === '/manual' || req.path.endsWith('/')) {
-      return res.sendFile(path.join(p, 'index.html'));
+    // SECURITY: resolve and enforce containment so `..` / absolute paths
+    // cannot escape manualDir (was: sendFile without root, path traversal
+    // -> arbitrary file read, incl. the patient SQLite DB).
+    const rel = req.path.replace(/^\/manual\/?/, '');
+    const resolved = path.resolve(manualDir, rel);
+    if (resolved !== manualDir && !resolved.startsWith(manualDir + path.sep)) {
+      return res.status(403).send('Forbidden');
     }
-    return res.sendFile(p);
+    if (req.path.endsWith('/')) {
+      return res.sendFile(path.join(resolved, 'index.html'));
+    }
+    return res.sendFile(resolved);
   });
 }
 
@@ -416,21 +423,26 @@ app.get('*', (req, res) => {
   return res.sendFile(path.join(webDir, 'index.html'));
 });
 
-// Start servers
-const httpServer = http.createServer(app);
-httpServer.listen(HTTP_PORT, config.host, () => {
-  console.log('HTTP server listening on', config.host + ':' + HTTP_PORT);
-});
-
-if (sslOptions) {
-  const httpsServer = https.createServer(sslOptions, app);
-  httpsServer.listen(HTTPS_PORT, config.host, () => {
-    console.log('HTTPS server listening on', config.host + ':' + HTTPS_PORT);
+if (require.main === module) {
+  // Start servers
+  const httpServer = http.createServer(app);
+  httpServer.listen(HTTP_PORT, config.host, () => {
+    console.log('HTTP server listening on', config.host + ':' + HTTP_PORT);
   });
-} else {
-  console.log('HTTPS not enabled (no SSL certs found)');
+
+  if (sslOptions) {
+    const httpsServer = https.createServer(sslOptions, app);
+    httpsServer.listen(HTTPS_PORT, config.host, () => {
+      console.log('HTTPS server listening on', config.host + ':' + HTTPS_PORT);
+    });
+  } else {
+    console.log('HTTPS not enabled (no SSL certs found)');
+  }
+
+  // Graceful shutdown
+  process.on('SIGTERM', () => { console.log('Server shutting down (SIGTERM)'); process.exit(0); });
+  process.on('SIGINT', () => { console.log('Server shutting down (SIGINT)'); process.exit(0); });
 }
 
-// Graceful shutdown
-process.on('SIGTERM', () => { console.log('Server shutting down (SIGTERM)'); process.exit(0); });
-process.on('SIGINT', () => { console.log('Server shutting down (SIGINT)'); process.exit(0); });
+// Exported for tests (route/integration). server.js no longer auto-listens when imported.
+module.exports = { app, sslOptions };
