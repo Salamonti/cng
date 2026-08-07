@@ -29,7 +29,7 @@ from server.core.profile_service import (
     note_type_uses_other_builder,
 )
 from server.core.deid.v1 import deidentify_text
-from server.core.logging.dataset_logger import log_case_record
+from server.core.logging.dataset_logger import log_case_quarantine, log_case_record
 from server.core.http_actor import extract_request_actor
 from server.core.stores.generation_store import (
     _generation_cache,
@@ -272,7 +272,35 @@ def _log_case_completion(
         },
         "feedback_snapshot": None,
     }
-    log_case_record(case_record)
+    # M-2: de-id residual enforcement. The de-id pass sets residual_any /
+    # ner_error when something may STILL be exposed after redaction (or the
+    # NER backstop errored). Such records must not enter the clean training
+    # store -- that store is treated as PHI-clean by consumers. Route them to
+    # a quarantine file instead (kept for review) and raise an alert so an
+    # operator/agent can inspect the leak.
+    input_flags = (case_record.get("input_deid") or {}).get("leak_flags", {}) or {}
+    output_flags = (case_record.get("output_deid") or {}).get("leak_flags", {}) or {}
+    residual = bool(
+        input_flags.get("residual_any")
+        or input_flags.get("ner_error_any")
+        or output_flags.get("residual_any")
+        or output_flags.get("ner_error")
+    )
+    if residual:
+        case_record["quarantined"] = True
+        case_record["quarantine_reason"] = {
+            "input_residual_any": bool(input_flags.get("residual_any")),
+            "input_ner_error_any": bool(input_flags.get("ner_error_any")),
+            "output_residual_any": bool(output_flags.get("residual_any")),
+            "output_ner_error": bool(output_flags.get("ner_error")),
+        }
+        path = log_case_quarantine(case_record)
+        print(
+            f"[DEID-QUARANTINE] case_id={case_id} residual PHI suspected; "
+            f"blocked from clean training store -> {path}"
+        )
+    else:
+        log_case_record(case_record)
 
 
 def truncate_to_context_length_tokens(text: str, max_tokens: int) -> str:

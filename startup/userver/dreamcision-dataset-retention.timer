@@ -1,0 +1,10 @@
+[Unit]
+Description=Nightly DreamCision dataset/JSONL retention (04:00 America/Halifax)
+
+[Timer]
+OnCalendar=*-*-* 04:00:00 America/Halifax
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

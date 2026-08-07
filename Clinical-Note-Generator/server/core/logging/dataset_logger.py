@@ -40,6 +40,20 @@ def log_case_record(record: Dict[str, Any]) -> str:
     return str(path)
 
 
+def log_case_quarantine(record: Dict[str, Any]) -> str:
+    """M-2: persist a case record that FAILED de-id residual checks.
+
+    A case whose input or output still has residual_any/ner_error set after
+    de-id must NOT land in the clean training store (cases_*.jsonl) -- that
+    store is the source for training/audit and treats every line as
+    PHI-clean. Route such records to a date-stamped quarantine file so they
+    survive for a security review but never pollute training data.
+    """
+    path = _dataset_dir() / f"cases_quarantine_{_today_utc()}.jsonl"
+    _append_jsonl(path, record)
+    return str(path)
+
+
 def log_case_event(event: Dict[str, Any]) -> str:
     path = _dataset_dir() / f"case_events_{_today_utc()}.jsonl"
     _append_jsonl(path, event)
