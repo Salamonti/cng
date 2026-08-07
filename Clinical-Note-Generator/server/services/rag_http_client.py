@@ -141,26 +141,6 @@ class RAGHttpClient:
                 p["specialty"] = specialty
             return p
 
-    def _auth_headers(self) -> Dict[str, str]:
-        # Shared-key auth with the RAG service. Key lives server-side in
-        # secrets.env (RAG_API_KEY); never exposed to the browser.
-        headers: Dict[str, str] = {}
-        key = os.environ.get("RAG_API_KEY", "")
-        if key:
-            headers["X-API-Key"] = key
-        return headers
-
-    async def _post(self, session: aiohttp.ClientSession, pld: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-        url = f"{self.base_url}/query"
-        async with session.post(url, json=pld, headers=self._auth_headers()) as resp:
-            if resp.status != 200:
-                txt = await resp.text()
-                raise RuntimeError(f"RAG /query failed: HTTP {resp.status}: {txt[:200]}")
-            data = await resp.json()
-            results: List[Dict[str, Any]] = data.get("results", []) or []
-            used: Dict[str, Any] = data.get("used_filters", {}) or {}
-            return results, used
-
         cfg = self._load_cfg()
         cap_words = int(cfg.get("rag_max_context_words", 600))
         # Per-snippet soft cap
@@ -225,7 +205,6 @@ class RAGHttpClient:
                             norm_r["metadata"] = md
                             norm_r["text"] = str(r.get("text", ""))
                             norm_r["score"] = sc
-                            # Preserve tier from RAG API (guideline/trial/pubmed/web)
                             if "tier" in r:
                                 norm_r["tier"] = r["tier"]
                             norm_results.append(norm_r)
@@ -242,13 +221,30 @@ class RAGHttpClient:
                 # When nothing clears the relevance bar, send NO context rather
                 # than falling back to the entire low-scoring set. Handing the
                 # model irrelevant snippets labelled "evidence" makes it refuse
-                # to answer at all (observed 2026-08-05: "causes of mood swings"
-                # retrieved an unrelated SSRI-seizure case report at score 0.51
-                # and the assistant declined). With no context, the prompt's
-                # established-practice path runs normally.
+                # to answer at all (observed 2026-08-05).
                 norm_results = [
                     r for r in norm_results if float(r.get("score", 0.0)) >= min_score
                 ]
             context = self._compose_context(norm_results[:top_k], cap_words)
             used["min_score"] = min_score
             return context, norm_results, used
+
+    def _auth_headers(self) -> Dict[str, str]:
+        # Shared-key auth with the RAG service. Key lives server-side in
+        # secrets.env (RAG_API_KEY); never exposed to the browser.
+        headers: Dict[str, str] = {}
+        key = os.environ.get("RAG_API_KEY", "")
+        if key:
+            headers["X-API-Key"] = key
+        return headers
+
+    async def _post(self, session: aiohttp.ClientSession, pld: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+        url = f"{self.base_url}/query"
+        async with session.post(url, json=pld, headers=self._auth_headers()) as resp:
+            if resp.status != 200:
+                txt = await resp.text()
+                raise RuntimeError(f"RAG /query failed: HTTP {resp.status}: {txt[:200]}")
+            data = await resp.json()
+            results: List[Dict[str, Any]] = data.get("results", []) or []
+            used: Dict[str, Any] = data.get("used_filters", {}) or {}
+            return results, used
