@@ -65,6 +65,59 @@ def _asr_debug_sample_bytes() -> int:
     return max(0, min(4096, n))
 
 
+def _asr_max_upload_bytes() -> int:
+    """Hard cap on a single ASR upload (bytes). Guards against unbounded
+    full-file buffering into RAM (Step 9 M-ASR): an attacker or a buggy
+    client must not be able to POST an arbitrarily large body and force us to
+    hold it entirely in memory while normalising + forwarding. Configurable
+    via ASR_MAX_UPLOAD_BYTES (default 350 MB — comfortably above any real
+    consultation recording while bounding memory)."""
+    try:
+        n = int(str(os.environ.get("ASR_MAX_UPLOAD_BYTES") or "0").strip())
+    except Exception:
+        n = 0
+    return n if n > 0 else 350_000_000
+
+
+# Read a Starlette UploadFile to bytes with a hard size cap enforced WHILE
+# streaming (so we never allocate an unbounded buffer, and never materialise
+# an oversized body fully before rejecting it).
+async def _read_audio_bounded(upload: Any, trace_id: str) -> bytes:
+    max_bytes = _asr_max_upload_bytes()
+    buf = bytearray()
+    CHUNK = 1 << 20  # 1 MiB
+    try:
+        while True:
+            chunk = await upload.read(CHUNK)
+            if not chunk:
+                break
+            buf.extend(chunk)
+            if len(buf) > max_bytes:
+                _audit(
+                    trace_id,
+                    "pipeline.reject_oversize",
+                    size_bytes=len(buf),
+                    max_bytes=max_bytes,
+                    reason="upload_exceeds_max",
+                )
+                raise HTTPException(
+                    status_code=413,
+                    detail={
+                        "message": (
+                            f"Recording exceeds the maximum upload size "
+                            f"({max_bytes // (1024 * 1024)} MB)."
+                        ),
+                        "trace_id": trace_id,
+                    },
+                )
+    finally:
+        try:
+            await upload.close()
+        except Exception:
+            pass
+    return bytes(buf)
+
+
 def _hex(b: bytes, limit: int = 64) -> str:
     if not b:
         return ""
@@ -631,7 +684,10 @@ async def transcribe_diarized(request: Request):
 
         prompt = str(form.get("prompt") or "").strip()
 
-        data = await audio.read() if hasattr(audio, 'read') else audio.file.read()
+        # Step 9 (M-ASR): read the upload with a hard size cap enforced while
+        # streaming, so an oversized body is rejected (413) before it is ever
+        # fully buffered into memory.
+        data = await _read_audio_bounded(audio, trace_id)
         filename = getattr(audio, 'filename', 'audio') or 'audio'
         content_type = getattr(audio, 'content_type', None) or 'application/octet-stream'
         sniff = _sniff_magic(data)

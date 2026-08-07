@@ -22,15 +22,43 @@ function _loadMergedConfig() {
     console.log('service_endpoints.json load skipped:', e.message);
   }
   const ph = ep.pchost && typeof ep.pchost === 'object' ? ep.pchost : {};
+  const envBlock = ep.env && typeof ep.env === 'object' ? ep.env : {};
   const out = { ...base };
   for (const k of ['backend_url', 'http_port', 'https_port']) {
     if (ph[k] !== undefined && ph[k] !== null && ph[k] !== '') {
       out[k] = ph[k];
     }
   }
+  // M-7: consume the downstream service endpoints from the SINGLE source of
+  // truth (service_endpoints.json env block) rather than second-sourcing them
+  // here. These are informational + validated at startup; the actual proxying
+  // of RAG/SearXNG happens backend-side through FastAPI. Runtime env still
+  // wins (lets a deploy override without editing the JSON).
+  out.rag_url = process.env.RAG_URL || envBlock.RAG_URL || '';
+  out.searxng_url = process.env.SEARXNG_URL || envBlock.SEARXNG_URL || '';
   return out;
 }
 const config = _loadMergedConfig();
+
+// M-7: validate the consumed downstream endpoints before we finish starting.
+// Non-fatal (a downstream being temporarily down must not take the web host
+// down) but a missing/malformed URL or an unreachable backend must be LOUD so
+// a restart can't silently ship pointing at a dead service.
+function validateEndpoints(ragUrl, searxngUrl, backendUrl) {
+  const missing = [];
+  const malformed = [];
+  for (const [name, url] of [['RAG_URL', ragUrl], ['SEARXNG_URL', searxngUrl], ['backend_url', backendUrl]]) {
+    if (!url) { missing.push(name); continue; }
+    try { const u = new URL(url); if (!/^https?:$/.test(u.protocol) || !u.hostname) throw new Error('bad'); }
+    catch (e) { malformed.push(name + '=' + url); }
+  }
+  return { missing, malformed };
+}
+const _epWarn = validateEndpoints(config.rag_url, config.searxng_url, config.backend_url);
+if (_epWarn.missing.length || _epWarn.malformed.length) {
+  console.log('[ENDPOINT-WARN] service_endpoints.json/env is incomplete or malformed:',
+    JSON.stringify(_epWarn));
+}
 
 // App
 const app = express();
@@ -384,7 +412,13 @@ app.use(
 
 // Node health
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString(), fastapi_target: FASTAPI_URL });
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    fastapi_target: FASTAPI_URL,
+    downstream: { rag_url: config.rag_url || null, searxng_url: config.searxng_url || null },
+    endpoint_warning: (_epWarn.missing.length || _epWarn.malformed.length) ? _epWarn : null,
+  });
 });
 
 // Static web files
@@ -460,4 +494,4 @@ if (require.main === module) {
 }
 
 // Exported for tests (route/integration). server.js no longer auto-listens when imported.
-module.exports = { app, sslOptions };
+module.exports = { app, sslOptions, validateEndpoints, config };

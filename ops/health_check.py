@@ -49,7 +49,7 @@ def check_pchost() -> CheckResult:
 
 
 def check_rag() -> CheckResult:
-    ok, detail = _http_ok("http://127.0.0.1:8007/docs")
+    ok, detail = _http_ok("http://127.0.0.1:8007/health")
     return CheckResult("rag", ok, detail)
 
 

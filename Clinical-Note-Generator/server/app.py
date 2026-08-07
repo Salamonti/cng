@@ -307,4 +307,8 @@ async def shutdown_event():
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("FASTAPI_PORT", 7860))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    # M-5: default to loopback so a bare `python server/app.py` never exposes
+    # the API on all interfaces. Production binds 127.0.0.1 explicitly via the
+    # systemd unit; set FASTAPI_HOST to override on purpose.
+    host = os.environ.get("FASTAPI_HOST", "127.0.0.1")
+    uvicorn.run(app, host=host, port=port)

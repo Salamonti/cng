@@ -5,7 +5,12 @@ OnFailure=telegram-alert@%n.service
 
 [Service]
 Type=oneshot
-User=eissa
+# Root: writes into the root-protected /data/backups tree (Step 9 at-rest
+# encryption + 700 perms). Reads app data under /opt/dreamcision (eissa-owned,
+# world-readable) and the root group passphrase. A backup/ops unit running as
+# root is standard; it never touches the running app process.
+User=root
+Group=root
 WorkingDirectory=/opt/dreamcision
 ExecStart=/opt/dreamcision/ops/backup_dreamcision.sh
 TimeoutStartSec=2h

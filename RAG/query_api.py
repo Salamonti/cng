@@ -214,6 +214,49 @@ def _get_collection():
     return get_collection(client, name=cfg.get("collection_name", "medical_rag"))
 
 
+def _collection_embedding_dim(col) -> Optional[int]:
+    """Return the stored embedding dimension of a Chroma collection, or None
+    if the collection is empty. Peek one stored vector -- cheap regardless of
+    collection size."""
+    try:
+        got = col.get(
+            limit=1,
+            include=["embeddings"],
+        )
+        embs = got.get("embeddings") or []
+        if not embs:
+            return None
+        first = embs[0]
+        if first is None:
+            return None
+        if hasattr(first, "shape"):
+            return int(first.shape[-1])
+        return int(len(first))
+    except Exception:
+        return None
+
+
+def _assert_query_dim(col, qvec, model_name: str) -> None:
+    """Fail fast with a clear message if the query embedding's dimension
+    disagrees with the stored corpus dimension. Embedder-dim drift (e.g. a
+    changed EMBEDDER_DIM / truncated matryoshka dim, or a swapped embedding
+    model) otherwise surfaces as an obscure Chroma 'got an unexpected keyword
+    argument' / dimension-mismatch error deep in col.query -- or worse, a
+    wrong-dim collection returning garbage. Surfacing it here makes the
+    mismatch loud and actionable. NOTE: an empty collection (None stored dim)
+    is allowed through so a first-time index can be queried while empty."""
+    qdim = int(qvec.shape[-1])
+    sdim = _collection_embedding_dim(col)
+    if sdim is not None and sdim != qdim:
+        raise RuntimeError(
+            "Embedding dimension mismatch: query embedder "
+            f"({model_name}) produced {qdim} dims but the stored RAG "
+            f"collection has {sdim} dims. Rebuild the index with the same "
+            "embedding model / EMBEDDER_DIM, or align settings.yaml "
+            "'embedding_model'."
+        )
+
+
 def _where_for(request: QueryRequest) -> Dict[str, Any]:
     where: Dict[str, Any] = {}
     if request.specialty:
@@ -300,6 +343,7 @@ def hybrid_search_filtered(
 
     with _measure("embed_query"):
         qvec = emb.encode([req.query])[0]
+        _assert_query_dim(col, qvec, emb.model_name)
     where = _where_for(req)
 
     dense_cfg = int(cfg.get("dense_top_k", 16))
@@ -973,11 +1017,15 @@ def web_query(req: WebQueryRequest) -> QueryResponse:
 
 
 if __name__ == "__main__":
+    import os as _os
+    # M-5: default to loopback so a bare `python query_api.py` never exposes
+    # the API on all interfaces. Production binds 127.0.0.1 explicitly via the
+    # systemd unit; set RAG_HOST to override on purpose.
     uvicorn.run(
         "query_api:app",
-        host="0.0.0.0",
-        port=8007,
-        workers=2,
+        host=_os.environ.get("RAG_HOST", "127.0.0.1"),
+        port=int(_os.environ.get("RAG_PORT", 8007)),
+        workers=int(_os.environ.get("RAG_WORKERS", 2)),
         loop="asyncio",
         http="h11",
         timeout_keep_alive=30,

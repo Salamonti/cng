@@ -3,10 +3,20 @@ name: DreamCision test suites
 on:
   push:
     branches: [main]
+  pull_request:
+    # Only PRs targeting the default branch. Deliberately NOT open-ended
+    # (pull_request on all branches): this runs on a SELF-HOSTED runner on the
+    # production box, and a one-off build branch or an untrusted fork must not
+    # be able to park arbitrary/long-running CI work on prod hardware.
+    branches: [main]
   workflow_dispatch: {}
 
 concurrency:
-  group: dreamcision-tests
+  group: dreamcision-tests-${{ github.event_name }}-${{ github.ref }}
+  # One concurrency group per (event, ref) keeps a whole flood of pushes/PRs to
+  # the same branch from ever stacking test jobs on the single production
+  # runner. Combined with `runs-on: [self-hosted]`, cancel-in-progress bounds
+  # peak resource use on the box: only the latest job behind a ref actually runs.
   cancel-in-progress: true
 
 # Runs on a self-hosted runner on the production box itself, deliberately.
