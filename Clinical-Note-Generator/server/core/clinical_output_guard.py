@@ -171,7 +171,15 @@ def _has_repeated_ngram(words: List[str]) -> bool:
     # need many repeats; long verbatim spans repeating even a few times indicate
     # genuine degeneration. Trigram/4-gram triggers were removed — at >=3 they
     # rejected essentially every real note.
-    for size, min_count in ((12, 3), (10, 3), (8, 4), (6, 6), (5, 8)):
+    #
+    # 2026-08-07: long-gram counts raised from (12,3)/(10,3)/(8,4) to (12,6)/
+    # (10,6)/(8,6). Legitimate structured outputs (e.g. the 28-option patient
+    # meal plan, a ~10k-char doc) repeat their markdown table column-header once
+    # per section (~4x), which the old thresholds misclassified as a "runaway
+    # loop" and threw away the good output. Genuine degeneration repeats the
+    # same span 15-30+ times and is still caught by these thresholds (verified:
+    # the old list-style 28x macro-phrase loop is still rejected).
+    for size, min_count in ((12, 6), (10, 6), (8, 6), (6, 9), (5, 12)):
         if len(words) < size:
             continue
         counts: dict[tuple[str, ...], int] = {}

@@ -60,3 +60,36 @@ def test_note_over_the_new_cap_is_still_rejected():
     reasons = detect_degenerate_output(output)
 
     assert "output exceeded the hard character limit" in reasons
+
+
+def test_structured_diet_table_header_is_not_a_loop():
+    """A 28-option meal plan repeats its markdown table column header once per
+    section (~4x). The guard must NOT treat this legitimate structured output
+    as a runaway loop (2026-08-07: the old (12,3)/(10,3)/(8,4) thresholds did,
+    and the whole good plan was thrown away as 'repeated n-gram loop')."""
+    header = "| Option | Foods & portions | Calories | Protein (g) | Carbs (g) | Fat (g) |"
+    section = "\n".join([
+        "## Breakfast",
+        header,
+        "| 1 | Oatmeal with milk, 1 banana | 400 | 18 | 60 | 8 |",
+        "| 2 | Greek yogurt, blueberries | 350 | 25 | 40 | 8 |",
+        "| 3 | Egg scramble, toast | 450 | 25 | 25 | 28 |",
+        "| 4 | Smoothie, whey, berries | 420 | 35 | 45 | 12 |",
+        "| 5 | Toast with almond butter, apple | 450 | 14 | 55 | 20 |",
+        "| 6 | Cottage cheese, pineapple | 400 | 30 | 35 | 18 |",
+        "| 7 | Breakfast burrito | 480 | 28 | 40 | 22 |",
+    ])
+    output = "\n".join([section.replace("Breakfast", m) for m in
+                        ["Breakfast", "Lunch", "Dinner", "Snack"]])
+    reasons = detect_degenerate_output(output)
+    assert "repeated n-gram loop detected" not in reasons, reasons
+
+
+def test_genuine_macro_loop_still_rejected():
+    """Repeating the same per-option macro phrase ~28 times (the list-style
+    degeneration that previously occurred) must STILL be caught even with the
+    raised thresholds."""
+    loop = ("Option: oatmeal with milk. Calories 400, protein 18 g, "
+            "carbs 60 g, fat 8 g.\n" * 28)
+    reasons = detect_degenerate_output(loop)
+    assert "repeated n-gram loop detected" in reasons
