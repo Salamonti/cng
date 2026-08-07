@@ -38,8 +38,9 @@ async def test_retries_after_single_loop_and_returns_good_content():
     assert len(gen.note_gen.calls) == 2
     # retry must be greedy + use the corrective prompt (different from first)
     first, second = gen.note_gen.calls
-    assert first[1] != 0.0          # original temperature
-    assert second[1] == 0.0         # retry at temperature 0.0
+    assert first[1] != 0.5          # original temperature (0.15 default)
+    assert second[1] == 0.5         # retry at a moderate temp for a fresh sample
+    assert second[1] != first[1]    # retry must not deterministically re-roll
     assert second[0] != first[0]    # build_guard_retry_prompt changed the prompt
     assert "repeated n-gram loop" in second[0]
 

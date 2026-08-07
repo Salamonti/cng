@@ -404,6 +404,7 @@ DOCUMENT: New Diagnosis Information
 
 Identify any condition NEWLY diagnosed, newly confirmed, or first addressed at this encounter.
 - If one or more conditions are newly diagnosed, focus on them. For EACH, under its own heading, cover: what it is; common causes and risk factors; typical symptoms; how it is diagnosed and monitored; how it is managed (lifestyle and medical, in general terms); warning signs that need urgent care; and the realistic outlook with good control. Be detailed and reliable.
+- Keep each section focused and reasonably concise (3-6 short bullets per sub-point). Do NOT pad the document with repeated, near-identical, or boilerplate sentences — a clean, scannable document is more useful than a long one, and a clinician will add any further detail needed.
 - If NO condition is newly diagnosed, state clearly "No new diagnosis was made at this visit," then give a brief, helpful paragraph about each of the patient's current or ongoing conditions.
 - Never duplicate synonymous conditions.""",
             "medications": """
@@ -445,9 +446,9 @@ Diet cautions specific to the patient's conditions and medications (for example 
 
 ## Meal Plan
 Provide Breakfast, Lunch, Dinner, and a Snack section.
-- For EACH of the three meals give AT LEAST 7 distinct options.
-- For the Snack give AT LEAST 7 distinct options.
-- For EVERY option list the foods and portions and its calories and macros (protein/carbs/fat in grams).
+- For EACH of the three meals give AT LEAST 3 distinct options.
+- For the Snack give AT LEAST 3 distinct options.
+- For each option list the foods and approximate portions and its estimated calories. Give the full macronutrient breakdown (protein/carbs/fat in grams) for ONE representative option in each meal and for the snack, so the plan stays concise and print-friendly.
 - Options should fit the per-meal share of the daily calorie target and respect the patient's allergies and restrictions.
 - Use clean tables or bullet lists so it prints well.
 
@@ -500,9 +501,10 @@ Do NOT include ICD or CPT codes or any billing or encounter framing.""",
     ) -> str:
         """Generate material content with a guard-retry so a single stochastic
         degeneration (repeated n-gram loop / truncation) doesn't hard-fail the
-        user. Mirrors the note-stream path (_stream_response_v8): on a rejected
-        draft, retry once at temperature 0.0 with build_guard_retry_prompt to
-        steer the model away from the repetition. If both drafts are rejected we
+        user. On a rejected draft, retry once at a moderate temperature (0.5)
+        with build_guard_retry_prompt to draw a genuinely new sample that can
+        escape a content-driven n-gram loop (temp 0.0 would deterministically
+        re-roll the same degenerate path). If both drafts are rejected we
         surface the guard reason (never fabricate patient material)."""
         temperature = TEMPERATURE_MAP.get(material_type, 0.15)
 
@@ -515,7 +517,11 @@ Do NOT include ICD or CPT codes or any billing or encounter framing.""",
             try:
                 response = await self.note_gen.collect_completion(
                     attempt_prompt,
-                    temperature=0.0 if attempt else temperature,
+                    # Retry at a moderate temperature so a rejected (degenerate)
+                    # draft gets a genuinely NEW sample that can escape an
+                    # n-gram loop. Temperature 0.0 would deterministically
+                    # re-roll the same degenerate path for a content-driven loop.
+                    temperature=0.5 if attempt else temperature,
                     max_tokens=MAX_TOKENS_MAP.get(material_type, 4096),
                     timeout_sec=PM_TIMEOUT_SEC,
                 )
