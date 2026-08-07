@@ -99,6 +99,8 @@ def _sanitize_event(raw: Any) -> Optional[Dict[str, Any]]:
         try:
             event["value"] = max(0.0, min(1.0, float(value)))
         except (TypeError, ValueError):
+            # Malformed client "value" -> leave the event without a value rather
+            # than drop the whole usage report; safe parse guard.
             pass
 
     meta = raw.get("meta")
@@ -123,6 +125,8 @@ async def record_client_usage(payload: Dict, request: Request) -> JSONResponse:
     try:
         actor = extract_request_actor(request, None)
     except Exception:
+        # Actor extraction is best-effort attribution for telemetry; on failure
+        # fall back to "anonymous" rather than reject the usage report.
         actor = {}
     user_id = str(actor.get("user_id") or "anonymous")
 

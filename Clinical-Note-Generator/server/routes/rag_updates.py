@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import re
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -12,6 +13,8 @@ from fastapi import APIRouter
 
 
 router = APIRouter(prefix="/rag")
+
+logger = logging.getLogger("cng.rag_updates")
 
 _CONFIG_CACHE: Dict[str, Any] | None = None
 _SUMMARY_CACHE: Dict[str, Any] | None = None
@@ -29,6 +32,10 @@ def _load_config() -> Dict[str, Any]:
             with cfg_path.open("r", encoding="utf-8") as f:
                 _CONFIG_CACHE = json.load(f)
         except Exception:
+            # Corrupt/unreadable *present* config: fall back to defaults rather
+            # than break RAG endpoints, but surface the misconfiguration instead
+            # of swallowing it invisibly. (Missing config stays silent - normal.)
+            logger.warning("Failed to load RAG config/config.json; using defaults", exc_info=True)
             _CONFIG_CACHE = {}
     return _CONFIG_CACHE
 
@@ -351,6 +358,8 @@ def _collect_recent_files(latest_run: Dict[str, Any]) -> List[Dict[str, Any]]:
                 info["size_bytes"] = stat.st_size
                 info["last_modified"] = datetime.fromtimestamp(stat.st_mtime).isoformat()
             except Exception:
+                # Best-effort file metadata enrichment (stat race / perms): on
+                # failure omit size/last_modified rather than break the listing.
                 pass
         files.append(info)
     return files
@@ -424,6 +433,9 @@ def _load_recent_updates_data() -> Optional[Dict[str, Any]]:
     try:
         data = json.loads(path.read_text(encoding='utf-8'))
     except Exception:
+        # Corrupt/unreadable recent-report cache -> treat as a cache miss and
+        # recompute/regenerate rather than serve stale or crash the endpoint.
+        # (Absent file is the normal first-run case.) Regenerable, so silent.
         _RECENT_CACHE = None
         _RECENT_CACHE_TS = None
         _RECENT_CACHE_FILE_TOKEN = None
@@ -432,6 +444,8 @@ def _load_recent_updates_data() -> Optional[Dict[str, Any]]:
     try:
         cache_ts = datetime.fromisoformat(generated_at) if generated_at else datetime.min
     except Exception:
+        # Unparseable timestamp -> treat as oldest-possible so the entry is
+        # recomputed; safe parse guard.
         cache_ts = datetime.min
     _RECENT_CACHE = data
     _RECENT_CACHE_TS = cache_ts

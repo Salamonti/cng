@@ -1,6 +1,7 @@
 # server/routes/perf.py
 import time
 import json
+import logging
 from pathlib import Path
 from typing import Dict
 
@@ -9,6 +10,8 @@ from server.metrics import metrics as global_metrics
 
 
 router = APIRouter()
+
+logger = logging.getLogger("cng.perf")
 
 start_time = time.time()
 
@@ -36,7 +39,10 @@ def _load_cfg() -> Dict:
             with open(cfg_path, "r", encoding="utf-8") as f:
                 return json.load(f)
     except Exception:
-        pass
+        # Corrupt/unreadable *present* config: fall back to defaults rather than
+        # break /performance, but surface the misconfiguration (missing config
+        # stays silent - normal). Same policy as qa_chat/rag_updates config load.
+        logger.warning("Failed to load perf config/config.json; using defaults", exc_info=True)
     return {}
 
 
