@@ -12,6 +12,10 @@ try:
     import pillow_heif  # type: ignore
     pillow_heif.register_heif_opener()  # Enable HEIC/HEIF support if installed
 except Exception:
+    # HEIC/HEIF is an OPTIONAL convenience. If pillow_heif is missing or its
+    # opener registration breaks, PNG/JPG/PDF OCR still works in full — we only
+    # lose HEIC/HEIF input. Deliberate swallow; no log noise for an expected
+    # optional-dependency absence.
     pass
 import fitz  # PyMuPDF
 
@@ -161,7 +165,10 @@ def ocr(
                         try:
                             global_metrics.record_ocr(elapsed, 0.95)
                         except Exception:
-                            pass
+                            # metrics are best-effort telemetry only; a failure
+                            # here must never change the OCR text returned to
+                            # the user. Log at debug (non-chatty by default).
+                            logger.debug("OCR metrics record failed (pdf-text)", exc_info=True)
                     return {
                         "success": True,
                         "text": extracted_text,
@@ -199,7 +206,11 @@ def ocr(
                                     results[idx] = (txt, conf)
                                     total_confidence += conf
                                 except Exception:
-                                    pass
+                                    # A single page's OCR failure must not abort
+                                    # the whole PDF — the page becomes
+                                    # "[OCR Error: unknown]" below. Log the
+                                    # underlying error so it isn't silent.
+                                    logger.exception("OCR parallel page task failed")
                         combined_parts: list[str] = []
                         for i in range(doc.page_count):
                             pair = results[i]
@@ -231,7 +242,9 @@ def ocr(
                         try:
                             global_metrics.record_ocr(elapsed, avg_confidence)
                         except Exception:
-                            pass
+                            # best-effort telemetry; must never change the OCR
+                            # result returned to the user. Non-chatty debug.
+                            logger.debug("OCR metrics record failed (pdf-raster)", exc_info=True)
                     return {
                         "success": True,
                         "text": combined_text,
@@ -282,6 +295,9 @@ def ocr(
                             if sample:
                                 logger.info("OCR models sample: %s", sample)
                         except Exception:
+                            # best-effort derivation of a debug-only model-name
+                            # sample (runs only with DEBUG_OCR_ERRORS=1);
+                            # swallow — the /v1/models ok summary already logged.
                             pass
                 except Exception as _e:
                     logger.info("OCR preflight /v1/models error: %s", _e)
@@ -302,7 +318,9 @@ def ocr(
             try:
                 global_metrics.record_ocr(elapsed, conf)
             except Exception:
-                pass
+                # best-effort telemetry; must never change the OCR result
+                # returned to the user. Non-chatty debug.
+                logger.debug("OCR metrics record failed (image)", exc_info=True)
         return {
             "success": True,
             "text": text,
