@@ -124,7 +124,7 @@
         const noteText = noteTextarea.value;
 
         // For diet/exercise, collect patient data first if not already provided
-        if ((category === 'diet' || category === 'exercise') && !hasPatientData()) {
+        if ((category === 'diet' || category === 'exercise') && !hasPatientData(category)) {
             showPatientDataForm(category);
             return;
         }
@@ -211,9 +211,12 @@
     }
 
     // Check if we already have patient data for diet/exercise
-    function hasPatientData() {
+    function hasPatientData(category) {
         const data = window.patientMaterialsState.patientData || {};
-        return data.weight_kg && data.height_cm && data.goal;
+        if (!data.weight_kg || !data.height_cm || !data.goal) return false;
+        // Exercise additionally requires its specific planning input (activity level).
+        if (category === 'exercise' && !data.activity_level) return false;
+        return true;
     }
 
     // Show patient data form for diet/exercise
@@ -227,6 +230,30 @@
         const title = category === 'diet' ? 'Diet Plan' : 'Exercise Plan';
         const saved = loadSavedPmInputs();
         const units = category === 'diet' ? 'kg' : 'kg (used for BMI and activity calculation)';
+
+        const extraFields = category === 'exercise' ? `
+                <div class="form-group">
+                    <label for="pmActivityLevel">Activity Level:</label>
+                    <select id="pmActivityLevel">
+                        <option value="" disabled ${!saved.activity_level ? 'selected' : ''}>Select activity level</option>
+                        <option value="sedentary" ${saved.activity_level === 'sedentary' ? 'selected' : ''}>Sedentary (little or no exercise)</option>
+                        <option value="lightly_active" ${saved.activity_level === 'lightly_active' ? 'selected' : ''}>Lightly active (light exercise 1-3 days/week)</option>
+                        <option value="moderately_active" ${saved.activity_level === 'moderately_active' ? 'selected' : ''}>Moderately active (moderate exercise 3-5 days/week)</option>
+                        <option value="very_active" ${saved.activity_level === 'very_active' ? 'selected' : ''}>Very active (hard exercise 6-7 days/week)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pmJointIssues">Joint / mobility issues (optional):</label>
+                    <input type="text" id="pmJointIssues" placeholder="e.g., knee arthritis, avoid high-impact" value="${saved.joint_issues != null ? saved.joint_issues : ''}">
+                </div>` : `
+                <div class="form-group">
+                    <label for="pmAllergies">Allergies (optional):</label>
+                    <input type="text" id="pmAllergies" placeholder="e.g., peanuts, shellfish" value="${saved.allergies != null ? saved.allergies : ''}">
+                </div>
+                <div class="form-group">
+                    <label for="pmDietaryRestrictions">Dietary restrictions (optional):</label>
+                    <input type="text" id="pmDietaryRestrictions" placeholder="e.g., diabetic, low-sodium, vegetarian" value="${saved.restrictions != null ? saved.restrictions : ''}">
+                </div>`;
 
         contentBody.innerHTML = `
             <div class="pm-patient-data">
@@ -248,6 +275,7 @@
                         <label class="radio-option"><input type="radio" name="pmGoal" value="decrease" ${saved.goal === 'decrease' ? 'checked' : ''}> Decrease weight</label>
                     </div>
                 </div>
+                ${extraFields}
                 <button type="button" class="btn btn-primary" id="pmSubmitPatientData">Generate ${title}</button>
             </div>
         `;
@@ -274,6 +302,10 @@
         
         if (!patientData.weight_kg || !patientData.height_cm || !patientData.goal) {
             safeToast('Missing Information', 'Please enter weight, height, and goal.', 'warning');
+            return;
+        }
+        if (currentCategory === 'exercise' && !patientData.activity_level) {
+            safeToast('Missing Information', 'Please select an activity level.', 'warning');
             return;
         }
 
