@@ -111,6 +111,8 @@ async def _read_audio_bounded(upload: Any, trace_id: str) -> bytes:
                     },
                 )
     finally:
+        # Best-effort cleanup guard: closing the upload must never propagate
+        # (we've already read everything we need). An error here changes nothing.
         try:
             await upload.close()
         except Exception:
@@ -274,6 +276,9 @@ def _asr_fallback_url() -> Optional[str]:
             u2 = u._replace(netloc=f"{u.hostname}:8096")
             return urlunparse(u2).rstrip("/")
     except Exception:
+        # Best-effort local-dev convenience: if deriving the :8096 fallback URL
+        # from the primary fails, fall back to "no auto-fallback" rather than
+        # crash -- the explicit ASR_URL_FALLBACK path still stands.
         pass
     return None
 
@@ -340,6 +345,9 @@ def _candidate_pool_urls() -> List[str]:
                     if cand not in urls:
                         urls.append(cand)
     except Exception:
+        # Best-effort local-dev convenience: failure to derive the :8096
+        # candidate just skips that extra fallback; the explicit pool/URLs still
+        # stand. Never crash candidate discovery over this.
         pass
 
     return urls
@@ -470,6 +478,8 @@ def _infer_file_suffix(filename: str, content_type: str) -> str:
         if ext:
             return ext
     except Exception:
+        # Best-effort suffix inference: an unusual filename must not crash
+        # suffix selection -- fall through to the generic ".bin" default.
         pass
     return ".bin"
 
@@ -595,6 +605,9 @@ def _normalize_audio_to_wav(
         logger.warning("ASR normalize crashed — sending original bytes; %s", exc)
         return data, filename, content_type
     finally:
+        # Best-effort temp-file cleanup guard: leaving a temp file on remove
+        # failure is preferable to raising over the normalization result we
+        # already produced (and /tmp is swept by the OS anyway).
         for p in (src_path, dst_path):
             try:
                 if p and os.path.exists(p):
@@ -924,8 +937,18 @@ async def transcribe_diarized(request: Request):
                 outcome="http_exception",
                 payload={"http_status": int(he.status_code), "detail": he.detail},
             )
-        except Exception:
-            pass
+        except Exception as e:
+            # Best-effort: the user-facing HTTP error is already determined, so a
+            # failure to record the incident must not alter this response. But
+            # losing the incident record silently hides operator telemetry, so
+            # surface it. The store itself is hardened in Step 3; this only
+            # covers a defensive failure path.
+            logger.warning(
+                "[asr.incident] record_asr_incident failed "
+                "(http exception still returned) | trace_id=%s | stage=asr.http | err=%s",
+                trace_id,
+                e,
+            )
         d = he.detail
         if isinstance(d, str):
             content: Dict[str, Any] = {"error": "http_error", "trace_id": trace_id, "detail": {"message": d, "trace_id": trace_id}}
@@ -1072,8 +1095,15 @@ async def asr_engine_info() -> Dict[str, Optional[str]]:
                                 payload["base_url"] = base_url
                                 payload.update(_local_probe_meta())
                             return cast(Dict[str, Optional[str]], payload)
-                except Exception:
-                    pass
+                except Exception as e:
+                    # Expected-failure probe path: many whisper.cpp builds don't
+                    # serve GET /asr_engine, so this falls through to the
+                    # /inference probe. Log at debug only (normal, not an error).
+                    logger.debug(
+                        "ASR /asr_engine probe failed (probing /inference next) | base_url=%s | err=%s",
+                        base_url,
+                        str(e)[:200],
+                    )
                 try:
                     async with session.get(f"{base_url}/inference") as resp:
                         # Different whisper.cpp builds behave differently for GET /inference.
