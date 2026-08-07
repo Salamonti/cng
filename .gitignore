@@ -159,3 +159,4 @@ _archive/snapshots-old/
 # Whole archive tree — snapshots, hand-backups, Windows-era scripts, stale docs.
 # Untracked 2026-08-05; snapshots-old kept on disk as data, never in git.
 _archive/
+ops/.deploy-snapshots/
