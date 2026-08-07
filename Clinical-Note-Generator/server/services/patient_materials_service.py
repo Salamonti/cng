@@ -14,6 +14,7 @@ import logging
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
+from server.core.clinical_output_guard import ClinicalOutputRejected, build_guard_retry_prompt
 from server.services.note_generator_clean import SimpleNoteGenerator
 from server.services.patient_materials_sections import (
     extract_section,
@@ -497,23 +498,42 @@ Do NOT include ICD or CPT codes or any billing or encounter framing.""",
         user_content: str,
         material_type: str,
     ) -> str:
+        """Generate material content with a guard-retry so a single stochastic
+        degeneration (repeated n-gram loop / truncation) doesn't hard-fail the
+        user. Mirrors the note-stream path (_stream_response_v8): on a rejected
+        draft, retry once at temperature 0.0 with build_guard_retry_prompt to
+        steer the model away from the repetition. If both drafts are rejected we
+        surface the guard reason (never fabricate patient material)."""
         temperature = TEMPERATURE_MAP.get(material_type, 0.15)
 
         # SimpleNoteGenerator has no .generate(); its chat payload is a single user
         # message (no system role), so fold the system prompt into the prompt string.
         prompt = (system_prompt or "").strip() + chr(10) + chr(10) + (user_content or "").strip()
-
-        try:
-            response = await self.note_gen.collect_completion(
-                prompt.strip(),
-                temperature=temperature,
-                max_tokens=MAX_TOKENS_MAP.get(material_type, 4096),
-                timeout_sec=PM_TIMEOUT_SEC,
-            )
-            return response or ""
-        except Exception as e:
-            logger.error("LLM call failed for %s: %s", material_type, e)
-            raise PatientMaterialsError(str(e)) from e
+        attempt_prompt = prompt.strip()
+        last_reasons: Tuple[str, ...] = ()
+        for attempt in range(2):
+            try:
+                response = await self.note_gen.collect_completion(
+                    attempt_prompt,
+                    temperature=0.0 if attempt else temperature,
+                    max_tokens=MAX_TOKENS_MAP.get(material_type, 4096),
+                    timeout_sec=PM_TIMEOUT_SEC,
+                )
+                return response or ""
+            except ClinicalOutputRejected as exc:
+                last_reasons = (str(exc),)
+                logger.warning(
+                    "patient-materials %s rejected on attempt %d of 2: %s",
+                    material_type, attempt + 1, exc,
+                )
+                if attempt == 0:
+                    attempt_prompt = build_guard_retry_prompt(prompt.strip(), last_reasons)
+            except PatientMaterialsError:
+                raise
+            except Exception as e:
+                logger.error("LLM call failed for %s: %s", material_type, e)
+                raise PatientMaterialsError(str(e)) from e
+        raise PatientMaterialsError("; ".join(last_reasons) or "unsafe model output")
 
     def _extract_attributions(
         self, text: str, section_name: str
