@@ -70,6 +70,21 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
+// Security headers (H-9 / M-6): baseline on every response. HSTS is sent only
+// when the request arrived over the TLS edge (cloudflared terminates TLS here
+// and forwards to this loopback listener, setting X-Forwarded-Proto). Never
+// send HSTS on a plaintext path — setting it would pin browsers to HTTPS.
+app.use((req, res, next) => {
+  res.set('X-Content-Type-Options', 'nosniff');
+  res.set('X-Frame-Options', 'DENY');
+  res.set('Referrer-Policy', 'no-referrer');
+  res.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  if (req.secure || req.get('x-forwarded-proto') === 'https') {
+    res.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+  next();
+});
+
 // No-cache for dynamic API; static assets may be edge-cached (Net-P3)
 app.use((req, res, next) => {
   const p = req.path || '';

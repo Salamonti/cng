@@ -29,6 +29,26 @@ app = FastAPI()
 _cors = cors_middleware_kwargs()
 app.add_middleware(CORSMiddleware, **_cors)
 
+# Security headers (M-6): send a sane baseline on every HTTP response.
+# Reflects the actual deployment (TLS served by the cloudflared edge, not
+# FastAPI itself), so HSTS is applied by the edge; trusted-host CSP here.
+@app.middleware("http")
+async def security_headers(request, call_next):
+    response = await call_next(request)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Referrer-Policy", "no-referrer")
+    response.headers.setdefault(
+        "Content-Security-Policy",
+        "default-src 'self'; frame-ancestors 'none'; "
+        "img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; "
+        "script-src 'self' 'unsafe-inline'",
+    )
+    response.headers.setdefault(
+        "Permissions-Policy", "camera=(), microphone=(), geolocation=()"
+    )
+    return response
+
 
 def _admin_mutations_localhost_only() -> bool:
     v = os.environ.get("ADMIN_MUTATIONS_LOCALHOST_ONLY", "").strip().lower()

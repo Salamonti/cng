@@ -1,5 +1,6 @@
 # server/routes/auth_users.py
 import hashlib
+import os
 import secrets
 import uuid
 from datetime import datetime, timedelta
@@ -82,6 +83,18 @@ def register_user(payload: RegisterRequest, session: Session = Depends(get_sessi
     )
 
 
+def _cookie_secure() -> bool:
+    """Refresh-token cookie: Secure by default. Override with COOKIE_SECURE=0
+    only for local/LAN plaintext dev where there is no TLS. Production is
+    served behind a TLS edge (cloudflared) so the cookie must be Secure."""
+    raw = os.environ.get("COOKIE_SECURE", "").strip().lower()
+    if raw in {"0", "false", "no", "off"}:
+        return False
+    if raw in {"1", "true", "yes", "on"}:
+        return True
+    return True
+
+
 def _issue_tokens(user: User, session: Session, response: Response) -> TokenResponse:
     access = create_access_token(str(user.id))
     refresh = create_refresh_token(str(user.id))
@@ -96,7 +109,7 @@ def _issue_tokens(user: User, session: Session, response: Response) -> TokenResp
         "refresh_token",
         refresh,
         httponly=True,
-        secure=False,
+        secure=_cookie_secure(),
         samesite="lax",
         max_age=settings.refresh_token_exp_days * 24 * 3600,
     )
