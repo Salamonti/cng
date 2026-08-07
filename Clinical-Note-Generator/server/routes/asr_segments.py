@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
+import logging
 import os
 import re
 import tempfile
@@ -43,6 +44,8 @@ from server.schemas.asr_segments import (
 
 
 router = APIRouter(prefix="/api/asr/segments", tags=["asr-segments"], redirect_slashes=False)
+
+logger = logging.getLogger("asr_segments")
 
 MIN_AUDIO_BYTES = 1000
 MAX_AUDIO_BYTES = 100 * 1024 * 1024
@@ -91,6 +94,9 @@ def delete_asr_segment_file(server_file_key: str) -> None:
         if p.exists():
             p.unlink()
     except OSError:
+        # Best-effort cleanup of an uploaded segment file. A failed unlink must
+        # never raise into the caller (an orphan file is harmless; an exception
+        # would break the client request). Deliberate silent swallow.
         pass
 
 
@@ -694,6 +700,9 @@ def _store_asr_recording_segment(
         try:
             dest.unlink(missing_ok=True)
         except OSError:
+            # Best-effort cleanup of our orphaned segment file on the
+            # race-loser path. A failed unlink leaves an orphan on disk but must
+            # not break recovery of the winner's row. Deliberate silent swallow.
             pass
         winner = session.exec(
             select(AsrRecordingSegment).where(
@@ -817,7 +826,15 @@ def drain_encounter_chunk_queue(
                 fallback_used=True,
             )
         except Exception:
-            pass
+            # Best-effort whole-file fallback: on failure we fall back to the
+            # per-chunk pipeline already computed above (still returned to the
+            # user) rather than raising. Log the failure so a recurring
+            # fallback-engine problem is visible to the operator.
+            logger.warning(
+                "ASR segment fallback whole-file transcribe failed: trace_id=%s",
+                trace_id,
+                exc_info=True,
+            )
 
     if diarize:
         pipeline = _apply_refine_to_pipeline(
