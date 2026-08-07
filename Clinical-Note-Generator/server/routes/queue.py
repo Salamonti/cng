@@ -84,7 +84,11 @@ def delete_queued_file(server_file_key: str) -> None:
         if file_path.exists():
             file_path.unlink()
     except OSError:
-        pass  # ignore missing files
+        # Best-effort cleanup of a stored queue file. A failed unlink (missing
+        # file, permission, in-flight use) must never raise into the caller;
+        # the file is reaped by the TTL sweeper anyway. Deliberate silent
+        # swallow (cleanup-guard).
+        pass
 
 
 def _create_uploadfile_from_disk(file_path: Path, filename: str, content_type: str) -> UploadFile:
@@ -215,7 +219,10 @@ def create_queued_job(
     try:
         response.headers["X-ASR-Trace-Id"] = trace_id
     except Exception:
-        pass
+        # Best-effort: attaching the trace-id response header is telemetry for
+        # cross-system correlation. If the response object can't take it, the
+        # job is still created correctly -- never break the request over it.
+        logger.debug("Could not set X-ASR-Trace-Id response header", exc_info=True)
     _dbg(
         trace_id,
         "queue.create.ok",

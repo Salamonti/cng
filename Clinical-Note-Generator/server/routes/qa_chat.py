@@ -286,6 +286,9 @@ def _parse_evidence_year_value(y: Any) -> Optional[int]:
         if _YEAR_MIN <= yi <= _YEAR_MAX:
             return yi
     except (ValueError, TypeError, OverflowError):
+        # Unparseable/out-of-range year token -> treat as "no year" (None) so
+        # one malformed RAG metadata value can't crash evidence-max-year
+        # computation. Deliberate silent swallow (safe parse guard).
         pass
     return None
 
@@ -404,7 +407,10 @@ def _load_cfg() -> Dict[str, Any]:
         if cfg_path.exists():
             return json.loads(cfg_path.read_text(encoding="utf-8"))
     except Exception:
-        pass
+        # Config file present but unreadable/corrupt: fall back to {} (defaults)
+        # rather than crash the QA flow. A corrupt *present* config is a real
+        # misconfiguration, so surface it instead of swallowing invisibly.
+        logger.warning("Failed to load QA config/config.json; using defaults", exc_info=True)
     return {}
 
 
