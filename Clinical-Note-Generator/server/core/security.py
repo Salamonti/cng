@@ -120,6 +120,15 @@ class AttemptLimiter:
         self._failures.pop(key, None)
         self._locked_until.pop(key, None)
 
+    def reset(self, key: str | None = None) -> None:
+        """Clear limiter state (test isolation / admin)."""
+        if key is None:
+            self._failures.clear()
+            self._locked_until.clear()
+        else:
+            self._failures.pop(key, None)
+            self._locked_until.pop(key, None)
+
 
 # Login: 5 failed attempts per email within 15 minutes locks that email out
 # for 15 minutes. Keyed by email (not IP) so a distributed brute force
@@ -129,3 +138,9 @@ login_attempts = AttemptLimiter(max_attempts=5, window_sec=900, lockout_sec=900)
 # Password-reset requests: cap per email so an attacker can't mail-bomb a
 # victim's inbox with reset links.
 reset_request_attempts = AttemptLimiter(max_attempts=5, window_sec=900, lockout_sec=900)
+
+# Registration: cap per client IP. Prevents mass account creation, spamming
+# the admin-inbox with registration notifications, and scripted email
+# enumeration (probing an address list for which ones get a different
+# response). Keyed by IP because the attacker controls the email field.
+register_attempts = AttemptLimiter(max_attempts=20, window_sec=3600, lockout_sec=3600)

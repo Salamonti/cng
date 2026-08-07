@@ -18,6 +18,7 @@ from server.core.security import (
     decode_refresh_token,
     hash_password,
     login_attempts,
+    register_attempts,
     reset_request_attempts,
     verify_password,
 )
@@ -54,9 +55,40 @@ def _hash_reset_token(token: str) -> str:
 
 
 @router.post("/register", response_model=UserProfile)
-def register_user(payload: RegisterRequest, session: Session = Depends(get_session)):
+def register_user(
+    payload: RegisterRequest,
+    request: Request,
+    session: Session = Depends(get_session),
+):
+    # Rate-limit registration per client IP (prevents mass account creation,
+    # admin-inbox spam, and scripted email enumeration). Every register
+    # request counts toward the window budget -- including ones that create a
+    # fresh account -- so a bot that keeps registering new addresses still
+    # gets locked out after the cap.
+    client_ip = request.client.host if request.client else "unknown"
+    if register_attempts.is_locked(client_ip):
+        raise HTTPException(
+            status_code=429,
+            detail=(
+                "Too many registration attempts from this address. "
+                f"Try again in {register_attempts.seconds_remaining(client_ip)} seconds."
+            ),
+        )
+    register_attempts.record_failure(client_ip)
+
+    # Anti-enumeration: an already-registered email returns the SAME generic
+    # 200 as a successful registration, so a probing client cannot tell which
+    # addresses are in use. We do not surface "email already registered" and
+    # do not leak the existing account's id/created_at/approval state.
     if session.exec(select(User).where(User.email == payload.email)).first():
-        raise HTTPException(status_code=400, detail="Email already registered")
+        return UserProfile(
+            id=str(uuid.uuid4()),
+            email=payload.email,
+            is_admin=False,
+            is_approved=False,
+            created_at=datetime.utcnow(),
+        )
+
     user = User(
         email=payload.email,
         hashed_password=hash_password(payload.password),

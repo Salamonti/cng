@@ -32,6 +32,30 @@ def _never_send_real_email(monkeypatch):
     monkeypatch.setattr(resend.Emails, "send", lambda *a, **k: {"id": "test-noop"})
 
 
+@pytest.fixture(autouse=True)
+def _reset_attempt_limiters():
+    """Isolate in-memory rate-limiters between tests. The register/login/
+    reset AttemptLimiter instances are module-global singletons; without a
+    reset, one test's attempts bleed into the next (e.g. every register call
+    now counts toward the per-IP registration cap, which would exhaust the
+    window across the whole suite from the shared TestClient IP)."""
+    from server.core import security
+
+    for limiter in (
+        security.login_attempts,
+        security.reset_request_attempts,
+        security.register_attempts,
+    ):
+        limiter.reset()
+    yield
+    for limiter in (
+        security.login_attempts,
+        security.reset_request_attempts,
+        security.register_attempts,
+    ):
+        limiter.reset()
+
+
 @pytest.fixture
 def client(tmp_path):
     import server.core.db as db
