@@ -1553,6 +1553,93 @@ def _maybe_autostart_consult_comment(gen_id: str, note_text: str, cfg: Dict[str,
         pass
 
 
+async def _run_postgen_sidework(
+    generation_id: str,
+    combined_output: str,
+    cfg: Dict[str, Any],
+    note_type: str,
+    user_speciality: Optional[str],
+    created_at: str,
+    duration: float,
+    prompt: str,
+    transcription_text: Optional[str],
+    old_visits_text: Optional[str],
+    mixed_other_text: Optional[str],
+    custom_prompt: Optional[str],
+    token_count: int,
+    actor: Any,
+) -> None:
+    """Post-generation best-effort side-work, each step fault-isolated.
+
+    Every failure is reported as what it actually is (dataset case logging vs.
+    generation-cache update vs. consult-comment autostart vs. order-request
+    autostart) and never misattributed -- the old code wrapped all four in one
+    try/except that blamed "Dataset case logging failed" for a crash in any of
+    them. None of these may raise out of the caller: a side-work failure must
+    not break the note response already being streamed.
+    """
+    try:
+        # P2-7: _log_case_completion de-identifies the prompt/output
+        # (regex-heavy) and then does a blocking file append
+        # (dataset_logger.py, under threading.Lock) -- both on the
+        # event loop otherwise. Runs at the end of every note generation
+        # (hottest path); off-load rather than block other in-flight requests.
+        await asyncio.to_thread(
+            _log_case_completion,
+            case_id=generation_id,
+            created_at=created_at,
+            duration_s=duration,
+            note_type=note_type,
+            pipeline="v8_direct",
+            prompt=prompt,
+            input_fields={
+                "transcription_text": str(transcription_text or ""),
+                "old_visits_text": str(old_visits_text or ""),
+                "mixed_other_text": str(mixed_other_text or ""),
+                "custom_prompt": str(custom_prompt or ""),
+            },
+            output_text=combined_output,
+            prompt_tokens=len((prompt or "").split()),
+            completion_tokens=token_count,
+            actor=actor,
+        )
+    except Exception as e:
+        logger.warning(
+            "[note.postgen] dataset case logging failed | gen_id=%s | err=%s",
+            generation_id,
+            e,
+        )
+
+    try:
+        with _cache_lock:
+            if generation_id in _generation_cache:
+                _generation_cache[generation_id]["output"] = combined_output
+    except Exception as e:
+        logger.warning(
+            "[note.postgen] generation cache update failed | gen_id=%s | err=%s",
+            generation_id,
+            e,
+        )
+
+    try:
+        _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type, user_speciality)
+    except Exception as e:
+        logger.warning(
+            "[note.postgen] consult-comment autostart failed | gen_id=%s | err=%s",
+            generation_id,
+            e,
+        )
+
+    try:
+        _maybe_autostart_order_requests(generation_id, combined_output, cfg)
+    except Exception as e:
+        logger.warning(
+            "[note.postgen] order-request autostart failed | gen_id=%s | err=%s",
+            generation_id,
+            e,
+        )
+
+
 def _generation_encounter_guard(gen_id: str, request: Request) -> None:
     """If client sends encounter_id and we stored one for this generation, they must match."""
     q = (request.query_params.get("encounter_id") or "").strip()
@@ -2104,43 +2191,28 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                 if global_metrics is not None:
                     global_metrics.record_note(duration, token_count, getattr(note_gen, 'model_path', None))
 
-                try:
-                    combined_output = "".join(output_buf)
-                    # P2-7: _log_case_completion de-identifies the prompt/output
-                    # (regex-heavy) and then does a blocking file append
-                    # (dataset_logger.py, under threading.Lock) -- both on the
-                    # event loop otherwise. This runs at the end of every single
-                    # note generation, the hottest path in the app; off-load the
-                    # whole call rather than block every other doctor's
-                    # in-flight request behind one note's cleanup work.
-                    await asyncio.to_thread(
-                        _log_case_completion,
-                        case_id=generation_id,
-                        created_at=created_at,
-                        duration_s=duration,
-                        note_type=note_type,
-                        pipeline="v8_direct",
-                        prompt=prompt,
-                        input_fields={
-                            "transcription_text": str(transcription_text or ""),
-                            "old_visits_text": str(old_visits_text or ""),
-                            "mixed_other_text": str(mixed_other_text or ""),
-                            "custom_prompt": str(custom_prompt or ""),
-                        },
-                        output_text=combined_output,
-                        prompt_tokens=len((prompt or "").split()),
-                        completion_tokens=token_count,
-                        actor=actor,
-                    )
-
-                    with _cache_lock:
-                        if generation_id in _generation_cache:
-                            _generation_cache[generation_id]["output"] = combined_output
-
-                    _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type, user_speciality)
-                    _maybe_autostart_order_requests(generation_id, combined_output, cfg)
-                except Exception as e:
-                    print(f"Dataset case logging failed: {e}")
+                # --- Post-generation side-work. Each responsibility is split
+                # into its own try/except so a failure is reported as what it
+                # actually is (P2-7 dataset logging vs. autostart pipelines),
+                # never misattributed. All are best-effort: none may raise out
+                # of gen() and break the note response already being streamed.
+                combined_output = "".join(output_buf)
+                await _run_postgen_sidework(
+                    generation_id=generation_id,
+                    combined_output=combined_output,
+                    cfg=cfg,
+                    note_type=note_type,
+                    user_speciality=user_speciality,
+                    created_at=created_at,
+                    duration=duration,
+                    prompt=prompt,
+                    transcription_text=str(transcription_text or ""),
+                    old_visits_text=str(old_visits_text or ""),
+                    mixed_other_text=str(mixed_other_text or ""),
+                    custom_prompt=str(custom_prompt or ""),
+                    token_count=token_count,
+                    actor=actor,
+                )
 
         return StreamingResponse(
             gen(),
