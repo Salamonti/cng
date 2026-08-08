@@ -154,5 +154,8 @@
         if (typeof module !== 'undefined' && module.exports) {
             module.exports = { formatApiErrorMessage, summarizeServiceDetailForUser };
         }
-    } catch (e) {}
+    } catch (e) {
+        // (a) Best-effort CommonJS export; fails only in odd bundler/host contexts
+        // where the browser-global assignment above has already made it available.
+    }
 })(typeof globalThis !== 'undefined' ? globalThis : this);

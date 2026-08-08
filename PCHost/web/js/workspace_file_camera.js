@@ -46,7 +46,10 @@
             if (!modal || !video) {
                 try {
                     stream.getTracks().forEach((t) => t.stop());
-                } catch (e) {}
+                } catch (e) {
+                    // (a) Best-effort cleanup of an acquired stream when the camera
+                    // UI is absent; stopping tracks is cosmetic resource release.
+                }
                 openCameraFileFallback();
                 return;
             }
@@ -54,12 +57,18 @@
             video.playsInline = true;
             try {
                 video.muted = true;
-            } catch (e) {}
+            } catch (e) {
+                // (a) Setting .muted is best-effort; a legacy element that rejects it
+                // is handled by the on-page autoplay policy, not this call.
+            }
             video.srcObject = stream;
             modal.classList.add('show');
             try {
                 await video.play();
-            } catch (e) {}
+            } catch (e) {
+                // (a) Autoplay may be rejected (policy/user gesture); the modal is
+                // already open so the doctor can still proceed, best-effort.
+            }
             return;
         }
         openCameraFileFallback();

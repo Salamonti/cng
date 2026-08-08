@@ -380,7 +380,11 @@
     const PM_INPUTS_KEY = 'pm_patient_inputs';
     function loadSavedPmInputs() {
         try { return JSON.parse(localStorage.getItem(PM_INPUTS_KEY) || '{}') || {}; }
-        catch (e) { return {}; }
+        catch (e) {
+            // (a) Best-effort load of persisted patient-materials inputs; a
+            // corrupt entry (or blocked storage) falls back to empty defaults.
+            return {};
+        }
     }
     function saveSavedPmInputs(data) {
         try {
@@ -389,7 +393,10 @@
                 if (data && data[k] != null && data[k] !== '') keep[k] = data[k];
             });
             localStorage.setItem(PM_INPUTS_KEY, JSON.stringify(keep));
-        } catch (e) {}
+        } catch (e) {
+            // (a) Best-effort persistence of patient-materials form inputs; a
+            // quota/blocked-storage failure must not break material generation.
+        }
     }
 
     function gatherPatientData() {

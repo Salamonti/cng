@@ -47,5 +47,8 @@
             if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
             return;
           }
-        } catch {}
+        } catch {
+          // (a) Best-effort mobile nav: a scrollIntoView-with-options throw (old
+          // browser) must not break navigation activation itself.
+        }
       }
