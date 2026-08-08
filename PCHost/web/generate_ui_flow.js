@@ -6,10 +6,15 @@
 
     try {
       scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch {}
+    } catch {
+      // (a) scrollIntoView with options can throw in old browsers; the section is
+      // still reachable, so this is a purely cosmetic improvement.
+    }
 
     const focusTarget = document.getElementById('logoutBtn') || document.getElementById('authStatus');
     if (focusTarget) {
+      // (a) focus({preventScroll}) can throw on legacy/odd focus targets; retry
+      // with plain focus() before giving up — still best-effort a11y polish.
       try { focusTarget.focus({ preventScroll: true }); } catch { try { focusTarget.focus(); } catch {} }
     }
   }
@@ -24,12 +29,16 @@
     // (block:center pushed the title to an awkward vertical position).
     try {
       scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-    } catch {}
+    } catch {
+      // (a) scrollIntoView options can throw in old browsers; non-fatal.
+    }
 
     if (header) {
       try {
         header.focus({ preventScroll: true });
       } catch {
+        // (a) Retry with plain focus() for targets where the options-object
+        // overload is unsupported — still best-effort a11y polish.
         try {
           header.focus();
         } catch {}

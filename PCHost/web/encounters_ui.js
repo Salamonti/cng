@@ -198,7 +198,10 @@
       if (typeof window.syncProfileSpecialtyToBar === 'function') {
         await window.syncProfileSpecialtyToBar();
       }
-    } catch (e) {}
+    } catch (e) {
+      // (a) Best-effort profile→bar UI sync; a hiccup must not abort the
+      // encounter operation that triggered the workspace reload.
+    }
     await refreshActiveEncounterFromServer();
   }
 
@@ -294,6 +297,7 @@
         const t = new Date(enc.updated_at);
         meta.textContent = t.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
       } catch (_) {
+        // (a) A malformed date must not break row rendering; fall back to blank.
         meta.textContent = '';
       }
     }
@@ -364,11 +368,17 @@
       await reloadWorkspaceAfterEncounterOp();
       try {
         if (typeof window.loadQueue === 'function') {
+          // (a) Queue reload after switching is fire-and-forget; the fallback
+          // updateQueueDisplay() below covers older bindings. A failed reload is
+          // non-fatal — the queue pill self-heals on next change.
           window.loadQueue().catch(() => {});
         } else if (typeof window.updateQueueDisplay === 'function') {
           window.updateQueueDisplay();
         }
-      } catch (e) {}
+      } catch (e) {
+        // (a) Defensive: a broken queue-display helper must not fail the
+        // encounter switch that already succeeded server-side.
+      }
       if (!opts || !opts.silent) {
         toast('Encounter', 'Switched active encounter.', 'success');
       }
@@ -456,7 +466,10 @@
         let t = '';
         try {
           t = await resp.text();
-        } catch (_) {}
+        } catch (_) {
+          // (a) Reading a possibly-empty/errored response body is best-effort;
+          // fall back to a generic message.
+        }
         toast('Error', t || 'Delete failed.', 'error');
         return;
       }
@@ -465,7 +478,10 @@
         if (window.RecordingRecovery && typeof window.RecordingRecovery.deleteByEncounter === 'function') {
           await window.RecordingRecovery.deleteByEncounter({ encounterId: String(id) });
         }
-      } catch (_) {}
+      } catch (_) {
+        // (a) Compliance cleanup is best-effort; a recovery-delete failure must
+        // not block the already-successful server-side encounter deletion.
+      }
       await reloadWorkspaceAfterEncounterOp();
       await refreshEncountersList();
       toast('Deleted', 'Encounter removed.', 'success');

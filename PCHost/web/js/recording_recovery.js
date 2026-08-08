@@ -15,6 +15,9 @@
       const email = u && u.email;
       return String(id || email || '');
     } catch (_) {
+      // (a) safeUserKey is best-effort; falls back to '' when AuthWorkspace
+      // lacks an identity. Callers treat empty scope as non-persistable, so
+      // this never swallows a real persistence need.
       return '';
     }
   }
@@ -23,6 +26,8 @@
     try {
       return window.app && window.app.activeEncounterId ? String(window.app.activeEncounterId) : '';
     } catch (_) {
+      // (a) safeEncounterId is best-effort; returns '' when no active encounter.
+      // Callers treat empty scope as non-persistable.
       return '';
     }
   }
@@ -86,6 +91,9 @@
     try {
       return crypto && crypto.randomUUID ? crypto.randomUUID() : `rec_${nowMs()}_${Math.random().toString(16).slice(2)}`;
     } catch (_) {
+      // (a) crypto.randomUUID may throw in non-secure contexts (or the prop-read
+      // itself), so fall back to a timestamp+random id rather than failing the
+      // whole recovery session.
       return `rec_${nowMs()}_${Math.random().toString(16).slice(2)}`;
     }
   }
@@ -372,7 +380,10 @@
       try {
         await deleteRecording(rid);
         deleted += 1;
-      } catch (_) {}
+      } catch (_) {
+        // (a) Best-effort cleanup: a single delete failure shouldn't abort wiping
+        // the rest of the encounter's recovery sessions.
+      }
     }
     return { deleted };
   }
