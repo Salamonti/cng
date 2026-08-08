@@ -799,6 +799,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                     // Invalidate session ID so any detached old pipeline's callbacks
                     // are rejected by the capturedSessionId guard in onStatus/onTranscript.
                     app._asrChunkSessionId = '';
+                    // (a) Defensive clear of an already-released/possibly-absent property;
+                    // the emergency-release path is guaranteed fire-and-forget.
                     try { app._asrChunkPipeline = null; } catch (_) {}
                     setAudioPipelinePhase('idle');
                     btn.textContent = 'Released. Tap Re-transcribe to finish.';
@@ -860,7 +862,10 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             try {
                 if (!eid) return;
                 localStorage.setItem(_asrTranscribeOkStorageKey(eid), '1');
-            } catch (_) {}
+            } catch (_) {
+                // (a) Storage guard: blocked/quota localStorage must never break
+                // the in-memory transcribed-state that drives the retranscribe UI.
+            }
         }
         function hasEncounterAsrTranscribeSucceeded(eid) {
             try {
@@ -1124,6 +1129,9 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                         segmentsList.classList.add('hidden');
                     }
                     renderAsrSegmentListForEncounter(eid);
+                    // (a) Best-effort UI refresh: any DOM hiccup here must not
+                    // take down the recording pipeline; the next explicit
+                    // _refreshRetranscribeUi() call repairs the panel.
                 } catch (_) {}
             };
 
@@ -1158,6 +1166,9 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                         try {
                             const eidDone = app.activeEncounterId ? String(app.activeEncounterId) : '';
                             if (eidDone) setEncounterAsrTranscribeSucceeded(eidDone);
+                            // (a) Storage + UI-refresh guards on the 'done' path:
+                            // worst case the 'transcribed' flag is lost and the
+                            // retranscribe panel is briefly stale — never fatal.
                         } catch (_) {}
                         try { _refreshRetranscribeUi(); } catch (_) {}
                         if (!app.suppressNextAsrTranscribedToast) {
@@ -1599,6 +1610,9 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                                                 console.warn('[ASR] Segment error (non-fatal during recording)', detail);
                                             } else {
                                                 // Finalization: terminal error — force transcribeOk=false so downstream sees failure.
+                                                // (b) This ALREADY reports to the incident store via _reportAsrIncident;
+                                                // the outer catch only protects the reporter (best-effort) and the
+                                                // outcome flag (fire-and-forget) from ever throwing.
                                                 try { _reportAsrIncident({ stage: 'client.chunkWorker', outcome: 'error_during_finalization', traceId: '', message: String(detail || ''), ctx_state: app.audioPipelinePhase }); } catch (_) {}
                                                 try { app._recordingTranscribeOutcome = { transcribeOk: false }; } catch (_) {}
                                             }
@@ -2304,6 +2318,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             }
 
             // Phase 2: POST timed out — poll GET /pipeline instead of re-POSTing.
+            // (b) Already reports to the incident store via _reportAsrIncident; the outer
+            // catch only protects the fire-and-forget reporter from throwing.
             try { _reportAsrIncident({ stage: 'client.drain', outcome: drainTimedOut ? 'timeout_polling' : 'failed_polling', traceId: '', message: 'Drain POST did not complete, polling instead', ctx_state: (app && app.audioPipelinePhase) || '' }); } catch (_) {}
             pollQs = sess ? ('?recording_session_id=' + encodeURIComponent(sess)) : '';
             var lastP = null;
@@ -3665,7 +3681,19 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 }
                 return res;
             } catch (e) {
-                // silent: recovery is best-effort
+                // (b) Whole recovery chain failed (an orphaned recording would
+                // otherwise sit until TTL cleanup and then be lost). Since this
+                // recovery is best-effort by design and runs in the background,
+                // we must not toast at the user, but the failure IS worth the
+                // incident store. Report only now that the entire chain has
+                // failed — a partial recoverStoppedToServer result is a non-event.
+                if (typeof window.reportClientError === 'function') {
+                    window.reportClientError(
+                        'Recording recovery failed; orphaned audio may be lost',
+                        (e && (e.stack || e.message)) || undefined,
+                        'caught'
+                    );
+                }
             }
         }
 
