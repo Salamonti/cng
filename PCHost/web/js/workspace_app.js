@@ -8,6 +8,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                     return String(window.AuthWorkspace.apiBase).replace(/\/+$/, '');
                 }
             } catch (e) {}
+            // (a) getApiBase: guarded property/storage read for the server URL; a
+            // hiccup here falls through to the local default below (never fatal).
             const raw = (serverUrl != null && String(serverUrl).trim() !== '') ? String(serverUrl).trim() : '/api';
             if (raw.startsWith('http://') || raw.startsWith('https://')) {
                 return raw.replace(/\/+$/, '');
@@ -181,6 +183,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             }
             syncGeneratedNotePreview();
             syncGeneratedNoteView();
+            // (a) Best-effort persist after a conflicts-split apply; storage failure
+            // must not break the already-applied note text in the DOM.
             try {
                 if (typeof saveToStorage === 'function') saveToStorage();
             } catch (e) {}
@@ -2625,6 +2629,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                             if ([0, 401, 403, 404, 408, 429, 500, 502, 503, 504].includes(code)) {
                                 console.warn('Server OCR failed; queuing for retry:', e);
                                 queueRequest('ocr', { file: file, fileName: file.name });
+                                // (a) Toast is the user-facing 'queued' surfacing; this guard only
+                                // keeps a toast DOM failure from aborting the already-queued flow.
                                 try { showToast('Queued for Retry', `Will retry once connected${code ? ` (reason: ${code})` : ''}`, 'warning'); } catch (_) {}
                                 continue;
                             }
@@ -2632,6 +2638,7 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                         }
                     } else {
                         queueRequest('ocr', { file: file, fileName: file.name });
+                        // (a) Same best-effort toast guard: queueing already happened above.
                         try { showToast('Queued for Retry', 'Connect in Settings, will auto-run when online', 'warning'); } catch (_) {}
                         continue;
                     }
@@ -2849,6 +2856,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
 
                 if (!response.ok) {
                     let detail = null;
+                    // (a) Best-effort error-detail parse: if the body isn't JSON the
+                    // generic `Server error: <status>` throw below still surfaces.
                     try { detail = await response.json(); } catch (e) {}
                     if (detail) {
                         showServiceErrorBanner(detail?.detail || detail, lastServiceRetry);
@@ -2897,6 +2906,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                             window.AuthWorkspace.queueSave();
                         }
                         showToast('Success', 'Note generated successfully', 'success');
+                        // (a) Best-effort post-success UI: scroll-to-actions is a nicety;
+                        // a DOM hiccup here must not mask the successful generation toast.
                         try {
                             requestAnimationFrame(() => {
                                 requestAnimationFrame(() => {
@@ -2909,10 +2920,13 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                                 });
                             });
                         } catch (_) {}
+                        // (a) Best-effort connection-state update: a DOM hiccup here must
+                        // not mask the successful generation toast above.
                         try {
                             app.connection.lastHealthOk = true;
                             syncQueueConnectionPill();
                         } catch (_) {}
+                        // (a) Fire-and-forget background connectivity probe: non-event by design.
                         setTimeout(() => { try { checkConnection(); } catch {} }, 1000);
 
                         const genId = window.lastGenerationId;
@@ -3839,6 +3853,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                         request.data.fileKey = job.id;
                         request.data.storageState = 'stored';
                         // Remove local stored blob immediately (server now holds it)
+                        // (a) Best-effort local-blob delete: if it fails we leak a blob until
+                        // queueStorage cleanup, but never block an already-uploaded job.
                         try { await queueStorage.deleteFile(localBlobKey); } catch (e) {}
                         removeLocalQueueMetaById(originalLocalId);
                     }
@@ -3889,6 +3905,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                         if (targetEl) {
                             setFieldValue(targetFieldId, newVal);
                         }
+                        // (a) Best-effort persistence after a queued OCR applies: a storage
+                        // failure must not drop the already-applied field value or its toast.
                         try { saveToStorage && saveToStorage(); } catch(e) {}
                         hideServiceErrorBanner();
                         showToast('Processed', `OCR complete (queued) → ${getFieldDisplayName(targetFieldId)}`, 'success');
@@ -4018,6 +4036,7 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             });
             } finally {
                 if (!queueProcessRunning) {
+                    // (a) Best-effort UI refresh after a queue pass completes.
                     try { syncQueueConnectionPill(); } catch (e) {}
                 }
             }
@@ -4040,6 +4059,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             const locals = (Array.isArray(app.requestQueue) ? app.requestQueue : []).filter(r => r && r.localOnly && String(r.encounter_id || '') === activeId);
             for (const r of locals) {
                 try { if (r.data?.fileKey) await queueStorage.deleteFile(r.data.fileKey); } catch (e) {}
+                // (a) Above is a best-effort local-blob delete per cleared item: a failure
+                // leaks a blob until queueStorage cleanup, but never blocks queue clearing.
                 removeLocalQueueMetaById(r.id);
             }
 
@@ -4100,6 +4121,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 }));
                 localStorage.setItem(_localQueueMetaKey(), JSON.stringify(slim));
             } catch (e) {}
+            // (a) persistLocalQueueMeta is a best-effort queue-meta write: blocked/quota
+            // storage must not break the in-memory queue that continues to drive the UI.
         }
 
         function removeLocalQueueMetaById(id) {
@@ -4107,6 +4130,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 const arr = loadLocalQueueMeta().filter(x => x && x.id !== id);
                 localStorage.setItem(_localQueueMetaKey(), JSON.stringify(arr));
             } catch (e) {}
+            // (a) removeLocalQueueMetaById best-effort localStorage write; guard is
+            // purely defensive so a blocked-storage state can't break queue operations.
         }
 
         async function deleteQueueItem(request, opts = {}) {
@@ -4118,6 +4143,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             }
             // Local-only
             if (request.localOnly && request.data?.fileKey) {
+                // (a) Best-effort local-blob delete when deleting a local-only item; a
+                // failure leaks a blob but never blocks the requested queue deletion.
                 try { await queueStorage.deleteFile(request.data.fileKey); } catch (e) {}
                 removeLocalQueueMetaById(request.id);
                 app.requestQueue = (app.requestQueue || []).filter(r => r && r.id !== request.id);
@@ -4553,6 +4580,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 }
 
                 saveToStorage();
+                // (a) Best-effort local-draft clears on 'clear all': blocked/quota storage
+                // must not fail the encounter reset the user explicitly requested.
                 try { localStorage.removeItem('clinicalNoteData'); } catch(e) {}
                 try { localStorage.removeItem('notegen_draft'); } catch(e) {}
                 try { localStorage.removeItem('customPrompts'); } catch(e) {}
@@ -4607,6 +4636,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                     console.warn('[QueueStorage] Failed to delete queued files:', error);
                 }
             }
+            // (a) Best-effort clear of the queue-meta key; blocked storage must not prevent
+            // the requested queue clear (the showToast below is the user-facing success).
             try { localStorage.removeItem(_localQueueMetaKey()); } catch (e) {}
 
             showToast('Cleared', 'All queued requests cleared', 'success');
@@ -5904,6 +5935,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             btn.title = 'Edit transcription';
 
             // Persist via existing storage/workspace sync flows
+            // (a) Best-effort persist + WS-sync after a transcription edit; storage/socket
+            // hiccups must not surface as an error — the Saved toast below is enough.
             try { saveToStorage(); } catch (e) {}
             try {
                 if (window.AuthWorkspace && typeof window.AuthWorkspace.queueSave === 'function') {
@@ -5911,6 +5944,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 }
             } catch (e) {}
 
+            // (a) Success toast is the user-facing surface; guard keeps a toast DOM
+            // failure from bubbling out of this button handler.
             try { showToast('Saved', 'Transcription updated', 'success'); } catch (e) {}
         }
 
@@ -5958,6 +5993,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             if (!document.body.classList.contains('auth-ready')) return;
             document.body.classList.toggle('sidebar-rail-collapsed');
             const collapsed = document.body.classList.contains('sidebar-rail-collapsed');
+            // (a) Best-effort persist of the sidebar-rail collapse state; blocked/quota
+            // storage must not fail the user's explicit toggle action.
             try {
                 localStorage.setItem('cng_sidebar_rail_collapsed', collapsed ? '1' : '0');
             } catch (e) {}
@@ -5970,6 +6007,8 @@ window.WORKSPACE_PAGE_TYPE = 'main';
 
         function applySavedSidebarRailPreference() {
             if (!document.body.classList.contains('auth-ready')) return;
+            // (a) Best-effort restore of the saved rail-preference on load: missing or
+            // unreadable storage just keeps the default expanded rail — never fatal.
             try {
                 if (localStorage.getItem('cng_sidebar_rail_collapsed') === '1') {
                     document.body.classList.add('sidebar-rail-collapsed');
@@ -6715,6 +6754,8 @@ Contact Information:`,
             });
             if (!resp.ok) {
                 let msg = 'Could not create note type.';
+                // (a) Best-effort error-detail parse: non-JSON body falls back to the
+                // generic message shown in the Error toast below.
                 try {
                     const err = await resp.json();
                     if (err.detail) msg = typeof err.detail === 'string' ? err.detail : JSON.stringify(err.detail);
@@ -6743,6 +6784,8 @@ Contact Information:`,
                     syncNoteTypeDropdownsFromProfile();
                 }
             } catch (_) {}
+            // (a) Best-effort auto-select of the just-created type: if any of the select
+            // elements are absent mid-refresh, the Added toast still confirms creation.
             showToast('Added', 'Custom note type created.', 'success');
         }
 
@@ -6767,6 +6810,8 @@ Contact Information:`,
             });
             if (!resp.ok) {
                 let msg = 'Could not rename note type.';
+                // (a) Best-effort error-detail parse: non-JSON body falls back to the
+                // generic message shown in the Error toast below.
                 try {
                     const err = await resp.json();
                     if (err.detail) msg = typeof err.detail === 'string' ? err.detail : JSON.stringify(err.detail);
@@ -7365,6 +7410,8 @@ Contact Information:`,
             const maxPct = 75;
 
             let leftPct = 50;
+            // (a) Best-effort restore of the saved split width: blocked/missing storage
+            // just falls back to the default 50/50 split — never fatal.
             try {
                 const s = parseFloat(localStorage.getItem(KEY) || '', 10);
                 if (!isNaN(s)) leftPct = s;
@@ -7374,6 +7421,8 @@ Contact Information:`,
                 leftPct = Math.min(maxPct, Math.max(minPct, pct));
                 wrap.style.gridTemplateColumns = `minmax(240px, ${leftPct}%) 8px minmax(260px, 1fr)`;
                 split.setAttribute('aria-valuenow', String(Math.round(leftPct)));
+                // (a) Best-effort persist of the split width: blocked/quota storage must
+                // not break an in-session drag-resize of the sidebar split.
                 try {
                     localStorage.setItem(KEY, String(leftPct));
                 } catch {}
@@ -7398,6 +7447,9 @@ Contact Information:`,
                 split.addEventListener('pointerdown', (e) => {
                     if (e.button !== 0) return;
                     dragging = true;
+                    // (a) setPointerCapture can throw if the pointer isn't active for
+                    // this element; a failure here just means pointermove deltas continue
+                    // to resolve via the window listeners below — non-fatal.
                     try {
                         split.setPointerCapture(e.pointerId);
                     } catch {}
@@ -7497,6 +7549,8 @@ Contact Information:`,
                         window._refreshRetranscribeUi();
                     }
                 } catch (_) {}
+                // (a) Best-effort init refresh; a DOM hiccup here just defers the panel
+                // repair to the next explicit retranscribe-refresh call.
                 try {
                     if (app && app.activeEncounterId) {
                         fetchAsrSegmentsForEncounter(String(app.activeEncounterId)).catch(() => {});
@@ -7507,6 +7561,8 @@ Contact Information:`,
             ensureOrderRequestsState();
             // Best-effort: recover any completed recordings saved locally (crash/phone sleep) and queue them.
             recoverLocalRecordingsToServer();
+            // (a) Best-effort init fetch of ASR segments for the open encounter; the
+            // inner .catch already keeps it fire-and-forget, outer guard is defensive.
             try {
                 if (app && app.activeEncounterId) {
                     fetchAsrSegmentsForEncounter(String(app.activeEncounterId)).catch(() => {});
@@ -7526,6 +7582,8 @@ Contact Information:`,
                         _scheduleQueuePoll();
                         return;
                     }
+                    // (a) Best-effort background queue poll: a transient processing error
+                    // must not kill the recursive poll loop that drains the queue.
                     try { await processQueue(); } catch (_) {}
                     const stillHasJobs = Array.isArray(app.requestQueue) && app.requestQueue.some(
                         (r) => isQueueJobAutoProcessable(r) && queueJobMatchesActiveEncounter(r)
@@ -7547,6 +7605,8 @@ Contact Information:`,
                     ro.observe(stickyTop);
                 }
             } catch (_) {}
+            // (a) Best-effort ResizeObserver wiring for the sticky note chrome: if the
+            // element or observer isn't available, the chrome just stays non-sticky.
             let _chromeStickyResizeTimer = null;
             window.addEventListener('resize', () => {
                 if (_chromeStickyResizeTimer) clearTimeout(_chromeStickyResizeTimer);
