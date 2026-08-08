@@ -72,7 +72,10 @@ window.addEventListener('workspace-auth-changed', (event) => {
       if (ep) ep.classList.remove('open');
       if (eb) eb.classList.remove('open');
       if (typeof window.closeLiteraturePanel === 'function') window.closeLiteraturePanel();
-    } catch (e) {}
+    } catch (e) {
+      // Benign logout-time UI cleanup: a panel already missing/unwired must not
+      // break the rest of the signed-out teardown below.
+    }
     // Preserve UI data when logged out
     const consultCard = document.getElementById('consultCommentCard');
     if (consultCard) consultCard.classList.add('hidden');

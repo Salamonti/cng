@@ -7,7 +7,9 @@
       if (typeof global.getApiBase === 'function') {
         return String(global.getApiBase((global.app && global.app.settings && global.app.settings.serverUrl) || '/api')).replace(/\/+$/, '');
       }
-    } catch (_) {}
+    } catch (_) {
+      // Probe guard: getApiBase may be undefined early at load; '/api' default.
+    }
     return '/api';
   }
 
@@ -42,8 +44,25 @@
       if (typeof global.getAuthToken === 'function') {
         return global.getAuthToken() || null;
       }
-    } catch (_) {}
+    } catch (_) {
+      // Probe guard: getAuthToken may be unresolved at load; caller omits the
+      // Authorization header rather than sending a token-shaped string.
+    }
     return null;
+  }
+
+  // Report ONLY once the whole /asr/modes -> /asr/capabilities fallback chain
+  // has failed (we are about to return null and hide the ASR toggles). A single
+  // transient  404 on the first but a win on the second is a non-event and must
+  // not be noise in the incident store.
+  function _reportCapabilitiesFailure(stage, e) {
+    if (typeof global.reportClientError === 'function') {
+      global.reportClientError(
+        'ASR capabilities: ' + stage + ' fetch failed; ASR toggles hidden',
+        (e && (e.stack || e.message)) || undefined,
+        'caught'
+      );
+    }
   }
 
   async function refreshAsrCapabilities() {
@@ -51,20 +70,29 @@
     var base = apiBase();
     var token = authToken();
     var headers = token ? { 'Authorization': 'Bearer ' + token } : {};
+    var modesError = null;
     try {
       var resp = await fetch(base + '/asr/modes', { credentials: 'same-origin', headers: headers });
       if (resp.ok) {
         global.app.asrCapabilities = await resp.json();
         return global.app.asrCapabilities;
       }
-    } catch (_) {}
+    } catch (e) {
+      modesError = e;
+    }
+    var capsError = null;
     try {
       var resp2 = await fetch(base + '/asr/capabilities', { credentials: 'same-origin', headers: headers });
       if (resp2.ok) {
         global.app.asrCapabilities = await resp2.json();
         return global.app.asrCapabilities;
       }
-    } catch (_) {}
+    } catch (e) {
+      capsError = e;
+    }
+    // Reached here only when neither endpoint produced capabilities.
+    if (modesError) _reportCapabilitiesFailure('/asr/modes', modesError);
+    if (capsError) _reportCapabilitiesFailure('/asr/capabilities', capsError);
     return null;
   }
 

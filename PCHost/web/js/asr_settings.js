@@ -18,7 +18,11 @@
       if (profile === 'asr_diarize' && localStorage.getItem(DIARIZE_KEY) == null) {
         localStorage.setItem(DIARIZE_KEY, '1');
       }
-    } catch (_) {}
+    } catch (_) {
+      // Best-effort legacy migration: storage may be blocked (privacy mode /
+      // quota). Skipping only affects a one-time toggle default, not a value we
+      // can recover by falling back to the default below.
+    }
   }
 
   function getCaptureMode() {
@@ -26,7 +30,10 @@
     try {
       var v = migrateCaptureMode(localStorage.getItem(CAPTURE_MODE_KEY));
       if (v === 'batch' || v === 'chunk') return v;
-    } catch (_) {}
+    } catch (_) {
+      // localStorage read may throw when storage is blocked; falls through to
+      // the 'batch' default below by design.
+    }
     return 'batch';
   }
 
@@ -34,7 +41,10 @@
     if (mode !== 'batch' && mode !== 'chunk') return getCaptureMode();
     try {
       localStorage.setItem(CAPTURE_MODE_KEY, mode);
-    } catch (_) {}
+    } catch (_) {
+      // Persisting a setting is best-effort: a failed write (quota / blocked)
+      // must not break the in-memory toggle, which still returns `mode`.
+    }
     return mode;
   }
 
@@ -50,14 +60,18 @@
     migrateLegacyProfile();
     try {
       return localStorage.getItem(DIARIZE_KEY) === '1';
-    } catch (_) {}
+    } catch (_) {
+      // Blocked storage -> treat as disabled; 'false' is the safe default.
+    }
     return false;
   }
 
   function setDiarizeEnabled(on) {
     try {
       localStorage.setItem(DIARIZE_KEY, on ? '1' : '0');
-    } catch (_) {}
+    } catch (_) {
+      // Best-effort persistence; in-memory state is read back below.
+    }
     return getDiarizeEnabled();
   }
 

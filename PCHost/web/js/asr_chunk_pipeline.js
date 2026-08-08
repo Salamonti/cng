@@ -47,7 +47,10 @@
       return;
     }
     var waiters = this._idleWaiters.splice(0);
-    waiters.forEach(function (r) { try { r(); } catch (_) {} });
+    waiters.forEach(function (r) { try { r(); } catch (_) {
+      // A waiter's resolve callback must never abort the idle sweep of the
+      // remaining waiters.
+    } });
   };
 
   AsrChunkPipeline.prototype.submitSegment = function (blob, opts) {

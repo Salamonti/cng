@@ -106,7 +106,10 @@
         card.dataset.location = 'main';
       }
       card.style.display = '';
-    } catch (e) {}
+    } catch (e) {
+      // Best-effort auth-card DOM placement: a transiently-missing node must
+      // not break sign-in/sign-out. The card may stay in its last location.
+    }
   }
 
   function isMobile() {

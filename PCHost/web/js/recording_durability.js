@@ -19,7 +19,10 @@
     const api = { computeRecordingDurable };
     try {
         global.RecordingDurability = api;
-    } catch (e) {}
+    } catch (e) {
+        // Non-browser / shadowed global: the CommonJS export below is the real
+        // consumer in the node test suite; assigning to `global` is cosmetic.
+    }
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = api;
     }
