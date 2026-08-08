@@ -184,6 +184,8 @@
       }
       if (!useBeaconFix) {
         try {
+          // (a) keepalive save via sendBeacon is best-effort; a fire-and-forget beacon
+          // failure (payload limits, unsupported) must never break the auth flow.
           navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
         } catch (e) {}
       }
@@ -209,6 +211,7 @@
           if (this.apiBaseInput) this.apiBaseInput.value = '/api';
           try {
             if (typeof showToast === 'function') {
+              // (a) Best-effort toast; a consumer-supplied fn must not throw during restore.
               showToast('Connection', 'Using default /api (cleared stored loopback address).', 'info');
             }
           } catch (_) {}
@@ -216,6 +219,8 @@
         }
         this.apiBase = t;
         if (this.apiBaseInput) this.apiBaseInput.value = t;
+      // (a) apiBase restore is best-effort; an unexpected parse/side-effect throw must
+      // not break auth init (falls through to default '/api').
       } catch (e) {}
     },
 
@@ -411,6 +416,8 @@
         } else if (!document.hidden && this.isWorkspaceReady()) {
           // Never force-pull over unsaved local edits (bad connection / cross-tab race).
           if (!this.hasUnsavedLocalEdits()) {
+            // (a) Background visibility-change pull is fire-and-forget: a transient failure
+            // is a non-event (retried next loop), so swallow the rejection.
             this.pullWorkspaceIfNewer(false).catch(() => {});
           } else {
             this.queueSave();
@@ -691,6 +698,8 @@
         const adminRedirect = document.getElementById('adminLoginRedirect');
         if (adminRedirect && adminRedirect.checked) {
           try {
+            // (a) sessionStorage write is best-effort; failure only means the admin page's
+            // token bootstrap falls back (token never placed in URL for leak safety).
             sessionStorage.setItem('admin_workspace_token', data.access_token);
           } catch (e) {}
           // No token in the URL (it leaks into server access logs, proxy
@@ -847,6 +856,8 @@
         this.applyWorkspaceState(data.state || {}, { force: true });
         // Recover any unsaved edits that an abrupt close/crash left in localStorage
         // for this same user+encounter (pushes them back to the server if newer).
+        // (a) Draft recovery is best-effort: if it throws we skip recovery this load and
+        // proceed with the server workspace; not fatal.
         try { this.recoverLocalDraftIfAny(); } catch (e) {}
         this.updateWorkspaceMeta();
         this.setSyncPill('ok', 'Synced');
@@ -949,6 +960,8 @@
           fingerprint: this.computeEditableStateFingerprint(),
           state: this.collectWorkspaceState(),
         };
+        // (a) Draft persistence is best-effort (quota/blocked storage); losing the local
+        // draft must never break the main save/sync path.
         localStorage.setItem(STORAGE_KEYS.DRAFT, JSON.stringify(record));
       } catch (e) {}
     },
@@ -1128,6 +1141,8 @@
       // P5/P6: active encounter pointer (used for per-encounter queue UI)
       let encounterChanged = false;
       try {
+        // (a) Defensive DOM/app-state read: active-encounter pointer update must never
+        // throw out of applyWorkspaceState.
         if (window.app && typeof extras.activeEncounterId === 'string') {
           const prev = window.app.activeEncounterId ? String(window.app.activeEncounterId) : '';
           const next = String(extras.activeEncounterId || '');
@@ -1205,6 +1220,8 @@
       // Restore UI persistence for generation tools/buttons
       const ui = extras.ui || {};
       if (typeof window.applyUiStateFromWorkspace === 'function') {
+        // (a) Best-effort UI restore from workspace extras; a missing/broken helper or
+        // ui state must not fail the whole workspace apply.
         try { window.applyUiStateFromWorkspace(ui); } catch {}
       } else {
         {
@@ -1636,6 +1653,8 @@
         if (this.isClinicalBusy()) {
           this.resetIdleTimer();
           if (window.ASR_PIPELINE_REFRESH !== false) {
+            // (a) Recording-during-clinical token keepalive is fire-and-forget: a failed
+            // refresh is a non-event (retried next 15s tick) and must not interrupt.
             this.ensureFreshToken().catch(() => {});
           }
         } else if (this.isAudioRecordingActive()) {
