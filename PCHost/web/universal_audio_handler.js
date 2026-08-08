@@ -42,6 +42,8 @@ class UniversalAudioHandler {
     }
 
     _asrDebugEnabled() {
+        // (a) Debug-feature guards: window/localStorage reads must never affect
+        // the recording path, even when storage is blocked/privacy-restricted.
         try {
             if (window && window.__ASR_DEBUG) return true;
         } catch (_) {}
@@ -60,6 +62,7 @@ class UniversalAudioHandler {
                 isRecording: !!this.isRecording,
                 isListening: !!this.isListening,
             };
+            // (a) _asrDbg is debug-only; must never throw into the recording path.
             console.info('[ASR_DEBUG]', msg, Object.assign(base, extra || {}));
         } catch (_) {}
     }
@@ -91,6 +94,9 @@ class UniversalAudioHandler {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
+                    // (a) _reportAsrIncident is a guaranteed fire-and-forget reporter: it must
+                    // NEVER throw into the recording path. Both the fetch chain and the whole
+                    // body (token/apiBase reads up to the keepalive POST) are swallowed by design.
                     body,
                     keepalive: true,
                 }).catch(() => {});
@@ -203,6 +209,8 @@ class UniversalAudioHandler {
         try {
             if (window.CNGAudioUI && typeof window.CNGAudioUI.syncGenerateButtonsForPipeline === 'function') {
                 const ph = (window.app && window.app.audioPipelinePhase) || 'idle';
+                // (a) Best-effort UI sync after start; a syncing hiccup must not abort the
+                // recording that is about to begin.
                 window.CNGAudioUI.syncGenerateButtonsForPipeline(ph);
             }
         } catch (_) {}
@@ -225,6 +233,7 @@ class UniversalAudioHandler {
         try {
             if (window.CNGAudioUI && typeof window.CNGAudioUI.syncGenerateButtonsForPipeline === 'function') {
                 const ph = (window.app && window.app.audioPipelinePhase) || 'idle';
+                // (a) Best-effort UI sync after stop; must never interfere with finalization.
                 window.CNGAudioUI.syncGenerateButtonsForPipeline(ph);
             }
         } catch (_) {}
@@ -253,6 +262,8 @@ class UniversalAudioHandler {
         if (!this._chunkPipeline) return;
         var ms = (typeof window !== 'undefined' && window.ASR_CHUNK_SEGMENT_MS) ? window.ASR_CHUNK_SEGMENT_MS : 25000;
         this._segmentRotateTimer = setTimeout(function () {
+            // (a) Rotation stop is best-effort: starting a new MediaRecorder below would
+            // fail anyway if this stop threw; rotation is an internal optimization.
             if (self.isRecording && self.mediaRecorder && self.mediaRecorder.state === 'recording') {
                 self._segmentRotatePending = true;
                 try { self.mediaRecorder.stop(); } catch (_) {}
@@ -298,6 +309,8 @@ class UniversalAudioHandler {
                             message: 'First MediaRecorder chunk missing EBML 1A45DFA3 header',
                         });
                     }
+                // (a) The EBML-header check is a best-effort corruption diagnostic; failing to
+                // read the arrayBuffer tells us nothing actionable beyond the console.warn already shown.
                 }).catch(function () {});
             }
 
