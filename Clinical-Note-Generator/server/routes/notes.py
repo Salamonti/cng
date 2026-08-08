@@ -120,6 +120,52 @@ def _service_error_detail(err: ExternalServiceError) -> Dict[str, Any]:
     }
 
 
+# ---------------------------------------------------------------------------
+# User-facing generation-error diagnosis (Task 4b: diagnosis-by-keyword done
+# properly). Telling a clinician "the input is too long, reduce your data" is
+# actively harmful when it is not true -- it sends them to delete good chart
+# context chasing a problem that does not exist. So a context-overflow cause
+# must be CORROBORATED by model-input size, never asserted from a single
+# keyword substring. Generic words ("limit", "exceeds", "slot", "too long")
+# appear in plenty of unrelated runtime errors, so keywords alone are not
+# evidence of overflow. We require the prompt to actually be large enough for
+# the claim to be plausible before making it.
+# ---------------------------------------------------------------------------
+_CONTEXT_ERROR_KEYWORDS = (
+    "context", "ctx", "kv", "slot", "too long", "too large",
+    "exceeds", "limit", "overflow", "n_ctx",
+)
+
+
+def _classify_generation_error(
+    error_msg: str,
+    prompt: str,
+    cfg: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """Classify a generation failure into a user-facing cause.
+
+    Returns a dict with ``is_context_overflow`` (True only when BOTH a
+    context-error keyword appears AND the prompt is estimated large enough to
+    plausibly overflow the window), plus ``approx_prompt_tokens`` for the
+    message and for operator debugging. Pure / side-effect free so it can be
+    unit-tested directly; the streaming route maps the verdict onto copy.
+    """
+    cfg = cfg or {}
+    try:
+        context_floor = int(cfg.get("context_overflow_warn_tokens", 100_000))
+    except Exception:
+        context_floor = 100_000
+    approx_prompt_tokens = len(prompt or "") // 4
+    lowered = str(error_msg or "").lower()
+    looks_like_context_error = any(k in lowered for k in _CONTEXT_ERROR_KEYWORDS)
+    return {
+        "is_context_overflow": looks_like_context_error
+        and approx_prompt_tokens >= context_floor,
+        "approx_prompt_tokens": approx_prompt_tokens,
+    }
+
+
+
 def _has_minimum_signal(text: str, *, min_alnum: int) -> bool:
     """Return True if text still contains enough alphanumeric characters to be useful."""
     if not text:
@@ -2176,25 +2222,15 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                         "----- END UNVERIFIED DRAFT -----\n"
                     )
             except RuntimeError as e:
-                error_msg = str(e).lower()
                 # Telling a clinician "the input is too long, reduce your data"
                 # is actively harmful advice when it is not true -- it sends
                 # them to delete good chart context chasing a problem that does
-                # not exist. The keyword list below matches generic words
-                # ("limit", "exceeds", "slot") that appear in plenty of
-                # unrelated runtime errors, so keywords alone are not evidence
-                # of a context overflow. Require the prompt to actually be big
-                # enough for the claim to be plausible before making it.
-                try:
-                    context_floor = int(cfg.get("context_overflow_warn_tokens", 100_000))
-                except Exception:
-                    context_floor = 100_000
-                approx_prompt_tokens = len(prompt or "") // 4
-                looks_like_context_error = any(keyword in error_msg for keyword in [
-                    "context", "ctx", "kv", "slot", "too long", "too large",
-                    "exceeds", "limit", "overflow", "n_ctx"
-                ])
-                if looks_like_context_error and approx_prompt_tokens >= context_floor:
+                # not exist. _classify_generation_error corroborates a
+                # context-overflow cause with the actual prompt size (see the
+                # helper docstring / Task 4b), never a single keyword substring.
+                verdict = _classify_generation_error(str(e), prompt, cfg)
+                if verdict["is_context_overflow"]:
+                    approx_prompt_tokens = verdict["approx_prompt_tokens"]
                     print(f"Context length error (~{approx_prompt_tokens} tok): {e}")
                     yield (
                         "ERROR: The input is too long for the model's context window.\n\n"
@@ -2203,6 +2239,7 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                         f"Technical details: {str(e)}\n"
                     )
                 else:
+                    approx_prompt_tokens = verdict["approx_prompt_tokens"]
                     print(
                         f"Runtime error during streaming "
                         f"(~{approx_prompt_tokens} prompt tok): {e}"
