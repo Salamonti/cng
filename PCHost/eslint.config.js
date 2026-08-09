@@ -18,6 +18,7 @@
 // before adding it; the friction is deliberate, because every entry is a piece of
 // undeclared coupling between files.
 const globals = require("globals");
+const html = require("eslint-plugin-html");
 
 // name -> file that defines it (kept as a comment trail so the next reader can
 // verify rather than trust this list).
@@ -82,6 +83,25 @@ module.exports = [
   {
     // The browser app.
     files: ["web/*.js", "web/js/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "script",
+      globals: { ...globals.browser, ...appGlobals },
+    },
+    rules: {
+      "no-undef": "error",
+    },
+  },
+  {
+    // Inline <script> blocks inside the HTML pages. The plan (Step 7) gates
+    // these with no-undef too: bug-1 (typeof-x.y / undeclared-id-in-failure-
+    // branch) is unguarded in inline scripts, and admin.html holds a known one.
+    // SourceType "script" (non-module, classic inline script sharing the page's
+    // global scope) matching the .js files above. ecmaVersion 2022 is verified
+    // against the real code: the app uses optional chaining (?., ES2020) and
+    // regex lookbehind ((?<!...), ES2018), both covered by 2022.
+    files: ["web/*.html"],
+    plugins: { html },
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "script",
