@@ -205,7 +205,7 @@
             hideLoading();
             // Reading .message off a null/undefined throw would throw again here,
             // inside the handler whose only job is to report the first failure.
-            var detail = (error && error.message) || 'Unexpected error';
+            var detail = (error && error.message) || 'The AI service is temporarily unavailable. Please try again.';
             safeToast('Error', 'Failed to generate ' + MATERIAL_TYPES[category] + ': ' + detail, 'error');
         }
     }

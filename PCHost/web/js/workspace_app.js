@@ -813,9 +813,16 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                         showToast('Recording released', 'Recording retained locally when available; reconnect and recover or re-transcribe.', 'info');
                     }
                 } catch (e) {
-                    console.error('[ASR] Emergency release failed', e);
-                    btn.disabled = true;
-                    btn.textContent = 'Failed — please refresh page.';
+                    // forceResetRecording() above runs FIRST and never throws
+                    // (its body is a catch-all), so reaching here means the
+                    // recording was already released and its recovery copy kept
+                    // -- only the UI-sync after it failed. Never tell the
+                    // clinician to refresh: that discards the retained copy this
+                    // button exists to preserve. Keep it re-enabled so the retry
+                    // is real (idempotent re-run repairs the UI sync).
+                    console.error('[ASR] Emergency-release UI sync failed (recording already reset)', e);
+                    btn.disabled = false;
+                    btn.textContent = 'Release not completed. Tap Re-transcribe to finish, or try again.';
                 }
             });
             var container = statusEl.parentNode;
