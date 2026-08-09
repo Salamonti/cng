@@ -97,6 +97,14 @@ def update_workspace(
 
     if payload.version != workspace.version:
         composed = compose_client_workspace_state(workspace, encounter)
+        record_sync_incident(
+            outcome="put_conflict",
+            payload={
+                "reason": "version_mismatch",
+                "client_version": payload.version,
+                "server_version": workspace.version,
+            },
+        )
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail={
@@ -132,6 +140,14 @@ def update_workspace(
         session.refresh(workspace)
         session.refresh(encounter)
         composed = compose_client_workspace_state(workspace, encounter)
+        record_sync_incident(
+            outcome="put_conflict",
+            payload={
+                "reason": "cas_rowcount_zero",
+                "client_version": payload.version,
+                "server_version": workspace.version,
+            },
+        )
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail={
@@ -143,8 +159,6 @@ def update_workspace(
     session.commit()
     session.refresh(workspace)
     session.refresh(encounter)
-
-    record_sync_incident(outcome="put_ok", payload={"version": workspace.version})
 
     composed = compose_client_workspace_state(workspace, encounter)
     return _workspace_response(workspace, composed)

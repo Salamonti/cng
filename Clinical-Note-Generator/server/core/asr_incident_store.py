@@ -72,7 +72,15 @@ def incident_dir() -> Path:
 
 
 def record_sync_incident(*, outcome: str, payload: Optional[Dict[str, Any]] = None) -> None:
-    """G0: workspace save / sync telemetry (reuses ASR incident store)."""
+    """G0: workspace save / sync telemetry (reuses ASR incident store).
+
+    Intended for genuine WRITE-CONTENTION incidents (outcome ``put_conflict``,
+    the PUT 409 signal the ops contract in core/db.py watches). Routine
+    successful saves (``put_ok``) are deliberately NOT recorded here: at steady
+    state they were ~91% of all incident-store records and drowned out the real
+    incidents (incident store signal-to-noise, STEP 8). Record outcomes are
+    incidents, not happy-path telemetry.
+    """
     record_asr_incident(
         trace_id="workspace-sync",
         stage="workspace_sync",
