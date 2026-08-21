@@ -11,8 +11,8 @@ from typing import Any, Dict, List, Optional, Tuple
 from urllib.parse import urlparse
 
 DEFAULT_TEXT_PRIMARY = "http://127.0.0.1:8004"
-DEFAULT_OCR_PRIMARY = "http://127.0.0.1:8001"
-DEFAULT_VISION_FALLBACK_PRIMARY = "http://127.0.0.1:8001"
+DEFAULT_OCR_PRIMARY = "http://127.0.0.1:8004"
+DEFAULT_VISION_FALLBACK_PRIMARY = "http://127.0.0.1:8004"
 DEFAULT_ASR_REFINE = DEFAULT_TEXT_PRIMARY
 
 

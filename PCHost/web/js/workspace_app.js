@@ -5300,6 +5300,17 @@ window.WORKSPACE_PAGE_TYPE = 'main';
 
                     if (r.ok) {
                         const data = await r.json();
+                        if (data.status === 'pending') {
+                            window.orderRequestsState = {
+                                ...window.orderRequestsState,
+                                status: 'pending',
+                                hasGenerated: false,
+                                lastUpdated: Date.now()
+                            };
+                            persistOrderRequestsState();
+                            renderOrderRequestsModal();
+                            return;
+                        }
                         if (data.status === 'done') {
                             clearInterval(poll);
                             const content = {
@@ -5402,6 +5413,12 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 return;
             }
 
+            if (state.status === 'pending') {
+                emptyEl.textContent = 'Generating requests… (this can take a minute)';
+                emptyEl.classList.remove('hidden');
+                return;
+            }
+
             const items = Array.isArray(state.items) ? state.items : [];
             if (!items.length) {
                 emptyEl.textContent = 'No requests were detected.';
@@ -5487,8 +5504,14 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             const state = ensureOrderRequestsState();
             window.openOrderRequestsModal();
 
-            if (state.status === 'loading' || state.status === 'error' || state.hasGenerated) {
-                renderOrderRequestsModal();
+            if (state.status === 'loading' || state.status === 'error' || state.hasGenerated || state.status === 'pending') {
+                if (state.status === 'pending') {
+                    // Backend autostart already in flight: (re)start the poll loop so
+                    // the modal resolves when the pending run finishes.
+                    startOrderRequestsGeneration(genId, { force: false, followPending: true });
+                } else {
+                    renderOrderRequestsModal();
+                }
                 return;
             }
 
@@ -5586,7 +5609,7 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 try {
                     const encQs = encounterQueryString();
                     let path = `/generation/${genId}/order_requests`;
-                    if (force && tries === 1) {
+                    if (force && tries === 1 && !options.followPending) {
                         path += `?force=1${encQs ? `&${encQs}` : ''}`;
                     } else if (encQs) {
                         path += `?${encQs}`;
@@ -5602,6 +5625,17 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                     }
                     if (r.ok) {
                         const data = await r.json();
+                        if (data.status === 'pending') {
+                            window.orderRequestsState = {
+                                ...window.orderRequestsState,
+                                status: 'pending',
+                                hasGenerated: false,
+                                lastUpdated: Date.now()
+                            };
+                            persistOrderRequestsState();
+                            renderOrderRequestsModal();
+                            return;
+                        }
                         if (data.status === 'done') {
                             clearInterval(poll);
                             window.orderRequestsState = {

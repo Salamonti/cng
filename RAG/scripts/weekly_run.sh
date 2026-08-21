@@ -192,4 +192,18 @@ fi
 # bump_corpus_version.py for why this was previously a silent no-op.
 run_tool bump_corpus_version bump_corpus_version.py
 
+# Restart the live query service. The in-place collection upsert + BM25 rebuild
+# above leave the long-running uvicorn process holding a STALE collection handle
+# and in-memory BM25 cache; without a restart it serves stale documents (and, in
+# practice, briefly returned None documents that crashed hybrid_search_filtered
+# with "'NoneType' object has no attribute 'lower'"). Restarting after a re-ingest
+# forces a fresh load so the service always reflects the just-built index.
+if systemctl is-active --quiet dreamcision-rag.service; then
+  log_step "Restarting dreamcision-rag.service to reload the fresh index"
+  sudo systemctl restart dreamcision-rag.service
+else
+  log_step "dreamcision-rag.service not active; starting it"
+  sudo systemctl start dreamcision-rag.service
+fi
+
 log_step "Weekly run completed. Logs in ${run_dir}"

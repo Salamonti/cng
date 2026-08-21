@@ -37,7 +37,9 @@ def _run_log_case_completion(monkeypatch, tmp_path, *, input_text="", output_tex
         notes_mod, "log_case_quarantine", lambda rec: written["quarantines"].append(rec) or "quarantine"
     )
 
-    # Stub deidentify_text to return controllable leak flags per call.
+    # Stub deidentify_fields (which _deid_fields now calls) to return
+    # controllable leak flags per field. The fake delegates per-field to
+    # fake_deid so the input/output sentinel logic is unchanged.
     call = {"n": 0}
     def fake_deid(text):
         call["n"] += 1
@@ -66,6 +68,9 @@ def _run_log_case_completion(monkeypatch, tmp_path, *, input_text="", output_tex
             "redaction_counts": {},
             "leak_flags": {"residual_any": False, "ner_error": False, "raw_has_any": False},
         }
+    def fake_deid_fields(fields):
+        return {k: fake_deid(v) for k, v in fields.items()}
+    monkeypatch.setattr(notes_mod, "deidentify_fields", fake_deid_fields)
     monkeypatch.setattr(notes_mod, "deidentify_text", fake_deid)
 
     notes_mod._log_case_completion(

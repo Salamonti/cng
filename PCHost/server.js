@@ -104,7 +104,9 @@ app.use(cors({
 // send HSTS on a plaintext path — setting it would pin browsers to HTTPS.
 app.use((req, res, next) => {
   res.set('X-Content-Type-Options', 'nosniff');
-  res.set('X-Frame-Options', 'DENY');
+  // SAMEORIGIN (was DENY) so the in-app Q&A panel (same-origin iframe of
+  // qa.html) can load while third-party sites still cannot frame us.
+  res.set('X-Frame-Options', 'SAMEORIGIN');
   res.set('Referrer-Policy', 'no-referrer');
   res.set('Permissions-Policy', 'camera=(self), microphone=(self), geolocation=()');
   if (req.secure || req.get('x-forwarded-proto') === 'https') {
@@ -122,6 +124,39 @@ app.use((req, res, next) => {
     res.set('Cache-Control', 'no-cache');
   } else if (/\.(js|css|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$/i.test(p)) {
     res.set('Cache-Control', 'public, max-age=0');
+  }
+  next();
+});
+
+// --- Auth gate (security): protect app pages & data-bearing assets so they
+// are not reachable before a user signs in. The login page and the assets
+// needed to render it stay public; everything else (Q&A, admin, prompt
+// templates, any .html/.json page) requires a session cookie that
+// auth_workspace.js sets on login (dc_session). This closes the leak where
+// qa.html / admin plumbing / prompt_templates.jsonl were fetchable pre-login.
+function _hasSessionCookie(req) {
+  const c = req.headers['cookie'] || '';
+  return /(^|;\s*)dc_session=[^;]+/.test(c);
+}
+// Public paths that must remain reachable without a session.
+// NOTE: /admin* and /admin.html already enforce their own Bearer-token auth
+// in the dedicated app.get('/admin.html') route below, so they are exempt
+// from this cookie gate (which would otherwise 401 them before that check).
+const _PUBLIC_RE = /^\/($|index\.html$|login|admin|reset-password\.html$|privacy\.html$|licenses\.html$|manual|api|health|fastapi-check|favicon|manifest\.json$|service_worker\.js$)/i;
+// Pages/data that must be behind login: .html/.json/.jsonl app pages plus the
+// extensionless /qa named route.
+const _SENSITIVE_RE = /\.(html|json|jsonl)$/i;
+const _SENSITIVE_EXACT = new Set(['/qa']);
+app.use((req, res, next) => {
+  const p = req.path || '/';
+  if (_PUBLIC_RE.test(p)) return next();
+  if (!_hasSessionCookie(req) && (_SENSITIVE_RE.test(p) || _SENSITIVE_EXACT.has(p.toLowerCase()))) {
+    return res.status(401).set('Cache-Control', 'no-store').set('Content-Type', 'text/html; charset=utf-8').send(
+      '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Sign in required</title></head>' +
+      '<body style="font-family:system-ui,sans-serif;padding:2rem;background:#130f1a;color:#e8e4f0;">' +
+      '<p>Please sign in to access DreamCision. <a href="/" style="color:#7aa2ff">Go to login</a>.</p>' +
+      '</body></html>'
+    );
   }
   next();
 });

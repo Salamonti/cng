@@ -11,6 +11,11 @@ from store import iter_collection_pages
 
 # --- simple tokenization ---
 def _tokens(s: str) -> List[str]:
+    # A None/empty document must never crash the whole search: it simply
+    # contributes no tokens. (Seen in production: a stale collection handle
+    # after re-ingest briefly returned None documents.)
+    if not s:
+        return []
     return re.findall(r"[A-Za-z0-9]+", s.lower())
 
 # --- a tiny helper around BM25Okapi ---

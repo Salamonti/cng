@@ -82,6 +82,106 @@ _REPLACEMENTS = {
 }
 
 
+def _regex_name_variants(text: str) -> set:
+    """Fast, deterministic: original name surface forms matched by the regex
+    patterns (no NER). Reuses _PATTERNS so it never diverges from
+    deidentify_text."""
+    raw = text or ""
+    names: set = set()
+    for key in ("name_labeled", "name_comma_age", "name_sentence_verb", "name_doctor"):
+        for m in _PATTERNS[key].finditer(raw):
+            # name_labeled/name_comma_age/name_doctor -> group(1);
+            # name_sentence_verb -> group(2) (group(1) is the leading boundary).
+            g = m.group(2) if key == "name_sentence_verb" else m.group(1)
+            if g:
+                names.add(g.strip())
+    return {n for n in names if len(n) >= 3}
+
+
+def extract_name_variants(text: str) -> set:
+    """Return the set of original name surface forms that deidentify_text would
+    redact in this text (regex patterns + spaCy PERSON entities when NER is
+    available).
+
+    Used for cross-field consistency (see redact_known_names): the same patient
+    name appears across multiple source blocks (transcription, prior visits,
+    labs/imaging). Per-field de-id only catches names in specific syntactic
+    forms, so a name redacted in one block can leak in another. We collect the
+    surface forms here and redact them everywhere.
+    """
+    names = _regex_name_variants(text)
+    try:
+        from server.core.deid.ner_spacy import _load_nlp, ner_enabled
+
+        if ner_enabled():
+            doc = _load_nlp()(text or "")
+            for ent in doc.ents:
+                if ent.label_ == "PERSON" and (ent.end_char - ent.start_char) >= 3:
+                    names.add(ent.text.strip())
+    except Exception:
+        pass
+    return {n for n in names if len(n) >= 3}
+
+
+def redact_known_names(text: str, names: set) -> tuple:
+    """Replace any occurrence of the given name surface forms with
+    [NAME_REDACTED]. Case-insensitive, word-bounded. Returns (text, count).
+
+    Only propagates names that are 2+ words (contain a space) or were captured
+    by a high-confidence labeled pattern -- single common words are too risky
+    to redact globally. Longer names are replaced first so a full name is not
+    partially consumed by a shorter one.
+    """
+    if not names:
+        return text, 0
+    safe = {n for n in names if n and (" " in n or len(n) >= 4)}
+    if not safe:
+        return text, 0
+    count = 0
+    for name in sorted(safe, key=len, reverse=True):
+        pattern = re.compile(r"\b" + re.escape(name) + r"\b", re.IGNORECASE)
+        text, n = pattern.subn("[NAME_REDACTED]", text)
+        count += n
+    return text, count
+
+
+def deidentify_fields(fields: Dict[str, str]) -> Dict[str, Dict[str, Any]]:
+    """De-identify a set of related text fields with cross-field name
+    consistency.
+
+    Each field is de-identified independently (regex + NER), then every name
+    surface form detected in ANY field is redacted in ALL fields. This closes
+    the partial-redaction defect where the same patient name was redacted in
+    one block (e.g. "Patient: John Smith" in the transcription) but leaked in
+    another (e.g. "John Smith reports..." in a prior-visit note that the
+    per-field patterns/NER didn't catch).
+
+    Returns {field_key: deidentify_text-shaped result} with the propagated
+    redactions folded into each field's text and redaction_counts["name"].
+    """
+    # Pass 1: independent de-id + collect name surface forms (regex + NER,
+    # so a name caught only by NER in one field still propagates to others).
+    results: Dict[str, Dict[str, Any]] = {}
+    known_names: set = set()
+    for key, raw in fields.items():
+        res = deidentify_text(raw or "")
+        results[key] = res
+        known_names |= extract_name_variants(raw or "")
+
+    if not known_names:
+        return results
+
+    # Pass 2: propagate every detected name into every field.
+    for key, res in results.items():
+        new_text, n = redact_known_names(res["text"], known_names)
+        if n:
+            res["text"] = new_text
+            counts = res.setdefault("redaction_counts", {})
+            counts["name"] = int(counts.get("name", 0)) + n
+            counts["name_cross_field"] = int(counts.get("name_cross_field", 0)) + n
+    return results
+
+
 def deidentify_text(text: str) -> Dict[str, Any]:
     raw = text or ""
     redacted = raw

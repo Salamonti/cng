@@ -28,7 +28,7 @@ from server.core.profile_service import (
     baseline_templates_from_config,
     note_type_uses_other_builder,
 )
-from server.core.deid.v1 import deidentify_text
+from server.core.deid.v1 import deidentify_fields, deidentify_text
 from server.core.logging.dataset_logger import log_case_quarantine, log_case_record
 from server.core.http_actor import extract_request_actor
 from server.core.stores.generation_store import (
@@ -251,14 +251,17 @@ def _split_prompt(prompt: str) -> Dict[str, str]:
 
 
 def _deid_fields(fields: Dict[str, str]) -> Dict[str, Any]:
-    out_fields: Dict[str, Any] = {}
+    # deidentify_fields runs per-field de-id AND a cross-field name pass:
+    # a name redacted in one block (e.g. "Patient: John Smith" in the
+    # transcription) is also redacted in every other block where it appears
+    # in a form the per-field patterns/NER missed. This fixes the
+    # partial-redaction defect (name redacted in one block, leaked in another).
+    out_fields = deidentify_fields({k: (v or "") for k, v in fields.items()})
     totals: Dict[str, int] = {}
     leak_any = False
     residual_any = False
     ner_error_any = False
-    for key, raw_val in fields.items():
-        result = deidentify_text(raw_val or "")
-        out_fields[key] = result
+    for key, result in out_fields.items():
         counts = result.get("redaction_counts", {}) or {}
         for cname, cval in counts.items():
             totals[cname] = int(totals.get(cname, 0)) + int(cval or 0)

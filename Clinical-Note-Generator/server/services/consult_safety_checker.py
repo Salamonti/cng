@@ -26,6 +26,62 @@ _COMMON_MEDICATIONS = [
     "sitagliptin", "liraglutide", "ozempic",
 ]
 
+# Combination drugs whose components must NOT be extracted as separate current
+# medications. A plan line like "Start sacubitril-valsartan 9.75/9.75 mg" must
+# not leak "valsartan" into CURRENT MEDICATIONS (which previously caused a
+# fabricated CRITICAL duplicate-therapy alert).
+_COMBO_DRUG_COMPONENTS = {
+    "sacubitril-valsartan": ["valsartan"],
+    "sacubitril/valsartan": ["valsartan"],
+}
+
+# Headers under which a current-medications list typically appears.
+_MED_SECTION_HEADERS = [
+    "Medications",
+    "Current Medications",
+    "Medication List",
+    "Medications on Admission",
+    "Home Medications",
+    "Drugs",
+]
+
+
+def _med_section_text(note_text: str) -> str:
+    """Return the text of the current-medications section, or empty string.
+
+    Uses the heading-based extractor from consult_focus_builder when available
+    (production), falling back to a lightweight inline scanner.
+    """
+    if not note_text:
+        return ""
+    try:
+        from server.services.consult_focus_builder import extract_section_by_heading
+        for h in _MED_SECTION_HEADERS:
+            body = extract_section_by_heading(note_text, h, aliases=[])
+            if body.strip():
+                return body
+    except Exception:
+        pass
+
+    # Lightweight fallback: lines until the next section heading.
+    lines = note_text.splitlines()
+    out: List[str] = []
+    capturing = False
+    for line in lines:
+        stripped = line.strip()
+        lower = stripped.lower()
+        if any(lower == h.lower() or lower.startswith(h.lower() + ":")
+               or lower.startswith(h.lower() + " ") for h in _MED_SECTION_HEADERS):
+            capturing = True
+            continue
+        if capturing:
+            # Stop at the next heading-like line that is not a med line.
+            if stripped and re.match(r"^(#{1,3}\s*)?[A-Z][A-Za-z /-]+:?\s*$", stripped) \
+                    and not any(m.lower() in lower for m in _COMMON_MEDICATIONS):
+                break
+            out.append(stripped)
+    return "\n".join(out)
+
 
 def extract_medications_from_note(note_text: str) -> List[str]:
     """Extract medication names from note text using dose-pattern + known-name matching."""
@@ -40,16 +96,39 @@ def extract_medications_from_note(note_text: str) -> List[str]:
         r"([A-Za-z][A-Za-z0-9 \t\-'.]{2,40})\s+(\d+\.?\d*)\s+(mg|mcg|g|mL|ml|L|units?)",
         re.IGNORECASE,
     )
+    # Plan-section verbs: a dose match in the Plan ("Start spironolactone 25 mg")
+    # must not produce a current-medication name prefixed with the verb.
+    _plan_verb_prefixes = ("start ", "continue ", "stop ", "discontinue ", "hold ",
+                           "increase ", "decrease ", "taper ")
     for m in dose_re.finditer(note_text):
         name = re.sub(r"\s+", " ", m.group(1).strip())
+        low = name.lower()
+        for pv in _plan_verb_prefixes:
+            if low.startswith(pv):
+                name = name[len(pv):].strip()
+                break
         # Filter out non-medication noise (e.g., "twice daily", line markers)
         if len(name) >= 3 and not any(c in name for c in ["-", "•", "*"]):
             medications.add(name)
 
-    # Strategy 2: Known medication names anywhere in text
+    # Strategy 2: Known medication names — ONLY in current-medication sections
+    # to avoid picking up Plan-section mentions (e.g., "Start sacubitril-valsartan"
+    # should not leak "valsartan" into current medications)
+    med_section = _med_section_text(note_text)
     note_lower = note_text.lower()
+
     for med in _COMMON_MEDICATIONS:
-        if med.lower() in note_lower:
+        # Skip if this med is a component of a combination drug present in the note
+        skip = False
+        for combo, components in _COMBO_DRUG_COMPONENTS.items():
+            if combo.lower() in note_lower and med.lower() in components:
+                skip = True
+                break
+        if skip:
+            continue
+
+        # Only match in current-medication sections, not Plan/Impression
+        if med.lower() in med_section.lower():
             medications.add(med)
 
     # Strategy 3: Lines starting with dash/bullet/common med list markers
@@ -249,9 +328,9 @@ def build_safety_context(
             parts.append(f"  [{icon}] {flag['message']}")
         parts.append("ACTION: Verify these are addressed. If tests are truly not indicated, explain why.\n")
 
-    # Medications
+    # Medications (current meds + planned starts from the Plan section)
     if medications:
-        parts.append(f"CURRENT MEDICATIONS: {', '.join(medications)}")
+        parts.append(f"CURRENT AND PLANNED MEDICATIONS: {', '.join(medications)} (planned starts may be included; a duplicate-therapy alert only applies when two different active prescriptions contain the same agent, e.g. a standing ARB plus an ARNI start - in that case the standing prescription must be stopped first).")
         parts.append(MED_SAFETY_QUERY)
     else:
         parts.append("No medications identified in note.")

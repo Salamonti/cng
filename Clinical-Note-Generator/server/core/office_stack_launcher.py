@@ -145,7 +145,7 @@ def apply_office_stack_env_defaults(data: Dict[str, Any]) -> None:
     if not str(os.environ.get("NOTEGEN_URL_PRIMARY", "")).strip():
         os.environ["NOTEGEN_URL_PRIMARY"] = "http://127.0.0.1:8004"
     if not str(os.environ.get("OCR_URL_PRIMARY", "")).strip():
-        os.environ["OCR_URL_PRIMARY"] = "http://127.0.0.1:8001"
+        os.environ["OCR_URL_PRIMARY"] = "http://127.0.0.1:8004"
     if not str(os.environ.get("RAG_URL", "")).strip():
         os.environ["RAG_URL"] = "http://127.0.0.1:8007"
     if not str(os.environ.get("ASR_URL", "")).strip():

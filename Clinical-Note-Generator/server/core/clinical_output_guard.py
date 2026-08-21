@@ -48,8 +48,13 @@ _NUMBER_WORD_RE = re.compile(
     r"\b(" + "|".join(list(_TENS_WORDS) + list(_UNIT_WORDS)) + r")\b",
     re.IGNORECASE,
 )
+# De-id markers ([NAME_REDACTED], [DATE_REDACTED], [MRN_REDACTED],
+# [PHONE_REDACTED], [EMAIL_REDACTED]) are legitimate pipeline output, not
+# model placeholders. The (?!_REDACTED) lookahead excludes them from the
+# fatal placeholder check while still catching model-generated stubs like
+# [name], [age], [patient name], [DOB].
 _PLACEHOLDER_RE = re.compile(
-    r"(?:\[(?:name|age|sex|gender|dob|date of birth|patient)[^\]]*\]|"
+    r"(?:\[(?:name|age|sex|gender|dob|date of birth|patient)(?!_REDACTED)[^\]]*\]|"
     r"\bxx[ -]year[ -]old\b|\b(?:mr|mrs|ms)\.?\s+(?:patient|unknown|unspecified)\b)",
     re.IGNORECASE,
 )
@@ -255,7 +260,17 @@ def sanitize_clinical_note(prompt: str, output: str) -> str:
         lowered = line.lower()
         absence = _ABSENCE_PLACEHOLDER_RE.search(line)
         if absence and absence.group(0).lower() not in source_lower:
-            continue
+            # A bare absence placeholder (e.g. "- Not documented", "None
+            # performed", "No data available") is unsupported boilerplate and
+            # should be dropped. But when the placeholder is only a qualifier
+            # on real content (e.g. "- Amlodipine (dose not documented)"), the
+            # line carries a grounded fact (the med name) and "not documented"
+            # is a legitimate missing-value label the prompt explicitly allows
+            # ("mark it not documented"). Keep those lines; drop only when the
+            # placeholder is essentially the whole line.
+            remainder = _ABSENCE_PLACEHOLDER_RE.sub("", line)
+            if not remainder.strip(" \t-*#():\u00a0\u200b"):
+                continue
         if (
             re.search(r"\bpatient (?:presents|is seen|seen) today for evaluation\b", lowered)
             and not re.search(r"\b(?:present(?:s|ed)?|evaluation|seen for)\b", source_lower)

@@ -139,6 +139,32 @@ def parse_note_sections(note_text: str) -> Dict[str, str]:
                     current_content = []
                 current_heading = canonical
             else:
+                # Not a block heading. Some producers emit INLINE headings,
+                # e.g. "Impression: ...", "Plan: ...". If the pre-colon prefix
+                # resolves to a known canonical section, treat it as an inline
+                # heading: start that section seeded with the post-colon body.
+                # Non-canonical label:value lines (e.g. "Weight: 85kg") still
+                # fall through as content, preserving the false-positive guard.
+                inline = re.match(
+                    r"^\s*\*{0,3}\s*(.+?)\s*[:：]\s*\S.*$", line
+                )
+                if inline:
+                    prefix = inline.group(1).strip()
+                    inline_canonical = _match_heading(prefix)
+                    if inline_canonical:
+                        if current_heading is not None:
+                            sections[current_heading] = "\n".join(current_content).strip()
+                            current_content = []
+                        current_heading = inline_canonical
+                        # Content after the colon (/. ：)
+                        rest = line[inline.end(1):]
+                        colon_idx = rest.find(":")
+                        if colon_idx == -1:
+                            colon_idx = rest.find("：")
+                        seed = rest[colon_idx + 1:].strip() if colon_idx >= 0 else ""
+                        if seed:
+                            current_content.append(seed)
+                        continue
                 # Not a recognized heading — treat as content
                 current_content.append(line)
         else:

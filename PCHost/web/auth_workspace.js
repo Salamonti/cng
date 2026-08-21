@@ -641,11 +641,21 @@
         if (!window.app.settings) window.app.settings = {};
         window.app.settings.apiKey = token;
         this.updateTokenMetadata(token);
+        // Session cookie so PCHost's pre-login auth gate (server.js) will serve
+        // Q&A / admin / data pages now that the user is signed in. This is a
+        // lightweight navigation signal only — real auth is the Bearer token
+        // on API calls; the cookie never carries the token itself.
+        try {
+          document.cookie = 'dc_session=1; path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+        } catch (e) {}
       } else {
         sessionStorage.removeItem(STORAGE_KEYS.ACCESS);
         if (window.app && window.app.settings) {
           window.app.settings.apiKey = '';
         }
+        try {
+          document.cookie = 'dc_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        } catch (e) {}
         this.tokenExpiryMs = null;
         this.clearTokenRefreshTimer();
       }
@@ -894,15 +904,23 @@
     computeEditableStateFingerprint() {
       const state = this.collectWorkspaceState();
       const extras = state.extras || {};
+      // Normalize each field (trim + collapse runs of whitespace) so cosmetic
+      // differences introduced by the conflicts-split / streamed-generation merge
+      // (trailing newlines, extra blank lines) do NOT keep the workspace flagged
+      // as "Not synced" after a successful save. The merge path re-splits the
+      // note into the textarea + Conflicts panel, which can differ from what was
+      // saved by a few whitespace characters; without this the periodic sync loop
+      // would permanently re-set the warn pill despite the server being current.
+      const norm = (v) => String(v || '').replace(/^\s+|\s+$/g, '').replace(/[ \t\r\n]+/g, ' ');
       return JSON.stringify({
-        draft: state.draft || '',
-        transcription: extras.transcription || '',
-        currentEncounter: extras.currentEncounter || '',
-        oldVisits: extras.oldVisits || '',
-        mixedOther: extras.mixedOther || '',
-        userSpeciality: extras.userSpeciality || '',
-        encounterInstructions: extras.encounterInstructions || '',
-        chart: extras.chart || '',
+        draft: norm(state.draft),
+        transcription: norm(extras.transcription),
+        currentEncounter: norm(extras.currentEncounter),
+        oldVisits: norm(extras.oldVisits),
+        mixedOther: norm(extras.mixedOther),
+        userSpeciality: norm(extras.userSpeciality),
+        encounterInstructions: norm(extras.encounterInstructions),
+        chart: norm(extras.chart),
       });
     },
 
@@ -1368,6 +1386,10 @@
     async saveWorkspace() {
       if (!this.isWorkspaceReady()) return;
       this.saveInFlight = true;
+      // The debounce timer that scheduled this save has already fired; remember
+      // its id so we can clear it below without clobbering a NEW timer that may
+      // have been scheduled (via queueSave) during this in-flight save.
+      const firedTimer = this.saveTimer;
       const maxRetries = 3;
       const delays = [1000, 2000, 4000]; // exponential backoff: 1s, 2s, 4s
       let attempt = 0;
@@ -1450,6 +1472,13 @@
           return;
         }
       } finally {
+        // Clear the timer id for the save that just ran so hasUnsavedLocalEdits()
+        // (which returns true while saveTimer is truthy regardless of fingerprint)
+        // doesn't keep the workspace permanently flagged as dirty after a success.
+        // (Bug 1: sync pill stuck on "Not synced" after note generation.) Only clear
+        // the id we started with — if a queueSave() scheduled a fresh timer during
+        // this in-flight save, leave it alone so that pending save still runs.
+        if (this.saveTimer === firedTimer) this.saveTimer = null;
         this.saveInFlight = false;
       }
     },

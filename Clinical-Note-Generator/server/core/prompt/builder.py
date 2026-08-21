@@ -228,10 +228,11 @@ def _current_encounter_data_preamble(note_type: str) -> str:
     # Deliberately does NOT name "Physical Exam": under prompt policy v2 no
     # note type emits that heading. It is "Objective Findings" (progress),
     # "Relevant Examination and Results" (followup), "Examination"
-    # (admission), "Current Findings" (referral), "Findings" (procedure), and
-    # absent entirely from discharge/transfer/consult. Naming a heading the
-    # selected template does not define either invents a stray section or
-    # gets ignored, so defer to the note-type instruction instead.
+    # (admission), "Current Findings" (referral), "Findings" (procedure),
+    # "Physical Examination" (consult), and absent from discharge/transfer.
+    # Naming a heading the selected template does not define either invents a
+    # stray section or gets ignored, so defer to the note-type instruction
+    # instead.
     return (
         "Physical examination: any vitals, examiner observations, or system-specific "
         "objective findings in this block belong in whichever examination or objective "

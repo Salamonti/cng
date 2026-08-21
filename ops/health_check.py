@@ -14,11 +14,17 @@ failed" can be turned into "which check, and why" in one command.
 """
 from __future__ import annotations
 
+import os
 import shutil
 import sys
 import urllib.request
 from dataclasses import dataclass
 from typing import Callable, List
+
+# The alert brain (dreamcision-healthcheck-alert-brain.sh) reads this file to
+# learn WHICH checks failed, so the Telegram message can say "rag: HTTP 503"
+# instead of a generic "health check failed". Presence = failed, absence = OK.
+FAILURE_DETAILS_FILE = "/run/dreamcision-healthcheck/failure-details"
 
 
 @dataclass
@@ -53,24 +59,28 @@ def check_rag() -> CheckResult:
     return CheckResult("rag", ok, detail)
 
 
-def check_deepseek_text_backend() -> CheckResult:
+def check_llm_backend_8004() -> CheckResult:
+    # multimodal-sole: Qwen3.8-27B NVFP4 (text+vision) on :8004.
     ok, detail = _http_ok("http://127.0.0.1:8004/v1/models")
-    return CheckResult("deepseek_text_backend_8004", ok, detail)
+    return CheckResult("llm_backend_8004", ok, detail)
 
 
-def check_qwen_vision_backend() -> CheckResult:
-    ok, detail = _http_ok("http://127.0.0.1:8001/v1/models")
-    return CheckResult("qwen_vision_backend_8001", ok, detail)
+def check_vision_backend_8001() -> CheckResult:
+    # multimodal-sole: vision is served by the same model on :8004, so :8001 is
+    # not part of this topology. Kept as a no-op so the check list stays stable
+    # across flip-back; re-enable the probe when returning to text-vision-split.
+    return CheckResult("vision_backend_8001", True, "n/a (multimodal-sole)")
 
 
 def check_asr_primary() -> CheckResult:
-    ok, detail = _http_ok("http://192.168.0.9:8095/health")
-    return CheckResult("asr_primary_8095", ok, detail)
+    # ASR on workstation RTX 5090 (userver whisper disabled for DeepSeek VRAM).
+    ok, detail = _http_ok("http://127.0.0.1:8095/health")
+    return CheckResult("asr_primary_local_8095", ok, detail)
 
 
 def check_asr_fallback() -> CheckResult:
-    ok, detail = _http_ok("http://192.168.0.9:8096/health")
-    return CheckResult("asr_fallback_8096", ok, detail)
+    ok, detail = _http_ok("http://127.0.0.1:8096/health")
+    return CheckResult("asr_fallback_local_8096", ok, detail)
 
 
 def _disk_check(path: str, warn_pct: float = 85.0) -> CheckResult:
@@ -96,8 +106,8 @@ CHECKS: List[Callable[[], CheckResult]] = [
     check_fastapi,
     check_pchost,
     check_rag,
-    check_deepseek_text_backend,
-    check_qwen_vision_backend,
+    check_llm_backend_8004,
+    check_vision_backend_8001,
     check_asr_primary,
     check_asr_fallback,
     check_disk_root,
@@ -120,7 +130,24 @@ def main() -> int:
 
     if failed:
         print(f"\n{len(failed)}/{len(results)} check(s) failed: {', '.join(r.name for r in failed)}")
+        # Write details for the alert brain (best-effort; never fail the check
+        # itself because of a logging hiccup).
+        try:
+            os.makedirs(os.path.dirname(FAILURE_DETAILS_FILE), exist_ok=True)
+            with open(FAILURE_DETAILS_FILE, "w") as f:
+                f.write(f"{len(failed)}/{len(results)} check(s) failed: {', '.join(r.name for r in failed)}\n")
+                for r in failed:
+                    f.write(f"- {r.name}: {r.detail}\n")
+        except OSError:
+            pass
         return 1
+
+    # Healthy: clear any stale failure details so the alert brain sees "OK".
+    try:
+        if os.path.exists(FAILURE_DETAILS_FILE):
+            os.unlink(FAILURE_DETAILS_FILE)
+    except OSError:
+        pass
 
     print(f"\nAll {len(results)} checks passed.")
     return 0

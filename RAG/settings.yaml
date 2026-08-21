@@ -3,7 +3,7 @@
 persist_directory: "./chroma_store"
 
 
-corpus_version: 1
+corpus_version: 3
 # chunking
 chunk_size_chars: 1800         # ~500-900 tokens for guidelines ~ OK
 chunk_overlap_chars: 200

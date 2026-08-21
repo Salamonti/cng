@@ -35,7 +35,7 @@
       const isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
       if ('serviceWorker' in navigator && !isLocal) {
         (async () => {
-          const swCandidates = ['/service_worker.js?v=20260719-qa-upload-postfix1', '/static/service_worker.js?v=20260719-qa-upload-postfix1'];
+          const swCandidates = ['/service_worker.js?v=20260819a-fix', '/static/service_worker.js?v=20260819a-fix'];
           for (const p of swCandidates) {
             try {
               const r = await fetch(p, { method: 'HEAD' });
@@ -961,14 +961,14 @@
     <script src="js/asr_settings_ui.js?v=20260808a-step4"></script>
     <script src="js/asr_transcript_view.js?v=20260622f"></script>
     <script src="js/asr_chunk_pipeline.js?v=20260622d"></script>
-    <script src="js/workspace_app.js?v=20260809-step6-copy"></script>
+    <script src="js/workspace_app.js?v=20260821-medfix"></script>
     <script src="js/workspace_file_camera.js?v=20260719-uploadfix1"></script>
     <script src="js/patient_materials_ui.js?v=20260809-step6-copy"></script>
     <script src="js/workspace_ui_state.js?v=20260622h"></script>
 
 <!-- ========== UNIFIED SETTINGS & CONNECTION MANAGEMENT ========== -->
     <script src="js/settings_connection.js"></script>
-<script src="auth_workspace.js">
+<script src="auth_workspace.js?v=20260819b-bug1fix">
 </script>
 <script src="encounters_ui.js"></script>
 <script src="literature_ui.js"></script>
@@ -976,11 +976,11 @@
     <div id="qaSideBackdrop" class="qa-side-panel-backdrop" onclick="closeQAPanel()"></div>
     <div id="qaSidePanel" class="qa-side-panel" aria-hidden="true">
       <div class="qa-side-panel-header"><strong>DreamCision Q&amp;A</strong> <span class="qa-side-panel-header-actions"><button type="button" class="btn" onclick="printQAPanel()">Print</button> <button type="button" class="btn" onclick="closeQAPanel()">Close</button></span></div>
-      <iframe id="qaSideFrame" src="qa.html?v=20260719-vision-uploadfix1" title="DreamCision Medical Q&amp;A"></iframe>
+      <iframe id="qaSideFrame" src="qa.html?v=20260819a-fix" title="DreamCision Medical Q&amp;A"></iframe>
     </div>
 
 
-    <script src="js/qa_side_panel.js"></script>
+    <script src="js/qa_side_panel.js?v=20260819a-fix"></script>
 
 
     <!-- Settings Drawer (Account + Diagnostics) -->
