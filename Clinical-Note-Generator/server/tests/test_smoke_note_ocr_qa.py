@@ -2,12 +2,14 @@ import uuid
 
 
 class _FakeNoteGenerator:
-    """Stub for notes_routes.note_gen. The v8 note path validates a full
-    completion via collect_completion() (see _stream_response_v8), not
-    stream_completion() -- unsafe partial text must never stream."""
+    """Stub for notes_routes.note_gen. The v8 note path streams line-buffered
+    via stream_completion() and validates the full text before emitting the
+    NOTE_FINAL marker (see _stream_response_v8). collect_completion mirrors
+    the same text for the route's ExternalServiceError fallback."""
 
     async def stream_completion(self, *_args, **_kwargs):
-        yield "SMOKE_NOTE_CHUNK"
+        yield "SMOKE"
+        yield "_NOTE_TEXT"
 
     async def collect_completion(self, *_args, **_kwargs):
         return "SMOKE_NOTE_TEXT"

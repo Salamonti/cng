@@ -65,7 +65,15 @@ def test_guard_rejection_does_not_report_input_too_long(client, monkeypatch):
 
 
 def test_guard_rejection_surfaces_the_unverified_draft(client, monkeypatch):
+    """Double-rejection with a captured draft now SALVAGES: the stream ends
+    with a __NOTE_FINAL__ marker carrying the draft text and salvaged=true,
+    instead of the old '----- UNVERIFIED DRAFT -----' error block. The draft
+    is retained so the clinician can review/fix it; the client renders the
+    rejection cause in the separate Conflicts panel."""
+    import json
+
     import server.routes.notes as notes_routes
+    from server.core.streaming.helpers import NOTE_FINAL_MARKER
 
     monkeypatch.setattr(
         notes_routes,
@@ -77,8 +85,16 @@ def test_guard_rejection_surfaces_the_unverified_draft(client, monkeypatch):
 
     assert resp.status_code == 200
     text = resp.text
-    assert "UNVERIFIED DRAFT" in text
-    assert "SUBJECTIVE: patient reports feeling unwell." in text
+    assert NOTE_FINAL_MARKER in text
+    payload = json.loads(
+        text.split(NOTE_FINAL_MARKER, 1)[1].strip().split("\n", 1)[0]
+    )
+    assert payload["salvaged"] is True
+    assert "SUBJECTIVE: patient reports feeling unwell." in payload["text"]
+    assert any("hard character limit" in r for r in payload["reasons"])
+    # The old error-style block must not be emitted for a salvaged draft.
+    assert "UNVERIFIED DRAFT" not in text
+    assert "NOTE NOT GENERATED" not in text
 
 
 def test_guard_rejection_without_draft_omits_unverified_draft_block(client, monkeypatch):

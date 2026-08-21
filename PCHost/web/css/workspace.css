@@ -1980,6 +1980,21 @@
         }
         /* Markdown in conflicts panel (same renderer as generated note) */
         .note-conflicts-body p { margin: 0.22rem 0; line-height: 1.45; }
+        /* Salvage banner: shown when both generation attempts failed the
+           auto-validation and the draft was retained for clinician review.
+           Display-only UI in the Conflicts panel — never part of note text. */
+        .note-salvage-banner {
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            background: #fffbeb;
+            color: #78350f;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+        }
+        .note-salvage-title { font-weight: 600; font-size: 0.88rem; }
+        .note-salvage-reasons { margin: 4px 0 4px; padding-left: 1.3rem; font-size: 0.84rem; }
+        .note-salvage-reasons li { margin: 0.1rem 0; }
+        .note-salvage-hint { font-size: 0.8rem; color: #92400e; margin-top: 4px; }
         .note-conflicts-body ul,
         .note-conflicts-body ol { margin: 0.35rem 0; padding-left: 1.35rem; }
         .note-conflicts-body li { margin: 0.12rem 0; }

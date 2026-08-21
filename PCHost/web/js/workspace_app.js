@@ -152,7 +152,13 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 if (body.dataset && body.dataset.rawConflicts !== undefined && body.dataset.rawConflicts !== '') {
                     conf = String(body.dataset.rawConflicts);
                 } else {
-                    conf = (body.textContent || '').trim();
+                    // Fallback read: clone and exclude the display-only
+                    // salvage banner so it can never leak into the saved /
+                    // copied note text (it is a UI aid, not note content).
+                    const clone = body.cloneNode(true);
+                    const banner = clone.querySelector ? clone.querySelector('.note-salvage-banner') : null;
+                    if (banner) banner.remove();
+                    conf = (clone.textContent || '').trim();
                 }
             }
             return mergeGeneratedNoteParts(main, conf);
@@ -197,6 +203,10 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 try {
                     delete body.dataset.rawConflicts;
                 } catch (e) {}
+                // Drop any salvage banner too (it is display-only and never
+                // part of the saved note text).
+                const salvage = body.querySelector ? body.querySelector('.note-salvage-banner') : null;
+                if (salvage) salvage.remove();
                 body.innerHTML = '';
             }
             if (wrap) {
@@ -204,6 +214,59 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 wrap.setAttribute('aria-hidden', 'true');
             }
         }
+
+        /**
+         * Salvage banner: when BOTH generation attempts fail auto-validation,
+         * the draft is retained in the note box and its rejection reasons are
+         * explained HERE — in the separate Conflicts panel, in an amber block,
+         * never inside the copyable note box. The clinician reads the note,
+         * sees exactly what the auto-check flagged, and can correct that part.
+         * Display-only: DOM node, not part of dataset.rawConflicts, so it is
+         * never copied to the clipboard and never saved with the note.
+         */
+        function renderSalvageBanner(reasons) {
+            const wrap = document.getElementById('noteConflictsCard');
+            const body = document.getElementById('noteConflictsBody');
+            if (!body) return;
+            const old = body.querySelector ? body.querySelector('.note-salvage-banner') : null;
+            if (old && old.parentNode) old.parentNode.removeChild(old);
+
+            const banner = document.createElement('div');
+            banner.className = 'note-salvage-banner';
+            banner.setAttribute('role', 'alert');
+
+            const title = document.createElement('div');
+            title.className = 'note-salvage-title';
+            title.textContent = '⚠ Auto-validation failed (2 of 2 attempts) — review before use';
+            banner.appendChild(title);
+
+            const list = document.createElement('ul');
+            list.className = 'note-salvage-reasons';
+            (Array.isArray(reasons) ? reasons : []).forEach(function (r) {
+                const li = document.createElement('li');
+                li.textContent = String(r || '').trim() || 'unspecified';
+                list.appendChild(li);
+            });
+            if (list.children.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = 'no specific reason captured';
+                list.appendChild(li);
+            }
+            banner.appendChild(list);
+
+            const hint = document.createElement('div');
+            hint.className = 'note-salvage-hint';
+            hint.textContent = 'The draft is kept in the note box for you to review and correct. Press Generate to try a fresh draft instead.';
+            banner.appendChild(hint);
+
+            body.insertBefore(banner, body.firstChild);
+
+            if (wrap) {
+                wrap.classList.remove('hidden');
+                wrap.setAttribute('aria-hidden', 'false');
+            }
+        }
+        window.renderSalvageBanner = renderSalvageBanner;
 
         /** --- "section preview" disabled: it mirrored the note and broke layout; Conflicts uses a separate panel. */
         let generatedNotePreviewRaf = 0;
@@ -2877,23 +2940,85 @@ window.WORKSPACE_PAGE_TYPE = 'main';
 
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
+
+                // --- Marker-aware streaming reader (streamed-note fix) ---
+                // The v8 stream now carries two control lines:
+                //   __NOTE_RETRY__        -> attempt 1 failed validation; clear
+                //                            the box, attempt 2 types in fresh
+                //   __NOTE_FINAL__{json}  -> authoritative text + salvage flag
+                //                            + rejection reasons (one JSON line)
+                // Everything else is live note text, line-buffered on the
+                // server. A client-side line buffer makes the reader robust to
+                // arbitrary byte boundaries (a marker or the final JSON may be
+                // split across TCP chunks).
+                let pending = '';
+                let finalNote = null; // { text, salvaged, reasons } | null
+                const processStreamLine = (line) => {
+                    if (line.indexOf('__NOTE_FINAL__') === 0) {
+                        const raw = line.slice('__NOTE_FINAL__'.length).trim();
+                        let payload = null;
+                        try { payload = JSON.parse(raw); }
+                        catch (e) { payload = { text: raw, salvaged: false, reasons: [] }; }
+                        if (payload && typeof payload === 'object') {
+                            finalNote = {
+                                text: String(payload.text || ''),
+                                salvaged: !!payload.salvaged,
+                                reasons: Array.isArray(payload.reasons) ? payload.reasons.map(String) : []
+                            };
+                        }
+                        return;
+                    }
+                    if (line.indexOf('__NOTE_RETRY__') === 0) {
+                        if (noteTextarea) {
+                            noteTextarea.value = '';
+                            requestGeneratedNotePreviewSync();
+                        }
+                        updateNoteStatus('Regenerating — first draft failed safety checks (attempt 2 of 2)…');
+                        return;
+                    }
+                    if (noteTextarea && line) {
+                        const piece = cleanStreamedNoteText(line);
+                        if (piece) {
+                            noteTextarea.value += piece + '\n';
+                            noteTextarea.scrollTop = noteTextarea.scrollHeight;
+                        }
+                    }
+                };
                 while (true) {
                     const { done, value } = await reader.read();
                     if (done) break;
-                    if (noteTextarea) {
-                        const piece = cleanStreamedNoteText(decoder.decode(value));
-                        if (piece) {
-                            noteTextarea.value += piece;
-                            noteTextarea.scrollTop = noteTextarea.scrollHeight;
-                            requestGeneratedNotePreviewSync();
-                        }
+                    pending += decoder.decode(value, { stream: true });
+                    let nl;
+                    while ((nl = pending.indexOf('\n')) !== -1) {
+                        const line = pending.slice(0, nl);
+                        pending = pending.slice(nl + 1);
+                        processStreamLine(line);
                     }
                 }
+                pending += decoder.decode(); // flush decoder tail
+                if (pending) processStreamLine(pending);
 
                 if (noteTextarea) {
-                    const cleaned = stripBracketArtifacts(stripNoteStreamMarkers(noteTextarea.value));
-                    applyConflictsSplitFromFullNote(cleaned);
-                    requestGeneratedNotePreviewSync();
+                    if (finalNote) {
+                        // The final marker carries the authoritative text
+                        // (sanitized + validated, or the retained salvaged
+                        // draft) — it wins over the live preview.
+                        noteTextarea.value = finalNote.text;
+                        applyConflictsSplitFromFullNote(noteTextarea.value);
+                        if (finalNote.salvaged) {
+                            // Rejection cause lives in the SEPARATE Conflicts
+                            // panel (amber block), never in the note box.
+                            renderSalvageBanner(finalNote.reasons);
+                            updateNoteStatus('Draft kept for review — auto-check flagged it, see Conflicts panel.');
+                        }
+                        requestGeneratedNotePreviewSync();
+                    } else {
+                        // No final marker (legacy server / error text): the
+                        // old clean-the-whole-box behavior.
+                        const cleaned = stripBracketArtifacts(stripNoteStreamMarkers(noteTextarea.value));
+                        applyConflictsSplitFromFullNote(cleaned);
+                        requestGeneratedNotePreviewSync();
+                    }
                 }
 
                 // End “busy” UI immediately after the stream finishes — everything below used to run before

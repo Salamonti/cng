@@ -261,9 +261,19 @@ class SimpleNoteGenerator:
                                     continue
 
                                 content, finish_reason = self._extract_stream_content(data)
-                                if finish_reason == "length":
+                                if finish_reason in ("length", "repetition"):
+                                    # "length" = hit max_tokens; "repetition" =
+                                    # vLLM's built-in detector ended the stream
+                                    # early (policy-driven; see
+                                    # llm_request_policy._REPETITION_DETECTION).
+                                    # Both are truncations, not completed
+                                    # answers — raise so the caller's guarded
+                                    # retry (fresh sample) runs instead of
+                                    # returning cut-off text. Mirrors the check
+                                    # in collect_completion.
                                     raise ClinicalOutputRejected(
-                                        "output truncated by max_tokens cap (finish_reason=length)"
+                                        "output truncated by engine finish_reason=%s"
+                                        % finish_reason
                                     )
                                 if content:
                                     output_guard.add(content)

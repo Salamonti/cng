@@ -44,7 +44,14 @@ from server.core.prompt.builder import (
     _fill_template as _fill_template_impl,
     _cfg_text as _cfg_text_impl,
 )
-from server.core.streaming.helpers import _stream_response, _stream_response_v8, _stream_qa_response  # noqa: F401 — used dynamically
+from server.core.streaming.helpers import (
+    NOTE_FINAL_MARKER,
+    NOTE_RETRY_MARKER,
+    _stream_qa_response,
+    _stream_response,
+    _stream_response_v8,
+    parse_note_final_marker,
+)  # noqa: F401 — used dynamically
 from server.core.consult.pipeline import _generate_consult_comment as _generate_consult_comment_impl
 from server.core.order.pipeline import _generate_order_requests as _generate_order_requests_impl
 from server.core.token_limits import (
@@ -307,6 +314,8 @@ def _log_case_completion(
     prompt_tokens: int,
     completion_tokens: int,
     actor: Dict[str, Optional[str]],
+    validation_rejected: bool = False,
+    rejection_reasons: Optional[List[str]] = None,
 ) -> None:
     prompt_parts = _split_prompt(prompt)
     prompt_deid = {
@@ -336,6 +345,13 @@ def _log_case_completion(
             "method": "approx_word_count",
         },
         "feedback_snapshot": None,
+        # Salvage flag: true when both generation attempts failed validation
+        # and this record holds the last draft, retained for clinician
+        # review/correction. De-identified reasons only (never PHI).
+        "validation_rejected": bool(validation_rejected),
+        "validation_rejection_reasons": [
+            str(r) for r in (rejection_reasons or [])
+        ],
     }
     # M-2: de-id residual enforcement. The de-id pass sets residual_any /
     # ner_error when something may STILL be exposed after redaction (or the
@@ -1696,6 +1712,8 @@ async def _run_postgen_sidework(
     custom_prompt: Optional[str],
     token_count: int,
     actor: Any,
+    validation_rejected: bool = False,
+    rejection_reasons: Optional[List[str]] = None,
 ) -> None:
     """Post-generation best-effort side-work, each step fault-isolated.
 
@@ -1730,6 +1748,8 @@ async def _run_postgen_sidework(
             prompt_tokens=len((prompt or "").split()),
             completion_tokens=token_count,
             actor=actor,
+            validation_rejected=validation_rejected,
+            rejection_reasons=rejection_reasons,
         )
     except Exception as e:
         logger.warning(
@@ -1749,22 +1769,52 @@ async def _run_postgen_sidework(
             e,
         )
 
+    # Record the salvage flag on the generation metadata so downstream
+    # consumers (order/consult status, feedback) can tell a validated note
+    # from a clinician-retained rejected draft.
     try:
-        _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type, user_speciality)
+        meta = _generation_meta.get(generation_id)
+        if isinstance(meta, dict):
+            meta["validation_rejected"] = bool(validation_rejected)
+            if validation_rejected:
+                meta["validation_rejection_reasons"] = [
+                    str(r) for r in (rejection_reasons or [])
+                ]
     except Exception as e:
         logger.warning(
-            "[note.postgen] consult-comment autostart failed | gen_id=%s | err=%s",
+            "[note.postgen] validation-rejected meta flag failed | gen_id=%s | err=%s",
             generation_id,
             e,
         )
 
-    try:
-        _maybe_autostart_order_requests(generation_id, combined_output, cfg)
-    except Exception as e:
-        logger.warning(
-            "[note.postgen] order-request autostart failed | gen_id=%s | err=%s",
+    # Salvaged drafts (both attempts failed validation, text retained for
+    # clinician review) must NOT feed the auto-extraction pipelines: the
+    # unverified text could yield order requests / a consult comment derived
+    # from rejected output. Skip both; the clinician can trigger them
+    # explicitly from the (now-persisted) note if the review finds it sound.
+    if not validation_rejected:
+        try:
+            _maybe_autostart_consult_comment(generation_id, combined_output, cfg, note_type, user_speciality)
+        except Exception as e:
+            logger.warning(
+                "[note.postgen] consult-comment autostart failed | gen_id=%s | err=%s",
+                generation_id,
+                e,
+            )
+
+        try:
+            _maybe_autostart_order_requests(generation_id, combined_output, cfg)
+        except Exception as e:
+            logger.warning(
+                "[note.postgen] order-request autostart failed | gen_id=%s | err=%s",
+                generation_id,
+                e,
+            )
+    else:
+        logger.info(
+            "[note.postgen] salvaged draft (validation_rejected) -- autostart "
+            "order/consult pipelines skipped | gen_id=%s",
             generation_id,
-            e,
         )
 
 
@@ -2200,6 +2250,9 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
         async def gen():
             nonlocal token_count
             streamed_any = False
+            final_authoritative: Optional[str] = None
+            final_salted = False
+            final_reasons: List[str] = []
             try:
                 try:
                     async for chunk in _stream_response_v8(
@@ -2208,10 +2261,36 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                         temperature=temp,
                         max_tokens=max_tokens,
                         stop_tokens=NOTE_STOP_TOKENS,
-                        clean_chunk=lambda x: x,
+                        # EMR-clean before sanitize+validate so the
+                        # authoritative NOTE_FINAL text is already in the same
+                        # ASCII-clean form the original route-level
+                        # clean_model_output_chunk produced (subscripts,
+                        # dashes, smart quotes). Live preview lines below get
+                        # the same cleaner, so box and saved text match.
+                        clean_chunk=clean_model_output_chunk,
                     ):
                         streamed_any = True
-                        cleaned = clean_model_output_chunk(chunk or "")
+                        raw_chunk = chunk or ""
+                        # Control markers are passed through verbatim to the
+                        # client (their payloads are already cleaned at the
+                        # source) and never enter output_buf.
+                        if NOTE_RETRY_MARKER in raw_chunk:
+                            # Attempt 1 failed; the client clears its box.
+                            # Drop the failed attempt's live lines so only the
+                            # regenerated attempt's text feeds the pipeline.
+                            output_buf.clear()
+                            yield raw_chunk if raw_chunk.endswith("\n") else raw_chunk + "\n"
+                            continue
+                        if NOTE_FINAL_MARKER in raw_chunk:
+                            payload = parse_note_final_marker(raw_chunk)
+                            if payload is not None:
+                                final_authoritative = payload["text"]
+                                final_salted = payload["salvaged"]
+                                final_reasons = list(payload["reasons"])
+                            yield raw_chunk if raw_chunk.endswith("\n") else raw_chunk + "\n"
+                            continue
+                        # Live model text line: EMR-clean and forward.
+                        cleaned = clean_model_output_chunk(raw_chunk)
                         if not cleaned:
                             continue
                         # Handle END_MARKER if it appears mid-chunk
@@ -2227,6 +2306,16 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                             output_buf.append(cleaned)
                             token_count += len(cleaned.split())
                             yield cleaned
+
+                    # The authoritative (validated/sanitized) note is what the
+                    # downstream pipeline and dataset store must use, not the
+                    # raw live preview lines. Swap it in before side-work.
+                    if final_authoritative is not None:
+                        output_buf.clear()
+                        if final_authoritative:
+                            output_buf.append(final_authoritative)
+                        token_count = len(final_authoritative.split())
+
                 except ExternalServiceError:
                     if streamed_any:
                         raise
@@ -2331,6 +2420,8 @@ async def generate_v8_stream(request: Request, session: Session = Depends(get_se
                     custom_prompt=str(custom_prompt or ""),
                     token_count=token_count,
                     actor=actor,
+                    validation_rejected=final_salted,
+                    rejection_reasons=final_reasons,
                 )
 
         return StreamingResponse(
