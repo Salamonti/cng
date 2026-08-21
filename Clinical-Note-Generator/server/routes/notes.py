@@ -873,35 +873,85 @@ def _extract_plan_section(note_text: str) -> str:
     if not note_text:
         return ""
 
-    # Accept common variants: "Plan:", "## Plan", "## Assessment & Plan", "A/P:", etc.
-    # #{0,3}\s* handles markdown ATX headings (##, ###) as well as plain text headers.
+    # Accept common variants: "Plan:", "## Plan", "## Assessment & Plan", "A/P:",
+    # and bold "**Plan**" (the style v2 generated notes actually emit).
+    # #{0,3}\s* handles markdown ATX headings (##, ###); the optional ** wrappers
+    # handle bold headings; the remaining alternative is the plain-text header.
     # v1: Plan / Assessment & Plan / A-P.  v2 adds per-note-type variants:
     # "Admission Plan" (admission), "Receiving-Team Plan" (transfer),
     # "Management" / "Plan of Care" / "Treatment Plan" (consult, progress),
     # "Recommendations" (consult, referral), "Disposition" / "Follow-up"
     # (discharge, procedure, follow-up).
+    # Plan-like heading words. ORDER MATTERS: the combined "assessment &
+    # plan" alternative comes FIRST so a note that carries a standalone
+    # "Assessment" section (diagnostic summary, NOT orders) plus a separate
+    # "Plan" section does not get its assessment swallowed as the plan.
+    # Standalone "Assessment" is deliberately NOT a plan heading: assessment
+    # sections describe the patient's state, not what was ordered. A note
+    # whose only section is "Assessment" falls through to full-note scope,
+    # which the detector prompt + drop-guards handle.
     _PLAN_HEADINGS = (
-        r"assessment\s*(?:&|and)?\s*plan|assessment\s*/\s*plan|a/p"
-        r"|(?:admission|discharge|receiving[\s-]*team|management|treatment|care)?\s*plan"
-        r"|plan\s*of\s*care|management|recommendations?|disposition"
-        r"|follow[\s-]*up(?:\s*plan)?"
+        r"assessment\s*(?:&|and|/)\s*plan"
+        r"|a/p"
+        r"|(?:admission|discharge|receiving[\s-]*team|treatment|care|follow[\s-]*up)?\s*plan"
+        r"|plan\s*of\s*care"
+        r"|management"
+        r"|recommendations?(?:\s*/\s*plan)?"
+        r"|plan\s*/\s*(?:counseling|follow[\s-]*up)"
+        r"|disposition"
+        r"|follow[\s-]*up"
     )
+    # Note: no numbered-prefix allowance in any rule. A numbered line such as
+    # "3. Follow-up: patient to call" is a PLAN ITEM, not a heading; allowing
+    # "\d+[.)] " before the word made the inline rule latch onto it and
+    # truncate the plan (golden case 12, 2026-08-21). The lookbehind
+    # (?<![\w/]) keeps the inline rule from matching heading words inside
+    # longer words ("Diaphragm plication" contains "plan"; "Management:"
+    # inside prose is fine, but "/plan" inside a compound is not a heading).
     header_re = re.compile(
-        r"(?im)^\s*#{0,3}\s*(?:\d+[.)]\s*)?(" + _PLAN_HEADINGS + r")\s*(?::|-)?\s*$"
+        r"(?im)^#{1,3}\s*(?:(?<![\w/])(?:" + _PLAN_HEADINGS + r"))\s*[:：-]?\s*$"
     )
+    # Plain-text header with optional inline content on the same line
+    # ("Plan/Counseling Provided Today: 1. CPAP..."). No parenthetical
+    # bridge here: "Plan (as discussed): content" is prose, not a heading.
     header_inline_re = re.compile(
-        r"(?im)^\s*#{0,3}\s*(?:\d+[.)]\s*)?(" + _PLAN_HEADINGS + r")\s*(?::|-)\s*"
+        r"(?im)^[ \t]*(?:" + _PLAN_HEADINGS + r")(?:\*\*)?\s*[:：-]\s*\S"
+    )
+    # Standalone plain/bold header line, optionally with a parenthetical
+    # qualifier and trailing colon, occupying its whole line:
+    #   "### Plan (as discussed and actioned today)"
+    #   "**Plan (as documented by consultant to patient):**"
+    #   "Plan:"
+    # The [^*]{0,80} bridge cannot cross another bold marker, so the closing
+    # ** is always the header's own.
+    standalone_re = re.compile(
+        r"(?im)^[ \t]*#{0,3}\s*(?:\*\*)?(?:" + _PLAN_HEADINGS + r")"
+        r"(?:\s*[\(\[][^*\n]{0,80}[\)\]])?\s*(?:\*\*)?"
+        r"(?:\s*[:：])?\s*(?:\*\*)?\s*$"
     )
 
-    # Any new section heading (## ...) ends the Plan body — e.g. ## Conflicts after ## Plan.
-    any_section_re = re.compile(r"(?im)^\s*#{1,3}\s*\S")
+    # Any new *structured* section heading ends the Plan body. Boundaries are
+    # markdown ATX headings ("## Conflicts") or fully-bold short lines
+    # ("**Conflicts**") — the two heading styles notes actually use. Plain
+    # prose lines are NOT boundaries, so a paragraph can never truncate the
+    # plan early. The {1,40} cap keeps bold inline emphasis that is part of a
+    # sentence (e.g. "**CBC** to be repeated") from being treated as a heading.
+    any_section_re = re.compile(r"(?im)^\s*(?:#{1,3}\s*\S|\*\*[^*]{1,40}\*\*\s*$)")
 
     def _end_of_section(rest: str) -> int:
         """Return the index in `rest` where the next section heading starts, or len(rest)."""
         m = any_section_re.search(rest)
         return m.start() if m else len(rest)
 
-    # 1) Inline header with content on the same line
+    # Search order: ATX heading > plain/bold inline label ("Plan: 1. ...")
+    # > standalone header line (optional parenthetical) > empty.
+    header_match = header_re.search(note_text)
+    if header_match:
+        start = header_match.end()
+        rest = note_text[start:]
+        end = start + _end_of_section(rest)
+        return note_text[start:end].strip()
+
     inline_match = header_inline_re.search(note_text)
     if inline_match:
         start = inline_match.end()
@@ -909,10 +959,9 @@ def _extract_plan_section(note_text: str) -> str:
         end = start + _end_of_section(rest)
         return note_text[start:end].strip()
 
-    # 2) Standalone header line, then capture following block
-    header_match = header_re.search(note_text)
-    if header_match:
-        start = header_match.end()
+    standalone_match = standalone_re.search(note_text)
+    if standalone_match:
+        start = standalone_match.end()
         rest = note_text[start:]
         end = start + _end_of_section(rest)
         return note_text[start:end].strip()

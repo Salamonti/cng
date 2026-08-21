@@ -70,6 +70,65 @@ def _order_request_text_unusable(text: str) -> bool:
     return False
 
 
+# Deterministic drop-guards for items that are NOT orders.
+#
+# Inward-referral / follow-up framing: "Referral from Dr. X" (the reason this
+# patient is being seen) and "follow up with the referring physician" are
+# ABOUT the current encounter, not a new referral order to send out. Without
+# this guard they surface as Referral items and the pipeline drafts a
+# referral letter TO the referring physician — the wrong recipient entirely.
+#
+# DELIBERATELY NARROW: only phrasings that are unambiguously inbound.
+# "Refer to cardiology", "Referred to the cardiology service", "Referral to
+# nephrology" are OUTGOING referrals and must never match — note that an
+# outgoing referral's target is a specialty/service, while an inbound
+# phrasing's only object is "the referring physician" itself.
+_INWARD_REFERRAL_RE = re.compile(
+    r"\b(referrals?\s+from|referred\s+(?:by|from)|"
+    r"follow[-\s]?up\s+with\s+(?:the\s+)?referr(?:ing|er)|"
+    r"to\s+the\s+referr(?:ing|er)\s+(?:physician|doctor|physicist|clinic)|"
+    r"regarding\s+(?:the\s+)?referr(?:ing|er)\s+physician)\b",
+    re.IGNORECASE,
+)
+
+# "Continue current medication regimen" / "continue home meds" — maintenance of
+# an existing regimen is not a medication order.
+_CONTINUE_CURRENT_MEDS_RE = re.compile(
+    r"\b(continue|continuing|no changes? (?:to|in|needed to))\s+"
+    r"(?:the\s+|current\s+|home\s+|baseline\s+)?(?:medications?|meds|medicaments?|"
+    r"drugs?|antihypertensives|regimen)\b",
+    re.IGNORECASE,
+)
+
+# Change-verb signals: if the item ALSO starts/stops/alters anything, it is a
+# real order ("Continue current antihypertensives, add losartan 50 mg") and
+# must be kept even though it mentions continuing. "change" is deliberately
+# EXCLUDED from this list: the idiom "no/without change" contains the word
+# "change" and would otherwise defeat the continue-current-meds guard.
+_MED_CHANGE_VERB_RE = re.compile(
+    r"\b(start|add|discontinue|stop|increase|decrease|switch|taper|wean|resume)\b",
+    re.IGNORECASE,
+)
+
+
+def _is_non_order_item(category: str, text: str) -> bool:
+    """True when a detected item is clearly not an order/request.
+
+    Guards are intentionally conservative: when in doubt the item is KEPT.
+    A false keep is harmless (user sees one extra order to reject); a false
+    drop silently loses a real order.
+    """
+    low = (text or "").lower()
+    cat = (category or "").lower()
+    if cat in ("referral", "other"):
+        if _INWARD_REFERRAL_RE.search(low):
+            return True
+    if cat == "medication":
+        if _CONTINUE_CURRENT_MEDS_RE.search(low) and not _MED_CHANGE_VERB_RE.search(low):
+            return True
+    return False
+
+
 def _imaging_paragraph_prompt(title: str, context_block: str) -> str:
     return (
         "Do not include a Conflicts section or conflict commentary in this output.\n"
@@ -279,6 +338,10 @@ async def _generate_order_requests(
             "- If none, return {\"items\": []}.\n"
             "- Do not invent items. Only include orders explicitly stated or clearly planned.\n"
             "- Medication items: ONLY include meds that are planned to be started, changed, or discontinued.\n"
+            "- EXCLUDE medications the patient is already taking with no change (e.g. 'continue current medication regimen', "
+            "'continue home meds') — a maintenance plan line is not an order.\n"
+            "- EXCLUDE inbound-referral framing such as 'Referral from Dr. X', 'referred by', or 'follow up with the "
+            "referring physician' — that describes why the patient is being seen, not a referral to send out.\n"
             "- Exclude tentative language such as consider, may, might, could, if needed, or discuss.\n"
             "- Imaging vs procedure: use Imaging for radiology (CT/MRI/PET/US/x-ray/mammography/DEXA/nuclear/echo). "
             "Use Procedure for endoscopy, biopsy, OR, cardiac cath, etc.\n"
@@ -308,11 +371,42 @@ async def _generate_order_requests(
         )
         _logger.info("[ORDER] gen_id=%s DETECT DONE (%.2fs, output_len=%d)", gen_id, time.time() - t_detect, len(detect_raw))
         detect_payload = extract_json_payload(detect_raw) or {}
-        detected_items = _parse_order_items(
-            detected_items=detect_payload.get("items"),
-            focus_text=focus_text,
-            max_items=max_items,
+        # An EXPLICIT empty items list is the LLM reading the (plan) text and
+        # answering "no orders" — a definitive answer. The regex fallback must
+        # only rescue MALFORMED/MISSING LLM output, never override a valid
+        # empty answer: re-scanning the text (especially the full-note scope)
+        # re-classifies current medications and the inbound-referral line as
+        # "orders" (the Lucy-Dugas failure mode, 2026-08-21).
+        _llm_explicit_no_orders = (
+            isinstance(detect_payload, dict)
+            and isinstance(detect_payload.get("items"), list)
+            and not detect_payload.get("items")
         )
+        if _llm_explicit_no_orders:
+            detected_items: List[Dict[str, Any]] = []
+        else:
+            detected_items = _parse_order_items(
+                detected_items=detect_payload.get("items"),
+                focus_text=focus_text,
+                max_items=max_items,
+            )
+        # Deterministic drop-guards: inbound-referral framing ("Referral from
+        # Dr. X", "follow up with the referring physician") and "continue
+        # current medication regimen" are never orders, regardless of source.
+        kept_items = [
+            d for d in detected_items
+            if not _is_non_order_item(
+                str(d.get("category") or ""),
+                str(d.get("title") or ""),
+            )
+        ]
+        if len(kept_items) != len(detected_items):
+            _logger.info(
+                "[ORDER] gen_id=%s dropped %d non-order item(s) via deterministic guard",
+                gen_id,
+                len(detected_items) - len(kept_items),
+            )
+        detected_items = kept_items
         _logger.info("[ORDER] gen_id=%s DETECTED %d items: %s", gen_id, len(detected_items),
                      [(d.get("title","?"), d.get("category","?")) for d in detected_items])
         if not detected_items:
