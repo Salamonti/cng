@@ -1,6 +1,8 @@
 from server.core.llm_request_policy import (
     apply_dreamcision_no_thinking,
     strip_reasoning_markup,
+    apply_dreamcision_generation_policy,
+    _REPETITION_DETECTION,
 )
 from server.services.note_generator_clean import SimpleNoteGenerator
 
@@ -89,3 +91,31 @@ def test_request_timeout_accepts_environment_override(monkeypatch):
     engine = SimpleNoteGenerator(explicit_urls=("http://primary", None))
 
     assert engine._request_timeout_seconds(None) == 720.0
+
+
+def test_repetition_detection_tolerates_structured_tables():
+    # Regression: 2026-08-21 — the previous thresholds
+    # {min_pattern_size: 3, max_pattern_size: 64, min_count: 3} caused
+    # vLLM to kill every document containing >=2 markdown tables: a table
+    # separator row is a ~12-token span that trivially reaches 3 repeats, so
+    # patient materials came back mid-table (finish_reason="repetition").
+    # The thresholds must sit between the legitimate maximum repetition of a
+    # structured block (~7 table blocks in the 28-option diet plan) and the
+    # degeneration minimum observed (15-30x repeats).
+    assert _REPETITION_DETECTION["min_pattern_size"] >= 8, (
+        "short patterns flag markdown separator rows / clinical prose"
+    )
+    assert _REPETITION_DETECTION["min_count"] >= 10, (
+        "structured documents legitimately repeat table blocks ~6-7x"
+    )
+    assert _REPETITION_DETECTION["max_pattern_size"] >= 64, (
+        "genuine degeneration repeats long spans; keep the upper bound wide"
+    )
+
+
+def test_generation_policy_injects_repetition_detection():
+    payload = apply_dreamcision_generation_policy(
+        {"max_tokens": 1024, "temperature": 0.1}, profile="clinical_note"
+    )
+    assert payload["repetition_detection"] == _REPETITION_DETECTION
+

@@ -315,9 +315,16 @@ class SimpleNoteGenerator:
                 content, finish_reason = self._extract_stream_content(response_data)
 
                 if content:
-                    if finish_reason == "length":
+                    if finish_reason in ("length", "repetition"):
+                        # "repetition" = vLLM's built-in repetition detector
+                        # killed the stream early (policy-driven; see
+                        # llm_request_policy._REPETITION_DETECTION). It is a
+                        # truncation, not a completed answer: raise so the
+                        # caller's guarded retry (higher temperature, new
+                        # sample) runs instead of returning cut-off text.
                         raise ClinicalOutputRejected(
-                            "output truncated by max_tokens cap (finish_reason=length)"
+                            "output truncated by engine finish_reason=%s"
+                            % finish_reason
                         )
                     degeneration = detect_degenerate_output(content)
                     if degeneration:
@@ -350,9 +357,10 @@ class SimpleNoteGenerator:
                     logger.info("[SMPL] fallback HTTP DONE (%.2fs)", _time.time() - t_fb)
                     fallback_content, fallback_finish_reason = self._extract_stream_content(fallback_data)
                     if fallback_content:
-                        if fallback_finish_reason == "length":
+                        if fallback_finish_reason in ("length", "repetition"):
                             raise ClinicalOutputRejected(
-                                "output truncated by max_tokens cap (finish_reason=length)"
+                                "output truncated by engine finish_reason=%s"
+                                % fallback_finish_reason
                             )
                         degeneration = detect_degenerate_output(fallback_content)
                         if degeneration:

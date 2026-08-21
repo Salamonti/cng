@@ -15,10 +15,31 @@ _PROFILE_LIMITS = {
     "qa": {"max_tokens": 4096, "max_temperature": 0.4},
 }
 
+# Server-side repetition detection (vLLM `repetition_detection`).
+#
+# These thresholds MUST stay consistent with the app-level guard
+# (clinical_output_guard._has_repeated_ngram, tuned 2026-08-07 after it
+# false-positived the 28-option patient meal plan). Legitimate structured
+# clinical output repeats markdown table header + separator rows once per
+# section: a full table block repeats ~6-7x across a document. Genuine
+# degeneration repeats the same span 15-30+ times.
+#
+# The previous values ({3..64, min_count: 3}) killed nearly every document
+# containing two or more tables: a table separator row is a ~12-token span
+# that trivially hits "3 repeats", so patient materials (medication lists,
+# meal plans, reports) came back mid-table with finish_reason="repetition".
+#
+# min_pattern_size=8 ignores the short spans that recur naturally in
+# structured prose; min_count=10 sits between the legitimate maximum
+# (<=7 table blocks) and the degeneration minimum observed (15-30x).
+#
+# Belt-and-braces: collect_completion() treats finish_reason="repetition"
+# like "length" (raises ClinicalOutputRejected -> guarded retry), so even a
+# false-positive kill can never silently reach the user as truncated text.
 _REPETITION_DETECTION = {
-    "min_pattern_size": 3,
+    "min_pattern_size": 8,
     "max_pattern_size": 64,
-    "min_count": 3,
+    "min_count": 10,
 }
 
 
