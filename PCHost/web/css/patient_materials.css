@@ -300,6 +300,63 @@
     min-height: 20px;
 }
 
+/* Interactive param-completion (note-based pre-fill) */
+.pm-patient-data select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+}
+
+.pm-patient-data .pm-demographics {
+    display: flex;
+    gap: 16px;
+}
+
+.pm-patient-data .pm-demographics .form-group {
+    flex: 1;
+}
+
+.pm-patient-data .pm-extract-banner {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #3b82f6;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: #1e3a8a;
+}
+
+.pm-patient-data .pm-from-note {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #2563eb;
+    background: #dbeafe;
+    border-radius: 4px;
+    padding: 1px 6px;
+    vertical-align: middle;
+}
+
+.pm-patient-data .pm-missing-mark {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #b45309;
+    background: #fef3c7;
+    border-radius: 4px;
+    padding: 1px 6px;
+    vertical-align: middle;
+}
+
 /* Loading States */
 .pm-loading {
     text-align: center;

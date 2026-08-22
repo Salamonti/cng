@@ -123,11 +123,11 @@
         currentCategory = category;
         const noteText = noteTextarea.value;
 
-        // For diet/exercise, collect patient data first if not already provided
-        if ((category === 'diet' || category === 'exercise') && !hasPatientData(category)) {
-            showPatientDataForm(category);
-            return;
-        }
+        // Diet/exercise: ALWAYS go through the API first. The backend reads
+        // the note and returns either a generated plan (note-based data plus
+        // any previously-entered values cover the blocking fields) or a
+        // needs_input response that opens the form pre-filled with what the
+        // note said, so the clinician only confirms/fills the gaps.
 
         window.patientMaterialsState.status = 'loading';
 
@@ -155,6 +155,14 @@
             }
 
             const data = await response.json();
+
+            // Interactive param-completion flow: the note was read first and
+            // still lacks blocking fields -> open the form pre-filled from
+            // what the note said; the clinician confirms/fills only the gaps.
+            if (data.status === 'needs_input') {
+                showPatientDataForm(category, data.known_data || {}, data.missing_fields || []);
+                return;
+            }
 
             // If the backend reports an error, render it as a styled error box
             // (HTTP 200 is always returned; the error lives in data.error).
@@ -210,69 +218,110 @@
         }
     }
 
-    // Check if we already have patient data for diet/exercise
-    function hasPatientData(category) {
-        const data = window.patientMaterialsState.patientData || {};
-        if (!data.weight_kg || !data.height_cm || !data.goal) return false;
-        // Exercise additionally requires its specific planning input (activity level).
-        if (category === 'exercise' && !data.activity_level) return false;
-        return true;
-    }
-
-    // Show patient data form for diet/exercise
-    function showPatientDataForm(category) {
+    // Show patient data form for diet/exercise.
+    // noteExtracted (optional): values read from the note by the backend.
+    //   Used to pre-fill fields the clinician didn't enter; shown with a
+    //   "from note" marker so they know to verify it.
+    // missingFields (optional): the blocking fields still absent.
+    function showPatientDataForm(category, noteExtracted, missingFields) {
         showContentPanel();
         currentCategory = category;
         
         const contentBody = document.getElementById('pmContentBody');
         if (!contentBody) return;
 
-        const title = category === 'diet' ? 'Diet Plan' : 'Exercise Plan';
+        const extract = noteExtracted || {};
+        const missing = Array.isArray(missingFields) ? missingFields : [];
+        const hasExtract = Object.keys(extract).some(function (k) { return extract[k] != null && extract[k] !== ''; });
+
+        const fromNoteTag = '<span class="pm-from-note">from note</span>';
+        const missingMark = function (field) {
+            return missing.indexOf(field) !== -1 ? '<span class="pm-missing-mark">required</span>' : '';
+        };
+
         const saved = loadSavedPmInputs();
+        // Precedence: previously-saved/entered value > note extraction > empty.
+        const prefilled = function (key, fromSaved) {
+            if (fromSaved != null && fromSaved !== '') return fromSaved;
+            if (extract[key] != null && extract[key] !== '') return extract[key];
+            return '';
+        };
+        const hadNote = function (key) {
+            return extract[key] != null && extract[key] !== '';
+        };
+
+        const title = category === 'diet' ? 'Diet Plan' : 'Exercise Plan';
         const units = category === 'diet' ? 'kg' : 'kg (used for BMI and activity calculation)';
+
+        const banner = hasExtract ? (
+            '<div class="pm-extract-banner">Read from your note: <b>' +
+            Object.keys(extract).filter(function (k) { return extract[k] != null && extract[k] !== ''; }).join(', ') +
+            '</b>. Verify and complete the highlighted fields below.</div>'
+        ) : '';
+
+        const ageTag = hadNote('age') ? fromNoteTag : '';
+        const sexTag = hadNote('sex') ? fromNoteTag : '';
+        const weightTag = hadNote('weight_kg') ? fromNoteTag : '';
+        const heightTag = hadNote('height_cm') ? fromNoteTag : '';
+        const goalTag = hadNote('goal') ? fromNoteTag : '';
 
         const extraFields = category === 'exercise' ? `
                 <div class="form-group">
-                    <label for="pmActivityLevel">Activity Level:</label>
+                    <label for="pmActivityLevel">Activity Level (optional):</label>
                     <select id="pmActivityLevel">
-                        <option value="" disabled ${!saved.activity_level ? 'selected' : ''}>Select activity level</option>
-                        <option value="sedentary" ${saved.activity_level === 'sedentary' ? 'selected' : ''}>Sedentary (little or no exercise)</option>
-                        <option value="lightly_active" ${saved.activity_level === 'lightly_active' ? 'selected' : ''}>Lightly active (light exercise 1-3 days/week)</option>
-                        <option value="moderately_active" ${saved.activity_level === 'moderately_active' ? 'selected' : ''}>Moderately active (moderate exercise 3-5 days/week)</option>
-                        <option value="very_active" ${saved.activity_level === 'very_active' ? 'selected' : ''}>Very active (hard exercise 6-7 days/week)</option>
+                        <option value="" ${!prefilled('activity_level', saved.activity_level) ? 'selected' : ''}>Not specified (assumed lightly active)</option>
+                        <option value="sedentary" ${prefilled('activity_level', saved.activity_level) === 'sedentary' ? 'selected' : ''}>Sedentary (little or no exercise)</option>
+                        <option value="lightly_active" ${prefilled('activity_level', saved.activity_level) === 'lightly_active' ? 'selected' : ''}>Lightly active (light exercise 1-3 days/week)</option>
+                        <option value="moderately_active" ${prefilled('activity_level', saved.activity_level) === 'moderately_active' ? 'selected' : ''}>Moderately active (moderate exercise 3-5 days/week)</option>
+                        <option value="very_active" ${prefilled('activity_level', saved.activity_level) === 'very_active' ? 'selected' : ''}>Very active (hard exercise 6-7 days/week)</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="pmJointIssues">Joint / mobility issues (optional):</label>
-                    <input type="text" id="pmJointIssues" placeholder="e.g., knee arthritis, avoid high-impact" value="${saved.joint_issues != null ? saved.joint_issues : ''}">
+                    <input type="text" id="pmJointIssues" placeholder="e.g., knee arthritis, avoid high-impact" value="${prefilled('joint_issues', saved.joint_issues)}">
                 </div>` : `
                 <div class="form-group">
                     <label for="pmAllergies">Allergies (optional):</label>
-                    <input type="text" id="pmAllergies" placeholder="e.g., peanuts, shellfish" value="${saved.allergies != null ? saved.allergies : ''}">
+                    <input type="text" id="pmAllergies" placeholder="e.g., peanuts, shellfish" value="${prefilled('allergies', saved.allergies)}">
                 </div>
                 <div class="form-group">
                     <label for="pmDietaryRestrictions">Dietary restrictions (optional):</label>
-                    <input type="text" id="pmDietaryRestrictions" placeholder="e.g., diabetic, low-sodium, vegetarian" value="${saved.restrictions != null ? saved.restrictions : ''}">
+                    <input type="text" id="pmDietaryRestrictions" placeholder="e.g., diabetic, low-sodium, vegetarian" value="${prefilled('restrictions', saved.restrictions)}">
                 </div>`;
 
         contentBody.innerHTML = `
             <div class="pm-patient-data">
                 <h3>Patient Data for ${title}</h3>
-                <div class="form-group">
-                    <label for="pmWeightKg">Weight (${units}):</label>
-                    <input type="number" id="pmWeightKg" step="0.1" placeholder="e.g., 85" value="${saved.weight_kg != null ? saved.weight_kg : ''}">
+                ${banner}
+                <div class="pm-demographics">
+                    <div class="form-group">
+                        <label for="pmAge">Age (years) ${ageTag}:</label>
+                        <input type="number" id="pmAge" step="1" placeholder="e.g., 68" value="${prefilled('age', '')}">
+                    </div>
+                    <div class="form-group">
+                        <label for="pmSex">Sex ${sexTag}:</label>
+                        <select id="pmSex">
+                            <option value="" ${prefilled('sex', '') === '' ? 'selected' : ''}>Not specified</option>
+                            <option value="female" ${prefilled('sex', '') === 'female' ? 'selected' : ''}>Female</option>
+                            <option value="male" ${prefilled('sex', '') === 'male' ? 'selected' : ''}>Male</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="pmHeightCm">Height (cm):</label>
-                    <input type="number" id="pmHeightCm" step="0.1" placeholder="e.g., 175" value="${saved.height_cm != null ? saved.height_cm : ''}">
+                    <label for="pmWeightKg">Weight (${units}) ${weightTag} ${missingMark('weight_kg')}:</label>
+                    <input type="number" id="pmWeightKg" step="0.1" placeholder="e.g., 85" value="${prefilled('weight_kg', saved.weight_kg)}">
+                </div>
+                <div class="form-group">
+                    <label for="pmHeightCm">Height (cm) ${heightTag} ${missingMark('height_cm')}:</label>
+                    <input type="number" id="pmHeightCm" step="0.1" placeholder="e.g., 175" value="${prefilled('height_cm', saved.height_cm)}">
                 </div>
                 <div class="pm-bmi-display" id="pmBmiDisplay"></div>
                 <div class="form-group">
-                    <label>Goal:</label>
+                    <label>Goal ${goalTag} ${missingMark('goal')}:</label>
                     <div class="radio-group">
-                        <label class="radio-option"><input type="radio" name="pmGoal" value="maintain" ${saved.goal === 'maintain' ? 'checked' : ''}> Maintain weight</label>
-                        <label class="radio-option"><input type="radio" name="pmGoal" value="increase" ${saved.goal === 'increase' ? 'checked' : ''}> Increase weight</label>
-                        <label class="radio-option"><input type="radio" name="pmGoal" value="decrease" ${saved.goal === 'decrease' ? 'checked' : ''}> Decrease weight</label>
+                        <label class="radio-option"><input type="radio" name="pmGoal" value="maintain" ${prefilled('goal', saved.goal) === 'maintain' ? 'checked' : ''}> Maintain weight</label>
+                        <label class="radio-option"><input type="radio" name="pmGoal" value="increase" ${prefilled('goal', saved.goal) === 'increase' ? 'checked' : ''}> Increase weight</label>
+                        <label class="radio-option"><input type="radio" name="pmGoal" value="decrease" ${prefilled('goal', saved.goal) === 'decrease' ? 'checked' : ''}> Decrease weight</label>
                     </div>
                 </div>
                 ${extraFields}
@@ -304,10 +353,8 @@
             safeToast('Missing Information', 'Please enter weight, height, and goal.', 'warning');
             return;
         }
-        if (currentCategory === 'exercise' && !patientData.activity_level) {
-            safeToast('Missing Information', 'Please select an activity level.', 'warning');
-            return;
-        }
+        // Activity level is intentionally NOT required: the plan states its
+        // assumption when it is absent.
 
         window.patientMaterialsState.patientData = patientData;
         saveSavedPmInputs(patientData);
@@ -389,7 +436,7 @@
     function saveSavedPmInputs(data) {
         try {
             const keep = {};
-            ['weight_kg','height_cm','goal','activity_level','allergies','restrictions','joint_issues'].forEach(function (k) {
+            ['age','sex','weight_kg','height_cm','goal','activity_level','allergies','restrictions','joint_issues'].forEach(function (k) {
                 if (data && data[k] != null && data[k] !== '') keep[k] = data[k];
             });
             localStorage.setItem(PM_INPUTS_KEY, JSON.stringify(keep));
@@ -406,6 +453,18 @@
         // they are no longer in the DOM). Overlay any inputs still present so the
         // form path (first click / submitPatientDataForm) works unchanged.
         const data = Object.assign({}, window.patientMaterialsState.patientData || {});
+
+        // Age
+        const ageInput = document.getElementById('pmAge');
+        if (ageInput && ageInput.value) {
+            data.age = parseInt(ageInput.value, 10);
+        }
+
+        // Sex
+        const sexSelect = document.getElementById('pmSex');
+        if (sexSelect && sexSelect.value) {
+            data.sex = sexSelect.value;
+        }
 
         // Weight
         const weightInput = document.getElementById('pmWeightKg');

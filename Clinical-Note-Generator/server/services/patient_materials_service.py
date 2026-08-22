@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from server.core.clinical_output_guard import ClinicalOutputRejected, build_guard_retry_prompt
 from server.services.note_generator_clean import SimpleNoteGenerator
+from server.services.patient_materials_extraction import missing_blocking
 from server.services.patient_materials_sections import (
     extract_section,
     get_diagnosis_text,
@@ -36,6 +37,24 @@ logger = logging.getLogger("patient_materials")
 class PatientMaterialsError(Exception):
     """Raised when LLM generation fails for a patient material."""
     pass
+
+
+class PatientMaterialsNeedsInput(Exception):
+    """A blocking patient-data field is absent after note-based extraction.
+
+    Carries the material type, the missing blocking field names, and the
+    currently known (merged) patient data so the client can pre-fill its
+    form and ask the clinician only for the gaps.
+    """
+
+    def __init__(self, material_type: str, missing: List[str], known: Dict[str, Any]):
+        super().__init__(
+            f"Patient data needed for {material_type}: {', '.join(missing)}"
+        )
+        self.material_type = material_type
+        self.missing = list(missing)
+        self.known = dict(known or {})
+
 
 
 MATERIAL_TYPES = {
@@ -101,6 +120,24 @@ class PatientMaterialsGenerator:
             content, attributions, safety_flags = await generator(
                 note_text, sections, patient_data
             )
+        except PatientMaterialsNeedsInput as e:
+            elapsed = time.time() - start
+            logger.info(
+                "Needs-input for %s: missing=%s", material_type, e.missing
+            )
+            return {
+                "status": "needs_input",
+                "material_type": material_type,
+                "missing_fields": e.missing,
+                "known_data": e.known,
+                "content": "",
+                "source_attribution": [],
+                "disclaimer": "",
+                "safety_flags": [],
+                "generated_at": "",
+                "generation_time_sec": round(elapsed, 1),
+                "error": None,
+            }
         except PatientMaterialsError as e:
             elapsed = time.time() - start
             logger.error("Generation failed for %s: %s", material_type, e)
@@ -244,25 +281,20 @@ class PatientMaterialsGenerator:
         if not patient_data:
             patient_data = {}
 
-        # Require weight_kg and height_cm for diet plans.
-        # Do NOT fall back to auto-extraction from the note - the model may
-        # misread note text and produce incorrect calorie/BMI calculations.
-        missing_vitals = []
-        if not patient_data.get("weight_kg"):
-            missing_vitals.append("weight_kg")
-        if not patient_data.get("height_cm"):
-            missing_vitals.append("height_cm")
-        if missing_vitals:
-            raise PatientMaterialsError(
-                f"Please enter your weight (kg) and height (cm) before generating the diet plan. Missing: {', '.join(missing_vitals)}"
-            )
+        # Blocking fields: weight/height/goal. Activity level is NON-blocking
+        # (the prompt states its assumption when absent). Note-derived values
+        # are merged into patient_data by the route BEFORE this call; the
+        # model never invents them here.
+        missing = missing_blocking("diet", patient_data)
+        if missing:
+            raise PatientMaterialsNeedsInput("diet", missing, patient_data)
 
         data_warnings = validate_patient_data(patient_data)
         safety_flags.extend(data_warnings)
         contra_warnings = check_diet_contraindications(note_text, patient_data)
         safety_flags.extend(contra_warnings)
-        missing = check_missing_data("diet", patient_data)
-        safety_flags.extend(missing)
+        diet_missing = check_missing_data("diet", patient_data)
+        safety_flags.extend(diet_missing)
 
         assessment = extract_section(sections, "assessments") or ""
         medications = extract_section(sections, "medications") or ""
@@ -270,6 +302,8 @@ class PatientMaterialsGenerator:
 
         prompt = self._build_system_prompt("diet")
         patient_info = (
+            "Age: " + str(patient_data.get("age", "Not provided")) + "\n"
+            "Sex: " + str(patient_data.get("sex", "Not provided")) + "\n"
             "Weight: " + str(patient_data.get("weight_kg", "Not provided")) + " kg\n"
             "Height: " + str(patient_data.get("height_cm", "Not provided")) + " cm\n"
             "Goal: " + str(patient_data.get("goal", "Not specified")) + "\n"
@@ -308,25 +342,17 @@ class PatientMaterialsGenerator:
         if not patient_data:
             patient_data = {}
 
-        # Require weight_kg and height_cm for exercise plans.
-        # Do NOT fall back to auto-extraction from the note - the model may
-        # misread note text and produce incorrect calorie/BMI calculations.
-        missing_vitals = []
-        if not patient_data.get("weight_kg"):
-            missing_vitals.append("weight_kg")
-        if not patient_data.get("height_cm"):
-            missing_vitals.append("height_cm")
-        if missing_vitals:
-            raise PatientMaterialsError(
-                f"Please enter your weight (kg) and height (cm) before generating the exercise plan. Missing: {', '.join(missing_vitals)}"
-            )
+        # Blocking fields: weight/height/goal (activity level is NON-blocking).
+        missing = missing_blocking("exercise", patient_data)
+        if missing:
+            raise PatientMaterialsNeedsInput("exercise", missing, patient_data)
 
         data_warnings = validate_patient_data(patient_data)
         safety_flags.extend(data_warnings)
         contra_warnings = check_exercise_contraindications(note_text, patient_data)
         safety_flags.extend(contra_warnings)
-        missing = check_missing_data("exercise", patient_data)
-        safety_flags.extend(missing)
+        ex_missing = check_missing_data("exercise", patient_data)
+        safety_flags.extend(ex_missing)
 
         assessment = extract_section(sections, "assessments") or ""
         medications = extract_section(sections, "medications") or ""
@@ -334,6 +360,8 @@ class PatientMaterialsGenerator:
 
         prompt = self._build_system_prompt("exercise")
         patient_info = (
+            "Age: " + str(patient_data.get("age", "Not provided")) + "\n"
+            "Sex: " + str(patient_data.get("sex", "Not provided")) + "\n"
             "Weight: " + str(patient_data.get("weight_kg", "Not provided")) + " kg\n"
             "Height: " + str(patient_data.get("height_cm", "Not provided")) + " cm\n"
             "Activity level: " + str(patient_data.get("activity_level", "Not specified")) + "\n"
@@ -426,7 +454,7 @@ Summarize this visit for the patient.
 
 DOCUMENT: Diet Plan (detailed; a clinician will review it)
 
-Use the patient's data (weight, height, goal, activity level, allergies, restrictions) and their conditions and medications from the note. Produce the plan in EXACTLY this order:
+Use the patient's data (age, sex, weight, height, goal, activity level, allergies, restrictions) and their conditions and medications from the note. Produce the plan in EXACTLY this order:
 
 ## Overview & Goals
 The patient's situation in plain language and the dietary goal.
@@ -435,7 +463,7 @@ The patient's situation in plain language and the dietary goal.
 What to do and what to avoid for THIS patient's conditions (for example low sodium for hypertension or heart failure; low glycemic index and carbohydrate control for diabetes; potassium/phosphorus/protein limits for kidney disease). Foods to emphasize and foods to limit.
 
 ## Daily Targets
-- Total daily calories: estimate with the Mifflin-St Jeor equation from the patient's weight, height, and age/sex if available, times an activity factor, then adjust for the goal (about a 500 kcal/day deficit for weight loss, a surplus for gain, maintenance otherwise). Give a range and state your assumptions.
+- Total daily calories: estimate with the Mifflin-St Jeor equation from the patient's weight, height, and the age/sex given in the patient data (use exactly those values — do not estimate a different age), times an activity factor, then adjust for the goal (about a 500 kcal/day deficit for weight loss, a surplus for gain, maintenance otherwise). Give a range and state your assumptions.
 - Macronutrients in grams and % (protein, carbohydrate, fat) appropriate to the conditions.
 - Fluid target (mL/day), adjusted for conditions (for example restriction in heart failure or kidney disease when indicated).
 - Sodium target (mg/day) when a condition warrants it; otherwise general guidance.
@@ -457,7 +485,7 @@ If weight, height, or goal is missing, state the assumption you used.""",
 
 DOCUMENT: Exercise Plan (detailed; a clinician will review it). Safety first.
 
-Use the patient's data (weight, height, goal, activity level, joint or mobility issues) and their conditions and medications from the note. Produce the plan in EXACTLY this order:
+Use the patient's data (age, sex, weight, height, goal, activity level, joint or mobility issues) and their conditions and medications from the note. Produce the plan in EXACTLY this order:
 
 ## Overview & Goals
 
@@ -471,7 +499,9 @@ Condition- and medication-specific cautions (for example cardiac limits; using p
 Total recommended weekly volume (aerobic minutes, resistance sessions, flexibility and balance work), following ACSM and AHA guidance, scaled to the patient's current level.
 
 ## Daily Schedule
-A 7-day schedule. For EACH day give AT LEAST 2 options (Option A and Option B) with activity type, duration, and intensity (talk test or RPE). Include warm-up, cool-down, and rest days. Start conservative and progress gradually.""",
+A 7-day schedule. For EACH day give AT LEAST 2 options (Option A and Option B) with activity type, duration, and intensity (talk test or RPE). Include warm-up, cool-down, and rest days. Start conservative and progress gradually.
+
+If weight, height, goal, or activity level is missing, state the assumption you used (a missing activity level means assume a lightly active baseline).""",
             "full_report": """
 
 DOCUMENT: Comprehensive Health Report
