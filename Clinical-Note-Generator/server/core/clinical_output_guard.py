@@ -168,23 +168,48 @@ def _spelled_number_tokens(text: str) -> set:
     return found
 
 
-def _has_repeated_ngram(words: List[str]) -> bool:
+# (n-gram size, repeat count that signals a runaway loop). Short grams recur
+# naturally in clinical prose ("no acute distress", "the patient is") so they
+# need many repeats; long verbatim spans repeating even a few times indicate
+# genuine degeneration. Trigram/4-gram triggers were removed — at >=3 they
+# rejected essentially every real note.
+#
+# 2026-08-07: long-gram counts raised from (12,3)/(10,3)/(8,4) to (12,6)/
+# (10,6)/(8,6). Legitimate structured outputs (e.g. the 28-option patient
+# meal plan, a ~10k-char doc) repeat their markdown table column-header once
+# per section (~4x), which the old thresholds misclassified as a "runaway
+# loop" and threw away the good output. Genuine degeneration repeats the
+# same span 15-30+ times and is still caught by these thresholds (verified:
+# the old list-style 28x macro-phrase loop is still rejected).
+_NOTE_NGRAM_THRESHOLDS: tuple[tuple[int, int], ...] = ((12, 6), (10, 6), (8, 6), (6, 9), (5, 12))
+
+# OCR profile (2026-08-27): transcriptions of dense structured documents
+# (lab panels, flowsheets, tables) legitimately repeat the same value phrase
+# once per ROW — e.g. "within reference range 0-10 si final" recurred 23x in
+# a single ILD antibody panel and the note thresholds 503'd a perfectly good
+# transcription. OCR therefore flags only VERBOSE loops: repetition so heavy
+# that the output is essentially the span itself. Note-profile thresholds
+# still apply to note generation (untouched).
+#
+# Why only long-grams here (no 5/6-gram tier): a legit table repeats its
+# short value phrase once per ROW, so a 6-word tail can recur 40-80x across a
+# large panel (60-row ILD panel: "within reference range 0-10 si final" 60x)
+# with every line still unique — that is data, not a loop. Short-span
+# degeneration in OCR is handled by _has_ocr_line_loop (identical line
+# repeating), which fires exactly when the model is stuck re-emitting a row.
+# An 8+ word verbatim span cannot recur per-row in a legit table (each row's
+# leading identifier shifts the window), so (8,25) is a safe secondary net.
+_OCR_NGRAM_THRESHOLDS: tuple[tuple[int, int], ...] = (
+    (12, 15),  # 12-word span 15x = 180+ words of pure repetition
+    (10, 18),  # 10-word span 18x = 180+ words
+    (8, 25),   # 8-word span 25x = 200+ words
+)
+
+
+def _has_repeated_ngram(words: List[str], *, thresholds: tuple[tuple[int, int], ...]) -> bool:
     if len(words) < 15:
         return False
-    # (n-gram size, repeat count that signals a runaway loop). Short grams recur
-    # naturally in clinical prose ("no acute distress", "the patient is") so they
-    # need many repeats; long verbatim spans repeating even a few times indicate
-    # genuine degeneration. Trigram/4-gram triggers were removed — at >=3 they
-    # rejected essentially every real note.
-    #
-    # 2026-08-07: long-gram counts raised from (12,3)/(10,3)/(8,4) to (12,6)/
-    # (10,6)/(8,6). Legitimate structured outputs (e.g. the 28-option patient
-    # meal plan, a ~10k-char doc) repeat their markdown table column-header once
-    # per section (~4x), which the old thresholds misclassified as a "runaway
-    # loop" and threw away the good output. Genuine degeneration repeats the
-    # same span 15-30+ times and is still caught by these thresholds (verified:
-    # the old list-style 28x macro-phrase loop is still rejected).
-    for size, min_count in ((12, 6), (10, 6), (8, 6), (6, 9), (5, 12)):
+    for size, min_count in thresholds:
         if len(words) < size:
             continue
         counts: dict[tuple[str, ...], int] = {}
@@ -197,8 +222,46 @@ def _has_repeated_ngram(words: List[str]) -> bool:
     return False
 
 
-def detect_degenerate_output(text: str, *, max_chars: int = MAX_OUTPUT_CHARS) -> List[str]:
-    """Return generic, task-independent degeneration signals."""
+# OCR profile (2026-08-27): the dominant OCR degeneration mode is verbatim
+# line-looping — the model gets stuck re-emitting the same row ("Anti-Ku
+# Within Reference Range 0-10 SI Final" 30-40x). Legitimate panels are
+# immune by construction: every row carries a unique analyte identifier, so
+# no identical line recurs (a 60-row panel's max line repeat is ~2-3x for
+# unit strings, which live on their own short lines anyway). Thresholds:
+# identical line, >=3 words, repeated >=15x = the output is the loop.
+_OCR_LINE_MIN_WORDS = 3
+_OCR_LINE_MAX_REPEATS = 15
+
+
+def _has_ocr_line_loop(value: str) -> bool:
+    """True when the same line (>=_OCR_LINE_MIN_WORDS words) repeats
+    >=_OCR_LINE_MAX_REPEATS times — a verbose echo loop, not a data table."""
+    from collections import Counter
+
+    counts: Counter[str] = Counter()
+    for line in value.splitlines():
+        line = line.strip()
+        if len(line) < 4:
+            continue
+        words = _normalized_words(line)
+        if len(words) < _OCR_LINE_MIN_WORDS:
+            continue
+        counts[" ".join(words)] += 1
+    return any(n >= _OCR_LINE_MAX_REPEATS for n in counts.values())
+
+
+def detect_degenerate_output(
+    text: str,
+    *,
+    max_chars: int = MAX_OUTPUT_CHARS,
+    ocr: bool = False,
+) -> List[str]:
+    """Return generic, task-independent degeneration signals.
+
+    ocr=True switches the n-gram check to the OCR profile (verbose loops only)
+    — see _OCR_NGRAM_THRESHOLDS / _has_ocr_line_loop. All other signals are
+    identical for both profiles.
+    """
     value = str(text or "").strip()
     if not value:
         return ["empty output"]
@@ -207,7 +270,11 @@ def detect_degenerate_output(text: str, *, max_chars: int = MAX_OUTPUT_CHARS) ->
     words = _normalized_words(value)
     if len(value) > max_chars:
         reasons.append("output exceeded the hard character limit")
-    if _has_repeated_ngram(words):
+    if ocr and _has_ocr_line_loop(value):
+        reasons.append("repeated n-gram loop detected")
+    elif _has_repeated_ngram(
+        words, thresholds=_OCR_NGRAM_THRESHOLDS if ocr else _NOTE_NGRAM_THRESHOLDS
+    ):
         reasons.append("repeated n-gram loop detected")
 
     if len(words) >= 600:

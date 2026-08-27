@@ -195,7 +195,10 @@ class OCRLLMEngine:
         while text.startswith("<image>"):
             text = text[7:].strip()
         text = re.sub(r'<[^>]*>', '', text).strip()
-        degeneration = detect_degenerate_output(text, max_chars=30000)
+        # ocr=True: lab panels/tables legitimately repeat the same value phrase
+        # per row (e.g. "Within Reference Range 0-10 SI Final" 20-40x). Only
+        # verbose echo loops are rejected here — see _OCR_NGRAM_THRESHOLDS.
+        degeneration = detect_degenerate_output(text, max_chars=30000, ocr=True)
         if degeneration:
             raise RuntimeError(
                 "OCR output rejected: " + "; ".join(degeneration)
