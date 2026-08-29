@@ -56,10 +56,14 @@
       '#pnSheetModal{position:fixed;inset:0;z-index:16001;background:rgba(0,0,0,.45);',
       'display:flex;align-items:center;justify-content:center;padding:12px;}',
       '#pnSheetModal .modal-content{background:#fff;border-radius:12px;padding:16px;',
-      'width:100%;max-width:560px;max-height:calc(100dvh - 24px);overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.3);',
-      'color:#222;}',
+      'width:100%;max-width:560px;max-height:calc(100dvh - 24px) !important;overflow:auto;',
+      'box-shadow:0 10px 40px rgba(0,0,0,.3);color:#222;}',
       '@media (max-width:640px){',
-      '#pnSheetModal .modal-content{max-height:calc(100dvh - 96px);}/* keep whole card above nav */',
+      '#pnSheetModal .modal-content{max-height:calc(100dvh - 104px) !important;}/* fully above nav */',
+      /* compact fields: ~2x more visible per screen on phones */
+      '#pnSheetModal .form-control{padding:6px 8px;font-size:0.95rem;min-height:38px;}',
+      '.pn-modal-field{margin-bottom:5px;}',
+      '.pn-modal-field label{font-size:10px;margin-bottom:1px;}',
       '.pn-modal-footer{position:sticky;bottom:0;background:#fff;display:flex;gap:8px;justify-content:flex-end;',
       'padding:10px 0 10px;margin-top:12px;border-top:1px solid #e5e7eb;}',
       '.pn-modal-footer::after{content:"";position:absolute;left:-16px;right:-16px;bottom:-16px;height:16px;background:#fff;}',
@@ -146,7 +150,7 @@
     ov.className = 'modal-overlay';
     ov.style.display = 'none';
     ov.innerHTML =
-      '<div class="modal-content" style="max-width:560px;max-height:88vh;overflow:auto;">' +
+      '<div class="modal-content">' +
       '<h3 style="margin:0 0 4px;">Hospital Progress Notes sheet</h3>' +
       '<div style="font-size:12px;color:#666;margin-bottom:10px;">Permanent record sheet with Code-39 barcode. ' +
       'AJ registration number (e.g. AJ0001948/26) is <b>required</b>. Fields marked <i>(EMR)</i> were extracted ' +
