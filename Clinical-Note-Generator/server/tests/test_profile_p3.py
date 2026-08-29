@@ -132,6 +132,37 @@ def test_note_prompts_includes_baseline(client):
     assert np2.json()["templates_baseline"]["consult"] != "XYZ_NOTE_PROMPTS_TEST"
 
 
+def test_custom_note_type_visible_when_visibility_list_set(client):
+    """Regression: creating a custom note type while an explicit visible_note_types
+    list is saved must auto-add the new id, or it silently never shows in the
+    dropdown (/api/note-types filters it out)."""
+    email = f"p3vis-{uuid.uuid4().hex[:8]}@example.com"
+    password = "Passw0rd!1234"
+    token = register_approve_login(client, email, password)
+    h = {"Authorization": f"Bearer {token}"}
+
+    # Restrict visibility to two built-ins.
+    pref = client.put(
+        "/api/note-type-preferences",
+        headers=h,
+        json={"visible_note_types": ["consult", "followup"]},
+    )
+    assert pref.status_code == 200
+
+    resp = client.post("/api/note-types/custom", headers=h, json={"label": "Visible Check Note"})
+    assert resp.status_code == 200
+    created = next(x for x in resp.json()["note_types"] if x["kind"] == "custom" and x["label"] == "Visible Check Note")
+
+    # The filtered list (dropdown source) must include the newly created type.
+    lst = client.get("/api/note-types", headers=h)
+    assert lst.status_code == 200
+    ids = [x["id"] for x in lst.json()["note_types"]]
+    assert created["id"] in ids, f"new custom type hidden by visible_note_types: {ids}"
+    # And the stored prefs now carry it.
+    prof = client.get("/api/profile", headers=h)
+    assert created["id"] in (prof.json().get("visible_note_types") or [])
+
+
 def test_custom_note_type_create_label_only_no_duplicates_and_rename(client):
     email = f"p3ct-{uuid.uuid4().hex[:8]}@example.com"
     password = "Passw0rd!1234"

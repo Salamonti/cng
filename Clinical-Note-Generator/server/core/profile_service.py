@@ -547,6 +547,11 @@ def create_custom_note_type(
         raise ValueError("A note type with this id already exists.")
 
     custom.append({"id": nid, "label": label_t, "scope": sc})
+    # If the account has an explicit visibility list, auto-show the new type so
+    # it isn't invisible in the dropdown until manually re-checked in settings.
+    vis = pj.get("visible_note_types")
+    if isinstance(vis, list) and not any(str(v).strip().lower() == nid for v in vis):
+        pj["visible_note_types"] = list(vis) + [nid]
     t = pj.setdefault("templates", {})
     to = pj.setdefault("templates_other", {})
     ip = _cfg_text(initial_prompt or "")
