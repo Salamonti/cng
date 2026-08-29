@@ -31,6 +31,28 @@
     // Current active category
     let currentCategory = null;
     let currentGenId = null;
+    // Pre-note mode: gen_id minted server-side (bound to this user) so the
+    // clinician can print diet/diagnosis materials mid-visit before any
+    // formal note exists. Reset once a real note generation takes over.
+    let provisionalGenId = null;
+
+    // Raw encounter inputs for pre-note materials (rule R1: only used when
+    // NO formal note exists — the caller passes note_text when it has one).
+    function liveEncounterSource() {
+        const val = function (id) {
+            const el = document.getElementById(id);
+            return el ? String(el.value || '').trim() : '';
+        };
+        return {
+            transcript: val('transcriptionDisplay'),
+            prior_visits: val('oldVisitsData'),
+            chart_data: val('mixedOtherData')
+        };
+    }
+    function hasLiveEncounterData() {
+        const s = liveEncounterSource();
+        return !!(s.transcript || s.prior_visits || s.chart_data);
+    }
 
     // Initialize
     function init() {
@@ -224,10 +246,32 @@
     }
 
     // Open modal
-    window.openPatientMaterialsModal = function(genId) {
+    window.openPatientMaterialsModal = async function(genId) {
         if (!genId) {
-            safeToast('Error', 'Generate a note first.', 'error');
-            return;
+            // Pre-note (mid-visit) mode: no formal note yet. Mint a
+            // provisional gen_id (server binds it to this user) so materials
+            // can be built from live encounter data — transcript chunks,
+            // prior visits, chart data. Rule R1: whenever a real note exists
+            // it stays the source; the backend decides that per request.
+            if (!hasLiveEncounterData()) {
+                safeToast('Error', 'Nothing to generate from yet — record the visit or add prior visits / chart data first.', 'warning');
+                return;
+            }
+            if (!provisionalGenId) {
+                try {
+                    const r = await apiFetch('/patient-materials/provisional-source', { method: 'POST' });
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    provisionalGenId = (await r.json()).gen_id;
+                } catch (e) {
+                    safeToast('Error', 'Could not start pre-note materials: ' + ((e && e.message) || e), 'error');
+                    return;
+                }
+            }
+            genId = provisionalGenId;
+        } else if (provisionalGenId && genId !== provisionalGenId) {
+            // A real note has since been generated — switch to the real
+            // generation; its note becomes the source (rule R1).
+            provisionalGenId = null;
         }
 
         currentGenId = genId;
@@ -261,14 +305,18 @@
         if (!currentGenId) return;
         exitEditModeIfActive();
 
+        // Source selection (rule R1): a generated note is ALWAYS the source
+        // when present. Only with no note do we send raw live data and let
+        // the server build the internal Encounter Data Sheet.
         const noteTextarea = document.getElementById('generatedNote');
-        if (!noteTextarea || !noteTextarea.value.trim()) {
-            safeToast('Error', 'No note to generate materials from.', 'error');
+        const noteText = noteTextarea ? noteTextarea.value.trim() : '';
+        const liveSource = noteText ? null : liveEncounterSource();
+        if (!noteText && !(liveSource.transcript || liveSource.prior_visits || liveSource.chart_data)) {
+            safeToast('Error', 'No note yet and no live encounter data to generate from.', 'error');
             return;
         }
 
         currentCategory = category;
-        const noteText = noteTextarea.value;
 
         // Diet/exercise: ALWAYS go through the API first. The backend reads
         // the note and returns either a generated plan (note-based data plus
@@ -278,8 +326,9 @@
 
         window.patientMaterialsState.status = 'loading';
 
-        // Show loading in the content panel
-        showLoadingForCategory(category);
+        // Show loading in the content panel (staged progress when the
+        // server has to summarize live data first).
+        showLoadingForCategory(category, noteText ? null : 'Summarizing encounter data… → ');
 
         try {
             // Get patient data from forms (for diet/exercise)
@@ -292,14 +341,17 @@
                 body: JSON.stringify({
                     gen_id: currentGenId,
                     material_type: category,
-                    note_text: noteText,
+                    note_text: noteText || undefined,
+                    live_source: liveSource || undefined,
                     patient_data: patientData,
                     regenerate: !!regenerate
                 })
             });
 
             if (!response.ok) {
-                throw new Error('Failed to generate material: ' + response.status);
+                let detail = '';
+                try { detail = (await response.json()).detail || ''; } catch (e) {}
+                throw new Error('Failed to generate material: ' + response.status + (detail ? ' — ' + detail : ''));
             }
 
             const data = await response.json();
@@ -562,8 +614,9 @@
         }
     }
 
-    // Show loading for a category
-    function showLoadingForCategory(category) {
+    // Show loading for a category. stagePrefix: extra text shown when the
+    // server must summarize live data first (pre-note mode).
+    function showLoadingForCategory(category, stagePrefix) {
         showContentPanel();
         
         const contentBody = document.getElementById('pmContentBody');
@@ -571,7 +624,7 @@
             contentBody.innerHTML = `
                 <div class="pm-loading">
                     <div class="pm-loading-spinner"></div>
-                    <div class="pm-loading-text">Generating ${MATERIAL_TYPES[category]}...</div>
+                    <div class="pm-loading-text">${stagePrefix || ''}Generating ${MATERIAL_TYPES[category]}...</div>
                 </div>
             `;
         }
@@ -593,6 +646,22 @@
         if (contentBody && data.content) {
             // Render markdown
             contentBody.innerHTML = renderMarkdown(data.content);
+            // Pre-note materials: explicit preliminary banner + collapsible
+            // source panel (clinician transparency about what was used).
+            if (data.preliminary) {
+                const stamp = data.generated_at ? new Date(data.generated_at).toLocaleString() : '';
+                const banner = document.createElement('div');
+                banner.className = 'pm-preliminary-banner';
+                banner.textContent = '⚠ Preliminary — generated from live encounter data at ' + stamp + ' (no formal note yet). Verify before giving to the patient.';
+                contentBody.insertBefore(banner, contentBody.firstChild);
+                if (data.source_sheet) {
+                    const det = document.createElement('details');
+                    det.className = 'pm-source-panel';
+                    det.innerHTML = '<summary>Source data (auto-summary of what was said so far)</summary>' +
+                        '<pre class="pm-source-sheet">' + escapeHtml(data.source_sheet) + '</pre>';
+                    contentBody.insertBefore(det, banner.nextSibling);
+                }
+            }
             const scroll = document.getElementById('pmModalBody');
             if (scroll) scroll.scrollTop = 0;
         }
@@ -707,6 +776,11 @@
             const ta = document.getElementById('pmEditTextarea');
             bodyHtml = prev ? prev.innerHTML : renderMarkdown(ta ? ta.value : '');
         }
+
+        // The internal source-data panel is clinician-facing transparency —
+        // it must never reach the patient's printout. (The preliminary
+        // banner intentionally DOES print: pre-note handouts stay labelled.)
+        bodyHtml = bodyHtml.replace(/<details class="pm-source-panel"[\s\S]*?<\/details>/g, '');
 
         // Create a new window with just the content
         const printWindow = window.open('', '_blank');

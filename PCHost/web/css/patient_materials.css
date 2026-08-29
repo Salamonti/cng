@@ -563,3 +563,39 @@
     .pm-patient-data .pm-demographics { flex-direction: column; gap: 0; }
     .pm-current-title { display: block; margin-left: 0; }
 }
+
+/* ── Pre-note (mid-visit) materials ─────────────────────────────── */
+.pm-preliminary-banner {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    color: #b45309;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85em;
+    margin-bottom: 14px;
+}
+.pm-source-panel {
+    margin-bottom: 14px;
+    font-size: 0.82em;
+    color: #555;
+}
+.pm-source-panel summary {
+    cursor: pointer;
+    user-select: none;
+    color: #666;
+}
+.pm-source-sheet {
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #f7f7f8;
+    border: 1px solid #e3e3e6;
+    border-radius: 8px;
+    padding: 10px 12px;
+    max-height: 260px;
+    overflow: auto;
+    font-family: inherit;
+    margin: 8px 0 0;
+}
+@media print {
+    .pm-source-panel { display: none; }
+}

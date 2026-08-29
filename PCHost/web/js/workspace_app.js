@@ -5656,7 +5656,14 @@ window.WORKSPACE_PAGE_TYPE = 'main';
         function handlePatientMaterialsClick() {
             const genId = window.lastGenerationId;
             if (!genId) {
-                showToast('Error', 'Generate a note first.', 'error');
+                // Mid-visit pre-note mode is allowed (Phase A): openPatientMaterialsModal
+                // mints a provisional gen_id from live encounter data instead.
+                if (typeof window.openPatientMaterialsModal !== 'function') {
+                    console.error('[PM] openPatientMaterialsModal is not defined. patient_materials_ui.js may have failed to load.');
+                    showToast('Error', 'Patient Materials module failed to load. Please refresh the page.', 'error');
+                    return;
+                }
+                window.openPatientMaterialsModal(null);
                 return;
             }
             if (typeof window.openPatientMaterialsModal !== 'function') {
