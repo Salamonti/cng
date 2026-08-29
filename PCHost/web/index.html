@@ -844,7 +844,6 @@
 
             <div class="form-group prompt-modal-tab-row">
                 <button type="button" id="promptTabTemplatesBtn" class="btn btn-primary" onclick="setPromptSettingsTab('templates')">Account templates</button>
-                <button type="button" id="promptTabTypesBtn" class="btn btn-outline" onclick="setPromptSettingsTab('types')">Note types</button>
                 <button type="button" id="promptTabSettingsBtn" class="btn btn-outline" onclick="setPromptSettingsTab('settings')">Note type settings</button>
             </div>
 
@@ -889,9 +888,7 @@
                     <button type="button" id="revertAllBuiltinTemplatesBtn" class="btn btn-outline" onclick="revertAllBuiltinTemplates()"
                         title="Clears your saved overrides for every built-in note type. Does not remove custom types.">Reset all built-in templates to baseline</button>
                 </div>
-            </div>
 
-            <div id="promptTabTypes" style="display:none;">
                 <div id="customNoteTypeDeleteWrap" class="form-group" style="display:none;margin-bottom:0;">
                     <button type="button" class="btn btn-outline" style="border-color:#c0392b;color:#c0392b;" onclick="deleteCustomNoteType()">Delete selected custom type</button>
                 </div>
@@ -904,12 +901,6 @@
                     <input type="text" id="renameCustomNoteTypeLabel" class="form-control" placeholder="New name" autocomplete="off" />
                     <div class="btn-group" style="margin-top:8px;">
                         <button type="button" class="btn btn-primary" onclick="renameCustomNoteType()">Rename</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="baseline-toggle-row">
-                        <span style="font-size:0.85rem;color:var(--text-secondary,#666);">Use the <b>Account templates</b> tab → <b>Add a new template</b> to create a note type.</span>
                     </div>
                 </div>
             </div>
@@ -972,7 +963,7 @@
     <script src="js/asr_settings_ui.js?v=20260808a-step4"></script>
     <script src="js/asr_transcript_view.js?v=20260622f"></script>
     <script src="js/asr_chunk_pipeline.js?v=20260622d"></script>
-    <script src="js/workspace_app.js?v=20260829r"></script>
+    <script src="js/workspace_app.js?v=20260829u"></script>
     <script src="js/workspace_file_camera.js?v=20260719-uploadfix1"></script>
     <script src="js/patient_materials_ui.js?v=20260829t"></script>
     <script src="js/workspace_ui_state.js?v=20260622h"></script>

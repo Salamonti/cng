@@ -6683,20 +6683,15 @@ Contact Information:`,
 
         function setPromptSettingsTab(which) {
             const a = document.getElementById('promptTabTemplates');
-            const b = document.getElementById('promptTabTypes');
             const c = document.getElementById('promptTabSettings');
             const btnA = document.getElementById('promptTabTemplatesBtn');
-            const btnB = document.getElementById('promptTabTypesBtn');
             const btnC = document.getElementById('promptTabSettingsBtn');
             const w = String(which || '').toLowerCase();
-            const isTemplates = w === 'templates';
-            const isTypes = w === 'types';
+            const isTemplates = w !== 'settings'; // 'types' (legacy callers) now means templates
             const isSettings = w === 'settings';
             if (a) a.style.display = isTemplates ? 'block' : 'none';
-            if (b) b.style.display = isTypes ? 'block' : 'none';
             if (c) c.style.display = isSettings ? 'block' : 'none';
             if (btnA) btnA.className = isTemplates ? 'btn btn-primary' : 'btn btn-outline';
-            if (btnB) btnB.className = isTypes ? 'btn btn-primary' : 'btn btn-outline';
             if (btnC) btnC.className = isSettings ? 'btn btn-primary' : 'btn btn-outline';
             // Load settings when switching to settings tab
             if (isSettings) {
