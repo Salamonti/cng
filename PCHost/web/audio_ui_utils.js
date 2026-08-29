@@ -93,8 +93,24 @@
     );
   }
 
+  // Note types allowed to generate WHILE recording (document-oriented: consume
+  // prior visits/chart, not the live transcript). Keep in sync with
+  // DOCUMENT_ORIENTED_NOTE_TYPES in server/core/prompt/builder.py (server is truth)
+  // and MID_RECORDING_ALLOWED_TYPES in workspace_app.js generateNote().
+  const MID_RECORDING_ALLOWED_TYPES = ['pre_encounter_prep'];
+
+  function currentNoteTypeValue() {
+    const el = document.getElementById('noteType');
+    return el ? String(el.value || '') : '';
+  }
+
+  function isMidRecordingGenerateAllowed() {
+    return MID_RECORDING_ALLOWED_TYPES.indexOf(currentNoteTypeValue()) >= 0;
+  }
+
   function syncGenerateButtonsForPipeline(phase) {
-    const recording = phase === 'recording' || isLiveAudioCaptureActive();
+    const recording = (phase === 'recording' || isLiveAudioCaptureActive())
+      && !isMidRecordingGenerateAllowed();
     const busy = phase === 'stopping' || phase === 'transcribing' || phase === 'generating_note';
     const selectors = [
       'button[onclick*="triggerGenerateNoteAndFocus"]',

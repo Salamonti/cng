@@ -99,14 +99,22 @@
     }
 
     if (isAudioCaptureActive()) {
-      if (typeof window.showToast === 'function') {
-        window.showToast(
-          'Recording in progress',
-          'Stop recording first, then generate your note.',
-          'info'
-        );
+      // Document-oriented note types (prior visits/chart only, not live transcript)
+      // are allowed mid-recording. Keep in sync with DOCUMENT_ORIENTED_NOTE_TYPES
+      // in server/core/prompt/builder.py (server is truth), audio_ui_utils.js and
+      // MID_RECORDING_ALLOWED_TYPES in workspace_app.js.
+      const ntEl = document.getElementById('noteType');
+      const nt = ntEl ? String(ntEl.value || '') : '';
+      if (['pre_encounter_prep'].indexOf(nt) < 0) {
+        if (typeof window.showToast === 'function') {
+          window.showToast(
+            'Recording in progress',
+            'Stop recording first, then generate your note.',
+            'info'
+          );
+        }
+        return;
       }
-      return;
     }
 
     if (typeof window.generateNote === 'function') {

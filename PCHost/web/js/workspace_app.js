@@ -2746,9 +2746,19 @@ window.WORKSPACE_PAGE_TYPE = 'main';
             }
         }
 
+        // Note types safe to generate WHILE recording: document-oriented types
+        // consume prior visits / chart data, not the live conversation, so a
+        // mid-visit generation cannot be "premature" and does not race the ASR
+        // pipeline (whisper ports are separate services). MUST stay in sync with
+        // DOCUMENT_ORIENTED_NOTE_TYPES in server/core/prompt/builder.py (server is truth).
+        // Only pre_encounter_prep unlocked for now; 'summarize' deferred by design.
+        const MID_RECORDING_ALLOWED_TYPES = ['pre_encounter_prep'];
+
         async function generateNote() {
+            const noteType = document.getElementById('noteType').value;
             if (window.CNGGenerateUI && typeof window.CNGGenerateUI.isAudioCaptureActive === 'function') {
-                if (window.CNGGenerateUI.isAudioCaptureActive()) {
+                if (window.CNGGenerateUI.isAudioCaptureActive()
+                    && MID_RECORDING_ALLOWED_TYPES.indexOf(noteType) < 0) {
                     showToast(
                         'Recording in progress',
                         'Stop recording first, then generate your note.',
@@ -2763,8 +2773,6 @@ window.WORKSPACE_PAGE_TYPE = 'main';
                 showToast('Already Generating', 'A note is already being generated. Please wait or stop the current generation.', 'warning');
                 return;
             }
-
-            const noteType = document.getElementById('noteType').value;
 
             // V7 API: Check if any of the 3 input fields has content
             const transcriptionDisplayValue = document.getElementById('transcriptionDisplay')?.value?.trim() || '';
@@ -7861,6 +7869,13 @@ Contact Information:`,
             function syncNoteType(value, source) {
                 if (noteTypeEl && source !== 'main') noteTypeEl.value = value;
                 if (noteTypeMirrorEl && source !== 'mirror') noteTypeMirrorEl.value = value;
+                // Note type can change generate-while-recording eligibility — refresh button state.
+                if (window.CNGAudioUI && typeof window.CNGAudioUI.syncGenerateButtonsForPipeline === 'function') {
+                    window.CNGAudioUI.syncGenerateButtonsForPipeline(
+                        (window.CNGGenerateUI && typeof window.CNGGenerateUI.isAudioCaptureActive === 'function'
+                            && window.CNGGenerateUI.isAudioCaptureActive()) ? 'recording' : 'idle'
+                    );
+                }
                 const promptSelect = document.getElementById('noteTypeSelect');
                 if (promptSelect && promptSelect.value !== value) {
                     promptSelect.value = value;
