@@ -409,3 +409,157 @@
         display: none !important;
     }
 }
+
+/* ============================================================
+   2026-08-29 layout overhaul (issue: 400px-wide window, endless
+   scroll, no close/edit/resize). These #id rules intentionally
+   out-rank workspace.css's generic `.modal-content`
+   (max-width:400px) regardless of stylesheet load order.
+   ============================================================ */
+
+/* Panel: wide, flex column — header fixed, only the body scrolls */
+#patientMaterialsModal .modal-content.pm-modal-content {
+    max-width: min(1150px, 94vw);
+    width: 100%;
+    max-height: 92vh;
+    margin: 16px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#patientMaterialsModal .modal-content.pm-modal-content.pm-maximized {
+    max-width: calc(100vw - 12px);
+    max-height: calc(100vh - 12px);
+    margin: 6px;
+}
+
+#patientMaterialsModal .modal-header {
+    flex-shrink: 0;
+    padding: 16px 20px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+.pm-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.pm-header-btn {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    color: #374151;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    cursor: pointer;
+    line-height: 1.2;
+}
+.pm-header-btn:hover { background: #e5e7eb; }
+.pm-current-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #10b981;
+    margin-left: 8px;
+}
+
+/* Body: the single scroll container */
+#pmModalBody {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Content toolbar: sticky so Back/Print/Close never scroll away */
+#patientMaterialsModal .pm-content-header {
+    position: sticky;
+    top: -20px;          /* counteract body padding so it hugs the top */
+    z-index: 5;
+    margin: -20px -20px 20px;
+    padding: 10px 20px;
+    background: var(--dc-page-elevated, #fff);
+    border-bottom: 1px solid #e5e7eb;
+    gap: 8px;
+}
+.pm-content-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.pm-regen-btn, .pm-edit-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    color: #3730a3;
+}
+.pm-regen-btn:hover, .pm-edit-btn:hover { background: #e0e7ff; }
+.pm-close-btn-inline {
+    background: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    padding: 8px 14px !important;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1.2;
+}
+.pm-close-btn-inline:hover { background: #e5e7eb !important; }
+
+/* Form action row */
+.pm-form-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* Text editor */
+.pm-edit-wrap { margin-bottom: 12px; }
+.pm-edit-hint {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 6px;
+}
+.pm-edit-textarea {
+    width: 100%;
+    min-height: 260px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    padding: 12px;
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    background: #fafafa;
+    resize: vertical;
+    box-sizing: border-box;
+}
+.pm-edit-preview {
+    border-top: 1px dashed #d1d5db;
+    padding-top: 12px;
+}
+
+/* Tablet/phone: form fields stack, toolbar wraps under sticky header */
+@media (max-width: 720px) {
+    #patientMaterialsModal .modal-content.pm-modal-content {
+        max-width: 100vw;
+        max-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+    #pmModalBody { padding: 14px; }
+    #patientMaterialsModal .pm-content-header {
+        margin: -14px -14px 14px;
+        top: -14px;
+        padding: 8px 14px;
+        flex-wrap: wrap;
+    }
+    .pm-patient-data .pm-demographics { flex-direction: column; gap: 0; }
+    .pm-current-title { display: block; margin-left: 0; }
+}

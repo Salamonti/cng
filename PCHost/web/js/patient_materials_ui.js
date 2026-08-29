@@ -47,6 +47,52 @@
         if (closeBtn) {
             closeBtn.addEventListener('click', window.closePatientMaterialsModal);
         }
+        const closeBtn2 = document.getElementById('pmCloseBtn2');
+        if (closeBtn2) {
+            closeBtn2.addEventListener('click', window.closePatientMaterialsModal);
+        }
+
+        // Escape closes; clicking the dimmed backdrop closes too.
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('patientMaterialsModal');
+                if (modal && modal.classList.contains('show')) {
+                    window.closePatientMaterialsModal();
+                }
+            }
+        });
+        const pmModal = document.getElementById('patientMaterialsModal');
+        if (pmModal) {
+            pmModal.addEventListener('click', function(e) {
+                if (e.target === pmModal) window.closePatientMaterialsModal();
+            });
+        }
+
+        // Maximize / restore
+        const maxBtn = document.getElementById('pmMaxBtn');
+        if (maxBtn) {
+            maxBtn.addEventListener('click', toggleMaximize);
+        }
+
+        // Edit data (header) — diet/exercise patient data form, pre-filled.
+        const editDataBtn = document.getElementById('pmEditDataBtn');
+        if (editDataBtn) {
+            editDataBtn.addEventListener('click', function() {
+                if (currentCategory) showPatientDataForm(currentCategory, Object.assign({}, window.patientMaterialsState.patientData || {}), [], { editMode: true });
+            });
+        }
+
+        // Regenerate (content toolbar)
+        const regenBtn = document.getElementById('pmRegenBtn');
+        if (regenBtn) {
+            regenBtn.addEventListener('click', regenerateCurrent);
+        }
+
+        // Edit material text (content toolbar)
+        const editBtn = document.getElementById('pmEditBtn');
+        if (editBtn) {
+            editBtn.addEventListener('click', toggleEditContent);
+        }
 
         // Back button
         const backBtn = document.getElementById('pmBackBtn');
@@ -68,8 +114,9 @@
         
         if (grid) grid.classList.remove('hidden');
         if (panel) panel.classList.add('hidden');
-        
+
         currentCategory = null;
+        updateHeaderButtons();
     }
 
     // Show content panel
@@ -79,6 +126,101 @@
         
         if (grid) grid.classList.add('hidden');
         if (panel) panel.classList.remove('hidden');
+
+        const titleEl = document.getElementById('pmCurrentTitle');
+        if (titleEl) {
+            titleEl.textContent = currentCategory ? ' · ' + MATERIAL_TYPES[currentCategory] : '';
+        }
+        updateHeaderButtons();
+    }
+
+    // Which header/toolbar controls make sense for the current view.
+    function updateHeaderButtons() {
+        const hasMaterial = !!(currentCategory && window.patientMaterialsState.materials && window.patientMaterialsState.materials[currentCategory]);
+        const interactive = currentCategory === 'diet' || currentCategory === 'exercise';
+        const editDataBtn = document.getElementById('pmEditDataBtn');
+        if (editDataBtn) editDataBtn.classList.toggle('hidden', !(hasMaterial && interactive));
+        const regenBtn = document.getElementById('pmRegenBtn');
+        if (regenBtn) regenBtn.classList.toggle('hidden', !hasMaterial);
+        const editBtn = document.getElementById('pmEditBtn');
+        if (editBtn) editBtn.classList.toggle('hidden', !hasMaterial);
+    }
+
+    // Maximize toggle (persisted so the preferred size sticks).
+    function toggleMaximize() {
+        const panel = document.getElementById('pmModalPanel');
+        const btn = document.getElementById('pmMaxBtn');
+        if (!panel) return;
+        const maximized = panel.classList.toggle('pm-maximized');
+        try { localStorage.setItem('pm_maximized', maximized ? '1' : '0'); } catch (e) {}
+        if (btn) {
+            btn.textContent = maximized ? '⤡' : '⤢';
+            btn.title = maximized ? 'Restore window size' : 'Toggle full screen';
+        }
+    }
+    function applySavedMaximize() {
+        let saved = '0';
+        try { saved = localStorage.getItem('pm_maximized') || '0'; } catch (e) {}
+        const panel = document.getElementById('pmModalPanel');
+        const btn = document.getElementById('pmMaxBtn');
+        if (panel && saved === '1') {
+            panel.classList.add('pm-maximized');
+            if (btn) { btn.textContent = '⤡'; btn.title = 'Restore window size'; }
+        }
+    }
+
+    // Regenerate the current material. Diet/exercise go through the data form
+    // first (pre-filled) so the clinician can correct vitals before re-running.
+    function regenerateCurrent() {
+        if (!currentCategory) return;
+        if (currentCategory === 'diet' || currentCategory === 'exercise') {
+            showPatientDataForm(currentCategory, Object.assign({}, window.patientMaterialsState.patientData || {}), [], { editMode: true, regenerate: true });
+            return;
+        }
+        generateSingleMaterial(currentCategory, true);
+    }
+
+    // Edit the generated text directly (raw markdown textarea, live preview).
+    let editingContent = false;
+    function toggleEditContent() {
+        if (!currentCategory) return;
+        const mat = window.patientMaterialsState.materials && window.patientMaterialsState.materials[currentCategory];
+        if (!mat) return;
+        const contentBody = document.getElementById('pmContentBody');
+        const editBtn = document.getElementById('pmEditBtn');
+        if (!contentBody) return;
+
+        if (!editingContent) {
+            editingContent = true;
+            if (editBtn) editBtn.textContent = '✓ Done editing';
+            const raw = mat.content || '';
+            contentBody.innerHTML =
+                '<div class="pm-edit-wrap">' +
+                '<div class="pm-edit-hint">Edit the text below — changes apply immediately to the preview, print, and any PDF export.</div>' +
+                '<textarea class="pm-edit-textarea" id="pmEditTextarea" spellcheck="true"></textarea>' +
+                '</div>' +
+                '<div class="pm-edit-preview" id="pmEditPreview"></div>';
+            const ta = document.getElementById('pmEditTextarea');
+            const prev = document.getElementById('pmEditPreview');
+            ta.value = raw;
+            const refresh = function () {
+                mat.content = ta.value;
+                prev.innerHTML = renderMarkdown(ta.value);
+                savePatientMaterialsState();
+            };
+            ta.addEventListener('input', refresh);
+            prev.innerHTML = renderMarkdown(raw);
+        } else {
+            editingContent = false;
+            if (editBtn) editBtn.textContent = '✎ Edit text';
+            contentBody.innerHTML = renderMarkdown(mat.content || '');
+        }
+    }
+    function exitEditModeIfActive() {
+        if (!editingContent) return;
+        editingContent = false;
+        const editBtn = document.getElementById('pmEditBtn');
+        if (editBtn) editBtn.textContent = '✎ Edit text';
     }
 
     // Open modal
@@ -96,12 +238,16 @@
         modal.classList.add('show');  // app shows modals via .modal.show { display:flex }
         modal.setAttribute('aria-hidden', 'false');
 
+        exitEditModeIfActive();
+        applySavedMaximize();
+
         // Always show the category selection first - never auto-generate
         showCategoryGrid();
     };
 
     // Close modal
     window.closePatientMaterialsModal = function() {
+        exitEditModeIfActive();
         const modal = document.getElementById('patientMaterialsModal');
         if (modal) {
             modal.classList.remove('show');
@@ -111,8 +257,9 @@
     };
 
     // Generate a single material
-    async function generateSingleMaterial(category) {
+    async function generateSingleMaterial(category, regenerate) {
         if (!currentGenId) return;
+        exitEditModeIfActive();
 
         const noteTextarea = document.getElementById('generatedNote');
         if (!noteTextarea || !noteTextarea.value.trim()) {
@@ -146,7 +293,8 @@
                     gen_id: currentGenId,
                     material_type: category,
                     note_text: noteText,
-                    patient_data: patientData
+                    patient_data: patientData,
+                    regenerate: !!regenerate
                 })
             });
 
@@ -223,13 +371,17 @@
     //   Used to pre-fill fields the clinician didn't enter; shown with a
     //   "from note" marker so they know to verify it.
     // missingFields (optional): the blocking fields still absent.
-    function showPatientDataForm(category, noteExtracted, missingFields) {
+    function showPatientDataForm(category, noteExtracted, missingFields, opts) {
+        exitEditModeIfActive();
         showContentPanel();
         currentCategory = category;
-        
+
         const contentBody = document.getElementById('pmContentBody');
         if (!contentBody) return;
 
+        const options = opts || {};
+        const editMode = !!options.editMode;   // opened to correct data for an existing material
+        const regenerate = !!options.regenerate;
         const extract = noteExtracted || {};
         const missing = Array.isArray(missingFields) ? missingFields : [];
         const hasExtract = Object.keys(extract).some(function (k) { return extract[k] != null && extract[k] !== ''; });
@@ -251,19 +403,31 @@
         };
 
         const title = category === 'diet' ? 'Diet Plan' : 'Exercise Plan';
+        const heading = editMode
+            ? (regenerate ? 'Adjust data & regenerate ' + title : 'Correct data — ' + title)
+            : 'Patient Data for ' + title;
+        const submitLbl = editMode ? ('↻ Regenerate ' + title) : ('Generate ' + title);
+        const cancelBtnHtml = editMode
+            ? '<button type="button" class="btn btn-outline" id="pmCancelPatientData" style="margin-right:8px;">Cancel (keep current material)</button>'
+            : '';
         const units = category === 'diet' ? 'kg' : 'kg (used for BMI and activity calculation)';
 
-        const banner = hasExtract ? (
+        const banner = (!editMode && hasExtract) ? (
             '<div class="pm-extract-banner">Read from your note: <b>' +
             Object.keys(extract).filter(function (k) { return extract[k] != null && extract[k] !== ''; }).join(', ') +
             '</b>. Verify and complete the highlighted fields below.</div>'
         ) : '';
 
-        const ageTag = hadNote('age') ? fromNoteTag : '';
-        const sexTag = hadNote('sex') ? fromNoteTag : '';
-        const weightTag = hadNote('weight_kg') ? fromNoteTag : '';
-        const heightTag = hadNote('height_cm') ? fromNoteTag : '';
-        const goalTag = hadNote('goal') ? fromNoteTag : '';
+        // In edit mode the values came from the previous generation, not the
+        // note — the "from note" markers would be misleading.
+        const noteTag = function (key) {
+            return (!editMode && hadNote(key)) ? fromNoteTag : '';
+        };
+        const ageTag = noteTag('age');
+        const sexTag = noteTag('sex');
+        const weightTag = noteTag('weight_kg');
+        const heightTag = noteTag('height_cm');
+        const goalTag = noteTag('goal');
 
         const extraFields = category === 'exercise' ? `
                 <div class="form-group">
@@ -291,7 +455,7 @@
 
         contentBody.innerHTML = `
             <div class="pm-patient-data">
-                <h3>Patient Data for ${title}</h3>
+                <h3>${heading}</h3>
                 ${banner}
                 <div class="pm-demographics">
                     <div class="form-group">
@@ -325,14 +489,28 @@
                     </div>
                 </div>
                 ${extraFields}
-                <button type="button" class="btn btn-primary" id="pmSubmitPatientData">Generate ${title}</button>
+                <div class="pm-form-actions">
+                    ${cancelBtnHtml}
+                    <button type="button" class="btn btn-primary" id="pmSubmitPatientData">${submitLbl}</button>
+                </div>
             </div>
         `;
 
         // Add submit handler
         const submitBtn = document.getElementById('pmSubmitPatientData');
         if (submitBtn) {
-            submitBtn.addEventListener('click', submitPatientDataForm);
+            submitBtn.addEventListener('click', function () { submitPatientDataForm(editMode); });
+        }
+        const cancelBtn = document.getElementById('pmCancelPatientData');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function () {
+                const mat = window.patientMaterialsState.materials && window.patientMaterialsState.materials[currentCategory];
+                if (mat) {
+                    renderSingleMaterial(currentCategory, mat);
+                } else {
+                    showCategoryGrid();
+                }
+            });
         }
 
         // BMI calculation
@@ -346,7 +524,7 @@
     }
 
     // Submit patient data form
-    function submitPatientDataForm() {
+    function submitPatientDataForm(regenerate) {
         const patientData = gatherPatientData();
         
         if (!patientData.weight_kg || !patientData.height_cm || !patientData.goal) {
@@ -361,7 +539,7 @@
         savePatientMaterialsState();
 
         // Now generate the material
-        generateSingleMaterial(currentCategory);
+        generateSingleMaterial(currentCategory, regenerate);
     }
 
     // Calculate BMI
@@ -415,7 +593,10 @@
         if (contentBody && data.content) {
             // Render markdown
             contentBody.innerHTML = renderMarkdown(data.content);
+            const scroll = document.getElementById('pmModalBody');
+            if (scroll) scroll.scrollTop = 0;
         }
+        updateHeaderButtons();
 
         if (disclaimer && data.disclaimer) {
             disclaimer.innerHTML = renderMarkdown(data.disclaimer);
@@ -518,6 +699,15 @@
         
         if (!contentBody) return;
 
+        // If mid-edit, print the live preview (rendered markdown), not the
+        // raw textarea + preview editor chrome.
+        let bodyHtml = contentBody.innerHTML;
+        if (editingContent) {
+            const prev = document.getElementById('pmEditPreview');
+            const ta = document.getElementById('pmEditTextarea');
+            bodyHtml = prev ? prev.innerHTML : renderMarkdown(ta ? ta.value : '');
+        }
+
         // Create a new window with just the content
         const printWindow = window.open('', '_blank');
         if (printWindow) {
@@ -527,11 +717,12 @@
             printWindow.document.write('h1 { font-size: 16pt; text-align: center; margin-bottom: 10px; }');
             printWindow.document.write('h2 { font-size: 14pt; margin-top: 20px; }');
             printWindow.document.write('h3 { font-size: 12pt; }');
+            printWindow.document.write('table { border-collapse: collapse; width: 100%; margin: 10px 0; } td, th { border: 1px solid #999; padding: 4px 8px; font-size: 10pt; }');
             printWindow.document.write('.disclaimer { font-size: 8pt; color: #666; margin-top: 30px; padding: 10px; border-top: 1px solid #ccc; }');
             printWindow.document.write('</style></head><body>');
             printWindow.document.write('<h1>DreamCision</h1>');
-            printWindow.document.write('<p style="text-align: center; color: #666;">Patient Material</p>');
-            printWindow.document.write(contentBody.innerHTML);
+            printWindow.document.write('<p style="text-align: center; color: #666;">' + (currentCategory ? escapeHtml(MATERIAL_TYPES[currentCategory]) : 'Patient Material') + '</p>');
+            printWindow.document.write(bodyHtml);
             printWindow.document.write('<div class="disclaimer">');
             printWindow.document.write(disclaimer ? disclaimer.innerHTML : '');
             printWindow.document.write('</div>');

@@ -71,6 +71,7 @@ class PatientMaterialRequest(BaseModel):
     material_type: str = Field(..., description="One of: medications, diagnosis, issues_plan, diet, exercise, full_report")
     note_text: str = Field(..., description="The generated clinical note text")
     patient_data: Optional[Dict[str, Any]] = Field(None, description="Patient data for diet/exercise plans")
+    regenerate: bool = Field(False, description="Explicit user-requested regeneration; invalidates the cached result for this material type")
 
 
 class GenerateAllRequest(BaseModel):
@@ -147,6 +148,16 @@ async def generate_patient_material(
     # /list/{gen_id} (which only ever has the bare gen_id, never note_text)
     # could never look up.
     cache_key = request.gen_id
+    # Explicit "Regenerate" from the clinician (e.g. after correcting weight
+    # or height) must NOT be served the previously cached result — drop the
+    # cached entry for this material type before the cache check.
+    if request.regenerate:
+        with _cache_lock:
+            cur = _patient_materials_store.get(cache_key)
+            if cur and request.material_type in cur:
+                cur = dict(cur)
+                cur.pop(request.material_type, None)
+                _patient_materials_store.put(cache_key, cur)
     cached = _patient_materials_store.get(cache_key)
     if cached and request.material_type in cached and cached[request.material_type].get("content"):
         return PatientMaterialResponse(

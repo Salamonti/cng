@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="assets/dreamcision/icon-192.png">
 
     <link rel="stylesheet" href="css/dreamcision-tokens.css">
-    <link rel="stylesheet" href="css/patient_materials.css?v=20260821b-noteextract">
+    <link rel="stylesheet" href="css/patient_materials.css?v=20260829t">
     <link rel="stylesheet" href="css/workspace.css?v=20260821a-streamfix">
 
 
@@ -642,15 +642,20 @@
 
         <!-- Patient Materials Modal -->
         <div id="patientMaterialsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="patientMaterialsTitle">
-            <div class="modal-content pm-modal-content">
+            <div class="modal-content pm-modal-content" id="pmModalPanel">
                 <div class="modal-header">
                     <div>
-                        <div class="modal-title" id="patientMaterialsTitle">Patient Materials</div>
+                        <div class="modal-title" id="patientMaterialsTitle">Patient Materials<span class="pm-current-title" id="pmCurrentTitle"></span></div>
                         <div class="modal-subtitle">DreamCision — Generated from clinical note</div>
                     </div>
-                    <button class="modal-close pm-close-btn" id="pmCloseBtn" aria-label="Close">&times;</button>
+                    <div class="pm-header-actions">
+                        <button type="button" class="pm-header-btn hidden" id="pmEditDataBtn" title="Edit the patient data used for this material">✎ Edit data</button>
+                        <button type="button" class="pm-header-btn" id="pmMaxBtn" aria-label="Resize window" title="Toggle full screen">⤢</button>
+                        <button class="modal-close pm-close-btn" id="pmCloseBtn" aria-label="Close">&times;</button>
+                    </div>
                 </div>
 
+                <div class="pm-modal-body" id="pmModalBody">
                 <!-- Category Selection Grid -->
                 <div class="pm-category-grid" id="pmCategoryGrid">
                     <div class="pm-category-card" data-category="diagnosis" role="button" tabindex="0">
@@ -688,14 +693,20 @@
                 <!-- Content Panel (hidden until a category is generated) -->
                 <div class="pm-content-panel hidden" id="pmContentPanel">
                     <div class="pm-content-header">
-                        <button class="pm-back-btn" id="pmBackBtn">← Back to Categories</button>
-                        <button class="pm-print-btn" id="pmPrintBtn">🖨️ Print</button>
+                        <button class="pm-back-btn" id="pmBackBtn">← Categories</button>
+                        <div class="pm-content-actions">
+                            <button class="pm-edit-btn hidden" id="pmEditBtn" title="Edit this material's text">✎ Edit text</button>
+                            <button class="pm-regen-btn hidden" id="pmRegenBtn" title="Generate again — you can adjust the data first">↻ Regenerate</button>
+                            <button class="pm-print-btn" id="pmPrintBtn">🖨️ Print</button>
+                            <button class="pm-close-btn pm-close-btn-inline" id="pmCloseBtn2" aria-label="Close">✕ Close</button>
+                        </div>
                     </div>
                     <div class="pm-content-body" id="pmContentBody"></div>
                     <div class="pm-disclaimer" id="pmDisclaimer">
                         <strong>Disclaimer:</strong> This material is for informational purposes only. Please discuss any questions with your healthcare provider.
                     </div>
                 </div>
+                </div><!-- /pm-modal-body -->
             </div>
         </div></div>
 
@@ -963,7 +974,7 @@
     <script src="js/asr_chunk_pipeline.js?v=20260622d"></script>
     <script src="js/workspace_app.js?v=20260829r"></script>
     <script src="js/workspace_file_camera.js?v=20260719-uploadfix1"></script>
-    <script src="js/patient_materials_ui.js?v=20260821b-noteextract"></script>
+    <script src="js/patient_materials_ui.js?v=20260829t"></script>
     <script src="js/workspace_ui_state.js?v=20260622h"></script>
 
 <!-- ========== UNIFIED SETTINGS & CONNECTION MANAGEMENT ========== -->
