@@ -22,12 +22,12 @@
     "ASR_AUDIT_LOG": "1",
     "LLM_ASR_REFINE_URL": "http://127.0.0.1:8004",
     "LLM_ASR_REFINE_URL_FALLBACK": "",
-    "NOTEGEN_MODEL": "qwen3.8-27b-fp8",
-    "ASR_REFINE_MODEL": "qwen3.8-27b-fp8",
-    "OCR_MODEL": "qwen3.8-27b-fp8",
-    "QA_VISION_MODEL": "qwen3.8-27b-fp8",
-    "OCR_MODEL_NAME": "qwen3.8-27b-fp8",
-    "LLM_CHAT_MODEL": "qwen3.8-27b-fp8"
+    "NOTEGEN_MODEL": "qwen3.8-27b-awq-dflash2",
+    "ASR_REFINE_MODEL": "qwen3.8-27b-awq-dflash2",
+    "OCR_MODEL": "qwen3.8-27b-awq-dflash2",
+    "QA_VISION_MODEL": "qwen3.8-27b-awq-dflash2",
+    "OCR_MODEL_NAME": "qwen3.8-27b-awq-dflash2",
+    "LLM_CHAT_MODEL": "qwen3.8-27b-awq-dflash2"
   },
   "pchost": {
     "backend_url": "http://127.0.0.1:7860",
