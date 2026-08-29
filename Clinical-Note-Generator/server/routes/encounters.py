@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import copy
 import os
+import re
 import uuid
 from datetime import datetime
 from typing import Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException, status
+from fastapi.responses import Response
+from pydantic import BaseModel
 from sqlmodel import Session, select, func
 
 from server.core.baseline import get_baseline_workspace
@@ -272,3 +275,145 @@ def delete_encounter(
         .order_by(UserEncounter.updated_at.desc())
     ).all()
     return EncounterListResponse(encounters=[_summary(e, active_id) for e in rows])
+
+
+# ---------------------------------------------------------------------------
+# Hospital Progress Notes print (NSHA permanent-record sheet, Code-39 AJ)
+# ---------------------------------------------------------------------------
+
+class ProgressPrintRequest(BaseModel):
+    aj: str
+    patient_name: Optional[str] = None
+    dob: Optional[str] = None
+    sex: Optional[str] = None
+    age: Optional[str] = None
+    mrn: Optional[str] = None
+    upi: Optional[str] = None
+    ward: Optional[str] = None
+    bed: Optional[str] = None
+    service: Optional[str] = None
+    enc_date: Optional[str] = None
+
+
+@router.get("/{encounter_id}/print-meta")
+def get_print_meta(
+    encounter_id: uuid.UUID,
+    session: Session = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    """Prefilled hospital-progress-note fields + provenance for the print dialog."""
+    from server.services.progress_note_meta import extract_meta
+
+    enc = session.get(UserEncounter, encounter_id)
+    if not enc or enc.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Encounter not found")
+    meta = extract_meta(enc.state_json or {})
+    meta["has_draft"] = bool((enc.state_json or {}).get("draft"))
+    return meta
+
+
+@router.post("/{encounter_id}/print-progress-note")
+async def print_progress_note(
+    encounter_id: uuid.UUID,
+    body: ProgressPrintRequest,
+    session: Session = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    """Render the encounter draft as an NSHA Progress Notes PDF. AJ required (Code-39).
+
+    Server-side zxing round-trip verification gates the response: a PDF whose
+    barcodes do not decode exactly is never returned.
+    """
+    import asyncio
+    from server.services.progress_note_meta import extract_meta, normalize_aj
+    from server.services.progress_note_pdf import render_progress_note_pdf, verify_pdf_bytes, DEFAULT_SERVICE
+
+    enc = session.get(UserEncounter, encounter_id)
+    if not enc or enc.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Encounter not found")
+    state = enc.state_json or {}
+    draft = state.get("draft") or ""
+    if not draft.strip():
+        raise HTTPException(status_code=422, detail="Encounter has no note draft to print")
+
+    aj = normalize_aj(body.aj)
+    if not aj:
+        raise HTTPException(status_code=422, detail="AJ number missing or invalid")
+
+    auto = extract_meta(state)
+    clinician = (current_user.display_name or current_user.email or "").strip()
+    if "," not in clinician and clinician:
+        parts = clinician.split()
+        if len(parts) >= 2:
+            clinician = f"{parts[-1]}, {' '.join(parts[:-1])}"
+
+    pdf_meta = {
+        "name": (body.patient_name or auto.get("patient_name") or enc.label or "").strip(),
+        "sex": (body.sex or auto.get("sex") or "").strip(),
+        "upi": (body.upi or auto.get("upi") or "").strip(),
+        "yr": (body.mrn or auto.get("mrn") or "").strip(),
+        "dob": (body.dob or auto.get("dob") or "").strip(),
+        "age": (body.age or auto.get("age") or "").strip(),
+        "enc_date": (body.enc_date or auto.get("enc_date") or "").strip(),
+        "aj": aj,
+        "service": (body.service or auto.get("service") or DEFAULT_SERVICE).strip(),
+        "ward": (body.ward or auto.get("ward") or auto.get("facility") or "").strip(),
+        "clinician": clinician,
+    }
+    if body.bed:
+        pdf_meta["ward"] = f"{pdf_meta['ward']} Bed: {body.bed}".strip()
+
+    try:
+        pdf_bytes = await asyncio.to_thread(render_progress_note_pdf, draft, pdf_meta)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+    ok, codes = await asyncio.to_thread(verify_pdf_bytes, pdf_bytes, aj)
+    if not ok:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Barcode verification failed (decoded: {codes}). PDF not released.",
+        )
+
+    # remember for THIS encounter only — dies with the encounter row
+    new_extras = {**(state.get("extras") or {})}
+    new_extras["progress_print"] = {
+        "aj": aj,
+        "patient_name": pdf_meta["name"],
+        "dob": pdf_meta["dob"],
+        "sex": pdf_meta["sex"],
+        "age": pdf_meta["age"],
+        "mrn": pdf_meta["yr"],
+        "upi": pdf_meta["upi"],
+        "ward": (body.ward or "").strip(),
+        "bed": (body.bed or "").strip(),
+        "service": (body.service or "").strip(),
+        "enc_date": pdf_meta["enc_date"],
+    }
+    enc.state_json = {**state, "extras": new_extras}
+    enc.version = int(enc.version or 0) + 1
+    enc.updated_at = datetime.utcnow()
+    session.add(enc)
+    log_phi_access(
+        session,
+        user_id=current_user.id,
+        action="progress_note_print",
+        resource_type="encounter",
+        resource_id=str(enc.id),
+        encounter_id=enc.id,
+        detail=f"AJ={aj}",
+    )
+    session.commit()
+
+    last = pdf_meta["name"].split(",")[0].split()[-1] if pdf_meta["name"] else "Note"
+    safe_aj = re.sub(r"[^A-Za-z0-9]+", "_", aj).strip("_")
+    from urllib.parse import quote
+    fname = f"{last}_{safe_aj}.pdf"
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f"attachment; filename=\"{fname}\"; filename*=UTF-8''{quote(fname)}",
+            "Cache-Control": "no-store",
+        },
+    )
