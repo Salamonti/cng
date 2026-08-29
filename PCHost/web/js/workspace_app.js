@@ -6705,6 +6705,37 @@ Contact Information:`,
         }
         window.setPromptSettingsTab = setPromptSettingsTab;
 
+        // Load saved note-type preferences (default + visibility) at boot so
+        // they survive page reloads, not just until the next click.
+        async function loadNoteTypePrefsAtBoot() {
+            const auth = window.AuthWorkspace;
+            if (!auth || typeof auth.request !== 'function') return;
+            try {
+                const apiBase = getApiBase(app.settings.serverUrl || '/api');
+                const resp = await auth.request(`${apiBase}/profile`, { method: 'GET' });
+                if (!resp.ok) return;
+                const p = await resp.json();
+                app.visibleNoteTypes = (p.visible_note_types && p.visible_note_types.length) ? p.visible_note_types : null;
+                app.defaultNoteType = p.default_note_type || null;
+                syncNoteTypeDropdownsFromProfile();
+                // Apply the default whenever the dropdown is still on its
+                // untouched initial selection (page reload / fresh start).
+                const sel = document.getElementById('noteType');
+                if (sel && app.defaultNoteType) {
+                    const cur = sel.value || 'consult';
+                    const untouched = cur === 'consult' || !cur;
+                    const has = [...sel.options].some((o) => o.value === app.defaultNoteType);
+                    if (untouched && has) {
+                        sel.value = app.defaultNoteType;
+                        const mirror = document.getElementById('noteTypeMirror');
+                        if (mirror) mirror.value = sel.value;
+                    }
+                }
+            } catch (e) {
+                console.warn('[Note type preferences] boot load failed:', e);
+            }
+        }
+
         async function loadNoteTypePreferences() {
             const auth = window.AuthWorkspace;
             if (!auth || typeof auth.request !== 'function') return;
@@ -6716,8 +6747,19 @@ Contact Information:`,
                 const defaultSelect = document.getElementById('defaultNoteTypeSelect');
                 const checkboxesDiv = document.getElementById('visibleNoteTypesCheckboxes');
                 if (!defaultSelect || !checkboxesDiv) return;
-                // Build note type list from profileNoteTypesOrder
-                const noteTypes = app.profileNoteTypesOrder || [];
+                // Build note type list from /note-types/all — the unfiltered list.
+                // profileNoteTypesOrder comes from /note-types which already drops
+                // hidden types; using it here would make hidden types unre-checkable.
+                let noteTypes = app.profileNoteTypesOrder || [];
+                try {
+                    const allResp = await auth.request(`${apiBase}/note-types/all`, { method: 'GET' });
+                    if (allResp.ok) {
+                        const allData = await allResp.json();
+                        if (Array.isArray(allData.note_types) && allData.note_types.length) {
+                            noteTypes = allData.note_types;
+                        }
+                    }
+                } catch (e) { /* fall back to filtered order */ }
                 if (!noteTypes.length) return;
                 // Populate default note type dropdown
                 defaultSelect.innerHTML = '';
@@ -6876,7 +6918,15 @@ Contact Information:`,
                     sel.appendChild(opt);
                 }
                 const has = [...sel.options].some((o) => o.value === cur);
-                sel.value = has ? cur : (sel.options[0] ? sel.options[0].value : cur);
+                if (has) {
+                    sel.value = cur;
+                } else {
+                    // Current choice is gone (hidden/deleted): prefer the user's
+                    // default note type, then the first visible option.
+                    const dflt = app.defaultNoteType;
+                    const hasDflt = dflt && [...sel.options].some((o) => o.value === dflt);
+                    sel.value = hasDflt ? dflt : (sel.options[0] ? sel.options[0].value : cur);
+                }
             }
         }
 
@@ -7673,6 +7723,7 @@ Contact Information:`,
             loadSettings();
             await loadDefaultPrompts();
             await loadProfileNoteTypes();
+            await loadNoteTypePrefsAtBoot();
             await syncProfileSpecialtyToBar();
             if (localStorage.getItem('clinicalNotePrompts')) {
                 localStorage.removeItem('clinicalNotePrompts');
