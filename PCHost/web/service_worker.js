@@ -1,5 +1,5 @@
 // service_worker.js - PWA caching for DreamCision
-const CACHE_NAME = 'dreamcision-pwa-20260829g';
+const CACHE_NAME = 'dreamcision-pwa-20260829m';
 const PRECACHE_URLS = [];
 const NEVER_CACHE = [
   '/static/index.html',

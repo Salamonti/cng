@@ -22,8 +22,26 @@
     var st = document.createElement('style');
     st.id = 'pnPrintStyle';
     st.textContent = [
-      '.pn-print-wrap{position:relative;display:flex;}',
-      '#pnPrintMenuBtn{white-space:nowrap;flex:1 1 auto;min-width:max-content;}',
+      /* compact, inline with Generate — do NOT stretch/wrap to its own row */
+      '#pnPrintMenuBtn{white-space:nowrap;flex:0 0 auto;min-width:max-content;}',
+      '.pn-print-wrap{position:relative;display:flex;flex:0 0 auto;margin-left:2px;}',
+      /* the 💾 Export PDF button duplicates the PDF (plain) menu item — hide it (JS still works) */
+      '.note-download-btn:not(#pnPrintMenuBtn){display:none !important;}',
+      /* phone: one compact action row — select + Generate + Print, content-sized */
+      '@media (max-width:640px){',
+      '#pnSheetModal{padding:12px 12px 84px;}/* clear .mobile-bottom-nav (~72px tall) */',
+      '.note-header-actions{flex-wrap:nowrap;}',
+      '.note-header-actions #noteTypeMirror{flex:1 1 auto;width:auto;min-width:0;overflow:hidden;}',
+      '.note-header-actions #generateBtnNoteCard{flex:0 1 auto;width:auto;min-width:0;}',
+      '.pn-print-wrap{width:auto !important;flex:0 0 auto;}',
+      '.pn-print-wrap #pnPrintMenuBtn{width:auto !important;}',
+      '}',
+      '@media (max-width:380px){',
+      /* the 66.7px avatar offset margin makes the row overflow tiny phones */
+      '.note-header-actions{margin-left:0 !important;}',
+      '.note-header-actions .btn{font-size:0.75rem !important;padding:6px 8px !important;min-width:max-content;}',
+      '.note-header-actions #noteTypeMirror{font-size:0.75rem;flex:1 1 0 !important;}',
+      '}',
       '.pn-print-menu{position:absolute;top:calc(100% + 4px);right:0;z-index:60;',
       'background:#fff;border:1px solid #d0d4da;border-radius:8px;',
       'box-shadow:0 6px 18px rgba(0,0,0,.15);min-width:230px;max-width:calc(100vw - 24px);',
@@ -33,12 +51,20 @@
       'padding:8px 10px;font-size:13px;cursor:pointer;border-radius:6px;color:inherit;}',
       '.pn-print-menu button:hover{background:#eef2f7;}',
       '.pn-modal-field{margin-bottom:8px;}',
-      /* #pnSheetModal: 'modal-overlay' has no app CSS — self-contain it */
-      '#pnSheetModal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.45);',
+      /* #pnSheetModal: 'modal-overlay' has no app CSS — self-contain it.
+         z-index must beat .mobile-bottom-nav (11998) and tools-sheet (16000). */
+      '#pnSheetModal{position:fixed;inset:0;z-index:16001;background:rgba(0,0,0,.45);',
       'display:flex;align-items:center;justify-content:center;padding:12px;}',
       '#pnSheetModal .modal-content{background:#fff;border-radius:12px;padding:16px;',
-      'width:100%;max-width:560px;max-height:88vh;overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.3);',
+      'width:100%;max-width:560px;max-height:calc(100dvh - 24px);overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.3);',
       'color:#222;}',
+      '@media (max-width:640px){',
+      '#pnSheetModal .modal-content{max-height:calc(100dvh - 96px);}/* keep whole card above nav */',
+      '.pn-modal-footer{position:sticky;bottom:0;background:#fff;display:flex;gap:8px;justify-content:flex-end;',
+      'padding:10px 0 10px;margin-top:12px;border-top:1px solid #e5e7eb;}',
+      '.pn-modal-footer::after{content:"";position:absolute;left:-16px;right:-16px;bottom:-16px;height:16px;background:#fff;}',
+      '.pn-modal-footer .btn{flex:1 1 auto;padding:10px;min-height:44px;}',
+      '}',
       '.pn-modal-field label{display:block;font-size:11px;color:#666;margin-bottom:2px;}',
       '.pn-modal-field .pn-src{font-size:10px;color:#8a6d3b;margin-left:4px;}',
       '.pn-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;}',
@@ -140,7 +166,7 @@
       '<div class="pn-modal-field"><label>Service</label><input class="form-control" id="pnService"></div>' +
       '<div class="pn-modal-field"><label>Encounter date</label><input class="form-control" id="pnEnc" placeholder="2026-08-28"></div>' +
       '</div>' +
-      '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">' +
+      '<div class="pn-modal-footer">' +
       '<button type="button" class="btn btn-secondary" id="pnCancel">Cancel</button>' +
       '<button type="button" class="btn btn-success" id="pnPrintGo">Print sheet</button>' +
       '</div></div>';
