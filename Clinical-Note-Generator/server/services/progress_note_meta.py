@@ -35,8 +35,19 @@ DEMO_RE = re.compile(
 AJ_FIND_RE = re.compile(r"\b(AJ[\s#-]?\d{3,}(?:[/\-]\s?\d{1,4})?)\b")
 MRN_FIND_RE = re.compile(r"\b(YR\.?\s?\d{5,})\b")
 
+# ---- Alternate source: lab / imaging / OCR report dumps ("Other Notes" paste) ----
+# Acct Num: AJ0001997/26   |   PT NAME: LANDRY,MEDRIC SIMON DOB: 29/11/1940 SEX: M
+REPORT_AJ_RE = re.compile(r"(?:Acct(?:\s*Num)?|Account)\s*[:#]\s*(AJ[\s#-]?\d{3,}(?:[/\-]\s?\d{1,4})?)", re.I)
+REPORT_NAME_RE = re.compile(r"(?:PT\s*NAME|Patient\s*Name)\s*[:#]\s*((?:[A-Za-z][A-Za-z'`\.\-]*\s+)*[A-Za-z][A-Za-z'`\.\-]*)\s*,\s*((?:[A-Za-z][A-Za-z'`\.\-]*\s+)*[A-Za-z][A-Za-z'`\.\-]*?)(?=\s+(?:DOB|SEX|HC|PT|ADDRESS|DATE|REQ|ACCT|UNIT|SITE|AGE|RRN|MRN|Account|Acct)\b|$)", re.I | re.M)
+REPORT_DOB_RE = re.compile(r"\bDOB\s*[:#]?\s*(\d{2}[/-]\d{2}[/-]\d{2,4})", re.I)
+REPORT_SEX_RE = re.compile(r"\bSEX\s*[:#]?\s*(M|F|Male|Female)\b", re.I)
+REPORT_YR_RE = re.compile(r"\b(?:UNIT\s*[:#]?\s*)?(YR\.?\s?\d{5,})\b", re.I)
+
 # Draft preamble keys
 PRE_PATIENT_RE = re.compile(r"^\s*\*{0,2}Patient\*{0,2}\s*:\s*(?P<v>.+?)\s*$", re.I)
+PRE_RE_RE = re.compile(r"^\s*\*{0,2}Re\*{0,2}\s*:\s*(?P<v>.+?)\s*$", re.I)
+# Re: lines may carry trailing parentheticals: 'Medric Simon Landry (DOB: 29/11/1940)'
+PRE_RE_DOB_RE = re.compile(r"\(\s*DOB\s*[:#]?\s*([\d/\-]+[A-Za-z]*[0-9]*)\s*\)\s*$", re.I)
 PRE_DATE_RE = re.compile(r"^\s*\*{0,2}Date\*{0,2}\s*:\s*(?P<v>\d{4}-\d{2}-\d{2}.{0,10})\s*$", re.I)
 PRE_AGESEX_RE = re.compile(r"^\s*\*{0,2}Age/Sex\*{0,2}\s*:\s*(?P<v>.+?)\s*$", re.I)
 PRE_LOCATION_RE = re.compile(r"^\s*\*{0,2}Location\*{0,2}\s*:\s*(?P<v>.+?)\s*$", re.I)
@@ -79,7 +90,78 @@ def _fmt_dob(iso_mmdd: str) -> str:
         d = datetime.strptime(iso_mmdd, "%m/%d/%Y")
         return f"{d.day} {d.strftime('%b')} {d.year}"
     except Exception:
+        pass
+    # Lab/imaging dumps use DD/MM/YYYY (e.g. '29/11/1940'); a month >12 there
+    # would make MM/DD parsing fail, so fall back to DD/MM before giving up.
+    try:
+        d = datetime.strptime(iso_mmdd, "%d/%m/%Y")
+        return f"{d.day} {d.strftime('%b')} {d.year}"
+    except Exception:
         return ""
+
+
+def _fmt_dob_any(raw: str) -> str:
+    """Accept '29/11/1940', '1940/11/29', '29 Nov 1940'... -> '29 Nov 1940'."""
+    s = (raw or "").strip().rstrip(".").replace("-", "/")
+    m = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{4})$", s)
+    if m:
+        a, b, y = int(m.group(1)), int(m.group(2)), m.group(3)
+        # Ambiguous a<=12 and b<=12: keep US chart convention (MM/DD); if a>12 it's DD/MM.
+        order = "%m/%d/%Y" if a <= 12 else "%d/%m/%Y"
+        try:
+            d = datetime.strptime(f"{a}/{b}/{y}", order)
+            return f"{d.day} {d.strftime('%b')} {d.year}"
+        except Exception:
+            return ""
+    for fmt in ("%Y/%m/%d", "%d %b %Y", "%d %B %Y"):
+        try:
+            d = datetime.strptime(s, fmt)
+            return f"{d.day} {d.strftime('%b')} {d.year}"
+        except Exception:
+            continue
+    return ""
+
+
+def _parse_report_dump(blob: str) -> Dict[str, Any]:
+    """Extract demographics from lab/imaging/OCR report dumps ('Other Notes' paste).
+
+    Format (Med-Com/QCIE printouts, sometimes OCR'd)::
+
+        Acct Num: AJ0001997/26
+        UNIT : YR00024559 SITE: YARMOUTH REGIONAL HOSPITAL
+        PT NAME: LANDRY,MEDRIC SIMON DOB: 29/11/1940 SEX: M
+
+    Takes the FIRST report header block (patient on the report we're printing about).
+    Returns {} when no AJ is anchored to a report header.
+    """
+    out: Dict[str, Any] = {}
+    aj_m = REPORT_AJ_RE.search(blob)
+    if not aj_m:
+        return out
+    aj = normalize_aj(aj_m.group(1))
+    if not aj:
+        return out
+    # Look for the patient identity within a window around the acct number
+    # (header block is ~10 lines; window avoids grabbing a DIFFERENT patient
+    # from a multi-report paste further down).
+    start = max(0, aj_m.start() - 600)
+    end = min(len(blob), aj_m.end() + 1200)
+    win = blob[start:end]
+    out["aj"] = aj
+    nm = REPORT_NAME_RE.search(win)
+    if nm:
+        last, rest = nm.group(1).strip(), nm.group(2).strip()
+        out["patient_name"] = last.upper() + ", " + " ".join(w.capitalize() for w in rest.split())
+    dm = REPORT_DOB_RE.search(win)
+    if dm:
+        out["dob"] = _fmt_dob_any(dm.group(1))
+    sm = REPORT_SEX_RE.search(win)
+    if sm:
+        out["sex"] = sm.group(1)[0].upper()
+    ym = REPORT_YR_RE.search(win)
+    if ym:
+        out["mrn"] = ym.group(1).replace(". ", "").replace(".", "").replace(" ", "")
+    return {k: v for k, v in out.items() if v}
 
 
 def _parse_draft_preamble(draft: str) -> Dict[str, str]:
@@ -90,6 +172,16 @@ def _parse_draft_preamble(draft: str) -> Dict[str, str]:
         m = PRE_PATIENT_RE.match(line)
         if m and "patient_name" not in out:
             out["patient_name"] = m.group("v").strip().strip("*").strip()
+        m = PRE_RE_RE.match(line)
+        if m and "patient_name" not in out:
+            # Consultation notes carry the patient on the Re: line, sometimes with
+            # a trailing parenthetical: 'Medric Simon Landry (DOB: 29/11/1940)'
+            v = m.group("v").strip().strip("*").strip()
+            dm = PRE_RE_DOB_RE.search(v)
+            if dm:
+                out["re_dob_raw"] = dm.group(1)
+                v = v[: dm.start()].strip()
+            out["patient_name"] = v
         m = PRE_DATE_RE.match(line)
         if m and "enc_date" not in out:
             out["enc_date"] = m.group("v").strip()[:10]
@@ -174,6 +266,14 @@ def extract_meta(state: Dict[str, Any]) -> Dict[str, Any]:
         # single EMR row, nothing to contradict it: plausible, medium confidence
         best = rows[0]
 
+    # ---- Lab / imaging / OCR report dumps ('Other Notes' paste) ----
+    # Med Access demographics rows (DEMO_RE) only cover the chart-paste format.
+    # Report printouts carry the same data in a header block:
+    #   Acct Num: AJ0001997/26 ... PT NAME: LANDRY,MEDRIC SIMON DOB: 29/11/1940 SEX: M
+    report = _parse_report_dump(blob)
+    if report.get("aj") and report["aj"] not in aj_candidates:
+        aj_candidates.append(report["aj"])
+
     if best is not None:
         s = meta["sources"]
         # format: LAST, First Middle — keep EMR casing structure, title-case given names
@@ -191,7 +291,22 @@ def extract_meta(state: Dict[str, Any]) -> Dict[str, Any]:
         meta["admit_date"] = best.group("admit").split(" ")[0]
         # admit date is a lower-trust enc_date default
     meta["aj_candidates"] = aj_candidates
+
+    # ---- Fill from the report dump when no chart demographics row matched ----
+    if best is None and report.get("aj"):
+        for k in ("patient_name", "dob", "sex", "mrn"):
+            if report.get(k) and not meta.get(k):
+                meta[k] = report[k]
+                meta["sources"][k] = "emr"  # report paste = chart-derived, same trust tier
+        if not meta.get("aj"):
+            meta["aj"] = report["aj"]
+            meta["sources"]["aj"] = "emr"
+
     n_match = sum(1 for m in rows if _name_match(m.group("name"), note_name or state.get("label", "")))
+    if not n_match and best is None and report.get("patient_name"):
+        # No chart row, but the report header names the same patient as the note
+        if _name_match(report["patient_name"], note_name or state.get("label", "")):
+            n_match = 1
     if meta.get("aj") and n_match == 1:
         meta["aj_confidence"] = "high"
     elif meta.get("aj"):
@@ -215,6 +330,10 @@ def extract_meta(state: Dict[str, Any]) -> Dict[str, Any]:
         s["patient_name"] = "note"
     if not meta.get("enc_date") and preamble.get("enc_date"):
         meta["enc_date"] = preamble["enc_date"]; s["enc_date"] = "note"
+    if not meta.get("dob") and preamble.get("re_dob_raw"):
+        d = _fmt_dob_any(preamble["re_dob_raw"])
+        if d:
+            meta["dob"] = d; s["dob"] = "note"
     if not meta.get("age_sex") and preamble.get("age_sex"):
         m = re.match(r"(\d{1,3})\s*[- ]?(?:year[- ]old)?\s*(M|F|Male|Female)?", preamble["age_sex"], re.I)
         if m:

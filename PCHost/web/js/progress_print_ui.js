@@ -299,16 +299,27 @@
       }
       return r.blob();
     }).then(function (blob) {
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      var last = (body.patient_name.split(',')[0] || 'Note').trim().split(/\s+/).pop() || 'Note';
-      a.href = url;
-      a.download = last + '_' + aj.replace(/[^A-Za-z0-9]+/g, '_') + '.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
       closeModal();
+      var url = URL.createObjectURL(blob);
+      /* Print = OPEN the PDF (browser viewer -> print or download from there).
+         Plain anchor-click only downloads, which is not printing. */
+      var w = null;
+      try { w = window.open(url, '_blank'); } catch (e) { w = null; }
+      if (!w) {
+        // Popup blocked (or iOS refuses blob tabs) — fall back to a tab-targeted
+        // anchor, then a plain download as last resort.
+        var a = document.createElement('a');
+        var last = (body.patient_name.split(',')[0] || 'Note').trim().split(/\s+/).pop() || 'Note';
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.download = last + '_' + aj.replace(/[^A-Za-z0-9]+/g, '_') + '.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+      setTimeout(function () { URL.revokeObjectURL(url); }, 300000);
+      if (window.showToast) window.showToast('Opened', 'PDF opened in a new tab — print or save from there.', 'success');
     }).catch(function (e) {
       go.disabled = false;
       go.textContent = 'Print sheet';
