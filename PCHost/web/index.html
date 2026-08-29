@@ -835,13 +835,26 @@
                 <button type="button" id="promptTabTemplatesBtn" class="btn btn-primary" onclick="setPromptSettingsTab('templates')">Account templates</button>
                 <button type="button" id="promptTabTypesBtn" class="btn btn-outline" onclick="setPromptSettingsTab('types')">Note types</button>
                 <button type="button" id="promptTabSettingsBtn" class="btn btn-outline" onclick="setPromptSettingsTab('settings')">Note type settings</button>
-                <button type="button" id="promptOpenTemplateLibraryBtn" class="btn btn-outline" onclick="openPromptTemplateLibrary()">Template library…</button>
             </div>
 
             <div id="promptTabTemplates">
                 <div class="form-group prompt-templates-primary-actions">
-                    <button type="button" class="btn btn-primary" onclick="openAddNewNoteTypeFromPrompts()">Add a new template</button>
+                    <button type="button" id="addCustomNoteTypeToggleBtn" class="btn btn-primary" onclick="toggleAddCustomNoteTypeSection()">Add a new template</button>
                 </div>
+                    <div id="addCustomNoteTypeWrap" style="display:none;">
+                        <div class="label-row" style="margin-top:8px;">
+                            <span>Add another note type</span>
+                            <span class="info-tip" title="Creates a new note type for your account. You only choose the name; the id is generated automatically.">i</span>
+                        </div>
+                        <div id="customNoteTypeCreateWrap">
+                            <input type="text" id="newNoteTypeLabel" class="form-control" placeholder="Name shown in the dropdown" autocomplete="off" />
+                            <textarea id="newNoteTypeInitialPrompt" class="form-control" rows="2" placeholder="Optional initial template (can edit later)"></textarea>
+                            <div class="btn-group" style="margin-top:8px;">
+                                <button type="button" class="btn btn-outline" onclick="openPromptTemplateLibrary()" title="Browse ready-made templates">Template library…</button>
+                                <button type="button" class="btn btn-primary" onclick="createCustomNoteType()">Add type</button>
+                            </div>
+                        </div>
+                    </div>
                 <div class="form-group baseline-toggle-row">
                     <button type="button" id="baselineToggleBtn" onclick="toggleBaselinePrompt()">Show baseline template</button>
                 </div>
@@ -885,20 +898,7 @@
 
                 <div class="form-group">
                     <div class="baseline-toggle-row">
-                        <button type="button" id="addCustomNoteTypeToggleBtn" onclick="toggleAddCustomNoteTypeSection()">Add a new template</button>
-                    </div>
-                    <div id="addCustomNoteTypeWrap" style="display:none;">
-                        <div class="label-row" style="margin-top:8px;">
-                            <span>Add another note type</span>
-                            <span class="info-tip" title="Creates a new note type for your account. You only choose the name; the id is generated automatically.">i</span>
-                        </div>
-                        <div id="customNoteTypeCreateWrap">
-                            <input type="text" id="newNoteTypeLabel" class="form-control" placeholder="Name shown in the dropdown" autocomplete="off" />
-                            <textarea id="newNoteTypeInitialPrompt" class="form-control" rows="2" placeholder="Optional initial template (can edit later)"></textarea>
-                            <div class="btn-group" style="margin-top:8px;">
-                                <button type="button" class="btn btn-outline" onclick="createCustomNoteType()">Add type</button>
-                            </div>
-                        </div>
+                        <span style="font-size:0.85rem;color:var(--text-secondary,#666);">Use the <b>Account templates</b> tab → <b>Add a new template</b> to create a note type.</span>
                     </div>
                 </div>
             </div>
@@ -961,7 +961,7 @@
     <script src="js/asr_settings_ui.js?v=20260808a-step4"></script>
     <script src="js/asr_transcript_view.js?v=20260622f"></script>
     <script src="js/asr_chunk_pipeline.js?v=20260622d"></script>
-    <script src="js/workspace_app.js?v=20260821a-streamfix"></script>
+    <script src="js/workspace_app.js?v=20260829q"></script>
     <script src="js/workspace_file_camera.js?v=20260719-uploadfix1"></script>
     <script src="js/patient_materials_ui.js?v=20260821b-noteextract"></script>
     <script src="js/workspace_ui_state.js?v=20260622h"></script>

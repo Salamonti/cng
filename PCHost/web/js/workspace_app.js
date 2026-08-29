@@ -6630,6 +6630,8 @@ Contact Information:`,
         }
 
         function expandAddCustomNoteTypeSection() {
+            // The form lives inside the Account templates tab — make sure it's showing.
+            setPromptSettingsTab('templates');
             const wrap = document.getElementById('addCustomNoteTypeWrap');
             const btn = document.getElementById('addCustomNoteTypeToggleBtn');
             if (wrap) wrap.style.display = 'block';
@@ -6637,7 +6639,7 @@ Contact Information:`,
         }
 
         function openAddNewNoteTypeFromPrompts() {
-            setPromptSettingsTab('types');
+            setPromptSettingsTab('templates');
             expandAddCustomNoteTypeSection();
             try {
                 const wrap = document.getElementById('addCustomNoteTypeWrap');
